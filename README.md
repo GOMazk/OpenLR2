@@ -12,7 +12,7 @@ put lr2body.exe and fmod.dll into the folder and replace original LR2body.exe (o
 It uses same score DB with origianl one.
 To avoid data corruption, do not run this on where you played original LR2.
 please use newly installed LR2.
-send score to LR2IR is disabled to avoid accidents.
+sending score to LR2IR is disabled to avoid accidents.
 (accidents can be occur, by saving score with LR2_re and sending score with original LR2. DO NOT MIX)
 
 # known issues
