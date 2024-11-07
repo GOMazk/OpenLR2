@@ -17,6 +17,7 @@ sending score to LR2IR is disabled to avoid accidents.
 
 # known issues
  - behavior mismatch on NONSTOP MIX
+ - keyboard is considered as japanese keyboard (check at keyconfig)
 
 # libraries
 *DxLib 3.02 -> 3.12a
