@@ -258,6 +258,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 		SetMultiThreadFlag(1);
 		SetUseFPUPreserveFlag(1);
+		SetUseDirectInputFlag(1); //not in original, but we need it to make same reaction.
 		if (DxLib_Init() != -1) {
 			ChangeFont("", 0);
 			SetLogFontSize(12); //SetLogFontSize(14); //changed 14 to 12 because of dxlib version // TODO: make font same
