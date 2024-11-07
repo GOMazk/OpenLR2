@@ -18806,14 +18806,14 @@ int AddDrawingBuffer_Gauge(DrawingBuf *drb, SRCstruct *src, DSTstruct *dst, Time
 	tremble = hp - GetRand(2);
 	for (int i = 1; i <= 50; i++) {
 		if (isSurvival == 0) {
-			if (i < 40) {
+			if (1 <= i && i < 40) {
 				if ((i < tremble || hp <= i || i == 1) && i <= hp)
 					grh = src->grHandles[cyc + 1];
 				else
 					grh = src->grHandles[cyc + 3];
 			}
 			else {
-				if (i >= tremble && hp > i && i != 1)
+				if (tremble <= i && i < hp && i != 1)
 					grh = src->grHandles[cyc + 2];
 				else if(hp < i)
 					grh = src->grHandles[cyc + 2];
@@ -18821,7 +18821,7 @@ int AddDrawingBuffer_Gauge(DrawingBuf *drb, SRCstruct *src, DSTstruct *dst, Time
 					grh = src->grHandles[cyc];
 			}
 		}
-		else if (i < tremble || hp <= 1 || i == 1) {
+		else if (i < tremble || hp <= i || i == 1) {
 			if(hp < i)
 				grh = src->grHandles[cyc + 2];
 			else
