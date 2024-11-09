@@ -8529,7 +8529,7 @@ int Proc_Text(game *g, sqlite3 *sql, char flag) {
 	if (g->txtStruct.st_text_num != -1) {
 		g->sSelect.is_mouseOnTextInput = 1;
 
-		if (CheckKeyInput(g->txtStruct.hKeyInput) >= 1 || flag == 0) {
+		if (CheckKeyInput(g->txtStruct.hKeyInput) >= 1 && flag == 0) {
 			//CheckKeyInput() 0:doing 1:done 2:cancle -1:error
 			if (CheckKeyInput(g->txtStruct.hKeyInput) == 1) {
 
