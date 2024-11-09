@@ -8470,6 +8470,7 @@ int ProcS_Select(game *g) {
 //41dc30
 int Proc_Text(game *g, sqlite3 *sql, char flag) {
 
+	char str[1024];
 	uint mouseL = g->KeyInput.mouse_buttonL;
 	uint mouseR = g->KeyInput.mouse_buttonR;
 
@@ -8661,6 +8662,11 @@ int Proc_Text(game *g, sqlite3 *sql, char flag) {
 						else if (atol(buf) > 0) {
 							cstrSprintf(&query, "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE level = %d", atol(buf));
 							cstrSprintf(&buf, "LEVEL %d", atol(buf));
+						}
+
+						if (query.isSame("(null)")) {
+							sqlite3_snprintf(1024, str, "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE title LIKE \'%%%s%%\' OR genre LIKE \'%%%s%%\'  OR artist LIKE \'%%%s%%\' OR tag LIKE \'%%%s%%\' OR path LIKE \'%%%s%%\' OR subtitle LIKE \'%%%s%%\' OR subartist LIKE \'%%%s%%\'", buf, buf, buf, buf, buf, buf, buf);
+							query.assign(str);
 						}
 
 						g->config.select.difficulty = 0;
