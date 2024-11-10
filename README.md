@@ -19,6 +19,8 @@ sending score to LR2IR is disabled to avoid accidents.
  - behavior mismatch on NONSTOP MIX
  - readme left click scroll is faster than original (not important)
  - DO NOT PLAY WITH SOUND FX TOO MUCH, IT CAN LITERALLY KILL YOU
+ - some note doesn't disappear at last (standard, course)
+ - banner load fails
 
 # libraries
 *DxLib 3.02 -> 3.12a
