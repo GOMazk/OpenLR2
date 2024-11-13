@@ -1904,8 +1904,8 @@ int ApplyJudgeToScore(int judge, game *g, int player, int lane, Timer *T, char i
 			if (g->gameplay.playerstat.combo > g->gameplay.playerstat.maxcombo)
 				g->gameplay.playerstat.maxcombo = g->gameplay.playerstat.combo;
 		}
-		if (judge == 2 && judge == 1) {
-			g->gameplay.playerstatus.combo = 0;
+		if (judge == 2 || judge == 1) {
+			g->gameplay.playerstat.combo = 0;
 		}
 	}
 
