@@ -67,13 +67,13 @@ void MYRANKING::InitRanking() {
 }
 
 //401090
-bool CheckScoreSaveConditon(game *g){
+bool CheckScoreSaveConditon(game *g){ //TOFIX : p2_assist == 1 but no battle, doesn't match with actual condition
 	if ( (g->config.play.battle == 0 || g->config.play.battle == 4) && g->config.play.is_extra != 1
 		&& g->config.play.m_addlong == 0 && g->config.play.unused_f2 == 0 && g->config.play.m_loudness <= 0 
 		&& g->config.play.m_lunaris == 0 && g->config.play.hsfix != 4 && g->config.play.m_addmine == 0 
 		&& (g->config.play.m_addnote == 0 && g->config.play.is_extra == 0) && g->config.play.autokey == 0
 		&& (g->config.play.unknown_1 == 0 || g->sSelect.metaSelected.keymode < 10) 
-		&& g->config.play.p1_assist == 0 && (g->config.play.p2_assist == 0 || g->sSelect.metaSelected.keymode < 10)
+		&& g->config.play.p1_assist == 0 && (g->config.play.p2_assist == 0 || g->sSelect.metaSelected.keymode < 10) 
 		&& g->config.play.random[0] < 4 && g->config.play.random[1] < 4) {
 		return true;
 	}
@@ -81,7 +81,7 @@ bool CheckScoreSaveConditon(game *g){
 }
 
 //401130
-int CheckClearLampChallenge(game *g){
+int CheckClearLampChallenge(game *g){ //TOFIX : p2_assist == 1 but no battle, doesn't match with actual condition
 	int gauge;
 
 	if (g->config.play.m_addlong == 1 || g->config.play.unused_f2 || g->config.play.m_loudness > 0
@@ -447,8 +447,8 @@ int SetBmsFilter(game *g, sqlite3 *sql){
 	g->sSelect.searchMax = g->sSelect.stack_rivalID[g->sSelect.cur];
 	g->sSelect.filterKey = g->config.select.key;
 	g->sSelect.filterDifficulty = g->config.select.difficulty;
-	int cur = (g->sSelect).cur_song;
-	SONGDATA *bms = (g->sSelect).bmsList;
+	int cur = g->sSelect.cur_song;
+	SONGDATA *bms = g->sSelect.bmsList;
 	g->sSelect.selTitle = bms[cur].title;
 	g->sSelect.selFilepath = bms[cur].filepath;
 	g->sSelect.selKey = bms[cur].keymode;
@@ -2194,14 +2194,14 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 	int lineCount = 0;
 	for (int i = g->gameplay.bmsobj_line.draw_count; i < g->gameplay.bmsobj_line.size; i++) {
 		
-		if (lineCount == 300) break;
+		if (lineCount == 300) break; //max 300 measure_lines on screen
 		lineCount++;
 
 		int speed = cfg->hiSpeed[0];
 		if (cfg->hiSpeed[1] < cfg->hiSpeed[0] && cfg->battle == 1) {
 			speed = cfg->hiSpeed[1];
 		}
-		//TOFIX : 1p 2p doesn't match
+		//TOFIX : 1p 2p doesn't match (no nabeatsu_y on battle 2p measure_line)
 		if ((sk->horizontal == 0 && sk->dst_LINE[0].draw->y + (songtimer - g->gameplay.bmsobj_line.notes[i].bmsTiming)* speed * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0 > drawStartHeight)
 			|| (sk->horizontal == 1 && (g->gameplay.bmsobj_line.notes[i].bmsTiming - songtimer)* speed * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 640.0 > drawStartHeight)) {
 						
@@ -4759,109 +4759,109 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			
 		case 100: //TODO : make more readable
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 0) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 0) return ret;
 			}
 			else if(gs->config.play.battle == 3){
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 0) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 0) return ret;
 			}
 			break;
 		case 101:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 1) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 1) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 1) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 1) return ret;
 			}
 			break;
 		case 102:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 2) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 2) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 2) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 2) return ret;
 			}
 			break;
 		case 103:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 3) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 3) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 3) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 3) return ret;
 			}
 			break;
 		case 104:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 4) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 4) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 4) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 4) return ret;
 			}
 			break;
 		case 105:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 5) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 5) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 5) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 5) return ret;
 			}
 			break;
@@ -4872,32 +4872,32 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 		
 		case 111:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 6 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 8) return ret; //why???
 			break;
 		case 112:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 5 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 7) return ret;
 			break;
 		case 113:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 4 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 6) return ret;
 			break;
 		case 114:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 3 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 5) return ret;
 			break;
 		case 115:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 2 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 4) return ret;
 			break;
 		case 116:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode < 1) return !ret;
+			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 1 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 3) return ret;
 			break;
@@ -21153,7 +21153,7 @@ int ParseLR2SkinCustom(SkinManage *skm, CSTR filepath) {
 			skm->Data[skm->Count].maker.assign(&csvBuf.str[3]);
 			skm->Data[skm->Count].thumbnail.assign(&csvBuf.str[4]);
 			skm->Data[skm->Count].informationP5 = csvBuf.val[5];
-			skm->Data[skm->Count].undefined2 = -1; //TODO:rename
+			skm->Data[skm->Count].unused18 = -1;
 			skm->Count ++;
 			if (skm->Count == skm->Max) {
 				ExpandSkinMax(skm);
@@ -25239,7 +25239,7 @@ int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, int loop, int disable
 	sound->length = GetSoundTotalTime(sound->soundHandle);
 	sound->load = 1;
 	sound->loop = (loop != 0);
-	sound->unused0C = 0; //TODO : rename
+	sound->unused0C = 0;
 	return 1;
 }
 

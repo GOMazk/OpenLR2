@@ -1722,7 +1722,7 @@ struct SkinHeader { /* SkinInfo */
 	CSTR maker;
 	enum SKINTYPE type;
 	int undefined1;
-	int undefined2;
+	int unused18;
 	int informationP5;
 	struct SkinCustom customs[100];
 	int custom_count;

@@ -1282,7 +1282,7 @@ void InitMIDIInput(void){
 		midi.controller_v = 0;
 		midi.controller_n = 0;
 	}
-	midi.unkfc = 0x7f; //TODO : what is unkfc
+	midi.unusedFC = 0x7f;
 	numDev = midiInGetNumDevs();
 	if (numDev > 15) {
 		numDev = 15;
