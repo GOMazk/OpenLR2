@@ -2105,10 +2105,10 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 
 	if (sk->dst_NOTE[1].dstCount > 0) {
 		if (sk->horizontal == 0) {
-			drawStartHeight = g->skstruct.adjust.size_y - sk->dst_NOTE[1].draw->h;
+			drawStartHeight = -( abs(g->skstruct.adjust.size_y) + (int)sk->dst_NOTE[1].draw->h );
 		}
 		else {
-			drawStartHeight = g->skstruct.adjust.size_x - sk->dst_NOTE[1].draw->w;
+			drawStartHeight = -( abs(g->skstruct.adjust.size_x) + (int)sk->dst_NOTE[1].draw->w );
 		}
 	}
 
