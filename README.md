@@ -19,10 +19,12 @@ sending score to LR2IR is disabled to avoid accidents.
  - behavior mismatch on NONSTOP MIX
  - readme left click scroll is faster than original (not important)
  - banner load fails
+ - in song select, song bar is not transparent while scrolling with some skins
+ - skin adjust(number key 1234... while playing) is not tested
 
 # libraries
-*DxLib 3.02 -> 3.12a
-	suspected orginal library is dxlib 3.01 ~ dxlib3.02
+*DxLib 3.01a -> 3.12a
+	orginal library is dxlib 3.01a, not available. we can get 3.01 or 3.02.
 	but, to avoid LoadJpegImage() crash error I used dxlib3.12a (2014/4/19)
 
 *FMODex 4.13.4(080401)
