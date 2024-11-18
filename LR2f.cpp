@@ -18112,10 +18112,10 @@ void LRDrawText(int* grHandle, DSTdraw *dstd, CSTR *str, ImageFont *imF) {
 			
 				wl = wl * hl;
 				if (dstd->align == 1) {
-					dstd->x = dstd->x - (width*wl*0.5);
+					dstd->x = dstd->x - (int)(width*wl*0.5);
 				}
 				else if (dstd->align == 2) {
-					dstd->x = dstd->x - (width*wl);
+					dstd->x = dstd->x - (int)(width*wl);
 				}
 				GetTimeWrap();
 				if (wl == 1.0 && hl == 1.0) {
