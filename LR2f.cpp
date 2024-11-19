@@ -10934,7 +10934,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					if (iTmp == 1) SkinPreviewNext(&g->skinData, (SKINTYPE)g->skinData.select);
-					else if (iTmp == -1) SkinPreviewNext(&g->skinData, (SKINTYPE)g->skinData.select);
+					else if (iTmp == -1) SkinPreviewPrev(&g->skinData, (SKINTYPE)g->skinData.select);
 					SelectSkin(&g->skinData, &g->config.skin.skinFilePath[g->skinData.select]);
 					if (g->skinData.select == 10) { // SOUNDSET
 						ReadLR2SoundSet(g, g->skinData.Data[g->skinData.previewID].skinFile, 0);
