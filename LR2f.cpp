@@ -20,9 +20,9 @@ extern "C" {
 #include "LR2startup.h" //MD5str
 #include "LR2input.h"
 
-extern "C" {
+//extern "C" {
 #include "md5.h" //md5File()
-}
+//}
 
 #define pi 3.1415926525
 #define pi2 6.2831853
@@ -416,7 +416,7 @@ int InitFxParam(game *g, int fxNum){
 //401fe0
 //TODO : banner image load fails
 void ThreadProc_LoadBanner(void *param) {
-	game *g = (game*)param;
+	game* g = (game*)param;
 
 	CSTR path;
 	CSTR dir = g->sSelect.bmsList[g->sSelect.cur_song].filepath.getDirectory();
@@ -3177,12 +3177,6 @@ int SetFirstSkin_5kb(SkinManage *sm, SKINTYPE type, CSTR *skinName) {
 //409d80
 int SetFirstSkins(game *g){
 	SkinManage *sm;
-	int iVar1;
-	bool bVar2;
-	SKINTYPE *pSVar3;
-	int iVar4;
-	CSTR *pCVar5;
-	int iVar6;
 
 	ErrorLogAdd("スキンを列挙します。\n");
 	sm = &g->skinData;
@@ -3286,7 +3280,7 @@ int ShowReadmes(game *g) {
 
 	g->txtStruct.readme.folderpath = g->sSelect.bmsList[g->sSelect.cur_song].filepath.getDirectory();
 	cstrSprintf(&search, "%s*.txt", g->txtStruct.readme.folderpath.body);
-	hFindFile = FindFirstFileA(search, &FindFileData);
+	hFindFile = FindFirstFileA(search, (LPWIN32_FIND_DATAA)&FindFileData);
 	if (hFindFile == (HANDLE)-1) {
 		ErrorLogFmtAdd("テキストファイルが見つからない。%s\n", search);
 		return -1;
@@ -3294,7 +3288,7 @@ int ShowReadmes(game *g) {
 
 	do {
 		g->txtStruct.readme.file_count++;
-	} while (FindNextFileA(hFindFile,&FindFileData));
+	} while (FindNextFileA(hFindFile, (LPWIN32_FIND_DATAA)&FindFileData));
 	FindClose(hFindFile);
 
 	if (g->txtStruct.readme.file_count == 0) return 0;
@@ -3305,10 +3299,10 @@ int ShowReadmes(game *g) {
 		g->txtStruct.readme.current = g->txtStruct.readme.file_count-1;
 
 	int currentFileNum = 0;
-	hFindFile = FindFirstFileA(search, &FindFileData);
+	hFindFile = FindFirstFileA(search, (LPWIN32_FIND_DATAA)&FindFileData);
 	do {
 		g->txtStruct.readme.path = g->txtStruct.readme.folderpath;
-		g->txtStruct.readme.path.add(FindFileData.cFileName);
+		g->txtStruct.readme.path.add((const char*)FindFileData.cFileName);
 
 		fopen_s(&pFile, g->txtStruct.readme.path, "r");
 
@@ -3317,7 +3311,7 @@ int ShowReadmes(game *g) {
 			
 			currentFileNum++;
 			if (g->txtStruct.readme.file_count == 1) {
-				g->txtStruct.readme.body[g->txtStruct.readme.lines] = FindFileData.cFileName;
+				g->txtStruct.readme.body[g->txtStruct.readme.lines] = (const char*)FindFileData.cFileName;
 			}
 			else {
 				cstrSprintf(&g->txtStruct.readme.body[g->txtStruct.readme.lines], "%d/%d %s", currentFileNum, g->txtStruct.readme.file_count, FindFileData.cFileName);
@@ -3338,7 +3332,7 @@ int ShowReadmes(game *g) {
 			fclose(pFile);
 			g->txtStruct.readme.lines += 2;
 		}
-	} while (FindNextFileA(hFindFile, &FindFileData));
+	} while (FindNextFileA(hFindFile, (LPWIN32_FIND_DATAA)&FindFileData));
 	FindClose(hFindFile);
 
 	g->txtStruct.readme.y = g->skstruct.src_README[0].op1 * g->txtStruct.readme.lines;
@@ -4331,7 +4325,7 @@ int RunMP3Encoder(ConfigStruct *cfg, CSTR wavPath, CSTR mp3Path, char deleteWav,
 	sinfo.lpTitle = 0;
 	sinfo.dwFlags = 0;
 	sinfo.lpReserved2 = 0;
-	CreateProcessA(NULL, cmd, 0, 0, 0, 0, 0, 0, &sinfo, &pinfo);
+	CreateProcessA(NULL, cmd, 0, 0, 0, 0, 0, 0, (LPSTARTUPINFOA)&sinfo, &pinfo);
 	WaitForSingleObject(pinfo.hProcess, -1);
 	if (deleteWav) {
 		remove(wavPath);
@@ -7765,7 +7759,7 @@ int SkinSelect_SoundSet(game *g, CSTR filepath) {
 	
 	FILE *pFile;
 
-	CSTR fBuf = CSTR(1024);
+	CSTR fBuf(1024);
 	char* pFbuf;
 	CSVbuf csv;
 
@@ -8051,11 +8045,7 @@ int MakeSkinPreview(game *g, skstruct *sk, SkinManage *sm) {
 
 //41b140
 int CheckMission(game *g){
-	double dVar1;
-	int iVar2;
 	int level;
-	bool bVar3;
-	bool bVar4;
 	int gauge;
 
 	if (g->config.play.battle) 
@@ -14110,7 +14100,7 @@ int GetFileUnixtime(CSTR str) {
 		str.nullAtPos( str.length() - 1 );
 	}
 
-	lpFindFileData = &FindFileData;
+	lpFindFileData = (LPWIN32_FIND_DATAA)&FindFileData;
 	hFindFile = FindFirstFileA(str, lpFindFileData);
 	if (hFindFile == (HANDLE)-1) {
 		ErrorLogFmtAdd("ファイルのLR2TIME取得エラー:%sが見つからない\n", str);
@@ -14134,7 +14124,7 @@ CSTR GetRandomFileOnDir(CSTR path, char fOnlyName) {
 	CSTR str2 = CSTR( path.right(path.length() - str1.length() - 1) );
 	CSTR str3 = CSTR( str1 );
 	str3.add("*");
-	hFindFile = FindFirstFileA(str3, &FindFileData);
+	hFindFile = FindFirstFileA(str3, (LPWIN32_FIND_DATAA)&FindFileData);
 	if (hFindFile == (HANDLE)-1) {
 		//oBuf = CSTR("ERROR");
 		return CSTR("ERROR");
@@ -14142,33 +14132,33 @@ CSTR GetRandomFileOnDir(CSTR path, char fOnlyName) {
 	else {
 		do {
 			if (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-				if (strcmp("..", FindFileData.cFileName) && strcmp(".", FindFileData.cFileName)) fileCount++;
+				if (strcmp("..", (char*)FindFileData.cFileName) && strcmp(".", (char*)FindFileData.cFileName)) fileCount++;
 			}
-		} while (FindNextFileA(hFindFile, &FindFileData));
+		} while (FindNextFileA(hFindFile, (LPWIN32_FIND_DATAA)&FindFileData));
 		FindClose(hFindFile);
 		if (fileCount > 0) {
 			fileCount = GetRand(fileCount - 1);
 
-			hFindFile = FindFirstFileA(str3, &FindFileData);
+			hFindFile = FindFirstFileA(str3, (LPWIN32_FIND_DATAA)&FindFileData);
 			if (hFindFile != (HANDLE)-1) {
 				do {
 					if (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-						if (strcmp("..", FindFileData.cFileName) && strcmp(".", FindFileData.cFileName)) {
+						if (strcmp("..", (char*)FindFileData.cFileName) && strcmp(".", (char*)FindFileData.cFileName)) {
 							//LAB_00438327
 							int i = 0;
 							while (i < fileCount) {
-								FindNextFileA(hFindFile, &FindFileData);
+								FindNextFileA(hFindFile, (LPWIN32_FIND_DATAA)&FindFileData);
 								if (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-									if (strcmp("..", FindFileData.cFileName) && strcmp(".", FindFileData.cFileName)) i++;
+									if (strcmp("..", (char*)FindFileData.cFileName) && strcmp(".", (char*)FindFileData.cFileName)) i++;
 								}
 							}
 							FindClose(hFindFile);
 							path.assign(&str1);
-							path.add(FindFileData.cFileName);
+							path.add((char*)FindFileData.cFileName);
 							path.add(&str2);
 							if (fOnlyName) {
 								//oBuf = CSTR(FindFileData.cFileName);
-								return CSTR(FindFileData.cFileName);
+								return CSTR((char*)FindFileData.cFileName);
 							}
 							else {
 								//oBuf = CSTR(path);
@@ -14177,7 +14167,7 @@ CSTR GetRandomFileOnDir(CSTR path, char fOnlyName) {
 							return oBuf;
 						}
 					}
-					FindNextFileA(hFindFile, &FindFileData);
+					FindNextFileA(hFindFile, (LPWIN32_FIND_DATAA)&FindFileData);
 				} while (true);
 			}
 		}
@@ -14748,19 +14738,19 @@ CSTR GetRandomFile(CSTR path, char fOnlyName) {
 	}
 
 	//count files for random
-	hFindFile = FindFirstFileA(path, &FindFileData);
+	hFindFile = FindFirstFileA(path, (LPWIN32_FIND_DATAA)&FindFileData);
 	if (hFindFile == (HANDLE)-1) return CSTR("ERROR");
 	
 	count = 0;
 	do {
 		count++;
-	} while (FindNextFileA(hFindFile, &FindFileData));
+	} while (FindNextFileA(hFindFile, (LPWIN32_FIND_DATAA)&FindFileData));
 	if (count < 1) return CSTR("ERROR");
 
 	count = GetRand(count - 1);
 
 	//get file by random
-	hFindFile = FindFirstFileA(path, &FindFileData);
+	hFindFile = FindFirstFileA(path, (LPWIN32_FIND_DATAA)&FindFileData);
 	if (hFindFile == (HANDLE)-1) return CSTR("ERROR");
 
 	for (int i = 0; i < count; i++) {
@@ -14768,9 +14758,9 @@ CSTR GetRandomFile(CSTR path, char fOnlyName) {
 	}
 	FindClose(hFindFile);
 	path.assign(path.getDirectory());
-	path.add(FindFileData.cFileName);
+	path.add((char*)FindFileData.cFileName);
 	if (fOnlyName) {
-		path.assign(FindFileData.cFileName);
+		path.assign((char*)FindFileData.cFileName);
 		path.nullAtPos(path.findStrPos("."));
 	}
 	return CSTR(path);
@@ -18164,7 +18154,7 @@ void LRDrawText(int* grHandle, DSTdraw *dstd, CSTR *str, ImageFont *imF) {
 				if (vCh >= 0x3bce) vCh = 0x3f;
 
 				if (imF->chars[vCh].grHandle == -1) LoadFontCharGraph(imF, vCh);
-
+				
 				GetGraphSize(imF->chars[vCh].grHandle, &x, &y);
 				xf = x;
 				yf = y;
@@ -19176,6 +19166,9 @@ int AddDrawingBuffer_JudgeCombo(DrawingBuf *drb, SRCstruct *jSrc, DSTstruct *jDs
 //49e780
 int ReloadImage(CSTR filename, int *grHandle) {
 	return ReloadGraph(filename, *grHandle, 0);
+
+	//DeleteGraph(*grHandle);
+	//return *grHandle = LoadGraph(filename, 0);
 }
 
 //49e7f0
@@ -19761,7 +19754,7 @@ int ReadImageFont(CSTR filename, ImageFont *imgfont) {
 			return -1;
 		}
 		
-		CSTR str2 = CSTR(256);
+		CSTR str2(256);
 		CSVbuf csvBuf;
 		strcpy(imgfont->filepath, str1);
 		
@@ -20129,7 +20122,7 @@ int ExpandSkinObjectMax(SkinObject *so, int add) {
 //4a11c0 ReadSkin // maybe unsatble
 int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku, char flag_skipFont) {
 	FILE *pFile;
-	CSTR fBuf = CSTR(1024);
+	CSTR fBuf(1024);
 	char* pFbuf;
 	CSVbuf csv;
 	int tSkin_num = 0;
@@ -21101,7 +21094,7 @@ int LoadScene(skstruct *sk, CSTR skinfile, int p5, char font) {
 int ParseLR2SkinCustom(SkinManage *skm, CSTR filepath) {
 	CSVbuf csvBuf;
 	SkinUser skCustom;
-	CSTR buffer = CSTR(260);
+	CSTR buffer(260);
 	CSTR md5Filepath;
 	CSTR fName;
 	FILE *pFile;
@@ -21304,8 +21297,6 @@ int PLAYSCORE::InitJudgeQueue(void){
 
 //4a8660
 int PLAYSCORE::ResetJudgeQueue(int size){
-	char *pcVar1;
-	int iVar2;
 
 	if (this->judge_queue != (char *)0x0) {
 		free(this->judge_queue);
@@ -24441,7 +24432,7 @@ int ReadOptionstrFile(OptionString *arrOpStr, CSTR filepath) {
 	int bufSize = 256;
 
 	FILE *pFile;
-	CSTR fBuf = CSTR(bufSize);
+	CSTR fBuf(bufSize);
 	char* pFbuf;
 	CSVbuf csv;
 
@@ -24454,7 +24445,7 @@ int ReadOptionstrFile(OptionString *arrOpStr, CSTR filepath) {
 
 	pFbuf = fBuf.outstr();
 	for (pFbuf = fgets(pFbuf, bufSize, pFile); pFbuf; pFbuf = fgets(pFbuf, bufSize, pFile)) {
-		if (*fBuf.atPos(0) == '#') {
+		if (*(fBuf.atPos(0)) == '#') {
 			SplitCSV(fBuf, &csv, ",");
 
 			if (fBuf.left(5).isSame("#MODE")) {
@@ -24782,7 +24773,7 @@ int ReleaseSound(AUDIO *aud, SOUNDDATA *sound){
 	}
 	if (aud->is_fmod_disabled == 1) {
 		StopSoundMem(sound->soundHandle);
-		DeleteSoundMem(sound->soundHandle, 0);
+		DeleteSoundMem(sound->soundHandle);//DeleteSoundMem(sound->soundHandle, 0);
 	}
 	else {
 		FMOD_Sound_Release(sound->fmod_sound);
@@ -25837,7 +25828,7 @@ void RAWSOUND::MakeSampleRate44100(void) {
 			word* unk = NULL;
 			for (int i = size - 1; i >= 0; i--) {
 				
-				int aapos = round(i / (44100.0 / (double)this->samples));
+				int aapos = floor(i / (44100.0 / (double)this->samples) + 0.5);// round(i / (44100.0 / (double)this->samples)); //TODO: this isbefore C++11 detour
 				if (unk == (word*)(this->data + aapos*4)) {
 					unkd[count] = (dword*)(this->data + i*4);
 					count++;

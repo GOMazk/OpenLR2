@@ -1,8 +1,8 @@
 ﻿#pragma once
+// /source-charset:shift-JIS /execution-charset:shift-JIS not supported in cl.exe on vs08. open your vs08 with locale emulation(cp932)
 #include <windows.h>
 #include <string>
 
-//#include "DXlib/DxDirectX.h"
 #include "DXlib/DxLib.h"
 #include "tinyxml/tinyxml.h"
 extern "C" {
@@ -37,9 +37,9 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 	int tmp;
 	
 	//start of code
-	GetModuleFileName(NULL, curDir, 260);
+	GetModuleFileName(NULL, (LPCH)curDir, 260);
 	*(char*)(strrchr(curDir, '\\') + 1) = '\x00';
-	SetCurrentDirectory(curDir);
+	SetCurrentDirectory((LPCSTR)curDir);
 	gs.baseDirectory.assign(curDir, 0).add("\\");
 	gs.is_starter = false;
 	CopyFileA("LR2files\\Config\\keyconfig_def.xml", "LR2files\\Config\\keyconfig.xml", 1);
@@ -187,7 +187,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		ReadKeyConfig(&gs, "LR2files\\Config\\keyconfig.xml");
 		gs.is_clicked_screenModeChange = 0;
 		gs.flag_Screenshot = 0;
-		ReadOptionstrFile(gs.txtStruct.option_str, CSTR("LR2files\\Config\\optionstr.csv"));
+		ReadOptionstrFile(gs.txtStruct.option_str, "LR2files\\Config\\optionstr.csv");
 		gs.audio.is_fmod_disabled = gs.config.sound.disablefmod;
 		if (gs.config.sound.disablefmod != 0) {
 			gs.config.select.preview = 0;
@@ -258,10 +258,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		}
 		SetMultiThreadFlag(1);
 		SetUseFPUPreserveFlag(1);
-		SetUseDirectInputFlag(1); //not in original, but we need it to make same reaction.
+		//SetUseDirectInputFlag(1); //DXLIBVER: not in original, but we need it to make same reaction.
 		if (DxLib_Init() != -1) {
 			ChangeFont("", 0);
-			SetLogFontSize(12); //SetLogFontSize(14); //changed 14 to 12 because of dxlib version // TODO: make font same
+			SetLogFontSize(14); //DXLIBVER: change this for further dxlib version
 			SetSysCommandOffFlag(gs.config.system.disablesystemkey, 0);
 			SetDrawScreen(-2);
 			SetAlwaysRunFlag(1);

@@ -2,7 +2,7 @@
 #pragma warning(disable:4996)
 #include <windows.h>
 #include <stdio.h>
-#include <stdint.h>
+#include <malloc.h>
 typedef unsigned int uint;
 
 class CSTR {

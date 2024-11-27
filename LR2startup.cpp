@@ -1,12 +1,11 @@
 ﻿#pragma once
-#include <stdint.h>
 
 #include "LR2startup.h"
 #include "tinyxml/tinyxml.h"
 #include "sqlite/sqlite3.h"
-extern "C"{
+//extern "C"{
 #include "md5.h" //md5
-}
+//}
 
 
 //43c060

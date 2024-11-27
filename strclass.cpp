@@ -522,11 +522,11 @@ char* CSTR::atPos(int pos) {
 	if (pos < 0) {
 		return body;
 	}
-	if (body == NULL) {
-		sVar1 = 0;
+	if (body) {
+		sVar1 = _msize(body);
 	}
 	else {
-		sVar1 = _msize(body);
+		sVar1 = 0;
 	}
 	if ((int)sVar1 <= pos) {
 		resize(pos + 1);

@@ -1451,8 +1451,8 @@ struct gameplay {
 	char flag_closingPhase;
 	undefined1 bmsResourceLoaded; /* Created by retype action */
 	undefined field71_0x73deb;
-	int autojudge_midsum = 0;
-	int autojudge_midcount = 0;
+	int autojudge_midsum;//TODO : need to init = 0;
+	int autojudge_midcount;//TODO : need to init = 0;
 	int isAutoplay;
 	int flag_retry;
 	struct GRAPHDATA statgraph[2];
