@@ -709,6 +709,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 							}
 							gs.sSelect.toRoot = 0;
 							LoadFontForSongs(&gs, 0);
+
 							StopSysSound(&gs);
 							if (gs.is_recordmode == 0) {
 								for (int i = 0; i < 6480; i++) {
@@ -728,8 +729,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 								PlaySound(&gs.audio, &gs.audio.sysSound.exselect, gs.audio.chnBgm, -1);
 							else
 								PlaySound(&gs.audio, &gs.audio.sysSound.select, gs.audio.chnBgm, -1);
+
 							ProcS_Select(&gs);
 							break;
+
 						case 3:{
 							DeleteGraph(gs.skstruct.GrHandle[100]);
 							gs.skstruct.GrHandle[100] = -1;
@@ -764,7 +767,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 							LoadScene(&gs.skstruct, gs.config.skin.skinFilePath[6], gs.skinData.Data[gs.skinData.skinID[6]].informationP5, 0);
 							
 							StopSysSound(&gs);
-							ReadLR2SoundSet(&gs, gs.config.skin.skinFilePath[10], 0);
 							if (gs.config.play.is_extra && gs.audio.sysSound.exdecide.load)
 								PlaySound(&gs.audio, &gs.audio.sysSound.exselect, gs.audio.chnBgm, -1);
 							else
