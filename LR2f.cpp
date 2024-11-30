@@ -12446,7 +12446,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 							AddDrawingBuffer_Numbers(&g->skstruct.drBuf, &g->skstruct.src_BAR_LEVEL[6], &g->skstruct.dst_BAR_LEVEL[6], &g->timer1, g->sSelect.bmsList[bar].level, dstd3.x, dstd3.y);
 						
 						else if (g->config.select.disabledifficultyfilter == 1 && g->net.rankingData.showRanking == 0) {
-							if (g->sSelect.bmsList[bar].exlevel > 0 && g->config.jukebox.customfolder & 0x80 != 0) 
+							if (g->sSelect.bmsList[bar].exlevel > 0 && (g->config.jukebox.customfolder & 0x80) != 0) 
 								AddDrawingBuffer_Numbers(&g->skstruct.drBuf, &g->skstruct.src_BAR_LEVEL[5], &g->skstruct.dst_BAR_LEVEL[5], &g->timer1, g->sSelect.bmsList[bar].exlevel, dstd3.x, dstd3.y);
 							
 							else 
@@ -13642,7 +13642,7 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 				if ((g->KeyInput.mouse_buttonR == 2 || g->KeyInput.mouse_buttonL == 2 || g->KeyInput.inputID[KEY_INPUT_RETURN] == 1 || g->KeyInput.p1_buttonInput[1] == 1 || g->KeyInput.p1_buttonInput[3] == 1 || g->KeyInput.p1_buttonInput[5] == 1 || g->KeyInput.p1_buttonInput[7] == 1 || g->KeyInput.p2_buttonInput[1] == 1 || g->KeyInput.p2_buttonInput[3] == 1 || g->KeyInput.p2_buttonInput[5] == 1 || g->KeyInput.p2_buttonInput[7] == 1)
 					&& g->po4flagSceneStart == 0) {
 
-					g->sSelect.listCalculatedBar / 1000;
+					//g->sSelect.listCalculatedBar / 1000;
 					if (g->sSelect.listCalculatedBar % 1000 == 0) {
 						g->po4cur_song = g->sSelect.listCalculatedBar / 1000;
 					}
@@ -14120,9 +14120,9 @@ CSTR GetRandomFileOnDir(CSTR path, char fOnlyName) {
 	LPWIN32_FIND_DATAA lpFindFileData;
 	HANDLE hFindFile;
 	int fileCount = 0;
-	CSTR str1 = CSTR( path.left(path.findStrPos("*")) );
-	CSTR str2 = CSTR( path.right(path.length() - str1.length() - 1) );
-	CSTR str3 = CSTR( str1 );
+	CSTR str1( path.left(path.findStrPos("*")) );
+	CSTR str2( path.right(path.length() - str1.length() - 1) );
+	CSTR str3( str1 );
 	str3.add("*");
 	hFindFile = FindFirstFileA(str3, (LPWIN32_FIND_DATAA)&FindFileData);
 	if (hFindFile == (HANDLE)-1) {
@@ -14274,8 +14274,8 @@ bool GetDifficulty(CSTR *str, CSTR head, CSTR *oLeft, CSTR *oRight, int *pDiffic
 	else if (GetDifficultyFromToken(*str, oLeft, oRight, CSTR("-"), CSTR("-"), pDifficulty)) {}
 	else if (GetDifficultyFromToken(*str, oLeft, oRight, CSTR("\""), CSTR("\""), pDifficulty)) {}
 	else if (GetDifficultyFromToken(*str, oLeft, oRight, CSTR("<"), CSTR(">"), pDifficulty)) {}
-	else if (GetDifficultyFromToken(*str, oLeft, oRight, CSTR("〜"), CSTR("〜"), pDifficulty)) {}
-	else if (GetDifficultyFromToken(*str, oLeft, oRight, CSTR("【"), CSTR("】"), pDifficulty)) {}
+	else if (GetDifficultyFromToken(*str, oLeft, oRight, CSTR("～"), CSTR("～"), pDifficulty)) {} //〜 81 60
+	else if (GetDifficultyFromToken(*str, oLeft, oRight, CSTR("【"), CSTR("】"), pDifficulty)) {} //【 81 79, 】81 7a
 	else { 
 		oLeft->assign(str);
 		oRight->fillzero();
@@ -14574,7 +14574,6 @@ CSTR AutomationFactory(){
 //43a190
 int CountDigit(int num){
 	uint ret;
-	bool bVar2;
 
 	if (num == 0) {
 		return 1;
@@ -14768,7 +14767,7 @@ CSTR GetRandomFile(CSTR path, char fOnlyName) {
 
 //43abe0
 CSTR GetRandomFileNoError(CSTR path, CSTR dir) {
-	CSTR filepath = CSTR();
+	CSTR filepath;
 	filepath.assign(GetRandomFile(path, 0));
 	if (filepath.isDiff("ERROR")) return CSTR(filepath);
 	dir.add(&path);
@@ -14807,7 +14806,7 @@ bool ANSItoUTF8(LPCSTR str, char *oBuf, size_t *oSize){
 	lpWideCharStr = (LPWSTR)malloc(cchWideChar * 2 + 2);
 	MultiByteToWideChar(CP_ACP, 0, str, -1, lpWideCharStr, cchWideChar);
 	size = WideCharToMultiByte(CP_UTF8, 0, lpWideCharStr, -1, (LPSTR)0x0, 0, (LPCSTR)0x0, (LPBOOL)0x0);
-	if (oBuf == (char *)0x0) {
+	if (oBuf == NULL) {
 		*oSize = size;
 		delete(lpWideCharStr);
 		return true;
@@ -18182,7 +18181,7 @@ void LRDrawText(int* grHandle, DSTdraw *dstd, CSTR *str, ImageFont *imF) {
 //49b7c0
 void LRDrawTextInput(int* hFont, DSTdraw *dstd, int* hInput, ImageFont *imgfont) {
 	IMEINPUTDATA* pIME;
-	CSTR buf = CSTR(0x401);
+	CSTR buf(0x401);
 	int grLen;
 	int len1, len2;
 	if (*hInput != -1) {
@@ -18203,7 +18202,7 @@ void LRDrawTextInput(int* hFont, DSTdraw *dstd, int* hInput, ImageFont *imgfont)
 			LRDrawText(hFont, dstd, &buf, imgfont);
 			grLen = 0;
 			if (GetKeyInputCursorPosition(*hInput)) {
-				CSTR tCstr = CSTR(buf.left(GetKeyInputCursorPosition(*hInput)));
+				CSTR tCstr(buf.left(GetKeyInputCursorPosition(*hInput)));
 				grLen = GetTextGraphLength(&tCstr, imgfont);
 			}
 			if (pIME == NULL)	buf.fillzero();
@@ -18219,11 +18218,11 @@ void LRDrawTextInput(int* hFont, DSTdraw *dstd, int* hInput, ImageFont *imgfont)
 					
 					if (pos2 <= pos1) break;
 					if (pos1) {
-						CSTR tCstr = CSTR(buf.left(pos1));
+						CSTR tCstr(buf.left(pos1));
 						pos1 = GetTextGraphLength(&tCstr, imgfont);
 					}
 					len1 = pos1;
-					CSTR tCstr = CSTR(buf.left(pos2));
+					CSTR tCstr(buf.left(pos2));
 					len2 = GetTextGraphLength(&tCstr, imgfont);
 					DrawBox(dstd->x + len1 + 1.0, dstd->y, dstd->x + len2 - 1.0, dstd->h + dstd->y, (grLen == pIME->SelectClause) ? GetColor(255, 0, 0) : GetColor(64, 64, 64),1);
 				}
@@ -20137,7 +20136,7 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 	ErrorLogTabAdd();
 
 	pFile = fopen(FilePath, "r");
-	CSTR dir = CSTR(FilePath.getDirectory());
+	CSTR dir(FilePath.getDirectory());
 	line = 0;
 
 	if (!pFile) {
@@ -20264,7 +20263,7 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 											break;
 										}
 									}
-									CSTR temp = CSTR(GetRandomFileNoError(csv.str[1], dir), 0);
+									CSTR temp(GetRandomFileNoError(csv.str[1], dir), 0);
 									sk->GrHandle[sk->count] = LoadGraph(temp);
 									sk->caption[sk->count].assign(&temp);
 								}
@@ -20950,7 +20949,7 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 							sk->op[csv.val[1]] = (csv.val[2] != 0);
 						}
 						else {
-							ErrorLogFmtAdd("スキン読み込みエラー %d行目\n%s\n#SETOPTIONの第一引数(オプション値)は900〜999の範囲内にして下さい。\n", line, fBuf);
+							ErrorLogFmtAdd("スキン読み込みエラー %d行目\n%s\n#SETOPTIONの第一引数(オプション値)は900～999の範囲内にして下さい。\n", line, fBuf);
 						}
 					}
 					else if (fBuf.left(13).isSame("#SRC_BAR_RANK")) {
@@ -21287,7 +21286,7 @@ int PLAYSCORE::InitJudgeQueue(void){
 	if (this->judge_queue != NULL) {
 		free(this->judge_queue);
 	}
-	this->judge_queue = (char *)0x0;
+	this->judge_queue = NULL;
 	this->judge_queue_count = 0;
 	return 0;
 }
@@ -21295,10 +21294,10 @@ int PLAYSCORE::InitJudgeQueue(void){
 //4a8660
 int PLAYSCORE::ResetJudgeQueue(int size){
 
-	if (this->judge_queue != (char *)0x0) {
+	if (this->judge_queue != NULL) {
 		free(this->judge_queue);
 	}
-	this->judge_queue = (char *)0x0;
+	this->judge_queue = NULL;
 	this->judge_queue_count = 0;
 	this->judge_queue = (char *)malloc(size);
 	for (int i = 0; i < size; i++) {
@@ -21310,11 +21309,9 @@ int PLAYSCORE::ResetJudgeQueue(int size){
 
 //4a86c0
 int PLAYSCORE::ResizeJudgeQueue(size_t size){
-	char *pcVar1;
-	int iVar2;
 
-	if (this->judge_queue == (char *)0x0) {
-		this->judge_queue = (char *)0x0;
+	if (this->judge_queue == NULL) {
+		this->judge_queue = NULL;
 		this->judge_queue_count = 0;
 		this->judge_queue = (char *)malloc(1000);
 		for (int i = 0; i < 1000; i++) {
@@ -24881,7 +24878,7 @@ int SOUND_dxlibFx(SOUNDDATA sound, int v_master, int v_BGA, int pitch, double fr
 //4b83d0
 int SetFadeOut(AUDIO *aud, int fadetime){
 
-	if (fadetime < 1) {
+	if (fadetime <= 0) {
 		return -1;
 	}
 	aud->param.fadeout_volume = 1.0;
@@ -24892,9 +24889,8 @@ int SetFadeOut(AUDIO *aud, int fadetime){
 
 //4b8410
 int SetFadePreview(AUDIO *aud, int fadeintime, char flag){
-	DWORD DVar1;
 
-	if (fadeintime < 1) {
+	if (fadeintime <= 0) {
 		return -1;
 	}
 	aud->param.time_fadePreview_start = timeGetTime();
@@ -27354,8 +27350,6 @@ int ReleaseReplayBuffer(REPLAY *rp){
 
 //4c0c00
 int AddReplayData(REPLAY *rp, int timing, char op, short value){
-	int iVar1;
-	ReplayData *pRVar2;
 
 	if (rp->max < 1) {
 		return 0;

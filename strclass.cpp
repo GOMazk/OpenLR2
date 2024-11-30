@@ -3,9 +3,7 @@
 
 //43ad60
 CSTR::CSTR(int size) {
-	void* a;
-	a = calloc(1, size);
-	body = (char*)a;
+	body = (char*)calloc(1, size);
 }
 
 //43ad80
@@ -107,10 +105,8 @@ bool CSTR::resize(size_t size) {
 	return body != NULL;
 }
 
-//43aed0
+//43aed0 //TODO: wrong usage?
 CSTR& CSTR::add(const char *str, int len) {
-	char *pStr;
-	char *nextbody;
 	int size;
 	int size2;
 	char ch;
@@ -118,10 +114,10 @@ CSTR& CSTR::add(const char *str, int len) {
 	if (len == 0) {
 		len = strlen(str);
 	}
-	size2 = length();
-	size = msize();
 
-	size2 = size2 + 1 + len;
+	size = msize();
+	size2 = length() + 1 + len;
+
 	if (size < size2) {
 		if (resize(size2) == false) return *this;
 	}
@@ -548,7 +544,7 @@ bool CSTR::canOpenFile() {
 
 //43b630
 CSTR::CSTR() {
-	body = (char *)0x0;
+	body = NULL;
 	body = (char *)calloc(1, 0x40);
 	return;
 }
