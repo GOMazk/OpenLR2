@@ -2427,3 +2427,11 @@ struct CHARTCONVERTER {
 	int assist2p;
 	int playlevel;
 };
+
+typedef struct MIDI {
+	byte input[260]; //0x101:ptich_minus 0x102:pitch_plus 0x103:pedal;
+	int unusedFC;
+	int controller_n;
+	int controller_v;
+	HMIDIIN phmiArray[16];
+}MIDI;

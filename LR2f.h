@@ -1,8 +1,11 @@
 #pragma once
 #include "structure.h"
+
 extern "C" {
 #include "sqlite/sqlite3.h"
 }
+#include "tinyxml/tinyxml.h"
+#include "md5.h" // for LR2startup.cpp
 
 //typedef struct GLB {
 //	sqlite3* sql;
@@ -155,7 +158,34 @@ int FindAltSound(CSTR filename, CSTR dir, CSTR * oBuf);
 CSTR GetRandomFile(CSTR path, char fOnlyName);
 CSTR GetRandomFileNoError(CSTR path, CSTR dir);
 
-//LR2startup.cpp
+//CSTR : 43ad60 -
+//see strclass.h
+
+//LR2Startup : 43c060 -
+//43c060
+int ReadXml_Int(const char *level1, const char *level2, const char *level3, int initvalue, int *oBuf, TiXmlDocument *xmlData);
+int ReadXml_Str(const char *level1, const char *level2, const char *level3, const CSTR initvalue, CSTR* oBuf, TiXmlDocument *xmlData);
+int Read_JukeboxPath(CONFIG_JUKEBOX *box, TiXmlDocument *xml);
+int ReadXml_Int_Multi(const char * level1, const char * level2, const char * level3, int * oBuf, TiXmlDocument * xmlData);
+int ReadKeyConfig(game * game, const char * FilePath);
+int ReadMIDI(game *gs, const char *filepath);
+void WriteXML_Tab2Int(FILE * hFile, const char * tag, int value);
+void WriteXML_Tab2Str(FILE * hFile, const char * tag, CSTR str);
+int WriteConfigXml(game * g, const char * filename);
+void WriteXML_KeyConfig(FILE * hFile, CONFIG_INPUT cfg_in, char * tag, int num);
+int WriteKeyConfig(game * param_1, const char * filepath, int key);
+int WriteMidiXml(game * g, const char * filename);
+//43f6d0
+int ReadSkinCustomize(SkinUser * sku, char * FilePath);
+//441340
+int WriteSkinCustomizeXml(SkinUser * sku, char * filepath);
+//441d30
+int ReadConfig(game* gs, const char* filepath);
+//443550 _ need simplification
+void MD5byte(char **iStr, uint len, char *oByte);
+//443ff0
+char* MD5str(char *iStr);
+
 ////DB interact
 extern int EnabledInsane;
 extern CRITICAL_SECTION DB_lock;
@@ -315,9 +345,8 @@ int PlayerCheckAndSwap(gameplay * gp);
 
 
 
-//ParseBmsFile()
-
 int SPtoDP(LaneStruct * lane, int baseNoteID, CHARTCONVERTER * cc);
+int ParseBmsFile(gameplay * gp, CSTR filename, AUDIO * aud, ConfigStruct * cfg, BMSMETA * meta, int bgaFlag, int scratchSide);
 
 //TIMER : 4b6710 - 
 int SetBGATimer(Timer * T, double newTime);
@@ -333,8 +362,6 @@ int CalcFPS(Timer * t);
 double GetTimeLapse(uint timerID, Timer * T);
 int SetTimeLapse(int timerID, Timer * T);
 
-
-
 //STRING : 4b6c00 - 
 int InitObjectString(TextStruct * txt);
 int SetObjectString(uint num, CSTR string, CSTR * objectList);
@@ -344,11 +371,7 @@ int DefineOptionStrNum(OptionString * arrOpStr);
 int ReadOptionstr(OptionString * opStr, CSVbuf csv);
 int ReadOptionstrFile(OptionString * arrOpStr, CSTR filepath);
 
-
-
-
-
-
+//SOUND : 4b7b80 -
 const char * GetFMODerror(int errCode);
 int IsAltSoundExist(CSTR * filepath);
 int ReleaseSound(AUDIO * aud, SOUNDDATA * sound);
@@ -375,6 +398,32 @@ int InitSound(AUDIO *aud, uint bufferLength, int numBuffer, char fDisable, int o
 int ParseRivalData(long ID);
 
 //void RAWSOUND::ExpandBuffer(int newSize);
+
+
+
+//INPUT : 4bd6a0 -
+extern MIDI midi;
+int InitInputStructure2(inputStructure * is);
+void EndMIDIInput(void);
+void GetMidiInput(dword msg, dword timestamp);
+CSTR GetKeyIDname(int keyID);
+int ConfigButtonToKeyID7(int buttonID);
+int ConfigButtonToKeyID5(int buttonID);
+int ConfigButtonToKeyID9(int buttonID);
+int ConfigButtonFromKeyID7(int keyID);
+int ConfigButtonFromKeyID5(int keyID);
+int ConfigButtonFromKeyID9(int keyID);
+int FindPressedKey(inputStructure * is);
+int ResetPressCount(inputStructure * is);
+int DetermineResultPlayDevice(inputStructure * is);
+int CloseMIDI(void);
+void ProcessInput(inputStructure *is, int interval);
+void CALLBACK MIDIInProc(HMIDIIN hMidiIn, uint wMsg, dword dwInstance, dword dwParam1, dword dwParam2);
+int WaitInput(inputStructure *is);
+int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int isReplay);
+void InitMIDIInput(void);
+int InitInputStructure(inputStructure *is);
+
 
 int Mp3toWavF(FILE * iFile, FILE * oFile);
 bool Mp3toWavP(char * iPath, char * oPath);

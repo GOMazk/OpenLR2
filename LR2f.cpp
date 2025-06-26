@@ -17,8 +17,6 @@ extern "C" {
 #include "FMODex/fmod.h"
 
 #include "structure.h"
-#include "LR2startup.h" //MD5str
-#include "LR2input.h"
 
 //extern "C" {
 #include "md5.h" //md5File()
@@ -14778,9 +14776,1587 @@ CSTR GetRandomFileNoError(CSTR path, CSTR dir) {
 	return CSTR(path);
 }
 
-//strclass.cpp
-//LR2startup.cpp
+//43ad60 - see strclass.cpp
 
+//LR2startup.cpp
+//43c060
+int ReadXml_Int(const char *level1, const char *level2, const char *level3, int initvalue, int *oBuf, TiXmlDocument *xmlData){
+	TiXmlElement *cur;
+	int iVar1;
+	long lVar2;
+
+	if (xmlData == NULL) {
+		*oBuf = initvalue;
+		return 0;
+	}
+	
+	cur = xmlData->FirstChildElement(level1);
+	if (cur) {
+		cur = cur->FirstChildElement(level2);
+		if (cur) {
+			cur = cur->FirstChildElement(level3);
+			if (cur) {
+				*oBuf = atol(cur->ToElement()->GetText());
+				return 1;
+			}
+		}
+	}
+	*oBuf = initvalue;
+	return -1;
+}
+
+//43c0e0
+int ReadXml_Str(const char *level1, const char *level2, const char *level3, const CSTR initvalue, CSTR* oBuf, TiXmlDocument *xmlData) {
+	TiXmlElement *cur;
+
+	if (!xmlData) {
+		oBuf->assign(&initvalue);
+		return 0;
+	}
+
+	cur = xmlData->FirstChildElement(level1);
+	if (cur) {
+		cur = cur->FirstChildElement(level2);
+		if (cur) {
+			cur = cur->FirstChildElement(level3);
+			if (cur) {
+				if (cur->ToElement() == NULL || cur->ToElement()->GetText() == 0) {
+					oBuf->assign(&initvalue);
+				}
+				else {
+					cstrSprintf( oBuf, "%s", cur->ToElement()->GetText() );
+				}
+				return 1;
+			}
+		}
+	}
+	oBuf->assign(&initvalue);
+	return -1;
+}
+
+//43c220
+int Read_JukeboxPath(CONFIG_JUKEBOX *box, TiXmlDocument *xml){
+	char *str;
+	TiXmlElement *cur;
+
+	if (xml == NULL) {
+		return 0;
+	}
+	box->numOfPath = 0;
+	
+	if ((cur = xml->FirstChildElement("config")) && (cur = cur->FirstChildElement("jukebox")) &&
+		(cur = cur->FirstChildElement("path")) && cur->ToElement()) {
+		
+		cstrSprintf(&box->path[0], "%s", cur->ToElement()->GetText());
+		CSTR tp2;
+		CSTR tp3;
+		tp2.assign(&box->path[0]);
+		if (tp2.right(2).isSame("\\\\") ) {
+			CSTR tp4;
+			tp2.left(tp2.length() -1);
+			str = tp4.outstr();
+			box->path[0].assign(str);
+		}
+		box->numOfPath = 1;
+
+		while (box->numOfPath < 1000 && (cur = cur->NextSiblingElement()) && cur->ToElement()) {
+			cstrSprintf(box->path + box->numOfPath, "%s", cur->ToElement()->GetText());
+			CSTR tp;
+			tp.assign(box->path + box->numOfPath);
+			box->numOfPath++;
+		}
+		return 1;
+	}
+	return -1;
+}
+
+//43c440
+int ReadXml_Int_Multi(const char *level1, const char *level2, const char *level3, int *oBuf, TiXmlDocument *xmlData){
+	TiXmlElement *cur;
+	
+	void *pvVar1;
+	int iVar2;
+	long lVar3;
+	int iVar4;
+
+	oBuf[0] = 0;
+	oBuf[1] = 0;
+	oBuf[2] = 0;
+	oBuf[3] = 0;
+	oBuf[4] = 0;
+	oBuf[5] = 0;
+	oBuf[6] = 0;
+	oBuf[7] = 0;
+	oBuf[8] = 0;
+	oBuf[9] = 0;
+	oBuf[10] = 0;
+	oBuf[0xb] = 0;
+	oBuf[0xc] = 0;
+	oBuf[0xd] = 0;
+	oBuf[0xe] = 0;
+	oBuf[0xf] = 0;
+
+	cur = xmlData->FirstChildElement(level1);
+	if (cur) {
+		cur = cur->FirstChildElement(level2);
+		if (cur) {
+			cur = cur->FirstChildElement(level3);
+			if (cur) {
+				oBuf[0] = atol(cur->ToElement()->GetText());
+
+				for (int i = 1; i < 16; i++) {
+					cur = cur->NextSiblingElement();
+					if (cur == (void *)0x0) {
+						return 1;
+					}
+					oBuf[i] = atol(cur->ToElement()->GetText());
+				}
+				return 1;
+
+			}
+		}
+	}
+	return -1;
+}
+
+//43c510
+int ReadKeyConfig(game *game, const char *FilePath) {
+	TiXmlDocument *hXml;
+
+	memset(game->config.input.buttonMap, 0, 16 * 40 * sizeof(int));
+
+	hXml = new TiXmlDocument(FilePath);
+	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+		if (hXml) {
+			delete(hXml);
+		}
+		hXml = NULL;
+	}
+
+	ReadXml_Int_Multi("keyconfig", "key01", "id", (game->config).input.buttonMap[1], hXml);
+	ReadXml_Int_Multi("keyconfig", "key02", "id", (game->config).input.buttonMap[2], hXml);
+	ReadXml_Int_Multi("keyconfig", "key03", "id", (game->config).input.buttonMap[3], hXml);
+	ReadXml_Int_Multi("keyconfig", "key04", "id", (game->config).input.buttonMap[4], hXml);
+	ReadXml_Int_Multi("keyconfig", "key05", "id", (game->config).input.buttonMap[5], hXml);
+	ReadXml_Int_Multi("keyconfig", "key06", "id", (game->config).input.buttonMap[6], hXml);
+	ReadXml_Int_Multi("keyconfig", "key07", "id", (game->config).input.buttonMap[7], hXml);
+	ReadXml_Int_Multi("keyconfig", "key08", "id", (game->config).input.buttonMap[8], hXml);
+	ReadXml_Int_Multi("keyconfig", "key09", "id", (game->config).input.buttonMap[9], hXml);
+	ReadXml_Int_Multi("keyconfig", "key10", "id", (game->config).input.buttonMap[10], hXml);
+	ReadXml_Int_Multi("keyconfig", "key11", "id", (game->config).input.buttonMap[0xb], hXml);
+	ReadXml_Int_Multi("keyconfig", "key12", "id", (game->config).input.buttonMap[0xc], hXml);
+	ReadXml_Int_Multi("keyconfig", "key13", "id", (game->config).input.buttonMap[0xd], hXml);
+	ReadXml_Int_Multi("keyconfig", "key21", "id", (game->config).input.buttonMap[0x15], hXml);
+	ReadXml_Int_Multi("keyconfig", "key22", "id", (game->config).input.buttonMap[0x16], hXml);
+	ReadXml_Int_Multi("keyconfig", "key23", "id", (game->config).input.buttonMap[0x17], hXml);
+	ReadXml_Int_Multi("keyconfig", "key24", "id", (game->config).input.buttonMap[0x18], hXml);
+	ReadXml_Int_Multi("keyconfig", "key25", "id", (game->config).input.buttonMap[0x19], hXml);
+	ReadXml_Int_Multi("keyconfig", "key26", "id", (game->config).input.buttonMap[0x1a], hXml);
+	ReadXml_Int_Multi("keyconfig", "key27", "id", (game->config).input.buttonMap[0x1b], hXml);
+	ReadXml_Int_Multi("keyconfig", "key30", "id", (game->config).input.buttonMap[0x1e], hXml);
+	ReadXml_Int_Multi("keyconfig", "key31", "id", (game->config).input.buttonMap[0x1f], hXml);
+	ReadXml_Int_Multi("keyconfig", "key32", "id", (game->config).input.buttonMap[0x20], hXml);
+	ReadXml_Int_Multi("keyconfig", "key33", "id", (game->config).input.buttonMap[0x21], hXml);
+
+	return 1;
+}
+
+//43c890
+int ReadMIDI(game *gs, const char *filepath){
+	TiXmlDocument *hXml;
+
+	(gs->config).input.midi_control[0] = 0;
+	(gs->config).input.midi_control[1] = 0;
+	(gs->config).input.midi_control[2] = 0;
+	(gs->config).input.midi_control[3] = 0;
+	(gs->config).input.midi_control[4] = 0;
+	(gs->config).input.midi_control[5] = 0;
+	(gs->config).input.midi_control[6] = 0;
+	(gs->config).input.midi_control[7] = 0;
+	(gs->config).input.midi_control[8] = 0;
+	(gs->config).input.midi_control[9] = 0;
+	(gs->config).input.midi_control[10] = 0;
+	(gs->config).input.midi_control[0xb] = 0;
+	(gs->config).input.midi_control[0xc] = 0;
+	(gs->config).input.midi_control[0xd] = 0;
+	(gs->config).input.midi_control[0xe] = 0;
+	(gs->config).input.midi_control[0xf] = 0;
+	(gs->config).input.midi_control[0x10] = 0;
+	(gs->config).input.midi_control[0x11] = 0;
+	(gs->config).input.midi_control[0x12] = 0;
+	(gs->config).input.midi_control[0x13] = 0;
+	(gs->config).input.midi_control[0x14] = 0;
+	(gs->config).input.midi_control[0x15] = 0;
+	(gs->config).input.midi_control[0x16] = 0;
+	(gs->config).input.midi_control[0x17] = 0;
+	(gs->config).input.midi_control[0x18] = 0;
+	(gs->config).input.midi_control[0x19] = 0;
+	(gs->config).input.midi_control[0x1a] = 0;
+	(gs->config).input.midi_control[0x1b] = 0;
+	(gs->config).input.midi_control[0x1c] = 0;
+	(gs->config).input.midi_control[0x1d] = 0;
+	(gs->config).input.midi_control[0x1e] = 0;
+	(gs->config).input.midi_control[0x1f] = 0;
+	(gs->config).input.midi_control[0x20] = 0;
+	(gs->config).input.midi_control[0x21] = 0;
+	(gs->config).input.midi_control[0x22] = 0;
+	(gs->config).input.midi_control[0x23] = 0;
+	(gs->config).input.midi_control[0x24] = 0;
+	(gs->config).input.midi_control[0x25] = 0;
+	(gs->config).input.midi_control[0x26] = 0;
+	(gs->config).input.midi_control[0x27] = 0;
+
+	hXml = new TiXmlDocument(filepath);
+	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+		if (hXml) {
+			delete(hXml);
+		}
+		hXml = NULL;
+	}
+	ReadXml_Int("midi", "control", "S01", 0, (gs->config).input.midi_control + 1, hXml);
+	ReadXml_Int("midi", "control", "S02", 0, (gs->config).input.midi_control + 2, hXml);
+	ReadXml_Int("midi", "control", "S03", 0, (gs->config).input.midi_control + 3, hXml);
+	ReadXml_Int("midi", "control", "S04", 0, (gs->config).input.midi_control + 4, hXml);
+	ReadXml_Int("midi", "control", "S05", 0, (gs->config).input.midi_control + 5, hXml);
+	ReadXml_Int("midi", "control", "S06", 0, (gs->config).input.midi_control + 6, hXml);
+	ReadXml_Int("midi", "control", "S07", 0, (gs->config).input.midi_control + 7, hXml);
+	ReadXml_Int("midi", "control", "S08", 0, (gs->config).input.midi_control + 8, hXml);
+	ReadXml_Int("midi", "control", "S09", 0, (gs->config).input.midi_control + 9, hXml);
+	ReadXml_Int("midi", "control", "S10", 0, (gs->config).input.midi_control + 10, hXml);
+	ReadXml_Int("midi", "control", "S11", 0, (gs->config).input.midi_control + 0xb, hXml);
+	ReadXml_Int("midi", "control", "S12", 0, (gs->config).input.midi_control + 0xc, hXml);
+	ReadXml_Int("midi", "control", "S13", 0, (gs->config).input.midi_control + 0xd, hXml);
+	ReadXml_Int("midi", "control", "S14", 0, (gs->config).input.midi_control + 0xe, hXml);
+	ReadXml_Int("midi", "control", "S15", 0, (gs->config).input.midi_control + 0xf, hXml);
+	ReadXml_Int("midi", "control", "S16", 0, (gs->config).input.midi_control + 0x10, hXml);
+	ReadXml_Int("midi", "control", "S17", 0, (gs->config).input.midi_control + 0x11, hXml);
+	ReadXml_Int("midi", "control", "S18", 0, (gs->config).input.midi_control + 0x12, hXml);
+	ReadXml_Int("midi", "control", "S19", 0, (gs->config).input.midi_control + 0x13, hXml);
+	ReadXml_Int("midi", "control", "S20", 0, (gs->config).input.midi_control + 0x14, hXml);
+	ReadXml_Int("midi", "control", "S21", 0, (gs->config).input.midi_control + 0x15, hXml);
+	ReadXml_Int("midi", "control", "S22", 0, (gs->config).input.midi_control + 0x16, hXml);
+	ReadXml_Int("midi", "control", "S23", 0, (gs->config).input.midi_control + 0x17, hXml);
+	ReadXml_Int("midi", "control", "S24", 0, (gs->config).input.midi_control + 0x18, hXml);
+	ReadXml_Int("midi", "control", "S25", 0, (gs->config).input.midi_control + 0x19, hXml);
+	ReadXml_Int("midi", "control", "S26", 0, (gs->config).input.midi_control + 0x1a, hXml);
+	ReadXml_Int("midi", "control", "S27", 0, (gs->config).input.midi_control + 0x1b, hXml);
+	ReadXml_Int("midi", "control", "S28", 0, (gs->config).input.midi_control + 0x1c, hXml);
+	ReadXml_Int("midi", "control", "S29", 0, (gs->config).input.midi_control + 0x1d, hXml);
+	ReadXml_Int("midi", "control", "S30", 0, (gs->config).input.midi_control + 0x1e, hXml);
+	ReadXml_Int("midi", "control", "S31", 0, (gs->config).input.midi_control + 0x1f, hXml);
+	ReadXml_Int("midi", "control", "S32", 0, (gs->config).input.midi_control + 0x20, hXml);
+	ReadXml_Int("midi", "control", "S33", 0, (gs->config).input.midi_control + 0x21, hXml);
+	ReadXml_Int("midi", "control", "S34", 0, (gs->config).input.midi_control + 0x22, hXml);
+	ReadXml_Int("midi", "control", "S35", 0, (gs->config).input.midi_control + 0x23, hXml);
+	ReadXml_Int("midi", "control", "S36", 0, (gs->config).input.midi_control + 0x25, hXml);
+	ReadXml_Int("midi", "control", "S37", 0, (gs->config).input.midi_control + 0x24, hXml);
+	ReadXml_Int("midi", "control", "S38", 0, (gs->config).input.midi_control + 0x26, hXml);
+	ReadXml_Int("midi", "control", "S39", 0, (gs->config).input.midi_control + 0x27, hXml);
+	delete(hXml);
+	return 1;
+}
+
+//43cef0
+void WriteXML_Tab2Int(FILE *hFile, const char *tag, int value){
+	char buf[256];
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", tag, value, tag);
+	fputs(buf, hFile);
+	return;
+}
+
+//43cf50
+void WriteXML_Tab2Str(FILE *hFile, const char *tag, CSTR str){
+	char buf[256];
+
+	str.replace("&", "&amp;");
+	str.replace("<", "&lt;");
+	str.replace(">", "&gt;");
+	str.replace("\'", "&apos;");
+	str.replace("\"", "&quot;");
+	sprintf(buf, "\t\t<%s>%s</%s>\n", tag, str, tag);
+	fputs(buf, hFile);
+	return;
+}
+
+//43d080
+int WriteConfigXml(game *g, const char *filename){
+	FILE *pFile;
+	char buf[256];
+	
+	pFile = fopen(filename, "w");
+	if (pFile == NULL) return 0; 
+	
+	fputs("<?xml version=\"1.0\" encoding=\"shift_jis\"?>\n", pFile);
+	fputs("<config>\n", pFile);
+
+	fputs("\t<system>\n", pFile);
+	WriteXML_Tab2Int(pFile, "screenmode", (g->config).system.screenmode);
+	WriteXML_Tab2Int(pFile, "vsync", (g->config).system.vsync);
+	WriteXML_Tab2Int(pFile, "directdraw", (g->config).system.directdraw);
+	WriteXML_Tab2Int(pFile, "highcolor", (g->config).system.highcolor);
+	WriteXML_Tab2Int(pFile, "autoreload", (g->config).jukebox.autoreload);
+	WriteXML_Tab2Int(pFile, "customfolder", (g->config).jukebox.customfolder);
+	WriteXML_Tab2Int(pFile, "mainsleep", (g->config).system.mainsleep);
+	WriteXML_Tab2Int(pFile, "bmssleep", (g->config).system.bmssleep);
+	WriteXML_Tab2Int(pFile, "screenexrate", (g->config).system.screenexrate);
+	WriteXML_Tab2Int(pFile, "inputinterval", (g->config).input.sys_inputinterval);
+	WriteXML_Tab2Int(pFile, "disablesystemkey", (g->config).system.disablesystemkey);
+	WriteXML_Tab2Int(pFile, "outputlog", (g->config).system.outputlog);
+	WriteXML_Tab2Int(pFile, "thread", (g->config).system.thread);
+	WriteXML_Tab2Int(pFile, "eventmode", (g->config).system.eventmode);
+	WriteXML_Tab2Int(pFile, "disableskinpreview", (g->config).system.disableskinpreview);
+	WriteXML_Tab2Str(pFile, "newsongfolder", (g->config).jukebox.newsongfolder);
+	WriteXML_Tab2Int(pFile, "titleflash", (g->config).jukebox.titleflash);
+	WriteXML_Tab2Int(pFile, "hptimer", (g->config).system.hptimer);
+	WriteXML_Tab2Int(pFile, "disablebmsthread", (g->config).system.isablebmsthread);
+	WriteXML_Tab2Int(pFile, "disablefolderthread", (g->config).system.disablefolderthread);
+	WriteXML_Tab2Int(pFile, "maindisplay", (g->config).system.maindisplay);
+	WriteXML_Tab2Int(pFile, "language", (g->config).system.language);
+	WriteXML_Tab2Int(pFile, "windowsize_x", (g->config).system.windowsize_x);
+	WriteXML_Tab2Int(pFile, "windowsize_y", (g->config).system.windowsize_y);
+	WriteXML_Tab2Int(pFile, "softwarerendering", (g->config).system.softwarerendering);
+	fputs("\t</system>\n", pFile);
+
+	fputs("\t<jukebox>\n", pFile);
+	for (int i = 0; i < g->config.jukebox.numOfPath; i++) {
+		WriteXML_Tab2Str(pFile, "path", g->config.jukebox.path[i]);
+	}
+	fputs("\t</jukebox>\n", pFile);
+
+	fputs("\t<play>\n", pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "hs", (g->config).play.hiSpeed[0], "hs");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "hstype", (g->config).play.hsfix, "hstype");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "hsmax", (g->config).play.hsmax, "hsmax");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "hsmin", (g->config).play.hsmin, "hsmin");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "hsmargin", (g->config).play.hsmargin, "hsmargin");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "shutter", (g->config).play.p1_lanecoverv, "shutter");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "shuttertype", (g->config).play.p1_lanecover, "shuttertype");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "shuttermargin", (g->config).play.shuttermargin, "shuttermargin");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "gauge", (g->config).play.gaugeOption[0], "gauge");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "random", (g->config).play.random[0], "random");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "effect", (g->config).play.m_HIDSUD1, "effect");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "autoscratch", (g->config).play.p1_assist, "autoscratch");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "autokey", (g->config).play.autokey, "autokey");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "autojudgeadjust", (g->config).play.autojudge, "autojudgeadjust");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "judgetime", (g->config).play.judgetiming, "judgetime");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "bga", (g->config).play.bga, "bga");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "bgasize", (g->config).play.bgasize, "bgasize");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "poorbga", (g->config).play.poorbga, "poorbga");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ghost", (g->config).play.play_ghost, "ghost");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "scoregraph", (g->config).play.scoregraph, "scoregraph");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "target", (g->config).play.p1_target, "target");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "defaulttarget", (g->config).play.target_percent, "defaulttarget");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "replaysave", (g->config).play.replay, "replaysave");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "basespeed", (g->config).play.basespeed, "basespeed");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "gomiscore", (g->config).play.gomiscore, "gomiscore");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disableleftclickexit", (g->config).play.disableleftclickexit, "disableleftclickexit");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disablecurspeedchange", (g->config).play.disablecurspeedchange, "disablecurspeedchange");
+	fputs(buf, pFile);
+	fputs("\t</play>\n", pFile);
+
+	fputs("\t<sound>\n", pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "bufferlength", (g->config).sound.bufferlength, "bufferlength");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "numbuffers", (g->config).sound.numbuffers, "numbuffers");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disabledsp", (g->config).sound.disabledsp, "disabledsp");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "output", (g->config).sound.output, "output");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "driver", (g->config).sound.driver, "driver");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disablefmod", (g->config).sound.disablefmod, "disablefmod");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "volumeflag", (g->config).sound.volumeflag, "volumeflag");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "volumebgm", (g->config).sound.volumebgm, "volumebgm");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "volumekey", (g->config).sound.volumekey, "volumekey");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "volumemaster", (g->config).sound.volumemaster, "volumemaster");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "eqflag", (g->config).sound.eqflag, "eqflag");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "eqp0", (g->config).sound.eqp0, "eqp0");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "eqp1", (g->config).sound.eqp1, "eqp1");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "eqp2", (g->config).sound.eqp2, "eqp2");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "eqp3", (g->config).sound.eqp3, "eqp3");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "eqp4", (g->config).sound.eqp4, "eqp4");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "eqp5", (g->config).sound.eqp5, "eqp5");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "eqp6", (g->config).sound.eqp6, "eqp6");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "pitchflag", (g->config).sound.pitchflag, "pitchflag");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "pitchtype", (g->config).sound.pitchtype, "pitchtype");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "pitchp", (g->config).sound.pitchp, "pitchp");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxflag_0", (g->config).sound.fxflag_0, "fxflag_0");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxtype_0", (g->config).sound.fxtype_0, "fxtype_0");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxtarget_0", (g->config).sound.fxtarget_0, "fxtarget_0");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxp1_0", (g->config).sound.fxp1_0, "fxp1_0");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxp2_0", (g->config).sound.fxp2_0, "fxp2_0");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxflag_1", (g->config).sound.fxflag_1, "fxflag_1");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxtype_1", (g->config).sound.fxtype_1, "fxtype_1");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxtarget_1", (g->config).sound.fxtarget_1, "fxtarget_1");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxp1_1", (g->config).sound.fxp1_1, "fxp1_1");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxp2_1", (g->config).sound.fxp2_1, "fxp2_1");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxflag_2", (g->config).sound.fxflag_2, "fxflag_2");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxtype_2", (g->config).sound.fxtype_2, "fxtype_2");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxtarget_2", (g->config).sound.fxtarget_2, "fxtarget_2");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxp1_2", (g->config).sound.fxp1_2, "fxp1_2");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "fxp2_2", (g->config).sound.fxp2_2, "fxp2_2");
+	fputs(buf, pFile);
+	fputs("\t</sound>\n", pFile);
+
+	fputs("\t<player>\n", pFile);
+	WriteXML_Tab2Str(pFile, "id", (g->config).player.id);
+	WriteXML_Tab2Str(pFile, "pass", (g->config).player.pass);
+	WriteXML_Tab2Str(pFile, "name", (g->config).player.name);
+	WriteXML_Tab2Str(pFile, "irid", (g->config).player.lrid);
+	WriteXML_Tab2Str(pFile, "irpass", (g->config).player.irpass);
+	fputs("\t</player>\n", pFile);
+
+	fputs("\t<select>\n", pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "sort", (g->config).select.sort, "sort");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "key", (g->config).select.key, "key");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "difficulty", (g->config).select.difficulty, "difficulty");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "searchmax", (g->config).select.searchmax, "searchmax");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "randomclose", (g->config).select.randomclose, "randomclose");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "speedfirst", (g->config).select.speedfirst, "speedfirst");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "speednext", (g->config).select.speednext, "speednext");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "control", (g->config).select.control, "control");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "buttonselect", (g->config).select.buttonselect, "buttonselect");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "folderlamp", (g->config).select.folderlamp, "folderlamp");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "difficultychangetype", (g->config).select.difficultychangetype, "difficultychangetype");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorekeyall", (g->config).select.ignorekeyall, "ignorekeyall");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorekeysingle", (g->config).select.ignorekeysingle, "ignorekeysingle");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorekeydouble", (g->config).select.ignorekeydouble, "ignorekeydouble");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignoredp", (g->config).select.ignoredp, "ignoredp");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorepms", (g->config).select.ignorepms, "ignorepms");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignoredifficultyall", (g->config).select.ignoredifficultyall, "ignoredifficultyall");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignore5key", (g->config).select.ignore5key, "ignore5key");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "levelbarflash_7", (g->config).select.levelbarflash_7, "levelbarflash_7");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "levelbarflash_5", (g->config).select.levelbarflash_5, "levelbarflash_5");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "levelbarflash_9", (g->config).select.levelbarflash_9, "levelbarflash_9");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disabledifficultyfilter", (g->config).select.disabledifficultyfilter, "disabledifficultyfilter");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "preview", (g->config).select.preview, "preview");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disablesubtitle", (g->config).select.disablesubtitle, "disablesubtitle");
+	fputs(buf, pFile);
+	fputs("\t</select>\n", pFile);
+	
+	fputs("\t<skin>\n", pFile);
+	WriteXML_Tab2Str(pFile, "play_7", (g->config).skin.skinFilePath[0]);
+	WriteXML_Tab2Str(pFile, "play_5", (g->config).skin.skinFilePath[1]);
+	WriteXML_Tab2Str(pFile, "play_14", (g->config).skin.skinFilePath[2]);
+	WriteXML_Tab2Str(pFile, "play_10", (g->config).skin.skinFilePath[3]);
+	WriteXML_Tab2Str(pFile, "play_9", (g->config).skin.skinFilePath[4]);
+	WriteXML_Tab2Str(pFile, "select", (g->config).skin.skinFilePath[5]);
+	WriteXML_Tab2Str(pFile, "decide", (g->config).skin.skinFilePath[6]);
+	WriteXML_Tab2Str(pFile, "result", (g->config).skin.skinFilePath[7]);
+	WriteXML_Tab2Str(pFile, "keyconfig", (g->config).skin.skinFilePath[8]);
+	WriteXML_Tab2Str(pFile, "skinselect", (g->config).skin.skinFilePath[9]);
+	WriteXML_Tab2Str(pFile, "soundset", (g->config).skin.skinFilePath[10]);
+	WriteXML_Tab2Str(pFile, "theme", (g->config).skin.skinFilePath[11]);
+	WriteXML_Tab2Str(pFile, "play_7_b", (g->config).skin.skinFilePath[12]);
+	WriteXML_Tab2Str(pFile, "play_5_b", (g->config).skin.skinFilePath[13]);
+	WriteXML_Tab2Str(pFile, "play_9_b", (g->config).skin.skinFilePath[14]);
+	WriteXML_Tab2Str(pFile, "fontname", (g->config).skin.fontname);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disableimagefont", (g->config).skin.disableimagefont, "disableimagefont");
+	fputs(buf, pFile);
+	fputs("\t</skin>\n", pFile);
+
+	fputs("\t<network>\n", pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "lr1ir", (g->config).network.lr1ir, "lr1ir");
+	fputs(buf, pFile);
+
+	WriteXML_Tab2Str(pFile, "lr1id", (g->config).network.lr1id);
+	WriteXML_Tab2Str(pFile, "lr1pass", (g->config).network.lr1pass);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "lr2ir", (g->config).network.lr2ir, "lr2ir");
+	fputs(buf, pFile);
+
+	WriteXML_Tab2Str(pFile, "mail", (g->config).network.mail);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "autoupdate", (g->config).network.autoupdate, "autoupdate");
+	fputs(buf, pFile);
+
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "getrival", (g->config).network.getrival, "getrival");
+	fputs(buf, pFile);
+	fputs("\t</network>\n", pFile);
+
+	//below this, seems like all uses different buf[256]. but I think there is no reason
+	fputs("\t<course>\n", pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "optimumlevel_7", (g->config).course.optimumlevel_7, "optimumlevel_7");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "optimumlevel_5", (g->config).course.optimumlevel_5, "optimumlevel_5");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "optimumlevel_10", (g->config).course.optimumlevel_10, "optimumlevel_10");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "optimumlevel_14", (g->config).course.optimumlevel_14, "optimumlevel_14");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "optimumlevel_9", (g->config).course.optimumlevel_9, "optimumlevel_9");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "defaultconnection", (g->config).course.defaultconnection, "defaultconnection");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "defaultgauge", (g->config).course.defaultgauge, "defaultgauge");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "maxbpm", (g->config).course.maxbpm, "maxbpm");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "minbpm", (g->config).course.minbpm, "minbpm");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "bpmrange", (g->config).course.bpmrange, "bpmrange");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "maxlevel", (g->config).course.maxlevel, "maxlevel");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "minlevel", (g->config).course.minlevel, "minlevel");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "stage", (g->config).course.stage, "stage");
+	fputs(buf, pFile);
+	fputs("\t</course>\n", pFile);
+
+	fputs("\t<tools>\n", pFile);
+	WriteXML_Tab2Str(pFile, "bmse_body", (g->config).tools.bmse_body);
+	WriteXML_Tab2Str(pFile, "bmse_option", (g->config).tools.bmse_option);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "movie_audio", (g->config).tools.movie_audio, "movie_audio");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "movie_framerate", (g->config).tools.movie_framerate, "movie_framerate");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "mp3_volume", (g->config).tools.mp3_volume, "mp3_volume");
+	fputs(buf, pFile);
+	WriteXML_Tab2Str(pFile, "mp3enc_body", (g->config).tools.mp3enc_body);
+	WriteXML_Tab2Str(pFile, "mp3enc_option_movie", (g->config).tools.mp3enc_option_movie);
+	WriteXML_Tab2Str(pFile, "mp3enc_option_normal", (g->config).tools.mp3enc_option_normal);
+	WriteXML_Tab2Str(pFile, "oggdec_body", (g->config).tools.oggdec_body);
+	WriteXML_Tab2Str(pFile, "oggdec_option", (g->config).tools.oggdec_option);
+	WriteXML_Tab2Str(pFile, "oggenc_body", (g->config).tools.oggenc_body);
+	WriteXML_Tab2Str(pFile, "oggenc_option", (g->config).tools.oggenc_option);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "autowavtoogg", (g->config).tools.autowavtoogg, "autowavtoogg");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "autobmptopng", (g->config).tools.autobmptopng,	"autobmptopng");
+	fputs(buf, pFile);
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "autofumensearch", (g->config).tools.autofumensearch, "autofumensearch");
+	fputs(buf, pFile);
+	fputs("\t</tools>\n", pFile);
+
+	fputs("</config>\n", pFile);
+	fclose(pFile);
+	return 1;
+}
+
+//43ebd0
+void WriteXML_KeyConfig(FILE *hFile, CONFIG_INPUT cfg_in, const char *tag, int num){
+	char buf[256];
+
+	fputs("\t<", hFile);
+	fputs(tag, hFile);
+	fputs(">\n", hFile);
+	for (int i = 0; i < 16; i++) {
+		if (cfg_in.buttonMap[num][i]) {
+			sprintf(buf, "\t\t<%s>%d</%s>\n", "id", cfg_in.buttonMap[num][i], "id");
+			fputs(buf, hFile);
+		}
+	}
+	fputs("\t</", hFile);
+	fputs(tag, hFile);
+	fputs(">\n", hFile);
+	return;
+}
+
+//43ecb0
+int WriteKeyConfig(game *g, const char *filepath, int key) {
+	FILE *pFile;
+	CONFIG_INPUT cfg_in;
+
+	pFile = fopen(filepath, "w");
+	if (pFile == (FILE *)0x0) {
+		return 0;
+	}
+
+	fputs("<?xml version=\"1.0\" encoding=\"shift_jis\"?>\n", pFile);
+	fputs("<keyconfig>\n", pFile);
+	
+	if (key == 9) {
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key01", 1);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key02", 2);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key03", 3);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key04", 4);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key05", 5);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key06", 6);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key07", 7);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key08", 8);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key09", 9);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key12", 12);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key13", 13);
+	}
+	else if (key == 5) {
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key01", 1);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key02", 2);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key03", 3);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key04", 4);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key05", 5);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key10", 10);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key11", 11);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key12", 12);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key13", 13);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key21", 21);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key22", 22);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key23", 23);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key24", 24);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key25", 25);
+	}
+	else {
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key01", 1);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key02", 2);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key03", 3);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key04", 4);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key05", 5);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key06", 6);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key07", 7);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key10", 10);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key11", 11);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key12", 12);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key13", 13);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key21", 21);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key22", 22);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key23", 23);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key24", 24);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key25", 25);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key26", 26);
+		memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+		WriteXML_KeyConfig(pFile, cfg_in, "key27", 27);
+	}
+	memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+	WriteXML_KeyConfig(pFile, cfg_in, "key30", 30);
+	memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+	WriteXML_KeyConfig(pFile, cfg_in, "key31", 31); 
+	memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+	WriteXML_KeyConfig(pFile, cfg_in, "key32", 32);
+	memcpy(&cfg_in, &g->config.input, sizeof(CONFIG_INPUT));
+	WriteXML_KeyConfig(pFile, cfg_in, "key33", 33);
+
+	fputs("</keyconfig>\n", pFile);
+	fclose(pFile);
+	return 1;
+}
+
+//43f370
+int WriteMidiXml(game *g, const char *filename) {
+	FILE *pFile;
+
+	pFile = fopen(filename, "w");
+	if (pFile == NULL) {
+		return 0;
+	}
+	fputs("<?xml version=\"1.0\" encoding=\"shift_jis\"?>\n", pFile);
+	fputs("<midi>\n", pFile);
+	fputs("\t<control>\n", pFile);
+	WriteXML_Tab2Int(pFile, "S01", (g->config).input.midi_control[1]);
+	WriteXML_Tab2Int(pFile, "S02", (g->config).input.midi_control[2]);
+	WriteXML_Tab2Int(pFile, "S03", (g->config).input.midi_control[3]);
+	WriteXML_Tab2Int(pFile, "S04", (g->config).input.midi_control[4]);
+	WriteXML_Tab2Int(pFile, "S05", (g->config).input.midi_control[5]);
+	WriteXML_Tab2Int(pFile, "S06", (g->config).input.midi_control[6]);
+	WriteXML_Tab2Int(pFile, "S07", (g->config).input.midi_control[7]);
+	WriteXML_Tab2Int(pFile, "S08", (g->config).input.midi_control[8]);
+	WriteXML_Tab2Int(pFile, "S09", (g->config).input.midi_control[9]);
+	WriteXML_Tab2Int(pFile, "S10", (g->config).input.midi_control[10]);
+	WriteXML_Tab2Int(pFile, "S11", (g->config).input.midi_control[0xb]);
+	WriteXML_Tab2Int(pFile, "S12", (g->config).input.midi_control[0xc]);
+	WriteXML_Tab2Int(pFile, "S13", (g->config).input.midi_control[0xd]);
+	WriteXML_Tab2Int(pFile, "S14", (g->config).input.midi_control[0xe]);
+	WriteXML_Tab2Int(pFile, "S15", (g->config).input.midi_control[0xf]);
+	WriteXML_Tab2Int(pFile, "S16", (g->config).input.midi_control[0x10]);
+	WriteXML_Tab2Int(pFile, "S17", (g->config).input.midi_control[0x11]);
+	WriteXML_Tab2Int(pFile, "S18", (g->config).input.midi_control[0x12]);
+	WriteXML_Tab2Int(pFile, "S19", (g->config).input.midi_control[0x13]);
+	WriteXML_Tab2Int(pFile, "S20", (g->config).input.midi_control[0x14]);
+	WriteXML_Tab2Int(pFile, "S21", (g->config).input.midi_control[0x15]);
+	WriteXML_Tab2Int(pFile, "S22", (g->config).input.midi_control[0x16]);
+	WriteXML_Tab2Int(pFile, "S23", (g->config).input.midi_control[0x17]);
+	WriteXML_Tab2Int(pFile, "S24", (g->config).input.midi_control[0x18]);
+	WriteXML_Tab2Int(pFile, "S25", (g->config).input.midi_control[0x19]);
+	WriteXML_Tab2Int(pFile, "S26", (g->config).input.midi_control[0x1a]);
+	WriteXML_Tab2Int(pFile, "S27", (g->config).input.midi_control[0x1b]);
+	WriteXML_Tab2Int(pFile, "S28", (g->config).input.midi_control[0x1c]);
+	WriteXML_Tab2Int(pFile, "S29", (g->config).input.midi_control[0x1d]);
+	WriteXML_Tab2Int(pFile, "S30", (g->config).input.midi_control[0x1e]);
+	WriteXML_Tab2Int(pFile, "S31", (g->config).input.midi_control[0x1f]);
+	WriteXML_Tab2Int(pFile, "S32", (g->config).input.midi_control[0x20]);
+	WriteXML_Tab2Int(pFile, "S33", (g->config).input.midi_control[0x21]);
+	WriteXML_Tab2Int(pFile, "S34", (g->config).input.midi_control[0x22]);
+	WriteXML_Tab2Int(pFile, "S35", (g->config).input.midi_control[0x23]);
+	WriteXML_Tab2Int(pFile, "S36", (g->config).input.midi_control[0x24]);
+	WriteXML_Tab2Int(pFile, "S37", (g->config).input.midi_control[0x25]);
+	WriteXML_Tab2Int(pFile, "S38", (g->config).input.midi_control[0x26]);
+	WriteXML_Tab2Int(pFile, "S39", (g->config).input.midi_control[0x27]);
+	fputs("\t</control>\n", pFile);
+	fputs("\t<program>\n", pFile);
+	fputs("\t</program>\n", pFile);
+	fputs("</midi>\n", pFile);
+	fclose(pFile);
+	return 1;
+}
+
+//43f6d0
+int ReadSkinCustomize(SkinUser *sku, char *FilePath) {
+	TiXmlDocument *hXml;
+	TiXmlElement *xmlCur;
+
+	(sku->adjust).dark_type = 0;
+	(sku->adjust).judge_x = 0;
+	(sku->adjust).judge_y = 0;
+	(sku->adjust).note_1p_x = 0;
+	(sku->adjust).note_1p_y = 0;
+	(sku->adjust).note_2p_x = 0;
+	(sku->adjust).note_2p_y = 0;
+	(sku->adjust).unk18 = 0;
+	(sku->adjust).unk1c = 0;
+	(sku->adjust).size_x = 0;
+	(sku->adjust).size_y = 0;
+	sku->customize_value[0] = 0;
+	sku->customize_value[1] = 0;
+	sku->customize_value[2] = 0;
+	sku->customize_value[3] = 0;
+	sku->customize_value[4] = 0;
+	sku->customize_value[5] = 0;
+	sku->customize_value[6] = 0;
+	sku->customize_value[7] = 0;
+	sku->customize_value[8] = 0;
+	sku->customize_value[9] = 0;
+	sku->customize_value[10] = 0;
+	sku->customize_value[0xb] = 0;
+	sku->customize_value[0xc] = 0;
+	sku->customize_value[0xd] = 0;
+	sku->customize_value[0xe] = 0;
+	sku->customize_value[0xf] = 0;
+	sku->customize_value[0x10] = 0;
+	sku->customize_value[0x11] = 0;
+	sku->customize_value[0x12] = 0;
+	sku->customize_value[0x13] = 0;
+	(sku->adjust).shift_x = 0;
+	(sku->adjust).shift_y = 0;
+	(sku->adjust).rate_x = 100;
+	(sku->adjust).rate_y = 100;
+	
+	hXml = new TiXmlDocument(FilePath);
+	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+		if (hXml) {
+			delete(hXml);
+		}
+		hXml = NULL;
+	}
+
+	ReadXml_Int("skincustomize", "rate", "x", 100, &(sku->adjust).rate_x, hXml);
+	ReadXml_Int("skincustomize", "rate", "y", 100, &(sku->adjust).rate_y, hXml);
+	ReadXml_Int("skincustomize", "shift", "x", 0, &(sku->adjust).shift_x, hXml);
+	ReadXml_Int("skincustomize", "shift", "y", 0, &(sku->adjust).shift_y, hXml);
+	ReadXml_Int("skincustomize", "judge", "x", 0, &(sku->adjust).judge_x, hXml);
+	ReadXml_Int("skincustomize", "judge", "y", 0, &(sku->adjust).judge_y, hXml);
+	ReadXml_Int("skincustomize", "size", "x", 0, &(sku->adjust).size_x, hXml);
+	ReadXml_Int("skincustomize", "size", "y", 0, &(sku->adjust).size_y, hXml);
+	ReadXml_Int("skincustomize", "dark", "type", 0, &(sku->adjust).dark_type, hXml);
+	ReadXml_Int("skincustomize", "note_1p", "x", 0, &(sku->adjust).note_1p_x, hXml);
+	ReadXml_Int("skincustomize", "note_1p", "y", 0, &(sku->adjust).note_1p_y, hXml);
+	ReadXml_Int("skincustomize", "note_2p", "x", 0, &(sku->adjust).note_2p_x, hXml);
+	ReadXml_Int("skincustomize", "note_2p", "y", 0, &(sku->adjust).note_2p_y, hXml);
+
+	//it's doubled code, so changed a little
+	for (int i = 0; i < 40; i++) {
+		sku->customize_value[i];
+		CSTR tmp;
+
+		cstrSprintf(&tmp, "config_%d", i); //cstrSprintf(&tmp, "confit_%d", i);
+		if( hXml && (xmlCur = hXml->FirstChildElement("skincustomize")) && (xmlCur = xmlCur->FirstChildElement("skinconfig")) && (xmlCur = xmlCur->FirstChildElement(tmp)) )
+			sku->customize_value[i] = atol(xmlCur->ToElement()->GetText());
+		else
+			sku->customize_value[i] = 0;
+
+		cstrSprintf(&tmp, "filename_%d", i);
+		ReadXml_Str("skincustomize", "customfile", tmp, CSTR(""), &sku->customize_filename[i], hXml);
+	}
+
+	////0~39 repeat
+	//if (hXml && (xmlCur = hXml->FirstChildElement("skincustomize")) && (xmlCur = xmlCur->FirstChildElement("skinconfig")) && (xmlCur->FirstChildElement("config_0")))
+	//	sku->customize_value[0] = atol(xmlCur->ToElement()->GetText());
+	//else
+	//	sku->customize_value[0] = 0;
+	////0~39 repeat
+	//ReadXml_Str("skincustomize", "customfile", "filename_0", CSTR(""), &sku->customize_filename[0], hXml);
+
+	if (hXml) {
+		delete(hXml);
+	}
+
+	return 1;
+}
+
+//441340 //test
+int WriteSkinCustomizeXml(SkinUser *sku, char *filepath) {
+	
+	FILE *pFile;
+
+	pFile = fopen(filepath, "w");
+	if (pFile == (FILE *)0x0) {
+		return 0;
+	}
+	fputs("<?xml version=\"1.0\" encoding=\"shift_jis\"?>\n", pFile);
+	fputs("<skincustomize>\n", pFile);
+	
+	fputs("\t<shift>\n", pFile);
+	WriteXML_Tab2Int(pFile, "x", (sku->adjust).shift_x);
+	WriteXML_Tab2Int(pFile, "y", (sku->adjust).shift_y);
+	fputs("\t</shift>\n", pFile);
+	
+	fputs("\t<judge>\n", pFile);
+	WriteXML_Tab2Int(pFile, "x", (sku->adjust).judge_x);
+	WriteXML_Tab2Int(pFile, "y", (sku->adjust).judge_y);
+	fputs("\t</judge>\n", pFile);
+	
+	fputs("\t<rate>\n", pFile);
+	WriteXML_Tab2Int(pFile, "x", (sku->adjust).rate_x);
+	WriteXML_Tab2Int(pFile, "y", (sku->adjust).rate_y);
+	fputs("\t</rate>\n", pFile);
+	
+	fputs("\t<size>\n", pFile);
+	WriteXML_Tab2Int(pFile, "x", (sku->adjust).size_x);
+	WriteXML_Tab2Int(pFile, "y", (sku->adjust).size_y);
+	fputs("\t</size>\n", pFile);
+	
+	fputs("\t<dark>\n", pFile);
+	WriteXML_Tab2Int(pFile, "type", (sku->adjust).dark_type);
+	fputs("\t</dark>\n", pFile);
+	
+	fputs("\t<note_1p>\n", pFile);
+	WriteXML_Tab2Int(pFile, "x", (sku->adjust).note_1p_x);
+	WriteXML_Tab2Int(pFile, "y", (sku->adjust).note_1p_y);
+	fputs("\t</note_1p>\n", pFile);
+	
+	fputs("\t<note_2p>\n", pFile);
+	WriteXML_Tab2Int(pFile, "x", (sku->adjust).note_2p_x);
+	WriteXML_Tab2Int(pFile, "y", (sku->adjust).note_2p_y);
+	fputs("\t</note_2p>\n", pFile);
+	
+	fputs("\t<skinconfig>\n", pFile);
+	WriteXML_Tab2Int(pFile, "config_0", sku->customize_value[0]);
+	WriteXML_Tab2Int(pFile, "config_1", sku->customize_value[1]);
+	WriteXML_Tab2Int(pFile, "config_2", sku->customize_value[2]);
+	WriteXML_Tab2Int(pFile, "config_3", sku->customize_value[3]);
+	WriteXML_Tab2Int(pFile, "config_4", sku->customize_value[4]);
+	WriteXML_Tab2Int(pFile, "config_5", sku->customize_value[5]);
+	WriteXML_Tab2Int(pFile, "config_6", sku->customize_value[6]);
+	WriteXML_Tab2Int(pFile, "config_7", sku->customize_value[7]);
+	WriteXML_Tab2Int(pFile, "config_8", sku->customize_value[8]);
+	WriteXML_Tab2Int(pFile, "config_9", sku->customize_value[9]);
+	WriteXML_Tab2Int(pFile, "config_10", sku->customize_value[10]);
+	WriteXML_Tab2Int(pFile, "config_11", sku->customize_value[0xb]);
+	WriteXML_Tab2Int(pFile, "config_12", sku->customize_value[0xc]);
+	WriteXML_Tab2Int(pFile, "config_13", sku->customize_value[0xd]);
+	WriteXML_Tab2Int(pFile, "config_14", sku->customize_value[0xe]);
+	WriteXML_Tab2Int(pFile, "config_15", sku->customize_value[0xf]);
+	WriteXML_Tab2Int(pFile, "config_16", sku->customize_value[0x10]);
+	WriteXML_Tab2Int(pFile, "config_17", sku->customize_value[0x11]);
+	WriteXML_Tab2Int(pFile, "config_18", sku->customize_value[0x12]);
+	WriteXML_Tab2Int(pFile, "config_19", sku->customize_value[0x13]);
+	WriteXML_Tab2Int(pFile, "config_20", sku->customize_value[0x14]);
+	WriteXML_Tab2Int(pFile, "config_21", sku->customize_value[0x15]);
+	WriteXML_Tab2Int(pFile, "config_22", sku->customize_value[0x16]);
+	WriteXML_Tab2Int(pFile, "config_23", sku->customize_value[0x17]);
+	WriteXML_Tab2Int(pFile, "config_24", sku->customize_value[0x18]);
+	WriteXML_Tab2Int(pFile, "config_25", sku->customize_value[0x19]);
+	WriteXML_Tab2Int(pFile, "config_26", sku->customize_value[0x1a]);
+	WriteXML_Tab2Int(pFile, "config_27", sku->customize_value[0x1b]);
+	WriteXML_Tab2Int(pFile, "config_28", sku->customize_value[0x1c]);
+	WriteXML_Tab2Int(pFile, "config_29", sku->customize_value[0x1d]);
+	WriteXML_Tab2Int(pFile, "config_30", sku->customize_value[0x1e]);
+	WriteXML_Tab2Int(pFile, "config_31", sku->customize_value[0x1f]);
+	WriteXML_Tab2Int(pFile, "config_32", sku->customize_value[0x20]);
+	WriteXML_Tab2Int(pFile, "config_33", sku->customize_value[0x21]);
+	WriteXML_Tab2Int(pFile, "config_34", sku->customize_value[0x22]);
+	WriteXML_Tab2Int(pFile, "config_35", sku->customize_value[0x23]);
+	WriteXML_Tab2Int(pFile, "config_36", sku->customize_value[0x24]);
+	WriteXML_Tab2Int(pFile, "config_37", sku->customize_value[0x25]);
+	WriteXML_Tab2Int(pFile, "config_38", sku->customize_value[0x26]);
+	WriteXML_Tab2Int(pFile, "config_39", sku->customize_value[0x27]);
+	fputs("\t</skinconfig>\n", pFile);
+	
+	fputs("\t<customfile>\n", pFile);
+	WriteXML_Tab2Str(pFile, "filename_0", sku->customize_filename[0]);
+	WriteXML_Tab2Str(pFile, "filename_1", sku->customize_filename[1]);
+	WriteXML_Tab2Str(pFile, "filename_2", sku->customize_filename[2]);
+	WriteXML_Tab2Str(pFile, "filename_3", sku->customize_filename[3]);
+	WriteXML_Tab2Str(pFile, "filename_4", sku->customize_filename[4]);
+	WriteXML_Tab2Str(pFile, "filename_5", sku->customize_filename[5]);
+	WriteXML_Tab2Str(pFile, "filename_6", sku->customize_filename[6]);
+	WriteXML_Tab2Str(pFile, "filename_7", sku->customize_filename[7]);
+	WriteXML_Tab2Str(pFile, "filename_8", sku->customize_filename[8]);
+	WriteXML_Tab2Str(pFile, "filename_9", sku->customize_filename[9]);
+	WriteXML_Tab2Str(pFile, "filename_10", sku->customize_filename[10]);
+	WriteXML_Tab2Str(pFile, "filename_11", sku->customize_filename[11]);
+	WriteXML_Tab2Str(pFile, "filename_12", sku->customize_filename[12]);
+	WriteXML_Tab2Str(pFile, "filename_13", sku->customize_filename[13]);
+	WriteXML_Tab2Str(pFile, "filename_14", sku->customize_filename[14]);
+	WriteXML_Tab2Str(pFile, "filename_15", sku->customize_filename[15]);
+	WriteXML_Tab2Str(pFile, "filename_16", sku->customize_filename[16]);
+	WriteXML_Tab2Str(pFile, "filename_17", sku->customize_filename[17]);
+	WriteXML_Tab2Str(pFile, "filename_18", sku->customize_filename[18]);
+	WriteXML_Tab2Str(pFile, "filename_19", sku->customize_filename[19]);
+	WriteXML_Tab2Str(pFile, "filename_20", sku->customize_filename[20]);
+	WriteXML_Tab2Str(pFile, "filename_21", sku->customize_filename[21]);
+	WriteXML_Tab2Str(pFile, "filename_22", sku->customize_filename[22]);
+	WriteXML_Tab2Str(pFile, "filename_23", sku->customize_filename[23]);
+	WriteXML_Tab2Str(pFile, "filename_24", sku->customize_filename[24]);
+	WriteXML_Tab2Str(pFile, "filename_25", sku->customize_filename[25]);
+	WriteXML_Tab2Str(pFile, "filename_26", sku->customize_filename[26]);
+	WriteXML_Tab2Str(pFile, "filename_27", sku->customize_filename[27]);
+	WriteXML_Tab2Str(pFile, "filename_28", sku->customize_filename[28]);
+	WriteXML_Tab2Str(pFile, "filename_29", sku->customize_filename[29]);
+	WriteXML_Tab2Str(pFile, "filename_30", sku->customize_filename[30]);
+	WriteXML_Tab2Str(pFile, "filename_31", sku->customize_filename[31]);
+	WriteXML_Tab2Str(pFile, "filename_32", sku->customize_filename[32]);
+	WriteXML_Tab2Str(pFile, "filename_33", sku->customize_filename[33]);
+	WriteXML_Tab2Str(pFile, "filename_34", sku->customize_filename[34]);
+	WriteXML_Tab2Str(pFile, "filename_35", sku->customize_filename[35]);
+	WriteXML_Tab2Str(pFile, "filename_36", sku->customize_filename[36]);
+	WriteXML_Tab2Str(pFile, "filename_37", sku->customize_filename[37]);
+	WriteXML_Tab2Str(pFile, "filename_38", sku->customize_filename[38]);
+	WriteXML_Tab2Str(pFile, "filename_39", sku->customize_filename[39]);
+	fputs("\t</customfile>\n", pFile);
+
+	fputs("</skincustomize>\n", pFile);
+	fclose(pFile);
+
+	return 1;
+}
+
+//441d30
+int ReadConfig(game *g, const char *filepath){
+	int *piVar1;
+	bool bVar2;
+	TiXmlDocument *hXml;
+	TiXmlDocument *pTVar7;
+	uint uStack32;
+	int *local_c;
+
+	memset(&g->config.play, 0, sizeof(g->config.play));
+	g->config.play.hiSpeed[0] = 200;
+	g->config.play.hiSpeed[1] = 200;
+	g->config.play.p1_lanecoverv = 0;
+	g->config.play.p2_lanecoverv = 0;
+	g->config.play.unknown_2 = 100;
+
+	hXml = new TiXmlDocument(filepath);
+
+	hXml->SetCondenseWhiteSpace(false);
+	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+		if (hXml) {
+			delete(hXml);
+		}
+		hXml = NULL;
+	}
+
+	ReadXml_Int("config", "system", "screenmode", 0, &g->config.system.screenmode, hXml);
+	ReadXml_Int("config", "system", "vsync", 0, &g->config.system.vsync, hXml);
+	ReadXml_Int("config", "system", "directdraw", 0, &g->config.system.directdraw, hXml);
+	ReadXml_Int("config", "system", "maindisplay", 0, &g->config.system.maindisplay, hXml);
+	Read_JukeboxPath(&g->config.jukebox, hXml);
+	ReadXml_Str("config", "system", "newsongfolder", "NEW SONG\\", &g->config.jukebox.newsongfolder, hXml);
+	ReadXml_Int("config", "system", "titleflash", 24, &g->config.jukebox.titleflash, hXml);
+	ReadXml_Int("config", "system", "softwarerendering", 0, &g->config.system.softwarerendering, hXml);
+	ReadXml_Int("config", "system", "autoreload", 2, &g->config.jukebox.autoreload, hXml);
+	ReadXml_Int("config", "system", "customfolder", 0, &g->config.jukebox.customfolder, hXml);
+	ReadXml_Int("config", "system", "mainsleep", 3, &g->config.system.mainsleep, hXml);
+	ReadXml_Int("config", "system", "bmssleep", 3, &g->config.system.bmssleep, hXml);
+	ReadXml_Int("config", "system", "screenexrate", 100, &g->config.system.screenexrate, hXml);
+	ReadXml_Int("config", "system", "inputinterval", 16, &g->config.input.sys_inputinterval, hXml);
+	ReadXml_Int("config", "system", "highcolor", 0, &g->config.system.highcolor, hXml);
+	ReadXml_Int("config", "system", "disablesystemkey", 0, &g->config.system.disablesystemkey, hXml);
+	ReadXml_Int("config", "system", "disableskinpreview", 0, &g->config.system.disableskinpreview, hXml);
+	ReadXml_Int("config", "system", "hptimer", 0, &g->config.system.hptimer, hXml);
+	ReadXml_Int("config", "system", "disablefolderthread", 0, &g->config.system.disablefolderthread, hXml);
+	ReadXml_Int("config", "system", "disablebmsthread", 0, &g->config.system.isablebmsthread, hXml);
+	ReadXml_Int("config", "system", "outputlog", 0, &g->config.system.outputlog, hXml);
+	ReadXml_Int("config", "system", "eventmode", 0, &g->config.system.eventmode, hXml);
+	ReadXml_Int("config", "system", "language", 0, &g->config.system.language, hXml);
+	ReadXml_Int("config", "system", "windowsize_x", 640, &g->config.system.windowsize_x, hXml);
+	ReadXml_Int("config", "system", "windowsize_y", 480, &g->config.system.windowsize_y, hXml);
+	ReadXml_Int("config", "select", "sort", 0, &g->config.select.sort, hXml);
+	ReadXml_Int("config", "select", "key", 1, &g->config.select.key, hXml);
+	ReadXml_Int("config", "select", "difficulty", 0, &g->config.select.difficulty, hXml);
+
+	ReadXml_Int("config", "select", "searchmax", 1000, &g->config.select.searchmax, hXml);
+	if (g->config.select.searchmax <= 0) g->config.select.searchmax = 0;
+
+	ReadXml_Int("config", "select", "speedfirst", 300, &g->config.select.speedfirst, hXml);
+	if (g->config.select.speedfirst <= 0) g->config.select.speedfirst = 300;
+
+	ReadXml_Int("config", "select", "speednext", 70, &g->config.select.speednext, hXml);
+	if (g->config.select.speednext <= 0) g->config.select.speednext = 70;
+
+	ReadXml_Int("config", "select", "control", 0, &g->config.select.control, hXml);
+	ReadXml_Int("config", "select", "buttonselect", 0, &g->config.select.buttonselect, hXml);
+	ReadXml_Int("config", "select", "randomclose", 0, &g->config.select.randomclose, hXml);
+	ReadXml_Int("config", "select", "ignorekeyall", 0, &g->config.select.ignorekeyall, hXml);
+	ReadXml_Int("config", "select", "ignorekeysingle", 0, &g->config.select.ignorekeysingle, hXml);
+	ReadXml_Int("config", "select", "ignorekeydouble", 0, &g->config.select.ignorekeydouble, hXml);
+	ReadXml_Int("config", "select", "ignoredp", 0, &g->config.select.ignoredp, hXml);
+	ReadXml_Int("config", "select", "ignorepms", 0, &g->config.select.ignorepms, hXml);
+	ReadXml_Int("config", "select", "ignoredifficultyall", 0, &g->config.select.ignoredifficultyall,	hXml);
+	ReadXml_Int("config", "select", "ignore5key", 0, &g->config.select.ignore5key, hXml);
+	ReadXml_Int("config", "select", "levelbarflash_7", 12, &g->config.select.levelbarflash_7, hXml);
+	ReadXml_Int("config", "select", "levelbarflash_5", 9, &g->config.select.levelbarflash_5, hXml);
+	ReadXml_Int("config", "select", "levelbarflash_9", 42, &g->config.select.levelbarflash_9, hXml);
+	ReadXml_Int("config", "select", "preview", 1, &g->config.select.preview, hXml);
+	ReadXml_Int("config", "select", "disablesubtitle", 0, &g->config.select.disablesubtitle, hXml);
+	ReadXml_Int("config", "select", "difficultychangetype", 0, &g->config.select.difficultychangetype, hXml);
+	ReadXml_Int("config", "select", "folderlamp", 0, &g->config.select.folderlamp, hXml);
+	ReadXml_Int("config", "select", "disabledifficultyfilter", 0, &g->config.select.disabledifficultyfilter, hXml);
+	ReadXml_Int("config", "system", "thread", 0, &g->config.system.thread, hXml);
+	ReadXml_Int("config", "sound", "bufferlength", 384, &g->config.sound.bufferlength, hXml);
+	ReadXml_Int("config", "sound", "numbuffers", 4, &g->config.sound.numbuffers, hXml);
+	ReadXml_Int("config", "sound", "output", 0, &g->config.sound.output, hXml);
+	ReadXml_Int("config", "sound", "driver", 0, &g->config.sound.driver, hXml);
+	ReadXml_Int("config", "sound", "disablefmod", 0, &g->config.sound.disablefmod, hXml);
+	ReadXml_Int("config", "sound", "volumeflag", 1, &g->config.sound.volumeflag, hXml);
+	ReadXml_Int("config", "sound", "volumekey", 100, &g->config.sound.volumekey, hXml);
+	ReadXml_Int("config", "sound", "volumebgm", 100, &g->config.sound.volumebgm, hXml);
+	ReadXml_Int("config", "sound", "volumemaster", 100, &g->config.sound.volumemaster, hXml);
+	ReadXml_Int("config", "sound", "eqflag", 0, &g->config.sound.eqflag, hXml);
+	ReadXml_Int("config", "sound", "eqp0", 0, &g->config.sound.eqp0, hXml);
+	ReadXml_Int("config", "sound", "eqp1", 0, &g->config.sound.eqp1, hXml);
+	ReadXml_Int("config", "sound", "eqp2", 0, &g->config.sound.eqp2, hXml);
+	ReadXml_Int("config", "sound", "eqp3", 0, &g->config.sound.eqp3, hXml);
+	ReadXml_Int("config", "sound", "eqp4", 0, &g->config.sound.eqp4, hXml);
+	ReadXml_Int("config", "sound", "eqp5", 0, &g->config.sound.eqp5, hXml);
+	ReadXml_Int("config", "sound", "eqp6", 0, &g->config.sound.eqp6, hXml);
+	ReadXml_Int("config", "sound", "pitchflag", 0, &g->config.sound.pitchflag, hXml);
+	ReadXml_Int("config", "sound", "pitchp", 0, &g->config.sound.pitchp, hXml);
+	ReadXml_Int("config", "sound", "pitchtype", 0, &g->config.sound.pitchtype, hXml);
+	ReadXml_Int("config", "sound", "fxflag_0", 0, &g->config.sound.fxflag_0, hXml);
+	ReadXml_Int("config", "sound", "fxp1_0", 0, &g->config.sound.fxp1_0, hXml);
+	ReadXml_Int("config", "sound", "fxp2_0", 0, &g->config.sound.fxp2_0, hXml);
+	ReadXml_Int("config", "sound", "fxtarget_0", 0, &g->config.sound.fxtarget_0, hXml);
+	ReadXml_Int("config", "sound", "fxtype_0", 0, &g->config.sound.fxtype_0, hXml);
+	ReadXml_Int("config", "sound", "fxflag_1", 0, &g->config.sound.fxflag_1, hXml);
+	ReadXml_Int("config", "sound", "fxp1_1", 0, &g->config.sound.fxp1_1, hXml);
+	ReadXml_Int("config", "sound", "fxp2_1", 0, &g->config.sound.fxp2_1, hXml);
+	ReadXml_Int("config", "sound", "fxtarget_1", 0, &g->config.sound.fxtarget_1, hXml);
+	ReadXml_Int("config", "sound", "fxtype_1", 0, &g->config.sound.fxtype_1, hXml);
+	ReadXml_Int("config", "sound", "fxflag_2", 0, &g->config.sound.fxflag_2, hXml);
+	ReadXml_Int("config", "sound", "fxp1_2", 0, &g->config.sound.fxp1_2, hXml);
+	ReadXml_Int("config", "sound", "fxp2_2", 0, &g->config.sound.fxp2_2, hXml);
+	ReadXml_Int("config", "sound", "fxtarget_2", 0, &g->config.sound.fxtarget_2, hXml);
+	ReadXml_Int("config", "sound", "fxtype_2", 0, &g->config.sound.fxtype_2, hXml);
+	
+	g->config.sound.disabledsp = (uint)(g->config.sound.output != 2);
+	if (g->config.sound.bufferlength == 0) g->config.sound.bufferlength = 256;
+	if (g->config.sound.bufferlength < 16) g->config.sound.bufferlength = 16;
+	if (g->config.sound.numbuffers <= 0) g->config.sound.numbuffers = 1;
+
+	ReadXml_Int("config", "play", "hs", 100, &g->config.play.hiSpeed[0], hXml);
+	g->config.play.hiSpeed[1] = g->config.play.hiSpeed[0];
+	ReadXml_Int("config", "play", "gauge", 0, g->config.play.gaugeOption, hXml);
+	ReadXml_Int("config", "play", "random", 0, &g->config.play.random[0], hXml);
+	ReadXml_Int("config", "play", "effect", 0, &g->config.play.m_HIDSUD1, hXml);
+	ReadXml_Int("config", "play", "hstype", 0, &g->config.play.hsfix, hXml);
+	ReadXml_Int("config", "play", "hsmin", 10, &g->config.play.hsmin, hXml);
+	ReadXml_Int("config", "play", "hsmax", 900, &g->config.play.hsmax, hXml);
+	ReadXml_Int("config", "play", "hsmargin", 10, &g->config.play.hsmargin, hXml);
+	ReadXml_Int("config", "play", "shuttertype", 0, &g->config.play.p1_lanecover, hXml);
+	g->config.play.p2_lanecover = g->config.play.p1_lanecover;
+	ReadXml_Int("config", "play", "shuttermargin", 10, &g->config.play.shuttermargin, hXml);
+	ReadXml_Int("config", "play", "replaysave", 0, &g->config.play.replay, hXml);
+	ReadXml_Int("config", "play", "autoscratch", 0, &g->config.play.p1_assist, hXml);
+	ReadXml_Int("config", "play", "autokey", 0, &g->config.play.autokey, hXml);
+	ReadXml_Int("config", "play", "shutter", 0, &g->config.play.p1_lanecoverv, hXml);
+	g->config.play.p2_lanecoverv = g->config.play.p1_lanecoverv;
+	ReadXml_Int("config", "play", "autojudgeadjust", 0, &g->config.play.autojudge, hXml);
+	ReadXml_Int("config", "play", "judgetime", 0, &g->config.play.judgetiming, hXml);
+	ReadXml_Int("config", "play", "bga", 1, &g->config.play.bga, hXml);
+	ReadXml_Int("config", "play", "poorbga", 500, &g->config.play.poorbga, hXml);
+	ReadXml_Int("config", "play", "bgasize", 0, &g->config.play.bgasize, hXml);
+	ReadXml_Int("config", "play", "ghost", 0, &g->config.play.play_ghost, hXml);
+	ReadXml_Int("config", "play", "scoregraph", 0, &g->config.play.scoregraph, hXml);
+	ReadXml_Int("config", "play", "defaulttarget", 90, &g->config.play.target_percent, hXml);
+	ReadXml_Int("config", "play", "target", 0, &g->config.play.p1_target, hXml);
+	ReadXml_Int("config", "play", "basespeed", 100, &g->config.play.basespeed, hXml);
+	ReadXml_Int("config", "play", "gomiscore", 0, &g->config.play.gomiscore, hXml);
+	ReadXml_Int("config", "play", "disableleftclickexit", 0, &g->config.play.disableleftclickexit, hXml);
+	ReadXml_Int("config", "play", "disablecurspeedchange", 0, &g->config.play.disablecurspeedchange,	hXml);
+	ReadXml_Str("config", "skin", "play_7", "", &g->config.skin.skinFilePath[0], hXml);
+	ReadXml_Str("config", "skin", "play_5", "", &g->config.skin.skinFilePath[1], hXml);
+	ReadXml_Str("config", "skin", "play_14", "", &g->config.skin.skinFilePath[2], hXml);
+	ReadXml_Str("config", "skin", "play_10", "", &g->config.skin.skinFilePath[3], hXml);
+	ReadXml_Str("config", "skin", "play_9", "", &g->config.skin.skinFilePath[4], hXml);
+	ReadXml_Str("config", "skin", "select", "", &g->config.skin.skinFilePath[5], hXml);
+	ReadXml_Str("config", "skin", "decide", "", &g->config.skin.skinFilePath[6], hXml);
+	ReadXml_Str("config", "skin", "result", "", &g->config.skin.skinFilePath[7], hXml);
+	ReadXml_Str("config", "skin", "keyconfig", "", &g->config.skin.skinFilePath[8], hXml);
+	ReadXml_Str("config", "skin", "skinselect", "", &g->config.skin.skinFilePath[9], hXml);
+	ReadXml_Str("config", "skin", "soundset", "", &g->config.skin.skinFilePath[10], hXml);
+	ReadXml_Str("config", "skin", "theme", "", &g->config.skin.skinFilePath[11], hXml);
+	ReadXml_Str("config", "skin", "play_7_b", "", &g->config.skin.skinFilePath[12], hXml);
+	ReadXml_Str("config", "skin", "play_5_b", "", &g->config.skin.skinFilePath[13], hXml);
+	ReadXml_Str("config", "skin", "play_9_b", "", &g->config.skin.skinFilePath[14], hXml);
+	ReadXml_Str("config", "skin", "fontname", "Ariel", &g->config.skin.fontname, hXml);
+	ReadXml_Int("config", "skin", "disableimagefont", 0, &g->config.skin.disableimagefont, hXml);
+	ReadXml_Str("config", "player", "id", "", &g->config.player.id, hXml);
+	ReadXml_Str("config", "player", "pass", "", &g->config.player.pass, hXml);
+	g->config.player.passMD5 = MD5str(g->config.player.pass) ;
+
+	ReadXml_Str("config", "player", "name", "", &g->config.player.name, hXml);
+	ReadXml_Str("config", "player", "irid", "", &g->config.player.lrid, hXml);
+	ReadXml_Str("config", "player", "irpass", "", &g->config.player.irpass, hXml);
+	ReadXml_Str("config", "network", "lr1id", "", &g->config.network.lr1id, hXml);
+	ReadXml_Str("config", "network", "lr1pass", "", &g->config.network.lr1pass, hXml);
+	ReadXml_Int("config", "network", "autoupdate", 0, &g->config.network.autoupdate, hXml);
+	ReadXml_Int("config", "network", "getrival", 0, &g->config.network.getrival, hXml);
+	ReadXml_Int("config", "network", "lr1ir", 0, &g->config.network.lr1ir, hXml);
+	ReadXml_Int("config", "network", "lr2ir", 0, &g->config.network.lr2ir, hXml);
+	ReadXml_Str("config", "network", "mail", "", &g->config.network.mail, hXml);
+	g->config.player.irpassMD5 = MD5str(g->config.player.irpass);
+
+	ReadXml_Int("config", "course", "optimumlevel_7", 0, &g->config.course.optimumlevel_7, hXml);
+	ReadXml_Int("config", "course", "optimumlevel_5", 0, &g->config.course.optimumlevel_5, hXml);
+	ReadXml_Int("config", "course", "optimumlevel_10", 0, &g->config.course.optimumlevel_10, hXml);
+	ReadXml_Int("config", "course", "optimumlevel_14", 0, &g->config.course.optimumlevel_14, hXml);
+	ReadXml_Int("config", "course", "optimumlevel_9", 0, &g->config.course.optimumlevel_9, hXml);
+	ReadXml_Int("config", "course", "defaultconnection", 0, &g->config.course.defaultconnection, hXml);
+	ReadXml_Int("config", "course", "defaultgauge", 0, &g->config.course.defaultgauge, hXml);
+	ReadXml_Int("config", "course", "maxbpm", 0, &g->config.course.maxbpm, hXml);
+	ReadXml_Int("config", "course", "minbpm", 0, &g->config.course.minbpm, hXml);
+	ReadXml_Int("config", "course", "bpmrange", 10, &g->config.course.bpmrange, hXml);
+	ReadXml_Int("config", "course", "maxlevel", 0, &g->config.course.maxlevel, hXml);
+	ReadXml_Int("config", "course", "minlevel", 0, &g->config.course.minlevel, hXml);
+	ReadXml_Int("config", "course", "stage", 5, &g->config.course.stage, hXml);
+	ReadXml_Str("config", "tools", "bmse_body", "bmse.exe", &g->config.tools.bmse_body, hXml);
+	ReadXml_Str("config", "tools", "bmse_option", "", &g->config.tools.bmse_option, hXml);
+	ReadXml_Int("config", "tools", "movie_audio", 0, &g->config.tools.movie_audio, hXml);
+	ReadXml_Int("config", "tools", "movie_framerate", 30, &g->config.tools.movie_framerate, hXml);
+	ReadXml_Int("config", "tools", "mp3_volume", 50, &g->config.tools.mp3_volume, hXml);
+	ReadXml_Str("config", "tools", "mp3enc_body", "lame.exe", &g->config.tools.mp3enc_body, hXml);
+	ReadXml_Str("config", "tools", "mp3enc_option_movie","--preset cbr 192", &g->config.tools.mp3enc_option_movie, hXml);
+	ReadXml_Str("config", "tools", "mp3enc_option_normal","--preset fast extreme", &g->config.tools.mp3enc_option_normal, hXml);
+	ReadXml_Str("config", "tools", "oggdec_body", "oggdec.exe", &g->config.tools.oggdec_body, hXml);
+	ReadXml_Str("config", "tools", "oggdec_option", "", &g->config.tools.oggdec_option, hXml);
+	ReadXml_Str("config", "tools", "oggenc_body","oggenc2.exe", &g->config.tools.oggenc_body, hXml);
+	ReadXml_Str("config", "tools", "oggenc_option", "-q 6", &g->config.tools.oggenc_option, hXml);
+	ReadXml_Int("config", "tools", "autowavtoogg", 0, &g->config.tools.autowavtoogg, hXml);
+	ReadXml_Int("config", "tools", "autobmptopng", 0, &g->config.tools.autobmptopng, hXml);
+	ReadXml_Int("config", "tools", "autofumensearch", 0, &g->config.tools.autofumensearch, hXml);
+	
+	delete(hXml);
+	return 1;
+}
+
+//443550 _ need simplification
+void MD5byte(char **iStr, uint len, char *oByte){
+	int iVar1;
+	int iVar2;
+	int iVar3;
+	int iVar4;
+	int iVar5;
+	int iVar6;
+	int iVar7;
+	int iVar8;
+	int iVar9;
+	int iVar10;
+	int iVar11;
+	int *piVar12;
+	uint uVar13;
+	uint uVar14;
+	uint uVar15;
+	int *piVar16;
+	uint uVar17;
+	uint uVar18;
+	uint uVar19;
+	int iVar20;
+	int iVar21;
+	uint uVar22;
+	uint uVar23;
+	uint uVar24;
+
+	iVar20 = 0 -(uint)(((len & 0x3f) < 0x38) & 0xffffffc0) - (len & 0x3f);
+	iVar21 = iVar20 + 0x78;
+	uVar13 = iVar20 + 0x80 + len;
+	piVar12 = (int *)realloc(*iStr, uVar13);
+	*iStr = (char *)piVar12;
+	memset((undefined *)((int)piVar12 + len), 0, iVar21);
+	piVar16 = (int *)((int)piVar12 + iVar21 + len);
+	*(undefined *)((int)piVar12 + len) = 0x80;
+	*piVar16 = len * 8;
+	piVar16[1] = len >> 0x1d;
+	iVar20 = 0x67452301;
+	uVar23 = 0xefcdab89;
+	uVar19 = 0x98badcfe;
+	uVar17 = 0x10325476;
+	for (uVar13 = uVar13 >> 6; uVar13 != 0; uVar13 = uVar13 - 1) {
+		iVar21 = iVar20 + (~uVar23 & uVar17 | uVar19 & uVar23) + *piVar12;
+		uVar14 = (iVar21 + 0xd76aa478U >> 0x19 | (iVar21 + -0x955b88) * 0x80) + uVar23;
+		iVar21 = uVar17 + (~uVar14 & uVar19 | uVar23 & uVar14) + piVar12[1];
+		uVar15 = (iVar21 + 0xe8c7b756U >> 0x14 | (iVar21 + 0x7b756) * 0x1000) + uVar14;
+		iVar21 = uVar19 + (~uVar15 & uVar23 | uVar15 & uVar14) + piVar12[2];
+		uVar22 = (iVar21 + 0x242070dbU >> 0xf | (iVar21 + -0xf25) * 0x20000) + uVar15;
+		iVar21 = uVar23 + (~uVar22 & uVar14 | uVar15 & uVar22) + piVar12[3];
+		uVar18 = ((iVar21 + -0x112) * 0x400000 | iVar21 + 0xc1bdceeeU >> 10) + uVar22;
+		iVar21 = uVar14 + (~uVar18 & uVar15 | uVar22 & uVar18) + piVar12[4];
+		uVar24 = (iVar21 + 0xf57c0fafU >> 0x19 | (iVar21 + -0x83f051) * 0x80) + uVar18;
+		iVar21 = uVar15 + (~uVar24 & uVar22 | uVar18 & uVar24) + piVar12[5];
+		uVar14 = (iVar21 + 0x4787c62aU >> 0x14 | (iVar21 + 0x7c62a) * 0x1000) + uVar24;
+		iVar21 = uVar22 + (~uVar14 & uVar18 | uVar14 & uVar24) + piVar12[6];
+		uVar15 = (iVar21 + 0xa8304613U >> 0xf | (iVar21 + -0x39ed) * 0x20000) + uVar14;
+		iVar21 = uVar18 + (~uVar15 & uVar24 | uVar14 & uVar15) + piVar12[7];
+		uVar18 = ((iVar21 + 0x101) * 0x400000 | iVar21 + 0xfd469501U >> 10) + uVar15;
+		iVar21 = uVar24 + (~uVar18 & uVar14 | uVar15 & uVar18) + piVar12[8];
+		uVar22 = (iVar21 + 0x698098d8U >> 0x19 | (iVar21 + -0x7f6728) * 0x80) + uVar18;
+		iVar21 = uVar14 + (~uVar22 & uVar15 | uVar18 & uVar22) + piVar12[9];
+		uVar24 = (iVar21 + 0x8b44f7afU >> 0x14 | (iVar21 + 0x4f7af) * 0x1000) + uVar22;
+		iVar21 = uVar15 + (~uVar24 & uVar18 | uVar24 & uVar22) + piVar12[10];
+		uVar14 = (iVar21 - 0xa44fU >> 0xf | (iVar21 + -0x244f) * 0x20000) + uVar24;
+		iVar21 = uVar18 + (~uVar14 & uVar22 | uVar24 & uVar14) + piVar12[0xb];
+		uVar15 = (iVar21 + 0x895cd7beU >> 10 | (iVar21 + -0x42) * 0x400000) + uVar14;
+		iVar21 = uVar22 + (~uVar15 & uVar24 | uVar14 & uVar15) + piVar12[0xc];
+		uVar18 = (iVar21 + 0x6b901122U >> 0x19 | (iVar21 + -0x6feede) * 0x80) + uVar15;
+		iVar21 = uVar24 + (~uVar18 & uVar14 | uVar15 & uVar18) + piVar12[0xd];
+		uVar22 = ((iVar21 + -0x78e6d) * 0x1000 | iVar21 + 0xfd987193U >> 0x14) + uVar18;
+		iVar21 = uVar14 + (~uVar22 & uVar15 | uVar22 & uVar18) + piVar12[0xe];
+		uVar24 = (iVar21 + 0xa679438eU >> 0xf | (iVar21 + -0x3c72) * 0x20000) + uVar22;
+		iVar21 = uVar15 + (~uVar24 & uVar18 | uVar22 & uVar24) + piVar12[0xf];
+		uVar14 = (iVar21 + 0x49b40821U >> 10 | (iVar21 + 0x21) * 0x400000) + uVar24;
+		iVar21 = uVar18 + (~uVar22 & uVar24 | uVar22 & uVar14) + piVar12[1];
+		uVar18 = ((iVar21 + -0x1e1da9e) * 0x20 | iVar21 + 0xf61e2562U >> 0x1b) + uVar14;
+		iVar21 = uVar22 + (~uVar24 & uVar14 | uVar24 & uVar18) + piVar12[6];
+		uVar15 = (iVar21 + 0xc040b340U >> 0x17 | (iVar21 + -0x3f4cc0) * 0x200) + uVar18;
+		iVar21 = uVar24 + (~uVar14 & uVar18 | uVar15 & uVar14) + piVar12[0xb];
+		uVar22 = ((iVar21 + -0x1a5af) * 0x4000 | iVar21 + 0x265e5a51U >> 0x12) + uVar15;
+		iVar21 = uVar14 + (~uVar18 & uVar15 | uVar22 & uVar18) + *piVar12;
+		uVar24 = (iVar21 + 0xe9b6c7aaU >> 0xc | (iVar21 + 0x7aa) * 0x100000) + uVar22;
+		iVar1 = piVar12[5];
+		iVar21 = uVar18 + (~uVar15 & uVar22 | uVar15 & uVar24) + iVar1;
+		uVar14 = ((iVar21 + -0x1d0efa3) * 0x20 | iVar21 + 0xd62f105dU >> 0x1b) + uVar24;
+		iVar2 = piVar12[10];
+		iVar21 = uVar15 + (~uVar22 & uVar24 | uVar22 & uVar14) + iVar2;
+		uVar15 = ((iVar21 + -0x3bebad) * 0x200 | iVar21 + 0x2441453U >> 0x17) + uVar14;
+		iVar3 = piVar12[0xf];
+		iVar21 = uVar22 + (~uVar24 & uVar14 | uVar15 & uVar24) + iVar3;
+		uVar18 = (iVar21 + 0xd8a1e681U >> 0x12 | (iVar21 + 0x1e681) * 0x4000) + uVar15;
+		iVar4 = piVar12[4];
+		iVar21 = uVar24 + (~uVar14 & uVar15 | uVar18 & uVar14) + iVar4;
+		uVar22 = (iVar21 + 0xe7d3fbc8U >> 0xc | (iVar21 + -0x438) * 0x100000) + uVar18;
+		iVar21 = uVar14 + (~uVar15 & uVar18 | uVar15 & uVar22) + piVar12[9];
+		uVar14 = (iVar21 + 0x21e1cde6U >> 0x1b | (iVar21 + 0x1e1cde6) * 0x20) + uVar22;
+		iVar5 = piVar12[0xe];
+		iVar21 = uVar15 + (~uVar18 & uVar22 | uVar18 & uVar14) + iVar5;
+		uVar24 = (iVar21 + 0xc33707d6U >> 0x17 | (iVar21 + 0x3707d6) * 0x200) + uVar14;
+		iVar6 = piVar12[3];
+		iVar21 = uVar18 + (~uVar22 & uVar14 | uVar24 & uVar22) + iVar6;
+		uVar15 = ((iVar21 + 68999) * 0x4000 | iVar21 + 0xf4d50d87U >> 0x12) + uVar24;
+		iVar7 = piVar12[8];
+		iVar21 = uVar22 + (~uVar14 & uVar24 | uVar15 & uVar14) + iVar7;
+		uVar18 = (iVar21 + 0x455a14edU >> 0xc | (iVar21 + 0x4ed) * 0x100000) + uVar15;
+		iVar8 = piVar12[0xd];
+		iVar21 = (~uVar24 & uVar15 | uVar24 & uVar18) + iVar8 + uVar14;
+		uVar14 = ((iVar21 + 0x1e3e905) * 0x20 | iVar21 + 0xa9e3e905U >> 0x1b) + uVar18;
+		iVar9 = piVar12[2];
+		iVar21 = uVar24 + (~uVar15 & uVar18 | uVar15 & uVar14) + iVar9;
+		uVar22 = (iVar21 + 0xfcefa3f8U >> 0x17 | (iVar21 + -0x105c08) * 0x200) + uVar14;
+		iVar10 = piVar12[7];
+		iVar21 = uVar15 + (~uVar18 & uVar14 | uVar22 & uVar18) + iVar10;
+		uVar24 = (iVar21 + 0x676f02d9U >> 0x12 | (iVar21 + -0xfd27) * 0x4000) + uVar22;
+		iVar11 = piVar12[0xc];
+		iVar21 = uVar18 + (~uVar14 & uVar22 | uVar24 & uVar14) + iVar11;
+		uVar15 = (iVar21 + 0x8d2a4c8aU >> 0xc | (iVar21 + -0x376) * 0x100000) + uVar24;
+		uVar14 = (uVar22 ^ uVar24 ^ uVar15) + iVar1 + -0x5c6be + uVar14;
+		uVar18 = (uVar14 * 0x10 | uVar14 >> 0x1c) + uVar15;
+		iVar21 = uVar22 + (uVar24 ^ uVar15 ^ uVar18) + iVar7;
+		uVar22 = ((iVar21 + -0xe097f) * 0x800 | iVar21 + 0x8771f681U >> 0x15) + uVar18;
+		iVar21 = uVar24 + (uVar22 ^ uVar15 ^ uVar18) + piVar12[0xb];
+		uVar24 = ((iVar21 + 0x6122) * 0x10000 | iVar21 + 0x6d9d6122U >> 0x10) + uVar22;
+		iVar21 = (uVar22 ^ uVar24 ^ uVar18) + iVar5 + uVar15;
+		uVar14 = (iVar21 + 0xfde5380cU >> 9 | (iVar21 + 0xc) * 0x800000) + uVar24;
+		iVar21 = (uVar22 ^ uVar24 ^ uVar14) + piVar12[1] + uVar18;
+		uVar15 = (iVar21 + 0xa4beea44U >> 0x1c | (iVar21 + 0x4beea44) * 0x10) + uVar14;
+		iVar21 = uVar22 + (uVar24 ^ uVar14 ^ uVar15) + iVar4;
+		uVar22 = ((iVar21 + -0x13057) * 0x800 | iVar21 + 0x4bdecfa9U >> 0x15) + uVar15;
+		iVar21 = uVar24 + (uVar22 ^ uVar14 ^ uVar15) + iVar10;
+		uVar18 = ((iVar21 + 0x4b60) * 0x10000 | iVar21 + 0xf6bb4b60U >> 0x10) + uVar22;
+		iVar21 = (uVar22 ^ uVar18 ^ uVar15) + iVar2 + uVar14;
+		uVar14 = (iVar21 + 0xbebfbc70U >> 9 | (iVar21 + 0x70) * 0x800000) + uVar18;
+		iVar21 = (uVar22 ^ uVar18 ^ uVar14) + iVar8 + uVar15;
+		uVar15 = (iVar21 + 0x289b7ec6U >> 0x1c | (iVar21 + -0x764813a) * 0x10) + uVar14;
+		iVar21 = uVar22 + (uVar18 ^ uVar14 ^ uVar15) + *piVar12;
+		uVar22 = (iVar21 + 0xeaa127faU >> 0x15 | (iVar21 + 0x127fa) * 0x800) + uVar15;
+		iVar21 = uVar18 + (uVar22 ^ uVar14 ^ uVar15) + iVar6;
+		uVar18 = ((iVar21 + 0x3085) * 0x10000 | iVar21 + 0xd4ef3085U >> 0x10) + uVar22;
+		iVar21 = uVar14 + (uVar22 ^ uVar18 ^ uVar15) + piVar12[6];
+		uVar14 = (iVar21 + 0x4881d05U >> 9 | (iVar21 + -0xfb) * 0x800000) + uVar18;
+		iVar21 = (uVar22 ^ uVar18 ^ uVar14) + piVar12[9] + uVar15;
+		uVar15 = ((iVar21 + -0x62b2fc7) * 0x10 | iVar21 + 0xd9d4d039U >> 0x1c) + uVar14;
+		iVar21 = (uVar18 ^ uVar14 ^ uVar15) + iVar11 + uVar22;
+		uVar22 = (iVar21 + 0xe6db99e5U >> 0x15 | (iVar21 + -0x4661b) * 0x800) + uVar15;
+		iVar21 = (uVar22 ^ uVar14 ^ uVar15) + iVar3 + uVar18;
+		uVar24 = ((iVar21 + 0x7cf8) * 0x10000 | iVar21 + 0x1fa27cf8U >> 0x10) + uVar22;
+		iVar21 = uVar14 + (uVar22 ^ uVar24 ^ uVar15) + iVar9;
+		uVar18 = (iVar21 + 0xc4ac5665U >> 9 | (iVar21 + 0x65) * 0x800000) + uVar24;
+		iVar21 = uVar15 + ((~uVar22 | uVar18) ^ uVar24) + *piVar12;
+		uVar14 = (iVar21 + 0xf4292244U >> 0x1a | (iVar21 + 0x292244) * 0x40) + uVar18;
+		iVar21 = uVar22 + ((~uVar24 | uVar14) ^ uVar18) + iVar10;
+		uVar15 = (iVar21 + 0x432aff97U >> 0x16 | (iVar21 + -0x150069) * 0x400) + uVar14;
+		iVar21 = uVar24 + ((~uVar18 | uVar15) ^ uVar14) + iVar5;
+		uVar22 = ((iVar21 + 0x23a7) * 0x8000 | iVar21 + 0xab9423a7U >> 0x11) + uVar15;
+		iVar21 = uVar18 + ((~uVar14 | uVar22) ^ uVar15) + iVar1;
+		uVar24 = ((iVar21 + 0x39) * 0x200000 | iVar21 + 0xfc93a039U >> 0xb) + uVar22;
+		iVar21 = uVar14 + ((~uVar15 | uVar24) ^ uVar22) + iVar11;
+		uVar18 = (iVar21 + 0x655b59c3U >> 0x1a | (iVar21 + 0x15b59c3) * 0x40) + uVar24;
+		iVar21 = uVar15 + ((~uVar22 | uVar18) ^ uVar24) + iVar6;
+		uVar14 = ((iVar21 + 0xccc92) * 0x400 | iVar21 + 0x8f0ccc92U >> 0x16) + uVar18;
+		iVar21 = uVar22 + ((~uVar24 | uVar14) ^ uVar18) + iVar2;
+		uVar15 = (iVar21 - 0x100b83U >> 0x11 | (iVar21 + -0xb83) * 0x8000) + uVar14;
+		iVar21 = uVar24 + ((~uVar18 | uVar15) ^ uVar14) + piVar12[1];
+		uVar22 = ((iVar21 + -0x22f) * 0x200000 | iVar21 + 0x85845dd1U >> 0xb) + uVar15;
+		iVar21 = uVar18 + ((~uVar14 | uVar22) ^ uVar15) + iVar7;
+		uVar24 = (iVar21 + 0x6fa87e4fU >> 0x1a | (iVar21 + -0x5781b1) * 0x40) + uVar22;
+		iVar21 = uVar14 + ((~uVar15 | uVar24) ^ uVar22) + iVar3;
+		uVar18 = ((iVar21 + -0x131920) * 0x400 | iVar21 + 0xfe2ce6e0U >> 0x16) + uVar24;
+		iVar21 = uVar15 + ((~uVar22 | uVar18) ^ uVar24) + piVar12[6];
+		uVar14 = ((iVar21 + -0xbcec) * 0x8000 | iVar21 + 0xa3014314U >> 0x11) + uVar18;
+		iVar21 = uVar22 + ((~uVar24 | uVar14) ^ uVar18) + iVar8;
+		uVar15 = ((iVar21 + 0x1a1) * 0x200000 | iVar21 + 0x4e0811a1U >> 0xb) + uVar14;
+		iVar21 = uVar24 + ((~uVar18 | uVar15) ^ uVar14) + iVar4;
+		uVar22 = (iVar21 + 0xf7537e82U >> 0x1a | (iVar21 + -0xac817e) * 0x40) + uVar15;
+		iVar21 = uVar18 + ((~uVar14 | uVar22) ^ uVar15) + piVar12[0xb];
+		uVar18 = ((iVar21 + -0x50dcb) * 0x400 | iVar21 + 0xbd3af235U >> 0x16) + uVar22;
+		iVar21 = uVar14 + ((~uVar15 | uVar18) ^ uVar22) + iVar9;
+		uVar14 = ((iVar21 + -0x2d45) * 0x8000 | iVar21 + 0x2ad7d2bbU >> 0x11) + uVar18;
+		iVar20 = uVar22 + iVar20;
+		uVar17 = uVar18 + uVar17;
+		iVar21 = uVar15 + ((~uVar22 | uVar14) ^ uVar18) + piVar12[9];
+		uVar23 = (iVar21 + 0xeb86d391U >> 0xb | (iVar21 + 0x391) * 0x200000) + uVar14 + uVar23;
+		uVar19 = uVar14 + uVar19;
+		piVar12 = piVar12 + 0x10;
+	}
+	*(uint *)(oByte + 4) = uVar23;
+	*(int *)oByte = iVar20;
+	*(uint *)(oByte + 8) = uVar19;
+	*(uint *)(oByte + 0xc) = uVar17;
+	return;
+}
+
+//443ff0
+char md5str[32];
+char* MD5str(char *iStr) {
+	char* buf;
+	unsigned char md5buf[16];
+
+	/*buf = (char*)malloc(strlen(iStr));
+	strcpy(buf, iStr);
+	MD5byte(&buf, strlen(buf), (char*)md5buf);
+	sprintf(md5str,"%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", md5buf[0], md5buf[1], md5buf[2], md5buf[3], 
+		md5buf[4], md5buf[5], md5buf[6], md5buf[7], md5buf[8], md5buf[9], md5buf[10], md5buf[11], md5buf[12], md5buf[13], md5buf[14], md5buf[15]);
+	free(buf);*/
+	buf = (char*)md5String(iStr);
+	memcpy(md5buf, buf, 16);
+	sprintf(md5str, "%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x%02x", md5buf[0], md5buf[1], md5buf[2], md5buf[3],
+		md5buf[4], md5buf[5], md5buf[6], md5buf[7], md5buf[8], md5buf[9], md5buf[10], md5buf[11], md5buf[12], md5buf[13], md5buf[14], md5buf[15]);
+
+	return md5str;
+}
+
+//////////
 int EnabledInsane;
 ////DB interact
 CRITICAL_SECTION DB_lock;
@@ -15544,6 +17120,8 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 	int nowMode, nowDifficulty;
 	
 	//key 0:ALL 1:SINGLE 2:7keys 3:5keys 4:DOUBLE 5:14keys 6:10keys 7:9buttons
+	//DEBUG
+	sqlite3_memory_used();
 
 	if ((cfg_select->ignorekeyall == 1) && (key == 0)) key = 1;
 	if ((cfg_select->ignorekeysingle == 1) && (key == 1)) key = 2;
@@ -15837,6 +17415,10 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 		}
 	}
 	free(slist);
+
+	//DEBUG
+	sqlite3_memory_used();
+
 	return 1;
 }
 
@@ -24081,8 +25663,2254 @@ int SPtoDP(LaneStruct *lane, int baseNoteID, CHARTCONVERTER *cc) {
 	return 1;
 }
 
-//4b0690 ParseBmsFile()
 
+//4b0690
+//TODO : rename variables
+//TOFIX : freq +12 autoplay endtime doesn't match (#STOP?)
+//TOFIX : nonstop mix retry volume issue
+unsigned char channelConvert[] = { 0x00, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c,
+									0x00, 0x01, 0x02, 0x03, 0x04, 0x05, 0x06, 0x07, 0x08, 0x09,
+									0x00, 0x3c, 0x0a, 0x0b, 0x0c, 0x0d, 0x0e, 0x00, 0x0f, 0x10,
+									0x00, 0x11, 0x12, 0x13, 0x14, 0x15, 0x16, 0x17, 0x18, 0x19,
+									0x00, 0x3c, 0x1a, 0x1b, 0x1c, 0x1d, 0x1e, 0x00, 0x1f, 0x20,
+									0x00, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26, 0x27, 0x28, 0x29,
+									0x00, 0x3c, 0x2a, 0x2b, 0x2c, 0x2d, 0x2e, 0x00, 0x2f, 0x30,
+									0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c,
+									0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c,
+									0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c,
+									0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c,
+									0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c,
+									0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c,
+									0x00, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x31, 0x32, 0x33, 0x34,
+									0x00, 0x3c, 0x35, 0x36, 0x37, 0x38, 0x39, 0x00, 0x3a, 0x3b };
+int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMSMETA *meta, int bgaFlag, int scratchSide) {
+
+	double avgBPM_bpmsum;
+	float prevStageLastNoteTime;
+	int avgBPM_notes;
+	int noteRandomTable[2][10];
+	FILE *hFile;
+
+	int randomVal;
+	bool ifOn;
+	int channel;
+
+	double endtime;
+	double nowBPM;
+
+	int rank;
+
+	int stages;
+
+	LaneStruct tmpLane[10];
+	double BPMslot[1296], STOPslot[1296];
+	int bmsobj_stageFirst;
+	double oldSpeedMultiplier;
+		
+	char mapAdded[2][10] = { 0, };
+	double prevStageTime = -1.0;
+	double meaLength;
+
+
+	if (cfg->play.random[0] == 5 && cfg->play.p1_assist == 1) {
+		cfg->play.p1_assist = 0;
+	}
+	if (cfg->play.random[1] == 5 && cfg->play.p2_assist == 1) {
+		cfg->play.p2_assist = 0;
+	}
+	gp->keymode = meta->keymode;
+	if (cfg->play.p1_assist == 1) {
+		gp->bmsobj_note[0].autoplay = 1;
+	}
+	if (cfg->play.p2_assist == 1) {
+		gp->bmsobj_note[10].autoplay = 1;
+	}
+	gp->freqSpeedMultiplier = 1.0;
+
+	if (aud->param.pitch_on && (aud->param.pitch_type == 0 || aud->param.pitch_type == 2)) {
+		if (aud->param.pitch_amount > 0) {
+			for (int i = aud->param.pitch_amount; i; i--) gp->freqSpeedMultiplier *= 1.059463094359; //0x3ff0f38f92d97431 same as origianl
+		}
+		else if (aud->param.pitch_amount < 0) {
+			for (int i = -aud->param.pitch_amount; i; i--) gp->freqSpeedMultiplier /= 1.059463094359;
+		}
+	}
+
+	oldSpeedMultiplier = gp->freqSpeedMultiplier;
+
+	//TOFIX : seed is not putted into replaydata, when use ghostbattle. (retry puts seed) (see also ProcS_Play())
+	//TOFIX : GetRand() result 0 problem
+	if (gp->randomseed) {
+		ErrorLogFmtAdd("RANDSEEDを引き継ぎます\n");
+	}
+	else if (gp->replay.status != 2) {
+		gp->randomseed = GetRand(0x7ffe);
+		if (gp->replay.status == 1) {
+			AddReplayData(&gp->replay, 0, 200, (short)gp->randomseed);
+		}
+	}
+	ErrorLogFmtAdd("RANDOMSEEDは%dです。\n", gp->randomseed);
+	SRand(gp->randomseed);
+
+	for (int i = 0; i < 1296; i++) gp->keysound[i].load = 0;
+
+	CSTR dir = filename.getDirectory();
+
+	for (int i = 0; i < 1296; i++) BPMslot[i] = -1.0;
+	for (int i = 0; i < 1296; i++) STOPslot[i] = -1.0;
+
+	int isDSC = 0, isPMS = 0;
+	bool is5key = 0, is7key = 0, is9key = 0;
+
+	if (cfg->select.control == 1) {
+		if (meta->keymode == 5) is5key = 1;
+		if (meta->keymode == 7) is7key = 1;
+	}
+
+	rank = 2;
+	ifOn = 1;
+	randomVal = -1;
+
+	aud->param.stagePitch[0] = 1.0;
+	aud->param.stageBgmVolume[0] = 0.0;
+	aud->param.stageKeyVolume[0] = 1.0;
+	gp->fadeinSOUNDstart[0] = -1;
+	gp->fadeinSOUNDend[0] = -1;
+	gp->fadeoutSOUNDstart[0] = -1;
+	gp->fadeoutSOUNDend[0] = -1;
+	aud->param.stagePitch[1] = 1.0;
+	aud->param.stageKeyVolume[1] = 1.0;
+	aud->param.stageBgmVolume[1] = 0.0;
+	gp->fadeinSOUNDstart[1] = -1;
+	gp->fadeinSOUNDend[1] = -1;
+	gp->fadeoutSOUNDstart[1] = -1;
+	gp->fadeoutSOUNDend[1] = -1;
+	aud->param.stagePitch[2] = 1.0;
+	aud->param.stageKeyVolume[2] = 1.0;
+	aud->param.stageBgmVolume[2] = 0.0;
+	gp->fadeinSOUNDstart[2] = -1;
+	gp->fadeinSOUNDend[2] = -1;
+	gp->fadeoutSOUNDstart[2] = -1;
+	gp->fadeoutSOUNDend[2] = -1;
+	aud->param.stagePitch[3] = 1.0;
+	aud->param.stageKeyVolume[3] = 1.0;
+	aud->param.stageBgmVolume[3] = 0.0;
+	gp->fadeinSOUNDstart[3] = -1;
+	gp->fadeinSOUNDend[3] = -1;
+	gp->fadeoutSOUNDstart[3] = -1;
+	gp->fadeoutSOUNDend[3] = -1;
+	aud->param.stagePitch[4] = 1.0;
+	aud->param.stageKeyVolume[4] = 1.0;
+	aud->param.stageBgmVolume[4] = 0.0;
+	gp->fadeinSOUNDstart[4] = -1;
+	gp->fadeinSOUNDend[4] = -1;
+	gp->fadeoutSOUNDstart[4] = -1;
+	gp->fadeoutSOUNDend[4] = -1;
+	aud->param.stageBgmVolume[0] = 1.0;
+	aud->param.stageKeyVolume[0] = 1.0;
+	int total[2] = { 0, 0 }; 
+	int noteCount[2] = { 0, 0 };
+	CHARTCONVERTER cc;
+	cc.assist1p = cfg->play.p1_assist;
+	cc.assist2p = cfg->play.p2_assist;
+	cc.arr1count = 0;
+	cc.unk14428 = 0;
+	cc.unk14430 = 0;
+	cc.flagSplit = 0;
+	cc.playlevel = 0;
+	cc.flagSplitScratch = 0;
+	cc.unk14438 = -1;
+	cc.RealTimingSplitScratch = -1;
+	cc.flagSplitUnknown = 0;
+	for (int i = 0; i < 1296; i++) {
+		cc.arr1[i].ID = i;
+		cc.arr1[i].filenameHead.fillzero();
+		cc.arr1[i].count = 0;
+		cc.arr1[i].field3_0xc = -1;
+		cc.arr1[i].field4_0x10 = 0;
+
+		cc.arr2[i].ID = i;
+		cc.arr2[i].filenameHead.fillzero();
+		cc.arr2[i].count = 0;
+		cc.arr2[i].field3_0xc = -1;
+
+		cc.arr3[i].soundLoadID = 0;
+		cc.arr3[i].field1_0x4 = 0;
+		cc.arr3[i].field2_0x8 = i;
+		cc.arr3[i].field3_0xc = -1;
+	}
+	uint lastMeasure = 0;
+	uint b2lastMeasure = 0;
+	if (gp->courseStageCount <= 0) gp->courseStageCount = 1;
+	if (gp->courseStageCount > 5) gp->courseStageCount = 5;
+	avgBPM_notes = 0;
+	double bpmt_realtime = 0.0;
+	double bpmt_bmstime = 0.0;
+	double prevNoteBmstime = 0.0;
+	nowBPM = 0.0;
+	endtime = 0.0;
+	avgBPM_bpmsum = 0.0;
+	float lastNoteTime = 0.0;
+	prevStageTime = -1.0;
+	if (gp->bpmt_buffersize == 0) {
+		gp->bpmt_buffersize = 100;
+		gp->bpmt_data = (BPMtiming*)malloc(sizeof(BPMtiming) * 100);
+	}
+	gp->bpmt_count = 0;
+	memset(gp->bpmt_data, 0, gp->bpmt_buffersize * sizeof(BPMtiming));
+	if (gp->courseType != 1) {
+		gp->courseConnection[0] = 0;
+		gp->courseConnection[1] = 0;
+		gp->courseConnection[2] = 0;
+		gp->courseConnection[3] = 0;
+		gp->courseConnection[4] = 0;
+	}
+	stages = gp->courseStageCount;
+	if (gp->courseType != 1 || gp->isCourse == 0) {
+		stages = 1;
+	}
+	endtime = 0.0;
+
+	//TOFIX : in nonstop mode(courseType==1), gp->courseConnection[stage - 1] doesn't check if stage >= 1. It can affects at #BPM
+	/* start of stage loop */
+	for (int stage = 0; stage < stages; stage++) {
+		//
+		int oldbpmtCount = gp->bpmt_count;
+		float firstNoteTime = -1.0;
+		bmsobj_stageFirst = gp->bmsobj.count;
+		prevStageLastNoteTime = (int)lastNoteTime;
+		lastNoteTime = lastMeasure;
+		gp->freqSpeedMultiplier = oldSpeedMultiplier;
+		int stageStartMeasure = lastMeasure;
+		if (gp->isCourse) {
+			if (gp->courseType == 1) {
+				filename = gp->courseFilepath[stage];
+				if (gp->courseConnection[stage - 1] == 4 || gp->courseConnection[stage - 1] == 5) { //BLANK1, BLANK2
+					gp->bmsobj.notes[gp->bmsobj.count].bmsTiming = lastMeasure;
+					gp->bmsobj.notes[gp->bmsobj.count].val = stage;
+					gp->bmsobj.notes[gp->bmsobj.count].op = 1002;
+					gp->bmsobj.count++;
+					if (gp->bmsobj.count == gp->bmsobj.size) ExpandNoteBuffer(&gp->bmsobj, 1000);
+				}
+				gp->bmsobj.notes[gp->bmsobj.count].bmsTiming = lastMeasure;
+				gp->bmsobj.notes[gp->bmsobj.count].val = stage;
+				gp->bmsobj.notes[gp->bmsobj.count].op = 1003;
+				gp->bmsobj.count++;
+				if (gp->bmsobj.count == gp->bmsobj.size) ExpandNoteBuffer(&gp->bmsobj, 1000);
+			}
+			else {
+				filename = gp->courseFilepath[gp->courseStageNow];
+				ErrorLogFmtAdd("エキスパ:ステージ=%d、フルパス=%s\n", gp->courseStageNow, filename);
+			}
+		}
+		hFile = fopen(filename, "r");
+		if (hFile == NULL) {
+			ErrorLogAdd("BMSを開けません。\n");
+			return -1;
+		}
+		if (isPMS = filename.right(4).lower().isSame(".pms")) {
+			is9key = 1;
+		}
+		else if (meta->keymode == 9) {
+			is7key = 1;
+		}
+		CSTR directory = filename.getDirectory();
+		double measureLength[5000];
+		for (int i = 0; i < 5000; i++) {
+			measureLength[i] = 1.0;
+		}
+		int lnobj = -1;
+
+		/* parse BMS file */
+		CSTR fBuf(102401);
+		CSTR fBufOrg(102401);
+		char* pFbuf;
+		pFbuf = fBuf.outstr();
+		for (pFbuf = fgets(pFbuf, 102400, hFile); pFbuf; pFbuf = fgets(pFbuf, 102400, hFile)) {
+			fBuf.trimWhiteSpace();
+			DealWhiteSpace(&fBuf);
+			if (*fBuf.atPos(0) != '#') {
+				*fBuf.atPos(0) = '\0';
+				continue;
+			}
+			fBufOrg = fBuf;
+			fBuf.upper();
+
+			if (fBuf.left(7).isSame("#RANDOM")) {
+				randomVal = GetRand(atol(fBuf.right(fBuf.length() - 8)) - 1);
+				randomVal++;
+				ifOn = 0;
+			}
+			else if (fBuf.left(6).isSame("#ENDIF")) {
+				ifOn = 1;
+			}
+			else if (fBuf.left(3).isSame("#IF")) {
+				ifOn = (atol(fBuf.right(fBuf.length() - 4)) == randomVal);
+			}
+
+			if (!ifOn) {
+				*fBuf.atPos(0) = '\0';
+				continue;
+			}
+
+
+			if (isdigit(*fBuf.atPos(1)) && isdigit(*fBuf.atPos(2)) && isdigit(*fBuf.atPos(3)) && isdigit(*fBuf.atPos(5))) {
+				uint thisMeasure = atol(fBuf.getSliced(1, 3)) + stageStartMeasure;
+
+				channel = *fBuf.atPos(5) - 0x30 + HEXcharToInt('0', *fBuf.atPos(4)) * 10;
+				if (channel == 4 || channel == 7) gp->soundonly = 0;
+				if (channel < 150) {
+					switch (channelConvert[channel]) {
+					case 0:
+						channel = -1;
+						break;
+
+					case 1:
+						if (isDSC) channel = 12;
+						break;
+					case 2:
+						if (isDSC) channel = 13;
+						break;
+					case 3:
+						if (isDSC) channel = 14;
+						break;
+					case 4:
+						if (isDSC) channel = 15;
+						break;
+					case 5:
+						if (isDSC) channel = 16;
+						break;
+					case 6:
+						if (isDSC) channel = 11;
+						else if (isPMS) channel = 18;
+						else channel = 10;
+						break;
+					case 7:
+						if (isPMS) channel = 19;
+						else channel = -1;
+						break;
+					case 8:
+						if (isDSC) channel = 17;
+						else channel = 16;
+						break;
+					case 9:
+						if (isDSC) channel = 18;
+						else channel = 17;
+						break;
+					case 10:
+						if (isPMS) channel = 16;
+						break;
+					case 11:
+						if (isPMS) channel = 17;
+						break;
+					case 12:
+						if (isPMS) channel = 18;
+						break;
+					case 13:
+						if (isPMS) channel = 19;
+						break;
+					case 14:
+						if (isDSC) channel = 19;
+						else channel = 20;
+						break;
+					case 15:
+						channel = 26;
+						break;
+					case 16:
+						channel = 27;
+						break;
+					case 17:
+						if (isDSC) channel = 32;
+						break;
+					case 18:
+						if (isDSC) channel = 33;
+						break;
+					case 19:
+						if (isDSC) channel = 34;
+						break;
+					case 20:
+						if (isDSC) channel = 35;
+						break;
+					case 21:
+						if (isDSC) channel = 36;
+						break;
+					case 22:
+						if (isDSC) channel = 31;
+						else if (isPMS) channel = 38;
+						else channel = 30;
+						break;
+					case 23:
+						if (isPMS) channel = 39;
+						else channel = -1;
+					case 24:
+						if (isDSC) channel = 37;
+						else channel = 36;
+						break;
+					case 25:
+						if (isDSC) channel = 38;
+						else channel = 37;
+						break;
+					case 26:
+						if (isPMS) channel = 36;
+						break;
+					case 27:
+						if (isPMS) channel = 37;
+						break;
+					case 28:
+						if (isPMS) channel = 38;
+						break;
+					case 29:
+						if (isPMS) channel = 39;
+						break;
+					case 30:
+						if (isDSC) channel = 39;
+						else channel = 40;
+						break;
+					case 31:
+						channel = 46;
+						break;
+					case 32:
+						channel = 47;
+						break;
+					case 33:
+						if (isDSC) channel = 52;
+						break;
+					case 34:
+						if (isDSC) channel = 53;
+						break;
+					case 35:
+						if (isDSC) channel = 54;
+						break;
+					case 36:
+						if (isDSC) channel = 55;
+						break;
+					case 37:
+						if (isDSC) channel = 56;
+						break;
+					case 38:
+						if (isDSC) channel = 51;
+						else if (isPMS) channel = 58;
+						else channel = 50;
+						break;
+					case 39:
+						if (isPMS) channel = 59;
+						else channel = -1;
+						break;
+					case 40:
+						if (isDSC) channel = 57;
+						else channel = 56;
+						break;
+					case 41:
+						if (isDSC) channel = 58;
+						else channel = 57;
+						break;
+					case 42:
+						if (isPMS) channel = 56;
+						break;
+					case 43:
+						if (isPMS) channel = 57;
+						break;
+					case 44:
+						if (isPMS) channel = 58;
+						break;
+					case 45:
+						if (isPMS) channel = 59;
+						break;
+					case 46:
+						if (isDSC) channel = 59;
+						else channel = 60;
+						break;
+					case 47:
+						channel = 66;
+						break;
+					case 48:
+						channel = 67;
+						break;
+					case 49:
+						if (isDSC) channel = 131;
+						else if (isPMS) channel = 138;
+						else channel = 130;
+						break;
+					case 50:
+						if (isPMS) channel = 139;
+						else channel = -1;
+						break;
+					case 51:
+						if (isDSC) channel = 137;
+						else channel = 136;
+						break;
+					case 52:
+						if (isDSC) channel = 138;
+						else channel = 137;
+						break;
+					case 53:
+						if (isPMS) channel = 136;
+						break;
+					case 54:
+						if (isPMS) channel = 137;
+						break;
+					case 55:
+						if (isPMS) channel = 138;
+						break;
+					case 56:
+						if (isPMS) channel = 139;
+						break;
+					case 57:
+						if (isDSC) channel = 139;
+						else channel = 140;
+						break;
+					case 58:
+						channel = 146;
+						break;
+					case 59:
+						channel = 147;
+						break;
+					}
+				}
+
+				if (gp->lastMeasure < thisMeasure) {
+					gp->lastMeasure = thisMeasure;
+				}
+
+				if (channel == 2) { //Length of #xxx 	(1 corresponds to 4/4 meter) // specify integer or decimal fraction
+					if (atof(fBuf.getSliced(7, fBuf.length() - 7)) > 0.0 && thisMeasure <= 4999) {
+						measureLength[thisMeasure] = atof(fBuf.getSliced(7, fBuf.length() - 7));
+					}
+				}
+				else if (channel == 3) { //Change of BPM 	BPM 1 « [01-FF] » BPM 255
+					int div = (fBuf.length() - 7) / 2;
+					for (int i = 0; i < div; i++) {
+						int ii = i * 2 + 7;
+						if (HEXcharToInt(*fBuf.atPos(ii), *fBuf.atPos(ii + 1))) {
+							float notepos = i / (float)div; //do not simplify this. float80 - float32 noise is in original LR2
+							gp->bmsobj.notes[gp->bmsobj.count].bmsTiming = (int)thisMeasure + notepos;
+							gp->bmsobj.notes[gp->bmsobj.count].val = HEXcharToInt(*fBuf.atPos(ii), *fBuf.atPos(ii + 1)) * gp->freqSpeedMultiplier;
+							gp->bmsobj.notes[gp->bmsobj.count].op = 3;
+							gp->bmsobj.count++;
+							if (gp->bmsobj.count == gp->bmsobj.size) {
+								ExpandNoteBuffer(&gp->bmsobj, 1000);
+							}
+						}
+					}
+				}
+				else if (channel > 0) {
+					int div = (fBuf.length() - 7) / 2;
+					for (int i = 0; i < div; i++) {
+						int ii = i * 2 + 7;
+						if (Base36ToInt(*fBuf.atPos(ii), *fBuf.atPos(ii + 1))) {
+							float notepos = i / (float)div; //do not simplify this. float80 - float32 noise is in original LR2
+							gp->bmsobj.notes[gp->bmsobj.count].bmsTiming = (int)thisMeasure + notepos;
+							if (isVisibleNote(channel)) {
+								if (lastMeasure <= thisMeasure) {
+									lastMeasure = thisMeasure;
+								}
+							}
+
+							if (isVisibleNote(channel) && firstNoteTime == -1.0) {
+								firstNoteTime = gp->bmsobj.notes[gp->bmsobj.count].bmsTiming;
+							}
+							else if (gp->bmsobj.notes[gp->bmsobj.count].bmsTiming < firstNoteTime) { //visible no check?
+								firstNoteTime = gp->bmsobj.notes[gp->bmsobj.count].bmsTiming;
+							}
+
+							if (isVisibleNote(channel) && lastNoteTime < gp->bmsobj.notes[gp->bmsobj.count].bmsTiming) {
+								lastNoteTime = gp->bmsobj.notes[gp->bmsobj.count].bmsTiming;
+							}
+
+							if (channel == 8 || channel == 9) { //BPM, STOP
+								gp->bmsobj.notes[gp->bmsobj.count].val = Base36ToInt(*fBuf.atPos(ii), *fBuf.atPos(ii + 1));
+							}
+							else {
+								gp->bmsobj.notes[gp->bmsobj.count].val = Base36ToInt(*fBuf.atPos(ii), *fBuf.atPos(ii + 1)) + stage * 1296;
+							}
+							gp->bmsobj.notes[gp->bmsobj.count].op = channel;
+							gp->bmsobj.count++;
+							if (gp->bmsobj.count == gp->bmsobj.size) ExpandNoteBuffer(&gp->bmsobj, 1000);
+
+							if (((10 <= channel && channel < 20) || (30 <= channel && channel < 40) || (50 <= channel && channel < 60)) && (meta->keymode < 10 && ((cfg->play.battle == 1 && (cfg->play.random[0] != cfg->play.random[1])) || cfg->play.battle == 2))) {
+								gp->bmsobj.notes[gp->bmsobj.count].bmsTiming = (int)thisMeasure + notepos;
+								gp->bmsobj.notes[gp->bmsobj.count].val = Base36ToInt(*fBuf.atPos(ii), *fBuf.atPos(ii + 1)) + stage * 1296;
+								gp->bmsobj.notes[gp->bmsobj.count].op = channel + 10;
+								gp->bmsobj.count++;
+								if (gp->bmsobj.count == gp->bmsobj.size) ExpandNoteBuffer(&gp->bmsobj, 1000);
+							}
+						}
+					}
+				}
+				*fBuf.atPos(0) = '\0';
+				isPMS = is9key;
+			}
+			else if (fBuf.left(5).isSame("#BPM ")) {
+				int val = atof(fBuf.right(fBuf.length() - 5));
+				if (gp->BPM_fix <= 0.0) {
+					gp->BPM_fix = val * gp->freqSpeedMultiplier;
+				}
+				if (stage > 0 && (gp->courseConnection[stage - 1] == 1 || gp->courseConnection[stage - 1] == 3)) { //FIT
+					gp->freqSpeedMultiplier *= nowBPM / val;
+					aud->param.stagePitch[stage] = nowBPM / val;
+					ErrorLogFmtAdd("BPMを前の曲に合わせました。 stagepitch %d\n", nowBPM / val * 100.0);
+				}
+				nowBPM = val * gp->freqSpeedMultiplier;
+				if (stage > 0) {
+					gp->bmsobj.notes[gp->bmsobj.count].bmsTiming = (double)stageStartMeasure;
+					gp->bmsobj.notes[gp->bmsobj.count].val = val * gp->freqSpeedMultiplier;
+					gp->bmsobj.notes[gp->bmsobj.count].op = 3;
+					gp->bmsobj.count++;
+				}
+				if (stage == 0) {
+					gp->bpmt_data[gp->bpmt_count].BPM = gp->BPM_fix;
+					gp->bpmt_data[gp->bpmt_count].converted = 0.0;
+					gp->bpmt_data[gp->bpmt_count].realtime = 0.0;
+					gp->maxBPM = gp->BPM_fix;
+					gp->minBPM = gp->BPM_fix;
+				}
+				else {
+					gp->bpmt_data[gp->bpmt_count].BPM = gp->BPM;
+					gp->bpmt_data[gp->bpmt_count].converted = (double)stageStartMeasure;
+					gp->bpmt_data[gp->bpmt_count].realtime = 0.0;
+				}
+				gp->bpmt_count++; //TOFIX: possibility of writing over allocated memory
+				if (gp->bmsobj.count == gp->bmsobj.size) {
+					ExpandNoteBuffer(&gp->bmsobj, 1000);
+				}
+			}
+			else if (fBuf.left(7).isSame("#FP/DSC")) {
+				isDSC = 1;
+				is9key = 1;
+			}
+			else if (fBuf.left(7).isSame("#LNOBJ ")) {
+				lnobj = Base36ToInt(*fBuf.atPos(7), *fBuf.atPos(8)) + stage * 1296;
+			}
+			else if (fBuf.left(7).isSame("#TOTAL ")) {
+				total[1] = total[0] = atol(fBuf.right(fBuf.length() - 7));
+			}
+			else if (fBuf.left(6).isSame("#RANK ")) {
+				if (stage == 0) {
+					rank = atol(fBuf.right(fBuf.length() - 6));
+				}
+				else {
+					gp->bmsobj.notes[gp->bmsobj.count].bmsTiming = stageStartMeasure;
+					gp->bmsobj.notes[gp->bmsobj.count].val = atof(fBuf.right(fBuf.length() - 6));
+					gp->bmsobj.notes[gp->bmsobj.count].op = 1001;
+					gp->bmsobj.count++;
+					if (gp->bmsobj.count == gp->bmsobj.size) {
+						ExpandNoteBuffer(&gp->bmsobj, 1000);
+					}
+				}
+			}
+			else if (fBuf.left(4).isSame("#BPM")) {
+				int param1;
+				double param2;
+				param1 = Base36ToInt(*fBuf.atPos(4), *fBuf.atPos(5));
+				param2 = atof(fBuf.right(fBuf.length() - 7));
+				if (1 <= param1 && param1 < 1296) {
+					BPMslot[param1] = param2 * gp->freqSpeedMultiplier;
+				}
+			}
+			else if (fBuf.left(5).isSame("#STOP")) {
+				int param1, param2;
+				param1 = Base36ToInt(*fBuf.atPos(5), *fBuf.atPos(6));
+				param2 = atol(fBuf.right(fBuf.length() - 8));
+				if (1 <= param1 && param1 < 1296 && param2 > 0) {
+					STOPslot[param1] = param2;
+				}
+			}
+			else if (fBuf.left(4).isSame("#WAV") && cfg->play.autojudge != 2) {
+				int param1;
+				param1 = Base36ToInt(*fBuf.atPos(4), *fBuf.atPos(5));
+				gp->loadObject_total++;
+				if (param1 < 1296) {
+					if (gp->isCourse == 0 && stage * 1296 + param1 < 1296) {
+						CSTR filename = fBuf.right(fBuf.length() - 7);
+						filename.nullAtPos(2);
+						for (int i = 0; true; i++) {
+							if (i == cc.arr1count) {
+								cc.arr1[i].filenameHead = filename;
+								cc.arr3[stage * 1296 + param1].soundLoadID = i;
+								cc.arr1count++;
+								break;
+							}
+							if (filename.isSame(cc.arr1[i].filenameHead)) {
+								cc.arr3[stage * 1296 + param1].soundLoadID = i;
+								break;
+							}
+						}
+					}
+					fBuf = fBufOrg;
+					*fBufOrg.atPos(0) = 0;
+					int wavNum = Base36ToInt(*fBuf.atPos(4), *fBuf.atPos(5));
+					if (wavNum < 1296) {
+						fBuf.lastCut(fBuf.length() - 7);
+						FindAltSound(fBuf, directory, &gp->keysound_filename[stage * 1296 + wavNum]);
+					}
+				}
+			}
+			else if (fBuf.left(4).isSame("#BMP") && (cfg->play.bga == 3 || cfg->play.bga == 1 || (cfg->play.bga == 2 && gp->isAutoplay == 1) || gp->replay.status == 2) && cfg->play.autojudge != 2) {
+				int param1;
+				gp->loadObject_total++;
+				param1 = Base36ToInt(*fBuf.atPos(4), *fBuf.atPos(5));
+				fBuf = fBufOrg;
+				*fBufOrg.atPos(0) = 0;
+				if (param1 < 1296) {
+					fBuf.lastCut(fBuf.length() - 7);
+					FindAltImage(fBuf, directory, &gp->BMP_filename[stage*1296 + param1]);
+				}
+			}
+			else {
+				GetStringBodyInt(&fBuf, "#PLAYLEVEL", &cc.playlevel);
+			}
+			*fBuf.atPos(0) = '\0';
+		}
+		fclose(hFile);
+		/* parse BMS file end*/
+
+		if (gp->soundonly && gp->isCourse == 0) {
+			gp->bmsobj.notes[gp->bmsobj.count].bmsTiming = stageStartMeasure;
+			gp->bmsobj.notes[gp->bmsobj.count].val = 1295.0;
+			gp->bmsobj.notes[gp->bmsobj.count].op = 4;
+			gp->bmsobj.count++;
+			if (gp->bmsobj.count == gp->bmsobj.size) ExpandNoteBuffer(&gp->bmsobj, 1000);
+		}
+		for (int i = stageStartMeasure; i < stageStartMeasure + 1000; i++) {
+			gp->bmsobj.notes[gp->bmsobj.count].bmsTiming = i;
+			gp->bmsobj.notes[gp->bmsobj.count].val = measureLength[i];
+			gp->bmsobj.notes[gp->bmsobj.count].op = 2;
+			gp->bmsobj.count++;
+			if (gp->bmsobj.count == gp->bmsobj.size) ExpandNoteBuffer(&gp->bmsobj, 1000);
+		}
+
+		if (bmsobj_stageFirst < gp->bmsobj.count) {
+			qsort(&gp->bmsobj.notes[bmsobj_stageFirst], gp->bmsobj.count - bmsobj_stageFirst, sizeof(NoteStruct), CMP_NotesByBmsTiming);
+		}
+
+		for (int i = 0; i < gp->bmsobj.count && gp->bmsobj.notes[i].bmsTiming == 0; i++) {
+			if ((10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 29) || (30 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 49)) {
+				for (int j = 0; j < gp->bmsobj.count; j++) {
+					gp->bmsobj.notes[j].bmsTiming += 1.0;
+				}
+				break;
+			}
+		}
+		double meaMultiplier = measureLength[stageStartMeasure];
+		meaLength = measureLength[stageStartMeasure];
+		double stopRealtime = 0.0;
+		double stopVal = 0.0;
+		double scrollSpeed = 1.0;
+
+		double unk23484_bmstime = -1.0;
+		double unk2346c_realtime = -1.0;
+		double _bPrevNoteTime = -1.0;
+
+		double b2bmsTime = -1.0;
+		double b2realTime = -1.0;
+		double b2prevNoteTime = -1.0;
+
+		int intArr2[30];
+		for (int i = 0; i < 30; i++) intArr2[i] = -1;
+
+		int bpmt_count = -1;
+		int unk23538_objNum = -1;
+		int b2bpmt_last = -1;
+
+		int objNumLastNote = 0;
+		for (int i = gp->bmsobj.count - 1; bmsobj_stageFirst <= i; i--) {
+			if ((10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 30) || (50 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 70)) {
+				objNumLastNote = i;
+				break;//i = 0;
+			}
+		}
+		int objNumLastMeasureLate = -1;
+		for (int i = objNumLastNote; bmsobj_stageFirst <= i; i--) {
+			if (gp->bmsobj.notes[i].op == 2) {
+				objNumLastMeasureLate = i;
+				break; //i = 0;
+			}
+		}
+		int objNumLastMeasureEarly = -1;
+		for (int i = objNumLastNote; i < gp->bmsobj.count; i++) {
+			if (gp->bmsobj.notes[i].op == 2) {
+				objNumLastMeasureEarly = i;
+				break; //i = gp->bmsobj.count;
+			}
+		}
+		int objNumLastMeasure;
+		if (gp->bmsobj.notes[objNumLastMeasureEarly].bmsTiming - gp->bmsobj.notes[objNumLastNote].bmsTiming < gp->bmsobj.notes[objNumLastNote].bmsTiming - gp->bmsobj.notes[objNumLastMeasureLate].bmsTiming) {
+			lastNoteTime = gp->bmsobj.notes[objNumLastMeasureEarly].bmsTiming;
+			objNumLastMeasure = objNumLastMeasureEarly;
+		}
+		else {
+			lastNoteTime = gp->bmsobj.notes[objNumLastMeasureLate].bmsTiming;
+			objNumLastMeasure = objNumLastMeasureLate;
+		}
+
+		int objNumFirstNote = bmsobj_stageFirst;
+		for (int i = bmsobj_stageFirst; i < gp->bmsobj.count; i++) {
+			if ((10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 30) || (50 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 70)) {
+				objNumFirstNote = i;
+				break;//i = 0;
+			}
+		}
+		int objNumFirstMeasureLate = -1;
+		for (int i = objNumFirstNote; bmsobj_stageFirst <= i; i--) {
+			if (gp->bmsobj.notes[i].op == 2) {
+				objNumFirstMeasureLate = i;
+				break; //i = 0;
+			}
+		}
+		int objNumFirstMeasureEarly = -1;
+		for (int i = objNumFirstNote; i < gp->bmsobj.count; i++) {
+			if (gp->bmsobj.notes[i].op == 2) {
+				objNumFirstMeasureEarly = i;
+				break; //i = gp->bmsobj.count;
+			}
+		}
+		int objNumFirstMeasure = objNumFirstMeasureLate;
+		if (gp->bmsobj.notes[objNumFirstMeasureEarly].bmsTiming - gp->bmsobj.notes[objNumFirstNote].bmsTiming < gp->bmsobj.notes[objNumFirstNote].bmsTiming - gp->bmsobj.notes[objNumFirstMeasureLate].bmsTiming) {
+			objNumFirstMeasure = objNumFirstMeasureEarly;
+		}
+
+
+		/* start of setting notes on time*/
+		for (int i = bmsobj_stageFirst; i < gp->bmsobj.count; i++) {
+			if (stage != 0 && gp->bmsobj.notes[i].bmsTiming <= 0) {
+				ErrorLogFmtAdd("エラーノートを発見しました ch=%d\n", gp->bmsobj.notes[i].op);
+			}
+
+			if (gp->bmsobj.notes[i].bmsTiming != prevNoteBmstime) {
+				if (stopRealtime) {
+					stopRealtime = (stopVal / 192.0) * (240000.0 / nowBPM); // STOP * 1/192 bar real millisec (240BPM 1bar = 1sec)
+
+					if (gp->bpmt_count == gp->bpmt_buffersize) {
+						gp->bpmt_buffersize += 100;
+						gp->bpmt_data = (BPMtiming*)realloc(gp->bpmt_data, gp->bpmt_buffersize * sizeof(BPMtiming));
+						for (int i = gp->bpmt_buffersize - 100; i < gp->bpmt_buffersize; i++) {
+							gp->bpmt_data[i].BPM = 0;
+							gp->bpmt_data[i].converted = 0;
+							gp->bpmt_data[i].BPM = 0;
+						}
+					}
+					gp->bpmt_data[gp->bpmt_count].BPM = 0;
+					gp->bpmt_data[gp->bpmt_count].realtime = bpmt_realtime;
+					gp->bpmt_data[gp->bpmt_count].converted = bpmt_bmstime;
+					gp->bpmt_count++;
+
+					if (gp->bpmt_count == gp->bpmt_buffersize) {
+						gp->bpmt_buffersize += 100;
+						gp->bpmt_data = (BPMtiming*)realloc(gp->bpmt_data, gp->bpmt_buffersize * sizeof(BPMtiming));
+						for (int i = gp->bpmt_buffersize - 100; i < gp->bpmt_buffersize; i++) {
+							gp->bpmt_data[i].BPM = 0;
+							gp->bpmt_data[i].converted = 0;
+							gp->bpmt_data[i].BPM = 0;
+						}
+					}
+					gp->bpmt_data[gp->bpmt_count].BPM = nowBPM;
+					gp->bpmt_data[gp->bpmt_count].realtime = bpmt_realtime + stopRealtime;
+					gp->bpmt_data[gp->bpmt_count].converted = bpmt_bmstime;
+					gp->bpmt_count++;
+				}
+				
+				double addRealtime = (240.0 / nowBPM * meaLength * (gp->bmsobj.notes[i].bmsTiming - prevNoteBmstime) * 1000.0);
+				bpmt_realtime += addRealtime + stopRealtime;
+				
+				if (cfg->play.hsfix == 4 || (gp->isCourse && gp->courseType == 1)) {
+					bpmt_bmstime += addRealtime * 1.2;
+					prevNoteBmstime = gp->bmsobj.notes[i].bmsTiming;
+					stopRealtime = 0.0;
+				}
+				else {
+					bpmt_bmstime += meaLength * 1920.0 * (gp->bmsobj.notes[i].bmsTiming - prevNoteBmstime);
+					prevNoteBmstime = gp->bmsobj.notes[i].bmsTiming;
+					stopRealtime = 0.0;
+				}
+			}
+
+			if (objNumLastMeasure == i) {
+				lastMeasure = gp->bmsobj.notes[i].bmsTiming;
+				unk23484_bmstime = bpmt_bmstime;
+				unk2346c_realtime = bpmt_realtime;
+				_bPrevNoteTime = gp->bmsobj.notes[i].bmsTiming;
+				bpmt_count = gp->bpmt_count - 1;
+				ErrorLogFmtAdd("リミット%d , %d\n", (int)bpmt_bmstime, (int)bpmt_realtime);
+			}
+			else if (unk23538_objNum == -1 && 0 < (int)unk23484_bmstime && gp->bmsobj.notes[i].op == 2 && unk2346c_realtime + 5000.0 < bpmt_realtime && gp->courseConnection[stage] == 5) { //BALNK2
+				b2lastMeasure = gp->bmsobj.notes[i].bmsTiming;
+				b2bmsTime = bpmt_bmstime;
+				b2realTime = bpmt_realtime;
+				b2prevNoteTime = gp->bmsobj.notes[i].bmsTiming;
+				b2bpmt_last = gp->bpmt_count - 1;
+				unk23538_objNum = i;
+				ErrorLogFmtAdd("リミット2 %d , %d\n", (int)bpmt_bmstime, (int)bpmt_realtime);
+			}
+
+			gp->bmsobj.notes[i].bmsTiming = bpmt_bmstime;
+			gp->bmsobj.notes[i].realTiming = bpmt_realtime;
+			gp->bmsobj.notes[i].active = 0;
+			if (50 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 70) {
+				if (intArr2[gp->bmsobj.notes[i].op - 40] == -1) {
+					gp->bmsobj.notes[i].op -= 40;
+					intArr2[gp->bmsobj.notes[i].op] = i;
+				}
+				else {
+					gp->bmsobj.notes[intArr2[gp->bmsobj.notes[i].op - 40]].bmsTiming_ln = bpmt_bmstime;
+					gp->bmsobj.notes[intArr2[gp->bmsobj.notes[i].op - 40]].realTiming_ln = bpmt_realtime;
+					intArr2[gp->bmsobj.notes[i].op - 40] = -1;
+				}
+			}
+			else if (lnobj != -1 && (10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 30)) {
+				if (gp->bmsobj.notes[i].val != lnobj || intArr2[gp->bmsobj.notes[i].op] == -1) { //CHECK: haha
+					intArr2[gp->bmsobj.notes[i].op] = i;
+				}
+				else {
+					gp->bmsobj.notes[intArr2[gp->bmsobj.notes[i].op]].bmsTiming_ln = bpmt_bmstime;
+					gp->bmsobj.notes[intArr2[gp->bmsobj.notes[i].op]].realTiming_ln = bpmt_realtime;
+					intArr2[gp->bmsobj.notes[i].op] = -1;
+					gp->bmsobj.notes[i].op = gp->bmsobj.notes[i].op + 40;
+				}
+			}
+
+			if (130 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 150) {//mine
+				gp->bmsobj.notes[i].op -= 120;
+				gp->bmsobj.notes[i].mine = gp->bmsobj.notes[i].val;
+				gp->bmsobj.notes[i].val = 0.0;
+			}
+
+			switch (gp->bmsobj.notes[i].op) {
+				case 2: //length of measure
+					if (cfg->play.m_softlanding == 0) {
+						scrollSpeed = 1.0;
+					}
+					else {
+						if (GetRand(1) == 0) {
+							scrollSpeed = (GetRand(100) + 100.0) / 100.0;
+						}
+						else {
+							scrollSpeed = 100.0 / (GetRand(100) + 100.0);
+						}
+					}
+					meaMultiplier = gp->bmsobj.notes[i].val;
+					meaLength = meaMultiplier * scrollSpeed;
+					nowBPM = nowBPM * scrollSpeed;
+
+					if (gp->bpmt_count == gp->bpmt_buffersize) {
+						gp->bpmt_buffersize += 100;
+						gp->bpmt_data = (BPMtiming*)realloc(gp->bpmt_data, gp->bpmt_buffersize * sizeof(BPMtiming));
+						for (int i = gp->bpmt_buffersize - 100; i < gp->bpmt_buffersize; i++) {
+							gp->bpmt_data[i].BPM = 0;
+							gp->bpmt_data[i].converted = 0;
+							gp->bpmt_data[i].BPM = 0;
+						}
+					}
+					gp->bpmt_data[gp->bpmt_count].BPM = nowBPM;
+					gp->bpmt_data[gp->bpmt_count].realtime = bpmt_realtime;
+					gp->bpmt_data[gp->bpmt_count].converted = bpmt_bmstime;
+					gp->bpmt_count++;
+					break;
+
+				case 3: //change of BPM
+					if (gp->bmsobj.notes[i].val > 0) {
+						nowBPM = scrollSpeed * gp->bmsobj.notes[i].val;
+
+						if (gp->bpmt_count == gp->bpmt_buffersize) {
+							gp->bpmt_buffersize += 100;
+							gp->bpmt_data = (BPMtiming*)realloc(gp->bpmt_data, gp->bpmt_buffersize * sizeof(BPMtiming));
+							for (int i = gp->bpmt_buffersize - 100; i < gp->bpmt_buffersize; i++) {
+								gp->bpmt_data[i].BPM = 0;
+								gp->bpmt_data[i].converted = 0;
+								gp->bpmt_data[i].BPM = 0;
+							}
+						}
+						gp->bpmt_data[gp->bpmt_count].BPM = nowBPM;
+						gp->bpmt_data[gp->bpmt_count].realtime = bpmt_realtime;
+						gp->bpmt_data[gp->bpmt_count].converted = bpmt_bmstime;
+						gp->bpmt_count++;
+					}
+					break;
+
+				case 8: {
+					double BPM = BPMslot[(int)gp->bmsobj.notes[i].val];
+					if (BPM < 0.0) {
+						BPM *= -1.0;
+					}
+					nowBPM = BPM* scrollSpeed;
+					gp->bmsobj.notes[i].val = BPMslot[(int)gp->bmsobj.notes[i].val];
+
+					if (gp->bpmt_count == gp->bpmt_buffersize) {
+						gp->bpmt_buffersize += 100;
+						gp->bpmt_data = (BPMtiming*)realloc(gp->bpmt_data, gp->bpmt_buffersize * sizeof(BPMtiming));
+						for (int i = gp->bpmt_buffersize - 100; i < gp->bpmt_buffersize; i++) {
+							gp->bpmt_data[i].BPM = 0;
+							gp->bpmt_data[i].converted = 0;
+							gp->bpmt_data[i].BPM = 0;
+						}
+					}
+					gp->bpmt_data[gp->bpmt_count].BPM = nowBPM;
+					gp->bpmt_data[gp->bpmt_count].realtime = bpmt_realtime;
+					gp->bpmt_data[gp->bpmt_count].converted = bpmt_bmstime;
+					gp->bpmt_count++;
+					break;
+				}
+				case 9:
+					stopVal = STOPslot[(int)gp->bmsobj.notes[i].val];
+					stopRealtime = stopVal / 192.0 * 240000.0 / nowBPM;
+					gp->bmsobj.notes[i].val = (240000.0 / nowBPM) * STOPslot[(int)gp->bmsobj.notes[i].val] / 192.0;
+					break;
+			}
+
+			if (10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 29) {
+				
+				avgBPM_notes += 1;
+				avgBPM_bpmsum += nowBPM;
+				if (gp->maxBPM < nowBPM) gp->maxBPM = nowBPM;
+				if (gp->minBPM > nowBPM) gp->minBPM = nowBPM;
+
+				if (cfg->play.m_softlanding == 2) {
+					if (GetRand(1) == 0) {
+						scrollSpeed = (GetRand(100) + 100.0) / 100.0;
+					}
+					else {
+						scrollSpeed = 100.0 / (GetRand(100) + 100.0);
+					}
+
+					meaLength = meaMultiplier * scrollSpeed;
+					nowBPM = scrollSpeed * meaLength;
+
+					if (gp->bpmt_count == gp->bpmt_buffersize) {
+						gp->bpmt_buffersize += 100;
+						gp->bpmt_data = (BPMtiming*)realloc(gp->bpmt_data, gp->bpmt_buffersize * sizeof(BPMtiming));
+						for (int i = gp->bpmt_buffersize - 100; i < gp->bpmt_buffersize; i++) {
+							gp->bpmt_data[i].BPM = 0;
+							gp->bpmt_data[i].converted = 0;
+							gp->bpmt_data[i].BPM = 0;
+						}
+					}
+					gp->bpmt_data[gp->bpmt_count].BPM = nowBPM;
+					gp->bpmt_data[gp->bpmt_count].realtime = bpmt_realtime;
+					gp->bpmt_data[gp->bpmt_count].converted = bpmt_bmstime;
+					gp->bpmt_count++;
+				}
+			}
+		}
+		/* end of setting notes on time*/
+
+		if (gp->courseConnection[stage] == 5 && unk23538_objNum != -1) { //BLANK2
+			unk23484_bmstime = b2bmsTime;
+			objNumLastMeasure = unk23538_objNum;
+			unk2346c_realtime = b2realTime;
+			bpmt_count = b2bpmt_last;
+			lastMeasure = b2lastMeasure;
+			_bPrevNoteTime = b2prevNoteTime;
+		}
+
+		if (cfg->play.battle == 3) {
+			if (cfg->play.battle == 3 && meta->keymode == 9 && gp->isCourse == 0 && gp->isPreviewLoad == 0) {
+				ErrorLogFmtAdd("PMSTOSPマージを行います");
+				for (int cur = 0; cur < gp->bmsobj.count; cur++) {
+					gp->bmsobj.notes[cur].bmsTiming_ln = gp->bmsobj.notes[cur].bmsTiming;
+					gp->bmsobj.notes[cur].realTiming_ln = gp->bmsobj.notes[cur].realTiming;
+				}
+				PMStoSP(gp);
+			}
+			if (cfg->play.battle == 3 && (meta->keymode == 10 || meta->keymode == 14) && gp->isCourse == 0 && gp->isPreviewLoad == 0) { //TOFIX: cfg->play.battle==3 duplicated
+				ErrorLogFmtAdd("DPTOSPマージを行います");
+				for (int cur = 0; cur < gp->bmsobj.count; cur++) {
+					gp->bmsobj.notes[cur].bmsTiming_ln = gp->bmsobj.notes[cur].bmsTiming;
+					gp->bmsobj.notes[cur].realTiming_ln = gp->bmsobj.notes[cur].realTiming;
+				}
+				DPtoSP(gp);
+			}
+		}
+		if (cfg->play.is_extra > 0 && gp->isCourse == 0 && gp->isPreviewLoad == 0) {
+			gp->extramode_level = cfg->play.m_extra;
+			for (int cur = 0; cur < gp->bmsobj.count; cur++) {
+				gp->bmsobj.notes[cur].bmsTiming_ln = gp->bmsobj.notes[cur].bmsTiming;
+				gp->bmsobj.notes[cur].realTiming_ln = gp->bmsobj.notes[cur].realTiming;
+			}
+			MakeExtraChart(gp, &cc);
+		}
+		if (cfg->play.m_addnote > 0 && gp->isCourse == 0 && gp->isPreviewLoad == 0) {
+
+			for (int i = 0; i < gp->bmsobj.count; i++) {
+				gp->bmsobj.notes[i].bmsTiming_ln = gp->bmsobj.notes[i].bmsTiming;
+				gp->bmsobj.notes[i].realTiming_ln = gp->bmsobj.notes[i].realTiming;
+			}
+			qsort(gp->bmsobj.notes, gp->bmsobj.count, sizeof(NoteStruct), CMP_NotesByRealTimingOp);
+
+			double l_realTiming = 0.0;
+			double t_realTiming = 0.0;
+			double t_bmsTiming = 0.0;
+			memset(mapAdded, 0, 20);
+			int addNoteCount[2] = { 0, };
+			int key = 7;
+			if (meta->keymode == 5 || meta->keymode == 10) key = 5;
+			else if (meta->keymode == 9) key = 9;
+
+			for (int i = 0; i < gp->bmsobj.count; i++) {
+				if (l_realTiming < gp->bmsobj.notes[i].realTiming) {
+					for (int p = 0; p < 2; p++) {
+						if (addNoteCount[p] > 0) {
+							for (int a = 0; a < addNoteCount[p]; a++) {
+								if (GetRand(100) <= cfg->play.m_addnote) {
+									int emptyCount = 0;
+
+									if (key > -1) {
+										for (int lane = 0; lane <= key; lane++) {
+											if (mapAdded[lane + p * 10] == 0) emptyCount++;
+										}
+										if (emptyCount && emptyCount > 0) {
+											int addlane = GetRand(emptyCount - 1);
+
+											for (int lane = 0; lane <= key; lane++) {
+												if (mapAdded[lane + p * 10] == 0) {
+													if (addlane == 0) {
+														gp->bmsobj.notes[gp->bmsobj.count].bmsTiming = t_bmsTiming;
+														gp->bmsobj.notes[gp->bmsobj.count].bmsTiming_ln = t_bmsTiming;
+														gp->bmsobj.notes[gp->bmsobj.count].realTiming = t_realTiming;
+														gp->bmsobj.notes[gp->bmsobj.count].realTiming_ln = t_realTiming;
+														gp->bmsobj.notes[gp->bmsobj.count].val = 1294.0;
+														gp->bmsobj.notes[gp->bmsobj.count].op = p * 10 + 10 + lane;
+														gp->bmsobj.count++;
+														if (gp->bmsobj.count == gp->bmsobj.size) {
+															ExpandNoteBuffer(&gp->bmsobj, 1000);
+														}
+														mapAdded[p][lane] = 1;
+														lane += 100;
+													}
+													else {
+														addlane--;
+													}
+												}
+											}
+										}
+									}
+								}
+							}
+						}
+					}
+					t_bmsTiming = gp->bmsobj.notes[i].bmsTiming;
+					t_realTiming = gp->bmsobj.notes[i].realTiming;
+					l_realTiming = gp->bmsobj.notes[i].realTiming;
+					memset(mapAdded, 0, sizeof(mapAdded));
+					addNoteCount[0] = 0;
+					addNoteCount[1] = 0;
+				}
+
+				if (10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 20) {
+					addNoteCount[0]++;
+					mapAdded[0][gp->bmsobj.notes[i].op - 10] = 1;
+				}
+				else if (20 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 30) {
+					addNoteCount[1]++;
+					mapAdded[1][gp->bmsobj.notes[i].op - 20] = 1;
+				}
+			}
+			qsort(gp->bmsobj.notes, gp->bmsobj.count, sizeof(NoteStruct), CMP_NotesByRealTimingOp);
+		}
+		if (cfg->play.m_loudness > 0 && gp->isCourse == 0 && gp->isPreviewLoad == 0) {
+
+			for (int i = 0; i < gp->bmsobj.count; i++) {
+				gp->bmsobj.notes[i].bmsTiming_ln = gp->bmsobj.notes[i].bmsTiming;
+				gp->bmsobj.notes[i].realTiming_ln = gp->bmsobj.notes[i].realTiming;
+			}
+			qsort(gp->bmsobj.notes, gp->bmsobj.count, sizeof(NoteStruct), CMP_NotesByRealTimingOp);
+
+			double l_realTiming = 0.0;
+			double t_realTiming = 0.0;
+			double t_bmsTiming = 0.0;
+			bool mapAdded[2][10] = { 0, };
+			int addNoteCount[2] = { 0, };
+			int key = 7;
+			if (meta->keymode == 5 || meta->keymode == 10) key = 5;
+			else if (meta->keymode == 9) key = 9;
+
+			for (int i = 0; i < gp->bmsobj.count; i++) {
+				if (l_realTiming < gp->bmsobj.notes[i].realTiming) {
+					for (int p = 0; p < 2; p++) {
+						if (addNoteCount[p] != 0) {
+
+							if (GetRand(100) <= cfg->play.m_loudness) {
+								if (key > -1) {
+									for (int lane = 0; lane <= key; lane++) {
+										if (mapAdded[lane + p * 10] == 0) {
+											gp->bmsobj.notes[gp->bmsobj.count].bmsTiming = t_bmsTiming;
+											gp->bmsobj.notes[gp->bmsobj.count].bmsTiming_ln = t_bmsTiming;
+											gp->bmsobj.notes[gp->bmsobj.count].realTiming = t_realTiming;
+											gp->bmsobj.notes[gp->bmsobj.count].realTiming_ln = t_realTiming;
+											gp->bmsobj.notes[gp->bmsobj.count].val = 1294.0;
+											gp->bmsobj.notes[gp->bmsobj.count].op = p * 10 + 10 + lane;
+											gp->bmsobj.count++;
+											if (gp->bmsobj.count == gp->bmsobj.size) {
+												ExpandNoteBuffer(&gp->bmsobj, 1000);
+											}
+										}
+									}
+								}
+							}
+
+						}
+					}
+					t_bmsTiming = gp->bmsobj.notes[i].bmsTiming;
+					t_realTiming = gp->bmsobj.notes[i].realTiming;
+					l_realTiming = gp->bmsobj.notes[i].realTiming;
+					memset(mapAdded, 0, sizeof(mapAdded));
+					addNoteCount[0] = 0;
+					addNoteCount[1] = 0;
+				}
+
+				if (10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 20) {
+					addNoteCount[0] = 1;
+					mapAdded[0][gp->bmsobj.notes[i].op - 10] = 1;
+				}
+				else if (20 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 30) {
+					addNoteCount[1] = 1;
+					mapAdded[1][gp->bmsobj.notes[i].op - 20] = 1;
+				}
+			}
+			qsort(gp->bmsobj.notes, gp->bmsobj.count, sizeof(NoteStruct), CMP_NotesByRealTimingOp);
+		}
+
+		double realDiff = 0.0;
+		double bmsDiff = 0.0;
+
+		if (stage >= 1) {
+			stageStartMeasure = (int)firstNoteTime - stageStartMeasure - 1;
+
+			if (gp->courseConnection[stage - 1] == 5) { //BLANK2
+				stageStartMeasure = 0;
+			}
+			else if (gp->courseConnection[stage - 1] == 4) { //BLANK1
+				while (firstNoteTime - stageStartMeasure - prevStageLastNoteTime > 1.5) {
+					stageStartMeasure++;
+				}
+			}
+			else {
+				while (firstNoteTime - stageStartMeasure - prevStageLastNoteTime > 0.5) {
+					stageStartMeasure++;
+				}
+			}
+
+			lastNoteTime -= stageStartMeasure;
+
+			int unk_start = stageStartMeasure;
+			int k = bmsobj_stageFirst;
+			/*
+			for (int k = bmsobj_stageFirst; true; k++){
+				if (gp->bmsobj.notes[k].op != 2) continue;
+				
+				if(unk_start == 0){
+					if (gp->bmsobj.notes[bmsobj_stageFirst].bmsTiming <= 0.0 || gp->bmsobj.notes[bmsobj_stageFirst].realTiming <= 0.0 || gp->courseConnection[stage - 1] == 5) {
+						//
+					}
+					else {
+						double realDiff = gp->bmsobj.notes[k].realTiming - gp->bmsobj.notes[bmsobj_stageFirst].realTiming;
+						double bmsDiff = gp->bmsobj.notes[k].bmsTiming - gp->bmsobj.notes[bmsobj_stageFirst].bmsTiming;
+						for (int i = bmsobj_stageFirst; i < gp->bmsobj.count; i++) {
+							gp->bmsobj.notes[i].bmsTiming -= bmsDiff;
+							gp->bmsobj.notes[i].realTiming -= realDiff;
+							gp->bmsobj.notes[i].bmsTiming_ln -= bmsDiff;
+							gp->bmsobj.notes[i].realTiming_ln -= realDiff;
+						}
+						bpmt_realtime = unk2346c_realtime - realDiff;
+						bpmt_bmstime = unk23484_bmstime - bmsDiff;
+						prevNoteTime = _bPrevNoteTime - stageStartMeasure;
+					}
+					break;
+				}
+				unk_start--;
+			}
+			*/
+			while (true) {
+				if (gp->bmsobj.notes[k].op == 2) {
+					if (unk_start == 0) break; 					
+					else unk_start--;
+				}
+				k++;
+			}
+			/* That cutting place*/
+			if (gp->bmsobj.notes[bmsobj_stageFirst].bmsTiming <= 0 || gp->bmsobj.notes[bmsobj_stageFirst].realTiming <= 0 || gp->courseConnection[stage - 1] == 5) { //BLANK2
+				bpmt_realtime = unk2346c_realtime;
+				bpmt_bmstime = unk23484_bmstime;
+				prevNoteBmstime = _bPrevNoteTime;
+			}
+			else {
+				realDiff = gp->bmsobj.notes[k].realTiming - gp->bmsobj.notes[bmsobj_stageFirst].realTiming;
+				bmsDiff = gp->bmsobj.notes[k].bmsTiming - gp->bmsobj.notes[bmsobj_stageFirst].bmsTiming;
+				for (int i = bmsobj_stageFirst; i < gp->bmsobj.count; i++) {
+					gp->bmsobj.notes[i].bmsTiming -= bmsDiff;
+					gp->bmsobj.notes[i].realTiming -= realDiff;
+					gp->bmsobj.notes[i].bmsTiming_ln -= bmsDiff;
+					gp->bmsobj.notes[i].realTiming_ln -= realDiff;
+				}
+				bpmt_realtime = unk2346c_realtime - realDiff;
+				bpmt_bmstime = unk23484_bmstime - bmsDiff;
+				prevNoteBmstime = _bPrevNoteTime - stageStartMeasure;
+			}
+		}
+		else {
+			//same with -22?line
+			bpmt_realtime = unk2346c_realtime;
+			bpmt_bmstime = unk23484_bmstime;
+			prevNoteBmstime = _bPrevNoteTime;
+		}
+		// -2331 line
+		// 4033- line
+		if (gp->isCourse) {
+			if (stage != stages - 1) {
+				if (objNumLastMeasure > 0) {
+					for (int i = objNumLastMeasure; i < gp->bmsobj.count; i++) {
+						if (gp->bmsobj.notes[i].op == 2 || gp->bmsobj.notes[i].op == 3 || gp->bmsobj.notes[i].op == 8) {
+							gp->bmsobj.notes[i].op = -1;
+						}
+					}
+				}
+				if (bpmt_count > 0) gp->bpmt_count = bpmt_count;
+			}
+			if (gp->isCourse && stage && objNumFirstMeasure > 0) {
+				for (int i = bmsobj_stageFirst; i < objNumFirstMeasure; i++) {
+					if (gp->bmsobj.notes[i].op == 2) {
+						gp->bmsobj.notes[i].op = -1;
+					}
+				}
+			}
+		}
+		if (stage != 0) {
+			double t = 100.0 + prevStageTime;
+			for (int i = bmsobj_stageFirst; gp->bmsobj.notes[i].realTiming <= t; i++) {
+				if (i == gp->bmsobj.count) break;
+				if (10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 30) {
+					if (abs((int)gp->bmsobj.notes[i].realTiming - (int)prevStageTime) < 100) {
+						for (int j = bmsobj_stageFirst - 1; j >= 0; j--) {
+							if (gp->bmsobj.notes[j].realTiming < prevStageTime - 100.0) break; //need check float calc
+							if (gp->bmsobj.notes[i].op == gp->bmsobj.notes[j].op) {
+								gp->bmsobj.notes[i].op = 1;
+								break;
+							}
+						}
+					}
+					else {
+						gp->bmsobj.notes[i].op = 1;
+					}
+				}
+			}
+		}
+
+		for (int i = bmsobj_stageFirst; i < gp->bmsobj.size; i++) {
+			gp->bmsobj.notes[i].stage = stage;
+			if (!(0 <= gp->bmsobj.notes[i].stage && gp->bmsobj.notes[i].stage <= 4)) {
+				gp->bmsobj.notes[i].stage = 0;
+			}
+		}
+
+		prevStageTime = -1.0;
+		for (int i = gp->bmsobj.count - 1; i != bmsobj_stageFirst; i--) {
+			if (10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 30) {
+				prevStageTime = gp->bmsobj.notes[i].realTiming;
+				break;
+			}
+		}
+
+		if ((gp->courseConnection[stage] == 2 || gp->courseConnection[stage] == 3) && stage < stages - 1) { //CUT, CUT+FIT
+			gp->fadeoutSOUNDstart[stage] = bpmt_realtime;
+			gp->fadeoutSOUNDend[stage] = bpmt_realtime + 200.0;
+			gp->fadeinSOUNDstart[stage+1] = bpmt_realtime - 200.0;
+			gp->fadeinSOUNDend[stage+1] = bpmt_realtime;
+		}
+		else{
+			if ((gp->courseConnection[stage] == 1 || gp->courseConnection[stage] == 0) && stage < stages - 1) { //FADE, FADE+FIT
+				if (gp->courseConnection[stage] != 1) {
+					gp->fadeoutSOUNDstart[stage] = bpmt_realtime;
+					gp->fadeoutSOUNDend[stage] = bpmt_realtime + 10000.0;
+				}
+				gp->fadeinSOUNDstart[stage+1] = bpmt_realtime - 5000.0;
+				gp->fadeinSOUNDend[stage+1] = bpmt_realtime;
+			}
+			else if (gp->courseConnection[stage] == 4 && stage < stages - 1) { //BLANK1
+				gp->fadeinSOUNDstart[stage+1] = bpmt_realtime - 5000.0;
+				gp->fadeinSOUNDend[stage+1] = bpmt_realtime;
+			}	
+		}
+
+		gp->fadeoutBGAstart[stage] = bpmt_realtime;
+		gp->fadeoutBGAend[stage] = bpmt_realtime + 3000.0;
+		if (stage < stages - 1) {
+			gp->fadeinBGAstart[stage + 1] = bpmt_realtime - 3000.0;
+			gp->fadeinBGAend[stage + 1] = bpmt_realtime;
+		}
+
+		if (stage != 0 && oldbpmtCount > 0  && realDiff != 0.0) { 
+			for (int i = oldbpmtCount; i < gp->bpmt_count; i++) {
+				if (gp->bpmt_data[oldbpmtCount - 1].realtime <= gp->bpmt_data[i].realtime - realDiff) { //TOFIX : nonstop mix sink mismatch after stop (stage 2-) related code
+					gp->bpmt_data[i].realtime -= realDiff;
+					gp->bpmt_data[i].converted -= bmsDiff;
+				}
+			}
+		}
+	}
+	/* end of stage loop */
+	//2345- line
+	gp->freqSpeedMultiplier = oldSpeedMultiplier;
+	qsort(gp->bmsobj.notes, gp->bmsobj.count, sizeof(NoteStruct), CMP_NotesByRealTiming);
+
+	if (gp->isCourse == 1 && gp->courseType == 1) gp->speedmultiplier = 1.0;
+	else if (avgBPM_notes > 0 && cfg->play.hsfix == 3) gp->speedmultiplier = 150.0 / (avgBPM_bpmsum / avgBPM_notes); //average
+	else if (gp->maxBPM > 0.0 && cfg->play.hsfix == 1) gp->speedmultiplier = 150.0 / gp->maxBPM;
+	else if (gp->minBPM > 0.0 && cfg->play.hsfix == 2) gp->speedmultiplier = 150.0 / gp->minBPM;
+	else gp->speedmultiplier = 1.0;
+
+	if (cfg->play.m_loudness > 0 || cfg->play.is_extra > 0 || cfg->play.p1_assist > 0 || cfg->play.p2_assist > 0 || cfg->play.battle || cfg->play.m_addnote > 0)
+		gp->isGhostDisabled = 1;
+	if (0 < cfg->play.m_loudness)
+		gp->isNosave = 1;
+	if (gp->freqSpeedMultiplier < 1.0)
+		gp->isNosave = 1;
+	if (0 < cfg->play.m_addnote)
+		gp->isNosave = 1;
+	if (cfg->play.battle == 1 && gp->ghostBattle == 0)
+		gp->isNosave = 1;
+	if (gp->replay.status == 2)
+		gp->isNosave = 1;
+	if (cfg->play.hsfix == 4 && gp->minBPM != gp->maxBPM)
+		gp->isForceEasy = 1;
+	if (cfg->play.random[0] == 4 || cfg->play.random[1] == 4)
+		gp->isForceEasy = 1;
+	if (cfg->play.gaugeOption[0] == 3)
+		gp->isForceEasy = 1;
+	if ((cfg->play.p1_assist == 1 || cfg->play.p2_assist == 1) && (7 < meta->keymode || cfg->play.battle != 2))
+		gp->isForceEasy = 1;
+	if (cfg->play.m_lunaris)
+		gp->isNosave = 1;
+
+	for (int i = 0; i < 20; i++) { //calculated Out of Bound
+		noteRandomTable[0][i] = i;
+	}
+	for (int p = 0; p < 2; p++) {
+		if (cfg->play.random[p] == 1) { //mirror
+			if (meta->keymode == 7 || meta->keymode == 14) {
+				if (cfg->play.randSC[p] == 0) {
+					noteRandomTable[p][1] = 7 + p * 10;
+					noteRandomTable[p][2] = 6 + p * 10;
+					noteRandomTable[p][3] = 5 + p * 10;
+					noteRandomTable[p][4] = 4 + p * 10;
+					noteRandomTable[p][5] = 3 + p * 10;
+					noteRandomTable[p][6] = 2 + p * 10;
+					noteRandomTable[p][7] = 1 + p * 10;
+				}
+				else {
+					noteRandomTable[p][0] = 7 + p * 10;
+					noteRandomTable[p][1] = 6 + p * 10;
+					noteRandomTable[p][2] = 5 + p * 10;
+					noteRandomTable[p][3] = 4 + p * 10;
+					noteRandomTable[p][4] = 3 + p * 10;
+					noteRandomTable[p][5] = 2 + p * 10;
+					noteRandomTable[p][6] = 1 + p * 10;
+					noteRandomTable[p][7] = 0 + p * 10;
+				}
+			}
+			else if (meta->keymode == 5 || meta->keymode == 10) {
+				if (cfg->play.randSC[p] == 0) {
+					noteRandomTable[p][1] = 5 + p * 10;
+					noteRandomTable[p][2] = 4 + p * 10;
+					noteRandomTable[p][3] = 3 + p * 10;
+					noteRandomTable[p][4] = 2 + p * 10;
+					noteRandomTable[p][5] = 1 + p * 10;
+				}
+				else {
+					noteRandomTable[p][0] = 5 + p * 10;
+					noteRandomTable[p][1] = 4 + p * 10;
+					noteRandomTable[p][2] = 3 + p * 10;
+					noteRandomTable[p][3] = 2 + p * 10;
+					noteRandomTable[p][4] = 1 + p * 10;
+					noteRandomTable[p][5] = 0 + p * 10;
+				}
+			}
+			else if (meta->keymode == 9) {
+				noteRandomTable[0][1] = 9;
+				noteRandomTable[0][2] = 8;
+				noteRandomTable[0][3] = 7;
+				noteRandomTable[0][4] = 6;
+				noteRandomTable[0][5] = 5;
+				noteRandomTable[0][6] = 4;
+				noteRandomTable[0][7] = 3;
+				noteRandomTable[0][8] = 2;
+				noteRandomTable[0][9] = 1;
+			}
+		}
+		else if (cfg->play.random[p] == 2) { //random
+			if (meta->keymode == 9) {
+				for (int c = 1; c < 9; c++) {
+					int a = c + GetRand(9 - c);
+					int tmp = noteRandomTable[0][c];
+					noteRandomTable[0][c] = noteRandomTable[0][a];
+					noteRandomTable[0][a] = tmp;
+				}
+			}
+			else if (meta->keymode == 7 || meta->keymode == 14) {
+				if (cfg->play.randSC[p] == 0) {
+					for (int c = 1; c < 7; c++) {
+						int a = c + GetRand(7 - c);
+						int tmp = noteRandomTable[p][c];
+						noteRandomTable[p][c] = noteRandomTable[p][a];
+						noteRandomTable[p][a] = tmp;
+					}
+
+					if (0 < cfg->play.randFix[p] && cfg->play.randFix[p] < 8) {
+						for (int c = 1; c <= 7; c++) {
+							if (noteRandomTable[p][c] == cfg->play.randFix[p]) {
+								noteRandomTable[p][c] = noteRandomTable[p][1];
+								noteRandomTable[p][1] = cfg->play.randFix[p];
+							}
+						}
+					}
+				}
+				else {
+					for (int c = 0; c < 7; c++) {
+						int a = c + GetRand(7 - c);
+						int tmp = noteRandomTable[p][c];
+						noteRandomTable[p][c] = noteRandomTable[p][a];
+						noteRandomTable[p][a] = tmp;
+					}
+
+					if (0 < cfg->play.randFix[p] && cfg->play.randFix[p] < 8) {
+						for (int c = 1; c <= 7; c++) {
+							if (noteRandomTable[p][c] == 0) {
+								noteRandomTable[p][c] = noteRandomTable[p][cfg->play.randFix[p]];
+								noteRandomTable[p][cfg->play.randFix[p]] = 0;
+							}
+						}
+					}
+				}
+			}
+			else if (meta->keymode == 5 || meta->keymode == 10) {
+				if (cfg->play.randSC[p] == 0) {
+					for (int c = 1; c < 5; c++) {
+						int a = c + GetRand(5 - c);
+						int tmp = noteRandomTable[p][c];
+						noteRandomTable[p][c] = noteRandomTable[p][a];
+						noteRandomTable[p][a] = tmp;
+					}
+
+					if (0 < cfg->play.randFix[p] && cfg->play.randFix[p] < 6) {
+						for (int c = 1; c <= 5; c++) {
+							if (noteRandomTable[p][c] == cfg->play.randFix[p]) {
+								noteRandomTable[p][c] = noteRandomTable[p][1];
+								noteRandomTable[p][1] = cfg->play.randFix[p];
+							}
+						}
+					}
+				}
+				else {
+					for (int c = 0; c < 5; c++) {
+						int a = c + GetRand(5 - c);
+						int tmp = noteRandomTable[p][c];
+						noteRandomTable[p][c] = noteRandomTable[p][a];
+						noteRandomTable[p][a] = tmp;
+					}
+
+					if (0 < cfg->play.randFix[p] && cfg->play.randFix[p] < 6) {
+						for (int c = 1; c <= 5; c++) {
+							if (noteRandomTable[p][c] == 0) {
+								noteRandomTable[p][c] = noteRandomTable[p][cfg->play.randFix[p]];
+								noteRandomTable[p][cfg->play.randFix[p]] = 0;
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+	double p1LastTiming = 0.0, p2LastTiming = 0.0;
+	int intArr[30] = { -1, };
+	for (int i = 0; i < 30; i++) intArr[i] = -1;
+	memset(mapAdded, 0, sizeof(mapAdded));
+	char chArr[20] = { 0, };
+	int unkFbuf = 0; //rename this unused one
+	int unused_LaneA[10], unused_LaneB[10], unused_swapLane[10];
+	for (int i = 0; i < 10; i++) unused_LaneA[i] = -1;
+	for (int i = 0; i < 10; i++) unused_LaneB[i] = -1;
+	int isBattle = 0;
+
+	//shuffle notes
+	for (int i = 0; i < gp->bmsobj.count; i++) {
+		int optemp = gp->bmsobj.notes[i].op;
+		if (optemp < 10 || optemp >= 30) {
+			if (optemp == 2) {
+				if (cfg->play.battle == 3 && (meta->keymode == 5 || meta->keymode == 7) && gp->isCourse == 0) {
+					for (int j = 0; j < 10; j++) {
+						unused_swapLane[j] = unused_LaneA[j];
+						unused_LaneA[j] = unused_LaneB[j];
+						unused_LaneB[j] = unused_swapLane[j];
+					}
+					SPtoDP(&gp->bmsobj, i, &cc);
+				}
+
+				memcpy(&gp->bmsobj_line.notes[gp->bmsobj_line.count], &gp->bmsobj.notes[i], sizeof(NoteStruct));
+				gp->bmsobj_line.count++;;
+
+				if (gp->bmsobj_line.count == gp->bmsobj_line.size) {
+					ExpandNoteBuffer(&gp->bmsobj_line, 100);
+				}
+			}
+			else if (optemp == 1 && gp->bmsobj.notes[i].realTiming > endtime) {
+				endtime = gp->bmsobj.notes[i].realTiming;
+			}
+		}
+		else {
+			if (optemp < 20) {
+				if (p1LastTiming < gp->bmsobj.notes[i].realTiming) {
+					p1LastTiming = gp->bmsobj.notes[i].realTiming;
+					isBattle = 0;
+					for (int lane = 0; lane < 10; lane++) {
+						if (cfg->play.random[0] == 4) {
+							mapAdded[0][lane] = chArr[lane];
+						}
+						else {
+							mapAdded[0][lane] = 0;
+						}
+
+						if (intArr[lane] == -1 || gp->bmsobj.notes[intArr[lane]].realTiming_ln < gp->bmsobj.notes[i].realTiming) {
+							chArr[lane] = 0;
+						}
+					}
+					
+					if (unkFbuf == 1 || unkFbuf == 2) unkFbuf += 2;
+					else unkFbuf = 0;
+				}
+			}
+			else {
+				isBattle = (cfg->play.battle == 1);
+				if (p2LastTiming < gp->bmsobj.notes[i].realTiming) {
+					p2LastTiming = gp->bmsobj.notes[i].realTiming;
+					for (int lane = 0; lane < 10; lane++) {
+						if (cfg->play.random[1] == 4) {
+							mapAdded[1][lane] = chArr[10 + lane];
+						}
+						else {
+							mapAdded[1][lane] = 0;
+						}
+
+						if (intArr[10 + lane] == -1 || gp->bmsobj.notes[intArr[10 + lane]].realTiming_ln < gp->bmsobj.notes[i].realTiming) {
+							chArr[10 + lane] = 0;
+						}
+					}
+
+					if (unkFbuf == 1 || unkFbuf == 2) unkFbuf += 2;
+					else unkFbuf = 0;
+				}
+			}
+
+			if ((meta->keymode == 10 || meta->keymode == 14) && cfg->play.dpflip == 1) {
+				if (gp->bmsobj.notes[i].op < 20) gp->bmsobj.notes[i].op += 10;
+				else gp->bmsobj.notes[i].op -= 10;
+			}
+
+			if ( (cfg->play.random[0] >= 3 && gp->bmsobj.notes[i].op < 20) || (cfg->play.random[1] >= 3 && gp->bmsobj.notes[i].op >= 20) ) {
+				if (meta->keymode == 5 || meta->keymode == 10) {
+					if (cfg->play.randFix[0] >= 6) cfg->play.randFix[0] = 0;
+					if (cfg->play.randFix[1] >= 6) cfg->play.randFix[1] = 0;
+				}
+				else if (meta->keymode == 7 || meta->keymode == 14) {
+					if (cfg->play.randFix[0] >= 8) cfg->play.randFix[0] = 0;
+					if (cfg->play.randFix[1] >= 8) cfg->play.randFix[1] = 0;
+				}
+				else if (meta->keymode == 9) {
+					if (cfg->play.randFix[0] == 0) cfg->play.randFix[0] = 5;
+					if (cfg->play.randFix[1] == 0) cfg->play.randFix[1] = 5;
+				}
+
+				int assist = 0;
+				if (cfg->play.random[0] >= 3 && gp->bmsobj.notes[i].op < 20) assist = (cfg->play.randSC[0] != 0);
+				else if (cfg->play.random[1] >= 3 && gp->bmsobj.notes[i].op >= 20) assist = (cfg->play.randSC[1] != 0);
+
+				int randLanes;
+				switch (meta->keymode) {
+					case 5:
+					case 10:
+						randLanes = 4 + assist;
+						break;
+
+					case 7:
+					case 14:
+						randLanes = 6 + assist;
+						break;
+
+					case 9:
+						randLanes = 9;
+						break;
+				}
+
+				int startlane;
+				if (gp->bmsobj.notes[i].op < 20) {
+					startlane = 1 - assist;
+				}
+				else {
+					startlane = 11 - assist;
+				}
+
+				int lane = gp->bmsobj.notes[i].op - 10;
+				if (startlane <= lane && lane <= startlane + randLanes) {
+					bool pass = 1, pass2 = 1;
+					while(pass2){
+						lane = startlane + GetRand(randLanes);
+						if (pass) {
+							if (gp->bmsobj.notes[i].op < 20 && cfg->play.random[0] == 5) {
+								lane = cfg->play.randFix[0];
+								pass = 0;
+							}
+							if (gp->bmsobj.notes[i].op >= 20 && cfg->play.random[1] == 5) {
+								lane = cfg->play.randFix[1] + startlane;
+								pass = 0;
+							}
+						}
+
+						if (intArr[lane] == -1) {
+							pass2 = 0;
+							if (mapAdded[0][lane] == 0) break;
+							if (randLanes < startlane) break;
+							for (int j = startlane; j <= randLanes; j++) {
+								if (mapAdded[0][j] == 0) pass2 = 1;
+							}
+						}
+						else {
+							if(gp->bmsobj.notes[i].realTiming <= gp->bmsobj.notes[intArr[lane]].realTiming_ln || gp->bmsobj.notes[i].realTiming == gp->bmsobj.notes[intArr[lane]].realTiming) 
+								continue;
+
+							pass2 = 0;
+							if (mapAdded[0][lane] == 0) break;
+							if (randLanes < startlane) break;
+							for (int j = startlane; j <= randLanes; j++) {
+								if (mapAdded[0][j] == 0) pass2 = 1;
+							}
+						}
+					}
+					mapAdded[0][lane] = 1;
+					gp->bmsobj.notes[i].op = lane + 10;
+				}
+			}
+			
+			gp->bmsobj.notes[i].op;
+			chArr[gp->bmsobj.notes[i].op - 10] = 1;
+			if (meta->keymode == 14) {
+				if (gp->bmsobj.notes[i].op == 10) {
+					mapAdded[0][4] = 1;
+					mapAdded[0][5] = 1;
+					mapAdded[0][6] = 1;
+					mapAdded[0][7] = 1;
+				}
+				else if (gp->bmsobj.notes[i].op == 20) {
+					mapAdded[1][1] = 1;
+					mapAdded[1][2] = 1;
+					mapAdded[1][3] = 1;
+					mapAdded[1][4] = 1;
+				}
+			}
+			bool chnValid = (gp->bmsobj.notes[i].mine > 0);//
+			if (gp->bmsobj.notes[i].realTiming_ln + 2000.0 > endtime) {
+				endtime = gp->bmsobj.notes[i].realTiming_ln + 2000.0;
+			}
+			else if (gp->bmsobj.notes[i].realTiming + 2000.0 > endtime) {
+				endtime = gp->bmsobj.notes[i].realTiming + 2000.0;
+			}
+
+			int lane = noteRandomTable[0][gp->bmsobj.notes[i].op - 10];
+			if (cfg->play.battle == 2 && cfg->play.randSC[0] == 0 && cfg->play.randSC[1] == 0 && gp->bmsobj.notes[i].op == 10) {
+				gp->bmsobj.notes[i].op = 1;
+			}
+			else if (cfg->play.battle == 2 && cfg->play.randSC[0] == 0 && cfg->play.randSC[1] == 0 && gp->bmsobj.notes[i].op == 20) {
+				gp->bmsobj.notes[i].op = 1;
+			}
+			else {
+				if (intArr[lane] == -1) { //case first note of lane
+					ErrorLogFmtAdd("追加->%d", lane);
+					memcpy(&gp->bmsobj_note[lane].notes[gp->bmsobj_note[lane].count], &gp->bmsobj.notes[i], sizeof(NoteStruct));
+					gp->bmsobj_note[lane].count++;
+					intArr[lane] = i;
+					if (chnValid == 0) noteCount[isBattle]++;
+				}
+				else if (gp->bmsobj.notes[i].realTiming > gp->bmsobj.notes[intArr[lane]].realTiming_ln) {
+					if (gp->bmsobj.notes[i].realTiming != gp->bmsobj.notes[intArr[lane]].realTiming) {
+						ErrorLogFmtAdd("追加->%d", lane);
+						memcpy(&gp->bmsobj_note[lane].notes[gp->bmsobj_note[lane].count], &gp->bmsobj.notes[i], sizeof(NoteStruct));
+						gp->bmsobj_note[lane].count++;
+						intArr[lane] = i;
+						if (chnValid == 0) noteCount[isBattle]++;
+					}
+
+					else if (gp->bmsobj.notes[i].realTiming < gp->bmsobj.notes[i].realTiming_ln) { //case single note and longnote start conflicts, longnote overwrites it
+						noteCount[isBattle]--;
+						gp->bmsobj_note[lane].count--;
+						
+						memcpy(&gp->bmsobj_note[lane].notes[gp->bmsobj_note[lane].count], &gp->bmsobj.notes[i], sizeof(NoteStruct));
+						gp->bmsobj_note[lane].count++;
+						intArr[lane] = i;
+						if (chnValid == 0) noteCount[isBattle]++;
+					}
+				}
+				if (gp->bmsobj_note[lane].count == gp->bmsobj_note[lane].size) {
+					ExpandNoteBuffer(&gp->bmsobj_note[lane], 100);
+				}
+			}
+		}
+	}
+
+	//duplicate notes for battle
+	if (cfg->play.battle == 1 && cfg->play.random[0] == cfg->play.random[1] && (meta->keymode == 5 || meta->keymode == 7 || meta->keymode == 9)) {
+
+		for (int i = 0; i < 10; i++) {
+			if (gp->bmsobj_note[0 + i].size > gp->bmsobj_note[10 + i].size) {
+				ExpandNoteBuffer(&gp->bmsobj_note[10 + i], gp->bmsobj_note[0 + i].size - gp->bmsobj_note[10 + i].size);
+			}
+			gp->bmsobj_note[10 + i].count = gp->bmsobj_note[0 + i].count;
+			for (int j = 0; j < gp->bmsobj_note[0 + i].count; j++) {
+				gp->bmsobj_note[10 + i].notes[j].op = gp->bmsobj_note[0 + i].notes[j].op + 10;
+				gp->bmsobj_note[10 + i].notes[j].bmsTiming_ln = gp->bmsobj_note[0 + i].notes[j].bmsTiming_ln;
+				gp->bmsobj_note[10 + i].notes[j].realTiming_ln = gp->bmsobj_note[0 + i].notes[j].realTiming_ln;
+				gp->bmsobj_note[10 + i].notes[j].active = gp->bmsobj_note[0 + i].notes[j].active;
+				gp->bmsobj_note[10 + i].notes[j].mine = gp->bmsobj_note[0 + i].notes[j].mine;
+				gp->bmsobj_note[10 + i].notes[j].val = gp->bmsobj_note[0 + i].notes[j].val;
+				gp->bmsobj_note[10 + i].notes[j].bmsTiming = gp->bmsobj_note[0 + i].notes[j].bmsTiming;
+				gp->bmsobj_note[10 + i].notes[j].realTiming = gp->bmsobj_note[0 + i].notes[j].realTiming;
+			}
+		}
+		noteCount[1] = noteCount[0];
+	}
+
+	gp->scratchSide = scratchSide;
+	if (scratchSide == 1 || scratchSide == 3) {
+		memcpy(&tmpLane[3], &gp->bmsobj_note[1], sizeof(LaneStruct));
+		memcpy(&tmpLane[4], &gp->bmsobj_note[2], sizeof(LaneStruct));
+		memcpy(&tmpLane[5], &gp->bmsobj_note[3], sizeof(LaneStruct));
+		memcpy(&tmpLane[6], &gp->bmsobj_note[4], sizeof(LaneStruct));
+		memcpy(&tmpLane[7], &gp->bmsobj_note[5], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[1], &gp->bmsobj_note[6], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[2], &gp->bmsobj_note[7], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[3], &tmpLane[3], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[4], &tmpLane[4], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[5], &tmpLane[5], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[6], &tmpLane[6], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[7], &tmpLane[7], sizeof(LaneStruct));
+	}
+	if (scratchSide == 2 || scratchSide == 3) {
+		memcpy(&tmpLane[3], &gp->bmsobj_note[11], sizeof(LaneStruct));
+		memcpy(&tmpLane[4], &gp->bmsobj_note[12], sizeof(LaneStruct));
+		memcpy(&tmpLane[5], &gp->bmsobj_note[13], sizeof(LaneStruct));
+		memcpy(&tmpLane[6], &gp->bmsobj_note[14], sizeof(LaneStruct));
+		memcpy(&tmpLane[7], &gp->bmsobj_note[15], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[11], &gp->bmsobj_note[16], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[12], &gp->bmsobj_note[17], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[13], &tmpLane[3], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[14], &tmpLane[4], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[15], &tmpLane[5], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[16], &tmpLane[6], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[17], &tmpLane[7], sizeof(LaneStruct));
+	}
+	if (is5key) {
+		memcpy(&tmpLane[3], &gp->bmsobj_note[1], sizeof(LaneStruct));
+		memcpy(&tmpLane[4], &gp->bmsobj_note[2], sizeof(LaneStruct));
+		memcpy(&tmpLane[5], &gp->bmsobj_note[3], sizeof(LaneStruct));
+		memcpy(&tmpLane[6], &gp->bmsobj_note[4], sizeof(LaneStruct));
+		memcpy(&tmpLane[7], &gp->bmsobj_note[5], sizeof(LaneStruct));
+		memcpy(&tmpLane[8], &gp->bmsobj_note[6], sizeof(LaneStruct));
+		memcpy(&tmpLane[9], &gp->bmsobj_note[0], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[0], &gp->bmsobj_note[9], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[1], &gp->bmsobj_note[7], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[2], &gp->bmsobj_note[8], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[3], &tmpLane[3], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[4], &tmpLane[4], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[5], &tmpLane[5], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[6], &tmpLane[6], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[7], &tmpLane[7], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[8], &tmpLane[8], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[9], &tmpLane[9], sizeof(LaneStruct));
+	}
+	if (is7key && !isDSC) {
+		memcpy(&tmpLane[1], &gp->bmsobj_note[1], sizeof(LaneStruct));
+		memcpy(&tmpLane[2], &gp->bmsobj_note[2], sizeof(LaneStruct));
+		memcpy(&tmpLane[3], &gp->bmsobj_note[3], sizeof(LaneStruct));
+		memcpy(&tmpLane[4], &gp->bmsobj_note[4], sizeof(LaneStruct));
+		memcpy(&tmpLane[5], &gp->bmsobj_note[5], sizeof(LaneStruct));
+		memcpy(&tmpLane[6], &gp->bmsobj_note[6], sizeof(LaneStruct));
+		memcpy(&tmpLane[7], &gp->bmsobj_note[7], sizeof(LaneStruct));
+		memcpy(&tmpLane[8], &gp->bmsobj_note[8], sizeof(LaneStruct));
+		memcpy(&tmpLane[9], &gp->bmsobj_note[0], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[0], &gp->bmsobj_note[9], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[1], &tmpLane[1], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[2], &tmpLane[2], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[3], &tmpLane[3], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[4], &tmpLane[4], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[5], &tmpLane[5], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[6], &tmpLane[6], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[7], &tmpLane[7], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[8], &tmpLane[8], sizeof(LaneStruct));
+		memcpy(&gp->bmsobj_note[9], &tmpLane[9], sizeof(LaneStruct));
+	}
+
+	//set judgetime and judgedamage
+	for (int p = 0; p < 2; p++) {
+		if (total[p] < 1) {
+			int notes = noteCount[p];
+			double newtotalCalc;
+			if (notes < 400) {
+				newtotalCalc = notes / 5.0 + 200.0;
+			}
+			else if (notes < 600) {
+				newtotalCalc = (notes - 400) / 2.5 + 280.0;
+			}
+			else {
+				newtotalCalc = (notes - 600) / 5.0 + 360.0;
+			}
+			total[p] = newtotalCalc * 0.8;
+		}
+	}
+	for (int p = 0; p < 2; p++) {
+		double dmg_notebase;
+		int notes = noteCount[p];
+		if (notes) {
+			switch (rank) {
+			case 0:
+				gp->player[p].judgetime[5] = 8;
+				gp->player[p].judgetime[4] = 24;
+				gp->player[p].judgetime[3] = 40;
+				break;
+			case 1:
+				gp->player[p].judgetime[5] = 15;
+				gp->player[p].judgetime[4] = 30;
+				gp->player[p].judgetime[3] = 60;
+				break;
+			default:
+				gp->player[p].judgetime[5] = 18;
+				gp->player[p].judgetime[4] = 40;
+				gp->player[p].judgetime[3] = 100;
+				break;
+			case 3:
+				gp->player[p].judgetime[5] = 21;
+				gp->player[p].judgetime[4] = 60;
+				gp->player[p].judgetime[3] = 120;
+				break;
+
+			}
+			gp->player[p].judgetime[2] = 200;
+			gp->player[p].judgetime[1] = 1000;
+
+			if (cfg->play.m_gambol == 1) {
+				gp->player[p].judgetime[5] = 8;
+				gp->player[p].judgetime[4] = 24;
+				gp->player[p].judgetime[3] = 40;
+				gp->player[p].judgetime[2] = 200;
+				gp->player[p].judgetime[1] = 1000;
+			}
+			else  if (cfg->play.m_gambol == 2) {
+				gp->player[p].judgetime[5] = 8;
+				gp->player[p].judgetime[4] = 12;
+				gp->player[p].judgetime[3] = 12;
+				gp->player[p].judgetime[2] = 200;
+				gp->player[p].judgetime[1] = 1000;
+			}
+
+			gp->player[p].totalnotes = notes;
+
+			//TODO : check damage
+			if (notes < 20)
+				dmg_notebase = 10.0;
+			else if (notes < 30)
+				dmg_notebase = 10.0 - (notes - 20.0) / 10.0 * 2.0;
+			else if (notes < 45)
+				dmg_notebase = 7.0 - (notes - 30.0) / 15.0;
+			else if (notes < 60)
+				dmg_notebase = 6.0 - (notes - 45.0) / 15.0;
+			else if (notes < 125)
+				dmg_notebase = 5.0 - (notes - 60.0) / 65.0;
+			else if (notes < 250)
+				dmg_notebase = 4.0 - (notes - 125.0) / 125.0;
+			else if (notes < 500)
+				dmg_notebase = 3.0 - (notes - 250.0) / 250.0;
+			else if (notes < 1000)
+				dmg_notebase = 2.0 - (notes - 500.0) / 500.0;
+			else
+				dmg_notebase = 1;
+			//TODO: recheck twice below.
+			int recover = (total[p] - 80.0)*0.125 / 2;
+			if (recover <= 0) recover = 1;
+
+			double dmg_totalbase = 100.0 / (double)recover;
+			double dmg = max(dmg_notebase * 10, dmg_totalbase) / 10.0;
+
+			if (!gp->isCourse) {
+				switch (cfg->play.gaugeOption[p]) {
+				default:
+					gp->player[p].judge_damage[5] = total[p] / (float)notes;
+					gp->player[p].judge_damage[4] = total[p] / (float)notes;
+					gp->player[p].judge_damage[3] = total[p] / (float)(notes + notes);
+					gp->player[p].judge_damage[2] = -4.0;
+					gp->player[p].judge_damage[1] = -6.0;
+					gp->player[p].judge_damage[0] = -2.0;
+					break;
+				case 1:
+					gp->player[p].judge_damage[5] = 0.1;
+					gp->player[p].judge_damage[4] = 0.1;
+					gp->player[p].judge_damage[3] = 0.05;
+					gp->player[p].judge_damage[2] = dmg * (-6.0);
+					gp->player[p].judge_damage[1] = dmg * (-10.0);
+					gp->player[p].judge_damage[0] = dmg * (-2.0);
+					break;
+				case 2:
+					gp->player[p].judge_damage[5] = 0.0;
+					gp->player[p].judge_damage[4] = 0.0;
+					gp->player[p].judge_damage[3] = 0.0;
+					gp->player[p].judge_damage[2] = -100.0;
+					gp->player[p].judge_damage[1] = -100.0;
+					gp->player[p].judge_damage[0] = 0.0;
+					break;
+				case 3:
+					gp->player[p].judge_damage[5] = (total[p] / (float)notes) * 1.2;
+					gp->player[p].judge_damage[4] = (total[p] / (float)notes) * 1.2;
+					gp->player[p].judge_damage[3] = (total[p] / (float)(notes + notes)) * 1.2;
+					gp->player[p].judge_damage[2] = -3.2;
+					gp->player[p].judge_damage[1] = -4.800000000000001;
+					gp->player[p].judge_damage[0] = -1.6;
+					break;
+				case 4:
+					gp->player[p].judge_damage[5] = 0.1;
+					gp->player[p].judge_damage[4] = -1.0;
+					gp->player[p].judge_damage[3] = -100.0;
+					gp->player[p].judge_damage[2] = -100.0;
+					gp->player[p].judge_damage[1] = -100.0;
+					gp->player[p].judge_damage[0] = -100.0;
+					break;
+				case 5:
+					gp->player[p].judge_damage[5] = dmg * (-10.0);
+					gp->player[p].judge_damage[4] = -1.0;
+					gp->player[p].judge_damage[3] = 0.1;
+					gp->player[p].judge_damage[2] = -6.0;
+					gp->player[p].judge_damage[1] = dmg * (-10.0);
+					gp->player[p].judge_damage[0] = dmg * (-2.0);
+					break;
+				}
+			}
+			else if (gp->courseType == 2) {
+				switch (cfg->play.gaugeOption[p]) {
+				default:
+					gp->player[p].judge_damage[5] = 0.1;
+					gp->player[p].judge_damage[4] = 0.1;
+					gp->player[p].judge_damage[3] = 0.04;
+					gp->player[p].judge_damage[2] = -2.0;
+					gp->player[p].judge_damage[1] = -3.0;
+					gp->player[p].judge_damage[0] = -2.0;
+					break;
+				case 1:
+					gp->player[p].judge_damage[5] = 0.1;
+					gp->player[p].judge_damage[4] = 0.1;
+					gp->player[p].judge_damage[3] = 0.04;
+					gp->player[p].judge_damage[2] = dmg * (-6.0);
+					gp->player[p].judge_damage[1] = dmg * (-10.0);
+					gp->player[p].judge_damage[0] = dmg * (-2.0);
+					break;
+				case 2:
+					gp->player[p].judge_damage[5] = 0.0;
+					gp->player[p].judge_damage[4] = 0.0;
+					gp->player[p].judge_damage[3] = 0.0;
+					gp->player[p].judge_damage[2] = -100.0;
+					gp->player[p].judge_damage[1] = -100.0;
+					gp->player[p].judge_damage[0] = 0.0;
+					break;
+				case 4:
+					gp->player[p].judge_damage[5] = 0.1;
+					gp->player[p].judge_damage[4] = -1.0;
+					gp->player[p].judge_damage[3] = -100.0;
+					gp->player[p].judge_damage[2] = -100.0;
+					gp->player[p].judge_damage[1] = -100.0;
+					gp->player[p].judge_damage[0] = -100.0;
+					break;
+				case 5:
+					gp->player[p].judge_damage[5] = dmg * (-10.0);
+					gp->player[p].judge_damage[4] = -1.0;
+					gp->player[p].judge_damage[3] = 0.1;
+					gp->player[p].judge_damage[2] = -6.0;
+					gp->player[p].judge_damage[1] = dmg * (-10.0);
+					gp->player[p].judge_damage[0] = dmg * (-2.0);
+					break;
+				}
+			}
+			else {
+				switch (cfg->play.gaugeOption[p]) {
+				default:
+					gp->player[p].judge_damage[5] = 0.1;
+					gp->player[p].judge_damage[4] = 0.1;
+					gp->player[p].judge_damage[3] = 0.04;
+					gp->player[p].judge_damage[2] = -1.5;
+					gp->player[p].judge_damage[1] = -2.0;
+					gp->player[p].judge_damage[0] = -1.5;
+					break;
+				case 1:
+					gp->player[p].judge_damage[5] = 0.1;
+					gp->player[p].judge_damage[4] = 0.1;
+					gp->player[p].judge_damage[3] = 0.05;
+					gp->player[p].judge_damage[2] = dmg * (-6.0);
+					gp->player[p].judge_damage[1] = dmg * (-10.0);
+					gp->player[p].judge_damage[0] = dmg * (-2.0);
+					break;
+				case 2:
+					gp->player[p].judge_damage[5] = 0.0;
+					gp->player[p].judge_damage[4] = 0.0;
+					gp->player[p].judge_damage[3] = 0.0;
+					gp->player[p].judge_damage[2] = -100.0;
+					gp->player[p].judge_damage[1] = -100.0;
+					gp->player[p].judge_damage[0] = 0.0;
+					break;
+				case 3:
+					gp->player[p].judge_damage[5] = 0.12;
+					gp->player[p].judge_damage[4] = 0.12;
+					gp->player[p].judge_damage[3] = 0.048;
+					gp->player[p].judge_damage[2] = -1.2;
+					gp->player[p].judge_damage[1] = -1.6;
+					gp->player[p].judge_damage[0] = -1.2;
+					break;
+				case 4:
+					gp->player[p].judge_damage[5] = 0.1;
+					gp->player[p].judge_damage[4] = -1.0;
+					gp->player[p].judge_damage[3] = -100.0;
+					gp->player[p].judge_damage[2] = -100.0;
+					gp->player[p].judge_damage[1] = -100.0;
+					gp->player[p].judge_damage[0] = -100.0;
+					break;
+				case 5:
+					gp->player[p].judge_damage[5] = dmg * (-10.0);
+					gp->player[p].judge_damage[4] = -1.0;
+					gp->player[p].judge_damage[3] = 0.1;
+					gp->player[p].judge_damage[2] = -6.0;
+					gp->player[p].judge_damage[1] = dmg * (-10.0);
+					gp->player[p].judge_damage[0] = dmg * (-2.0);
+					break;
+				}
+			}
+		}
+	}
+
+	//set first lane keysound
+	for (int i = 0; i < 20; i++) {
+		if (gp->bmsobj_note[i].count <= 0) gp->bmsobj_note[i].noteVal = -1;
+		else gp->bmsobj_note[i].noteVal = gp->bmsobj_note[i].notes[0].val;
+	}
+
+	//add notes for maniac options
+	if (cfg->play.m_addlong > 0) {
+		for (int i = 0; i < 20; i++) {
+			if (i != 0 && i != 10) {
+				for (int j = 0; j < gp->bmsobj_note[i].count - 1; j++) {
+					if (GetRand(100) < cfg->play.m_addlong) {
+						double e = (gp->bmsobj_note[i].notes[j].realTiming + gp->bmsobj_note[i].notes[j + 1].realTiming) * 0.5;
+						if (gp->bmsobj_note[i].notes[j].realTiming_ln < e) {
+							gp->bmsobj_note[i].notes[j].realTiming_ln = e;
+							gp->bmsobj_note[i].notes[j].bmsTiming_ln = RealTimeToBMSTime(gp, gp->bmsobj_note[i].notes[j].realTiming_ln);
+						}
+					}
+				}
+				if (gp->bmsobj_note[i].count > 0 && cfg->play.m_addlong == 100) {
+					gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count - 1].realTiming_ln = endtime;
+					gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count - 1].bmsTiming_ln = RealTimeToBMSTime(gp, gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count - 1].realTiming_ln);
+				}
+				gp->bpmt_start = 0;
+			}
+		}
+		endtime += 2000.0;
+	}
+
+	if (cfg->play.m_addmine > 0) {
+		for (int i = 0; i < 20; i++) {
+			if (i != 0 && i != 10) {
+				int s = gp->bmsobj_note[i].count;
+				for (int j = 0; j < gp->bmsobj_note[i].count - 1; j++) {
+					if (GetRand(100) < cfg->play.m_addmine) {
+						if (gp->bmsobj_note[i].count == gp->bmsobj_note[i].size) {
+							ExpandNoteBuffer(&gp->bmsobj_note[i], 1000);
+						}
+						gp->bmsobj_note[i].notes;
+						gp->bmsobj_note[i].notes[j + 1].realTiming_ln;
+						gp->bmsobj_note[i].notes[j + 1].realTiming;
+
+						if (gp->bmsobj_note[i].notes[j + 1].realTiming_ln > gp->bmsobj_note[i].notes[j + 1].realTiming) {
+							if (200.0 < gp->bmsobj_note[i].notes[j + 1].realTiming - gp->bmsobj_note[i].notes[j].realTiming_ln) {
+								gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].realTiming = (gp->bmsobj_note[i].notes[j + 1].realTiming + gp->bmsobj_note[i].notes[j].realTiming_ln) * 0.5;
+								gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].bmsTiming = RealTimeToBMSTime(gp, gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].realTiming);
+								gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].val = 0.0;
+								gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].mine = 4;
+								gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].op = gp->bmsobj_note[i].notes[j + 1].op;
+								gp->bmsobj_note[i].count++;
+							}
+						}
+						else if (200.0 < gp->bmsobj_note[i].notes[j + 1].realTiming - gp->bmsobj_note[i].notes[j].realTiming) {
+							gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].realTiming = (gp->bmsobj_note[i].notes[j + 1].realTiming + gp->bmsobj_note[i].notes[j].realTiming) * 0.5;
+							gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].bmsTiming = RealTimeToBMSTime(gp, gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].realTiming);
+							gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].val = 0.0;
+							gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].mine = 4;
+							gp->bmsobj_note[i].notes[gp->bmsobj_note[i].count].op = gp->bmsobj_note[i].notes[j + 1].op;
+							gp->bmsobj_note[i].count++;
+						}
+					}
+				}
+				gp->bpmt_start = 0;
+				if (s > 1) {
+					qsort(gp->bmsobj_note[i].notes, gp->bmsobj_note[i].count, sizeof(NoteStruct), CMP_NotesByRealTiming);
+				}
+			}
+		}
+	}
+
+	gp->p1Score.InitJudgeQueue();
+	gp->p1Score.ResetJudgeQueue(gp->player[0].totalnotes * 2);
+	gp->BPM = gp->BPM_fix;
+	gp->player[0].total_note += gp->player[0].totalnotes;
+	gp->song_runtime = endtime;
+	gp->player[1].total_note += gp->player[1].totalnotes;
+
+	if (gp->soundonly == 1 && bgaFlag && (cfg->play.bga == 3 || cfg->play.bga == 1 || (cfg->play.bga == 2 && gp->isAutoplay)) && cfg->play.autojudge != 2) {
+		DeleteGraph(gp->bgaHandle[1295]);
+		gp->bgaHandle[1295] = -1;
+		CSTR defaultMovieFile = GetRandomFile("LR2files\\Movie\\*.mpg", 0);
+		if (defaultMovieFile.isDiff("ERROR")) gp->bgaHandle[1295] = LoadGraph(defaultMovieFile);
+		if (gp->bgaHandle[1295] == -1) {
+			defaultMovieFile = GetRandomFile("LR2files\\Movie\\*.avi", 0);
+			if (defaultMovieFile.isDiff("ERROR")) gp->bgaHandle[1295] = LoadGraph(defaultMovieFile);
+			if (gp->bgaHandle[1295] == -1) {
+				defaultMovieFile = GetRandomFile("LR2files\\Movie\\*.wmv", 0);
+				if (defaultMovieFile.isDiff("ERROR")) gp->bgaHandle[1295] = LoadGraph(defaultMovieFile);
+				if (gp->bgaHandle[1295] == -1) {
+					defaultMovieFile = GetRandomFile("LR2files\\Movie\\*.mp4", 0);
+					if (defaultMovieFile.isDiff("ERROR")) gp->bgaHandle[1295] = LoadGraph(defaultMovieFile);
+					if (gp->bgaHandle[1295] == -1) {
+						defaultMovieFile = GetRandomFile("LR2files\\Movie\\*.ogv", 0);
+						if (defaultMovieFile.isDiff("ERROR")) gp->bgaHandle[1295] = LoadGraph(defaultMovieFile);
+					}
+				}
+			}
+		}
+	}
+	if (cfg->system.isablebmsthread == 1 && gp->isPreviewLoad == 0) {
+		LoadBmsResource(gp, filename, aud, cfg, meta, bgaFlag, scratchSide, 0);
+	}
+	if (gp->fadeinSOUNDstart[0] <= 0 || gp->fadeinSOUNDend[0] <= 0) {
+		aud->param.stageBgmVolume[0] = 1.0;
+		aud->param.stageKeyVolume[0] = 1.0;
+	}
+	if (gp->fadeinSOUNDstart[1] <= 0 || gp->fadeinSOUNDend[1] <= 0) {
+		aud->param.stageBgmVolume[1] = 1.0;
+		aud->param.stageKeyVolume[1] = 1.0;
+	}
+	if (gp->fadeinSOUNDstart[2] <= 0 || gp->fadeinSOUNDend[2] <= 0) {
+		aud->param.stageBgmVolume[2] = 1.0;
+		aud->param.stageKeyVolume[2] = 1.0;
+	}
+	if (gp->fadeinSOUNDstart[3] <= 0 || gp->fadeinSOUNDend[3] <= 0) {
+		aud->param.stageBgmVolume[3] = 1.0;
+		aud->param.stageKeyVolume[3] = 1.0;
+	}
+	if (gp->fadeinSOUNDstart[4] <= 0 || gp->fadeinSOUNDend[4] <= 0) {
+		aud->param.stageBgmVolume[4] = 1.0;
+		aud->param.stageKeyVolume[4] = 1.0;
+	}
+	ApplySoundFX(aud, 1, cfg->sound.disabledsp);
+	ErrorLogAdd("BMSを読み込みました。\n");
+	return 1;
+}
 
 
 //TIMER
@@ -26810,6 +30638,1317 @@ int NETWORK::MakeIRsendScoreThread() {
 }
 
 ////LR2input.cpp
+MIDI midi;
+
+//4bd6a0 //TODO structure array rework
+int InitInputStructure2(inputStructure *is){
+	
+	is->is_doubleclick = 0;
+	is->mousewheel = 0;
+	is->mouse_buttonL = 0;
+	is->mouse_buttonR = 0;
+	is->mouse_buttonW = 0;
+	is->mouse_button4 = 0;
+	memset(is->p1_buttonInput, 0, sizeof(char)*100);
+	memset(is->inputID, 0, sizeof(char) * 0x600);
+	return 1;
+}
+
+//4bd6f0
+void EndMIDIInput(void){
+	UINT numDev;
+
+	numDev = midiInGetNumDevs();
+	if (numDev > 15) {
+		numDev = 15;
+	}
+
+	for (int i = 0; i < numDev; i++) {
+		midiInStop(midi.phmiArray[i]);
+		midiInClose(midi.phmiArray[i]);
+	}
+	return;
+}
+
+//4bd740
+void GetMidiInput(dword msg, dword timestamp) {
+	// http://www.gweep.net/~prefect/eng/reference/protocol/midispec.html
+	byte status = (msg & 0xff);
+	byte data1 = LOWORD(msg) >> 8;
+	byte data2 = HIWORD(msg) & 0xff;
+
+	if (data1 != 0xf8 && (data1 & 0xf0) != 0xf0) {
+		switch (status >> 4) {
+			case 8: //note off
+				midi.input[data1] = 0;
+				return;
+			case 9: //note on
+				midi.input[data1] = (data2 != 0);
+				return;
+			case 11: //control change
+				midi.controller_n = data1;
+				midi.controller_v = data2;
+				if (data1 == 0x40) { //pedal
+					if (data2 < 0x40) {
+						midi.input[0x102] = 0; //pedal
+					}
+					else if (data2 > 0x40) {
+						midi.input[0x102] = 1;
+					}
+				}
+				return;
+			case 14: //ptich wheel
+				if (data2 < 0x40) {
+					midi.input[0x100] = 1; //pitch_minus
+					midi.input[0x101] = 0; //pitch_plus
+				}
+				else if (data2 > 0x40) {
+					midi.input[0x100] = 0;
+					midi.input[0x101] = 1;
+				}
+				else {
+					midi.input[0x100] = 0;
+					midi.input[0x101] = 0;
+				}
+				return;
+		}
+	}
+}
+
+//4bd830
+CSTR GetKeyIDname(int keyID) {
+	CSTR midiName[12] = { "C","C#","D","D#","E","F","F#","G","G#","A","A#","B" };
+	CSTR oBuf = "-";
+	const char* tmpStr;
+	char tmpFStr[32];
+
+	if (keyID == 0) {
+		return oBuf;
+	}
+	switch (keyID) {
+		case 1:
+			tmpStr = "ESCAPE";
+			break;
+		case 2:
+			tmpStr = "1";
+			break;
+		case 3:
+			tmpStr = "2";
+			break;
+		case 4:
+			tmpStr = "3";
+			break;
+		case 5:
+			tmpStr = "4";
+			break;
+		case 6:
+			tmpStr = "5";
+			break;
+		case 7:
+			tmpStr = "6";
+			break;
+		case 8:
+			tmpStr = "7";
+			break;
+		case 9:
+			tmpStr = "8";
+			break;
+		case 10:
+			tmpStr = "9";
+			break;
+		case 11:
+			tmpStr = "0";
+			break;
+		case 12:
+			tmpStr = "MINUS";
+			break;
+		case 13:
+			tmpStr = "EQUALS";
+			break;
+		case 14:
+			tmpStr = "BACK";
+			break;
+		case 15:
+			tmpStr = "TAB";
+			break;
+		case 16:
+			tmpStr = "Q";
+			break;
+		case 17:
+			tmpStr = "W";
+			break;
+		case 18:
+			tmpStr = "E";
+			break;
+		case 19:
+			tmpStr = "R";
+			break;
+		case 20:
+			tmpStr = "T";
+			break;
+		case 21:
+			tmpStr = "Y";
+			break;
+		case 22:
+			tmpStr = "U";
+			break;
+		case 23:
+			tmpStr = "I";
+			break;
+		case 24:
+			tmpStr = "O";
+			break;
+		case 25:
+			tmpStr = "P";
+			break;
+		case 26:
+			tmpStr = "LBRACKET";
+			break;
+		case 27:
+			tmpStr = "RBRACKET";
+			break;
+		case 28:
+			tmpStr = "RETURN";
+			break;
+		case 29:
+			tmpStr = "LCONTROL";
+			break;
+		case 30:
+			tmpStr = "A";
+			break;
+		case 31:
+			tmpStr = "S";
+			break;
+		case 32:
+			tmpStr = "D";
+			break;
+		case 33:
+			tmpStr = "F";
+			break;
+		case 34:
+			tmpStr = "G";
+			break;
+		case 35:
+			tmpStr = "H";
+			break;
+		case 36:
+			tmpStr = "J";
+			break;
+		case 37:
+			tmpStr = "K";
+			break;
+		case 38:
+			tmpStr = "l";
+			break;
+		case 39:
+			tmpStr = "SEMICOLON";
+			break;
+		case 40:
+			tmpStr = "APOSTROPHE";
+			break;
+		case 41:
+			tmpStr = "GRAVE";
+			break;
+		case 42:
+			tmpStr = "LSHIFT";
+			break;
+		case 43:
+			tmpStr = "BACKSLASH";
+			break;
+		case 44:
+			tmpStr = "Z";
+			break;
+		case 45:
+			tmpStr = "X";
+			break;
+		case 46:
+			tmpStr = "C";
+			break;
+		case 47:
+			tmpStr = "V";
+			break;
+		case 48:
+			tmpStr = "B";
+			break;
+		case 49:
+			tmpStr = "N";
+			break;
+		case 50:
+			tmpStr = "M";
+			break;
+		case 51:
+			tmpStr = "COMMA";
+			break;
+		case 52:
+			tmpStr = "PERIOD";
+			break;
+		case 53:
+			tmpStr = "SLASH";
+			break;
+		case 54:
+			tmpStr = "RSHIFT";
+			break;
+		case 55:
+			tmpStr = "MULTIPLY";
+			break;
+		case 56:
+			tmpStr = "LMENU";
+			break;
+		case 57:
+			tmpStr = "SPACE";
+			break;
+		case 58:
+			tmpStr = "CAPITAL";
+			break;
+		case 59:
+			tmpStr = "F1";
+			break;
+		case 60:
+			tmpStr = "F2";
+			break;
+		case 61:
+			tmpStr = "F3";
+			break;
+		case 62:
+			tmpStr = "F4";
+			break;
+		case 63:
+			tmpStr = "F5";
+			break;
+		case 64:
+			tmpStr = "F6";
+			break;
+		case 65:
+			tmpStr = "F7";
+			break;
+		case 66:
+			tmpStr = "F8";
+			break;
+		case 67:
+			tmpStr = "F9";
+			break;
+		case 68:
+			tmpStr = "F10";
+			break;
+		case 69:
+			tmpStr = "NUMLOCK";
+			break;
+		case 70:
+			tmpStr = "SCROLL";
+			break;
+		case 71:
+			tmpStr = "NUMPAD7";
+			break;
+		case 72:
+			tmpStr = "NUMPAD8";
+			break;
+		case 73:
+			tmpStr = "NUMPAD9";
+			break;
+		case 74:
+			tmpStr = "SUBTRACT";
+			break;
+		case 75:
+			tmpStr = "NUMPAD4";
+			break;
+		case 76:
+			tmpStr = "NUMPAD5";
+			break;
+		case 77:
+			tmpStr = "NUMPAD6";
+			break;
+		case 78:
+			tmpStr = "ADD";
+			break;
+		case 79:
+			tmpStr = "NUMPAD1";
+			break;
+		case 80:
+			tmpStr = "NUMPAD2";
+			break;
+		case 81:
+			tmpStr = "NUMPAD3";
+			break;
+		case 82:
+			tmpStr = "NUMPAD0";
+			break;
+		case 83:
+			tmpStr = "DECIMAL";
+			break;
+		case 0x54:
+		case 0x55:
+		case 0x59:
+		case 0x5a:
+		case 0x5b:
+		case 0x5c:
+		case 0x5d:
+		case 0x5e:
+		case 0x5f:
+		case 0x60:
+		case 0x61:
+		case 0x62:
+		case 99:
+		case 0x67:
+		case 0x68:
+		case 0x69:
+		case 0x6a:
+		case 0x6b:
+		case 0x6c:
+		case 0x6d:
+		case 0x6e:
+		case 0x6f:
+		case 0x71:
+		case 0x72:
+		case 0x74:
+		case 0x75:
+		case 0x76:
+		case 0x77:
+		case 0x78:
+		case 0x7a:
+		case 0x7c:
+		case 0x7f:
+		case 0x80:
+		case 0x81:
+		case 0x82:
+		case 0x83:
+		case 0x84:
+		case 0x85:
+		case 0x86:
+		case 0x87:
+		case 0x88:
+		case 0x89:
+		case 0x8a:
+		case 0x8b:
+		case 0x8c:
+		case 0x8e:
+		case 0x8f:
+		case 0x98:
+		case 0x9a:
+		case 0x9b:
+		case 0x9e:
+		case 0x9f:
+		case 0xa3:
+		case 0xa5:
+		case 0xa6:
+		case 0xa7:
+		case 0xa8:
+		case 0xa9:
+		case 0xaa:
+		case 0xab:
+		case 0xac:
+		case 0xad:
+		case 0xaf:
+		case 0xb1:
+		case 0xb4:
+		case 0xb6:
+		case 0xb9:
+		case 0xba:
+		case 0xbb:
+		case 0xbc:
+		case 0xbd:
+		case 0xbe:
+		case 0xbf:
+		case 0xc0:
+		case 0xc1:
+		case 0xc2:
+		case 0xc3:
+		case 0xc4:
+		case 0xc6:
+		case 0xca:
+		case 0xcc:
+		case 0xce:
+		case 0xd4:
+		case 0xd5:
+		case 0xd6:
+		case 0xd7:
+		case 0xd8:
+		case 0xd9:
+		case 0xda:
+		case 0xe0:
+		case 0xe1:
+		case 0xe2:
+		case 0xe4:
+			return oBuf;
+		case 86:
+			tmpStr = "OEM_102";
+			break;
+		case 87:
+			tmpStr = "F11";
+			break;
+		case 88:
+			tmpStr = "F12";
+			break;
+		case 100:
+			tmpStr = "F13";
+			break;
+		case 101:
+			tmpStr = "F14";
+			break;
+		case 102:
+			tmpStr = "F15";
+			break;
+		case 112:
+			tmpStr = "KANA";
+			break;
+		case 115:
+			tmpStr = "ABNT_C1";
+			break;
+		case 121:
+			tmpStr = "CONVERT";
+			break;
+		case 123:
+			tmpStr = "NOCONVERT";
+			break;
+		case 125:
+			tmpStr = "YEN";
+			break;
+		case 126:
+			tmpStr = "ABNT_C2";
+			break;
+		case 141:
+			tmpStr = "NUMPADEQUALS";
+			break;
+		case 144:
+			tmpStr = "PREVTRACK";
+			break;
+		case 145:
+			tmpStr = "AT";
+			break;
+		case 146:
+			tmpStr = "COLON";
+			break;
+		case 147:
+			tmpStr = "UNDERLINE";
+			break;
+		case 148:
+			tmpStr = "KANJI";
+			break;
+		case 149:
+			tmpStr = "STOP";
+			break;
+		case 150:
+			tmpStr = "AX";
+			break;
+		case 151:
+			tmpStr = "UNLABELED";
+			break;
+		case 153:
+			tmpStr = "NEXTTRACK";
+			break;
+		case 156:
+			tmpStr = "NUMPADENTER";
+			break;
+		case 157:
+			tmpStr = "RCONTROL";
+			break;
+		case 160:
+			tmpStr = "MUTE";
+			break;
+		case 161:
+			tmpStr = "CALCULATOR";
+			break;
+		case 162:
+			tmpStr = "PLAYPAUSE";
+			break;
+		case 164:
+			tmpStr = "MEDIASTOP";
+			break;
+		case 174:
+			tmpStr = "VOLUMEDOWN";
+			break;
+		case 176:
+			tmpStr = "VOLUMEUP";
+			break;
+		case 178:
+			tmpStr = "WEBHOME";
+			break;
+		case 179:
+			tmpStr = "NUMPADCOMMA";
+			break;
+		case 181:
+			tmpStr = "DIVIDE";
+			break;
+		case 183:
+			tmpStr = "SYSRQ";
+			break;
+		case 184:
+			tmpStr = "RMENU";
+			break;
+		case 197:
+			tmpStr = "PAUSE";
+			break;
+		case 199:
+			tmpStr = "HOME";
+			break;
+		case 200:
+			tmpStr = "UP";
+			break;
+		case 201:
+			tmpStr = "PRIOR";
+			break;
+		case 203:
+			tmpStr = "LEFT";
+			break;
+		case 205:
+			tmpStr = "RIGHT";
+			break;
+		case 207:
+			tmpStr = "END";
+			break;
+		case 208:
+			tmpStr = "DOWN";
+			break;
+		case 209:
+			tmpStr = "NEXT";
+			break;
+		case 210:
+			tmpStr = "INSERT";
+			break;
+		case 211:
+			tmpStr = "DELETE";
+			break;
+		case 219:
+			tmpStr = "LWIN";
+			break;
+		case 220:
+			tmpStr = "RWIN";
+			break;
+		case 221:
+			tmpStr = "APPS";
+			break;
+		case 222:
+			tmpStr = "POWER";
+			break;
+		case 223:
+			tmpStr = "SLEEP";
+			break;
+		case 227:
+			tmpStr = "WAKE";
+			break;
+		case 229:
+			tmpStr = "WEBSEARCH";
+			break;
+		case 230:
+			tmpStr = "WEBFAVORITES";
+			break;
+		case 231:
+			tmpStr = "WEBREFRESH";
+			break;
+		case 232:
+			tmpStr = "WEBSTOP";
+			break;
+		case 233:
+			tmpStr = "WEBFORWARD";
+			break;
+		case 234:
+			tmpStr = "WEBBACK";
+			break;
+		case 235:
+			tmpStr = "MYCOMPUTER";
+			break;
+		case 236:
+			tmpStr = "MAIL";
+			break;
+		case 237:
+			tmpStr = "MEDIASELECT";
+			break;
+		default:
+			if (keyID < 0x200) {
+				int joyID = keyID - 0x100;
+				int p = joyID / 32 + 1;
+				int b = joyID % 32;
+
+				if (b == 0) {
+					sprintf(tmpFStr, "%dP:DOWN", p);
+					tmpStr = tmpFStr;
+				}
+				else if (b == 1) {
+					sprintf(tmpFStr, "%dP:LEFT", p);
+					tmpStr = tmpFStr;
+				}
+				else if (b == 2) {
+					sprintf(tmpFStr, "%dP:RIGHT", p);
+					tmpStr = tmpFStr;
+				}
+				else if (b == 3) {
+					sprintf(tmpFStr, "%dP:UP", p);
+					tmpStr = tmpFStr;
+				}
+				else {
+					sprintf(tmpFStr, "%dP:BUTTON%d", p, b - 3);
+					tmpStr = tmpFStr;
+				}
+			}
+			else if (keyID < 0x300) {
+				sprintf(tmpFStr, "MIDI NOTE:%s%d", midiName[(keyID-0x200) % 12].body, (keyID - 0x200) / 12);
+				tmpStr = tmpFStr;
+			}
+			else if (keyID == 0x300) {
+				tmpStr = "MIDI BEND:-";
+			}
+			else if (keyID == 0x301) {
+				tmpStr = "MIDI BEND:+";
+			}
+			else if (keyID == 0x302) {
+				tmpStr = "MIDI PEDAL";
+			}
+			else return oBuf;
+	}
+	oBuf.assign(tmpStr);
+	return oBuf;
+}
+
+//4be430
+int ConfigButtonToKeyID7(int buttonID){
+	switch (buttonID) {
+	case 1:
+		return 1;
+	case 2:
+		return 2;
+	case 3:
+		return 3;
+	case 4:
+		return 4;
+	case 5:
+		return 5;
+	case 6:
+		return 6;
+	case 7:
+		return 7;
+	case 8:
+		return 10;
+	case 9:
+		return 0xb;
+	case 10:
+		return 0xc;
+	case 0xb:
+		return 0xd;
+	case 0xc:
+		return 0x15;
+	case 0xd:
+		return 0x16;
+	case 0xe:
+		return 0x17;
+	case 0xf:
+		return 0x18;
+	case 0x10:
+		return 0x19;
+	case 0x11:
+		return 0x1a;
+	case 0x12:
+		return 0x1b;
+	case 0x13:
+		return 0x1e;
+	case 0x14:
+		return 0x1f;
+	case 0x15:
+		return 0x20;
+	case 0x16:
+		return 0x21;
+	default:
+		return 0;
+	}
+}
+
+//4be530
+int ConfigButtonToKeyID5(int buttonID){
+	switch (buttonID) {
+	case 1:
+		return 1;
+	case 2:
+		return 2;
+	case 3:
+		return 3;
+	case 4:
+		return 4;
+	case 5:
+		return 5;
+	case 6:
+		return 10;
+	case 7:
+		return 0xb;
+	case 8:
+		return 0xc;
+	case 9:
+		return 0xd;
+	case 10:
+		return 0x15;
+	case 0xb:
+		return 0x16;
+	case 0xc:
+		return 0x17;
+	case 0xd:
+		return 0x18;
+	case 0xe:
+		return 0x19;
+	case 0xf:
+		return 0x1e;
+	case 0x10:
+		return 0x1f;
+	case 0x11:
+		return 0x20;
+	case 0x12:
+		return 0x21;
+	default:
+		return 0;
+	}
+}
+
+//4be600
+int ConfigButtonToKeyID9(int buttonID){
+	switch (buttonID) {
+	case 1:
+		return 1;
+	case 2:
+		return 2;
+	case 3:
+		return 3;
+	case 4:
+		return 4;
+	case 5:
+		return 5;
+	case 6:
+		return 6;
+	case 7:
+		return 7;
+	case 8:
+		return 8;
+	case 9:
+		return 9;
+	case 10:
+		return 0xc;
+	case 0xb:
+		return 0xd;
+	default:
+		return 0;
+	}
+}
+
+//4be690
+int ConfigButtonFromKeyID7(int keyID) {
+	switch (keyID) {
+	case 1:
+		return 1;
+	case 2:
+		return 2;
+	case 3:
+		return 3;
+	case 4:
+		return 4;
+	case 5:
+		return 5;
+	case 6:
+		return 6;
+	case 7:
+		return 7;
+	default:
+		return 0;
+	case 10:
+		return 8;
+	case 0xb:
+		return 9;
+	case 0xc:
+		return 10;
+	case 0xd:
+		return 0xb;
+	case 0x15:
+		return 0xc;
+	case 0x16:
+		return 0xd;
+	case 0x17:
+		return 0xe;
+	case 0x18:
+		return 0xf;
+	case 0x19:
+		return 0x10;
+	case 0x1a:
+		return 0x11;
+	case 0x1b:
+		return 0x12;
+	case 0x1e:
+		return 0x13;
+	case 0x1f:
+		return 0x14;
+	case 0x20:
+		return 0x15;
+	case 0x21:
+		return 0x16;
+	}
+}
+
+//4be7b0
+int ConfigButtonFromKeyID5(int keyID){
+	switch (keyID) {
+	case 1:
+		return 1;
+	case 2:
+		return 2;
+	case 3:
+		return 3;
+	case 4:
+		return 4;
+	case 5:
+		return 5;
+	default:
+		return 0;
+	case 10:
+		return 6;
+	case 0xb:
+		return 7;
+	case 0xc:
+		return 8;
+	case 0xd:
+		return 9;
+	case 0x15:
+		return 10;
+	case 0x16:
+		return 0xb;
+	case 0x17:
+		return 0xc;
+	case 0x18:
+		return 0xd;
+	case 0x19:
+		return 0xe;
+	case 0x1e:
+		return 0xf;
+	case 0x1f:
+		return 0x10;
+	case 0x20:
+		return 0x11;
+	case 0x21:
+		return 0x12;
+	}
+}
+
+//4be8b0
+int ConfigButtonFromKeyID9(int keyID){
+	switch (keyID) {
+	case 1:
+		return 1;
+	case 2:
+		return 2;
+	case 3:
+		return 3;
+	case 4:
+		return 4;
+	case 5:
+		return 5;
+	case 6:
+		return 6;
+	case 7:
+		return 7;
+	case 8:
+		return 8;
+	case 9:
+		return 9;
+	default:
+		return 0;
+	case 0xc:
+		return 10;
+	case 0xd:
+		return 0xb;
+	}
+}
+
+//4be940
+int FindPressedKey(inputStructure *is){
+	
+	for (int i = 1; i < 0x600; i++) {
+		if (is->inputID[i] == 1) {
+			return i;
+		}
+	}
+	return 0;
+}
+
+//4be970
+int ResetPressCount(inputStructure *is){
+	is->keyboard_presscount = 0;
+	is->joypad_presscount = 0;
+	is->MIDI_presscount = 0;
+	return 1;
+}
+
+//4be990
+int DetermineResultPlayDevice(inputStructure *is){
+	int joy;
+	int key;
+	int midi;
+
+	key = is->keyboard_presscount;
+	joy = is->joypad_presscount;
+	midi = is->MIDI_presscount;
+
+	/*if (joy <= key && midi <= key) return 0;
+	if (midi <= joy && key <= joy) return 1;
+	if (key <= midi && joy <= midi) return 2;
+	return 0;*/
+	if (joy <= key) {
+		if (midi <= key) {
+			return 0;
+		}
+		if (joy < key) {
+			if ((key <= midi) && joy <= midi) {
+				return 2;
+			}
+			return 0;
+		}
+	}
+	if (midi <= joy) {
+		return 1;
+	}
+	if (key <= midi && joy <= midi) {
+		return 2;
+	}
+	return 0;
+}
+
+//4be9e0
+int CloseMIDI(void){
+	EndMIDIInput();
+	return 1;
+}
+
+//4be9f0
+void ProcessInput(inputStructure *is, int interval) {
+
+	int mouseX, mouseY;
+	uint new_joyInput[256];
+	char new_keyInput[256];
+	int keyError;
+
+	if (GetWindowActiveFlag() == 0) return;
+
+	GetMousePoint(&mouseX, &mouseY);
+	is->mouse_moveX = mouseX - is->mouse_oldX;
+	is->mouse_moveY = mouseY - is->mouse_oldY;
+	is->mouse_moveflag = 0;
+	if (is->mouse_oldX != mouseX) {
+		is->mouse_oldX = mouseX;
+		is->mouse_moveflag = 1;
+		is->mouse_recentMoveTime = GetTimeWrap();
+	}
+	if (is->mouse_oldY != mouseY) {
+		is->mouse_oldY = mouseY;
+		is->mouse_moveflag = 1;
+		is->mouse_recentMoveTime = GetTimeWrap();
+	}
+	is->mousewheel = GetMouseWheelRotVol();
+	if ((GetMouseInput() & 1) == 0) {
+		is->is_doubleclick = 0;
+		if (is->mouse_buttonL == 0 || is->mouse_buttonL == 3) {
+			is->mouse_buttonL = 0;
+		}
+		else if (GetTimeWrap() - (double)is->drag_start_time > 32.0) {
+			is->mouse_buttonL = 3;
+		}
+		else {
+			is->mouse_buttonL = 2;
+		}
+	}
+	else {
+		if (is->mouse_buttonL != 1 && is->mouse_buttonL != 2) {
+			is->mouse_buttonL = 1;
+			if (GetTimeWrap() - (double)is->drag_start_time >= 300.0) {
+				is->drag_start_time = GetTimeWrap();
+			}
+			else {
+				is->is_doubleclick = 1;
+			}
+		}
+		else {
+			is->is_doubleclick = 0;
+			is->mouse_buttonL = 2;
+		}
+	}
+
+	
+	if ((GetMouseInput() & 2) == 0) {
+		if (is->mouse_buttonR == 0 || is->mouse_buttonR == 3) {
+			is->mouse_buttonR = 0;
+		}
+		else {
+			is->mouse_buttonR = 3;
+		}
+	}
+	else if (is->mouse_buttonR == 1 || is->mouse_buttonR == 2) {
+		is->mouse_buttonR = 2;
+	}
+	else {
+		is->mouse_buttonR = 1;
+	}
+
+	if ((GetMouseInput() & 4) == 0) {
+		if ((is->mouse_buttonW == 0) || (is->mouse_buttonW == 3)) {
+			is->mouse_buttonW = 0;
+		}
+		else {
+			is->mouse_buttonW = 3;
+		}
+	}
+	else if (is->mouse_buttonW == 1 || is->mouse_buttonW == 2) {
+		is->mouse_buttonW = 2;
+	}
+	else {
+		is->mouse_buttonW = 1;
+	}
+	if ((is->mouse_buttonL == 0) && (is->is_drag_now != -1)) {
+		is->is_drag_now = -1;
+	}
+	GetTimeWrap();
+	//key
+	keyError = GetHitKeyStateAll(new_keyInput);
+	GetTimeWrap();
+	GetTimeWrap();
+	//joypad
+	memset(new_joyInput, 0, sizeof(int) * 0x100);
+	for (int i = 1; i < 4; i++) {
+		int r = GetJoypadInputState(i);
+		for (int j = 0; j < 32; j++) {
+			new_joyInput[0x20 * i + j] = r & (1<<j);
+		}
+	}
+	//presscount
+	if (keyError != -1) {
+		for (int i = 0; i < 0x100; i++) {
+			if (new_keyInput[i] == 0) {
+				if (is->inputID[i] == 1 || is->inputID[i] == 2) {
+					if(GetTimeWrap() - is->inputTime[i] <= interval) is->inputID[i] = 2;
+					else is->inputID[i] = 3;
+				}
+				else {
+					is->inputID[i] = 0;
+				}
+			}
+			else if(is->inputID[i]==1 || is->inputID[i]==2 || is->inputID[i]==3){
+				is->inputID[i] = 2;
+			}
+			else {
+				is->inputID[i] = 1;
+				is->inputTime[i] = (int)GetTimeWrap();
+				is->keyboard_presscount++;
+			}
+		}
+	}
+	for (int i = 0x100; i < 0x200; i++) {
+		if (new_joyInput[i-0x100] == 0) {
+			if (is->inputID[i] == 1 || is->inputID[i] == 2) {
+				if (GetTimeWrap() - is->inputTime[i] <= interval) is->inputID[i] = 2;
+				else is->inputID[i] = 3;
+			}
+			else {
+				is->inputID[i] = 0;
+			}
+		}
+		else if (is->inputID[i] == 1 || is->inputID[i] == 2 || is->inputID[i] == 3) {
+			is->inputID[i] = 2;
+		}
+		else {
+			is->inputID[i] = 1;
+			is->inputTime[i] = (int)GetTimeWrap();
+			is->joypad_presscount++;
+		}
+	}
+	for (int i = 0x200; i < 0x303; i++) {
+		if (midi.input[i - 0x200] == 0) {
+			if (is->inputID[i] == 1 || is->inputID[i] == 2) {
+				if (GetTimeWrap() - is->inputTime[i] <= interval) is->inputID[i] = 2;
+				else is->inputID[i] = 3;
+			}
+			else {
+				is->inputID[i] = 0;
+			}
+		}
+		else if (is->inputID[i] == 1 || is->inputID[i] == 2 || is->inputID[i] == 3) {
+			is->inputID[i] = 2;
+		}
+		else {
+			is->inputID[i] = 1;
+			is->inputTime[i] = (int)GetTimeWrap();
+			is->MIDI_presscount++;
+		}
+	}
+
+	for (int i = 1; i < 0x600; i++) {
+		if (is->inputID[i] == 1) break;
+	}
+
+	return;
+}
+
+//4bef60
+void CALLBACK MIDIInProc(HMIDIIN hMidiIn, uint wMsg, dword dwInstance, dword dwParam1, dword dwParam2){
+	if (wMsg == 0x3c3) { // = 963
+		GetMidiInput(dwParam1, dwParam2);
+	}
+	return;
+}
+
+//4bef80
+int WaitInput(inputStructure *is){
+
+	is->is_doubleclick = 0;
+	is->mousewheel = 0;
+	is->mouse_buttonL = 0;
+	memset(is->p1_buttonInput, 0, 100);
+	memset(is, 0, 0x600);
+	while (FindPressedKey(is) == 0 && is->mouse_buttonL != 1 && is->mouse_buttonR != 1) {
+		WaitTimer(40);
+		ProcessInput(is, 0);
+		if (ProcessMessage() != 0) {
+			return -1;
+		}
+	}
+	return 1;
+}
+
+//4bf020
+int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int isReplay) {
+	
+	ProcessInput(is, cfg_input->sys_inputinterval);
+	if (midi.controller_n > 0) {
+		is->midi_n = midi.controller_n;
+		is->midi_v = midi.controller_v;
+		midi.controller_n = 0;
+		midi.controller_v = 0;
+	}
+
+	if (isReplay == 0) {
+		if (player == 0) {
+			for (int i = 0; i < 20; i++) {
+				unsigned char &button = is->p1_buttonInput[i];
+				button = 0;
+				for (int j = 0; j < 16; j++) {
+					if (button < is->inputID[cfg_input->buttonMap[i][j]] && cfg_input->buttonMap[i][j] != 0) {
+						button = is->inputID[cfg_input->buttonMap[i][j]];
+					}
+				}
+			}
+
+			for (int i = 0; i < 20; i++) {
+				unsigned char &button = is->p2_buttonInput[i];
+				button = 0;
+				for (int j = 0; j < 16; j++) {
+					if (button < is->inputID[cfg_input->buttonMap[i+20][j]] && cfg_input->buttonMap[i+20][j] != 0) {
+						button = is->inputID[cfg_input->buttonMap[i+20][j]];
+					}
+				}
+			}
+		}
+		else if (player == 1) {
+			for (int i = 0; i < 20; i++) {
+				unsigned char &button = is->p1_buttonInput[i];
+				button = 0;
+				for (int j = 0; j < 16; j++) {
+					if (button < is->inputID[cfg_input->buttonMap[i][j]] && cfg_input->buttonMap[i][j] != 0) {
+						button = is->inputID[cfg_input->buttonMap[i][j]];
+					}
+				}
+			}
+
+			for (int i = 0; i < 20; i++) {
+				unsigned char &button = is->p1_buttonInput[i];
+				for (int j = 0; j < 16; j++) {
+					if (button < is->inputID[cfg_input->buttonMap[i + 20][j]] && cfg_input->buttonMap[i + 20][j] != 0) {
+						button = is->inputID[cfg_input->buttonMap[i + 20][j]];
+					}
+				}
+			}
+		}
+		else if (player == 2) { //TOFIX: never called
+			for (int i = 0; i < 20; i++) {
+				unsigned char &button = is->p2_buttonInput[i];
+				for (int j = 0; j < 16; j++) {
+					if (button < is->inputID[cfg_input->buttonMap[i][j]] && cfg_input->buttonMap[i][j] != 0) {
+						button = is->inputID[cfg_input->buttonMap[i][j]];
+					}
+				}
+			}
+
+			for (int i = 0; i < 20; i++) {
+				unsigned char &button = is->p2_buttonInput[i];
+				button = 0; //TOFIX : button = 0 should be up there
+				for (int j = 0; j < 16; j++) {
+					if (button < is->inputID[cfg_input->buttonMap[i + 20][j]] && cfg_input->buttonMap[i + 20][j] != 0) {
+						button = is->inputID[cfg_input->buttonMap[i + 20][j]];
+					}
+				}
+			}
+		}
+	}
+	else {
+		for (int i = 0; i < 40; i++) {
+			unsigned char &button = is->p1_buttonInput[i];
+			if (button == 1) button = 2;
+			else if (button == 3) button = 0;
+		}
+	}
+
+	//scaratch input
+	if (is->p1_buttonInput[10] == 1 || is->p1_buttonInput[11] == 1) {
+		is->p1_buttonInput[0] = 1;
+	}
+	else if (is->p1_buttonInput[10] == 2 || is->p1_buttonInput[11] == 2) {
+		is->p1_buttonInput[0] = 2;
+	}
+	else if (is->p1_buttonInput[10] == 3 || is->p1_buttonInput[11] == 3) {
+		is->p1_buttonInput[0] = 3;
+	}
+
+	if (is->p2_buttonInput[10] == 1 || is->p2_buttonInput[11] == 1) {
+		is->p2_buttonInput[0] = 1;
+	}
+	else if (is->p2_buttonInput[10] == 2 || is->p2_buttonInput[11] == 2) {
+		is->p2_buttonInput[0] = 2;
+	}
+	else if (is->p2_buttonInput[10] == 3 || is->p2_buttonInput[11] == 3) {
+		is->p2_buttonInput[0] = 3;
+	}
+
+	return 1;
+}
+
+//4bf3e0
+void InitMIDIInput(void){
+	int iVar1;
+	UINT numDev;
+	UINT uDeviceID;
+	HMIDIIN phmi;
+
+	for (int i = 0; i < 256; i++) { //TOFIX : unneccessary loop
+		midi.controller_v = 0;
+		midi.controller_n = 0;
+	}
+	midi.unusedFC = 0x7f;
+	numDev = midiInGetNumDevs();
+	if (numDev > 15) {
+		numDev = 15;
+	}
+
+	for (int i = 0; i < numDev; i++) {
+		midiInOpen(&phmi, i, (DWORD_PTR)MIDIInProc, NULL, CALLBACK_FUNCTION);
+		midiInStart(phmi);
+		midi.phmiArray[i] = phmi;
+	}
+	return;
+}
+
+//4bf480
+int InitInputStructure(inputStructure *is){
+
+	memset(is->inputID, 0, sizeof(char)*0x600);
+	is->mouse_buttonL = 0;
+	is->mouse_buttonR = 0;
+	is->mouse_buttonW = 0;
+	is->mouse_button4 = 0;
+	is->mouse_moveflag = 0;
+	is->mouse_recentMoveTime = GetTimeWrap();
+	is->drag_start_time = -1;
+	is->is_doubleclick = 0;
+	is->is_drag_now = -1;
+	InitMIDIInput();
+	return 1;
+}
 
 ////Recording
 //4bf4f0

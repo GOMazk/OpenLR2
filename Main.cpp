@@ -10,8 +10,6 @@ extern "C" {
 }
 
 #include "strclass.h"
-#include "LR2input.h"
-#include "LR2startup.h"
 #include "structure.h"
 #include "LR2f.h"
 
@@ -20,6 +18,7 @@ extern "C" {
 
 using namespace std;
 
+//42fed0
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
 
 	int backGrHandle;
