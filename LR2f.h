@@ -10,19 +10,19 @@ extern "C" {
 //};
 extern glb_dbgame glb;
 
+//401000
+//void MYRANKING::InitRanking();
 bool CheckScoreSaveConditon(game * g);
 int CheckClearLampChallenge(game * g);
-
+int FxByMIDI(game *g);
 int SetTarget(game * g);
 int ProcS_Keyconfig(game *g);
 int LoopInRange(int min, int max, int add, int *num);
-
+int UpdateSoundFX(game *g, int *value, int objectID, int min, int max);
+int InitFxParam(game *g, int fxNum);
 void ThreadProc_LoadBanner(void * param);
 int SetBmsFilter(game * g, sqlite3 * sql);
-
 uint SetObjectValue_Num(game * g, int op);
-
-
 int StopSysSound(game * g);
 int Print_ManiacOptions(game * g);
 int GetSongCursor(game * g);
@@ -30,31 +30,41 @@ SONGDATA * COPY_SONGDATA(SONGDATA * s1, SONGDATA * s2);
 
 int LoadFontForSongs(game * gs, char flag);
 int ProcI_Decide(game * g);
+uint ConvertOptionHistory(game *g);
 
 int LogGraphPlayData(GRAPHDATA * grp, PLAYERSTATUS * pstat, int time, int endtime);
 int LogGraphData(GRAPHDATAB * grp, int val, int time, int endtime);
 int LogGraphPlayerDataToEnd(GRAPHDATA * grp, PLAYERSTATUS * pstat);
 int CheckClear(PLAYERSTATUS * pstat, int gaugeType, char is2p);
-
-
-
+int ApplyJudgeNote(int judge, game *g, int player, int lane, Timer *T, char isReplay);
+int ApplyJudgeMine(int judge, game *g, int player, int lane, int damage);
+int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg);
+int StopAllKeysound(game *g);
+int InitKeysound(game *g);
+int ReleaseBGA(game *g);
+void ProcLoadBmsResource(game *g);
+int DrawJudgeCombo(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg);
 int DrawHPgauge(game * g);
-
+int FlipScore(game *g);
+int CheckCourseClear(game *g);
 int ProcS_Result(game * g);
 int Proc_Result(game * g, skstruct * sk, Timer * T);
 int ProcI_Result(game * g);
-
 int ProcI_Keyconfig(game *g);
-
-
+//scene_skinselect : 409ac0 -
+int SkinPreviewNext(SkinManage *sm, SKINTYPE type);
+int SkinPreviewPrev(SkinManage *sm, SKINTYPE type);
 int SelectSkin(SkinManage * sm, CSTR * obuf);
 int SetFirstSkin(SkinManage * sm, SKINTYPE type, CSTR * skinName);
 int SetFirstSkin_5k(SkinManage * sm, SKINTYPE type, CSTR * skinName);
 int SetFirstSkin_10k(SkinManage * sm, SKINTYPE type, CSTR * skinName);
 int SetFirstSkin_5kb(SkinManage * sm, SKINTYPE type, CSTR * skinName);
 int SetFirstSkins(game * g);
-
-
+//scene_selectsong_1 : 40b320 - 
+int ShowReadmes(game *g);
+int ShowReadme(game *g, CSTR path);
+CSTR GetMissonString(int missionLevel, int line);
+//scene_lunaris : 40bf90 - 
 int LUNARIS_GETBLOCKUP(void);
 int LUNARIS_GETBLOCKDOWN(void);
 int LUNARIS_GETBLOCKLEFT(void);
@@ -68,78 +78,71 @@ void LUNARIS_NEXT(void);
 int DrawLunaris(game * g);
 int LUNARIS_START(game * g);
 int LUNARIS_JUDGE(game * g);
+//deprecated(po4AE or LRX) : 40d400 - 
 int ProcI_PO4Decide(game * g);
-
+void ThreadProc_PO4parseBMS(game *g);
+//record : 40d680 -
 int RunMP3Encoder(ConfigStruct * cfg, CSTR wavPath, CSTR mp3Path, char deleteWav, char movie);
 int Proc_Auto2avi(game * g, CSTR directory, CSTR filename);
-
 int RecordBmsSound(game * g, CSTR oPath);
-
+//
 bool GetOptionFlag_dst(game *gs, int option);
-
 int SetObjectStrings_SongSelect(game * g);
-
+int SetObjectValue_Slider(game *g, skstruct *sk, Timer *T, char flag);
 int CmdSearch(game * g, CSTR * cmd, sqlite3 * sql);
-
 int ReleaseSysSound(game * g);
 int ReadLR2SoundSet(game * g, CSTR filepath, char reFlag);
-
 int SetObjectValue_Bargraph(game * g);
 int SetPlayOption(game * g, sqlite3 * sql);
 void CheckNewSong(glb_dbgame * glb);
 void ThreadProc_RankingAutoUpdate(void * param);
+int JudgeToScore(int judge, game *g, int player, int lane, char isReplay);
+int ProcSinglenote(game *g, int lane, int keypress, int timing, int player);
+int ProcLongnote(game *g, int lane, int keypress, int timing, int player);
+int ProcNoteOnTiming(game *g, int lane, int keypress, int timing, int player);
+void LoadPreview(game *g);
 int ProcI_Play(game * g);
 int SkinSelect_SoundSet(game * g, CSTR filepath);
 int ProcI_SkinSelect(game * g);
-
 int MakeSkinPreview(game * g, skstruct * sk, SkinManage * sm);
-
-
+int CheckMission(game *g);
 int ProcI_Lunaris(game * g);
 int ProcS_Select(game * g);
-
 int Proc_Text(game *g, sqlite3 *sql, char flag);
-
+int CreateRandomCourse(game *g, sqlite3 *sql, char playing);
 int InitSelectBySearchResult(game * g, sqlite3 * sql);
-
 int SaveResult(game * g, sqlite3 * sql);
-
+int ProcS_subCourseResult(game *g, sqlite3 *sql);
 int ProcS_CourseResult(game * g, sqlite3 * sql);
-
+int PlayPreviewSample(game *g);
 int ProcI_PO4Menu(game * g, sqlite3 * sql);
-
-
+int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag);
 void ReactInput(game * g);
-
+void SubProcI_Select(game *g, sqlite3 *sql);
 int ProcI_Select(game * g, sqlite3 * sql);
-
 int ProcGame(game * g);
-
 void ProcGameThread(game * g);
-
 int ProcS_Play(game * g, sqlite3 * sql);
-
-
 int ProcS_SkinSelect(game * g);
-
 int ProcI_PO4Select(game * g, sqlite3 * sql);
-
+//hash : 437210 - (almost replaced)
+int makeFileHash(LPCSTR filepath, LPCSTR oBuf);
+//convertTime : 
 int GetNowUnixtime(void);
 int GetUnixtimeFromFiletime(FILETIME & filetime);
 int GetFileUnixtime(CSTR str);
+//files :
 CSTR GetRandomFileOnDir(CSTR path, char fOnlyName);
 bool CheckStringHead(CSTR* bigS, CSTR* head);
 bool GetStringBodyStr(CSTR* str, CSTR head, CSTR* oBuf);
 bool GetStringBodyInt(CSTR* str, CSTR haed, int * oBuf);
-//
-//
+bool GetDifficultyFromToken(CSTR str, CSTR *oLeft, CSTR *oRight, CSTR tokenL, CSTR tokenR, int *oBuf);
+bool GetDifficulty(CSTR *str, CSTR head, CSTR *oLeft, CSTR *oRight, int *pDifficulty);
 bool IsBmsFile(CSTR str);
 bool IsMediaFile(CSTR str);
 bool IsSndFile(CSTR str);
 bool IsAviFile(CSTR str);
 bool IsLR2Folder(CSTR str);
-//
-//
 bool IsFileExist(CSTR path);
 int IsFileChanged(unsigned int oldUnixtime, CSTR filepath, int * oNewtime);
 int DealWhiteSpace(CSTR * str);
@@ -148,14 +151,15 @@ int Base36ToInt(char ch1, char ch2);
 int HEXcharToInt(char ch1, char ch2);
 int RoundUp(double val);
 CSTR AssignCRC32(CSTR str);
-CSTR AutomationFactory();int CountDigit(int num);
+CSTR AutomationFactory();
+int CountDigit(int num);
 int GetDigitNum(int num, int pos);
 int FindAltImage(CSTR filename, CSTR dir, CSTR * oBuf);
 int FindAltSound(CSTR filename, CSTR dir, CSTR * oBuf);
 CSTR GetRandomFile(CSTR path, char fOnlyName);
 CSTR GetRandomFileNoError(CSTR path, CSTR dir);
-
-//LR2startup.cpp
+//strclass.cpp : 43ad60 -
+//LR2startup.cpp : 43c060 -
 ////DB interact
 extern int EnabledInsane;
 extern CRITICAL_SECTION DB_lock;
@@ -166,7 +170,7 @@ bool UTF8toANSI(LPCSTR str, void * oBuf, size_t * oSize);
 int SQL_Run(CSTR queryStr, sqlite3 * sql);
 int SQL_prepare(CSTR queryStr, sqlite3 * sql, sqlite3_stmt ** ppStmt);
 CSTR SQL_GetColumn(int i, sqlite3_stmt * pStmt);
-
+////
 int SwapBmsList(SONGSELECT * ss);
 int InitBmsList(SONGSELECT * ss);
 int InitSongData(SONGDATA * song);
@@ -188,44 +192,32 @@ int UpdateSongDataTag(SONGDATA * song, sqlite3 * sql);
 CSTR MakePlayerStatHash(PLAYERSTATISTIC * ps);
 int UpdatePlayerStat(PLAYERSTATISTIC * ps, sqlite3 * sql);
 int SaveIRID(int IRID, CSTR ID);
-
 int EditTag(SONGDATA * song, sqlite3 * sql);
 int DeleteScoreFromDB(CSTR hash, sqlite3 * sql);
-//
-//
 int LoadFolderDataFromDB(CSTR query, SONGDATA * song, sqlite3 * sql, int difficulty, int key, int sort, int maxCount, CONFIG_SELECT * cfg_select, char flag);
 int UninstallSong(CSTR path, sqlite3 * sql);
 int Rename(CSTR path, sqlite3 * sql);
-//
-//
 int GetSongData(CSTR songMD5, SONGDATA * song, sqlite3 * sql, SONGSELECT * ss);
 int WriteCourse(sqlite3 * sql, COURSESELECT course, SONGDATA * song, CSTR passmd5, int connection, int gauge);
 int ChangeCourseTitle(sqlite3 * sql, CSTR title, int id, int coursetype);
 int DeleteCourse(sqlite3 * sql, int id, int courseType);
-//
-//
+CSTR GetRandomSongHash(CSTR ioDefault, CSTR folder, int levelStd, int mode, sqlite3 *sql, int levelMax, int levelMin);
 int GetSongDataFromPath(CSTR filepath, SONGDATA * song, sqlite3 * sql, SONGSELECT * ss);
 int ChangeCourseID(sqlite3 * sql, int newID, int oldID, int type);
-//
 int SearchSongsFromPath(CSTR root, sqlite3 * sql, CSTR path);
 int ReloadSongsByQuery(CSTR query, sqlite3 * sql, CONFIG_JUKEBOX * jb);
 int CMP_SongDataByDifficulty(const void * p1, const void * p2);
 int CMP_SongDataByClear(const void * p1, const void * p2);
 int SearchCourseFromDB(sqlite3 * sql, SONGSELECT * ss, int keys, int multistagemode);
-//
 int LoadBmsListFromDB(CSTR query, sqlite3 * sql, SONGSELECT * ss, int * difficulty, int * key, int sort, int count);
-
 int ReadPlayerScore(CSTR id, CSTR pass, PLAYERSTATISTIC * pstat);
-
 int WriteRandomCourse(sqlite3 * sql, COURSESELECT * course, SONGSELECT * ss, CONFIG_COURSE cfg, int key);
-
 int GetFolderDataFromPath(CSTR path, sqlite3 * sql);
-
 int LoadFilteredBmsListFromDB(CSTR query, sqlite3 * sql, SONGSELECT * ss, int * diffFilter, int * mode, uint sort, int rivalID, char flag);
 int LoadLR2CustomFolder(sqlite3 * sql, CONFIG_JUKEBOX * jb, CSTR scoreDBpath, char flag_starter, char flag_direct);
-
+//sqlite3.c : 44f0a0 - 49a76f?
 ////LR2graphic_draw : 49a770-
-//ismultibyte?
+bool IsMultibyte(byte ch);
 double ChangeValueByTime(double val1, double val2, double time1, double time2, double timenow, int type);
 DSTdraw SetDSTdrawByTime(DSTstruct dst, double time);
 int GetSRCcycleNow(SRCstruct src, double time);
@@ -265,9 +257,6 @@ int AddDrawingBuffer_Lunaris(DrawingBuf * drb, SRCstruct * src, DSTdraw * dstd, 
 int AddDrawingBuffer_Numbers(DrawingBuf * drb, SRCstruct * src, DSTstruct * dst, Timer * T, int number, int x, int y);
 int AddDrawingBuffer_Slider(DrawingBuf * drb, SRCstruct * src, DSTstruct * dst, Timer * T);
 int AddDrawingBuffer_JudgeCombo(DrawingBuf * drb, SRCstruct * jSrc, DSTstruct * jDst, SRCstruct * cSrc, DSTstruct * cDst, Timer * T, int combo, int optX, int optY);
-
-
-
 ////LR2graphic_load : 49e780-
 int ReloadImage(CSTR filename, int * grHandle);
 int InitSRC(SRCstruct * src);
@@ -298,27 +287,33 @@ int MakeSkinList(SkinManage * skm, CSTR dir);
 //PLAYSCORE : 4a8550 -
 
 //?? : 4a9fd0 -
-
 bool isVisibleNote(int ch);
-
 int SetBackground(int hImage);
 int InitBMSMETA(BMSMETA * meta);
 int ParseBMSMETA(BMSMETA * meta, CSTR filepath, char flag);
-
+int InitNoteBuffer(LaneStruct *lane, int count);
 int ExpandNoteBuffer(LaneStruct * lane, int addsize);
 int CMP_NotesByBmsTiming(const void * p1, const void * p2);
 int CMP_NotesByRealTiming(const void * p1, const void * p2);
 int CMP_NotesByRealTimingOp(const void * p1, const void * p2);
-
 int PlayerCheckAndSwap(gameplay * gp);
-
-
-
-
-//ParseBmsFile()
-
+int InitGameplay(gameplay *gp, CONFIG_PLAY *cfg);
+int LoadBmsResource(gameplay *gp, CSTR BMSfilepath, AUDIO *aud, ConfigStruct *cfg, BMSMETA *meta, char bga, char flip, char noVideo);
+int InitGameplay_retry(gameplay *gp, AUDIO *snd, game *g);
+double RealTimeToBMSTime(gameplay *gp, double time);
+int CMP_CCARRbyCount(const void *p1, const void *p2);
+int CMP_CCARRbyID(const void *p1, const void *p2);
+int SplitNotesToDP(LaneStruct *lane, int start, CHARTCONVERTER *cc, int end);
+int RightLaneTo2P(LaneStruct *lane, int start, CHARTCONVERTER *cc);
+int Move3rdLaneTo2P(LaneStruct *lane, int start, CHARTCONVERTER *cc);
+int DPsplitLane(LaneStruct *lane, int start, CHARTCONVERTER *cc);
+int DPsplit(LaneStruct *lane, int start, CHARTCONVERTER *cc);
+void MakeExtraChart(gameplay *gp, CHARTCONVERTER *cc);
+void DPtoSP(gameplay *gp);
+void PMStoSP(gameplay *gp);
+int DPsplitLaneScratch(LaneStruct *lane, int start, CHARTCONVERTER *cc);
 int SPtoDP(LaneStruct * lane, int baseNoteID, CHARTCONVERTER * cc);
-
+//ParseBmsFile() (moved to lr2input.cpp. too big so intellisense being killed)
 //TIMER : 4b6710 - 
 int SetBGATimer(Timer * T, double newTime);
 int SetAbleClockCount(char val);
@@ -332,9 +327,6 @@ int InitTimer(Timer * T);
 int CalcFPS(Timer * t);
 double GetTimeLapse(uint timerID, Timer * T);
 int SetTimeLapse(int timerID, Timer * T);
-
-
-
 //STRING : 4b6c00 - 
 int InitObjectString(TextStruct * txt);
 int SetObjectString(uint num, CSTR string, CSTR * objectList);
@@ -343,12 +335,7 @@ CSTR GetStringFromArray(int num, CSTR * strings);
 int DefineOptionStrNum(OptionString * arrOpStr);
 int ReadOptionstr(OptionString * opStr, CSVbuf csv);
 int ReadOptionstrFile(OptionString * arrOpStr, CSTR filepath);
-
-
-
-
-
-
+//SOUND : 4b7b80 -
 const char * GetFMODerror(int errCode);
 int IsAltSoundExist(CSTR * filepath);
 int ReleaseSound(AUDIO * aud, SOUNDDATA * sound);
@@ -371,14 +358,26 @@ int ApplySoundFX(AUDIO * aud, int flag, char disable);
 int InitFade(AUDIO * aud);
 int SetVolumeByFade(AUDIO * aud);
 int InitSound(AUDIO *aud, uint bufferLength, int numBuffer, char fDisable, int outputType, int driver);
-
-int ParseRivalData(long ID);
-
+//RAWSOUND()
 //void RAWSOUND::ExpandBuffer(int newSize);
-
+//..
+//InternetRanking : 4ba5e0 -
+int CMP_PlayerByExscore(const void *p1, const void *p2);
+//RANKING()
+int CheckRivaldataNew(int rivalID);
+int ParseRivalData(long ID);
+//NETWORK()
+CSTR UrlEncode(CSTR in);
+int OpenWebRanking(CSTR songmd5);
+void IRsendScore(NETWORK *ir);
+//LR2input.cpp : 4bd6a0 -
+//RECORDING : 4bf4f0 -
+//RECORDING()
+int REC_CpyAVIStreamToFile(PAVIFILE pfile, PAVISTREAM pavi, int unused);
+int CreateStream(CSTR filename, int framerate, COMPVARS *compvars, BITMAPINFOHEADER* lpbmi, PAVIFILE* pAVIFILE, PAVISTREAM* pAVIstream);
+int REC_COPYFILE(FILE *oFile, FILE *iFile, uint size);
 int Mp3toWavF(FILE * iFile, FILE * oFile);
 bool Mp3toWavP(char * iPath, char * oPath);
-
 //REPLAY : 4c03c0 -
 int MoveReplayFile(CSTR songMD5, CSTR localID);
 int LoadReplayFileCourse(REPLAY * rp, CSTR songMD5, int stage, CSTR localID);
@@ -394,25 +393,4 @@ int REPLAY_ApplyJudgeMine(gameplay * gp, Timer * T, game * g, int dmg, int playe
 int ReplayDataToInput(ReplayData * data, game * g, AUDIO * aud, gameplay * gp, inputStructure * is, Timer * T);
 int SetReplayConfig(REPLAY * re, game * g, AUDIO * aud, gameplay * gp, inputStructure * in, Timer * T);
 int ReplayToInput(REPLAY * rp, game * g, AUDIO * aud, gameplay * gp, inputStructure * is, Timer * T);
-
-
-
-int InitGameplay(gameplay * gp, CONFIG_PLAY * cfg);
-
-int LoadBmsResource(gameplay * gp, CSTR BMSfilepath, AUDIO * aud, ConfigStruct * cfg, BMSMETA * meta, char bga, char flip, char noVideo);
-int InitGameplay_retry(gameplay * gp, AUDIO * snd, game * g);
-double RealTimeToBMSTime(gameplay * gp, double time);
-
-void MakeExtraChart(gameplay * gp, CHARTCONVERTER * cc);
-
-void DPtoSP(gameplay * gp);
-void PMStoSP(gameplay * gp);
-
-
-int DrawNotes(game * g, skstruct * sk, Timer * T, CONFIG_PLAY * cfg);
-
-int OpenWebRanking(CSTR songmd5);
-
-int REC_CpyAVIStreamToFile(PAVIFILE pfile, PAVISTREAM pavi, int unused);
-
-int CreateStream(CSTR filename, int framerate, COMPVARS * compvars, BITMAPINFOHEADER * lpbmi, PAVIFILE * pAVIFILE, PAVISTREAM * pAVIstream);
+//END
