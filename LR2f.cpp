@@ -1993,7 +1993,7 @@ int ApplyJudgeNote(int judge, game *g, int player, int lane, Timer *T, char isRe
 	}
 	g->gameplay.player[player].exscore = g->gameplay.player[player].judgecount[4] + g->gameplay.player[player].judgecount[5] * 2;
 
-	if (g->gameplay.player[player].note_current > 0) g->gameplay.player[player].rate = g->gameplay.player[player].exscore * 100 / (g->gameplay.player[player].note_current * 2);
+	if (g->gameplay.player[player].note_current > 0) g->gameplay.player[player].rate = g->gameplay.player[player].exscore * 100 / (double)(g->gameplay.player[player].note_current * 2);
 
 	switch (judge) {
 		case 1:
@@ -20718,6 +20718,7 @@ int AddDrawingBuffer_JudgeCombo(DrawingBuf *drb, SRCstruct *jSrc, DSTstruct *jDs
 
 	digit = 0;
 	if (combo > 0) {
+		digit = 1;
 		for (int i = combo; i > 9; i /= 10) {
 			digit++;
 		}
@@ -23609,7 +23610,7 @@ int PLAYSCORE::SetScore(PLAYERSTATUS *pstat, char flagExpect) {
 		pstat->exscore = this->exscore;
 		pstat->score = ((pstat->judgecount[3] + (pstat->judgecount[4] + pstat->judgecount[5] * 2) * 2) * 50000) / this->totalnotes;
 		pstat->now_combo = this->totalnotes;
-		pstat->rate = (double)((pstat->exscore * 100) / (this->totalnotes * 2));
+		pstat->rate = (double)((pstat->exscore * 100) / (this->totalnotes * 2)); //TOFIX : (double)
 		return 1;
 	}
 	pstat->judgecount[0] = this->judge[0];
@@ -23621,7 +23622,7 @@ int PLAYSCORE::SetScore(PLAYERSTATUS *pstat, char flagExpect) {
 	pstat->exscore = this->rate;
 	pstat->score = ((pstat->judgecount[3] + (pstat->judgecount[4] + pstat->judgecount[5] * 2) * 2) * 50000) / this->totalnotes;
 	pstat->now_combo = this->nownote;
-	pstat->rate = (double)((pstat->exscore * 100) / (this->totalnotes * 2));
+	pstat->rate = (double)((pstat->exscore * 100) / (this->totalnotes * 2)); //TOFIX : (double)
 	return 1;
 }
 
@@ -32699,7 +32700,7 @@ int REPLAY_ApplyJudgeNote(gameplay *gp, Timer *T, game *g, uint judge, int playe
 	}
 	gp->player[player].exscore = gp->player[player].judgecount[4] + gp->player[player].judgecount[5] * 2;
 
-	if (gp->player[player].note_current > 0) gp->player[player].rate = gp->player[player].exscore * 100 / (gp->player[player].note_current * 2);
+	if (gp->player[player].note_current > 0) gp->player[player].rate = gp->player[player].exscore * 100 / (double)(gp->player[player].note_current * 2);
 
 	switch (judge) {
 		case 1:
