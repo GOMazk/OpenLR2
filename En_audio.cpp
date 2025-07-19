@@ -238,7 +238,7 @@ int ReleaseSound(AUDIO *aud, SOUNDDATA *sound){
 	if (sound->load == '\0') {
 		return -1;
 	}
-	if (filepath.length() < 2) {
+	if (filepath.length() <= 1) {
 		filepath.fillzero();
 		sound->length = 0;
 		sound->load = '\0';
@@ -298,15 +298,16 @@ int SoundGetCurrentTime(AUDIO *aud, SOUNDDATA *sound){
 	FMOD_SOUND *tmpSnd;
 	uint pos;
 
-	if (sound->load != '\0') {
-		if (aud->is_fmod_disabled == 1) {
-			return GetSoundCurrentTime(sound->soundHandle);
-		}
-		FMOD_Channel_GetCurrentSound(sound->fmod_channel, &tmpSnd);
-		if (tmpSnd == sound->fmod_sound) {
-			FMOD_Channel_GetPosition(sound->fmod_channel, &pos, 1);
-			return pos;
-		}
+	if (sound->load == '\0') {
+		return -1;
+	}
+	if (aud->is_fmod_disabled == 1) {
+		return GetSoundCurrentTime(sound->soundHandle);
+	}
+	FMOD_Channel_GetCurrentSound(sound->fmod_channel, &tmpSnd);
+	if (tmpSnd == sound->fmod_sound) {
+		FMOD_Channel_GetPosition(sound->fmod_channel, &pos, 1);
+		return pos;
 	}
 	return -1;
 }
@@ -332,11 +333,12 @@ int EndSound(AUDIO *aud){
 }
 
 //4b82f0
-int SOUND_dxlibFx(SOUNDDATA sound, int v_master, int v_BGA, int pitch, double freq){
+//v_chn not used
+int SOUND_dxlibFx(SOUNDDATA sound, int v_master, int v_chn, int pitch, double freq){
 
 	double dMul;
 	
-	if (sound.load != '\0') {
+	if (sound.load) {
 		ChangeVolumeSoundMem(v_master, sound.soundHandle);
 		dMul = 1.0;
 		if (pitch > 0) {
@@ -367,20 +369,16 @@ int SetFadeOut(AUDIO *aud, int fadetime){
 }
 
 //4b8410
-int SetFadePreview(AUDIO *aud, int fadeintime, char flag){
+int SetFadePreview(AUDIO *aud, int fadetime, char quiet){
 
-	if (fadeintime <= 0) {
+	if (fadetime <= 0) {
 		return -1;
 	}
 	aud->param.time_fadePreview_start = timeGetTime();
 	aud->param.fadePreviewStartVolume = aud->param.fadePreviewCurrentVolume;
-	aud->param.time_fadePreview_end = timeGetTime() + fadeintime;
-	aud->param.fadePreviewVolumeFlag = flag;
-	if (flag != '\0') {
-		aud->param.fadePreviewTargetVolume = 0.025;
-		return 1;
-	}
-	aud->param.fadePreviewTargetVolume = 1.0;
+	aud->param.time_fadePreview_end = timeGetTime() + fadetime;
+	aud->param.fadePreviewIsQuiet = quiet;
+	aud->param.fadePreviewTargetVolume = quiet? 0.025 : 1.0;
 	return 1;
 }
 
@@ -402,7 +400,7 @@ int GetSoundBuffer(AUDIO *aud, double runtime, int volume) {
 	ErrorLogFmtAdd("音量設定 %d", aud->volume * 100.0);
 	ErrorLogFmtAdd("バッファを取得します。サイズ%d\n", aud->size);
 
-	aud->buffer = (short*)malloc(aud->size*2); //big number problem solution was in original code, I skipped it
+	aud->buffer = (short*)malloc(aud->size*2); // min(aud->size*2,0xFFFFFFFF) is compiler code?
 	if(aud->buffer == NULL) {
 		ErrorLogFmtAdd("バッファ取得に失敗。サイズ%d\n", aud->size);
 		sndBufUnk = 0;
@@ -423,7 +421,7 @@ void WriteSoundFile(AUDIO *aud, CSTR filename, uint size) {
 	char header1[12], header2[24], header3[8];
 
 	_File = fopen(filename, "wb");
-	if ((size != 0) && (size < aud->size || size == aud->size)) {
+	if ((size != 0) && (size <= aud->size)) {
 		aud->size = size;
 	}
 	if (_File) {
@@ -432,7 +430,7 @@ void WriteSoundFile(AUDIO *aud, CSTR filename, uint size) {
 		header1[1] = 'I';
 		header1[2] = 'F';
 		header1[3] = 'F';
-		memset(&header1[4], aud->size * 2 + 0x20, 4);
+		*(unsigned int*)(&header1[4]) = aud->size * 2 + 0x20;
 		header1[8] = 'W';
 		header1[9] = 'A';
 		header1[10] = 'V';
@@ -442,19 +440,19 @@ void WriteSoundFile(AUDIO *aud, CSTR filename, uint size) {
 		header2[1] = 'm';
 		header2[2] = 't';
 		header2[3] = ' ';
-		memset(&header2[4], 16, 4);
-		memset(&header2[8], 1, 2);
-		memset(&header2[10], 2, 2);
-		memset(&header2[12], 44100, 4);
-		memset(&header2[16], 176400, 4);
-		memset(&header2[20], 4, 2);
-		memset(&header2[22], 16, 2);
+		*(unsigned int*)(&header2[4]) = 16;
+		*(unsigned short*)(&header2[8]) = 1;
+		*(unsigned short*)(&header2[10]) = 2;
+		*(unsigned int*)(&header2[12]) = 44100;
+		*(unsigned int*)(&header2[16]) = 176400;
+		*(unsigned short*)(&header2[20]) = 4;
+		*(unsigned short*)(&header2[22]) = 16;
 
 		header3[0] = 'd';
 		header3[1] = 'a';
 		header3[2] = 't';
 		header3[3] = 'a';
-		memset(&header3[4], aud->size * 2, 4);
+		*(unsigned int*)(&header3[4]) = aud->size * 2;
 
 		fwrite(header1, 0xc, 1, _File);
 		fwrite(header2, 0x18, 1, _File);
@@ -500,7 +498,7 @@ int SOUND_normalize(AUDIO *aud, SOUNDDATA *sound){
 	memcpy(sound->raw.data, sound, len);
 
 	if (sound->raw.bits == 8 && sound->flag2c) { //TODO : flag2c rename
-		for (int i = 0; i < len; i++) {
+		for (uint i = 0; i < len; i++) {
 			sound->raw.data[i] += 0x80;
 		}
 	}
@@ -526,7 +524,7 @@ int RecordSound(AUDIO *aud, SOUNDDATA *sound, double time, double len) {
 			if (soundlen > (sound->raw.length / 2)) soundlen = (sound->raw.length / 2);
 		}
 
-		for (int i = 0; i < soundlen; i++) {
+		for (uint i = 0; i < soundlen; i++) {
 			double fade = 1.0;
 			if (i < 300) {
 				fade = (i + 1) / 300.0;
@@ -566,10 +564,10 @@ int RecordFadeout(AUDIO *aud, double from, double length) {
 
 	int start = from * 44100.0 / 1000.0 * 2.0;
 	int len = length * 44100.0 / 1000.0 * 2.0;
-	for (int i = start, c = 0; i < aud->size; i++, c++) {
+	for (uint i = start, c = 0; i < aud->size; i++, c++) {
 
 		if (i < start + len) {
-			aud->buffer[i] = aud->buffer[i] * (1 - c / len);
+			aud->buffer[i] = aud->buffer[i] * ((double)1 - c / (double)len);
 		}
 		else {
 			aud->buffer[i] = 0;
@@ -688,27 +686,26 @@ int PlaySound(AUDIO *aud, SOUNDDATA *sound, FMOD_CHANNELGROUP *channelgroup, int
 		if (sound->load == 0) return -1;
 		if (aud->is_fmod_disabled == 1) {
 			int v_master;
-			int v_bga;
+			int v_chn;
 			int pitch;
 			double freq = 1;
 
 			StopSoundMem(sound->soundHandle);
-			if(sound->loop == 0) PlaySoundMem(sound->soundHandle, 1, 1);
-			else PlaySoundMem(sound->soundHandle, 3, 1);
+			PlaySoundMem(sound->soundHandle, (sound->loop == 0)? 1 : 3, 1);
 
 			pitch = (aud->param.pitch_on == 0) ? 0 : aud->param.pitch_amount;
 			if (stage < 5) freq = aud->param.stagePitch[stage];
 
 			if (aud->param.fx_volume_on == 0) {
 				v_master = aud->param.fadeout_volume * 100.0; // fadeout_volume
-				v_bga = 100;
+				v_chn = 100;
 			}
 			else {
 				v_master = aud->param.volume_master;
-				v_bga = aud->param.volume_key;
+				v_chn = aud->param.volume_key;
 			}
 
-			SOUND_dxlibFx(*sound, v_master, v_bga, pitch, freq);
+			SOUND_dxlibFx(*sound, v_master, v_chn, pitch, freq);
 			return 0;
 		}
 
@@ -769,10 +766,6 @@ int SOUND_FmodToDxlib(AUDIO *aud) {
 //4b9340
 int ApplySoundFX(AUDIO *aud, int flag, char disable) {
 
-	float _volume,_pitch;
-	FMOD_CHANNELGROUP* _chnKey;
-	FMOD_CHANNELGROUP* _chnMaster;
-
 	if(aud->cmd_mediaOut) return 0;
 	if (aud->is_fmod_disabled == 1) {
 		aud->param.eq_on = 0;
@@ -786,15 +779,12 @@ int ApplySoundFX(AUDIO *aud, int flag, char disable) {
 
 	if (aud->param.fx_volume_on) {
 		FMOD_ChannelGroup_SetVolume(aud->chnBgm, (aud->param.volume_BGM / 100.0) * (aud->param.volume_master / 100.0) * aud->param.fadeout_volume);
-		_volume = (aud->param.volume_master / 100.0) * (aud->param.volume_key / 100.0) * aud->param.fadeout_volume;
-		_chnKey = aud->chnKey;
+		FMOD_ChannelGroup_SetVolume(aud->chnKey, (aud->param.volume_master / 100.0) * (aud->param.volume_key / 100.0) * aud->param.fadeout_volume);
 	}
 	else {
 		FMOD_ChannelGroup_SetVolume(aud->chnBgm, aud->param.fadeout_volume);
-		_volume = aud->param.fadeout_volume;
-		_chnKey = aud->chnKey;
+		FMOD_ChannelGroup_SetVolume(aud->chnKey, aud->param.fadeout_volume);
 	}
-	FMOD_ChannelGroup_SetVolume(_chnKey, _volume);
 
 	for (int i = 0; i < 5; i++) {
 		FMOD_ChannelGroup_SetPitch(aud->chnStageBgm[i], aud->param.stagePitch[i]);
@@ -825,7 +815,7 @@ int ApplySoundFX(AUDIO *aud, int flag, char disable) {
 		dMul = 1.0;
 		if (pitch > 0) {
 			for (; pitch > 0; pitch--) {
-				dMul *= 1.0594631433486938; //check is done. it's 0x3ff0f38fa0000000 same with original
+				dMul *= 1.0594631433486938; //check is done with VS08. it's 0x3ff0f38fa0000000 same with original
 			} //TOFIX? : sound freq/speed doesn't match game note speed (on +-12, 2.00000111 and 2.0 or 0.4999997226 and 0.5)
 		}
 		else if (pitch < 0) {
@@ -1129,8 +1119,8 @@ int SetVolumeByFade(AUDIO *aud){
 		if (1.0 < aud->param.fadePreviewCurrentVolume) {
 			aud->param.fadePreviewCurrentVolume = 1.0;
 		}
-		SetSoundVolume(aud, &(aud->sysSound).select, aud->param.fadePreviewCurrentVolume);
-		SetSoundVolume(aud, &(aud->sysSound).exselect, aud->param.fadePreviewCurrentVolume);
+		SetSoundVolume(aud, &aud->sysSound.select, aud->param.fadePreviewCurrentVolume);
+		SetSoundVolume(aud, &aud->sysSound.exselect, aud->param.fadePreviewCurrentVolume);
 	}
 	return 1;
 }
@@ -1138,11 +1128,9 @@ int SetVolumeByFade(AUDIO *aud){
 //4b9ed0
 int InitSound(AUDIO *aud, uint bufferLength, int numBuffer, char fDisable, int outputType, int driver){
 
-	FMOD_SYSTEM* pFmodSystem;
 	int numDrivers;
 	char driverName[256];
 	int chn2D, chn3D, chnTotal;
-	int numHardwareChannels;
 
 	if (aud->cmd_mediaOut) {
 		FMOD_System_Create(&aud->fmodSys);

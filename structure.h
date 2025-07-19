@@ -1016,7 +1016,7 @@ struct AUDIO_PARAM {
 	int fxParam[3][2];
 	int fxChannel[3];
 	int eq_gain[7];
-	int pitch_amount; /* Created by retype action */
+	int pitch_amount;
 	int pitch_type; //0:freq 1:pitch 2:speed
 	int volume_key;
 	int volume_BGM;
@@ -1033,7 +1033,7 @@ struct AUDIO_PARAM {
 	float fadePreviewCurrentVolume;
 	float fadePreviewStartVolume;
 	float fadePreviewTargetVolume;
-	char fadePreviewVolumeFlag; /* Created by retype action */
+	char fadePreviewIsQuiet;
 	undefined field30_0x169;
 	undefined field31_0x16a;
 	undefined field32_0x16b;
