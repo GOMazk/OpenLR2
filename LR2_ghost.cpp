@@ -223,7 +223,6 @@ int PLAYSCORE::SetGhost(int exscore, int notes, CSTR name){
 	return 1;
 }
 
-//TOFIX : ghostdata last note problem
 //4a8a90 
 CSTR PLAYSCORE::EncodeGhostData(void) {
 	
@@ -708,6 +707,7 @@ int PLAYSCORE::DecodeGhostData(CSTR data) {
 		}
 
 	}
+	//if (rep == 0) rep = 1; //TOFIX : ghostdata last note problem
 	while(rep > 0) {
 		decode.add(data.getSliced(pos, 1));
 		rep--;
