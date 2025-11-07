@@ -2891,7 +2891,8 @@ int ProcI_Keyconfig(game *g) {
 		fndkey = FindPressedKey(&g->KeyInput);
 		//TOFIX : block F1, F12 & allow NUMPAD
 		if(fndkey > 0 && (fndkey <= 0x3B || fndkey >= 0x58) && (fndkey != KEY_INPUT_ESCAPE) && (fndkey != KEY_INPUT_RETURN) && (fndkey != KEY_INPUT_UP) && (fndkey != KEY_INPUT_DOWN) && (fndkey != KEY_INPUT_LEFT) && (fndkey != KEY_INPUT_RIGHT)){
-			g->config.input.buttonMap[g->KeyInput.config_button_inMap][g->KeyInput.config_key] = fndkey;
+			g->config.input.buttonMap[g->KeyInput.config_button_inMap][g->KeyInput.config_key] = fndkey;//TOFIX: fix assign DELETE
+			//fndkey != KEY_INPUT_DELETE ? fndKey : 0; 
 			PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 			if (g->KeyInput.config_keymode == 0) {
 				WriteKeyConfig(g, "LR2files\\Config\\keyconfig.xml", 7);
@@ -3185,7 +3186,7 @@ int SetFirstSkins(game *g){
 		ErrorLogAdd("7keysスキンが有りません。\n");
 	}
 	if (SetFirstSkin_5k(sm, SKINTYPE_5KEYS, &g->config.skin.skinFilePath[1]) == -1) {
-		ErrorLogAdd("7keysスキンが有りません。\n"); //it has to be 5key but error??
+		ErrorLogAdd("7keysスキンが有りません。\n"); //TOFIX : it has to be 5key but error??
 	}
 	if (SetFirstSkin(sm, SKINTYPE_14KEYS, &g->config.skin.skinFilePath[2]) == -1) {
 		ErrorLogAdd("14keysスキンが有りません。\n");
@@ -3217,34 +3218,33 @@ int SetFirstSkins(game *g){
 	if (SetFirstSkin(sm, SKINTYPE_THEME, &g->config.skin.skinFilePath[11]) == -1) {
 		ErrorLogAdd("themeが有りません。\n");
 	}
-	if (SetFirstSkin(sm, (SKINTYPE)12, &g->config.skin.skinFilePath[12]) == -1) { //QUESTION : 12 is really 5keys battle???
+	if (SetFirstSkin(sm, SKINTYPE_7KEYSBATTLE, &g->config.skin.skinFilePath[12]) == -1) {
 		ErrorLogAdd("7keysバトルスキンが有りません。\n");
 	}
-	if (SetFirstSkin_5kb(sm, (SKINTYPE)13, &g->config.skin.skinFilePath[13]) == -1) { //QUESTION : 13 is really 7keys battle???
+	if (SetFirstSkin_5kb(sm, SKINTYPE_5KEYSBATTLE, &g->config.skin.skinFilePath[13]) == -1) {
 		ErrorLogAdd("5keysバトルスキンが有りません。\n");
 	}
-	if (SetFirstSkin(sm, (SKINTYPE)14, &g->config.skin.skinFilePath[14]) == -1) { //QUESTION : 14 is really course edit???
+	if (SetFirstSkin(sm, SKINTYPE_9KEYSBATTLE, &g->config.skin.skinFilePath[14]) == -1) {
 		ErrorLogAdd("9keysバトルスキンが有りません。\n");
 	}
 	if (SetFirstSkin(sm, SKINTYPE_COURSERESULT, &g->config.skin.skinFilePath[15]) == -1) {
 		ErrorLogAdd("コースリザルトスキンが有りません。\n");
 	}
-	if (SetFirstSkin(sm, (SKINTYPE)16, &g->config.skin.skinFilePath[16]) == -1) { //QUESTION : 16 is really 9keys battle???
+	if (SetFirstSkin(sm, SKINTYPE_OPENING, &g->config.skin.skinFilePath[16]) == -1) { 
 		ErrorLogAdd("オープニングスキンが有りません。\n"); //opening skin
 	}
-	if (SetFirstSkin(sm, (SKINTYPE)17, &g->config.skin.skinFilePath[17]) == -1) { //QUESTION : 17 is really opening?
+	if (SetFirstSkin(sm, SKINTYPE_MODESELECT, &g->config.skin.skinFilePath[17]) == -1) {
 		ErrorLogAdd("モードセレクトスキンが有りません。\n"); //mode select skin
 	}
-	if (SetFirstSkin(sm, (SKINTYPE)18, &g->config.skin.skinFilePath[18]) == -1) { //QUESTION : 18 is really mode select?
+	if (SetFirstSkin(sm, SKINTYPE_MODEDECIDE, &g->config.skin.skinFilePath[18]) == -1) {
 		ErrorLogAdd("モード決定スキンが有りません。\n"); //mode decide
 	}
-	if (SetFirstSkin(sm, (SKINTYPE)19, &g->config.skin.skinFilePath[19]) == -1) { //QUESTION : 19 is really mode decide?
+	if (SetFirstSkin(sm, SKINTYPE_COURSESELECT, &g->config.skin.skinFilePath[19]) == -1) {
 		ErrorLogAdd("コースセレクトスキンが有りません。\n"); //course select
 	}
-	if (SetFirstSkin(sm, (SKINTYPE)20, &g->config.skin.skinFilePath[20]) == -1) { //QUESTION : 18 is really course select?
+	if (SetFirstSkin(sm, SKINTYPE_COURSEEDIT, &g->config.skin.skinFilePath[20]) == -1) {
 		ErrorLogAdd("コース編集スキンが有りません。\n"); //course edit
-	}
-	//15:course result was here, but I moved it on the correct order
+		//15:course result was here, but I moved it on the correct order
 	return 1;
 }
 
@@ -15407,6 +15407,7 @@ int WriteConfigXml(game *g, const char *filename){
 	WriteXML_Tab2Str(pFile, "play_7_b", (g->config).skin.skinFilePath[12]);
 	WriteXML_Tab2Str(pFile, "play_5_b", (g->config).skin.skinFilePath[13]);
 	WriteXML_Tab2Str(pFile, "play_9_b", (g->config).skin.skinFilePath[14]);
+	//TOFIX : courseresult is omitted (mat found it)
 	WriteXML_Tab2Str(pFile, "fontname", (g->config).skin.fontname);
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "disableimagefont", (g->config).skin.disableimagefont, "disableimagefont");
 	fputs(buf, pFile);
@@ -16705,6 +16706,7 @@ int LoadBMSMETAFromDB(BMSMETA *meta, sqlite3 *sql) {
 		meta->exlevel = sqlite3_column_int(pStmt, 10);
 		return 1;
 	}
+	sqlite3_finalize(pStmt);
 	return 0;
 }
 
@@ -21742,6 +21744,8 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 		ExpandSkinObjectMax(&sk->otherObject[7], 20);
 		ExpandSkinObjectMax(&sk->otherObject[5], 20);
 
+		line++;
+
 		if (fBuf.length() > 6) {
 			if (*fBuf.atPos(0) == '#') {
 				fBuf.nullAtPos(fBuf.length() - 1);
@@ -21871,12 +21875,13 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 						sk->image.srcSize++;
 					}
 					else if (fBuf.left(10).isSame("#DST_IMAGE") && sk->image.srcSize > 0) {
+						int oldDstCount = sk->image.dst[sk->image.srcSize - 1].dstCount;
 						SplitCSV(fBuf, &csv, ",");
 						ReadDST(&sk->image.dst[sk->image.srcSize - 1], &csv, tSkin_num);
 						if (sk->image.dst[sk->image.srcSize - 1].dstCount < 1 || sk->image.dst[sk->image.srcSize - 1].dataSize < 1) {
 							ErrorLogFmtAdd("スキン読み込みエラー %d行目\n%s\nDSTの登録に失敗しました。DSTの一番最初がエラーを起こしている可能性があります。\n", line, fBuf);
 						}
-						else if (sk->image.dst[sk->image.srcSize - 1].dstCount == sk->image.dst[sk->image.srcSize - 1].dstCount){
+						else if (sk->image.dst[sk->image.srcSize - 1].dstCount == oldDstCount){
 							ErrorLogFmtAdd("スキン読み込みエラー %d行目\n%s\nDSTの登録に失敗しました。この行の登録のみ失敗しました。\n", line, fBuf);
 						}
 					}
@@ -23034,7 +23039,6 @@ int PLAYSCORE::SetGhost(int exscore, int notes, CSTR name){
 	return 1;
 }
 
-//TOFIX : ghostdata last note problem
 //4a8a90 
 CSTR PLAYSCORE::EncodeGhostData(void) {
 	
@@ -23519,6 +23523,7 @@ int PLAYSCORE::DecodeGhostData(CSTR data) {
 		}
 
 	}
+	//if (rep == 0) rep = 1; //TOFIX : ghostdata last note problem
 	while(rep > 0) {
 		decode.add(data.getSliced(pos, 1));
 		rep--;
@@ -27220,6 +27225,8 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 	for (int i = 0; i < 10; i++) unused_LaneB[i] = -1;
 	int isBattle = 0;
 
+	//TOFIX : mine on p2
+
 	//shuffle notes
 	for (int i = 0; i < gp->bmsobj.count; i++) {
 		int optemp = gp->bmsobj.notes[i].op;
@@ -27247,9 +27254,10 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 		}
 		else {
 			if (optemp < 20) {
+				//below memo to here //TOFIX : p1 notes counted as p2 notes so p1 ends early (250923 mat report)
 				if (p1LastTiming < gp->bmsobj.notes[i].realTiming) {
 					p1LastTiming = gp->bmsobj.notes[i].realTiming;
-					isBattle = 0;
+					isBattle = 0; //TOFIX : p1 notes counted as p2 notes so p1 ends early (250923 mat report)
 					for (int lane = 0; lane < 10; lane++) {
 						if (cfg->play.random[0] == 4) {
 							mapAdded[0][lane] = chArr[lane];
@@ -31429,35 +31437,13 @@ int ResetPressCount(inputStructure *is){
 
 //4be990
 int DetermineResultPlayDevice(inputStructure *is){
-	int joy;
-	int key;
-	int midi;
+	int &joy = is->joypad_presscount;
+	int &key = is->keyboard_presscount;
+	int &midi = is->MIDI_presscount;
 
-	key = is->keyboard_presscount;
-	joy = is->joypad_presscount;
-	midi = is->MIDI_presscount;
-
-	/*if (joy <= key && midi <= key) return 0;
+	if (joy <= key && midi <= key) return 0;
 	if (midi <= joy && key <= joy) return 1;
 	if (key <= midi && joy <= midi) return 2;
-	return 0;*/
-	if (joy <= key) {
-		if (midi <= key) {
-			return 0;
-		}
-		if (joy < key) {
-			if ((key <= midi) && joy <= midi) {
-				return 2;
-			}
-			return 0;
-		}
-	}
-	if (midi <= joy) {
-		return 1;
-	}
-	if (key <= midi && joy <= midi) {
-		return 2;
-	}
 	return 0;
 }
 

@@ -261,11 +261,12 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		SetMultiThreadFlag(1);
 		SetUseFPUPreserveFlag(1);
 		//SetUseDirectInputFlag(1); //DXLIBVER: not in original, but we need it to make same reaction.
+		//SetUseDirect3DVersion(DX_DIRECT3D_9); //DXLIBVER: if not set, it's DX11 (over 3.13e)
 		if (DxLib_Init() != -1) {
 			ChangeFont("", 0);
 			SetLogFontSize(14); //DXLIBVER: change this for further dxlib version
 			SetSysCommandOffFlag(gs.config.system.disablesystemkey, 0);
-			SetDrawScreen(-2);
+			SetDrawScreen(DX_SCREEN_BACK);
 			SetAlwaysRunFlag(1);
 			SetMouseDispFlag(0);
 			InitInputStructure(&gs.KeyInput);
@@ -322,7 +323,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				SetWaitVSyncFlag(gs.config.system.vsync);
 				ChangeWindowMode(gs.config.system.screenmode);
 				SetWaitVSyncFlag(gs.config.system.vsync);
-				SetDrawScreen(0xfffffffe);
+				SetDrawScreen(DX_SCREEN_BACK);
 			}
 			gs.procSelecter = 2;
 			gs.procPhase = 0;
@@ -585,7 +586,10 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 						gs.config.system.windowsize_y = wSizeY;
 					}
 				}
-				if (gs.cmd_directplay && gs.procSelecter != 4 && gs.procSelecter != 5 && gs.procSelecter != 13 && gs.procPhase != 2 && gs.procPhase != 3) break;
+				if (gs.cmd_directplay && gs.procSelecter != 4 && gs.procSelecter != 5 && gs.procSelecter != 13 && gs.procPhase != 2 && gs.procPhase != 3) {
+					ErrorLogFmtAdd("break\n");
+					break;
+				}
 				
 				if (GetTimeWrap() >= startTime + 6) {
 					GetTimeWrap();
@@ -1708,7 +1712,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 							SetWaitVSyncFlag(gs.config.system.vsync);
 							ChangeWindowMode(gs.config.system.screenmode);
 							SetWaitVSyncFlag(gs.config.system.vsync);
-							SetDrawScreen(-2);
+							SetDrawScreen(DX_SCREEN_BACK);
 							LoadScene(&gs.skstruct, gs.config.skin.skinFilePath[5], gs.skinData.Data[gs.skinData.skinID[5]].informationP5, 0);
 							SetMouseDispFlag(0);
 							gs.is_clicked_screenModeChange = 0;
@@ -1746,7 +1750,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 							SetWaitVSyncFlag(gs.config.system.vsync);
 							ChangeWindowMode(gs.config.system.screenmode);
 							SetWaitVSyncFlag(gs.config.system.vsync);
-							SetDrawScreen(-2);
+							SetDrawScreen(DX_SCREEN_BACK);
 							LoadScene(&gs.skstruct, gs.config.skin.skinFilePath[5], gs.skinData.Data[gs.skinData.skinID[5]].informationP5, 0);
 							SetMouseDispFlag(0);
 							gs.is_clicked_screenModeChange = 0;
@@ -1991,7 +1995,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 					SetWaitVSyncFlag(gs.config.system.vsync);
 					ChangeWindowMode(gs.config.system.screenmode);
 					SetWaitVSyncFlag(gs.config.system.vsync);
-					SetDrawScreen(-2);
+					SetDrawScreen(DX_SCREEN_BACK);
 					for (int i = 0; i < 900; i++) {
 						gs.skstruct.op[i] = (GetOptionFlag_dst(&gs, i) > 0);
 						gs.skstruct2.op[i] = (GetOptionFlag_dst(&gs, i) > 0);
@@ -2014,7 +2018,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 						gs.skstruct.ImageFonts[i].filepath[0] = 0;
 					}
 					SetGraphMode(640, 480, (gs.config.system.highcolor == 0 ? 32 : 16), 60);
-					SetDrawScreen(-2);
+					SetDrawScreen(DX_SCREEN_BACK);
 					LoadScene(&gs.skstruct, gs.config.skin.skinFilePath[5], gs.skinData.Data[gs.skinData.skinID[5]].informationP5, 0);
 					SetWaitVSyncFlag(gs.config.system.vsync);
 					SetMouseDispFlag(0);
@@ -2032,7 +2036,6 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 				}
 			}
 			//phase_game end
-			ErrorLogFmtAdd("break\n");
 			if (gs.is_recordmode) {
 				RecordBmsSound(&gs, gs.directoryFilename);
 				remove("LR2files\\movie_temp.mp3");
