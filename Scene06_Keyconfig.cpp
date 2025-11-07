@@ -24,7 +24,8 @@ int ProcI_Keyconfig(game *g) {
 		fndkey = FindPressedKey(&g->KeyInput);
 		//TOFIX : block F1, F12 & allow NUMPAD
 		if(fndkey > 0 && (fndkey <= 0x3B || fndkey >= 0x58) && (fndkey != KEY_INPUT_ESCAPE) && (fndkey != KEY_INPUT_RETURN) && (fndkey != KEY_INPUT_UP) && (fndkey != KEY_INPUT_DOWN) && (fndkey != KEY_INPUT_LEFT) && (fndkey != KEY_INPUT_RIGHT)){
-			g->config.input.buttonMap[g->KeyInput.config_button_inMap][g->KeyInput.config_key] = fndkey;
+			g->config.input.buttonMap[g->KeyInput.config_button_inMap][g->KeyInput.config_key] = fndkey; //TOFIX: fix assign DELETE
+			//fndkey != KEY_INPUT_DELETE ? fndKey : 0; 
 			PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 			if (g->KeyInput.config_keymode == 0) {
 				WriteKeyConfig(g, "LR2files\\Config\\keyconfig.xml", 7);
