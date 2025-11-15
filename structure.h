@@ -1538,7 +1538,10 @@ struct gameplay {
 	int fadeoutBGAstart[10];
 	int fadeoutBGAend[10];
 	int bgaMixer[10];
-	int isPreviewLoad;
+	char isPreviewLoad;
+	char padding1;
+	char padding2;
+	char padding3;
 	HANDLE hThreadPreview;
 	int previewStatus; /* 1:start 2:loaded */
 	CSTR previewBMShash;
@@ -1577,7 +1580,7 @@ struct Timer {
 	double FPSclock;
 	double rhythmTick;
 	double Rhythm; /* //1beat=1000,reset on line */
-	char flagMovieTimer;
+	char flagMovieTimer; /* //char,bool */
 	undefined padding1;
 	undefined padding2;
 	undefined padding3;
