@@ -1,3 +1,6 @@
+# Purpose Of This Branch
+ for "LR2 beta3 ver100201" moding. improvement is not allowed, this is a evidence that started from LR2
+
 # OpenLR2
 Rewritten source code of bms player Lunatic Rave 2
 Project started Jan, 2021. And now it's about to release.
