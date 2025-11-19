@@ -2,7 +2,11 @@
 Rewritten source code of bms player Lunatic Rave 2
 Project started Jan, 2021. And now it's about to release.
 
-progress is now on test to find different behaviors.
+if there is any different behavior with LR2beta3100201, plaese let me know.
+current progress is refactoring, original codes remain at LR2Beta3-v100201 branch
+
+# is it really open source?
+I didn't decide, I asked stakeholders(IR) but there was no reply
 
 # installation
 get original LR2 beta3 100201
