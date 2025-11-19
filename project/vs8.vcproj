@@ -171,15 +171,99 @@
 			UniqueIdentifier="{4FC737F1-C7A5-4376-A066-2A32D752A2FF}"
 			>
 			<File
-				RelativePath="..\LR2f.cpp"
+				RelativePath="..\En_audio.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\LR2input.cpp"
+				RelativePath="..\En_dbio.cpp"
 				>
 			</File>
 			<File
-				RelativePath="..\LR2startup.cpp"
+				RelativePath="..\En_fileutil.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\En_graphic.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\En_input.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\En_recordmovie.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\En_timer.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\En_value.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\En_xml.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_audio.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_bmsload.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_configsave.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_gameloop.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_ghost.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_ir.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_makemp3.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_replay.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_skindraw.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_skinload.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_skinmanage.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_skinobject.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_songmanage.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_statlong.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_statplay.cpp"
 				>
 			</File>
 			<File
@@ -187,7 +271,51 @@
 				>
 			</File>
 			<File
-				RelativePath="..\md5.cpp"
+				RelativePath="..\lib\md5.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene02_Songselect.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene03_Decide.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene04_Play.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene05_Result.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene06_Keyconfig.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene07_Skinselect.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene08_Lunaris.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene09_Po4menu.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene10_Po4decide.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene11_Po4select.cpp"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene13_Courseresult.cpp"
 				>
 			</File>
 			<File
@@ -221,23 +349,159 @@
 			UniqueIdentifier="{93995380-89BD-4b04-88EB-625FBE52EBFB}"
 			>
 			<File
-				RelativePath="..\enum.h"
+				RelativePath="..\En_audio.h"
 				>
 			</File>
 			<File
-				RelativePath="..\LR2f.h"
+				RelativePath="..\En_dbio.h"
 				>
 			</File>
 			<File
-				RelativePath="..\LR2input.h"
+				RelativePath="..\En_fileutil.h"
 				>
 			</File>
 			<File
-				RelativePath="..\LR2startup.h"
+				RelativePath="..\En_graphic.h"
+				>
+			</File>
+			<File
+				RelativePath="..\En_input.h"
+				>
+			</File>
+			<File
+				RelativePath="..\En_recordmovie.h"
+				>
+			</File>
+			<File
+				RelativePath="..\En_timer.h"
+				>
+			</File>
+			<File
+				RelativePath="..\En_value.h"
+				>
+			</File>
+			<File
+				RelativePath="..\En_xml.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Engine.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_audio.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_bmsload.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_configsave.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_gameloop.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_ghost.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_ir.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_makemp3.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_replay.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_skindraw.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_skinload.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_skinmanage.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_skinobject.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_songmanage.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_statlong.h"
+				>
+			</File>
+			<File
+				RelativePath="..\LR2_statplay.h"
 				>
 			</File>
 			<File
 				RelativePath="..\md5.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene02_Songselect.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene03_Decide.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene04_Play.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene05_Result.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene06_Keyconfig.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene07_Skinselect.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene08_Lunaris.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene09_Po4menu.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene10_Po4decide.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene11_Po4select.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scene13_Courseresult.h"
+				>
+			</File>
+			<File
+				RelativePath="..\Scenes.h"
 				>
 			</File>
 			<File

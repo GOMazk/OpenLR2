@@ -1,0 +1,1003 @@
+﻿#pragma comment(lib,"ws2_32.lib")
+#include "LR2_ir.h"
+#include "dxlib/DxLib.h"
+#include "tinyxml/tinyxml.h"
+#include "En_dbio.h"
+#include "En_fileutil.h"
+#include "En_timer.h"
+#include <process.h>
+
+//401000
+void MYRANKING::InitRanking() {
+	this->songMD5.fillzero();
+	this->unused.fillzero();
+	this->passMD5.fillzero();
+	this->title.fillzero();
+	this->genre.fillzero();
+	this->artist.fillzero();
+	this->ghost.fillzero();
+	this->maxbpm = 0;
+	this->minbpm = 0;
+	this->playlevel = 0;
+	this->clear = 0;
+	this->exscore = 0;
+	this->pg = 0;
+	this->gr = 0;
+	this->gd = 0;
+	this->bd = 0;
+	this->pr = 0;
+	this->maxcombo = 0;
+	this->playcount = 0;
+	this->clearcount = 0;
+	this->rate = 0;
+	this->minbp = 0;
+	this->totalnotes = 0;
+	this->opt_history = 0;
+	this->rseed = 0;
+	this->clear_sd = 0;
+	this->clear_db = 0;
+	this->clear_ex = 0;
+	this->line = 0;
+	this->judge = 0;
+	this->inputtype = 0;
+	return;
+}
+
+//4ba5e0
+int CMP_PlayerByExscore(const void *p1, const void *p2) {
+	
+	RANKINGPLAYER* s1 = (RANKINGPLAYER*)p1;
+	RANKINGPLAYER* s2 = (RANKINGPLAYER*)p2;
+
+	return (s2->pg * 2 + s2->gr) - (s1->pg * 2 + s1->gr);
+}
+
+//4ba670
+void RANKING::ExpandRankingBuffer(int add) {
+	
+	this->ranking = (RANKINGPLAYER*)realloc(this->ranking, (this->rankingMax + add) * sizeof(RANKINGPLAYER));
+
+	for (int i = this->rankingMax; i < this->rankingMax + add; i++) {
+		memset(&this->ranking[i], 0, sizeof(RANKINGPLAYER));
+	}
+
+	this->rankingMax += add;
+	return;
+}
+
+//4ba6e0
+void RANKING::Init() {
+	this->unk_4.fillzero();
+	this->unk_0.fillzero();
+	this->lastupdate.fillzero();
+	this->clearPlayers[0] = 0;
+	this->clearPlayers[1] = 0;
+	this->clearPlayers[2] = 0;
+	this->clearPlayers[3] = 0;
+	this->clearPlayers[4] = 0;
+	this->clearPlayers[5] = 0;
+	this->unused30 = NULL;
+	this->rankingCursor = 0;
+	this->totalPlaycount = 0;
+	this->rankingCount = 0;
+	this->myRanking = 0;
+	this->showRanking = '\0';
+	this->unused48 = NULL;
+	this->unused44 = NULL;
+	for (int i = 0; i < this->rankingMax; i++) {
+		this->ranking[i].name.fillzero();
+		this->ranking[i].id = 0;
+		this->ranking[i].sp = 0;
+		this->ranking[i].dp = 0;
+		this->ranking[i].clear = 0;
+		this->ranking[i].notes = 0;
+		this->ranking[i].combo = 0;
+		this->ranking[i].pg = 0;
+		this->ranking[i].gr = 0;
+		this->ranking[i].gd = 0;
+		this->ranking[i].bd = 0;
+		this->ranking[i].pr = 0;
+		this->ranking[i].minbp = 0;
+		this->ranking[i].option = 0;
+		this->ranking[i].sussussuspected = 0;
+		this->ranking[i].playcount = 0;
+		this->ranking[i].ranking = 0;
+		this->ranking[i].comment.fillzero();
+	}
+
+	return;
+}
+
+//4ba790
+int RANKING::ParseXML(CSTR path) {
+	
+	TiXmlDocument *hXml;
+	TiXmlElement *cur;
+	
+	Init();
+	ErrorLogFmtAdd("ランキングデータのパースを開始します。パス%s\n", path);
+
+	hXml = new TiXmlDocument(path);
+	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+		if (hXml) {
+			delete(hXml);
+		}
+		ErrorLogFmtAdd("ランキングファイルが見つかりません\n");
+		return 0;
+	}
+
+	cur = hXml->FirstChildElement("lastupdate");
+	if (cur && cur->ToElement()) {
+		cstrSprintf(&this->lastupdate, "%s", cur->ToElement()->GetText());
+	}
+
+	cur = hXml->FirstChildElement("ranking");
+	if (!cur) {
+		if (hXml) delete(hXml);
+		ErrorLogFmtAdd("ランキングの読み込みに失敗しました。xmlの書式をミスってるかも。\n");
+		return 0;
+	}
+
+	cur = cur->FirstChildElement("score");
+	if (!cur) {
+		if (hXml) delete(hXml);
+		ErrorLogFmtAdd("スコアの更新がありません。\n");
+		return 0;
+	}
+
+	while (cur) {
+		TiXmlElement *val;
+		val = cur->FirstChildElement("name");
+		if (val && val->ToElement()) {
+			cstrSprintf(&ranking[rankingCount].name, "%s", val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("id");
+		if (val) {
+			ranking[rankingCount].id = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("sp");
+		if (val) {
+			ranking[rankingCount].sp = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("dp");
+		if (val) {
+			ranking[rankingCount].dp = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("clear");
+		if (val) {
+			ranking[rankingCount].clear = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("notes");
+		if (val) {
+			ranking[rankingCount].notes = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("combo");
+		if (val) {
+			ranking[rankingCount].combo = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("pg");
+		if (val) {
+			ranking[rankingCount].pg = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("gr");
+		if (val) {
+			ranking[rankingCount].gr = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("gd");
+		if (val) {
+			ranking[rankingCount].gd = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("bd");
+		if (val) {
+			ranking[rankingCount].bd = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("pr");
+		if (val) {
+			ranking[rankingCount].pr = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("minbp");
+		if (val) {
+			ranking[rankingCount].minbp = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("option");
+		if (val) {
+			ranking[rankingCount].option = atol(val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("comment");
+		if (val && val->ToElement()) {
+			cstrSprintf(&ranking[rankingCount].comment, "%s", val->ToElement()->GetText());
+		}
+		val = cur->FirstChildElement("playcount");
+		if (val) {
+			ranking[rankingCount].playcount = atol(val->ToElement()->GetText());
+		}
+
+		this->rankingCount++;
+		if (this->rankingCount == this->rankingMax) ExpandRankingBuffer(1000);
+
+		cur = cur->NextSiblingElement();
+	}
+
+	if (hXml) delete(hXml);
+	ErrorLogFmtAdd("ランキングデータのパースに成功しました。 合計プレイヤー %d\n", rankingCount);
+	
+	qsort(ranking, rankingCount, sizeof(RANKINGPLAYER), CMP_PlayerByExscore);
+
+	for (int i = 0; i < rankingCount; i++) {
+		totalPlaycount += ranking[i].playcount;
+		if (0 <= ranking[i].clear && ranking[i].clear <= 5) clearPlayers[ranking[i].clear]++;
+	}
+
+	int fpg = ranking[0].pg;
+	int fgr = ranking[0].gr;
+	int rank = 1;
+	for (int i = 0; i < rankingCount; i++) {
+		if (ranking[i].gr + ranking[i].pg * 2 < fgr + fpg * 2) rank = i + 1;
+		ranking[i].ranking = rank;
+		if (ranking[i].id == myID) myRanking = rank;
+		if (ranking[i].id == rivalID) rivalRanking = rank;
+	}
+	return 1;
+}
+
+//4bad70
+int CheckRivaldataNew(int rivalID) {
+
+	sqlite3 *pDb;
+	sqlite3_stmt *pStmt;
+	CSTR path;
+	int ret = 0;
+	cstrSprintf(&path, "LR2files/Rival/%d.db", rivalID);
+	
+	if (!IsFileExist(path)) return 0;
+
+	sqlite3_open(path, &pDb);
+
+	SQL_prepare("SELECT r_lastupdate FROM rival ORDER BY r_lastupdate DESC LIMIT 0,1", pDb, &pStmt);
+	if (sqlite3_step(pStmt) == 100) {
+		ret = sqlite3_column_int(pStmt, 0);
+	}
+	sqlite3_finalize(pStmt);
+	sqlite3_close(pDb);
+	return ret;
+}
+
+//4baea0
+int ParseRivalData(long ID) {
+
+	CSTR name;
+	CSTR path;
+	TiXmlDocument *hXml;
+	TiXmlElement *cur, *val;
+	sqlite3 *pRivalDB;
+
+	cstrSprintf(&path, "LR2files/Rival/%d.db", ID);
+	sqlite3_open(path, &pRivalDB);
+	SQL_Run("CREATE TABLE rival(hash TEXT primary key,r_clear INTEGER,r_totalnotes INTEGER,r_maxcombo INTEGER,r_perfect INTEGER,r_great INTEGER,r_good INTEGER,r_bad INTEGER,r_poor INTEGER,r_minbp INTEGER,r_option INTEGER,r_lastupdate INGEGER)", pRivalDB);
+	
+	cstrSprintf(&path, "LR2files/Rival/%d.xml", ID);
+	hXml = new TiXmlDocument(path);
+	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+		if (hXml) {
+			delete(hXml);
+		}
+		printfDx("ID%4d:ライバルデータにアクセスできません。\n", ID);
+		return 0;
+	}
+
+	cur = hXml->FirstChildElement("rivalname");
+	if(cur){
+		if (cur->ToElement()) {
+			cstrSprintf(&name, "%s", cur->ToElement()->GetText());
+		}
+		ErrorLogFmtAdd("ライバル名:%s\n", name);
+	}
+
+	cur = hXml->FirstChildElement("scorelist");
+	if (!cur) {
+		if (hXml) {
+			delete(hXml);
+		}
+		ErrorLogFmtAdd("ライバルデータ読み込みに失敗しました。xmlが変かも\n");
+		printfDx("ライバルデータの読み込みに失敗しました。ID%06d\n", ID);
+		return 0;
+	}
+
+	cur = cur->FirstChildElement("score");
+	if (!cur) {
+		if (hXml) {
+			delete(hXml);
+		}
+		ErrorLogFmtAdd("ライバルデータの読み込みに失敗しました。スコアが存在しないかも\n");
+		printfDx("ID%06d:ライバルデータ[%s]の更新はありません。\n", ID,	name);
+		return 0;
+	}
+
+	CSTR hash, query;
+	int count = 0;
+	int clear, notes, combo, pg, gr, gd, bd, pr, minbp, option, lastupdate;
+	SQL_Run("BEGIN", pRivalDB);
+
+	while (cur) {
+		count++;
+
+		val = cur->FirstChildElement("hash");
+		if(val && val->ToElement()){
+			cstrSprintf(&hash, "%s", val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("clear");
+		if (val && val->ToElement()) {
+			clear = atol(val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("notes");
+		if (val && val->ToElement()) {
+			notes = atol(val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("combo");
+		if (val && val->ToElement()) {
+			combo = atol(val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("pg");
+		if (val && val->ToElement()) {
+			pg = atol(val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("gr");
+		if (val && val->ToElement()) {
+			gr = atol(val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("gd");
+		if (val && val->ToElement()) {
+			gd = atol(val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("bd");
+		if (val && val->ToElement()) {
+			bd = atol(val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("pr");
+		if (val && val->ToElement()) {
+			pr = atol(val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("minbp");
+		if (val && val->ToElement()) {
+			minbp = atol(val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("option");
+		if (val && val->ToElement()) {
+			option = atol(val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("lastupdate");
+		if (val && val->ToElement()) {
+			lastupdate = atol(val->ToElement()->GetText());
+		}
+
+		cstrSprintf(&query, "INSERT INTO rival (hash,r_clear,r_totalnotes,r_maxcombo,r_perfect,r_great,r_good,r_bad,r_poor,r_minbp,r_option,r_lastupdate) VALUES(\'%s\',%d,%d,%d,%d,%d,%d,%d,%d,%d,%d,%d)",
+			hash, clear, notes, combo, pg, gr, gd, bd, pr, minbp, option, lastupdate);
+		if (SQL_Run(query, pRivalDB)) {
+			cstrSprintf(&query, "UPDATE rival SET r_clear=%d,r_totalnotes=%d,r_maxcombo=%d,r_perfect=%d,r_great=%d,r_good=%d,r_bad=%d,r_poor=%d,r_minbp=%d,r_option=%d,r_lastupdate=%d WHERE hash=\'%s\'",
+				clear, notes, combo, pg, gr, gd, bd, pr, minbp, option, lastupdate, hash);
+			SQL_Run(query, pRivalDB);
+		}
+
+		cur = cur->NextSiblingElement();
+	}
+	if (hXml) {
+		delete(hXml);
+	}
+	remove(path);
+
+	SQL_Run("COMMIT", pRivalDB);
+	sqlite3_close(pRivalDB);
+
+	CSTR cfolder;
+	cstrSprintf(&cfolder, "#COMMAND __RIVAL__\n#MAXTRACKS %d\n#CATEGORY ライバルフォルダ\n#TITLE %s\n#INFORMATION_A %sのプレイした曲を表示します\n#INFORMAION_B\n", ID, name, name);
+	cstrSprintf(&path, "LR2files/Rival/%d.lr2folder", ID);
+	cfolder.toFile(path);
+	printfDx("ID%06d:ライバルデータ[%s]を更新しました。更新スコア数%d\n", ID, name, count);
+	return 1;
+}
+
+//4bb500
+int NETWORK::GetInsaneList() {
+
+	TiXmlDocument *hXml;
+	TiXmlElement *cur;
+	sqlite3 *pSongDB;
+
+	cstrSprintf(&this->param," ");
+	this->target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/getinsanelist.cgi";
+	if (HTTPrequest() == 1) {
+		this->httpResult.toFile("LR2files/Database/exlevel.xml");
+		printfDx("発狂難度リストをダウンロードしました。\n");
+		ErrorLogFmtAdd("発狂難度リストをダウンロードしました。\n");
+	}
+	else{
+		printfDx("発狂難度リストの更新に失敗しました。");
+		ErrorLogFmtAdd("発狂難度リストの更新に失敗しました。\n");
+	}
+	ScreenFlip();
+
+	hXml = new TiXmlDocument("LR2files/Database/exlevel.xml");
+	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+		if (hXml) {
+			delete(hXml);
+		}
+		printfDx("発狂レベルリストにアクセスできません。\n");
+		ErrorLogFmtAdd("発狂難度リストにアクセスできません。\n");
+		return 0;
+	}
+	cur = hXml->FirstChildElement("list");
+	if (!cur) {
+		if (hXml) {
+			delete(hXml);
+		}
+		printfDx("発狂レベルリストの読み込みに失敗しました。\n");
+		return 0;
+	}
+	cur = cur->FirstChildElement("song");
+	if (!cur) {
+		if (hXml) {
+			delete(hXml);
+		}
+		printfDx("発狂レベルリストの更新はありません。\n");
+		return 0;
+	}
+
+	CSTR query;
+	CSTR hash;
+	sqlite3_open("LR2files/Database/song.db", &pSongDB);
+	SQL_Run("BEGIN", pSongDB);
+	int exlevel;
+	while (cur) {
+		TiXmlElement *val;
+		val = cur->FirstChildElement("hash");
+		if (val && val->ToElement()) {
+			cstrSprintf(&hash, "%s", val->ToElement()->GetText());
+		}
+
+		val = cur->FirstChildElement("exlevel");
+		if (val) {
+			exlevel = atol(val->ToElement()->GetText());
+		}
+
+		cstrSprintf(&query, "UPDATE song SET exlevel=%d WHERE hash=\'%s\'",exlevel,hash);
+		SQL_Run(query, pSongDB);
+
+		cur = cur->NextSiblingElement();
+	}
+	
+	if (hXml) delete(hXml);
+	SQL_Run("COMMIT", pSongDB);
+	sqlite3_close(pSongDB);
+	return 1;
+}
+
+//4bb8d0
+CSTR UrlEncode(CSTR in) {
+
+	CSTR ret;
+
+	for (int i = 0; i < in.length(); i++) {
+		CSTR buf;
+		if (isalnum((uchar)*in.atPos(i)) || (*in.atPos(i) == '_') || (*in.atPos(i) == '.') || (*in.atPos(i) == '-')) {
+			*buf.atPos(0) = *in.atPos(i);
+			*buf.atPos(1) = '\0';
+
+		}
+		else if ((*in.atPos(i) == ' ')) {
+			*buf.atPos(0) = '+';
+			*buf.atPos(1) = '\0';
+		}
+		else {
+			cstrSprintf(&buf, "%%%02X", (uchar)*in.atPos(i));
+		}
+
+		ret.add(buf);
+	}
+	return ret;
+}
+
+//4bb820
+RANKING::RANKING() {
+	ranking = (RANKINGPLAYER*)malloc(sizeof(RANKINGPLAYER) * 1000);
+	rankingCount = 0;
+	rankingMax = 1000;
+	for (int i = 0; i < rankingMax; i++) memset(&ranking[i], 0, sizeof(RANKINGPLAYER));
+	Init();
+}
+
+//4bbb80
+int NETWORK::Init() {
+
+	InitializeCriticalSection((LPCRITICAL_SECTION)&this->criticalSection);
+	this->unused234 = 0;
+	this->waitForHandle = '\0';
+	this->domain = "www.dream-pro.info";
+	this->timeout = 15000;
+	this->IRstatus = 0;
+	this->hHandle = NULL;
+	this->isOnline = 0;
+	this->IR_ID = 0;
+	this->rankingData.target_ID = 0;
+	this->waitTime = 10000;
+	this->rankingData.Init();
+	return 1;
+}
+
+//4bbd00
+void NETWORK::Lock() {
+	EnterCriticalSection(&this->criticalSection);
+}
+
+//4bbd10
+void NETWORK::Unlock() {
+	LeaveCriticalSection(&this->criticalSection);
+}
+
+//4bbd20
+int NETWORK::HTTPrequest() {
+	SOCKET s;
+	struct sockaddr_in server;
+	hostent* host;
+	CSTR request(2048);
+	CSTR recvBuf(2048);
+
+	EnterCriticalSection(&this->criticalSection);
+
+	s = socket(AF_INET, SOCK_STREAM, IPPROTO_IP);
+	if (s == 0xffffffff) {
+		cstrSprintf(&this->request_debug, "ソケットエラー : %d\n", WSAGetLastError());
+		ErrorLogAdd(this->request_debug);
+		closesocket(s);
+		LeaveCriticalSection(&this->criticalSection);
+		return this->isRequestSuccess = 0;
+	}
+
+	server.sin_family = AF_INET;
+	server.sin_port = htons(80);
+	server.sin_addr.S_un.S_addr = inet_addr(this->domain);
+	if (server.sin_addr.S_un.S_addr == 0xffffffff) {
+		host = gethostbyname(this->domain);
+		if (host == NULL) {
+			if (WSAGetLastError() == 11001) cstrSprintf(&this->request_debug, "ホストが見つかりません : %d\n", WSAGetLastError());
+			else cstrSprintf(&this->request_debug, "その他のエラーです : %d\n", WSAGetLastError());
+			ErrorLogAdd(this->request_debug);
+			closesocket(s);
+			LeaveCriticalSection(&this->criticalSection);
+			return this->isRequestSuccess = 0;
+		}
+
+		for (int i = 0; host->h_addr_list[i]; i++) {
+			memcpy(&server.sin_addr.S_un,host->h_addr_list[i],4);
+			if (connect(s, (sockaddr*)&server, sizeof(struct sockaddr_in)) == 0) {
+				if (host->h_addr_list[i] == NULL) {
+					cstrSprintf(&this->request_debug, "接続に失敗しました : %d\n", WSAGetLastError());
+					ErrorLogAdd(this->request_debug);
+					closesocket(s);
+					LeaveCriticalSection(&this->criticalSection);
+					return this->isRequestSuccess = 0;
+				}
+				break;
+			}
+		}
+	}
+	else {
+		if (connect(s, (sockaddr*)&server, sizeof(struct sockaddr_in)) == 0) {
+			cstrSprintf(&this->request_debug, "接続に失敗しました : %d\n", WSAGetLastError());
+			ErrorLogAdd(this->request_debug);
+			closesocket(s);
+			LeaveCriticalSection(&this->criticalSection);
+			return this->isRequestSuccess = 0;
+		}
+	}
+		
+	unsigned long argp = 1;
+	ioctlsocket(s, 0x8004667e, &argp);
+		
+	request.fillzero();
+	cstrSprintf(&request, "POST %s HTTP/1.0\r\nContent-Length:%d\n\n%s", this->target_URL, this->param.length(), this->param);
+
+	if (send(s, request, request.length() + 1, 0) < 0) {
+		cstrSprintf(&this->request_debug, "データの送信に失敗しました : %d\n", WSAGetLastError());
+		ErrorLogAdd(this->request_debug);
+		closesocket(s);
+		LeaveCriticalSection(&this->criticalSection);
+		return this->isRequestSuccess = 0;
+	}
+
+	request.fillzero(); //from this time, request is used as response result
+
+	int timeout = this->timeout / 10;
+	int i = 0;
+	for (; i != timeout; i++) {
+		recvBuf = "";
+		int recvSize = recv(s, recvBuf, recvBuf.msize() - 1, 0);
+		if (this->waitForHandle == 1) {
+			request = "DISCONNECT";
+			break;
+		}
+
+		if (recvSize < 0) {
+			if (WSAGetLastError() != 10035) { //WSAEWOULDBLOCK
+				cstrSprintf(&this->request_debug, "データの受信に失敗しました : %d\n", WSAGetLastError());
+				if(this->rankingData.myID == 1) ErrorLogAdd(this->request_debug);
+				request.fillzero();
+				break;
+			}
+		}
+		else if (recvSize == 0) {
+			break;
+		}
+		else {
+			request.add(recvBuf);
+		}
+		Sleep(10);
+	}
+	if (i == timeout) {
+		request = "TIMEOUT";
+	}
+
+	closesocket(s);
+	LeaveCriticalSection(&this->criticalSection);
+
+	if (request.findStrPos("#") != -1) {
+		this->httpResult = request.right(request.length() - (request.findStrPos("#") + 1));
+		return this->isRequestSuccess = 1;
+	}
+
+	if (request.findStrPos("503") != -1) {
+		cstrSprintf(&this->request_debug, "503エラーです : %d\n", WSAGetLastError());
+		ErrorLogAdd(this->request_debug);
+		return this->isRequestSuccess = 0;
+	}
+	if (request.findStrPos("404") != -1) {
+		cstrSprintf(&this->request_debug, "404エラーです : %d\n", WSAGetLastError());
+		ErrorLogAdd(this->request_debug);
+		return this->isRequestSuccess = 0;
+	}
+	if (this->waitForHandle) {
+		cstrSprintf(&this->request_debug, "接続を中断しました : %d\n", WSAGetLastError());
+		ErrorLogAdd(this->request_debug);
+		return this->isRequestSuccess = -1;
+	}
+	if (request.isSame("TIMEOUT")) {
+		cstrSprintf(&this->request_debug, "タイムアウト : %d\n", WSAGetLastError());
+		ErrorLogAdd(this->request_debug);
+		return 0;
+	}
+	cstrSprintf(&this->request_debug, "その他のエラーです : %d\n", WSAGetLastError());
+	ErrorLogAdd(this->request_debug);
+	return this->isRequestSuccess = 0;
+}
+
+//4bc2b0
+void NETWORK::WaitAndInitRanking() {
+	GetTimeWrap();
+	this->waitForHandle = 1;
+	if (this->hHandle != NULL) {
+		WaitForSingleObject(this->hHandle, 5000);
+	}
+	this->waitForHandle = 0;
+	this->rankingData.Init();
+	return;
+}
+
+//4bc2f0
+int NETWORK::GetRanking(CSTR hash, char flagInit) {
+
+	CSTR path;
+	
+	ErrorLogAdd("IRxmlをダウンロードします\n");
+	if (hash.length() <= 50) {
+		cstrSprintf(&path, "LR2files/Ir/%s.xml", hash);
+	}
+	else {
+		cstrSprintf(&path, "LR2files/Ir/%s.xml", hash.makeCRCstr());
+	}
+
+	if (flagInit) this->rankingData.Init();
+
+	cstrSprintf(&this->param, "songmd5=%s&id=%d&lastupdate=%s", hash, this->IR_ID, this->rankingData.lastupdate);
+	this->target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/getrankingxml.cgi";
+	if (HTTPrequest() == 1) {
+		ErrorLogAdd("xmlを保存します\n");
+		this->httpResult.toFile(path);
+		rankingData.ParseXML(path);
+		return 1;
+	}
+	else if (this->rankingData.lastupdate.length() <= 0) {
+		rankingData.Init();
+		return -1;
+	}
+	return 1;
+}
+
+//4bc4c0
+int NETWORK::GetRivalInfo(int rivalID) {
+	CSTR pathXML;
+	cstrSprintf(&pathXML, "LR2files/Rival/%d.xml", rivalID);
+	CSTR pathDB;
+	cstrSprintf(&pathDB, "LR2files/Rival/%d.db", rivalID);
+	cstrSprintf(&this->param, "id=%d&lastupdate=%d", rivalID, CheckRivaldataNew(rivalID));
+	this->target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/getplayerxml.cgi";
+	if (this->HTTPrequest() == 1) {
+		this->httpResult.toFile(pathXML);
+		ParseRivalData(rivalID);
+		ErrorLogFmtAdd("ライバルデータを更新しました。ID:%06d\n", rivalID);
+	}
+	else {
+		printfDx("ライバルデータのダウンロードに失敗しました。ID:%06d\n", rivalID);
+		ErrorLogFmtAdd("ライバルデータのダウンロードに失敗しました。ID:%06d\n", rivalID);
+	}
+	ScreenFlip();
+	ProcessMessage();
+	return 1;
+}
+
+//4bc600
+int OpenWebRanking(CSTR songmd5){
+	CSTR url;
+
+	cstrSprintf(&url, "\"http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?mode=ranking&bmsmd5=%s#status&\"", songmd5.body);
+	ShellExecuteA(NULL, "open", url, NULL, NULL, 1);
+	return 1;
+}
+
+//4bc6b0 //
+void IRsendScore(NETWORK *ir) {
+	int httpResponse;
+	CSTR sData;
+
+	ErrorLogAdd("LR2IRにスコアを送信します。\n");
+	cstrSprintf(&sData, "%s%s%d%d", ir->IR_passMD5.body, ir->myRanking.songMD5.body,ir->myRanking.exscore, ir->myRanking.clear);
+	sData = MD5str(sData);
+
+	cstrSprintf(&ir->param, "songmd5=%s&id=%d&passmd5=%s&title=%s&genre=%s&artist=%s&maxbpm=%d&minbpm=%d&&playlevel=%d&clear=%d&exscore=%d&pg=%d&gr=%d&gd=%d&bd=%d&pr=%d&maxcombo=%d&playcount=%d&clearcount=%d&rate=%d&minbp=%d&totalnotes=%d&opt_history=%d&opt_this=%d&line=%d&judge=%d&inputtype=%d&ghost=%s&rseed=%d&clear_db=%d&clear_ex=%d&clear_sd=%d&scorehash=%s"
+		, ir->myRanking.songMD5.body, ir->IR_ID, ir->IR_passMD5.body, UrlEncode(ir->myRanking.title), UrlEncode(ir->myRanking.genre), UrlEncode(ir->myRanking.artist),
+		ir->myRanking.maxbpm, ir->myRanking.minbpm, ir->myRanking.playlevel, ir->myRanking.clear, ir->myRanking.exscore, ir->myRanking.pg, ir->myRanking.gr, ir->myRanking.gd, ir->myRanking.bd, ir->myRanking.pr, ir->myRanking.maxcombo,
+		ir->myRanking.playcount, ir->myRanking.clearcount, ir->myRanking.rate, ir->myRanking.minbp, ir->myRanking.totalnotes, ir->myRanking.opt_history, ir->myRanking.opt_this, ir->myRanking.line, ir->myRanking.judge,
+		ir->myRanking.inputtype, ir->myRanking.ghost.body, ir->myRanking.rseed,	ir->myRanking.clear_db, ir->myRanking.clear_ex, ir->myRanking.clear_sd, UrlEncode(sData));
+
+	ir->target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/score.cgi";
+	httpResponse = 0; //DEBUG: do not send IR before test is done enough. ir->HTTPrequest();
+	if (httpResponse == 1) {
+		ir->IRresultMessage = "スコアを送信しました";
+		ir->GetRanking(ir->myRanking.songMD5, 1);
+	}
+	else if (httpResponse == 0) {
+		ir->IRresultMessage = "サーバーとの接続に失敗しました";
+	}
+	ErrorLogAdd("送信終了\n");
+	ir->hHandle = NULL;
+
+	return;
+}
+
+//4bc970
+int NETWORK::GetTargetInfo(int mode, CSTR songmd5, CSTR *oData, CSTR *oName, int *oDigit1, int *oDigit2, int *oDigit3, int *oDigit4, int *oSeed, int *oExscore) {
+
+	CSTR search("top");
+
+	if (mode == 6) {
+		search = "top";
+	}
+	else if (mode == 7) {
+		search = "next";
+	}
+	else if (mode == 8) {
+		search = "average";
+	}
+
+	cstrSprintf(&param, "songmd5=%s&mode=%s&playerid=%d&targetid=%d", songmd5, search, IR_ID, rankingData.target_ID);
+	target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/getghost.cgi";
+
+	if (HTTPrequest() != 1) {
+		ErrorLogAdd("ゴーストのダウンロードに失敗しました\n");
+		return 0;
+	}
+
+	CSVbuf csv;
+	SplitCSV(httpResult, &csv, ",");
+	if (csv.str[1].length()) {
+		if (mode == 8) {
+			*oName = "AVERAGE";
+			*oExscore = csv.val[1];
+			ErrorLogFmtAdd("EXスコアを取得しました:%d\n", csv.val[1]);
+		}
+		else {
+			*oName = csv.str[0];
+			*oData = csv.str[3];
+			*oDigit1 = GetDigitNum(csv.val[1], 1);
+			*oDigit2 = GetDigitNum(csv.val[1], 2);
+			*oDigit3 = GetDigitNum(csv.val[1], 3);
+			*oDigit4 = GetDigitNum(csv.val[1], 4);
+			*oSeed = csv.val[2];
+			if (oName->isSame("NOPLAYER")) {
+				ErrorLogAdd("ゴーストのダウンロードに失敗しました\n");
+				return 0;
+			}
+			ErrorLogFmtAdd("ゴーストをダウンロードしました\nプレイヤー名%s\n", oName);
+		}
+		return 1;
+	}
+	return 0;
+}
+
+//4bcc50
+NETWORK::NETWORK(){
+	InitializeCriticalSection(&criticalSection);
+	unused234 = 0;
+	waitForHandle = '\0';
+	domain = "www.dream-pro.info";
+	timeout = 15000;
+	IRstatus = 0;
+	hHandle = NULL;
+	rankUpdateDelayLevel = 0;
+	IR_ID = 0;
+}
+
+//4bcda0
+int NETWORK::WS_clean() {
+	EnterCriticalSection(&this->criticalSection);
+	LeaveCriticalSection(&this->criticalSection);
+	WSACleanup();
+	return 1;
+}
+
+//4bcdd0
+int NETWORK::Login(int isDirectPlay) {
+
+	if (WSAStartup(2, &this->wsa)) {
+		this->request_debug = "WinSockの初期化に失敗しました\n";
+		this->request_result = "WinSockの初期化に失敗しました。ネットワーク機能は使用できません・\n";
+		this->loginResult = -99;
+		this->isOnline = 0;
+		ErrorLogAdd(this->request_debug);
+		WSACleanup();
+		return this->loginResult;
+	}
+
+	cstrSprintf(&this->param, "passmd5=%s&id=%d&name=%s&version=%d", this->IR_passMD5, this->IR_ID, this->IR_name, 100130); //version 100130
+	this->target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/login.cgi";
+	if (this->HTTPrequest() != 1) {
+		this->request_result = "サーバーとの接続に失敗しました。\n";
+		this->isOnline = 0;
+		this->loginResult = -99;
+		return this->loginResult;
+	}
+
+	if (this->httpResult.left(3).isSame("NEW")) {
+		this->loginResult = 1;
+		this->isOnline = 1;
+		this->rankingData.myID = atol(this->httpResult.right(this->httpResult.length() - 4));
+		cstrSprintf(&this->request_result, "LR2IRに新規登録しました。\nLR2ID:%06d\n\n", this->rankingData.myID);
+		this->IR_ID = this->rankingData.myID;
+		return this->loginResult;
+	}
+
+	if (this->httpResult.left(2).isSame("OK") || this->httpResult.left(2).isSame("B1") || this->httpResult.left(2).isSame("B2") || this->httpResult.left(2).isSame("B3")){
+		this->loginResult = 1;
+		this->isOnline = 1;
+		this->rankingData.myID = atol(this->httpResult.right(this->httpResult.length() - 3));
+
+		if (this->httpResult.left(2).isSame("B1")) {
+			cstrSprintf(&this->request_result, "LR2IRにログインしました。\nLR2ID:%06d\nアクセス集中のため、ランキング自動更新の待ち時間は20秒となります。\n\n", this->rankingData.myID);
+			this->rankUpdateDelayLevel = 1;
+			this->waitTime = 20000;
+		}
+		else if (this->httpResult.left(2).isSame("B2")) {
+			cstrSprintf(&this->request_result, "LR2IRにログインしました。\nLR2ID:%06d\nアクセス集中のため、ランキング自動更新の待ち時間は30秒となります。\n\n", this->rankingData.myID);
+			this->rankUpdateDelayLevel = 2;
+			this->waitTime = 30000;
+		}
+		else if (this->httpResult.left(2).isSame("B3")) {
+			cstrSprintf(&this->request_result, "LR2IRにログインしました。\nLR2ID:%06d\nアクセス集中のため、ランキング自動更新は行われません。\n\n", this->rankingData.myID);
+			this->rankUpdateDelayLevel = 3;
+			this->waitTime = -1;
+		}
+		else {
+			cstrSprintf(&this->request_result, "LR2IRにログインしました。\nLR2ID:%06d\n\n", this->rankingData.myID);
+		}
+
+		this->IR_ID = this->rankingData.myID;
+
+		if (isDirectPlay == 0) {
+			CSVbuf csv;
+			SplitCSV(this->httpResult, &csv, ",");
+			for (int i = 0; i < 20; i++) this->rivals[i] = 0;
+			this->rivalcount = 0;
+
+			if (this->getrival == 1) {
+				for(int cur= 0 ; cur < 20; cur++) {
+					if (GetMouseInput()) {
+						printfDx("ライバルデータの取得をスキップしました。\n");
+						break;
+					}
+					if (cur == 20 || csv.val[2 + cur] < 1) break;
+					if (cur == 0) printfDx("ライバルデータの取得は左クリック押しっぱなしでスキップできます。\n");
+
+					ErrorLogFmtAdd("ライバル登録されています:%d\n", this->rivals[cur]); //TOFIX: 
+					this->rivals[cur] = csv.val[2+cur];
+					this->rivalcount++;
+					this->GetRivalInfo(this->rivals[cur]);
+					if (this->getrival != 1) break;
+				}
+			}
+		}
+		return this->loginResult;
+	}
+
+	else if (this->httpResult.left(4).isSame("MAIL")) {
+		this->request_result = "無効なメールアドレスです。\n";
+		this->isOnline = 0;
+		return this->loginResult = -2;
+	}
+	else if (this->httpResult.left(2).isSame("DB")) {
+		this->request_result = "データベースに接続できません。\n";
+		this->isOnline = 0;
+		return this->loginResult = -99;
+	}
+	else if (this->httpResult.left(7).isSame("VERSION")) {
+		this->request_result = "最新版に更新して下さい。\n";
+		this->isOnline = 0;
+		return this->loginResult = -99;
+	}
+	else if (this->httpResult.left(3).isSame("BAN")) {
+		this->request_result = "あなたのアカウントは凍結されました。\n";
+		this->isOnline = 0;
+		return this->loginResult = -99;
+	}
+	else if (this->httpResult.left(5).isSame("SORRY")) {
+		this->request_result = "現在サーバーメンテナンス中です。\n";
+		this->isOnline = 0;
+		return this->loginResult = -99;
+	}
+	else if (this->httpResult.left(3).isSame("END")) {
+		this->request_result = "LR2IRは終了しました。\n";
+		this->isOnline = 0;
+		return this->loginResult = -99;
+	}
+	cstrSprintf(&this->request_result, "パスワードが違うか、その他のエラーです。\nLR2ID:%d\nLR2IDがいつの間にか変わってログイン出来ない！という方は#lunaticraveまでどうぞ。個別に対応します。", this->IR_ID);
+	this->isOnline = 0;
+	return this->loginResult = -3;
+}
+
+//4bd640
+int NETWORK::MakeIRsendScoreThread() {
+	GetTimeWrap();
+	this->waitForHandle = true;
+	if (this->hHandle) {
+		WaitForSingleObject(this->hHandle, 5000);
+	}
+	this->waitForHandle = false;
+	this->rankingData.Init();
+	this->IRstatus = 1;
+	this->hHandle = (HANDLE)_beginthread((void(*)(void*))IRsendScore, 0, this);
+	return 0;
+}
+
+
+//4461f0
+int SaveIRID(int IRID, CSTR ID) {
+
+	CSTR scorefile;
+	sqlite3 *pDb;
+	cstrSprintf(&scorefile, "LR2files/Database/Score/%s.db", ID);
+	sqlite3_open(scorefile, &pDb);
+	CSTR query;
+	cstrSprintf(&query, "UPDATE player SET irid = %d", IRID);
+	SQL_Run(query, pDb);
+	sqlite3_close(pDb);
+	ErrorLogAdd("IRIDをセーブしました\n");
+	return 1;
+}

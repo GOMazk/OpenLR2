@@ -1,1319 +1,1793 @@
-﻿#include "LR2input.h"
-#include "LR2f.h"
+﻿#include "LR2_bmsload.h"
+#include "Engine.h"
+#include "LR2_replay.h"
 
-MIDI midi;
-
-//4bd6a0 //TODO structure array rework
-int InitInputStructure2(inputStructure *is){
-	
-	is->is_doubleclick = 0;
-	is->mousewheel = 0;
-	is->mouse_buttonL = 0;
-	is->mouse_buttonR = 0;
-	is->mouse_buttonW = 0;
-	is->mouse_button4 = 0;
-	memset(is->p1_buttonInput, 0, sizeof(char)*100);
-	memset(is->inputID, 0, sizeof(char) * 0x600);
+//4081d0
+int StopAllKeysound(game *g){
+	for (int i = 0; i < 6480; i++) {
+		StopSound(&g->audio, &g->gameplay.keysound[i]);
+	}
 	return 1;
 }
 
-//4bd6f0
-void EndMIDIInput(void){
-	UINT numDev;
-
-	numDev = midiInGetNumDevs();
-	if (numDev > 15) {
-		numDev = 15;
+//408210
+int InitKeysound(game *g){
+	for (int i = 0; i < 6480; i++) {
+		StopSound(&g->audio, &g->gameplay.keysound[i]);
+		ReleaseSound(&g->audio, &g->gameplay.keysound[i]);
 	}
-
-	for (int i = 0; i < numDev; i++) {
-		midiInStop(midi.phmiArray[i]);
-		midiInClose(midi.phmiArray[i]);
-	}
-	return;
-}
-
-//4bd740
-void GetMidiInput(dword msg, dword timestamp) {
-	// http://www.gweep.net/~prefect/eng/reference/protocol/midispec.html
-	byte status = (msg & 0xff);
-	byte data1 = LOWORD(msg) >> 8;
-	byte data2 = HIWORD(msg) & 0xff;
-
-	if (data1 != 0xf8 && (data1 & 0xf0) != 0xf0) {
-		switch (status >> 4) {
-			case 8: //note off
-				midi.input[data1] = 0;
-				return;
-			case 9: //note on
-				midi.input[data1] = (data2 != 0);
-				return;
-			case 11: //control change
-				midi.controller_n = data1;
-				midi.controller_v = data2;
-				if (data1 == 0x40) { //pedal
-					if (data2 < 0x40) {
-						midi.input[0x102] = 0; //pedal
-					}
-					else if (data2 > 0x40) {
-						midi.input[0x102] = 1;
-					}
-				}
-				return;
-			case 14: //ptich wheel
-				if (data2 < 0x40) {
-					midi.input[0x100] = 1; //pitch_minus
-					midi.input[0x101] = 0; //pitch_plus
-				}
-				else if (data2 > 0x40) {
-					midi.input[0x100] = 0;
-					midi.input[0x101] = 1;
-				}
-				else {
-					midi.input[0x100] = 0;
-					midi.input[0x101] = 0;
-				}
-				return;
-		}
-	}
-}
-
-//4bd830
-CSTR GetKeyIDname(int keyID) {
-	CSTR midiName[12] = { "C","C#","D","D#","E","F","F#","G","G#","A","A#","B" };
-	CSTR oBuf = "-";
-	const char* tmpStr;
-	char tmpFStr[32];
-
-	if (keyID == 0) {
-		return oBuf;
-	}
-	switch (keyID) {
-		case 1:
-			tmpStr = "ESCAPE";
-			break;
-		case 2:
-			tmpStr = "1";
-			break;
-		case 3:
-			tmpStr = "2";
-			break;
-		case 4:
-			tmpStr = "3";
-			break;
-		case 5:
-			tmpStr = "4";
-			break;
-		case 6:
-			tmpStr = "5";
-			break;
-		case 7:
-			tmpStr = "6";
-			break;
-		case 8:
-			tmpStr = "7";
-			break;
-		case 9:
-			tmpStr = "8";
-			break;
-		case 10:
-			tmpStr = "9";
-			break;
-		case 11:
-			tmpStr = "0";
-			break;
-		case 12:
-			tmpStr = "MINUS";
-			break;
-		case 13:
-			tmpStr = "EQUALS";
-			break;
-		case 14:
-			tmpStr = "BACK";
-			break;
-		case 15:
-			tmpStr = "TAB";
-			break;
-		case 16:
-			tmpStr = "Q";
-			break;
-		case 17:
-			tmpStr = "W";
-			break;
-		case 18:
-			tmpStr = "E";
-			break;
-		case 19:
-			tmpStr = "R";
-			break;
-		case 20:
-			tmpStr = "T";
-			break;
-		case 21:
-			tmpStr = "Y";
-			break;
-		case 22:
-			tmpStr = "U";
-			break;
-		case 23:
-			tmpStr = "I";
-			break;
-		case 24:
-			tmpStr = "O";
-			break;
-		case 25:
-			tmpStr = "P";
-			break;
-		case 26:
-			tmpStr = "LBRACKET";
-			break;
-		case 27:
-			tmpStr = "RBRACKET";
-			break;
-		case 28:
-			tmpStr = "RETURN";
-			break;
-		case 29:
-			tmpStr = "LCONTROL";
-			break;
-		case 30:
-			tmpStr = "A";
-			break;
-		case 31:
-			tmpStr = "S";
-			break;
-		case 32:
-			tmpStr = "D";
-			break;
-		case 33:
-			tmpStr = "F";
-			break;
-		case 34:
-			tmpStr = "G";
-			break;
-		case 35:
-			tmpStr = "H";
-			break;
-		case 36:
-			tmpStr = "J";
-			break;
-		case 37:
-			tmpStr = "K";
-			break;
-		case 38:
-			tmpStr = "l";
-			break;
-		case 39:
-			tmpStr = "SEMICOLON";
-			break;
-		case 40:
-			tmpStr = "APOSTROPHE";
-			break;
-		case 41:
-			tmpStr = "GRAVE";
-			break;
-		case 42:
-			tmpStr = "LSHIFT";
-			break;
-		case 43:
-			tmpStr = "BACKSLASH";
-			break;
-		case 44:
-			tmpStr = "Z";
-			break;
-		case 45:
-			tmpStr = "X";
-			break;
-		case 46:
-			tmpStr = "C";
-			break;
-		case 47:
-			tmpStr = "V";
-			break;
-		case 48:
-			tmpStr = "B";
-			break;
-		case 49:
-			tmpStr = "N";
-			break;
-		case 50:
-			tmpStr = "M";
-			break;
-		case 51:
-			tmpStr = "COMMA";
-			break;
-		case 52:
-			tmpStr = "PERIOD";
-			break;
-		case 53:
-			tmpStr = "SLASH";
-			break;
-		case 54:
-			tmpStr = "RSHIFT";
-			break;
-		case 55:
-			tmpStr = "MULTIPLY";
-			break;
-		case 56:
-			tmpStr = "LMENU";
-			break;
-		case 57:
-			tmpStr = "SPACE";
-			break;
-		case 58:
-			tmpStr = "CAPITAL";
-			break;
-		case 59:
-			tmpStr = "F1";
-			break;
-		case 60:
-			tmpStr = "F2";
-			break;
-		case 61:
-			tmpStr = "F3";
-			break;
-		case 62:
-			tmpStr = "F4";
-			break;
-		case 63:
-			tmpStr = "F5";
-			break;
-		case 64:
-			tmpStr = "F6";
-			break;
-		case 65:
-			tmpStr = "F7";
-			break;
-		case 66:
-			tmpStr = "F8";
-			break;
-		case 67:
-			tmpStr = "F9";
-			break;
-		case 68:
-			tmpStr = "F10";
-			break;
-		case 69:
-			tmpStr = "NUMLOCK";
-			break;
-		case 70:
-			tmpStr = "SCROLL";
-			break;
-		case 71:
-			tmpStr = "NUMPAD7";
-			break;
-		case 72:
-			tmpStr = "NUMPAD8";
-			break;
-		case 73:
-			tmpStr = "NUMPAD9";
-			break;
-		case 74:
-			tmpStr = "SUBTRACT";
-			break;
-		case 75:
-			tmpStr = "NUMPAD4";
-			break;
-		case 76:
-			tmpStr = "NUMPAD5";
-			break;
-		case 77:
-			tmpStr = "NUMPAD6";
-			break;
-		case 78:
-			tmpStr = "ADD";
-			break;
-		case 79:
-			tmpStr = "NUMPAD1";
-			break;
-		case 80:
-			tmpStr = "NUMPAD2";
-			break;
-		case 81:
-			tmpStr = "NUMPAD3";
-			break;
-		case 82:
-			tmpStr = "NUMPAD0";
-			break;
-		case 83:
-			tmpStr = "DECIMAL";
-			break;
-		case 0x54:
-		case 0x55:
-		case 0x59:
-		case 0x5a:
-		case 0x5b:
-		case 0x5c:
-		case 0x5d:
-		case 0x5e:
-		case 0x5f:
-		case 0x60:
-		case 0x61:
-		case 0x62:
-		case 99:
-		case 0x67:
-		case 0x68:
-		case 0x69:
-		case 0x6a:
-		case 0x6b:
-		case 0x6c:
-		case 0x6d:
-		case 0x6e:
-		case 0x6f:
-		case 0x71:
-		case 0x72:
-		case 0x74:
-		case 0x75:
-		case 0x76:
-		case 0x77:
-		case 0x78:
-		case 0x7a:
-		case 0x7c:
-		case 0x7f:
-		case 0x80:
-		case 0x81:
-		case 0x82:
-		case 0x83:
-		case 0x84:
-		case 0x85:
-		case 0x86:
-		case 0x87:
-		case 0x88:
-		case 0x89:
-		case 0x8a:
-		case 0x8b:
-		case 0x8c:
-		case 0x8e:
-		case 0x8f:
-		case 0x98:
-		case 0x9a:
-		case 0x9b:
-		case 0x9e:
-		case 0x9f:
-		case 0xa3:
-		case 0xa5:
-		case 0xa6:
-		case 0xa7:
-		case 0xa8:
-		case 0xa9:
-		case 0xaa:
-		case 0xab:
-		case 0xac:
-		case 0xad:
-		case 0xaf:
-		case 0xb1:
-		case 0xb4:
-		case 0xb6:
-		case 0xb9:
-		case 0xba:
-		case 0xbb:
-		case 0xbc:
-		case 0xbd:
-		case 0xbe:
-		case 0xbf:
-		case 0xc0:
-		case 0xc1:
-		case 0xc2:
-		case 0xc3:
-		case 0xc4:
-		case 0xc6:
-		case 0xca:
-		case 0xcc:
-		case 0xce:
-		case 0xd4:
-		case 0xd5:
-		case 0xd6:
-		case 0xd7:
-		case 0xd8:
-		case 0xd9:
-		case 0xda:
-		case 0xe0:
-		case 0xe1:
-		case 0xe2:
-		case 0xe4:
-			return oBuf;
-		case 86:
-			tmpStr = "OEM_102";
-			break;
-		case 87:
-			tmpStr = "F11";
-			break;
-		case 88:
-			tmpStr = "F12";
-			break;
-		case 100:
-			tmpStr = "F13";
-			break;
-		case 101:
-			tmpStr = "F14";
-			break;
-		case 102:
-			tmpStr = "F15";
-			break;
-		case 112:
-			tmpStr = "KANA";
-			break;
-		case 115:
-			tmpStr = "ABNT_C1";
-			break;
-		case 121:
-			tmpStr = "CONVERT";
-			break;
-		case 123:
-			tmpStr = "NOCONVERT";
-			break;
-		case 125:
-			tmpStr = "YEN";
-			break;
-		case 126:
-			tmpStr = "ABNT_C2";
-			break;
-		case 141:
-			tmpStr = "NUMPADEQUALS";
-			break;
-		case 144:
-			tmpStr = "PREVTRACK";
-			break;
-		case 145:
-			tmpStr = "AT";
-			break;
-		case 146:
-			tmpStr = "COLON";
-			break;
-		case 147:
-			tmpStr = "UNDERLINE";
-			break;
-		case 148:
-			tmpStr = "KANJI";
-			break;
-		case 149:
-			tmpStr = "STOP";
-			break;
-		case 150:
-			tmpStr = "AX";
-			break;
-		case 151:
-			tmpStr = "UNLABELED";
-			break;
-		case 153:
-			tmpStr = "NEXTTRACK";
-			break;
-		case 156:
-			tmpStr = "NUMPADENTER";
-			break;
-		case 157:
-			tmpStr = "RCONTROL";
-			break;
-		case 160:
-			tmpStr = "MUTE";
-			break;
-		case 161:
-			tmpStr = "CALCULATOR";
-			break;
-		case 162:
-			tmpStr = "PLAYPAUSE";
-			break;
-		case 164:
-			tmpStr = "MEDIASTOP";
-			break;
-		case 174:
-			tmpStr = "VOLUMEDOWN";
-			break;
-		case 176:
-			tmpStr = "VOLUMEUP";
-			break;
-		case 178:
-			tmpStr = "WEBHOME";
-			break;
-		case 179:
-			tmpStr = "NUMPADCOMMA";
-			break;
-		case 181:
-			tmpStr = "DIVIDE";
-			break;
-		case 183:
-			tmpStr = "SYSRQ";
-			break;
-		case 184:
-			tmpStr = "RMENU";
-			break;
-		case 197:
-			tmpStr = "PAUSE";
-			break;
-		case 199:
-			tmpStr = "HOME";
-			break;
-		case 200:
-			tmpStr = "UP";
-			break;
-		case 201:
-			tmpStr = "PRIOR";
-			break;
-		case 203:
-			tmpStr = "LEFT";
-			break;
-		case 205:
-			tmpStr = "RIGHT";
-			break;
-		case 207:
-			tmpStr = "END";
-			break;
-		case 208:
-			tmpStr = "DOWN";
-			break;
-		case 209:
-			tmpStr = "NEXT";
-			break;
-		case 210:
-			tmpStr = "INSERT";
-			break;
-		case 211:
-			tmpStr = "DELETE";
-			break;
-		case 219:
-			tmpStr = "LWIN";
-			break;
-		case 220:
-			tmpStr = "RWIN";
-			break;
-		case 221:
-			tmpStr = "APPS";
-			break;
-		case 222:
-			tmpStr = "POWER";
-			break;
-		case 223:
-			tmpStr = "SLEEP";
-			break;
-		case 227:
-			tmpStr = "WAKE";
-			break;
-		case 229:
-			tmpStr = "WEBSEARCH";
-			break;
-		case 230:
-			tmpStr = "WEBFAVORITES";
-			break;
-		case 231:
-			tmpStr = "WEBREFRESH";
-			break;
-		case 232:
-			tmpStr = "WEBSTOP";
-			break;
-		case 233:
-			tmpStr = "WEBFORWARD";
-			break;
-		case 234:
-			tmpStr = "WEBBACK";
-			break;
-		case 235:
-			tmpStr = "MYCOMPUTER";
-			break;
-		case 236:
-			tmpStr = "MAIL";
-			break;
-		case 237:
-			tmpStr = "MEDIASELECT";
-			break;
-		default:
-			if (keyID < 0x200) {
-				int joyID = keyID - 0x100;
-				int p = joyID / 32 + 1;
-				int b = joyID % 32;
-
-				if (b == 0) {
-					sprintf(tmpFStr, "%dP:DOWN", p);
-					tmpStr = tmpFStr;
-				}
-				else if (b == 1) {
-					sprintf(tmpFStr, "%dP:LEFT", p);
-					tmpStr = tmpFStr;
-				}
-				else if (b == 2) {
-					sprintf(tmpFStr, "%dP:RIGHT", p);
-					tmpStr = tmpFStr;
-				}
-				else if (b == 3) {
-					sprintf(tmpFStr, "%dP:UP", p);
-					tmpStr = tmpFStr;
-				}
-				else {
-					sprintf(tmpFStr, "%dP:BUTTON%d", p, b - 3);
-					tmpStr = tmpFStr;
-				}
-			}
-			else if (keyID < 0x300) {
-				sprintf(tmpFStr, "MIDI NOTE:%s%d", midiName[(keyID-0x200) % 12].body, (keyID - 0x200) / 12);
-				tmpStr = tmpFStr;
-			}
-			else if (keyID == 0x300) {
-				tmpStr = "MIDI BEND:-";
-			}
-			else if (keyID == 0x301) {
-				tmpStr = "MIDI BEND:+";
-			}
-			else if (keyID == 0x302) {
-				tmpStr = "MIDI PEDAL";
-			}
-			else return oBuf;
-	}
-	oBuf.assign(tmpStr);
-	return oBuf;
-}
-
-//4be430
-int ConfigButtonToKeyID7(int buttonID){
-	switch (buttonID) {
-	case 1:
-		return 1;
-	case 2:
-		return 2;
-	case 3:
-		return 3;
-	case 4:
-		return 4;
-	case 5:
-		return 5;
-	case 6:
-		return 6;
-	case 7:
-		return 7;
-	case 8:
-		return 10;
-	case 9:
-		return 0xb;
-	case 10:
-		return 0xc;
-	case 0xb:
-		return 0xd;
-	case 0xc:
-		return 0x15;
-	case 0xd:
-		return 0x16;
-	case 0xe:
-		return 0x17;
-	case 0xf:
-		return 0x18;
-	case 0x10:
-		return 0x19;
-	case 0x11:
-		return 0x1a;
-	case 0x12:
-		return 0x1b;
-	case 0x13:
-		return 0x1e;
-	case 0x14:
-		return 0x1f;
-	case 0x15:
-		return 0x20;
-	case 0x16:
-		return 0x21;
-	default:
-		return 0;
-	}
-}
-
-//4be530
-int ConfigButtonToKeyID5(int buttonID){
-	switch (buttonID) {
-	case 1:
-		return 1;
-	case 2:
-		return 2;
-	case 3:
-		return 3;
-	case 4:
-		return 4;
-	case 5:
-		return 5;
-	case 6:
-		return 10;
-	case 7:
-		return 0xb;
-	case 8:
-		return 0xc;
-	case 9:
-		return 0xd;
-	case 10:
-		return 0x15;
-	case 0xb:
-		return 0x16;
-	case 0xc:
-		return 0x17;
-	case 0xd:
-		return 0x18;
-	case 0xe:
-		return 0x19;
-	case 0xf:
-		return 0x1e;
-	case 0x10:
-		return 0x1f;
-	case 0x11:
-		return 0x20;
-	case 0x12:
-		return 0x21;
-	default:
-		return 0;
-	}
-}
-
-//4be600
-int ConfigButtonToKeyID9(int buttonID){
-	switch (buttonID) {
-	case 1:
-		return 1;
-	case 2:
-		return 2;
-	case 3:
-		return 3;
-	case 4:
-		return 4;
-	case 5:
-		return 5;
-	case 6:
-		return 6;
-	case 7:
-		return 7;
-	case 8:
-		return 8;
-	case 9:
-		return 9;
-	case 10:
-		return 0xc;
-	case 0xb:
-		return 0xd;
-	default:
-		return 0;
-	}
-}
-
-//4be690
-int ConfigButtonFromKeyID7(int keyID) {
-	switch (keyID) {
-	case 1:
-		return 1;
-	case 2:
-		return 2;
-	case 3:
-		return 3;
-	case 4:
-		return 4;
-	case 5:
-		return 5;
-	case 6:
-		return 6;
-	case 7:
-		return 7;
-	default:
-		return 0;
-	case 10:
-		return 8;
-	case 0xb:
-		return 9;
-	case 0xc:
-		return 10;
-	case 0xd:
-		return 0xb;
-	case 0x15:
-		return 0xc;
-	case 0x16:
-		return 0xd;
-	case 0x17:
-		return 0xe;
-	case 0x18:
-		return 0xf;
-	case 0x19:
-		return 0x10;
-	case 0x1a:
-		return 0x11;
-	case 0x1b:
-		return 0x12;
-	case 0x1e:
-		return 0x13;
-	case 0x1f:
-		return 0x14;
-	case 0x20:
-		return 0x15;
-	case 0x21:
-		return 0x16;
-	}
-}
-
-//4be7b0
-int ConfigButtonFromKeyID5(int keyID){
-	switch (keyID) {
-	case 1:
-		return 1;
-	case 2:
-		return 2;
-	case 3:
-		return 3;
-	case 4:
-		return 4;
-	case 5:
-		return 5;
-	default:
-		return 0;
-	case 10:
-		return 6;
-	case 0xb:
-		return 7;
-	case 0xc:
-		return 8;
-	case 0xd:
-		return 9;
-	case 0x15:
-		return 10;
-	case 0x16:
-		return 0xb;
-	case 0x17:
-		return 0xc;
-	case 0x18:
-		return 0xd;
-	case 0x19:
-		return 0xe;
-	case 0x1e:
-		return 0xf;
-	case 0x1f:
-		return 0x10;
-	case 0x20:
-		return 0x11;
-	case 0x21:
-		return 0x12;
-	}
-}
-
-//4be8b0
-int ConfigButtonFromKeyID9(int keyID){
-	switch (keyID) {
-	case 1:
-		return 1;
-	case 2:
-		return 2;
-	case 3:
-		return 3;
-	case 4:
-		return 4;
-	case 5:
-		return 5;
-	case 6:
-		return 6;
-	case 7:
-		return 7;
-	case 8:
-		return 8;
-	case 9:
-		return 9;
-	default:
-		return 0;
-	case 0xc:
-		return 10;
-	case 0xd:
-		return 0xb;
-	}
-}
-
-//4be940
-int FindPressedKey(inputStructure *is){
-	
-	for (int i = 1; i < 0x600; i++) {
-		if (is->inputID[i] == 1) {
-			return i;
-		}
-	}
-	return 0;
-}
-
-//4be970
-int ResetPressCount(inputStructure *is){
-	is->keyboard_presscount = 0;
-	is->joypad_presscount = 0;
-	is->MIDI_presscount = 0;
+	ErrorLogAdd("BMSの音を初期化しました\n");
 	return 1;
 }
 
-//4be990
-int DetermineResultPlayDevice(inputStructure *is){
-	int joy;
-	int key;
-	int midi;
+//408260
+int ReleaseBGA(game *g){
 
-	key = is->keyboard_presscount;
-	joy = is->joypad_presscount;
-	midi = is->MIDI_presscount;
-
-	/*if (joy <= key && midi <= key) return 0;
-	if (midi <= joy && key <= joy) return 1;
-	if (key <= midi && joy <= midi) return 2;
-	return 0;*/
-	if (joy <= key) {
-		if (midi <= key) {
-			return 0;
-		}
-		if (joy < key) {
-			if ((key <= midi) && joy <= midi) {
-				return 2;
-			}
-			return 0;
-		}
+	for (int i = 0; i < 6480; i++) {
+		DeleteGraph(g->gameplay.bgaHandle[i]);
+		g->gameplay.bgaHandle[i] = -1;
 	}
-	if (midi <= joy) {
-		return 1;
-	}
-	if (key <= midi && joy <= midi) {
-		return 2;
-	}
-	return 0;
-}
-
-//4be9e0
-int CloseMIDI(void){
-	EndMIDIInput();
 	return 1;
 }
 
-//4be9f0
-void ProcessInput(inputStructure *is, int interval) {
+//408430
+void ProcLoadBmsResource(game *g) {
+	g->gameplay.bmsResourceLoaded = 0;
+	g->gameplay.flag_closingPhase = '\0';
+	LoadBmsResource(&g->gameplay, g->sSelect.metaSelected.filepath, &g->audio, &g->config, &g->sSelect.metaSelected, g->skstruct.flag_BGA, g->skstruct.flag_flip, 0);
+	g->gameplay.bmsResourceLoaded = 1;
+	return;
+}
 
-	int mouseX, mouseY;
-	uint new_joyInput[256];
-	char new_keyInput[256];
-	int keyError;
 
-	if (GetWindowActiveFlag() == 0) return;
+//4a9fd0
+bool isVisibleNote(int ch){
+	if (10 <= ch && ch < 30) {
+		return true;
+	}
+	return (50 <= ch && ch < 70);
+}
 
-	GetMousePoint(&mouseX, &mouseY);
-	is->mouse_moveX = mouseX - is->mouse_oldX;
-	is->mouse_moveY = mouseY - is->mouse_oldY;
-	is->mouse_moveflag = 0;
-	if (is->mouse_oldX != mouseX) {
-		is->mouse_oldX = mouseX;
-		is->mouse_moveflag = 1;
-		is->mouse_recentMoveTime = GetTimeWrap();
-	}
-	if (is->mouse_oldY != mouseY) {
-		is->mouse_oldY = mouseY;
-		is->mouse_moveflag = 1;
-		is->mouse_recentMoveTime = GetTimeWrap();
-	}
-	is->mousewheel = GetMouseWheelRotVol();
-	if ((GetMouseInput() & 1) == 0) {
-		is->is_doubleclick = 0;
-		if (is->mouse_buttonL == 0 || is->mouse_buttonL == 3) {
-			is->mouse_buttonL = 0;
-		}
-		else if (GetTimeWrap() - (double)is->drag_start_time > 32.0) {
-			is->mouse_buttonL = 3;
-		}
-		else {
-			is->mouse_buttonL = 2;
-		}
-	}
-	else {
-		if (is->mouse_buttonL != 1 && is->mouse_buttonL != 2) {
-			is->mouse_buttonL = 1;
-			if (GetTimeWrap() - (double)is->drag_start_time >= 300.0) {
-				is->drag_start_time = GetTimeWrap();
-			}
-			else {
-				is->is_doubleclick = 1;
-			}
-		}
-		else {
-			is->is_doubleclick = 0;
-			is->mouse_buttonL = 2;
-		}
-	}
+//4ac140
+int InitNoteBuffer(LaneStruct *lane, int count){
 
+	lane->size = count;
+	lane->notes = (NoteStruct *)malloc(count * sizeof(NoteStruct));
 	
-	if ((GetMouseInput() & 2) == 0) {
-		if (is->mouse_buttonR == 0 || is->mouse_buttonR == 3) {
-			is->mouse_buttonR = 0;
-		}
-		else {
-			is->mouse_buttonR = 3;
-		}
-	}
-	else if (is->mouse_buttonR == 1 || is->mouse_buttonR == 2) {
-		is->mouse_buttonR = 2;
-	}
-	else {
-		is->mouse_buttonR = 1;
-	}
+	lane->count = 0;
+	lane->autoplay = 0;
 
-	if ((GetMouseInput() & 4) == 0) {
-		if ((is->mouse_buttonW == 0) || (is->mouse_buttonW == 3)) {
-			is->mouse_buttonW = 0;
-		}
-		else {
-			is->mouse_buttonW = 3;
-		}
+	for (int i = 0; i < lane->size; i++) {
+		lane->notes[i].bmsTiming_ln = -1.0;
+		lane->notes[i].realTiming_ln = -1.0;
+		lane->notes[i].active = -1;
+		lane->notes[i].val = -1.0;
+		lane->notes[i].bmsTiming = -1.0;
+		lane->notes[i].realTiming = -1.0;
+		lane->notes[i].op = -1;
+		lane->notes[i].mine = -1;
 	}
-	else if (is->mouse_buttonW == 1 || is->mouse_buttonW == 2) {
-		is->mouse_buttonW = 2;
-	}
-	else {
-		is->mouse_buttonW = 1;
-	}
-	if ((is->mouse_buttonL == 0) && (is->is_drag_now != -1)) {
-		is->is_drag_now = -1;
-	}
-	GetTimeWrap();
-	//key
-	keyError = GetHitKeyStateAll(new_keyInput);
-	GetTimeWrap();
-	GetTimeWrap();
-	//joypad
-	memset(new_joyInput, 0, sizeof(int) * 0x100);
-	for (int i = 1; i < 4; i++) {
-		int r = GetJoypadInputState(i);
-		for (int j = 0; j < 32; j++) {
-			new_joyInput[0x20 * i + j] = r & (1<<j);
-		}
-	}
-	//presscount
-	if (keyError != -1) {
-		for (int i = 0; i < 0x100; i++) {
-			if (new_keyInput[i] == 0) {
-				if (is->inputID[i] == 1 || is->inputID[i] == 2) {
-					if(GetTimeWrap() - is->inputTime[i] <= interval) is->inputID[i] = 2;
-					else is->inputID[i] = 3;
-				}
-				else {
-					is->inputID[i] = 0;
-				}
-			}
-			else if(is->inputID[i]==1 || is->inputID[i]==2 || is->inputID[i]==3){
-				is->inputID[i] = 2;
-			}
-			else {
-				is->inputID[i] = 1;
-				is->inputTime[i] = (int)GetTimeWrap();
-				is->keyboard_presscount++;
-			}
-		}
-	}
-	for (int i = 0x100; i < 0x200; i++) {
-		if (new_joyInput[i-0x100] == 0) {
-			if (is->inputID[i] == 1 || is->inputID[i] == 2) {
-				if (GetTimeWrap() - is->inputTime[i] <= interval) is->inputID[i] = 2;
-				else is->inputID[i] = 3;
-			}
-			else {
-				is->inputID[i] = 0;
-			}
-		}
-		else if (is->inputID[i] == 1 || is->inputID[i] == 2 || is->inputID[i] == 3) {
-			is->inputID[i] = 2;
-		}
-		else {
-			is->inputID[i] = 1;
-			is->inputTime[i] = (int)GetTimeWrap();
-			is->joypad_presscount++;
-		}
-	}
-	for (int i = 0x200; i < 0x303; i++) {
-		if (midi.input[i - 0x200] == 0) {
-			if (is->inputID[i] == 1 || is->inputID[i] == 2) {
-				if (GetTimeWrap() - is->inputTime[i] <= interval) is->inputID[i] = 2;
-				else is->inputID[i] = 3;
-			}
-			else {
-				is->inputID[i] = 0;
-			}
-		}
-		else if (is->inputID[i] == 1 || is->inputID[i] == 2 || is->inputID[i] == 3) {
-			is->inputID[i] = 2;
-		}
-		else {
-			is->inputID[i] = 1;
-			is->inputTime[i] = (int)GetTimeWrap();
-			is->MIDI_presscount++;
-		}
-	}
-
-	for (int i = 1; i < 0x600; i++) {
-		if (is->inputID[i] == 1) break;
-	}
-
-	return;
+	return 1;
 }
 
-//4bef60
-void CALLBACK MIDIInProc(HMIDIIN hMidiIn, uint wMsg, dword dwInstance, dword dwParam1, dword dwParam2){
-	if (wMsg == 0x3c3) { // = 963
-		GetMidiInput(dwParam1, dwParam2);
+
+//4ac1c0
+int ExpandNoteBuffer(LaneStruct *lane, int addsize){
+
+	int oldCount;
+
+	oldCount = lane->size;
+	lane->size += addsize;
+	lane->notes = (NoteStruct*)realloc(lane->notes, (lane->size) * sizeof(NoteStruct));
+
+	for (int i = oldCount; i < lane->size; i++) {
+		lane->notes[i].bmsTiming_ln = -1.0;
+		lane->notes[i].realTiming_ln = -1.0;
+		lane->notes[i].active = -1;
+		lane->notes[i].val = -1.0;
+		lane->notes[i].bmsTiming = -1.0;
+		lane->notes[i].realTiming = -1.0;
+		lane->notes[i].op = -1;
+		lane->notes[i].mine = -1;
 	}
-	return;
+	return 1;
 }
 
-//4bef80
-int WaitInput(inputStructure *is){
+//4ac240
+int CMP_NotesByBmsTiming(const void *p1, const void *p2){
+	NoteStruct* n1 = (NoteStruct*)p1;
+	NoteStruct* n2 = (NoteStruct*)p2;
 
-	is->is_doubleclick = 0;
-	is->mousewheel = 0;
-	is->mouse_buttonL = 0;
-	memset(is->p1_buttonInput, 0, 100);
-	memset(is, 0, 0x600);
-	while (FindPressedKey(is) == 0 && is->mouse_buttonL != 1 && is->mouse_buttonR != 1) {
-		WaitTimer(40);
-		ProcessInput(is, 0);
-		if (ProcessMessage() != 0) {
+	if (n1->bmsTiming >= 0.0 && n2->bmsTiming < 0.0) return -1;
+	if (n1->bmsTiming < 0.0 && n2->bmsTiming < 0.0) return 0;
+	if (n1->bmsTiming < 0.0 && n2->bmsTiming >= 0.0) return 1;
+
+	if (n2->bmsTiming == n1->bmsTiming) return n1->op - n2->op;
+
+	return n1->bmsTiming * 100000.0 - n2->bmsTiming * 100000.0;
+	
+	/*if (p1->bmsTiming >= 0.0) {
+		if (p2->bmsTiming < 0.0) {
 			return -1;
 		}
 	}
-	return 1;
+	else if (p2->bmsTiming < 0.0) {
+		return 0;
+	}
+	if (p1->bmsTiming < 0.0) {
+		return 1;
+	}
+	if (p2->bmsTiming == p1->bmsTiming) {
+		return p1->op - p2->op;
+	}
+	return p1->bmsTiming * 100000.0 - p2->bmsTiming * 100000.0;*/
 }
 
-//4bf020
-int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int isReplay) {
+//4ac2b0
+int CMP_NotesByRealTiming(const void *p1, const void *p2){
+	NoteStruct* n1 = (NoteStruct*)p1;
+	NoteStruct* n2 = (NoteStruct*)p2;
 	
-	ProcessInput(is, cfg_input->sys_inputinterval);
-	if (midi.controller_n > 0) {
-		is->midi_n = midi.controller_n;
-		is->midi_v = midi.controller_v;
-		midi.controller_n = 0;
-		midi.controller_v = 0;
+	return n1->realTiming - n2->realTiming;
+}
+
+//4ac2d0
+int CMP_NotesByRealTimingOp(const void *p1, const void *p2){
+	NoteStruct* n1 = (NoteStruct*)p1;
+	NoteStruct* n2 = (NoteStruct*)p2;
+
+	if (n2->realTiming == n1->realTiming) {
+		return n1->op - n2->op;
 	}
+	return n1->realTiming - n2->realTiming;
+}
 
-	if (isReplay == 0) {
-		if (player == 0) {
-			for (int i = 0; i < 20; i++) {
-				unsigned char &button = is->p1_buttonInput[i];
-				button = 0;
-				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i][j]] && cfg_input->buttonMap[i][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i][j]];
-					}
-				}
-			}
+//4ac300
+int PlayerCheckAndSwap(gameplay *gp){
+	PLAYERSTATUS temp_status;
+	GRAPHDATA temp_graph;
 
-			for (int i = 0; i < 20; i++) {
-				unsigned char &button = is->p2_buttonInput[i];
-				button = 0;
-				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i+20][j]] && cfg_input->buttonMap[i+20][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i+20][j]];
-					}
-				}
-			}
-		}
-		else if (player == 1) {
-			for (int i = 0; i < 20; i++) {
-				unsigned char &button = is->p1_buttonInput[i];
-				button = 0;
-				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i][j]] && cfg_input->buttonMap[i][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i][j]];
-					}
-				}
-			}
-
-			for (int i = 0; i < 20; i++) {
-				unsigned char &button = is->p1_buttonInput[i];
-				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i + 20][j]] && cfg_input->buttonMap[i + 20][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i + 20][j]];
-					}
-				}
-			}
-		}
-		else if (player == 2) { //TOFIX: never called
-			for (int i = 0; i < 20; i++) {
-				unsigned char &button = is->p2_buttonInput[i];
-				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i][j]] && cfg_input->buttonMap[i][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i][j]];
-					}
-				}
-			}
-
-			for (int i = 0; i < 20; i++) {
-				unsigned char &button = is->p2_buttonInput[i];
-				button = 0; //TOFIX : button = 0 should be up there
-				for (int j = 0; j < 16; j++) {
-					if (button < is->inputID[cfg_input->buttonMap[i + 20][j]] && cfg_input->buttonMap[i + 20][j] != 0) {
-						button = is->inputID[cfg_input->buttonMap[i + 20][j]];
-					}
-				}
-			}
-		}
+	if (gp->player[1].flag_active == 0) {
+		ErrorLogAdd("メインプレイヤーチェック：スコアを入れ替えません\n");
 	}
 	else {
-		for (int i = 0; i < 40; i++) {
-			unsigned char &button = is->p1_buttonInput[i];
-			if (button == 1) button = 2;
-			else if (button == 3) button = 0;
+		memcpy(&temp_status, &gp->player[0], sizeof(PLAYERSTATUS));
+		memcpy(&gp->player[0], &gp->player[1], sizeof(PLAYERSTATUS));
+		memcpy(&gp->player[1], &temp_status, sizeof(PLAYERSTATUS));
+
+		memcpy(&temp_graph, &gp->statgraph[0], sizeof(GRAPHDATA));
+		memcpy(&gp->statgraph[0], &gp->statgraph[1], sizeof(GRAPHDATA));
+		memcpy(&gp->statgraph[1], &temp_graph, sizeof(GRAPHDATA));
+
+		gp->player[0].clearType = gp->player[1].clearType;
+		ErrorLogAdd("メインプレイヤーチェック：スコアを入れ替えました\n");
+	}
+	gp->player[0].flag_active = 1;
+	gp->player[1].flag_active = 0;
+	return 1;
+}
+
+//4ac3e0
+int InitGameplay(gameplay *gp, CONFIG_PLAY *cfg) {
+
+	PlayerCheckAndSwap(gp);
+	gp->bpmt_start = 1;
+	gp->isPreviewLoad = 0;
+	if (gp->bmsobj.count == 0) InitNoteBuffer(&gp->bmsobj, 1000);
+	for (int i = 0; i < gp->bmsobj.size; i++) {
+		gp->bmsobj.notes[i].bmsTiming_ln = -1.0;
+		gp->bmsobj.notes[i].realTiming_ln = -1.0;
+		gp->bmsobj.notes[i].active = -1;
+		gp->bmsobj.notes[i].val = -1.0;
+		gp->bmsobj.notes[i].bmsTiming = -1.0;
+		gp->bmsobj.notes[i].realTiming = -1.0;
+		gp->bmsobj.notes[i].op = -1;
+		gp->bmsobj.notes[i].mine = -1;
+		gp->bmsobj.notes[i].stage = 0;
+	}
+	gp->bmsobj.count = 0;
+	gp->bmsobj.draw_count = 0;
+	gp->bmsobj.note_count = 0;
+	gp->bmsobj.autoplay = 0;
+	gp->bmsobj.noteVal = -1;
+
+	for (int lane = 0; lane < 20; lane++) {
+		if (gp->bmsobj_note[lane].count == 0) InitNoteBuffer(&gp->bmsobj_note[lane], 100);
+		for (int i = 0; i < gp->bmsobj_note[lane].size; i++) {
+			gp->bmsobj_note[lane].notes[i].bmsTiming_ln = -1.0;
+			gp->bmsobj_note[lane].notes[i].realTiming_ln = -1.0;
+			gp->bmsobj_note[lane].notes[i].active = -1;
+			gp->bmsobj_note[lane].notes[i].val = -1.0;
+			gp->bmsobj_note[lane].notes[i].bmsTiming = -1.0;
+			gp->bmsobj_note[lane].notes[i].realTiming = -1.0;
+			gp->bmsobj_note[lane].notes[i].op = -1;
+			gp->bmsobj_note[lane].notes[i].mine = -1;
+			gp->bmsobj_note[lane].notes[i].stage = 0;
+		}
+		gp->bmsobj_note[lane].count = 0;
+		gp->bmsobj_note[lane].draw_count = 0;
+		gp->bmsobj_note[lane].note_count = 0;
+		gp->bmsobj_note[lane].autoplay = 0;
+		gp->bmsobj_note[lane].noteVal = -1;
+	}
+
+	if (gp->bmsobj_line.count == 0) InitNoteBuffer(&gp->bmsobj_line, 100);
+	for (int i = 0; i < gp->bmsobj_line.size; i++) {
+		gp->bmsobj_line.notes[i].bmsTiming_ln = -1.0;
+		gp->bmsobj_line.notes[i].realTiming_ln = -1.0;
+		gp->bmsobj_line.notes[i].active = -1;
+		gp->bmsobj_line.notes[i].val = -1.0;
+		gp->bmsobj_line.notes[i].bmsTiming = -1.0;
+		gp->bmsobj_line.notes[i].realTiming = -1.0;
+		gp->bmsobj_line.notes[i].op = -1;
+		gp->bmsobj_line.notes[i].mine = -1;
+		gp->bmsobj_line.notes[i].stage = 0;
+	}
+	gp->bmsobj_line.count = 0;
+	gp->bmsobj_line.draw_count = 1;
+	gp->bmsobj_line.note_count = 0;
+	gp->bmsobj_line.autoplay = 0;
+	gp->bmsobj_line.noteVal = -1;
+
+	gp->BPM_fix = 0.0;
+	gp->BPM = 0.0;
+	gp->lastMeasure = 0;
+	gp->song_runtime = 0.0;
+	gp->trialClear = 0;
+	gp->delayCheckCount = 0;
+	gp->delayDetectedCount = 0; 
+	gp->nabeatsu_x = 0.0;
+	gp->nabeatsu_y = 0.0;
+	gp->isNosave = '\0'; //TOFIX : ?
+	gp->unusedX_7bf50 = 0.0;
+	gp->unusedY_7bf54 = 0.0;
+	gp->earthquake_x = 0.0;
+	gp->earthquake_y = 0.0;
+	
+	for (int p = 0; p < 2; p++) {
+		int prevJudge[6];
+		memcpy(prevJudge,gp->player[p].judgecount2,6*sizeof(int));
+		int prevNowcombo = gp->player[p].now_combo_course;
+		int prevMaxcombo = gp->player[p].max_combo_course;
+		int prevCombodraw = gp->player[p].combo_draw;
+		int prevTotalnote = gp->player[p].total_note;
+		int prevNotecurrent = gp->player[p].note_current2;
+		double prevHP = gp->player[p].HP;
+
+		memset(&gp->player[p], 0, sizeof(PLAYERSTATUS));
+
+		if (gp->courseStageNow > 0) {
+			gp->player[p].HP = prevHP;
+			gp->player[p].HP_print = prevHP;
+			gp->player[p].now_combo_course = prevNowcombo;
+			gp->player[p].max_combo_course = prevMaxcombo;
+			gp->player[p].combo_draw = prevCombodraw;
+			memcpy(gp->player[p].judgecount2, prevJudge, 6 * sizeof(int));
+			gp->player[p].total_note = prevTotalnote;
+			gp->player[p].note_current2 = prevNotecurrent;
 		}
 	}
 
-	//scaratch input
-	if (is->p1_buttonInput[10] == 1 || is->p1_buttonInput[11] == 1) {
-		is->p1_buttonInput[0] = 1;
+	gp->player[0].flag_active = 1;
+	gp->player[1].flag_active = 0;
+	memset(&gp->statgraph[0], 0, sizeof(GRAPHDATA));
+	memset(&gp->statgraph[1], 0, sizeof(GRAPHDATA));
+
+	for (int p = 0; p < 2; p++) {
+		if (gp->courseStageNow < 1) {
+			if (gp->isCourse == 0 && (cfg->gaugeOption[p] == 0 || cfg->gaugeOption[p] == 3)) {
+				gp->player[p].HP = 20.0;
+				gp->player[p].HP_old = 20.0;
+				gp->player[p].HP_print = 20.0;
+			}
+			else {
+				gp->player[p].HP = 100.0;
+				gp->player[p].HP_old = 100.0;
+				gp->player[p].HP_print = 100.0;
+			}
+			gp->statgraph[p].hp[0] = gp->player[p].HP;
+		}
 	}
-	else if (is->p1_buttonInput[10] == 2 || is->p1_buttonInput[11] == 2) {
-		is->p1_buttonInput[0] = 2;
+	for (int i = 0; i < 6480; i++) {
+		gp->bgaHandle[i] = -1;
+		gp->bgaHandleHandle[i] = -1;
+		gp->bgaUnused656b8[i] = 0;
 	}
-	else if (is->p1_buttonInput[10] == 3 || is->p1_buttonInput[11] == 3) {
-		is->p1_buttonInput[0] = 3;
+	gp->bgaLayer1 = -1;
+	gp->bgaLayer2 = -1;
+	gp->missLayer = -1;
+	gp->courseBgaLayer1[0] = -1;
+	gp->courseBgaLayer2[0] = -1;
+	gp->courseMissLayer[0] = -1;
+	gp->courseLayer1ChangeTime[0] = -1;
+	gp->courseLayer2ChangeTime[0] = -1;
+	gp->courseBgaLayer1[1] = -1;
+	gp->courseBgaLayer2[1] = -1;
+	gp->courseMissLayer[1] = -1;
+	gp->courseLayer1ChangeTime[1] = -1;
+	gp->courseLayer2ChangeTime[1] = -1;
+	gp->courseBgaLayer1[2] = -1;
+	gp->courseBgaLayer2[2] = -1;
+	gp->courseMissLayer[2] = -1;
+	gp->courseLayer1ChangeTime[2] = -1;
+	gp->courseLayer2ChangeTime[2] = -1;
+	gp->courseBgaLayer1[3] = -1;
+	gp->courseBgaLayer2[3] = -1;
+	gp->courseMissLayer[3] = -1;
+	gp->courseLayer1ChangeTime[3] = -1;
+	gp->courseLayer2ChangeTime[3] = -1;
+	gp->courseBgaLayer1[4] = -1;
+	gp->courseBgaLayer2[4] = -1;
+	gp->courseMissLayer[4] = -1;
+	gp->courseLayer1ChangeTime[4] = -1;
+	gp->courseLayer2ChangeTime[4] = -1;
+	gp->courseBgaLayer1[5] = -1;
+	gp->courseBgaLayer2[5] = -1;
+	gp->courseMissLayer[5] = -1;
+	gp->courseLayer1ChangeTime[5] = -1;
+	gp->courseLayer2ChangeTime[5] = -1;
+	gp->courseBgaLayer1[6] = -1;
+	gp->courseBgaLayer2[6] = -1;
+	gp->courseMissLayer[6] = -1;
+	gp->courseLayer1ChangeTime[6] = -1;
+	gp->courseLayer2ChangeTime[6] = -1;
+	gp->courseBgaLayer1[7] = -1;
+	gp->courseBgaLayer2[7] = -1;
+	gp->courseMissLayer[7] = -1;
+	gp->courseLayer1ChangeTime[7] = -1;
+	gp->courseLayer2ChangeTime[7] = -1;
+	gp->courseBgaLayer1[8] = -1;
+	gp->courseBgaLayer2[8] = -1;
+	gp->courseMissLayer[8] = -1;
+	gp->courseLayer1ChangeTime[8] = -1;
+	gp->courseLayer2ChangeTime[8] = -1;
+	gp->courseBgaLayer1[9] = -1;
+	gp->courseBgaLayer2[9] = -1;
+	gp->courseMissLayer[9] = -1;
+	gp->courseLayer1ChangeTime[9] = -1;
+	gp->courseLayer2ChangeTime[9] = -1;
+	gp->speedmultiplier = 1.0;
+	gp->layer2ChangeTime = -1;
+	gp->maxBPM = 0.0;
+	gp->layer1ChangeTime = -1;
+	gp->minBPM = 0.0;
+	gp->loadObject_loaded = 0;
+	gp->loadObject_total = 0;
+	gp->lastMissTime = 0;
+	gp->misslayerTime[0] = 0;
+	gp->misslayerTime[1] = 0;
+	gp->soundonly = '\x01';
+	gp->fxChangeInRecording = '\0';
+	gp->procGameCallCount = 0;
+	gp->isSpeedChanged = false;
+	gp->lanecoverDoubleclickTimeP1 = 0;
+	gp->lanecoverDoubleclickTimeP2 = 0;
+	gp->lanecoverDisplayP1 = '\x01';
+	gp->lanecoverDisplayP2 = '\x01';
+	gp->isForceEasy = '\0';
+	gp->flag_threadDoingProcGame = '\0';
+	gp->flag_gameinput = '\0';
+	gp->flag_longsound = '\0';
+	gp->flag_0note = '\0';
+	gp->isGhostDisabled = '\0';
+	gp->bpmChangedRealtime = -1;
+	gp->bpmChangedBmstime = -1;
+	for (int i = 0; i < 1000; i++) {
+		gp->rategraph[0].val[i] = 0;
+		gp->rategraph[1].val[i] = 0;
+	}
+	gp->rategraph[0].cursor = 0;
+	gp->rategraph[1].cursor = 0;
+	gp->unused_73b68 = 0;
+	gp->unused_7bf68 = 0;
+	for (int i = 0; i < 6480; i++) {
+		gp->keysound_filename[i].fillzero();
+		gp->BMP_filename[i].fillzero();
+	}
+	gp->fadeinSOUNDstart[0] = -1;
+	gp->fadeinSOUNDend[0] = -1;
+	gp->fadeoutSOUNDend[0] = -1;
+	gp->fadeinBGAstart[0] = -1;
+	gp->fadeinBGAend[0] = -1;
+	gp->fadeoutBGAend[0] = -1;
+	gp->fadeinSOUNDstart[1] = -1;
+	gp->fadeinSOUNDend[1] = -1;
+	gp->fadeoutSOUNDend[1] = -1;
+	gp->fadeinBGAstart[1] = -1;
+	gp->fadeinBGAend[1] = -1;
+	gp->fadeoutBGAend[1] = -1;
+	gp->fadeinSOUNDstart[2] = -1;
+	gp->fadeinSOUNDend[2] = -1;
+	gp->fadeoutSOUNDend[2] = -1;
+	gp->fadeinBGAstart[2] = -1;
+	gp->fadeinBGAend[2] = -1;
+	gp->fadeoutBGAend[2] = -1;
+	gp->fadeinSOUNDstart[3] = -1;
+	gp->fadeinSOUNDend[3] = -1;
+	gp->fadeoutSOUNDend[3] = -1;
+	gp->fadeinBGAstart[3] = -1;
+	gp->fadeinBGAend[3] = -1;
+	gp->fadeoutBGAend[3] = -1;
+	gp->fadeinSOUNDstart[4] = -1;
+	gp->fadeinSOUNDend[4] = -1;
+	gp->fadeoutSOUNDend[4] = -1;
+	gp->fadeinBGAstart[4] = -1;
+	gp->fadeinBGAend[4] = -1;
+	gp->fadeoutBGAend[4] = -1;
+	gp->fadeinSOUNDstart[5] = -1;
+	gp->fadeinSOUNDend[5] = -1;
+	gp->fadeoutSOUNDend[5] = -1;
+	gp->fadeinBGAstart[5] = -1;
+	gp->fadeinBGAend[5] = -1;
+	gp->fadeoutBGAend[5] = -1;
+	gp->fadeinSOUNDstart[6] = -1;
+	gp->fadeinSOUNDend[6] = -1;
+	gp->fadeoutSOUNDend[6] = -1;
+	gp->fadeinBGAstart[6] = -1;
+	gp->fadeinBGAend[6] = -1;
+	gp->fadeoutBGAend[6] = -1;
+	gp->fadeinSOUNDstart[7] = -1;
+	gp->fadeinSOUNDend[7] = -1;
+	gp->fadeoutSOUNDend[7] = -1;
+	gp->fadeinBGAstart[7] = -1;
+	gp->fadeinBGAend[7] = -1;
+	gp->fadeoutBGAend[7] = -1;
+	gp->fadeinSOUNDstart[8] = -1;
+	gp->fadeinSOUNDend[8] = -1;
+	gp->fadeoutSOUNDend[8] = -1;
+	gp->fadeinBGAstart[8] = -1;
+	gp->fadeinBGAend[8] = -1;
+	gp->fadeoutBGAend[8] = -1;
+	gp->fadeinSOUNDstart[9] = -1;
+	gp->fadeinSOUNDend[9] = -1;
+	gp->fadeoutSOUNDend[9] = -1;
+	gp->fadeinBGAstart[9] = -1;
+	gp->fadeinBGAend[9] = -1;
+	gp->fadeoutBGAend[9] = -1;
+	gp->bgaMixer[1] = 0;
+	gp->bgaMixer[2] = 0;
+	gp->bgaMixer[3] = 0;
+	gp->bgaMixer[4] = 0;
+	gp->bgaMixer[5] = 0;
+	gp->bgaMixer[6] = 0;
+	gp->bgaMixer[7] = 0;
+	gp->bgaMixer[8] = 0;
+	gp->bgaMixer[9] = 0;
+	gp->bgaMixer[0] = 100;
+
+	return 1;
+}
+
+//4acc60
+int LoadBmsResource(gameplay *gp, CSTR BMSfilepath, AUDIO *aud, ConfigStruct *cfg, BMSMETA *meta, char bga, char flip, char noVideo){
+
+	int Rtmp, Gtmp, Btmp;
+
+	ErrorLogAdd("BMSの画像とサウンドをロードします");
+
+	if ((cfg->play).autojudge == 2) { //silent
+		gp->loadObject_loaded = gp->loadObject_total;
+		return 1;
 	}
 
-	if (is->p2_buttonInput[10] == 1 || is->p2_buttonInput[11] == 1) {
-		is->p2_buttonInput[0] = 1;
+	EnterCriticalSection(&gp->criticalSection);
+
+	for (int i = 0; i < 6480; i++) {
+		if (gp->keysound_filename[i].length() > 0) {
+			LoadSound(aud, &gp->keysound[i], gp->keysound_filename[i], 0, cfg->sound.disabledsp, (gp->isPreviewLoad != 0));
+			if (gp->keysound[i].length > 60000 && gp->keysound[i].load) gp->flag_longsound = 1;
+			gp->loadObject_loaded++;
+		}
+		if (gp->flag_closingPhase || (gp->previewStatus != 1 && noVideo)) {
+			LeaveCriticalSection(&gp->criticalSection);
+			return 1;
+		}
 	}
-	else if (is->p2_buttonInput[10] == 2 || is->p2_buttonInput[11] == 2) {
-		is->p2_buttonInput[0] = 2;
+
+	gp->flag_0note = 1;
+	for (int i = 0; i < gp->bmsobj.count; i++) {
+		if ( (10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 30)
+			&& (0 < gp->bmsobj.notes[i].val && gp->bmsobj.notes[i].val < 6480.0)
+			&& gp->keysound[(int)gp->bmsobj.notes[i].val].load) {
+
+			gp->flag_0note = 0;
+			break;
+		}
 	}
-	else if (is->p2_buttonInput[10] == 3 || is->p2_buttonInput[11] == 3) {
-		is->p2_buttonInput[0] = 3;
+
+	if (noVideo) {
+		gp->loadObject_loaded = gp->loadObject_total;
+		LeaveCriticalSection(&gp->criticalSection);
+		return 1;
+	}
+	
+	if (cfg->system.isablebmsthread == 0) CoInitialize(NULL);
+	GetTransColor(&Rtmp,&Gtmp,&Btmp);
+	SetTransColor(0,0,0);
+	for (int i = 0; i < 6480; i++) {
+		if (gp->BMP_filename[i].length() > 0) {
+			if (gp->BMP_filename[i].right(3).isSame("mpg") || gp->BMP_filename[i].right(3).isSame("avi")) {
+				SetTransColor(0, 255, 0);
+				gp->bgaHandle[i] = LoadGraph(gp->BMP_filename[i]);
+				SetTransColor(0, 0, 0);
+			}
+			else {
+				gp->bgaHandle[i] = LoadGraph(gp->BMP_filename[i]);
+			}
+			gp->loadObject_loaded++;
+		}
+
+		if (gp->flag_closingPhase) {
+			if (cfg->system.isablebmsthread == 0) CoUninitialize();
+			LeaveCriticalSection(&gp->criticalSection);
+			return 1;
+		}
+	}
+
+	SetTransColor(Rtmp, Gtmp, Btmp);
+	if (cfg->system.isablebmsthread == 0) CoUninitialize();
+	if (gp->bgaHandle[0] != -1) gp->missLayer = 0;
+
+	if (gp->isAutoplay == 1) {
+
+		for (int i = 0; i < gp->bmsobj.count; i++) {
+			if (!(gp->bmsobj.notes[i].op >= 10 && gp->bmsobj.notes[i].op < 30)) {
+				if (gp->bmsobj.notes[i].op == 1) {
+					if (0 < gp->bmsobj.notes[i].val && gp->bmsobj.notes[i].val < 6480.0) { //TODO : is it okay to delete compiler code dealing unsigned?
+						if ((gp->song_runtime < gp->keysound[(int)gp->bmsobj.notes[i].val].length + gp->bmsobj.notes[i].realTiming) && (int)gp->keysound[(int)gp->bmsobj.notes[i].val].length > 0) {
+							double len = gp->keysound[(int)gp->bmsobj.notes[i].val].length;
+							if ((int)gp->keysound[(int)gp->bmsobj.notes[i].val].length < 0) len += 4294967296.0;
+							gp->song_runtime = gp->bmsobj.notes[i].realTiming + len;
+						}
+					}
+				}
+				else if ((gp->bmsobj.notes[i].op == 4 || gp->bmsobj.notes[i].op == 7)
+					&& 0 < gp->bmsobj.notes[i].val && gp->bmsobj.notes[i].val < 6480.0
+					&& gp->song_runtime < gp->bmsobj.notes[i].realTiming) {
+
+					gp->song_runtime = gp->bmsobj.notes[i].realTiming;
+				}
+			}
+			else if (0 < gp->bmsobj.notes[i].val && gp->bmsobj.notes[i].val < 6480.0) {
+				if (gp->keysound[(int)gp->bmsobj.notes[i].val].load == 0 && gp->song_runtime < gp->bmsobj.notes[i].realTiming)
+					gp->song_runtime = gp->bmsobj.notes[i].realTiming;
+
+				if (gp->keysound[(int)gp->bmsobj.notes[i].val].length < 2000 && gp->keysound[(int)gp->bmsobj.notes[i].val].length > 0) {
+					if (gp->song_runtime < gp->bmsobj.notes[i].realTiming + gp->keysound[(int)gp->bmsobj.notes[i].val].length) {
+						gp->song_runtime = gp->bmsobj.notes[i].realTiming + gp->keysound[(int)gp->bmsobj.notes[i].val].length;
+					}
+				}
+				else {
+					double len = gp->keysound[(int)gp->bmsobj.notes[i].val].length;
+					if ((int)gp->keysound[(int)gp->bmsobj.notes[i].val].length < 0) len += 4294967296.0;
+					if (gp->song_runtime < gp->bmsobj.notes[i].realTiming + len && (int)gp->keysound[(int)gp->bmsobj.notes[i].val].length > 0) {
+						gp->song_runtime = gp->bmsobj.notes[i].realTiming + len;
+					}
+				}
+			}
+		}
+	}
+	LeaveCriticalSection(&gp->criticalSection);
+	return 0;
+}
+
+//4ad200
+int InitGameplay_retry(gameplay *gp, AUDIO *snd, game *g) {
+	
+	PlayerCheckAndSwap(gp);
+	if (gp->replay.status != 2 && gp->replay.status == 1) {
+		AddReplayData(&gp->replay, 0, 200, gp->randomseed);
+	}
+
+	gp->bgaMixer[1] = 0;
+	gp->bgaMixer[2] = 0;
+	gp->bgaMixer[3] = 0;
+	gp->bgaMixer[4] = 0;
+	gp->bgaMixer[5] = 0;
+	gp->bgaMixer[6] = 0;
+	gp->bgaMixer[7] = 0;
+	gp->bgaMixer[8] = 0;
+	gp->bgaMixer[9] = 0;
+	gp->bgaMixer[0] = 100;
+
+	gp->unused_7bf68 = '\0';
+	gp->unused_73b68 = 0;
+	gp->lanecoverDisplayP1 = true;
+	gp->lanecoverDisplayP2 = true;
+	gp->flag_threadDoingProcGame = false;
+	gp->lanecoverDoubleclickTimeP1 = 0;
+	gp->lanecoverDoubleclickTimeP2 = 0;
+	gp->trialClear = 0;
+	gp->bpmt_start = 1;
+	gp->procGameCallCount = 0;
+
+	for (int i = 0; i < gp->bmsobj.size; i++) {
+		gp->bmsobj.notes[i].active = 0;
+	}
+	gp->bmsobj.draw_count = 0;
+	gp->bmsobj.note_count = 0;
+	gp->bmsobj.noteVal = -1;
+
+	for (int lane = 0; lane < 20; lane++) {
+		for (int i = 0; i < gp->bmsobj_note[lane].size; i++) {
+			gp->bmsobj_note[lane].notes[i].active = 0;
+		}
+		gp->bmsobj_note[lane].draw_count = 0;
+		gp->bmsobj_note[lane].note_count = 0;
+		gp->bmsobj_note[lane].noteVal = -1;
+	}
+
+	for (int i = 0; i < gp->bmsobj_line.size; i++) {
+		gp->bmsobj_line.notes[i].active = 0;
+	}
+	gp->bmsobj_line.draw_count = 1;
+	gp->bmsobj_line.note_count = 0;
+	gp->bmsobj_line.noteVal = -1;
+	gp->delayDetectedCount = 0;
+	gp->delayCheckCount = 0;
+
+	double tempDmg[6];
+	int tempTime[6], tempCount;
+	tempCount = gp->player[0].totalnotes;
+	memcpy(tempDmg, &gp->player[0].judge_damage, sizeof(tempDmg));
+	memcpy(tempTime, &gp->player[0].judgetime, sizeof(tempTime));
+	memset(&gp->player[0], 0, sizeof(PLAYERSTATUS));
+	memcpy(&gp->player[0].judge_damage, tempDmg, sizeof(tempDmg));
+	memcpy(&gp->player[0].judgetime, tempTime, sizeof(tempTime));
+	gp->player[0].totalnotes = tempCount;
+
+	tempCount = gp->player[1].totalnotes;
+	memcpy(tempDmg, &gp->player[1].judge_damage, sizeof(tempDmg));
+	memcpy(tempTime, &gp->player[1].judgetime, sizeof(tempTime));
+	memset(&gp->player[1], 0, sizeof(PLAYERSTATUS));
+	memcpy(&gp->player[1].judge_damage, tempDmg, sizeof(tempDmg));
+	memcpy(&gp->player[1].judgetime, tempTime, sizeof(tempTime));
+	gp->player[1].totalnotes = tempCount;
+
+	memset(&gp->statgraph[0], 0, sizeof(GRAPHDATA));
+	memset(&gp->statgraph[1], 0, sizeof(GRAPHDATA));
+	
+	gp->player[0].flag_active = 1;
+	gp->player[1].flag_active = 0;
+
+	for (int p = 0; p < 2; p++) {
+		if (gp->isCourse) {
+			gp->player[p].HP = 100.0;
+			gp->player[p].HP_old = 100.0;
+			gp->player[p].HP_print = 100.0;
+		}
+		else if (g->config.play.gaugeOption[p] == 0 || g->config.play.gaugeOption[p] == 3) {
+			gp->player[p].HP = 20.0;
+			gp->player[p].HP_old = 20.0;
+			gp->player[p].HP_print = 20.0;
+		}
+		else{
+			gp->player[p].HP = 100.0;
+			gp->player[p].HP_old = 100.0;
+			gp->player[p].HP_print = 100.0;
+		}
+		gp->statgraph->hp[p] = gp->player[p].HP;
+	}
+
+	for (int i = 0; i < 1296; i++) {
+		gp->bgaHandleHandle[i] = -1;
+	}
+
+	gp->BPM = gp->BPM_fix;
+	gp->bgaLayer1 = -1;
+	gp->bgaLayer2 = -1;
+	gp->layer2ChangeTime = -1;
+	gp->layer1ChangeTime = -1;
+	gp->isSpeedChanged = false;
+	gp->flag_gameinput = false;
+	gp->missLayer = (gp->bgaHandle[0] == -1)? -1 : 0;
+	gp->lastMissTime = 0;
+	gp->misslayerTime[0] = 0;
+	gp->misslayerTime[1] = 0;
+	gp->p1Score.InitJudgeQueue();
+	gp->p1Score.ResetJudgeQueue(gp->player[0].totalnotes * 2);
+	gp->fxChangeInRecording = false;
+
+	for (int i = 0; i < 20; i++) {
+		if(gp->bmsobj_note[i].count <= 0)
+			gp->bmsobj_note[i].noteVal = -1;
+		else
+			gp->bmsobj_note[i].noteVal = (int)gp->bmsobj_note[i].notes[0].val;
+	}
+
+	gp->nabeatsu_x = 0.0;
+	gp->nabeatsu_y = 0.0;
+	gp->bpmChangedRealtime = -1;
+	gp->bpmChangedBmstime = -1;
+	gp->unusedX_7bf50 = 0.0;
+	gp->unusedY_7bf54 = 0.0;
+	gp->earthquake_x = 0.0;
+	gp->earthquake_y = 0.0;
+	
+	for (int i = 0; i < 1000; i++) {
+		gp->rategraph[0].val[i] = 0;
+		gp->rategraph[1].val[i] = 0;
+	}
+	gp->rategraph[0].cursor = 0;
+	gp->rategraph[1].cursor = 0;
+
+	snd->param.stageBgmVolume[1] = 0.0;
+	snd->param.stageBgmVolume[2] = 0.0;
+	snd->param.stageBgmVolume[3] = 0.0;
+	snd->param.stageBgmVolume[4] = 0.0;
+	snd->param.stageBgmVolume[0] = 1.0;
+	snd->param.stageKeyVolume[1] = 1.0;
+	snd->param.stageKeyVolume[2] = 1.0;
+	snd->param.stageKeyVolume[3] = 1.0;
+	snd->param.stageKeyVolume[4] = 1.0;
+	snd->param.stageKeyVolume[0] = 1.0;
+	ErrorLogAdd("リトライ用の初期化を行いました\n");
+	return 1;
+}
+
+
+//4ad7e0
+double RealTimeToBMSTime(gameplay *gp, double time){
+
+	if (time <= gp->bpmt_data[0].realtime) {
+		return gp->bpmt_data[0].converted;
+	}
+
+	for (int i = gp->bpmt_start; i < gp->bpmt_count; i++) {
+		if (gp->bpmt_data[i-1].realtime <= time && time <= gp->bpmt_data[i].realtime) {
+			if (gp->bpmt_data[i].converted == gp->bpmt_data[i-1].converted) return gp->bpmt_data[i-1].converted; //can be skipped this line. they have a same result
+			return ChangeValueByTime(gp->bpmt_data[i - 1].converted, gp->bpmt_data[i].converted, gp->bpmt_data[i - 1].realtime, gp->bpmt_data[i].realtime, time, 0);
+		}
+	}
+	return gp->bpmt_data[gp->bpmt_count - 1].converted;
+}
+
+//4ad8a0
+int CMP_CCARRbyCount(const void *p1, const void *p2) {
+	struct_0x14* s1 = (struct_0x14*)p1;
+	struct_0x14* s2 = (struct_0x14*)p2;
+	if (s2->count == s1->count) {
+		return s1->ID - s2->ID;
+	}
+	return s2->count - s1->count;
+}
+
+//4ad8c0
+int CMP_CCARRbyID(const void *p1, const void *p2) {
+	struct_0x14* s1 = (struct_0x14*)p1;
+	struct_0x14* s2 = (struct_0x14*)p2;
+	return s1->ID - s2->ID;
+}
+
+//4ad8d0
+int SplitNotesToDP(LaneStruct *lane, int start, CHARTCONVERTER *cc, int end) {
+
+	for (int i = start; i < lane->count; i++) {
+		if (lane->notes[i].op == 2) break;
+
+		if (11 <= lane->notes[i].op && lane->notes[i].op <= 17) {
+			if (cc->flagSplit) {
+				lane->notes[i].op += 10;
+			}
+			cc->flagSplit ^= 1; //xor
+		}
+
+		if (i == end) break;
+	}
+	return 1;
+}
+
+//4ad940
+int RightLaneTo2P(LaneStruct *lane, int start, CHARTCONVERTER *cc) {
+
+	int op = 0;
+	//it may work as original code. maybe
+	for (int i = 6; i >= 0; i--) {
+		if (cc->noteCountPerLane[i] > 0) {
+			op = 11 + i;
+			break;
+		}
+	}
+	
+	for (int i = start; i < lane->count; i++) {
+		if (lane->notes[i].op == 2) break;
+		if (lane->notes[i].op == op) {
+			lane->notes[i].op += 10;
+		}
 	}
 
 	return 1;
 }
 
-//4bf3e0
-void InitMIDIInput(void){
-	int iVar1;
-	UINT numDev;
-	UINT uDeviceID;
-	HMIDIIN phmi;
+//4ada00 //move 3rd note lane or 2nd lane(when only 2 lane)
+int Move3rdLaneTo2P(LaneStruct *lane, int start, CHARTCONVERTER *cc) {
 
-	for (int i = 0; i < 256; i++) { //TOFIX : unneccessary loop
-		midi.controller_v = 0;
-		midi.controller_n = 0;
-	}
-	midi.unusedFC = 0x7f;
-	numDev = midiInGetNumDevs();
-	if (numDev > 15) {
-		numDev = 15;
+	int laneA = 0, laneB = 0, laneC = 0, laneD = 0;
+
+	for (int i = 0; i < 7; i++) {
+		if (cc->noteCountPerLane[i] > 0) {
+			if (laneA == 0) {
+				laneA = 11 + i;
+			}
+			else if (laneB == 0) {
+				laneB = 11 + i;
+			}
+			else if (laneC == 0) {
+				laneC = 11 + i;
+				laneD = 11 + i;
+			}
+		}
 	}
 
-	for (int i = 0; i < numDev; i++) {
-		midiInOpen(&phmi, i, (DWORD_PTR)MIDIInProc, NULL, CALLBACK_FUNCTION);
-		midiInStart(phmi);
-		midi.phmiArray[i] = phmi;
+	for (int i = start; i < lane->count; i++) {
+		if (lane->notes[i].op == 2) break;
+		if ( (lane->notes[i].op == laneB && laneC < laneA) || lane->notes[i].op == laneD) {
+			lane->notes[i].op += 10;
+		}
 	}
+
+	return 1;
+}
+
+//4adab0
+int DPsplitLane(LaneStruct *lane, int start, CHARTCONVERTER *cc) {
+
+	int laneNoteCount[8] = { 0, };
+	int laneCount = 0;
+	int totalNoteCount = 0;
+
+	for (int i = start; i < lane->count; i++) {
+		if (lane->notes[i].op == 2) break;
+		if (10 <= lane->notes[i].op && lane->notes[i].op <= 17) {
+			laneNoteCount[lane->notes[i].op - 10]++; //maybe right
+		}
+		else if (21 <= lane->notes[i].op && lane->notes[i].op <= 27){
+			lane->notes[i].op -= 10;
+			laneNoteCount[lane->notes[i].op - 10]++; //maybe right
+		}
+	}
+
+	
+	for (int i = 1; i < 8; i++) {
+		if (laneNoteCount[i] > 0) {
+			laneCount++;
+		}
+		totalNoteCount += laneNoteCount[i];
+	}
+
+	if (laneCount >= 4 || totalNoteCount == 1) {
+		cc->unk1442c = 1; //TODO : rename
+		SplitNotesToDP(lane, start, cc, -1);
+		cc->unk14428 = 0;
+	}
+	else if (laneCount == 2) {
+		cc->unk1442c = 2;
+		RightLaneTo2P(lane, start, cc);
+		cc->unk14428 = 0;
+	}
+	else if (laneCount == 3) {
+		Move3rdLaneTo2P(lane, start, cc);
+	}
+
+	return 1;
+}
+
+//4adbf0
+int DPsplit(LaneStruct *lane, int start, CHARTCONVERTER *cc) {
+
+	int laneNoteCount[8] = { 0, };
+	int laneCount = 0;
+
+	for (int i = start; i < lane->count; i++) {
+		if (lane->notes[i].op == 2) break;
+		if ((11 <= lane->notes[i].op && lane->notes[i].op <= 17) || (21 <= lane->notes[i].op && lane->notes[i].op <= 27)) {
+			if (cc->arr3[(int)lane->notes[i].val].soundLoadID == cc->arr2[0].ID) {
+				if (21 <= lane->notes[i].op && lane->notes[i].op <= 27) {
+					laneNoteCount[lane->notes[i].op - 20]++;
+				}
+				else {
+					laneNoteCount[lane->notes[i].op - 10]++;
+				}
+			}
+		}
+	}
+
+	for (int i = 0; i < 8; i++) {
+		if (laneNoteCount[i] > 0) {
+			laneCount++;
+		}
+	}
+
+	if (laneCount > 3) {
+		for (int i = start; i < lane->count; i++) {
+			if (lane->notes[i].op == 2) break;
+			if ((11 <= lane->notes[i].op && lane->notes[i].op <= 17) || (21 <= lane->notes[i].op && lane->notes[i].op <= 27)) {
+				if (21 <= lane->notes[i].op && lane->notes[i].op <= 27)
+					lane->notes[i].op -= 10;
+
+				if (cc->arr3[(int)lane->notes[i].val].soundLoadID == cc->arr2[0].ID) {
+					if (cc->flagSplit) {
+						lane->notes[i].op += 10;
+					}
+					cc->flagSplit ^= 1;
+				}
+			}
+		}
+	}
+
+	return 1;
+}
+
+//4add90
+void MakeExtraChart(gameplay *gp, CHARTCONVERTER *cc) {  //test completed
+
+	int notecount = 0;
+	double endtime;
+	qsort(gp->bmsobj.notes, gp->bmsobj.count, sizeof(NoteStruct), CMP_NotesByRealTimingOp);
+
+	for (int i = 0; i < gp->bmsobj.count; i++) {
+		if (10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op <= 30) {
+			notecount++;
+			endtime = gp->bmsobj.notes[i].bmsTiming;
+		}
+
+		if (gp->keymode >= 10) {
+			if (gp->bmsobj.notes[i].op == 10) {
+				gp->bmsobj.notes[i].op = 1;
+			}
+			if (gp->bmsobj.notes[i].op == 20) {
+				gp->bmsobj.notes[i].op = 1;
+			}
+		}
+	}
+
+	if (gp->extramode_level == 0) {
+		if (notecount >= 1200) gp->extramode_level = 2;
+		else if (notecount >= 1000) gp->extramode_level = 1;
+		else gp->extramode_level = 0;
+	}
+	else if (gp->extramode_level == 1) {
+		if (notecount >= 1000) gp->extramode_level = 2;
+		else gp->extramode_level = 1;
+	}
+	else if (gp->extramode_level == 2) {
+		gp->extramode_level = 2;
+	}
+
+	//find most used lane of sound
+	int laneOfSound[1296];
+	for (int i = 0; i < 1296; i++) {
+		int maxLaneNotes = 0;
+		int Lane[20] = { 0, };
+		laneOfSound[i] = -1;
+
+		for (int j = 0; j < gp->bmsobj.count; j++) {
+			if (10 <= gp->bmsobj.notes[j].op && gp->bmsobj.notes[j].op <= 30) {
+				if ((int)gp->bmsobj.notes[j].val == i) {
+					Lane[gp->bmsobj.notes[j].op-10]++;
+				}
+			}
+		}
+		
+		for (int j = 0; j < 20; j++) {
+			if (maxLaneNotes < Lane[j]) {
+				cc->arr3[i].field4_0x10 = j;
+				laneOfSound[i] = j;
+				cc->arr1[cc->arr3[i].soundLoadID].field4_0x10++;
+				maxLaneNotes = Lane[j];
+			}
+		}
+	}
+	bool flagShuffle = 0;
+
+	//set default lane for non-used sound with previous sound lane
+	for (int i = 1; i < 1296; i++) {
+		if (laneOfSound[i] == -1 && cc->arr1[cc->arr3[i].soundLoadID].field4_0x10 > 0) {
+			
+			int lane = laneOfSound[i-1];
+			if (lane >= 1) {
+				if (gp->keymode == 7 || gp->keymode == 14) {
+					switch (lane) {
+						case 1:
+						case 6: //TOFIX : 6 to 1?
+							laneOfSound[i] = 3;
+							break;
+						case 2:
+							laneOfSound[i] = 4;
+							break;
+						case 3:
+							laneOfSound[i] = 5;
+							break;
+						case 4:
+							laneOfSound[i] = 6;
+							break;
+						case 5:
+							laneOfSound[i] = 7;
+							break;
+						case 7:
+							laneOfSound[i] = 2;
+							break;
+					}
+				}
+				else if (gp->keymode == 5 || gp->keymode == 10) {
+					switch (lane) {
+						case 1:
+							laneOfSound[i] = 3;
+							break;
+						case 2:
+							laneOfSound[i] = 4;
+							break;
+						case 3:
+							laneOfSound[i] = 5;
+							break;
+						case 4:
+							laneOfSound[i] = 1;
+							break;
+						case 5:
+							laneOfSound[i] = 2;
+							break;
+					}
+				}
+				else if (gp->keymode == 9) {
+					switch (lane) {
+						case 1:
+							laneOfSound[i] = 3;
+							break;
+						case 2:
+							laneOfSound[i] = 5;
+							break;
+						case 3:
+							laneOfSound[i] = 7;
+							break;
+						case 4:
+							laneOfSound[i] = 9;
+							break;
+						case 5:
+							laneOfSound[i] = 2;
+							break;
+						case 6:
+							laneOfSound[i] = 4;
+							break;
+						case 7:
+							laneOfSound[i] = 6;
+							break;
+						case 8:
+							laneOfSound[i] = 8;
+							break;
+						case 9:
+							laneOfSound[i] = 1;
+							break;
+					}
+				}
+			}
+			else {
+				laneOfSound[i] = 7;
+			}
+		}
+	}
+
+	
+	int laneA[20] = { 0, };
+	int cur = 0;
+
+	int mingap = 0;
+	if (gp->BPM_fix > 0) {
+		if (gp->extramode_level == 0) {
+			mingap = 60000.0 / gp->BPM_fix;
+		}
+		if (gp->extramode_level == 1) {
+			mingap = 45000.0 / gp->BPM_fix;
+		}
+		if (gp->extramode_level == 2) {
+			mingap = 30000.0 / gp->BPM_fix;
+		}
+
+		if (mingap < 125) mingap = 125;
+	}
+
+	double lastRealTiming = 0.0;
+	for (int i = 0; i < gp->bmsobj.count; i++) {
+		if (gp->bmsobj.notes[i].realTiming == lastRealTiming) {
+			if (10 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op < 30) {
+				laneA[gp->bmsobj.notes[i].op-10] = 2;
+			}
+			if (gp->bmsobj.notes[i].op == 3 || gp->bmsobj.notes[i].op == 8) {
+				mingap = 30000.0 / gp->bmsobj.notes[i].val;
+				if (mingap < 125) mingap = 125;
+			}
+		}
+		else {
+			
+			for (int j = cur-1; j >= 0; j--) {
+				if (mingap <= lastRealTiming - gp->bmsobj.notes[j].realTiming) break;
+
+				if (10 <= gp->bmsobj.notes[j].op && gp->bmsobj.notes[j].op < 30 && laneA[gp->bmsobj.notes[j].op - 10] == 0) {
+					laneA[gp->bmsobj.notes[j].op - 10] = 1;
+				}
+			}
+
+			for (int j = i; j < gp->bmsobj.count; j++) {
+				if (mingap <= gp->bmsobj.notes[j].realTiming - lastRealTiming) break;
+
+				if (10 <= gp->bmsobj.notes[j].op && gp->bmsobj.notes[j].op < 30 && laneA[gp->bmsobj.notes[j].op - 10] == 0) {
+					laneA[gp->bmsobj.notes[j].op - 10] = 1;
+				}
+			}
+
+			for (int j = cur; j <= i-1; j++) {
+
+				gp->bmsobj.notes[j].bmsTiming;
+				if (gp->bmsobj.notes[j].op == 1 && gp->bmsobj.notes[j].bmsTiming >= 0) {
+					
+					int newLane = laneOfSound[(int)gp->bmsobj.notes[j].val];
+
+					if (0 <= newLane && newLane < 20) {
+
+						if (gp->keymode == 10 || gp->keymode == 14) { //TODO : need test at DP
+							if (flagShuffle == 0) {
+								newLane += newLane / 10 * (-10) + 10;
+							}
+							else {
+								newLane += newLane / (-10) * 10;
+							}
+							flagShuffle ^= 1;
+						}
+
+						if (laneA[newLane] == 0 && (newLane%10 <= gp->keymode % 10)) {
+							laneA[newLane] = 2;
+							gp->bmsobj.notes[j].op = newLane + 10;
+						}
+						else if (newLane != 0 && newLane != 10) {
+							int shift = 1;
+							if ((int)gp->bmsobj.notes[j].val % 2 == 0) {
+								shift = -1;
+							}
+							if (gp->keymode < 10) {
+								for (int k = 1; k < gp->keymode+1; k++) {
+									int next = newLane + k*shift;
+									int prev = newLane - k*shift;
+
+									if (1 <= next && next <= gp->keymode && laneA[next] == 0) {
+										laneA[next] = 2;
+										gp->bmsobj.notes[j].op = next + 10;
+										break;
+									}
+									if (1 <= prev && prev <= gp->keymode && laneA[prev] == 0) {
+										laneA[prev] = 2;
+										gp->bmsobj.notes[j].op = prev + 10;
+										break;
+									}
+								}
+							}
+							else {
+								for (int k = 1; k < gp->keymode / 2 + 1; k++) {
+									int next = newLane + k * shift;
+									int prev = newLane - k * shift;
+
+									if (1 <= next % 10 && next % 10 <= gp->keymode / 2 && laneA[next] == 0) {
+										laneA[next] = 2;
+										gp->bmsobj.notes[j].op = next + 10;
+										break;
+									}
+									if (1 <= prev % 10 && prev % 10 <= gp->keymode / 2 && laneA[prev] == 0) {
+										laneA[prev] = 2;
+										gp->bmsobj.notes[j].op = prev + 10;
+										break;
+									}
+
+									if (newLane <= 10) newLane += 10;
+									else newLane -= 10;
+
+									next = newLane + k * shift;
+									prev = newLane - k * shift;
+
+									if (1 <= next % 10 && next % 10 <= gp->keymode / 2 && laneA[next] == 0) {
+										laneA[next] = 2;
+										gp->bmsobj.notes[j].op = next + 10;
+										break;
+									}
+									if (1 <= prev % 10 && prev % 10 <= gp->keymode / 2 && laneA[prev] == 0) {
+										laneA[prev] = 2;
+										gp->bmsobj.notes[j].op = prev + 10;
+										break;
+									}
+								}
+							}
+						}
+					}
+
+				}
+			}
+
+			for (int j = 0; j < 20; j++) laneA[j] = 0;
+			lastRealTiming = gp->bmsobj.notes[i].realTiming;
+			cur = i;
+		}
+
+		if (gp->bmsobj.notes[i].bmsTiming > endtime) break;
+	}
+
+	qsort(gp->bmsobj.notes, gp->bmsobj.count, sizeof(NoteStruct), CMP_NotesByRealTimingOp);
+}
+
+//4ae8d0
+void DPtoSP(gameplay *gp) { //test completed
+
+	int mingap;
+	char laneA[10], laneB[10];
+
+	qsort(gp->bmsobj.notes, gp->bmsobj.count, sizeof(NoteStruct), CMP_NotesByRealTimingOp);
+	
+	if (gp->BPM_fix <= 0.0 || (int)(30000.0 / gp->BPM_fix) < 125)
+		mingap = 125;
+	else
+		mingap = (30000.0 / gp->BPM_fix);
+
+	for (int i = 0; i < gp->bmsobj.count; i++) {
+
+		int op = gp->bmsobj.notes[i].op;
+		if (op == 3 || op == 8) {
+			mingap = (int)(30000.0 / gp->bmsobj.notes[i].val);
+			if (mingap < 125) mingap = 125;
+		}
+		else if (20 <= op && op <= 29) {
+
+			int newop = op - 10;
+			bool fSameLane = 0, fSameTime = 0;
+			memset(laneA, 0, sizeof(laneA));
+
+			for (int prev = i - 1; prev >= 0; prev--) {
+				if (10 <= gp->bmsobj.notes[prev].op && gp->bmsobj.notes[prev].op <= 19) {
+					laneA[gp->bmsobj.notes[prev].op - 10] = 1;
+					if (gp->bmsobj.notes[prev].bmsTiming == gp->bmsobj.notes[i].bmsTiming) {
+						laneB[gp->bmsobj.notes[prev].op - 10] = 1;
+					}
+				}
+				if (gp->bmsobj.notes[prev].op == newop) {
+					fSameLane = 1;
+					if (gp->bmsobj.notes[prev].bmsTiming == gp->bmsobj.notes[i].bmsTiming) {
+						fSameTime = 1;
+					}
+				}
+				if (gp->bmsobj.notes[i].realTiming - gp->bmsobj.notes[prev].realTiming >= mingap) break;
+			}
+			
+
+			for (int next = i+1; next < gp->bmsobj.count; next++) {
+				if (10 <= gp->bmsobj.notes[next].op && gp->bmsobj.notes[next].op <= 19) {
+					laneA[gp->bmsobj.notes[next].op - 10] = 1;
+					if (gp->bmsobj.notes[next].bmsTiming == gp->bmsobj.notes[i].bmsTiming) {
+						laneB[gp->bmsobj.notes[next].op - 10] = 1;
+					}
+				}
+				if (gp->bmsobj.notes[next].op == newop) {
+					fSameLane = 1;
+					if (gp->bmsobj.notes[next].bmsTiming == gp->bmsobj.notes[i].bmsTiming) {
+						fSameTime = 1;
+					}
+				}
+				if (gp->bmsobj.notes[next].realTiming - gp->bmsobj.notes[i].realTiming >= mingap) break;
+			}
+
+			if (op == 20) {
+				if (fSameTime == 0) {
+					gp->bmsobj.notes[i].op = gp->bmsobj.notes[i].op - 10;
+				}
+			}
+			else if (fSameLane == 0) {
+				gp->bmsobj.notes[i].op = gp->bmsobj.notes[i].op - 10;
+			}
+			else {
+				for (int j = 1; j < 8; j++) {
+					if (11 <= newop + j && newop + j <= gp->keymode / 2 + 10){ //don't combine these IFs. notes will be different
+						if (laneA[newop + j - 10] == 0) {
+							gp->bmsobj.notes[i].op = newop + j;
+							ErrorLogFmtAdd("移動後チャンネル%d\n", newop + j);
+							break;
+						}
+					}
+					else if (11 <= newop - j && newop - j <= gp->keymode / 2 + 10 && laneA[newop - j - 10] == 0) {
+						gp->bmsobj.notes[i].op = newop - j;
+						ErrorLogFmtAdd("移動後チャンネル%d\n", newop - j);
+						break;
+					}
+				}
+			}
+			
+			if (20 <= gp->bmsobj.notes[i].op && gp->bmsobj.notes[i].op <= 29) {
+				gp->bmsobj.notes[i].op = 1;
+				ErrorLogFmtAdd("しまっちゃうノート\n");
+			}
+		}
+	}
+	qsort(gp->bmsobj.notes, gp->bmsobj.count, sizeof(NoteStruct), CMP_NotesByRealTimingOp);
 	return;
 }
 
-//4bf480
-int InitInputStructure(inputStructure *is){
+//4af080
+void PMStoSP(gameplay *gp) { //test&fix completed
 
-	memset(is->inputID, 0, sizeof(char)*0x600);
-	is->mouse_buttonL = 0;
-	is->mouse_buttonR = 0;
-	is->mouse_buttonW = 0;
-	is->mouse_button4 = 0;
-	is->mouse_moveflag = 0;
-	is->mouse_recentMoveTime = GetTimeWrap();
-	is->drag_start_time = -1;
-	is->is_doubleclick = 0;
-	is->is_drag_now = -1;
-	InitMIDIInput();
+	int mingap;
+	char laneA[10], laneB[10], laneC[10];
+	int newLane, measureLaneCount;
+	int emptyLane, emptyLaneL, emptyLaneR;
+	int countLaneA;
+	int left, right;
+
+	//if (gp->BPM_fix > 0.0) {
+	//	mingap = 30000.0 / gp->BPM_fix;
+	//	if (mingap < 125) mingap = 125;
+	//}
+	//else mingap = 125;
+
+	if (gp->BPM_fix <= 0.0 || (int)(30000.0 / gp->BPM_fix) < 125)
+		mingap = 125;
+	else
+		mingap = (30000.0 / gp->BPM_fix);
+
+	qsort(gp->bmsobj.notes, gp->bmsobj.count, sizeof(NoteStruct), CMP_NotesByRealTimingOp);
+	int prev = 0; //prevMeasureStart
+	int measure = 0;
+	memset(laneA, 0, sizeof(laneA));
+	left = 9;
+	right = 1;
+	measureLaneCount = 0;
+
+	for (int i = 0; i < gp->bmsobj.count; i++) {
+
+		int op = gp->bmsobj.notes[i].op;
+		if (op == 3 || op == 8) {
+			mingap = (int)(30000.0 / gp->bmsobj.notes[i].val);
+			if (mingap < 125) mingap = 125;
+		}
+		else if (op == 2 && measureLaneCount > 0) {
+			measure++;
+
+			countLaneA = 0;
+			for (int j = 1; j <= 9; j++) {
+				if (laneA[j]) countLaneA++;
+			}
+
+			if (right <= 7) {
+				ErrorLogFmtAdd("%d:なにもしない\n", measure);
+			}
+			else if (right == 8 && left >= 2) {
+				for (int j = prev; j < i; j++) {
+					if (12 <= gp->bmsobj.notes[j].op && gp->bmsobj.notes[j].op <= 19) {
+						gp->bmsobj.notes[j].op--;
+					}
+				}
+				ErrorLogFmtAdd("%d:左シフト１\n", measure);
+			}
+			else if (right == 9 && left >= 3) {
+				for (int j = prev; j < i; j++) {
+					if (13 <= gp->bmsobj.notes[j].op && gp->bmsobj.notes[j].op <= 19) {
+						gp->bmsobj.notes[j].op -= 2;
+					}
+				}
+				ErrorLogFmtAdd("%d:左シフト2\n", measure);
+			}
+			else if (right == 9 && left == 2 && countLaneA <= 7) {
+				ErrorLogFmtAdd("%d:左シフトしてレーンつめる 左%d 右%d\n", measure, 2, 9);
+				for (int j = 2; j < 9; j++) {
+					if (laneA[j] == 0) {
+						emptyLane = j;
+						break;
+					}
+				}
+				ErrorLogFmtAdd("つめるレーンは%d\n", emptyLane);
+				for (int j = prev; j < i; j++) {
+					gp->bmsobj.notes[j].op;
+					if (emptyLane + 10 < gp->bmsobj.notes[j].op && gp->bmsobj.notes[j].op <= 19) {
+						gp->bmsobj.notes[j].op--;
+					}
+				}
+				ErrorLogFmtAdd("さらに全体左シフト\n");
+				for (int j = prev; j < i; j++) {
+					gp->bmsobj.notes[j].op;
+					if (11 <= gp->bmsobj.notes[j].op && gp->bmsobj.notes[j].op <= 19) {
+						gp->bmsobj.notes[j].op--;
+					}
+				}
+			}
+			else if (left == 1 && countLaneA <= 7) {
+				ErrorLogFmtAdd("%d:レーンつめる 左%d 右%d\n", measure, 1, right);
+
+				if (right == 8) {
+					for (int j = 1; j < 9; j++) {
+						if (laneA[j] == 0) {
+							emptyLane = j;
+							break;
+						}
+					}
+					ErrorLogFmtAdd("つめるレーンは%d\n", emptyLane);
+					for (int j = prev; j < i; j++) {
+						if (10 + emptyLane < gp->bmsobj.notes[j].op && gp->bmsobj.notes[j].op <= 19) {
+							gp->bmsobj.notes[j].op--;
+						}
+					}
+				}
+				else {
+					for (int j = 1; j < 9; j++) {
+						if (laneA[j] == 0) {
+							emptyLaneL = j;
+							break;
+						}
+					}
+					for (int j = 9; j > 1; j--) {
+						if (laneA[j] == 0) {
+							emptyLaneR = j;
+							break;
+						}
+					}
+					ErrorLogFmtAdd("つめるレーンは%dと%d\n", emptyLaneL, emptyLaneR);
+					for (int j = prev; j < i; j++) {
+						gp->bmsobj.notes[j].op;
+						if (emptyLaneL + 10 < gp->bmsobj.notes[j].op && gp->bmsobj.notes[j].op <= 19) {
+							gp->bmsobj.notes[j].op--;
+						}
+					}
+					for (int j = prev; j < i; j++) {
+						gp->bmsobj.notes[j].op;
+						if (emptyLaneR + 9 < gp->bmsobj.notes[j].op && gp->bmsobj.notes[j].op <= 19) {
+							gp->bmsobj.notes[j].op--;
+						}
+					}
+				}
+			}
+			else {
+				ErrorLogFmtAdd("%d:89移動\n", measure);
+				if (left == 2) {
+					for (int j = prev; j < i; j++) {
+						if (12 <= gp->bmsobj.notes[j].op && gp->bmsobj.notes[j].op <= 19) {
+							gp->bmsobj.notes[j].op--;
+						}
+					}
+				}
+
+				for (int j = prev; j < i; j++) {
+					left = gp->bmsobj.notes[j].op;
+					if (left == 18 || left == 19) {
+						bool fSameLane = 0;
+						memset(laneB, 0, sizeof(laneB));
+						newLane = 14 + (left - 18);
+
+						for (int x = j - 1; x >= 0; x--) {
+							if (10 <= gp->bmsobj.notes[x].op && gp->bmsobj.notes[x].op <= 19) {
+								laneB[gp->bmsobj.notes[x].op - 10] = 1;
+								if (gp->bmsobj.notes[x].bmsTiming == gp->bmsobj.notes[j].bmsTiming) {
+									laneC[gp->bmsobj.notes[x].op - 10] = 1;
+								}
+							}
+							if (gp->bmsobj.notes[x].op == newLane) {
+								fSameLane = 1;
+							}
+							if (gp->bmsobj.notes[j].realTiming - gp->bmsobj.notes[x].realTiming >= mingap) break;
+						}
+
+
+						for (int next = j + 1; next < gp->bmsobj.count; next++) {
+							if (10 <= gp->bmsobj.notes[next].op && gp->bmsobj.notes[next].op <= 19) {
+								laneB[gp->bmsobj.notes[next].op - 10] = 1;
+								if (gp->bmsobj.notes[next].bmsTiming == gp->bmsobj.notes[j].bmsTiming) {
+									laneC[gp->bmsobj.notes[next].op - 10] = 1;
+								}
+							}
+							if (gp->bmsobj.notes[next].op == newLane) {
+								fSameLane = 1;
+							}
+							if (gp->bmsobj.notes[next].realTiming - gp->bmsobj.notes[j].realTiming >= mingap) break;
+						}
+
+						if (fSameLane) {
+							fSameLane = 0;
+							//looks weird, but really doing this
+							for (int k = 1; k < 5; k++) {
+								int L = newLane + k * 2;
+								if (11 <= L && L <= 17) {
+									if (laneB[L - 10] == 0) {
+										gp->bmsobj.notes[j].op = L;
+										ErrorLogFmtAdd("移動後チャンネル%d\n", L);
+										fSameLane = 1;
+										break;
+									}
+
+								}
+								else {
+									L = newLane - k * 2;
+									if (11 <= L && L <= 17 && laneB[L - 10] == 0) {
+										gp->bmsobj.notes[j].op = L;
+										ErrorLogFmtAdd("移動後チャンネル%d\n", L);
+										fSameLane = 1;
+										break;
+									}
+								}
+							}
+							if (!fSameLane) {
+								for (int k = 1; k < 5; k++) {
+									int L = newLane + k * 2 - 1;
+									if (11 <= L && L <= 17) {
+										if (laneB[L - 10] == 0) {
+											gp->bmsobj.notes[j].op = L;
+											ErrorLogFmtAdd("移動後チャンネル%d\n", L);
+											break;
+										}
+									}
+									else {
+										L = newLane - k * 2 + 1;
+										if (11 <= L && L <= 17 && laneB[L - 10] == 0) {
+											gp->bmsobj.notes[j].op = L;
+											ErrorLogFmtAdd("移動後チャンネル%d\n", L);
+											break;
+										}
+									}
+								}
+							}
+						}
+						else {
+							gp->bmsobj.notes[j].op = newLane;
+						}
+
+						if (gp->bmsobj.notes[j].op == 18 || gp->bmsobj.notes[j].op == 19) {
+							gp->bmsobj.notes[j].op = (gp->bmsobj.notes[j].mine <= 0) ? 1 : -1;
+							ErrorLogFmtAdd("しまっちゃうノート\n");
+						}
+					}
+				}
+			}
+			measureLaneCount = 0;
+			prev = i;
+			left = 9;
+			right = 1;
+			memset(laneA, 0, sizeof(laneA));
+		}
+		else if (op == 2 && measureLaneCount == 0) {
+			measure++;
+
+			left = 9;
+			right = 1;
+			prev = i;
+			memset(laneA, 0, sizeof(laneA));
+		}
+		else if (11 <= op && op <= 19) {
+			laneA[op - 10] = 1;
+			measureLaneCount++;
+			if (op - 10 < left) {
+				left = op - 10;
+			}
+			if (right < op - 10) {
+				right = op - 10;
+			}
+		}
+	}
+
+	qsort(gp->bmsobj.notes, gp->bmsobj.count, sizeof(NoteStruct), CMP_NotesByRealTimingOp);
+	measure = 0;
+	for (int i = 0; i < gp->bmsobj.count; i++) {
+		if (gp->bmsobj.notes[i].op == 2)
+			measure++;
+
+		if(gp->bmsobj.notes[i].op == 18 || gp->bmsobj.notes[i].op == 19)
+			ErrorLogFmtAdd("###########################################################\n移動できてな いノート 小節%d チャンネル%d\n", measure, gp->bmsobj.notes[i].op);
+
+		if(gp->bmsobj.notes[i].op == 10)
+			ErrorLogFmtAdd("###########################################################\n空気を読まな いスクラッチ 小節%d チャンネル%d\n", measure, 10);
+	}
+
+	return;
+}
+
+//4afe40
+int DPsplitLaneScratch(LaneStruct *lane, int start, CHARTCONVERTER *cc) {
+
+	int nNotesP1 = 0;
+	int nNotesP2 = 0;
+	int nNotesSC = 0;
+
+	for (int i = start; i < lane->count; i++) {
+		int op = lane->notes[i].op;
+		
+		if (op == 2) break;
+
+		if (11 <= op && op <= 17) {
+			nNotesP1++;
+		}
+		else if (21 <= op && op <= 27) {
+			nNotesP2++;
+		}
+		else if (op == 10) {
+			nNotesSC++;
+		}
+	}
+
+	if ((nNotesP1 > 0 && nNotesP2 == 0) || (nNotesP1 == 0 && nNotesP2 > 0)) {
+		DPsplitLane(lane, start, cc);
+	}
+
+	double realTimeLastNote = -1.0;
+	int scratchNoteID = -1, oldScratchNoteID = -1;
+	int LaneA[20];
+
+	for (int i = start; i < lane->count; i++) {
+
+		if (lane->notes[i].realTiming > realTimeLastNote) {
+			realTimeLastNote = lane->notes[i].realTiming;
+			if (scratchNoteID != -1) {
+
+				if (cc->RealTimingSplitScratch + 500 < lane->notes[scratchNoteID].realTiming && (nNotesSC <= 3 || cc->RealTimingSplitScratch == -1))
+					cc->flagSplitScratch ^= 1;
+
+				cc->RealTimingSplitScratch = lane->notes[scratchNoteID].realTiming;
+
+
+				if (cc->flagSplitScratch == 0) {
+					if (cc->assist1p == 0) {
+						for (int j = scratchNoteID; j > 0; j--) {
+							if (lane->notes[j].op == 2) break;
+							if (cc->RealTimingSplitScratch - lane->notes[j].realTiming >= 200) break;
+							if (12 <= lane->notes[j].op && lane->notes[j].op <= 17) lane->notes[j].op += 10;
+						}
+
+						for (int j = scratchNoteID; j < lane->count; j++) {
+							if (lane->notes[j].op == 2) break;
+							if (lane->notes[j].realTiming - cc->RealTimingSplitScratch >= 200) break;
+							if (12 <= lane->notes[j].op && lane->notes[j].op <= 17) lane->notes[j].op += 10;
+						}
+					}
+				}
+				else {
+					if (cc->assist2p == 0) {
+						for (int j = scratchNoteID; j > 0; j--) {
+							if (lane->notes[j].op == 2) break;
+							if (cc->RealTimingSplitScratch - lane->notes[j].realTiming >= 200) break;
+							if (21 <= lane->notes[j].op && lane->notes[j].op <= 26) lane->notes[j].op -= 10;
+						}
+
+						for (int j = scratchNoteID; j < lane->count; j++) {
+							if (lane->notes[j].op == 2) break;
+							if (lane->notes[j].realTiming - cc->RealTimingSplitScratch >= 200) break;
+							if (21 <= lane->notes[j].op && lane->notes[j].op <= 26) lane->notes[j].op -= 10;
+						}
+					}
+				}
+				scratchNoteID = -1;
+				oldScratchNoteID = -1;
+			}
+		}
+
+		if (lane->notes[i].op == 2) break;
+
+		if (lane->notes[i].op == 10) {
+			scratchNoteID = i;
+			oldScratchNoteID = i;
+		}
+		if ( (11 <= lane->notes[i].op && lane->notes[i].op <=17) || (21 <= lane->notes[i].op && lane->notes[i].op <= 27)) {
+			LaneA[lane->notes[i].op - 10] = i;
+			scratchNoteID = oldScratchNoteID;
+		}
+	}
+	cc->RealTimingSplitScratch = -1;
 	return 1;
 }
 
-///tmp
+//4b0250
+int SPtoDP(LaneStruct *lane, int baseNoteID, CHARTCONVERTER *cc) {
+
+	cc->unused14404 = 0;
+	for (int i = 0; i < 7; i++) cc->noteCountPerLane[i] = 0;
+	cc->laneCount = 0;
+
+	for (int i = 0; i < 1296; i++) {
+		cc->arr1[i].count = 0;
+		cc->arr1[i].field3_0xc = -1;
+		cc->arr3[i].field3_0xc = -1;
+	}
+	for (int i = baseNoteID + 1; i < lane->count; i++) {
+		if (lane->notes[i].op == 2) break;
+		if (10 <= lane->notes[i].op && lane->notes[i].op <= 17) {
+			cc->noteCountPerLane[lane->notes[i].op - 11]++;
+			if (lane->notes[i].op != 10) {
+				cc->arr1[cc->arr3[lane->notes[i].op].soundLoadID].count++;
+				cc->arr1[cc->arr3[lane->notes[i].op].soundLoadID].field3_0xc = 0;
+			}
+		}
+	}
+
+	for (int i = 0; i < 7; i++) {
+		if (cc->noteCountPerLane[i]) cc->laneCount++;
+	}
+
+	qsort(&cc->arr1, 1296, sizeof(cc->arr1), CMP_CCARRbyCount);
+
+	bool fA = false, fB = false;
+	if (cc->arr2[0].count && cc->arr1[0].count&& ((cc->arr1[0].ID == cc->arr2[0].ID && (cc->arr1[1].ID == cc->arr2[1].ID || cc->arr1[1].ID == cc->arr2[2].ID || cc->arr1[2].ID == cc->arr2[1].ID || cc->arr1[2].ID == cc->arr2[2].ID)) 
+													|| (cc->arr1[0].ID == cc->arr2[1].ID && cc->arr1[1].ID == cc->arr2[0].ID) 
+													|| (cc->arr1[1].ID == cc->arr2[0].ID && cc->arr2[1].ID == 0))) {
+		cc->unk14428++;
+		fB = true;
+
+		if (cc->unk14428 == 4){
+			fA = true;
+			cc->unk14428 = 0;
+		}
+	}
+	else {
+		cc->unk14428 = 0;
+	}
+
+	qsort(&cc->arr2,1296,sizeof(cc->arr2), CMP_CCARRbyID);
+	if (fA) {
+		for (int i = 0; i < 1296; i++) {
+			if (cc->arr2[i].field3_0xc == 0) cc->arr2[i].field3_0xc = 1;
+			else if (cc->arr2[i].field3_0xc == 1) cc->arr2[i].field3_0xc = 0;
+		}
+	}
+
+	int unkArr[2] = { 0,0 };
+	for (int i = 0; i < 1296; i++) {
+		if (cc->arr1[i].count > 0) {
+			if (fB && cc->arr2[cc->arr1[i].ID].field3_0xc != -1 && i == 0) {
+				cc->arr2[cc->arr1[i].ID].field3_0xc;
+				unkArr[cc->arr2[cc->arr1[0].ID].field3_0xc] += cc->arr1[0].count; //really 0. not i
+				cc->arr1[0].field3_0xc = cc->arr2[cc->arr1[i].ID].field3_0xc;
+			}
+			else if (unkArr[0] == 0 && unkArr[1] == 0) {
+				if (cc->flagSplitUnknown == 0) {
+					cc->arr1[i].field3_0xc = 0;
+					unkArr[0] = cc->arr1[i].count;
+				}
+				else {
+					cc->arr1[i].field3_0xc = 1;
+					unkArr[1] = cc->arr1[i].count;
+				}
+				cc->flagSplitUnknown ^= 1;
+			}
+			else if (0 < 0) {
+				cc->arr1[i].field3_0xc = 1;
+				unkArr[1] += cc->arr1[i].count;
+			}
+			else {
+				cc->arr1[i].field3_0xc = 0;
+				unkArr[0] += cc->arr1[i].count;
+			}
+		}
+	}
+	
+	for (int i = 0; i < 1296; i++) {
+		cc->arr2[i].count = cc->arr1[i].count;
+		cc->arr2[i].ID = cc->arr1[i].ID;
+		cc->arr2[i].field3_0xc = cc->arr1[i].field3_0xc;
+	}
+
+	qsort(&cc->arr1, 1296, sizeof(cc->arr1), CMP_CCARRbyID);
+	for (int i = baseNoteID + 1; i < lane->count; i++) {
+
+		if (lane->notes[i].op == 2) break;
+		if (11 <= lane->notes[i].op && lane->notes[i].op <= 17) {
+			int t = cc->arr1[cc->arr3[(int)lane->notes[i].val].soundLoadID].field3_0xc;
+			
+			if (t == 0) {}
+			else if (t == 1) {
+				lane->notes[i].op += 10;
+			}
+			else if (t == -1) {
+				lane->notes[i].op += 100;
+				ErrorLogFmtAdd("-1エラー\n");
+			}
+		}
+
+	}
+
+	if (cc->arr2[0].count >= 17 
+		|| (cc->arr2[0].count >= 16 && cc->playlevel <= 10) 
+		|| (cc->arr2[0].count >= 14 && cc->playlevel <= 9) 
+		|| (cc->arr2[0].count >= 12 && cc->playlevel <= 8)) {
+		DPsplit(lane, baseNoteID + 1, cc);
+	}
+	DPsplitLaneScratch(lane, baseNoteID + 1, cc);
+	return 1;
+}
+
 //4b0690
 //TODO : rename variables
 //TOFIX : freq +12 autoplay endtime doesn't match (#STOP?)
@@ -1826,7 +2300,7 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 						measureLength[thisMeasure] = atof(fBuf.getSliced(7, fBuf.length() - 7));
 					}
 				}
-				else if (channel == 3) { //Change of BPM 	BPM 1 « [01-FF] » BPM 255
+				else if (channel == 3) { //Change of BPM 	BPM 1 ? [01-FF] ? BPM 255
 					int div = (fBuf.length() - 7) / 2;
 					for (int i = 0; i < div; i++) {
 						int ii = i * 2 + 7;
@@ -2878,6 +3352,9 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 	for (int i = 0; i < 10; i++) unused_LaneB[i] = -1;
 	int isBattle = 0;
 
+
+	//TOFIX : mine on p2
+	
 	//shuffle notes
 	for (int i = 0; i < gp->bmsobj.count; i++) {
 		int optemp = gp->bmsobj.notes[i].op;
@@ -2905,9 +3382,10 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 		}
 		else {
 			if (optemp < 20) {
+				//below memo to here //TOFIX : p1 notes counted as p2 notes so p1 ends early (250923 mat report)
 				if (p1LastTiming < gp->bmsobj.notes[i].realTiming) {
 					p1LastTiming = gp->bmsobj.notes[i].realTiming;
-					isBattle = 0;
+					isBattle = 0; //TOFIX : p1 notes counted as p2 notes so p1 ends early (250923 mat report)
 					for (int lane = 0; lane < 10; lane++) {
 						if (cfg->play.random[0] == 4) {
 							mapAdded[0][lane] = chArr[lane];
