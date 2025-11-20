@@ -7809,7 +7809,7 @@ int ProcI_SkinSelect(game *g) {
 		g->procPhase = 2;
 	}
 	else if (g->procPhase == 2) {
-		if (GetTimeLapse(2, &g->timer1) > g->skstruct.fadeout|| g->skstruct.fadeout) {
+		if (GetTimeLapse(2, &g->timer1) > g->skstruct.fadeout|| !g->skstruct.fadeout) {
 			g->procSelecter = 2;
 		}
 	}
