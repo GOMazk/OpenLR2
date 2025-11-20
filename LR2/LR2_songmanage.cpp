@@ -1621,7 +1621,7 @@ int LoadBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *difficulty,
 				if (ss->prevList[i].tag.isDiff("(null)") && ss->prevList[i].tag.length() >= 5) {
 					query = sqlite3_snprintf(1024, buf, "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE %s", ss->prevList[i].tag);
 					if (query.findStrPos("__NEWSONG__") > -1) {
-						query = sqlite3_snprintf(1024, buf, "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE adddate > %d", GetNowUnixtime() - ss->titleflash * 60); //TOFIX : 3600
+						query = sqlite3_snprintf(1024, buf, "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE adddate > %d", GetNowUnixtime() - ss->titleflash * 3600);
 					}
 					LoadFolderDataFromDB(query, &ss->prevList[i], sql, *difficulty, *key, sort, ss->prevList[i].level, &ss->filter, 1);
 				}
@@ -2619,7 +2619,7 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 			}
 
 			SQL_Run("DELETE FROM folder WHERE path=\'LR2files\\CustomFolder\\newsong.lr2folder\'", sql);
-			sqlite3_snprintf(1024, query, "SELECT * FROM song WHERE adddate > %d", GetNowUnixtime() - jb->titleflash * 60); //TOFIX : 3600
+			sqlite3_snprintf(1024, query, "SELECT * FROM song WHERE adddate > %d", GetNowUnixtime() - jb->titleflash * 3600);
 			sqlite3_stmt *pStmt;
 			SQL_prepare(query, sql, &pStmt);
 			if (sqlite3_step(pStmt) == 100) {
