@@ -1,8 +1,8 @@
 ﻿#if _WIN64
-#pragma comment(lib,"x64/fmod_vc.lib")
+#pragma comment(lib,"bin64/fmod_vc.lib")
 #else
 #if _WIN32
-#pragma comment(lib,"x86/fmod_vc.lib")
+#pragma comment(lib,"bin86/fmod_vc.lib")
 #endif
 #endif
 #include "En_audio.h"
