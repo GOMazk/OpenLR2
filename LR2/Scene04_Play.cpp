@@ -349,8 +349,8 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 						
 			float p1_y = sk->adjust.note_1p_y + (songtimer - g->gameplay.bmsobj_line.notes[i].bmsTiming)* cfg->hiSpeed[0] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
 			float p2_y = sk->adjust.note_2p_y + (songtimer - g->gameplay.bmsobj_line.notes[i].bmsTiming)* cfg->hiSpeed[0] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
-			if (p2_y > 0.0) p2_y = 0; //TOFIX : delete these for skinadjust
-			if (p1_y > 0.0) p1_y = 0.0;
+			//if (p2_y > 0.0) p2_y = 0; //TOFIX : delete these for skinadjust
+			//if (p1_y > 0.0) p1_y = 0.0;
 
 			p2_y += g->gameplay.nabeatsu_y; //TOFIX : 1p 2p doesn't match (no nabeatsu_y on battle 2p measure_line). move it to below
 			if (cfg->battle == 1) {
@@ -416,18 +416,16 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 				}
 
 				if (note_y > 0.0) note_y = 0.0;
-				if (noteL_y > 0.0) noteL_y = 0.0; //TOFIX: delete this line?
-				noteL_y += g->gameplay.nabeatsu_y; //TOFIX: delete this line
 				
 				if (key < 10) {
 					note_x = sk->adjust.note_1p_x + g->gameplay.nabeatsu_x + 0.0;
 					note_y = sk->adjust.note_1p_y + g->gameplay.nabeatsu_y + note_y;
-					//noteL_y = sk->adjust.note_1p_y + g->gameplay.nabeatsu_y + noteL_y; //TOFIX : use this instead
+					noteL_y = sk->adjust.note_1p_y + g->gameplay.nabeatsu_y + noteL_y;
 				}
 				else {
 					note_x = sk->adjust.note_2p_x + g->gameplay.nabeatsu_x + 0.0;
 					note_y = sk->adjust.note_2p_y + g->gameplay.nabeatsu_y + note_y;
-					//noteL_y = sk->adjust.note_2p_y + g->gameplay.nabeatsu_y + noteL_y; //TOFIX : use this instead
+					noteL_y = sk->adjust.note_2p_y + g->gameplay.nabeatsu_y + noteL_y;
 				}
 				notesize_x = sk->adjust.size_x + 0.0;
 				notesize_y = sk->adjust.size_y + 0.0;
