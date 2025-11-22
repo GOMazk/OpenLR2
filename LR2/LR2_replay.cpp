@@ -717,7 +717,7 @@ int SetReplayConfig(REPLAY *re, game *g, AUDIO *aud, gameplay *gp, inputStructur
 	memcpy(&re->cfg, &g->config.play, sizeof(CONFIG_PLAY));
 	memcpy(&re->aud, &aud->param, sizeof(AUDIO_PARAM));
 
-	while (re->data[re->count].timing == 0 && re->count < re->max) {
+	while (re->count < re->max && re->data[re->count].timing == 0) {
 		ReplayDataToInput(&re->data[re->count], g, aud, gp, in, T);
 		re->count++;
 	}
@@ -728,7 +728,7 @@ int SetReplayConfig(REPLAY *re, game *g, AUDIO *aud, gameplay *gp, inputStructur
 //4c2310
 int ReplayToInput(REPLAY *rp, game *g, AUDIO *aud, gameplay *gp, inputStructure *is, Timer *T){
 	if (rp->count < rp->max) {
-		while (rp->data[rp->count].timing < GetTimeLapse(41, T) && rp->count < rp->max) {
+		while (rp->count < rp->max && rp->data[rp->count].timing < GetTimeLapse(41, T)) {
 			ReplayDataToInput(rp->data + rp->count, g, aud, gp, is, T);
 			rp->count++;
 		}

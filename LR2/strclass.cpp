@@ -250,35 +250,48 @@ CSTR& CSTR::replace(int pos, int len1, const char *str2, int len2) {
 	return *this;
 }
 
+#include <string>
+inline void replace_all(std::string& str, std::string_view from, std::string_view to)
+{
+	for (size_t pos = str.find(from); pos != std::string::npos;)
+	{
+		str.replace(pos, from.length(), to);
+		pos = str.find(from, pos + to.length());
+	}
+}
+
 //43b060
 CSTR& CSTR::replace(const char *str1, const char *str2) {
-	char cVar1;
-	char *pcVar2;
-	char *pcVar3;
-	char *_Str1;
-	int iVar4;
-	int len1;
-	int len2;
+	//char cVar1;
+	//char *pcVar2;
+	//char *pcVar3;
+	//char *_Str1;
+	//int iVar4;
+	//int len1;
+	//int len2;
 
-	if (body != NULL) {
-		/*pcVar2 = str1;
-		do {
-			cVar1 = *pcVar2;
-			pcVar2 = pcVar2 + 1;
-		} while (cVar1 != '\0');*/
-		len1 = strlen(str1);
-		/*pcVar3 = str2;
-		do {
-			cVar1 = *pcVar3;
-			pcVar3 = pcVar3 + 1;
-		} while (cVar1 != '\0');*/
-		len2 = strlen(str2);
-		_Str1 = strchr(body, (int)*str1);
-		while (_Str1 != NULL && !strncmp(_Str1, str1, len1)) {
-			replace((int)(_Str1 + -(int)body), len1, str2, len2);
-			_Str1 = strchr(_Str1 + len2, (int)*str1);
-		}
-	}
+	//if (body != NULL) {
+	//	/*pcVar2 = str1;
+	//	do {
+	//		cVar1 = *pcVar2;
+	//		pcVar2 = pcVar2 + 1;
+	//	} while (cVar1 != '\0');*/
+	//	len1 = strlen(str1);
+	//	/*pcVar3 = str2;
+	//	do {
+	//		cVar1 = *pcVar3;
+	//		pcVar3 = pcVar3 + 1;
+	//	} while (cVar1 != '\0');*/
+	//	len2 = strlen(str2);
+	//	_Str1 = strchr(body, (int)*str1);
+	//	while (_Str1 != NULL && !strncmp(_Str1, str1, len1)) {
+	//		replace((int)(_Str1 + -(int)body), len1, str2, len2);
+	//		_Str1 = strchr(_Str1 + len2, (int)*str1);
+	//	}
+	//}
+	std::string string = this->body;
+	replace_all(string, str1, str2);
+	this->assign(string.c_str());
 	return *this;
 }
 
@@ -611,27 +624,26 @@ CSTR CSTR::makeCRCstr() {
 	int pcVar3;
 	char* CVar4;
 	char *pstr;
-	CSTR local_4;
-	CSTR ret;
+	char* local_4;
+	char* ret;
 
-	local_4.body = (char *)0x0;
-	local_4.body = (char *)calloc(1, 0x40);
+	local_4 = (char *)calloc(1, 0x40);
 	dVar2 = CRC32();
-	cstrSprintf(&local_4, "%x", dVar2);
-	str = local_4.body;
-	if (local_4.body == NULL) {
+	sprintf(local_4, "%x", dVar2);
+	str = local_4;
+	if (local_4 == NULL) {
 		pcVar3 = (int)calloc(1, 0x40);
-		ret.body = (char*)pcVar3;
+		ret = (char*)pcVar3;
 		return ret;
 	}
-	CVar4 = local_4.body;
+	CVar4 = local_4;
 	do {
 		cVar1 = *CVar4;
 		CVar4 = CVar4 + 1;
 	} while (cVar1 != '\0');
-	pcVar3 = (int)CVar4 - (int)(local_4.body + 1);
+	pcVar3 = (int)CVar4 - (int)(local_4 + 1);
 	pstr = (char *)calloc(1, (size_t)(pcVar3 + 1));
-	ret.body = pstr;
+	ret = pstr;
 	if (pstr != (char *)0x0) {
 		strncpy(pstr, (char *)str, pcVar3);
 	}

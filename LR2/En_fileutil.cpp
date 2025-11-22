@@ -940,7 +940,7 @@ void MD5byte(char **iStr, uint len, char *oByte){
 }
 
 //443ff0
-char md5str[32];
+char md5str[33];
 char* MD5str(char *iStr) {
 	char* buf;
 	unsigned char md5buf[16];

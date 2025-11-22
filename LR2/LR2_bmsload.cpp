@@ -253,8 +253,10 @@ int InitGameplay(gameplay *gp, CONFIG_PLAY *cfg) {
 		int prevTotalnote = gp->player[p].total_note;
 		int prevNotecurrent = gp->player[p].note_current2;
 		double prevHP = gp->player[p].HP;
+		EXTENDEDPLAYERSTATS extendedStatsCourse = gp->player[p].extendedStatsCourse;
+		std::array<EXTENDEDPLAYERSTATS, 20> extendedColumnStatsCourse = gp->player[p].extendedColumnStatsCourse;
 
-		memset(&gp->player[p], 0, sizeof(PLAYERSTATUS));
+		gp->player[p] = PLAYERSTATUS();
 
 		if (gp->courseStageNow > 0) {
 			gp->player[p].HP = prevHP;
@@ -265,6 +267,8 @@ int InitGameplay(gameplay *gp, CONFIG_PLAY *cfg) {
 			memcpy(gp->player[p].judgecount2, prevJudge, 6 * sizeof(int));
 			gp->player[p].total_note = prevTotalnote;
 			gp->player[p].note_current2 = prevNotecurrent;
+			gp->player[p].extendedStatsCourse = extendedStatsCourse;
+			gp->player[p].extendedColumnStatsCourse = extendedColumnStatsCourse;
 		}
 	}
 
@@ -631,7 +635,7 @@ int InitGameplay_retry(gameplay *gp, AUDIO *snd, game *g) {
 	tempCount = gp->player[0].totalnotes;
 	memcpy(tempDmg, &gp->player[0].judge_damage, sizeof(tempDmg));
 	memcpy(tempTime, &gp->player[0].judgetime, sizeof(tempTime));
-	memset(&gp->player[0], 0, sizeof(PLAYERSTATUS));
+	gp->player[0] = PLAYERSTATUS();
 	memcpy(&gp->player[0].judge_damage, tempDmg, sizeof(tempDmg));
 	memcpy(&gp->player[0].judgetime, tempTime, sizeof(tempTime));
 	gp->player[0].totalnotes = tempCount;
@@ -639,7 +643,7 @@ int InitGameplay_retry(gameplay *gp, AUDIO *snd, game *g) {
 	tempCount = gp->player[1].totalnotes;
 	memcpy(tempDmg, &gp->player[1].judge_damage, sizeof(tempDmg));
 	memcpy(tempTime, &gp->player[1].judgetime, sizeof(tempTime));
-	memset(&gp->player[1], 0, sizeof(PLAYERSTATUS));
+	gp->player[1] = PLAYERSTATUS();
 	memcpy(&gp->player[1].judge_damage, tempDmg, sizeof(tempDmg));
 	memcpy(&gp->player[1].judgetime, tempTime, sizeof(tempTime));
 	gp->player[1].totalnotes = tempCount;

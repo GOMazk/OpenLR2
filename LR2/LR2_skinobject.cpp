@@ -2041,23 +2041,47 @@ uint SetObjectValue_Num(game *g, int op) {
 		case 200:
 			return g->net.rankingData.rankingCount;
 		case 201:
+			if (g->procSelecter == 4) {
+				return g->gameplay.player[0].extendedStats.lastHitOffset;
+			}
 			return g->net.rankingData.totalPlaycount;
 
 		case 210:
+			if (g->procSelecter == 4) {
+				return g->gameplay.player[0].extendedStats.lastFastSlow;
+			}
 			return g->net.rankingData.clearPlayers[1];
 		case 211:
+			if (g->procSelecter == 4) {
+				return g->gameplay.player[1].extendedStats.lastFastSlow;
+			}
 			if (g->net.rankingData.rankingCount != 0) {
 				return (g->net.rankingData.clearPlayers[1] * 100) / g->net.rankingData.rankingCount;
 			}
 			break;
 		case 212:
+			if (g->procSelecter == 4 || g->procSelecter == 5) {
+				return g->gameplay.player[0].extendedStats.fast;
+			}
+			if (g->procSelecter == 13) {
+				return g->gameplay.player[0].extendedStatsCourse.fast;
+			}
 			return g->net.rankingData.clearPlayers[2];
 		case 213:
+			if (g->procSelecter == 4) {
+				return g->gameplay.player[1].extendedStats.lastHitOffset;
+			}
 			if (g->net.rankingData.rankingCount != 0) {
 				return (g->net.rankingData.clearPlayers[2] * 100) / g->net.rankingData.rankingCount;
 			}
 			break;
 		case 214:
+			if (g->procSelecter == 4 || g->procSelecter == 5) {
+				return g->gameplay.player[0].extendedStats.slow;
+			}
+			if (g->procSelecter == 13) {
+				return g->gameplay.player[0].extendedStatsCourse.slow;
+			}
 			return g->net.rankingData.clearPlayers[3];
 		case 215:
 			if (g->net.rankingData.rankingCount != 0) {
@@ -2065,13 +2089,25 @@ uint SetObjectValue_Num(game *g, int op) {
 			}
 			break;
 		case 216:
+			if (g->procSelecter == 4 || g->procSelecter == 5) {
+				return g->gameplay.player[0].extendedStats.cb;
+			}
+			if (g->procSelecter == 13) {
+				return g->gameplay.player[0].extendedStatsCourse.cb;
+			}
 			return g->net.rankingData.clearPlayers[4];
 		case 217:
+			if (g->procSelecter == 4) {
+				return g->gameplay.player[0].totalnotes;
+			}
 			if (g->net.rankingData.rankingCount != 0) {
 				return (g->net.rankingData.clearPlayers[4] * 100) / g->net.rankingData.rankingCount;
 			}
 			break;
 		case 218:
+			if (g->procSelecter == 4) {
+				return g->gameplay.player[0].note_current;
+			}
 			return g->net.rankingData.clearPlayers[5];
 		case 219:
 			if (g->net.rankingData.rankingCount != 0) {
