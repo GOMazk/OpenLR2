@@ -7,6 +7,7 @@
 
 #include <windows.h>
 #include <string>
+#include <thread>
 
 #include "DXlib/DxLib.h"
 #include "tinyxml/tinyxml.h"
@@ -22,6 +23,9 @@ extern "C" {
 using namespace std;
 
 int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine, int nCmdShow) {
+#ifdef _DEBUG
+	while (!IsDebuggerPresent()) std::this_thread::sleep_for(std::chrono::milliseconds(200));
+#endif
 
 	int loadingGrHandle;
 

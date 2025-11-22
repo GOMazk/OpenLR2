@@ -1854,7 +1854,8 @@ int LoadScene(skstruct *sk, CSTR skinfile, int p5, char font) {
 	(sk->adjust).note_1p_y = tsku.adjust.note_1p_y;
 	(sk->adjust).note_2p_x = tsku.adjust.note_2p_x;
 	(sk->adjust).note_2p_y = tsku.adjust.note_2p_y;
-	for (int i = 0; i < 20; i++) {
+	constexpr size_t s = offsetof(SkinUser, SkinUser::customize_value);
+	for (int i = 0; i < 8; i++) {
 		int t = tsku.customize_value[i * 5];
 		if (t > 899 && t < 1000) sk->op[t] = 1;
 		t = tsku.customize_value[i * 5 + 1];

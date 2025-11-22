@@ -668,7 +668,11 @@ int JudgeToScore(int judge, game *g, int player, int lane, char isReplay) {
 //418850
 int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 	NoteStruct &note = g->gameplay.bmsobj_note[lane].notes[g->gameplay.bmsobj_note[lane].note_count];
-
+	EXTENDEDPLAYERSTATS& extendedStats = g->gameplay.player[player].extendedStats;
+	EXTENDEDPLAYERSTATS& extendedColumnStats = g->gameplay.player[player].extendedColumnStats[lane];
+	EXTENDEDPLAYERSTATS& extendedStatsCourse = g->gameplay.player[player].extendedStatsCourse;
+	EXTENDEDPLAYERSTATS& extendedColumnStatsCourse = g->gameplay.player[player].extendedColumnStatsCourse[lane];
+	int& lastOffsetColumnIdx = g->gameplay.player[player].lastJudgedColumnIdx;
 	if (note.mine > 0) {
 		if (keypress == 1 && note.realTiming - (double)timing < (double)g->gameplay.player[player].judgetime[4]) {
 			ApplyJudgeMine(0, g, player, lane, note.mine);
@@ -700,11 +704,23 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			g->gameplay.bmsobj_note[lane].noteVal = note.val;
 			note.active = -1;
 			g->gameplay.bmsobj_note[lane].note_count++;
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats) {
+				stats.lpr++;
+				stats.cb++;
+				stats.noteCount++;
+				stats.lastFastSlow = 2;
+			};
+			increment_extended(extendedStats);
+			increment_extended(extendedColumnStats);
+			increment_extended(extendedStatsCourse);
+			increment_extended(extendedColumnStatsCourse);
 			return 0;
 		}
 		if (keypress != 1) return 0;
 
-		int gap = abs(timing - (int)note.realTiming);
+		int offset = timing - (int)note.realTiming;
+		int gap = std::abs(offset);
+		bool isFast = offset < 0;
 
 		if (gap <= g->gameplay.player[player].judgetime[5] && g->gameplay.player[player].note_current < g->gameplay.player[player].totalnotes) {
 			g->gameplay.autojudge_midcount++;
@@ -715,6 +731,17 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			note.active = -1;
 			g->gameplay.bmsobj_note[lane].note_count++;
 			SetTimeLapse(50 + lane, &g->timer1);
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats, bool isFast, int offset) {
+				isFast ? stats.epg++ : stats.lpg++;
+				stats.lastFastSlow = 0;
+				stats.noteCount++;
+				stats.lastHitOffset = offset;
+			};
+			increment_extended(extendedStats, isFast, offset);
+			increment_extended(extendedColumnStats, isFast, offset);
+			increment_extended(extendedStatsCourse, isFast, offset);
+			increment_extended(extendedColumnStatsCourse, isFast, offset);
+			lastOffsetColumnIdx = lane;
 			return 1;
 		}
 		if (gap <= g->gameplay.player[player].judgetime[4] && g->gameplay.player[player].note_current < g->gameplay.player[player].totalnotes) {
@@ -726,6 +753,18 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			note.active = -1;
 			g->gameplay.bmsobj_note[lane].note_count++;
 			SetTimeLapse(50 + lane, &g->timer1);
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats, bool isFast, int offset) {
+				isFast ? stats.egr++ : stats.lgr++;
+				isFast ? stats.fast++ : stats.slow++;
+				stats.lastFastSlow = isFast ? 1 : 2;
+				stats.noteCount++;
+				stats.lastHitOffset = offset;
+			};
+			increment_extended(extendedStats, isFast, offset);
+			increment_extended(extendedColumnStats, isFast, offset);
+			increment_extended(extendedStatsCourse, isFast, offset);
+			increment_extended(extendedColumnStatsCourse, isFast, offset);
+			lastOffsetColumnIdx = lane;
 			return 1;
 		}
 		if (gap <= g->gameplay.player[player].judgetime[3] && g->gameplay.player[player].note_current < g->gameplay.player[player].totalnotes) {
@@ -736,7 +775,18 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			PlaySound(&g->audio, &g->gameplay.keysound[g->gameplay.bmsobj_note[lane].noteVal], g->audio.chnStageKey[note.stage], note.stage);
 			note.active = -1;
 			g->gameplay.bmsobj_note[lane].note_count++;
-			
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats, bool isFast, int offset) {
+				isFast ? stats.egd++ : stats.lgd++;
+				isFast ? stats.fast++ : stats.slow++;
+				stats.lastFastSlow = isFast ? 1 : 2;
+				stats.noteCount++;
+				stats.lastHitOffset = offset;
+			};
+			increment_extended(extendedStats, isFast, offset);
+			increment_extended(extendedColumnStats, isFast, offset);
+			increment_extended(extendedStatsCourse, isFast, offset);
+			increment_extended(extendedColumnStatsCourse, isFast, offset);
+			lastOffsetColumnIdx = lane;
 			return 1;
 		}
 
@@ -749,7 +799,19 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			PlaySound(&g->audio, &g->gameplay.keysound[g->gameplay.bmsobj_note[lane].noteVal], g->audio.chnStageKey[note.stage], note.stage);
 			note.active = -1;
 			g->gameplay.bmsobj_note[lane].note_count++;
-			
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats, bool isFast, int offset) {
+				isFast ? stats.ebd++ : stats.lbd++;
+				isFast ? stats.fast++ : stats.slow++;
+				stats.lastFastSlow = isFast ? 1 : 2;
+				stats.noteCount++;
+				stats.lastHitOffset = offset;
+			};
+			increment_extended(extendedStats, isFast, offset);
+			increment_extended(extendedColumnStats, isFast, offset);
+			increment_extended(extendedStatsCourse, isFast, offset);
+			increment_extended(extendedColumnStatsCourse, isFast, offset);
+			lastOffsetColumnIdx = lane;
+
 			if (g->gameplay.bmsobj_note[lane].note_count < g->gameplay.bmsobj_note[lane].size && abs(timing - (int)g->gameplay.bmsobj_note[lane].notes[g->gameplay.bmsobj_note[lane].note_count].realTiming) <= g->gameplay.player[player].judgetime[2]) {
 				ProcSinglenote(g, lane, 1, timing, player);
 				return 1;
@@ -760,6 +822,16 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			JudgeToScore(0, g, player, lane, 0);
 			g->gameplay.bmsobj_note[lane].noteVal = note.val;
 			PlaySound(&g->audio, &g->gameplay.keysound[g->gameplay.bmsobj_note[lane].noteVal], g->audio.chnStageKey[note.stage], note.stage);
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats) {
+				stats.epr++;
+				stats.lastFastSlow = 1;
+				stats.epr++;
+				stats.lastFastSlow = 1;
+			};
+			increment_extended(extendedStats);
+			increment_extended(extendedColumnStats);
+			increment_extended(extendedStatsCourse);
+			increment_extended(extendedColumnStatsCourse);
 			return 1;
 		}
 
@@ -773,6 +845,11 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 	
 	NoteStruct &note = g->gameplay.bmsobj_note[lane].notes[g->gameplay.bmsobj_note[lane].note_count];
+	EXTENDEDPLAYERSTATS& extendedStats = g->gameplay.player[player].extendedStats;
+	EXTENDEDPLAYERSTATS& extendedColumnStats = g->gameplay.player[player].extendedColumnStats[lane];
+	EXTENDEDPLAYERSTATS& extendedStatsCourse = g->gameplay.player[player].extendedStatsCourse;
+	EXTENDEDPLAYERSTATS& extendedColumnStatsCourse = g->gameplay.player[player].extendedColumnStatsCourse[lane];
+	int& lastOffsetColumnIdx = g->gameplay.player[player].lastJudgedColumnIdx;
 
 	if ((double)timing - note.realTiming > (double)g->gameplay.player[player].judgetime[3] && note.active <= 0) {
 		ApplyJudgeNote(1, g, player, lane, &g->timer1, 0);
@@ -780,16 +857,38 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 		note.active = -1;
 		g->gameplay.bmsobj_note[lane].note_count++;
 		ResetTimeLapse(70 + lane, &g->timer1);
+		auto increment_extended = [](EXTENDEDPLAYERSTATS& stats) {
+			stats.lpr++;
+			stats.cb++;
+			stats.noteCount++;
+			stats.lastFastSlow = 2;
+		};
+		increment_extended(extendedStats);
+		increment_extended(extendedColumnStats);
+		increment_extended(extendedStatsCourse);
+		increment_extended(extendedColumnStatsCourse);
 		return 0;
 	}
 
 	if (keypress == 1) {
-		int gap = abs(timing - (int)note.realTiming);
+		int offset = timing - (int)note.realTiming;
+		int gap = std::abs(offset);
+		bool isFast = offset < 0;
 
 		if (gap <= g->gameplay.player[player].judgetime[5]) {
 			g->gameplay.bmsobj_note[lane].noteVal = note.val;
 			PlaySound(&g->audio, &g->gameplay.keysound[g->gameplay.bmsobj_note[lane].noteVal], g->audio.chnStageKey[note.stage], note.stage);
 			note.active = 5;
+			note.lnHeadFast = isFast;
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats, int offset) {
+				stats.lastFastSlow = 0;
+				stats.lastHitOffset = offset;
+			};
+			increment_extended(extendedStats, offset);
+			increment_extended(extendedColumnStats, offset);
+			increment_extended(extendedStatsCourse, offset);
+			increment_extended(extendedColumnStatsCourse, offset);
+			lastOffsetColumnIdx = lane;
 
 			SetTimeLapse(70 + lane, &g->timer1);
 			return 1;
@@ -798,6 +897,17 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 			g->gameplay.bmsobj_note[lane].noteVal = note.val;
 			PlaySound(&g->audio, &g->gameplay.keysound[g->gameplay.bmsobj_note[lane].noteVal], g->audio.chnStageKey[note.stage], note.stage);
 			note.active = 4;
+			note.lnHeadFast = isFast;
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats, int offset, bool isFast) {
+				isFast ? stats.fast++ : stats.slow++;
+				stats.lastFastSlow = isFast ? 1 : 2;
+				stats.lastHitOffset = offset;
+			};
+			increment_extended(extendedStats, offset, isFast);
+			increment_extended(extendedColumnStats, offset, isFast);
+			increment_extended(extendedStatsCourse, offset, isFast);
+			increment_extended(extendedColumnStatsCourse, offset, isFast);
+			lastOffsetColumnIdx = lane;
 
 			SetTimeLapse(70 + lane, &g->timer1);
 			return 1;
@@ -806,6 +916,17 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 			g->gameplay.bmsobj_note[lane].noteVal = note.val;
 			PlaySound(&g->audio, &g->gameplay.keysound[g->gameplay.bmsobj_note[lane].noteVal], g->audio.chnStageKey[note.stage], note.stage);
 			note.active = 3;
+			note.lnHeadFast = isFast;
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats, int offset, bool isFast) {
+				isFast ? stats.fast++ : stats.slow++;
+				stats.lastFastSlow = isFast ? 1 : 2;
+				stats.lastHitOffset = offset;
+			};
+			increment_extended(extendedStats, offset, isFast);
+			increment_extended(extendedColumnStats, offset, isFast);
+			increment_extended(extendedStatsCourse, offset, isFast);
+			increment_extended(extendedColumnStatsCourse, offset, isFast);
+			lastOffsetColumnIdx = lane;
 
 			SetTimeLapse(70 + lane, &g->timer1);
 			return 1;
@@ -814,12 +935,33 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 			g->gameplay.bmsobj_note[lane].noteVal = note.val;
 			PlaySound(&g->audio, &g->gameplay.keysound[g->gameplay.bmsobj_note[lane].noteVal], g->audio.chnStageKey[note.stage], note.stage);
 			note.active = 2;
+			note.lnHeadFast = isFast;
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats, int offset, bool isFast) {
+				isFast ? stats.fast++ : stats.slow++;
+				stats.lastFastSlow = isFast ? 1 : 2;
+				stats.lastHitOffset = offset;
+			};
+			increment_extended(extendedStats, offset, isFast);
+			increment_extended(extendedColumnStats, offset, isFast);
+			increment_extended(extendedStatsCourse, offset, isFast);
+			increment_extended(extendedColumnStatsCourse, offset, isFast);
+			lastOffsetColumnIdx = lane;
 			return 1;
 		}
 		else if ((int)note.realTiming - timing < g->gameplay.player[player].judgetime[1]) {
 			JudgeToScore(0, g, player, lane, 0);
 			g->gameplay.bmsobj_note[lane].noteVal = note.val;
 			PlaySound(&g->audio, &g->gameplay.keysound[g->gameplay.bmsobj_note[lane].noteVal], g->audio.chnStageKey[note.stage], note.stage);
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats) {
+				stats.epr++;
+				stats.lastFastSlow = 1;
+				stats.epr++;
+				stats.lastFastSlow = 1;
+			};
+			increment_extended(extendedStats);
+			increment_extended(extendedColumnStats);
+			increment_extended(extendedStatsCourse);
+			increment_extended(extendedColumnStatsCourse);
 			return 1;
 		}
 
@@ -831,6 +973,7 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 
 	else if (keypress == 2) {
 		if ((int)note.realTiming_ln < timing && note.active > 0) {
+			bool& isFast = note.lnHeadFast;
 			if (note.active < 4) {
 				ResetTimeLapse(70 + lane, &g->timer1);
 			}
@@ -839,20 +982,56 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 				SetTimeLapse(50 + lane, &g->timer1);
 			}
 			JudgeToScore(note.active, g, player, lane, 0);
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats, bool isFast, int judge) {
+				switch (judge) {
+				case 5: isFast ? stats.epg++ : stats.lpg++; break;
+				case 4: isFast ? stats.egr++ : stats.lgr++; break;
+				case 3: isFast ? stats.egd++ : stats.lgd++; break;
+				case 2: isFast ? stats.ebd++ : stats.lbd++; stats.cb++; break;
+				}
+				stats.noteCount++;
+			};
+			increment_extended(extendedStats, isFast, note.active);
+			increment_extended(extendedColumnStats, isFast, note.active);
+			increment_extended(extendedStatsCourse, isFast, note.active);
+			increment_extended(extendedColumnStatsCourse, isFast, note.active);
 			note.active = -1;
 			g->gameplay.bmsobj_note[lane].note_count++;
 			return 1;
 		}
 	}
 	else if (keypress == 3 && note.active > 0) {
+		bool& isFast = note.lnHeadFast;
 		if (g->gameplay.player[player].judgetime[3] + timing < (int)note.realTiming_ln) {
 			StopSound(&g->audio, &g->gameplay.keysound[g->gameplay.bmsobj_note[lane].noteVal]);
 			ResetTimeLapse(70 + lane, &g->timer1);
 			JudgeToScore(2, g, player, lane, 0);
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats, bool isFast) {
+				isFast ? stats.ebd++ : stats.lbd++;
+				stats.cb++;
+				stats.noteCount++;
+			};
+			increment_extended(extendedStats, isFast);
+			increment_extended(extendedColumnStats, isFast);
+			increment_extended(extendedStatsCourse, isFast);
+			increment_extended(extendedColumnStatsCourse, isFast);
 		}
 		else {
 			ResetTimeLapse(70 + lane, &g->timer1);
 			JudgeToScore(note.active, g, player, lane, 0);
+			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats, bool isFast, int judge) {
+				switch (judge) {
+				case 5: isFast ? stats.epg++ : stats.lpg++; break;
+				case 4: isFast ? stats.egr++ : stats.lgr++; break;
+				case 3: isFast ? stats.egd++ : stats.lgd++; break;
+				case 2: isFast ? stats.ebd++ : stats.lbd++; stats.cb++; break;
+				}
+				stats.noteCount++;
+			};
+			increment_extended(extendedStats, isFast, note.active);
+			increment_extended(extendedColumnStats, isFast, note.active);
+			increment_extended(extendedStatsCourse, isFast, note.active);
+			increment_extended(extendedColumnStatsCourse, isFast, note.active);
 		}
 		note.active = -1;
 		g->gameplay.bmsobj_note[lane].note_count++;

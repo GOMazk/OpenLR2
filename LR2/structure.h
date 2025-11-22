@@ -2,6 +2,8 @@
 #include <winsock2.h>
 #include <Windows.h>
 #include <vfw.h>
+#include <vector>
+#include <array>
 #include "FMOD/fmod.h"
 #include "strclass.h"
 typedef unsigned char   undefined;
@@ -1067,6 +1069,7 @@ struct NoteStruct {
 	double realTiming;
 	double val;
 	int active;
+	bool lnHeadFast;
 	undefined4 unk1c;
 	double bmsTiming_ln;
 	double realTiming_ln;
@@ -1233,64 +1236,64 @@ struct REPLAY {
 	struct AUDIO_PARAM aud;
 };
 
+struct EXTENDEDPLAYERSTATS {
+	unsigned int epg = 0;
+	unsigned int lpg = 0;
+	unsigned int egr = 0;
+	unsigned int lgr = 0;
+	unsigned int egd = 0;
+	unsigned int lgd = 0;
+	unsigned int ebd = 0;
+	unsigned int lbd = 0;
+	unsigned int epr = 0;
+	unsigned int lpr = 0;
+	unsigned int cb = 0;
+	unsigned int fast = 0;
+	unsigned int slow = 0;
+	unsigned int noteCount = 0;
+	int lastHitOffset = 0;
+	int lastFastSlow = 0;
+};
+
 struct PLAYERSTATUS {
-	int flag_active;
-	int judgecount[6]; /* 0unknown 1poor 2bad 3good 4great 5pgreat */
-	int max_combo; /* Created by retype action */
-	int now_combo;
-	int combo_song_draw;
-	int max_combo_course;
-	int now_combo_course;
-	int combo_draw;
-	int judgecount2[6]; /* 0unknown 1poor 2bad 3good 4great 5pgreat */
-	int total_note;
-	int note_current2;
-	int field11_0x54;
-	double HP;
-	double HP_unk;
-	double HP_print;
-	double HP_old;
-	uint time_oldHP;
-	uint time_newHP;
-	int recent_judge;
-	int judge_draw;
-	double judge_damage[6];
-	int judgetime[6]; /* 0unknown 1poor 2bad 3good 4great 5pgreat */
-	int totalnotes;
-	int score;
-	int exscore;
-	undefined field25_0xdc;
-	undefined field26_0xdd;
-	undefined field27_0xde;
-	undefined field28_0xdf;
-	double rate;
-	int score_unk;
-	int score_print;
-	int score_old;
-	int time_oldScore;
-	int time_newScore;
-	int note_current;
-	int clearType;
-	undefined field49_0x104;
-	undefined field50_0x105;
-	undefined field51_0x106;
-	undefined field52_0x107;
-	undefined field53_0x108;
-	undefined field54_0x109;
-	undefined field55_0x10a;
-	undefined field56_0x10b;
-	undefined field57_0x10c;
-	undefined field58_0x10d;
-	undefined field59_0x10e;
-	undefined field60_0x10f;
-	undefined field61_0x110;
-	undefined field62_0x111;
-	undefined field63_0x112;
-	undefined field64_0x113;
-	undefined field65_0x114;
-	undefined field66_0x115;
-	undefined field67_0x116;
-	undefined field68_0x117;
+	int flag_active = 0;
+	int judgecount[6] = {}; /* 0unknown 1poor 2bad 3good 4great 5pgreat */
+	int max_combo = 0; /* Created by retype action */
+	int now_combo = 0;
+	int combo_song_draw = 0;
+	int max_combo_course = 0;
+	int now_combo_course = 0;
+	int combo_draw = 0;
+	int judgecount2[6] = {}; /* 0unknown 1poor 2bad 3good 4great 5pgreat */
+	int total_note = 0;
+	int note_current2 = 0;
+	int field11_0x54 = 0;
+	double HP = 0.;
+	double HP_unk = 0.;
+	double HP_print = 0.;
+	double HP_old = 0.;
+	uint time_oldHP = 0;
+	uint time_newHP = 0;
+	int recent_judge = 0;
+	int judge_draw = 0;
+	double judge_damage[6] = {};
+	int judgetime[6] = {}; /* 0unknown 1poor 2bad 3good 4great 5pgreat */
+	int totalnotes = 0;
+	int score = 0;
+	int exscore = 0;
+	double rate = 0.;
+	int score_unk = 0;
+	int score_print = 0;
+	int score_old = 0;
+	int time_oldScore = 0;
+	int time_newScore = 0;
+	int note_current = 0;
+	int clearType = 0;
+	EXTENDEDPLAYERSTATS extendedStats;
+	std::array<EXTENDEDPLAYERSTATS, 20> extendedColumnStats;
+	EXTENDEDPLAYERSTATS extendedStatsCourse;
+	std::array<EXTENDEDPLAYERSTATS, 20> extendedColumnStatsCourse;
+	int lastJudgedColumnIdx = 0;
 };
 
 struct PLAYSCORE {
@@ -1755,8 +1758,8 @@ typedef struct SkinUser SkinUser, *PSkinUser;
 
 struct SkinUser {
 	struct SkinAdjust adjust;
-	int customize_value[40];
-	CSTR customize_filename[40];
+	int customize_value[100];
+	CSTR customize_filename[100];
 };
 
 typedef struct CHARTCONVERTER CHARTCONVERTER, *PCHARTCONVERTER;
