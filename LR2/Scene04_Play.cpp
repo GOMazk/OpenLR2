@@ -1096,7 +1096,7 @@ int ProcI_Play(game *g) {
 
 	if( ((g->KeyInput.inputID[KEY_INPUT_ESCAPE] == 2 || (g->KeyInput.mouse_buttonR == 2 && g->config.play.disableleftclickexit == 0) ) 
 			|| (g->KeyInput.p1_buttonInput[13] == 2 && g->KeyInput.p1_buttonInput[12] == 2)
-			|| (g->KeyInput.p2_buttonInput[13] == 2 || g->KeyInput.p2_buttonInput[12] == 2)
+			|| (g->KeyInput.p2_buttonInput[13] == 2 && g->KeyInput.p2_buttonInput[12] == 2)
 			|| (g->gameplay.player[0].totalnotes <= g->gameplay.player[0].note_current && (g->KeyInput.p1_buttonInput[13] == 2 || g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2 || g->KeyInput.p2_buttonInput[12] == 2))) 
 		&& g->procPhase == 1){
 		SetTimeLapse(2, &g->timer1);
