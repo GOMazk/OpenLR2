@@ -28,6 +28,7 @@ class CSTR {
 		CSTR& nullAtPos(int pos);
 		int lastSpaceCount();
 		int findStrPos(const char *str);
+		int findChrBackPos(const char ch);
 
 		int toFile(const char *filepath);
 		char* outstr(); operator char*(); operator const char*(); //duplicated by converting man. delete one later

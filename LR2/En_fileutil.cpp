@@ -650,8 +650,15 @@ int FindAltSound(CSTR filename, CSTR dir, CSTR *oBuf) {
 		oBuf->assign(path);
 		return 1;
 	}
+
+	int pos = path.findChrBackPos('.')+1;
+	if (pos == 0) {
+		path.add(".");
+		pos = path.length();
+	}
+
 	if (filename.findStrPos(".ogg") == -1) {
-		path.nullAtPos(path.length() - 3);
+		path.nullAtPos(pos);
 		path.add("ogg");
 		if (IsFileExist(path)) {
 			oBuf->assign(path);
@@ -659,8 +666,24 @@ int FindAltSound(CSTR filename, CSTR dir, CSTR *oBuf) {
 		}
 	}
 	if (filename.findStrPos(".wav") == -1) {
-		path.nullAtPos(path.length() - 3);
+		path.nullAtPos(pos);
 		path.add("wav");
+		if (IsFileExist(path)) {
+			oBuf->assign(path);
+			return 1;
+		}
+	}
+	if (filename.findStrPos(".flac") == -1) {
+		path.nullAtPos(pos);
+		path.add("flac");
+		if (IsFileExist(path)) {
+			oBuf->assign(path);
+			return 1;
+		}
+	}
+	if (filename.findStrPos(".mp3") == -1) {
+		path.nullAtPos(pos);
+		path.add("mp3");
 		if (IsFileExist(path)) {
 			oBuf->assign(path);
 			return 1;
@@ -672,8 +695,10 @@ int FindAltSound(CSTR filename, CSTR dir, CSTR *oBuf) {
 		oBuf->assign(path);
 		return 1;
 	}
+
+	pos = path.findChrBackPos('.' + 1);
 	if (filename.findStrPos(".wav") == -1) {
-		path.nullAtPos(path.length() - 3);
+		path.nullAtPos(pos);
 		path.add("wav");
 		if (IsFileExist(path)) {
 			oBuf->assign(path);
@@ -681,8 +706,24 @@ int FindAltSound(CSTR filename, CSTR dir, CSTR *oBuf) {
 		}
 	}
 	if (filename.findStrPos(".ogg") == -1) {
-		path.nullAtPos(path.length() - 3);
+		path.nullAtPos(pos);
 		path.add("ogg");
+		if (IsFileExist(path)) {
+			oBuf->assign(path);
+			return 1;
+		}
+	}
+	if (filename.findStrPos(".flac") == -1) {
+		path.nullAtPos(pos);
+		path.add("flac");
+		if (IsFileExist(path)) {
+			oBuf->assign(path);
+			return 1;
+		}
+	}
+	if (filename.findStrPos(".mp3") == -1) {
+		path.nullAtPos(pos);
+		path.add("mp3");
 		if (IsFileExist(path)) {
 			oBuf->assign(path);
 			return 1;

@@ -405,6 +405,17 @@ int CSTR::findStrPos(const char *str) {
 	return -1;
 }
 
+int CSTR::findChrBackPos(const char ch) {
+	char* chrPos;
+	if (body) {
+		chrPos = strrchr(body, ch);
+		if (chrPos) {
+			return (int)(chrPos - (int)body);
+		}
+	}
+	return -1;
+}
+
 //43b2b0 ****not in class****
 char * cstrSprintf(CSTR *str, const char *format, ...) {
 	size_t bSize;
