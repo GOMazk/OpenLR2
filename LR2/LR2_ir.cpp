@@ -1,6 +1,6 @@
 ﻿#pragma comment(lib,"ws2_32.lib")
 #include "LR2_ir.h"
-#include "dxlib/DxLib.h"
+#include "DxLib/DxLib.h"
 #include "tinyxml/tinyxml.h"
 #include "En_dbio.h"
 #include "En_fileutil.h"

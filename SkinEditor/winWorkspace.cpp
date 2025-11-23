@@ -4,7 +4,7 @@
 #include "../LR2/LR2_skindraw.h"
 #include "../LR2/En_fileutil.h"
 #include "../LR2/Scene07_Skinselect.h"
-#include "DxLib//DxLib.h"
+#include "DxLib/DxLib.h"
 #include "winWorkspace.h"
 
 #include "seWindowManager.h"

@@ -2,8 +2,7 @@
 #include "structure.h"
 #include <windows.h>
 
-//#include "DXlib/DxDirectX.h"
-#include "DXlib/DxLib.h"
+#include "DxLib/DxLib.h"
 
 
 typedef struct MIDI {

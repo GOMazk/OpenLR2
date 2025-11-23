@@ -8,7 +8,7 @@
 #include "En_audio.h"
 #include "strclass.h"
 #include "FMOD/fmod.h"
-#include "dxlib/DxLib.h"
+#include "DxLib/DxLib.h"
 #include <algorithm>
 #include <cmath>
 #include <array>

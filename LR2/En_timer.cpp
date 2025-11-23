@@ -1,6 +1,6 @@
 ﻿#include "En_timer.h"
 #include <Windows.h>
-#include "dxlib/DxLib.h" // for error log
+#include "DxLib/DxLib.h" // for error log
 
 double manualTimer;
 bool flagManualTimer;

@@ -1,6 +1,6 @@
 ﻿#pragma comment(lib,"vfw32.lib")
 #include "En_recordmovie.h"
-#include "dxlib/DxLib.h"
+#include "DxLib/DxLib.h"
 
 //4bf4f0
 RECORDING::RECORDING() {
