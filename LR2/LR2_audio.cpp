@@ -140,7 +140,7 @@ int FxByMIDI(game *g) {
 					change = 1;
 					if (GetTimeLapse(41, &g->timer1) > 0 && g->gameplay.replay.status == 1) {
 						change = 1;
-						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 62, (short)g->audio.param.fxParam[0][1]); //TOFIX:63
+						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 63, (short)g->audio.param.fxParam[0][1]);
 						g->gameplay.fxChangeInRecording = 1;
 					}
 					break;

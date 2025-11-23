@@ -175,7 +175,7 @@ int LUNARIS_ROTATE(char direction) {
 		}
 	}
 	else {
-		for (int i = 0; i < 3; i++) { //TOFIX: 1~3 rotate is same
+		for (int i = 0; i < 3; i++) { //TOFIX: 1~3 rotate is same (lun_nowblockshape doesn't change)
 			for (int j = 0; j < 5; j++) {
 				newshape[4 - j][0] = lun_nowblockshape[0][j];
 				newshape[4 - j][1] = lun_nowblockshape[1][j];
@@ -206,7 +206,7 @@ int LUNARIS_NEXTRANDOMROTATE(void) {
 	int count = GetRand(3);
 	if (count == 0) return 1;
 
-	for (int i = 0; i < count; i++) { //TOFIX: 1~3 rotate is same
+	for (int i = 0; i < count; i++) { //TOFIX: 1~3 rotate is same (lun_nowblockshape doesn't change)
 		for (int j = 0; j < 5; j++) {
 			newshape[4-j][0] = lun_nextblockshape[0][j];
 			newshape[4-j][1] = lun_nextblockshape[1][j];

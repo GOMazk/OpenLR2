@@ -1577,8 +1577,8 @@ int ProcGame(game *g) {
 					if(g->gameplay.player[0].totalnotes == g->gameplay.player[0].max_combo)
 						g->gameplay.player[0].clearType = 5;
 					else if (g->gameplay.player[0].note_current == g->gameplay.player[0].totalnotes && g->gameplay.player[0].HP >= 80.0) {
-						if(g->gameplay.player[0].judgecount[2] + g->gameplay.player[0].judgecount[1] < 10) //TOFIX: BP under 10 is considered as hard clear, but not working. now, do we want it? // it's starter mode or plugout4 code, don't mind it
-							g->gameplay.player[0].clearType = 4;
+						//if(g->gameplay.player[0].judgecount[2] + g->gameplay.player[0].judgecount[1] < 10) //TOFIX: BP under 10 is considered as hard clear, but not working. now, do we want it? // it's starter mode or plugout4 code, don't mind it
+						//	g->gameplay.player[0].clearType = 4;
 						g->gameplay.player[0].clearType = 3;
 					}
 				}

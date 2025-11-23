@@ -3047,7 +3047,7 @@ int InitBmsList(SONGSELECT *ss) {
 
 	ss->prevListSize = 1000;
 	ss->prevList = (SONGDATA*)malloc(sizeof(SONGDATA) * 1000);
-	for (int i = 0; i < ss->bmsListSize; i++) { //TOFIX : bmslistsize->prevlistsize
+	for (int i = 0; i < ss->prevListSize; i++) {
 		memset(&ss->prevList[i], 0, sizeof(SONGDATA));
 	}
 

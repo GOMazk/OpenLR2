@@ -2572,7 +2572,7 @@ int SetObjectValue_Slider(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 			case 13:
 				if (UpdateSoundFX(g, &g->audio.param.eq_gain[3], i, -12, 12) && GetTimeLapse(41, T) > 0 && g->gameplay.replay.status == 1) {
-					AddReplayData(&g->gameplay.replay, GetTimeLapse(41, T), '3', g->audio.param.eq_gain[3]); //TOFIX : 3 -> 6, looks like mistyping
+					AddReplayData(&g->gameplay.replay, GetTimeLapse(41, T), '6', g->audio.param.eq_gain[3]); 
 					g->gameplay.fxChangeInRecording = 1;
 				}
 				break;
