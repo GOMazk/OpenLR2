@@ -17,14 +17,37 @@ int ProcS_Keyconfig(game *g) {
 	return 1;
 }
 
+int bannedInput[] = { KEY_INPUT_ESCAPE,
+						KEY_INPUT_RETURN,
+						KEY_INPUT_UP,
+						KEY_INPUT_DOWN,
+						KEY_INPUT_LEFT,
+						KEY_INPUT_RIGHT,
+						KEY_INPUT_F1,
+						KEY_INPUT_F2,
+						KEY_INPUT_F3,
+						KEY_INPUT_F4,
+						KEY_INPUT_F5,
+						KEY_INPUT_F6,
+						KEY_INPUT_F7,
+						KEY_INPUT_F8,
+						KEY_INPUT_F9,
+						KEY_INPUT_F10,
+						KEY_INPUT_F11,
+						KEY_INPUT_F12 };
+int isBannedInput(int key) {
+	for (int i = 0; i < sizeof(bannedInput) / sizeof(int); i++) {
+		if (key == bannedInput[i]) return 1;
+	}
+	return 0;
+}
 //409860
 int ProcI_Keyconfig(game *g) {
 	int fndkey;
 	if (g->KeyInput.config_key >= 0 && g->KeyInput.config_button_inMap > 0) {
 		fndkey = FindPressedKey(&g->KeyInput);
-		//TOFIX : block F1, F12 & allow NUMPAD
-		if(fndkey > 0 && (fndkey <= 0x3B || fndkey >= 0x58) && (fndkey != KEY_INPUT_ESCAPE) && (fndkey != KEY_INPUT_RETURN) && (fndkey != KEY_INPUT_UP) && (fndkey != KEY_INPUT_DOWN) && (fndkey != KEY_INPUT_LEFT) && (fndkey != KEY_INPUT_RIGHT)){
-			g->config.input.buttonMap[g->KeyInput.config_button_inMap][g->KeyInput.config_key] = fndkey; //TOFIX: fix assign DELETE //~~ = fndkey != KEY_INPUT_DELETE ? fndKey : 0; 
+		if (0 < fndkey && !isBannedInput(fndkey))  {
+			g->config.input.buttonMap[g->KeyInput.config_button_inMap][g->KeyInput.config_key] = (g->KeyInput.inputID[KEY_INPUT_DELETE] == 1)? 0 : fndkey;
 			PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 			if (g->KeyInput.config_keymode == 0) {
 				WriteKeyConfig(g, "LR2files\\Config\\keyconfig.xml", 7);
@@ -37,12 +60,6 @@ int ProcI_Keyconfig(game *g) {
 			}
 			ProcS_Keyconfig(g);
 		}
-	}
-	//TOFIX: if you do above fix, this block would be..
-	if ( g->KeyInput.inputID[KEY_INPUT_DELETE] == 1 && g->KeyInput.config_key >= 0 && g->KeyInput.config_button_inMap > 0) {
-		g->config.input.buttonMap [g->KeyInput.config_button_inMap] [g->KeyInput.config_key] = 0;
-		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
-		ProcS_Keyconfig(g);
 	}
 	
 	if (g->KeyInput.inputID[KEY_INPUT_F1] == 1) {
