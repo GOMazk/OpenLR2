@@ -1109,29 +1109,43 @@ int InitSound(AUDIO *aud, uint bufferLength, int numBuffer, char fDisable, int o
 		FMOD_System_Init(aud->fmodSys, 1, 0, NULL);
 		return 1;
 	}
-	else if (aud->is_fmod_disabled != true) {
+	if (!aud->is_fmod_disabled) {
 		ErrorLogAdd("サウンドシステムの初期化を行います。\n");
 		FMOD_System_Create(&aud->fmodSys, FMOD_VERSION);
 		FMOD_System_SetDSPBufferSize(aud->fmodSys, bufferLength, numBuffer);
 		ErrorLogAdd("\n");
 		FMOD_System_SetSoftwareChannels(aud->fmodSys, 0x100);
-		FMOD_System_Init(aud->fmodSys, 0x100, FMOD_INIT_NORMAL, NULL);
-		if (outputType == 0) {
-			FMOD_System_SetOutput(aud->fmodSys, FMOD_OUTPUTTYPE_WASAPI);
-			ErrorLogAdd("OUTPUT TYPE:DIRECTSOUND\n");
+		if (FMOD_System_Init(aud->fmodSys, 0x100, FMOD_INIT_NORMAL, NULL) != FMOD_OK) {
+			ErrorLogAdd("FMOD_System_Init failed!\n");
+			EndSound(aud);
+			return 1;
 		}
-		else if (outputType == 1) {
-			FMOD_System_SetOutput(aud->fmodSys, FMOD_OUTPUTTYPE_WASAPI);
-			ErrorLogAdd("OUTPUT TYPE:WASAPI\n");
+
+#ifdef _WIN32
+		if ([&] {
+			switch (outputType) {
+			case 0:
+			default:
+				ErrorLogAdd("OUTPUT TYPE:WASAPI (LR2 DIRECTSOUND config ignored)\n");
+				return FMOD_System_SetOutput(aud->fmodSys, FMOD_OUTPUTTYPE_WASAPI);
+			case 1:
+				ErrorLogAdd("OUTPUT TYPE:WASAPI\n");
+				return FMOD_System_SetOutput(aud->fmodSys, FMOD_OUTPUTTYPE_WASAPI);
+			case 2:
+				ErrorLogAdd("OUTPUT TYPE:ASIO\n");
+				return FMOD_System_SetOutput(aud->fmodSys, FMOD_OUTPUTTYPE_ASIO);
+			}
+			}() != FMOD_OK) {
+			ErrorLogAdd("FMOD_System_SetOutput failed! Using autodetect\n");
+			if (FMOD_System_SetOutput(aud->fmodSys, FMOD_OUTPUTTYPE_AUTODETECT) != FMOD_OK)
+			{
+				// FMOD_SYSTEM* is unusable after FMOD_System_SetOutput failed.
+				ErrorLogAdd("FMOD_System_SetOutput failed hard!\n");
+				EndSound(aud);
+				return 0;
+			}
 		}
-		else if (outputType == 2) {
-			FMOD_System_SetOutput(aud->fmodSys, FMOD_OUTPUTTYPE_ASIO);
-			ErrorLogAdd("OUTPUT TYPE:ASIO\n");
-		}
-		else{
-			FMOD_System_SetOutput(aud->fmodSys, FMOD_OUTPUTTYPE_WASAPI);
-			ErrorLogAdd("OUTPUT TYPE:DIRECTSOUND\n");
-		}
+#endif // _WIN32
 
 		FMOD_System_GetNumDrivers(aud->fmodSys, &numDrivers);
 		if (driver > numDrivers - 1) {
