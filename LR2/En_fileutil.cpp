@@ -2,6 +2,12 @@
 #include <md5.h>
 #include "DxLib/DxLib.h" //log
 
+#ifndef _WIN32
+#include <chrono>
+#include <filesystem>
+#include <sys/stat.h>
+#endif // _WIN32
+
 //437210
 //437260
 //4372c0
@@ -44,14 +50,20 @@ int makeFileHash(LPCSTR filepath, LPCSTR oBuf) {
 
 //TODO : posix 2038y problem
 //437de0
-time_t GetNowUnixtime(void){
+time_t GetNowUnixtime() {
+#ifdef _WIN32
 	SYSTEMTIME systime;
-	_FILETIME filetime;
-
 	GetSystemTime((LPSYSTEMTIME)&systime);
+
+	_FILETIME filetime;
 	SystemTimeToFileTime(&systime, &filetime);
-		
+
 	return GetUnixtimeFromFiletime(filetime);
+#else
+	// TODO(linux): seconds? milliseconds?
+	return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch())
+		.count();
+#endif // _WIN32
 }
 
 //437e90
@@ -62,6 +74,7 @@ time_t GetUnixtimeFromFiletime(FILETIME &filetime) {
 
 //437f00
 time_t GetFileUnixtime(CSTR str) {
+#ifdef _WIN32
 	WIN32_FIND_DATA FindFileData;
 	LPWIN32_FIND_DATAA lpFindFileData;
 	HANDLE hFindFile;
@@ -79,10 +92,20 @@ time_t GetFileUnixtime(CSTR str) {
 
 	FindClose(hFindFile);
 	return GetUnixtimeFromFiletime(FindFileData.ftLastWriteTime);
+#else
+	// TODO(linux): seconds? milliseconds?
+	struct stat sb;
+	int ret = stat(str.body, &sb);
+	if (ret != 0) {
+		return -1;
+	}
+	return static_cast<time_t>(sb.st_mtim.tv_sec);
+#endif
 }
 
 //438040
 CSTR GetRandomFileOnDir(CSTR path, char fOnlyName) {
+#ifdef _WIN32
 	CSTR oBuf;
 	//CSTR str1,str2,str3;
 	WIN32_FIND_DATA FindFileData;
@@ -137,7 +160,10 @@ CSTR GetRandomFileOnDir(CSTR path, char fOnlyName) {
 	}
 	//oBuf = CSTR("ERROR");
 	return CSTR("ERROR");
-
+#else
+	// FIXME(linux): stub
+	return CSTR("ERROR");
+#endif // _WIN32
 }
 
 //438540
@@ -304,6 +330,7 @@ bool IsLR2Folder(CSTR str) {
 
 //439510
 bool IsFileExist(CSTR path) {
+#ifdef _WIN32
 	HANDLE hFindFile;
 	_WIN32_FIND_DATAA findFileData;
 	char *cur;
@@ -322,11 +349,14 @@ bool IsFileExist(CSTR path) {
 		FindClose(-1);
 	}*/
 	return hFindFile != (HANDLE)-1;
+#else // TODO(refactor): is this implementation enough?
+	return std::filesystem::exists(path.body);
+#endif // _WIN32
 }
 
 //4396b0 //0:already_exist 1:not_exist 2:changed
 int IsFileChanged(unsigned int oldUnixtime, CSTR filepath, int *oNewtime) { 
-
+#ifdef _WIN32
 	HANDLE hFindFile;
 	char* lpFileName;
 	_WIN32_FIND_DATAA findFileData;
@@ -353,6 +383,12 @@ int IsFileChanged(unsigned int oldUnixtime, CSTR filepath, int *oNewtime) {
 		FindClose(hFindFile);
 		return 0;
 	}
+#else
+	// FIXME(linux): stub
+	if (!IsFileExist(filepath))
+		return 1;
+	return 0;
+#endif // _WIN32
 }
 
 //439820
@@ -721,18 +757,18 @@ int FindAltSound(CSTR filename, CSTR dir, CSTR *oBuf) {
 
 //43a900
 CSTR GetRandomFile(CSTR path, char fOnlyName) {
-	WIN32_FIND_DATA FindFileData;
-	HANDLE hFindFile;
 	CSTR oBuf;
 	int count;
 
 	//call function if wildcard is on directory
 	if (path.findStrPos("*/") != -1 || path.findStrPos("*\\") != -1 || path.right(1).isSame("*")) {
-		return CSTR(GetRandomFileOnDir(path, fOnlyName));
+		return GetRandomFileOnDir(path, fOnlyName);
 	}
 
+#ifdef _WIN32
+	WIN32_FIND_DATA FindFileData;
 	//count files for random
-	hFindFile = FindFirstFileA(path, (LPWIN32_FIND_DATAA)&FindFileData);
+	HANDLE hFindFile = FindFirstFileA(path, (LPWIN32_FIND_DATAA)&FindFileData);
 	if (hFindFile == (HANDLE)-1) return CSTR("ERROR");
 	
 	count = 0;
@@ -757,11 +793,21 @@ CSTR GetRandomFile(CSTR path, char fOnlyName) {
 		path.assign((char*)FindFileData.cFileName);
 		path.nullAtPos(path.findStrPos("."));
 	}
-	return CSTR(path);
+	return path;
+#else
+	// FIXME(linux): stub
+	path.replace("\\", "/");
+	return path;
+#endif // _WIN32
 }
 
 //43abe0
 CSTR GetRandomFileNoError(CSTR path, CSTR dir) {
+#ifndef _WIN32
+	// TODO(linux): check if needed
+	path.replace("\\" ,"/");
+	dir.replace("\\" ,"/");
+#endif // _WIN32
 	CSTR filepath;
 	filepath.assign(GetRandomFile(path, 0));
 	if (filepath.isDiff("ERROR")) return CSTR(filepath);

@@ -604,7 +604,7 @@ int LoadFontForSongs(game *gs, char flag) {
 
 //40b320
 int ShowReadmes(game *g) {
-
+#ifdef _WIN32
 	CSTR search;
 	HANDLE hFindFile;
 	WIN32_FIND_DATA FindFileData;
@@ -685,6 +685,10 @@ int ShowReadmes(game *g) {
 
 	g->txtStruct.readme.y = g->skstruct.src_README[0].op1 * g->txtStruct.readme.lines;
 	return 1;
+#else
+	// TODO: reimplement with std::filesystem
+	return {};
+#endif // _WIN32
 }
 
 //40b720
@@ -710,7 +714,11 @@ int ShowReadme(game *g, CSTR path) {
 
 	CSTR fBuf(0x400);
 
+#ifdef _WIN32
 	fopen_s(&pFile, g->txtStruct.readme.path, "r");
+#else
+	pFile = fopen(g->txtStruct.readme.path, "r");
+#endif // _WIN32
 
 	char *pFbuf = fBuf.outstr();
 	if (pFile != NULL) {
@@ -1741,7 +1749,9 @@ int ProcS_Select(game *g) {
 	
 	SetObjectString(30, g->sSelect.stack_searchTitle[g->sSelect.cur], g->txtStruct.objectStr);
 	SetTarget(g);
+#ifdef WIN32
 	DeleteKeyInput(g->txtStruct.hKeyInput);
+#endif // _WIN32
 	g->txtStruct.st_text_num = -1;
 	g->sSelect.metaSelected.artist = g->sSelect.bmsList[g->sSelect.cur_song].artist;
 	g->sSelect.metaSelected.filepath = g->sSelect.bmsList[g->sSelect.cur_song].filepath;

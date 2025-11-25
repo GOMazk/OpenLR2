@@ -1,7 +1,16 @@
 ﻿#include "En_input.h"
 #include "En_timer.h"
 
+#include <DxLib/DxLib.h>
+
+#include <cstring>
+
 MIDI midi;
+
+#ifndef _WIN32
+#define LOWORD(l) ((WORD)(((DWORD_PTR)(l)) & 0xffff))
+#define HIWORD(l) ((WORD)((((DWORD_PTR)(l)) >> 16) & 0xffff))
+#endif
 
 //4bd6a0 //TODO structure array rework
 int InitInputStructure2(inputStructure *is){
@@ -19,6 +28,7 @@ int InitInputStructure2(inputStructure *is){
 
 //4bd6f0
 void EndMIDIInput(void){
+#ifdef _WIN32
 	UINT numDev;
 
 	numDev = midiInGetNumDevs();
@@ -30,7 +40,7 @@ void EndMIDIInput(void){
 		midiInStop(midi.phmiArray[i]);
 		midiInClose(midi.phmiArray[i]);
 	}
-	return;
+#endif // _WIN32
 }
 
 //4bd740
@@ -123,7 +133,9 @@ void ProcessInput(inputStructure *is, int interval) {
 	char new_keyInput[256];
 	int keyError;
 
+#ifdef _WIN32 // TODO(linux): implement?
 	if (GetWindowActiveFlag() == 0) return;
+#endif // _WIN32
 
 	GetMousePoint(&mouseX, &mouseY);
 	is->mouse_moveX = mouseX - is->mouse_oldX;
@@ -168,7 +180,6 @@ void ProcessInput(inputStructure *is, int interval) {
 		}
 	}
 
-	
 	if ((GetMouseInput() & 2) == 0) {
 		if (is->mouse_buttonR == 0 || is->mouse_buttonR == 3) {
 			is->mouse_buttonR = 0;
@@ -294,7 +305,6 @@ void CALLBACK MIDIInProc(HMIDIIN /*hMidiIn*/, uint wMsg, dword /*dwInstance*/, d
 
 //4bef80
 int WaitInput(inputStructure *is){
-
 	is->is_doubleclick = 0;
 	is->mousewheel = 0;
 	is->mouse_buttonL = 0;
@@ -418,6 +428,7 @@ int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int i
 
 //4bf3e0
 void InitMIDIInput(void){
+#ifdef _WIN32
 	UINT numDev;
 	HMIDIIN phmi;
 
@@ -436,7 +447,7 @@ void InitMIDIInput(void){
 		midiInStart(phmi);
 		midi.phmiArray[i] = phmi;
 	}
-	return;
+#endif // _WIN32
 }
 
 //4bf480

@@ -1,5 +1,13 @@
 ﻿#include "LR2_statlong.h"
 
+#ifndef _WIN32
+#include <iostream>
+static void MessageBoxA(const char*,const char* title,const char*desc,const char*)
+{
+	std::cout << "\n" << title << "\n\n" << desc << "\n" << std::flush;
+}
+#endif // _WIN32
+
 //445fa0
 CSTR MakePlayerStatHash(PLAYERSTATISTIC *ps) {
 	CSTR tmp;

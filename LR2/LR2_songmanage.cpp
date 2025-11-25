@@ -2,7 +2,9 @@
 #include "Engine.h"
 #include "LR2_statlong.h"
 
+#ifdef _WIN32
 #include <shellapi.h>
+#endif // _WIN32
 
 int EnabledInsane;
 //404fe0 thiscall in original code
@@ -397,21 +399,25 @@ int UpdateSongDataTag(SONGDATA *song, sqlite3 *sql){
 
 //446300
 int EditTag(SONGDATA *song, sqlite3 *sql) {
-
-	HANDLE hFindFile;
-	_WIN32_FIND_DATAA findFileData;
 	sqlite3_stmt *stmt;
 	CSTR query;
 
-	hFindFile = FindFirstFileA(song->filepath, &findFileData);
-	if (hFindFile == (HANDLE)-1) {
+	auto last_write = [](const char* filepath) -> time_t {
+#ifdef _WIN32
+		_WIN32_FIND_DATAA findFileData;
+		HANDLE hFindFile = FindFirstFileA(filepath, &findFileData);
+		if (hFindFile == (HANDLE)-1) {
+			FindClose(hFindFile);
+			return -1;
+		}
 		FindClose(hFindFile);
-		return -1;
-	}
+		return GetUnixtimeFromFiletime(findFileData.ftLastWriteTime);
+#else
+		return GetNowUnixtime(); // FIXME(linux): stub
+#endif // _WIN32
+	};
 
-	FindClose(hFindFile);
-
-	int wtime = GetUnixtimeFromFiletime(findFileData.ftLastWriteTime);
+	int wtime = last_write(song->filepath);
 	int ntime = GetNowUnixtime();
 	int temp;
 	if (song->folderType == 0 || song->folderType == 5) {
@@ -802,7 +808,7 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 
 //4474a0
 int UninstallSong(CSTR path, sqlite3 *sql) {
-
+#ifdef _WIN32
 	SHFILEOPSTRUCTA sh;
 	char query[2048];
 	
@@ -824,11 +830,15 @@ int UninstallSong(CSTR path, sqlite3 *sql) {
 	sh.fFlags = FOF_NOERRORUI | FOF_NOCONFIRMATION | FOF_SILENT; //0x414
 
 	return (SHFileOperationA(&sh) == 0);
+#else
+	// FIXME(linux): stub
+	return {};
+#endif // _WIN32
 }
 
 //4476b0
 int Rename(CSTR path, sqlite3 *sql) {
-
+#ifdef _WIN32
 	SHFILEOPSTRUCTA sh;
 	char query[2048];
 
@@ -845,6 +855,10 @@ int Rename(CSTR path, sqlite3 *sql) {
 	sh.fFlags = FOF_NOERRORUI | FOF_NOCONFIRMATION | FOF_SILENT; //0x414
 
 	return (SHFileOperationA(&sh) == 0);
+#else
+	// FIXME(linux): stub
+	return {};
+#endif // _WIN32
 }
 
 //447820
@@ -1143,7 +1157,7 @@ int ChangeCourseID(sqlite3 *sql, int newID, int oldID, int type) {
 
 //448ea0
 int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
-	
+#ifdef _WIN32
 	HANDLE hFindFile;
 	_WIN32_FIND_DATAA findFileData;
 	int now,filetime;
@@ -1229,6 +1243,10 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 			return count;
 		}
 	}
+#else
+	// FIXME(linux): stub
+	return {};
+#endif // _WIN32
 }
 
 //449780 TODO:arrange duplicated code
@@ -1738,7 +1756,7 @@ int WriteRandomCourse(sqlite3 *sql, COURSESELECT *course, SONGSELECT *ss, CONFIG
 
 //44beb0 //TOFIX: unneccessary codes
 int GetFolderDataFromPath(CSTR path, sqlite3 *sql) {
-
+#ifdef _WIN32
 	HANDLE hFindFile;
 	_WIN32_FIND_DATAA findFileData;
 	char str[1024];
@@ -1807,6 +1825,10 @@ int GetFolderDataFromPath(CSTR path, sqlite3 *sql) {
 	ErrorLogFmtAdd("ルートの読み込みを終了しました。\n");
 	ErrorLogTabSub();
 	return 1;
+#else
+	// FIXME(linux): stub
+	return {};
+#endif // _WIN32
 }
 
 //44c610 //TODO : rename variables

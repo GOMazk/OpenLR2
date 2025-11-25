@@ -1,10 +1,25 @@
 ﻿#include "En_timer.h"
-#include <Windows.h>
 #include "DxLib/DxLib.h" // for error log
 
 double manualTimer;
 bool flagManualTimer;
 bool flagHighPerformanceTimer;
+
+#ifdef _WIN32
+
+#include <Windows.h>
+
+#else
+
+static DWORD timeGetTime()
+{
+	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
+		.count();
+}
+static void timeBeginPeriod(int /*unused*/) {}
+static void timeEndPeriod(int /*unused*/) {}
+
+#endif // _WIN32
 
 //4b6710
 int SetManualTimer(Timer *T, double newTime){
@@ -51,30 +66,28 @@ int ResetTimeLapse(int timerID, Timer *T){
 
 //4b6800 //logic shortened
 double GetTime(void){
-	DWORD time;
+#ifdef _WIN32
 	LARGE_INTEGER pfc_time;
 	LARGE_INTEGER pfc_freq;
-
 	if (flagHighPerformanceTimer){
 		if (QueryPerformanceFrequency(&pfc_freq)) {
 			QueryPerformanceCounter(&pfc_time);
 			return (double)pfc_time.QuadPart*1000 / (double)pfc_freq.QuadPart;
 		}
 	}
+#endif // _WIN32
 
-	time = timeGetTime();
+	DWORD time = timeGetTime();
 	return (double)(time & 0x7fffffff);
 }
 
 //4b6890
 double GetTimeWrap(void) {
-	double ret;
-
 	if (flagManualTimer) {
 		return manualTimer;
 	}
 	timeBeginPeriod(1);
-	ret = GetTime();
+	double ret = GetTime();
 	timeEndPeriod(1);
 	return ret;
 }

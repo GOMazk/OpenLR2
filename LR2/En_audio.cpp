@@ -16,6 +16,21 @@
 
 using std::uintptr_t;
 
+#ifndef _WIN32
+
+#include <chrono>
+
+#define LOWORD(l) ((WORD)(((DWORD_PTR)(l)) & 0xffff))
+#define HIWORD(l) ((WORD)((((DWORD_PTR)(l)) >> 16) & 0xffff))
+
+static DWORD timeGetTime()
+{
+	return std::chrono::duration_cast<std::chrono::milliseconds>(std::chrono::system_clock::now().time_since_epoch())
+		.count();
+}
+
+#endif // _WIN32
+
 #include "Engine.h"
 
 //we got the fmodex 4.13.04. so we have no version problem now.
@@ -26,7 +41,6 @@ using std::uintptr_t;
 //https://www.fmod.com/docs/2.02/api/white-papers-transitioning-from-fmodex.html#system_adddsp-removed-from-the-system-api
 //https://www.fmod.com/docs/2.02/api/welcome-revision-history.html
 //http://upstream.rosalinux.ru/changelogs/fmod/44418/changelog.html
-
 
 //4b7b80
 const char* GetFMODerror(int errCode){
@@ -1289,10 +1303,10 @@ void RAWSOUND::MakeSampleRate44100(void) {
 						WORD lo = (int)((double)(unk[0] - LOWORD(val)) * (count / (double)(count + 1))) + LOWORD(val);
 
 						if ((int)hi >= 0x8000) hi = 0x7fff;
-						else if ((int)hi < -0x8000) hi = 0xffff8000;
+						else if ((int)hi < -0x8000) hi = 0xffff8000; // FIXME: narrowing
 
 						if ((int)lo >= 0x8000) lo = 0x7fff;
-						else if ((int)lo < -0x8000) lo = 0xffff8000;
+						else if ((int)lo < -0x8000) lo = 0xffff8000; // FIXME: narrowing
 
 						*unkd[j] = (hi << 16) | (lo && 0xffff);
 					}

@@ -6,7 +6,9 @@
 #include "En_fileutil.h"
 #include "En_timer.h"
 
+#ifdef _WIN32
 #include <shellapi.h>
+#endif // _WIN32
 
 //401000
 void MYRANKING::InitRanking() {
@@ -60,7 +62,7 @@ void RANKING::ExpandRankingBuffer(int add) {
 	assert(this->ranking != nullptr);
 
 	for (int i = this->rankingMax; i < this->rankingMax + add; i++) {
-		memset(&this->ranking[i], 0, sizeof(RANKINGPLAYER));
+		memset(&this->ranking[i], 0, sizeof(RANKINGPLAYER)); // FIXME: bad memset
 	}
 
 	this->rankingMax += add;
@@ -540,6 +542,7 @@ void NETWORK::ParseRankingXml(const char* path)
 
 //4bbd20
 int NETWORK::HTTPrequest() {
+#ifdef _WIN32
 	SOCKET s;
 	struct sockaddr_in server;
 	hostent* host;
@@ -668,6 +671,9 @@ int NETWORK::HTTPrequest() {
 	cstrSprintf(&this->request_debug, "その他のエラーです : %d\n", WSAGetLastError());
 	ErrorLogAdd(this->request_debug);
 	return this->isRequestSuccess = 0;
+#else
+	return -1; // FIXME(linux): stub
+#endif // _WIN32
 }
 
 //4bc2b0
@@ -735,11 +741,17 @@ int NETWORK::GetRivalInfo(int rivalID) {
 
 //4bc600
 int OpenWebRanking(CSTR songmd5){
+#ifdef _WIN32
 	CSTR url;
-
 	cstrSprintf(&url, "\"http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?mode=ranking&bmsmd5=%s#status&\"", songmd5.body);
 	ShellExecuteA(NULL, "open", url, NULL, NULL, 1);
 	return 1;
+#else
+	CSTR url;
+	url.resize(126);
+	cstrSprintf(&url, "xdg-open \"http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?mode=ranking&bmsmd5=%s#status&\" &", songmd5.body);
+	return system(url.body) == 0;
+#endif
 }
 
 //4bc6b0 //
@@ -832,13 +844,15 @@ NETWORK::NETWORK(){
 
 //4bcda0
 int NETWORK::WS_clean() {
+#ifdef _WIN32
 	WSACleanup();
+#endif // _WIN32
 	return 1;
 }
 
 //4bcdd0
 int NETWORK::Login(int isDirectPlay) {
-
+#ifdef _WIN32
 	if (WSAStartup(2, &this->wsa)) {
 		this->request_debug = "WinSockの初期化に失敗しました\n";
 		this->request_result = "WinSockの初期化に失敗しました。ネットワーク機能は使用できません・\n";
@@ -848,6 +862,16 @@ int NETWORK::Login(int isDirectPlay) {
 		WSACleanup();
 		return this->loginResult;
 	}
+#else
+	if (true) { // FIXME(linux): stub
+		this->request_debug = "linux\n";
+		this->request_result = "happy with yourself?\n";
+		this->loginResult = -99;
+		this->isOnline = 0;
+		ErrorLogAdd(this->request_debug);
+		return this->loginResult;
+	}
+#endif // _WIN32
 
 	cstrSprintf(&this->param, "passmd5=%s&id=%d&name=%s&version=%d", this->IR_passMD5, this->IR_ID, this->IR_name, 100130); //version 100130
 	this->target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/login.cgi";

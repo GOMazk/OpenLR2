@@ -1,9 +1,9 @@
 #pragma once
 #pragma warning(disable:4996)
-#include <windows.h>
 #include <stdio.h>
 #include <malloc.h>
 typedef unsigned int uint;
+using DWORD = unsigned long;
 
 class CSTR {
 	public:

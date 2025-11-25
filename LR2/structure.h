@@ -1,13 +1,16 @@
 #pragma once
-#include <winsock2.h>
-#include <Windows.h>
-#include <vfw.h>
-#include <vector>
+
 #include <array>
 #include <mutex>
 #include <thread>
-#include "FMOD/fmod.h"
+
 #include "strclass.h"
+
+#ifdef _WIN32
+#include <winsock2.h>
+#include <Windows.h>
+#include <vfw.h>
+#endif // _WIN32
 
 #ifdef _MSC_VER
 #pragma warning (push)
@@ -36,6 +39,12 @@ typedef unsigned long long    undefined8;
 typedef unsigned short    ushort;
 //typedef short    wchar_t;
 typedef unsigned short    word;
+
+#ifndef _WIN32
+using LPCSTR = const char*;
+using HANDLE = void*;
+using HWND = HANDLE;
+#endif // _WIN32
 
 typedef enum SKINTYPE {
 	SKINTYPE_7KEYS = 0,
@@ -638,13 +647,16 @@ typedef struct RANKINGPLAYER RANKINGPLAYER, *PRANKINGPLAYER;
 typedef uchar BYTE;
 
 struct RECORDING {
-	HDC srcHDC; /* struct_entry */
 	double framerate;
+	int writeSamplePos;
+	int curFrame;
+	int recMode; /* 1:auto2avi 2:replay2avi 3:bga2avi 4:movie */
+
+#ifdef WIN32
+	HDC srcHDC; /* struct_entry */
 	int bitdepth;
 	CSTR filename;
 	uint framelen;
-	int writeSamplePos;
-	int curFrame;
 	COMPVARS compvars; /* from vfw.h */
 	BITMAPINFOHEADER bmiHeader;
 	PAVISTREAM pAVIstream; /* from vfw.h */
@@ -654,7 +666,7 @@ struct RECORDING {
 	HDC dstHDC;
 	HBITMAP hBIT;
 	HGDIOBJ hGDI;
-	int recMode; /* 1:auto2avi 2:replay2avi 3:bga2avi 4:movie */
+#endif
 
 	RECORDING();
 	bool RefreshCurFrame();
@@ -1470,7 +1482,9 @@ struct Timer {
 };
 
 struct NETWORK {
+#ifdef _WIN32
 	WSADATA wsa;
+#endif // _WIN32
 	int isOnline;
 	int rankUpdateDelayLevel;
 	int waitTime;

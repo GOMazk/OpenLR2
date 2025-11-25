@@ -1,6 +1,4 @@
-﻿#pragma once
-
-#include "En_xml.h"
+﻿#include "En_xml.h"
 #include "tinyxml/tinyxml.h"
 
 //43c060

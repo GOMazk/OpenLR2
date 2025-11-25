@@ -26,7 +26,49 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 {
 	return main(__argc, __argv);
 }
+
+static std::filesystem::path GetExecutablePath()
+{
+	char fullpath[256] = { 0 };
+	if (!GetModuleFileNameA(nullptr, fullpath, sizeof(fullpath)))
+		return {};
+	return std::filesystem::path(fullpath).parent_path();
+}
+
+#else
+
+#include <iostream>
+
+static void MessageBoxA(const char*, const char* title, const char* desc, const char*)
+{
+	std::cout << "\n" << title << "\n\n" << desc << "\n" << std::flush;
+}
+
+static std::filesystem::path GetExecutablePath()
+{
+	char fullpath[256] = { 0 };
+
+	char process_path[] = "/proc/self/exe";
+	const auto bytes =
+		std::min(readlink(process_path, fullpath, sizeof(fullpath)), static_cast<ssize_t>(sizeof(fullpath) - 1));
+	if (bytes >= 0)
+		fullpath[bytes] = '\0';
+
+	return std::filesystem::path(fullpath).parent_path();
+}
+
+int DxLib::SetMouseDispFlag(int) { return {}; }
+
 #endif // _WIN32
+
+static consteval bool is_linux()
+{
+#ifdef _WIN32
+	return false;
+#else
+	return true;
+#endif
+}
 
 int main(int argc, char** argv) {
 #ifdef _DEBUG
@@ -51,12 +93,9 @@ int main(int argc, char** argv) {
 
 	int tmp;
 
-	//start of code
-	char curDir[260];
-	GetModuleFileName(NULL, (LPCH)curDir, 260);
-	*(char*)(strrchr(curDir, '\\') + 1) = '\x00';
-	SetCurrentDirectory((LPCSTR)curDir);
-	gs.baseDirectory.assign(curDir, 0).add("/");
+	auto curDir = GetExecutablePath();
+	std::filesystem::current_path(curDir);
+	gs.baseDirectory.assign(curDir.string().c_str(), 0).add("/");
 	gs.is_starter = false;
 	auto copy_if_not_exists = [](auto&& from, auto&& to_) {
 		std::filesystem::path to = to_;
@@ -187,7 +226,6 @@ int main(int argc, char** argv) {
 				return -1;
 			}
 			if (gs.is_starter == '\0') {
-				
 				if (ReadPlayerScore(gs.config.player.id, gs.config.player.pass, &gs.gameplay.playerstat) == 0) {
 					return -1;
 				}
@@ -223,11 +261,12 @@ int main(int argc, char** argv) {
 		SetManualTimerFlag(&gs.timer1, 0);
 		gs.timer1.movieFramerate = (double)gs.config.tools.movie_framerate;
 		gs.timer1.movieTimer = 0.0;
-		
+
 		SetGraphMode(640, 480, (gs.config.system.highcolor == 0) ? 32 : 16, 60); //TODO_RESOULUTION
 		if (gs.rec.recMode == 3) {
 			SetGraphMode(256, 256, 32, 60);
 		}
+#ifdef _WIN32
 		SetWindowSizeChangeEnableFlag(1, 1);
 		if (gs.audio.is_fmod_disabled == 0) {
 			SetNotSoundFlag(1);
@@ -268,12 +307,16 @@ int main(int argc, char** argv) {
 		else {
 			SetUseDirectDrawDeviceIndex(gs.config.system.maindisplay);
 		}
+#endif // _WIN32
 
-		CSTR title = LR2TITLE;
-		SetMainWindowText(title);
-		title.fillzero();
-		SetOutApplicationLogValidFlag(gs.config.system.outputlog);
+		if constexpr (!is_linux()) {
+			SetMainWindowText(LR2TITLE); // DxLib-for-Linux on Wayland segfaults on it
+		}
+		// DxLib-for-Linux only writes to stderr when writing to the log file.
+		SetOutApplicationLogValidFlag(gs.config.system.outputlog || is_linux());
+#ifdef _WIN32
 		SetMultiThreadFlag(1);
+#endif // _WIN32
 		if ((gs.is_recordmode == '\0') && (gs.rec.recMode == 0)) {
 			SetWaitVSyncFlag(gs.config.system.vsync);
 		}
@@ -281,16 +324,20 @@ int main(int argc, char** argv) {
 			SetWaitVSyncFlag(1);
 			ErrorLogFmtAdd("動画作成モードなのでVSyncを待ちます。\n");
 		}
+#ifdef _WIN32
 		SetMultiThreadFlag(1);
 		SetUseFPUPreserveFlag(1);
 		SetUseDirectInputFlag(1); //DXLIBVER: not in original, but we need it to make same reaction.
 		if (use_dx9) {
 			SetUseDirect3DVersion(DX_DIRECT3D_9); //DXLIBVER: if not set, it's DX11 (over 3.13e)
 		}
+#endif // _WIN32
 		if (DxLib_Init() != -1) {
 			ChangeFont("", 0);
 			SetLogFontSize(14); //DXLIBVER: change this for further dxlib version
+#ifdef _WIN32
 			SetSysCommandOffFlag(gs.config.system.disablesystemkey, 0);
+#endif // _WIN32
 			SetDrawScreen(DX_SCREEN_BACK);
 			SetAlwaysRunFlag(1);
 			SetMouseDispFlag(0);
@@ -351,7 +398,9 @@ int main(int argc, char** argv) {
 			//mainphase
 			if ((gs.is_recordmode == '\0') && (gs.auto2avi == '\0')) {
 				SetWaitVSyncFlag(gs.config.system.vsync);
+#ifdef _WIN32
 				ChangeWindowMode(gs.config.system.screenmode);
+#endif // _WIN32
 				SetWaitVSyncFlag(gs.config.system.vsync);
 				SetDrawScreen(DX_SCREEN_BACK);
 			}
@@ -608,6 +657,7 @@ int main(int argc, char** argv) {
 			while (true) { //main loop
 				if (ProcessMessage() || !gs.procSelecter || gs.auto2avi) break;
 
+#ifdef _WIN32
 				if (GetWindowModeFlag()) {
 					GetWindowSize(&wSizeX, &wSizeY);
 					if (0 < wSizeX && wSizeX < 9999 && gs.config.system.windowsize_x != wSizeX) {
@@ -617,6 +667,7 @@ int main(int argc, char** argv) {
 						gs.config.system.windowsize_y = wSizeY;
 					}
 				}
+#endif // _WIN32
 				DrawGraph(0, 0, backgroundGrHandle, 0);
 				if (gs.cmd_directplay && gs.procSelecter != 4 && gs.procSelecter != 5 && gs.procSelecter != 13 && gs.procPhase != 2 && gs.procPhase != 3) {
 					ErrorLogFmtAdd("break\n");
@@ -1763,18 +1814,22 @@ int main(int argc, char** argv) {
 							}
 							SetGraphMode(640, 480, (gs.config.system.highcolor == 0 ? 32 : 16), 60); //TODO_RESOULUTION
 							SetWaitVSyncFlag(gs.config.system.vsync);
+#ifdef _WIN32
 							ChangeWindowMode(gs.config.system.screenmode);
+#endif // _WIN32
 							SetWaitVSyncFlag(gs.config.system.vsync);
 							SetDrawScreen(DX_SCREEN_BACK);
 							LoadScene(&gs.skstruct, gs.config.skin.skinFilePath[5], gs.skinData.Data[gs.skinData.skinID[5]].informationP5, 0);
 							SetMouseDispFlag(0);
 							gs.is_clicked_screenModeChange = 0;
+#ifdef _WIN32
 							if (gs.config.system.screenmode == 0) {
 								ChangeWindowMode(1);
 								ErrorLogAdd("ウインドウを閉じます\n");
 								CloseWindow(GetMainWindowHandle());
 								ErrorLogAdd("成功\n");
 							}
+#endif // _WIN32
 							if (gs.config.network.lr2ir == 1) {
 								//same as below
 								ErrorLogAdd("IRを出します\n");
@@ -1789,7 +1844,9 @@ int main(int argc, char** argv) {
 						if (gs.config.system.screenmode == 0) {
 							ErrorLogAdd("アイコン化が終わるまで待ちます\n");
 							while (ProcessMessage() == 0) {
+#ifdef _WIN32
 								if (IsIconic(GetMainWindowHandle()) == 0) break;
+#endif // _WIN32
 								std::this_thread::sleep_for(std::chrono::milliseconds(16));
 							}
 							SetObjectStrings_SongSelect(&gs);
@@ -1801,7 +1858,9 @@ int main(int argc, char** argv) {
 							}
 							SetGraphMode(640, 480, (gs.config.system.highcolor == 0 ? 32 : 16), 60); //TODO_RESOULUTION
 							SetWaitVSyncFlag(gs.config.system.vsync);
+#ifdef _WIN32
 							ChangeWindowMode(gs.config.system.screenmode);
+#endif // _WIN32
 							SetWaitVSyncFlag(gs.config.system.vsync);
 							SetDrawScreen(DX_SCREEN_BACK);
 							LoadScene(&gs.skstruct, gs.config.skin.skinFilePath[5], gs.skinData.Data[gs.skinData.skinID[5]].informationP5, 0);
@@ -2050,7 +2109,9 @@ int main(int argc, char** argv) {
 					}
 					SetGraphMode(640, 480, (gs.config.system.highcolor == 0 ? 32 : 16), 60); //TODO_RESOULUTION
 					SetWaitVSyncFlag(gs.config.system.vsync);
+#ifdef _WIN32
 					ChangeWindowMode(gs.config.system.screenmode);
+#endif // _WIN32
 					SetWaitVSyncFlag(gs.config.system.vsync);
 					SetDrawScreen(DX_SCREEN_BACK);
 					for (int i = 0; i < 900; i++) {
@@ -2067,6 +2128,7 @@ int main(int argc, char** argv) {
 					gs.is_clicked_screenModeChange = 0;
 					SetObjectStrings_SongSelect(&gs);
 				}
+#ifdef _WIN32
 				else if(GetWindowModeFlag() != gs.config.system.screenmode){
 					for (int i = 0; i < 200; i++) {
 						gs.skstruct.caption[i].fillzero();
@@ -2083,6 +2145,7 @@ int main(int argc, char** argv) {
 					gs.config.system.screenmode = GetWindowModeFlag();
 					SetObjectStrings_SongSelect(&gs);
 				}
+#endif // _WIN32
 				SetMouseDispFlag( (gs.KeyInput.mouse_oldX < 640 && gs.KeyInput.mouse_oldY < 480) ? 0:1  ); //TODO_RESOULUTION
 				if ( (gs.procSelecter == 2 || gs.procSelecter == 9) && gs.KeyInput.inputID[KEY_INPUT_ESCAPE]
 					 && (GetTimeLapse(4,&gs.timer1) < 0.0 || GetTimeLapse(4, &gs.timer1) > 100.0) 

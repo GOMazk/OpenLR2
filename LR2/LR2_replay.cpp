@@ -3,7 +3,7 @@
 
 //4c03c0 //TODO suspection about usage of cstrsprintf
 int MoveReplayFile(CSTR songMD5, CSTR localID){
-
+#ifdef _WIN32
 	if (songMD5.length() > 36) {
 		songMD5 = MD5str(songMD5);
 	}
@@ -29,6 +29,9 @@ int MoveReplayFile(CSTR songMD5, CSTR localID){
 	ErrorLogFmtAdd("リプレイの移動終了 stage%d\n", stage);
 
 	return (stage != 0);
+#else
+	return {}; // FIXME(linux): stub
+#endif
 }
 
 //4c05e0

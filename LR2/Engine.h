@@ -38,7 +38,6 @@
 
 
 #include "DxLib/DxLib.h"
-#include <process.h>
 
 
 //temp DEBUG

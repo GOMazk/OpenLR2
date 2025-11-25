@@ -2,6 +2,8 @@
 #include "Engine.h"
 #include "LR2_replay.h"
 
+#include <algorithm>
+
 //4081d0
 int StopAllKeysound(game *g){
 	for (int i = 0; i < 6480; i++) {
@@ -514,7 +516,9 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 		return 1;
 	}
 	
+#ifdef _WIN32
 	if (cfg->system.isablebmsthread == 0) CoInitialize(NULL);
+#endif // _WIN32
 	GetTransColor(&Rtmp,&Gtmp,&Btmp);
 	SetTransColor(0,0,0);
 	for (int i = 0; i < 6480; i++) {
@@ -531,13 +535,17 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 		}
 
 		if (gp->flag_closingPhase) {
+#ifdef _WIN32
 			if (cfg->system.isablebmsthread == 0) CoUninitialize();
+#endif // _WIN32
 			return 1;
 		}
 	}
 
 	SetTransColor(Rtmp, Gtmp, Btmp);
+#ifdef _WIN32
 	if (cfg->system.isablebmsthread == 0) CoUninitialize();
+#endif // _WIN32
 	if (gp->bgaHandle[0] != -1) gp->missLayer = 0;
 
 	if (gp->isAutoplay == 1) {

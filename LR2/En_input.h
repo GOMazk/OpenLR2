@@ -1,9 +1,15 @@
 #pragma once
+
 #include "structure.h"
+
+#ifdef _WIN32
 #include <windows.h>
-
-#include "DxLib/DxLib.h"
-
+#else
+struct HMIDIIN {};
+#ifndef CALLBACK
+#define CALLBACK
+#endif // CALLBACK
+#endif // _WIN32
 
 typedef struct MIDI {
 	byte input[260]; //0x101:ptich_minus 0x102:pitch_plus 0x103:pedal;

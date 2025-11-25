@@ -1,8 +1,17 @@
 #include "En_dbio.h"
 
+#include <cstring>
+
+#ifdef _WIN32
+#include <windows.h>
+#else
+using LPCSTR = const char*;
+#endif // _WIN32
+
 //444130 //TODO more readable
 //ANSI >> UTF-16(unicode) >> UTF-8
 bool ANSItoUTF8(LPCSTR str, char *oBuf, size_t *oSize){
+#ifdef _WIN32
 	int cchWideChar;
 	LPWSTR lpWideCharStr;
 	LPSTR lpMultiByteStr;
@@ -27,11 +36,15 @@ bool ANSItoUTF8(LPCSTR str, char *oBuf, size_t *oSize){
 	free(lpWideCharStr);
 	free(lpMultiByteStr);
 	return true;
+#else
+	return {}; // FIXME(linux): stub
+#endif // _WIN32
 }
 
 //444210
 //UTF-8 >> UTF-16(unicode) >> ANSI
 bool UTF8toANSI(LPCSTR str, char *oBuf, size_t *oSize){
+#ifdef _WIN32
 	int cchWideChar;
 	LPWSTR lpWideCharStr;
 	LPSTR lpMultiByteStr;
@@ -56,11 +69,14 @@ bool UTF8toANSI(LPCSTR str, char *oBuf, size_t *oSize){
 	free(lpWideCharStr);
 	free(lpMultiByteStr);
 	return true;
+#else
+	return {}; // FIXME(linux): stub
+#endif // _WIN32
 }
 
 //4442f0
 int SQL_Run(CSTR queryStr, sqlite3 *sql){
-	
+#ifdef _WIN32
 	int result;
 	int cchWideChar;
 	LPCWSTR lpWideCharStr;
@@ -85,11 +101,14 @@ int SQL_Run(CSTR queryStr, sqlite3 *sql){
 	result = sqlite3_exec(sql, oBuf, NULL, NULL, NULL);
 	free((void*)oBuf);
 	return result;
+#else
+	return {}; // FIXME(linux): stub
+#endif // _WIN32
 }
 
 //4443f0
 int SQL_prepare(CSTR queryStr, sqlite3 *sql, sqlite3_stmt **ppStmt){
-	
+#ifdef _WIN32
 	int cchWideChar;
 	LPCWSTR lpWideCharStr;
 	LPCSTR lpMultiByteStr;
@@ -114,6 +133,9 @@ int SQL_prepare(CSTR queryStr, sqlite3 *sql, sqlite3_stmt **ppStmt){
 	result = sqlite3_prepare(sql, oBuf, -1, ppStmt, NULL);
 	free((void*)oBuf);
 	return result;
+#else
+	return sqlite3_prepare(sql, queryStr.body, -1, ppStmt, nullptr); // FIXME(linux): stub
+#endif // _WIN32
 }
 
 //4444f0
@@ -128,11 +150,15 @@ CSTR SQL_GetColumn(int i, sqlite3_stmt *pStmt){
 	else {
 		sqlite3_column_bytes(pStmt, i);
 		columnText = (LPCSTR)sqlite3_column_text(pStmt, i);
+#ifdef _WIN32
 		UTF8toANSI(columnText, NULL, &size);
 		oBuf.resize2(size + 1);
 		memset(oBuf.body, 0, size + 1);
 		UTF8toANSI(columnText, oBuf.body, &size);
 		*oBuf.atPos(size) = 0;
+#else
+		oBuf = columnText; // FIXME(linux): stub
+#endif // _WIN32
 	}
 	return oBuf;
 }

@@ -6,9 +6,17 @@
 #define pi2 6.2831853
 #define pi_half 1.570796
 
-#include <process.h> //beginthread
 #include "Engine.h"
 #include "LR2.h"
+
+#ifndef _WIN32
+#include <iostream>
+#define GetMainWindowHandle() nullptr
+static void MessageBoxA(const char*,const char* title,const char*desc,const char*)
+{
+	std::cout << "\n" << title << "\n\n" << desc << "\n" << std::flush;
+}
+#endif // _WIN32
 
 static int PerformGAS(gameplay& gameplay, int playerIdx, CONFIG_PLAY& cfg) {
 	PLAYERSTATUS& player = gameplay.player[playerIdx];

@@ -543,6 +543,10 @@ int InitImageFont(ImageFont *imgfont) {
 
 //4a0480
 int ReadImageFont(CSTR filename, ImageFont *imgfont) {
+#ifndef _WIN32 // TODO(linux): check if needed
+	filename.replace("\\" ,"/");
+#endif // _WIN32
+
 	CSTR str1;
 	
 	str1 = filename.getDirectory();
@@ -1063,6 +1067,9 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 						}
 						else {
 							SplitCSV(fBuf, &csv, ",");
+#ifndef _WIN32 // TODO(linux): check if needed
+							csv.str[1].replace("\\" ,"/");
+#endif // _WIN32
 							if (csv.str[1].isSame("CONTINUE")) {
 								sk->caption[sk->count].assign("CONTINUE");
 								sk->count++;
@@ -1676,6 +1683,9 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 					}
 					else if (fBuf.left(8).isSame("#LR2FONT") && !flag_skipFont) {
 						SplitCSV(fBuf, &csv, ",");
+#ifndef _WIN32 // TODO(linux): check if needed
+						csv.str[1].replace("\\" ,"/");
+#endif // _WIN32
 						if (sk->num_of_ImageFont == 10) {
 							ErrorLogFmtAdd(	"スキン読み込みエラー %d行目\n%s\nこれ以上の登録はできま せん。\n", line, fBuf);
 						}
@@ -1698,6 +1708,9 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 						}
 					}
 					else if (fBuf.left(9).isSame("#HELPFILE")) {
+#ifndef _WIN32 // TODO(linux): check if needed
+						csv.str[1].replace("\\" ,"/");
+#endif // _WIN32
 						SplitCSV(fBuf, &csv, ",");
 						if (sk->helpfileCount < 10) {
 							sk->helpfilePath[sk->helpfileCount].assign(&csv.str[1]);
@@ -1732,6 +1745,9 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 					}
 					else if (fBuf.left(8).isSame("#INCLUDE")) {
 						SplitCSV(fBuf, &csv, ",");
+#ifndef _WIN32 // TODO(linux): check if needed
+						csv.str[1].replace("\\" ,"/");
+#endif // _WIN32
 						for (int i = 0; i < sk->customfile_count; i++) {
 							if (sk->customfileRANDOM[i].isSame(csv.str[1].left(sk->customfileRANDOM[i].length()))
 								&& sk->customfile[i].isDiff("RANDOM") && sk->customfile[i].isDiff("ERROR")
@@ -1749,6 +1765,9 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 					}
 					else if (fBuf.left(11).isSame("#CUSTOMFILE")) {
 						SplitCSV(fBuf, &csv, ",");
+#ifndef _WIN32 // TODO(linux): check if needed
+						csv.str[2].replace("\\" ,"/");
+#endif // _WIN32
 						sk->customfileRANDOM[sk->customfile_count].assign(&csv.str[2]);
 						sk->customfile[sk->customfile_count].assign(&sku->customize_filename[sk->customfile_count]);
 						if (sk->customfile[sk->customfile_count].isSame("RANDOM")) {
@@ -1758,6 +1777,9 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 					}
 					else if (fBuf.left(13).isSame("#CUSTOMFOLDER")) {
 						SplitCSV(fBuf, &csv, ",");
+#ifndef _WIN32 // TODO(linux): check if needed
+						csv.str[2].replace("\\" ,"/");
+#endif // _WIN32
 						sk->customfileRANDOM[sk->customfile_count].assign(&csv.str[2]);
 						sk->customfile[sk->customfile_count].assign(&sku->customize_filename[sk->customfile_count]);
 						sk->customfile_count++;
