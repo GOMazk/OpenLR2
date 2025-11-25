@@ -7100,7 +7100,7 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 		}
 		SetObjectStrings_SongSelect(g);
 	}
-	if (g->KeyInput.p1_buttonInput[3] == 1 || g->KeyInput.p2_buttonInput[31] == 1) {
+	if (g->KeyInput.p1_buttonInput[3] == 1 || g->KeyInput.p2_buttonInput[3] == 1) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 		int k = g->config.select.key;
 		if (k == 4 || k == 5 || k == 6) {
@@ -18699,7 +18699,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 						count -= nowCount;
 						nowCount = 0;
 					}
-					else if (lastreadKeymode = 10 && song.keymode == 14) {
+					else if (lastreadKeymode == 10 && song.keymode == 14) {
 						count -= nowCount;
 						nowCount = 0;
 					}
