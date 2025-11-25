@@ -459,25 +459,20 @@ int NETWORK::GetInsaneList() {
 	CSTR hash;
 	sqlite3_open("LR2files/Database/song.db", &pSongDB);
 	SQL_Run("BEGIN", pSongDB);
-	int exlevel;
 	while (cur) {
-		TiXmlElement *val;
-		val = cur->FirstChildElement("hash");
-		if (val && val->ToElement()) {
+		if (TiXmlElement *val = cur->FirstChildElement("hash"); val && val->ToElement()) {
 			cstrSprintf(&hash, "%s", val->ToElement()->GetText());
 		}
 
-		val = cur->FirstChildElement("exlevel");
-		if (val) {
-			exlevel = atol(val->ToElement()->GetText());
+		if (TiXmlElement *val = cur->FirstChildElement("exlevel"); val) {
+			int exlevel = atol(val->ToElement()->GetText());
+			cstrSprintf(&query, "UPDATE song SET exlevel=%d WHERE hash=\'%s\'",exlevel,hash);
+			SQL_Run(query, pSongDB);
 		}
-
-		cstrSprintf(&query, "UPDATE song SET exlevel=%d WHERE hash=\'%s\'",exlevel,hash);
-		SQL_Run(query, pSongDB);
 
 		cur = cur->NextSiblingElement();
 	}
-	
+
 	if (hXml) delete(hXml);
 	SQL_Run("COMMIT", pSongDB);
 	sqlite3_close(pSongDB);

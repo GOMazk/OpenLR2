@@ -418,6 +418,7 @@ int EditTag(SONGDATA *song, sqlite3 *sql) {
 
 		sqlite3_snprintf(1024, query, "SELECT adddate FROM song WHERE path = \'%q\'", song->filepath);
 		SQL_prepare(query, sql, &stmt);
+		temp = 0;
 		if (sqlite3_step(stmt) == 100) {
 			temp = sqlite3_column_int(stmt, 0);
 		}
@@ -440,6 +441,7 @@ int EditTag(SONGDATA *song, sqlite3 *sql) {
 
 		sqlite3_snprintf(1024, query, "SELECT difficulty FROM song WHERE path = \'%q\'", song->filepath);
 		SQL_prepare(query, sql, &stmt);
+		temp = 0;
 		if (sqlite3_step(stmt) == 100) {
 			temp = sqlite3_column_int(stmt, 0);
 		}
