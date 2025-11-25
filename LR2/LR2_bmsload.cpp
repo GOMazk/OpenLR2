@@ -2033,7 +2033,7 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 			ErrorLogAdd("BMSを開けません。\n");
 			return -1;
 		}
-		if (isPMS = filename.right(4).lower().isSame(".pms")) {
+		if (isPMS = filename.right(4).lower().isSame(".pms"); isPMS) {
 			is9key = 1;
 		}
 		else if (meta->keymode == 9) {
