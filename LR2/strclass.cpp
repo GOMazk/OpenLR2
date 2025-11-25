@@ -1,10 +1,11 @@
-#pragma once
-
 #include "strclass.h"
 
 #include <cstring>
+#include <span>
 #include <string>
 #include <string_view>
+#include <cstdarg>
+#include <cctype>
 
 typedef unsigned char byte;
 
@@ -276,7 +277,9 @@ char* CSTR::writeAtPos(int pos, char ch) {
 //43b1d0
 CSTR& CSTR::upper() {
 	if (body) {
-		_strupr(body);
+		for (auto& c : std::span{body, strlen(body)}) {
+			c = std::toupper(c);
+		}
 	}
 	return *this;
 }
@@ -284,7 +287,9 @@ CSTR& CSTR::upper() {
 //43b1f0
 CSTR& CSTR::lower() {
 	if (body) {
-		_strlwr(body);
+		for (auto& c : std::span{body, strlen(body)}) {
+			c = std::tolower(c);
+		}
 	}
 	return *this;
 }
