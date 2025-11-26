@@ -1,18 +1,25 @@
 ﻿#include "LR2_replay.h"
 #include "Engine.h"
 
+#include <filesystem>
+#include <system_error>
+
 //4c03c0 //TODO suspection about usage of cstrsprintf
-int MoveReplayFile(CSTR songMD5, CSTR localID){
-#ifdef _WIN32
+int MoveReplayFile(CSTR songMD5, CSTR localID) {
 	if (songMD5.length() > 36) {
 		songMD5 = MD5str(songMD5);
 	}
 
-	CSTR path;
-	cstrSprintf(&path, "LR2files/Replay/%s/c", localID.body);
-	CreateDirectoryA(path, 0);
-	cstrSprintf(&path, "LR2files/Replay/%s/c/%s", localID.body, songMD5.body);
-	CreateDirectoryA(path, 0);
+	{
+		CSTR path;
+
+		cstrSprintf(&path, "LR2files/Replay/%s/c", localID.body);
+		std::error_code ec; // ignore errors
+		std::filesystem::create_directories(path.body, ec);
+
+		cstrSprintf(&path, "LR2files/Replay/%s/c/%s", localID.body, songMD5.body);
+		std::filesystem::create_directories(path.body, ec);
+	}
 
 	CSTR pathFrom;
 	int stage = 0;
@@ -20,7 +27,12 @@ int MoveReplayFile(CSTR songMD5, CSTR localID){
 	while (pathFrom.canOpenFile()) {
 		CSTR pathTo;
 		cstrSprintf(&pathTo, "LR2files/Replay/%s/c/%s/%d.lr2rep", localID.body, songMD5.body, stage);
+#ifdef _WIN32
 		MoveFileA(pathFrom, pathTo); //TOFIX : if file already exists at pathTo, it fails.
+#else // TODO: consolidate these two. Didn't check what fs::rename does if target already exists.
+		std::error_code ec; // ignore errors
+		std::filesystem::rename(pathFrom.body, pathTo.body, ec);
+#endif // _WIN32
 		ErrorLogFmtAdd("リプレイの移動 stage%d\n", stage);
 
 		stage++;
@@ -29,9 +41,6 @@ int MoveReplayFile(CSTR songMD5, CSTR localID){
 	ErrorLogFmtAdd("リプレイの移動終了 stage%d\n", stage);
 
 	return (stage != 0);
-#else
-	return {}; // FIXME(linux): stub
-#endif
 }
 
 //4c05e0

@@ -3,6 +3,10 @@
 
 #include <DxLib/DxLib.h>
 
+#ifndef _WIN32
+#include "En_dxlibstub.h"
+#endif // _WIN32
+
 #include <cstring>
 
 MIDI midi;
@@ -133,9 +137,7 @@ void ProcessInput(inputStructure *is, int interval) {
 	char new_keyInput[256];
 	int keyError;
 
-#ifdef _WIN32 // TODO(linux): implement?
 	if (GetWindowActiveFlag() == 0) return;
-#endif // _WIN32
 
 	GetMousePoint(&mouseX, &mouseY);
 	is->mouse_moveX = mouseX - is->mouse_oldX;

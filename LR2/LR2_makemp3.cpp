@@ -2,9 +2,16 @@
 #include "Engine.h"
 #include "LR2_bmsload.h"
 
+#ifndef _WIN32
+#include <iostream>
+static void MessageBoxA(const char*,const char* title,const char*desc,const char*)
+{
+	std::cout << "\n" << title << "\n\n" << desc << "\n" << std::flush;
+}
+#endif // _WIN32
+
 //40d680
 int RunMP3Encoder(ConfigStruct *cfg, CSTR wavPath, CSTR mp3Path, char deleteWav, char movie) {
-#ifdef _WIN32
 	if (cfg->tools.mp3enc_body.canOpenFile() == 0) {
 		MessageBoxA(NULL, "MP3エンコーダーが見つかりません。\nコンフィグプログラムのJUKEBOX→詳細設定で設定して下さい。", "エラー", 0);
 		return 0;
@@ -23,6 +30,7 @@ int RunMP3Encoder(ConfigStruct *cfg, CSTR wavPath, CSTR mp3Path, char deleteWav,
 		cstrSprintf(&cmd, "%s %s \"%s\" \"%s\"", cfg->tools.mp3enc_body.body, cfg->tools.mp3enc_option_normal.body, wavPath.body, mp3Path.body);
 	}
 
+#ifdef _WIN32
 	STARTUPINFO sinfo;
 	PROCESS_INFORMATION pinfo;
 	
@@ -40,13 +48,12 @@ int RunMP3Encoder(ConfigStruct *cfg, CSTR wavPath, CSTR mp3Path, char deleteWav,
 	}
 	return 1;
 #else
-	return {}; // FIXME(linux): stub
+	return {}; // TODO(linux): stub
 #endif // _WIN32
 }
 
 //40d840
 int Proc_Auto2avi(game *g, CSTR /*directory*/, CSTR filename) {
-#ifdef _WIN32
 	printfDx("BMSを読み込み中です。しばらくお待ち下さい。");
 	ScreenFlip();
 	ClsDrawScreen();
@@ -110,14 +117,10 @@ int Proc_Auto2avi(game *g, CSTR /*directory*/, CSTR filename) {
 	}
 
 	return 1;
-#else
-	return {}; // FIXME(linux): stub
-#endif // _WIN32
 }
 
 //40dc30
 int RecordBmsSound(game *g, CSTR oPath) {
-#ifdef _WIN32
 	int startTime = g->rec.GetCurTime();
 	ErrorLogFmtAdd("音声の記録を開始します　曲開始時間+%dです。\n", startTime);
 	printfDx("処理中です。しばらくお待ち下さい。");
@@ -188,7 +191,4 @@ int RecordBmsSound(game *g, CSTR oPath) {
 
 	g->rec.Release();
 	return 1;
-#else
-	return {}; // FIXME(linux): stub
-#endif // _WIN32
 }

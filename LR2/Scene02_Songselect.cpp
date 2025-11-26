@@ -3,6 +3,9 @@
 #include "LR2.h"
 #include <stdio.h>
 
+#ifndef _WIN32
+#include "En_dxlibstub.h"
+#endif // _WIN32
 
 struct glb_dbgame {
 	struct sqlite3 * pSql;
@@ -1755,9 +1758,7 @@ int ProcS_Select(game *g) {
 	
 	SetObjectString(30, g->sSelect.stack_searchTitle[g->sSelect.cur], g->txtStruct.objectStr);
 	SetTarget(g);
-#ifdef WIN32
 	DeleteKeyInput(g->txtStruct.hKeyInput);
-#endif // _WIN32
 	g->txtStruct.st_text_num = -1;
 	g->sSelect.metaSelected.artist = g->sSelect.bmsList[g->sSelect.cur_song].artist;
 	g->sSelect.metaSelected.filepath = g->sSelect.bmsList[g->sSelect.cur_song].filepath;

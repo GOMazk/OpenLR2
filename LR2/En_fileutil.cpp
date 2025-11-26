@@ -49,7 +49,7 @@ int makeFileHash(LPCSTR filepath, LPCSTR oBuf) {
 }
 
 //TODO : posix 2038y problem
-//437de0
+// Seconds since the Unix Epoch
 time_t GetNowUnixtime() {
 #ifdef _WIN32
 	SYSTEMTIME systime;
@@ -60,31 +60,27 @@ time_t GetNowUnixtime() {
 
 	return GetUnixtimeFromFiletime(filetime);
 #else
-	// TODO(linux): seconds? milliseconds?
 	return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch())
 		.count();
 #endif // _WIN32
 }
 
-//437e90
+// Seconds since the Unix Epoch
 time_t GetUnixtimeFromFiletime(FILETIME &filetime) {
 	ULARGE_INTEGER ul{ filetime.dwLowDateTime, filetime.dwHighDateTime };
 	return (unsigned int)((ul.QuadPart - 116444736000000000ULL) / 10000000);
 }
 
-//437f00
+// Seconds since the Unix Epoch
 time_t GetFileUnixtime(CSTR str) {
-#ifdef _WIN32
-	WIN32_FIND_DATA FindFileData;
-	LPWIN32_FIND_DATAA lpFindFileData;
-	HANDLE hFindFile;
-
 	if (str.right(1).isSame("\\") ||  str.right(1).isSame("/")) {
 		str.nullAtPos(str.length() - 1);
 	}
 
-	lpFindFileData = (LPWIN32_FIND_DATAA)&FindFileData;
-	hFindFile = FindFirstFileA(str, lpFindFileData);
+#ifdef _WIN32
+	WIN32_FIND_DATA FindFileData;
+	LPWIN32_FIND_DATAA lpFindFileData = (LPWIN32_FIND_DATAA)&FindFileData;
+	HANDLE hFindFile = FindFirstFileA(str, lpFindFileData);
 	if (hFindFile == (HANDLE)-1) {
 		ErrorLogFmtAdd("ファイルのLR2TIME取得エラー:%sが見つからない\n", str);
 		return -1;
@@ -93,10 +89,12 @@ time_t GetFileUnixtime(CSTR str) {
 	FindClose(hFindFile);
 	return GetUnixtimeFromFiletime(FindFileData.ftLastWriteTime);
 #else
-	// TODO(linux): seconds? milliseconds?
+	// FindFirstFile could also take in wildcards, but that sounds plain wrong.
+	// Could consolidate both branches with std::filesystem::last_write_time();
 	struct stat sb;
 	int ret = stat(str.body, &sb);
 	if (ret != 0) {
+		ErrorLogFmtAdd("ファイルのLR2TIME取得エラー:%sが見つからない\n", str.body);
 		return -1;
 	}
 	return static_cast<time_t>(sb.st_mtim.tv_sec);
@@ -328,67 +326,49 @@ bool IsLR2Folder(CSTR str) {
 	return false;
 }
 
-//439510
+// May include wildcard, like "LR2files/CustomFolder/*.txt
 bool IsFileExist(CSTR path) {
+	if (path.right(1).isSame("\\") || path.right(1).isSame("/")) {
+		path.nullAtPos(path.length() - 1);
+	}
+
 #ifdef _WIN32
 	HANDLE hFindFile;
 	_WIN32_FIND_DATAA findFileData;
-	char *cur;
 	char dirFlag = 0;
 
-	if (path.right(1).isSame("\\") || path.right(1).isSame("/")) {
-		cur = path.atPos(path.length() - 1);
-		*cur = 0;
-	}
 	hFindFile = FindFirstFileA(path, &findFileData);
 	FindClose(hFindFile);
-	/*if (hFindFile != (HANDLE)-1) {
-		FindClose(hFindFile);
-	}
-	else {
-		FindClose(-1);
-	}*/
 	return hFindFile != (HANDLE)-1;
-#else // TODO(refactor): is this implementation enough?
+#else
+	// FIXME(linux): wildcard support
 	return std::filesystem::exists(path.body);
 #endif // _WIN32
 }
 
-//4396b0 //0:already_exist 1:not_exist 2:changed
+// \param oldUnixtime Seconds since Unix epoch
+// \param iNewtime Non-null out parameter, seconds since Unix epoch
+// \retval 0 already_exist
+// \retval 1 not_exist
+// \retval 2 changed
 int IsFileChanged(unsigned int oldUnixtime, CSTR filepath, int *oNewtime) { 
-#ifdef _WIN32
-	HANDLE hFindFile;
-	char* lpFileName;
-	_WIN32_FIND_DATAA findFileData;
-
 	if (filepath.right(1).isSame("\\") || filepath.right(1).isSame("/")) {
 		filepath.nullAtPos(filepath.length() - 1);
 	}
-	lpFileName = filepath;
-	hFindFile = FindFirstFileA(lpFileName, &findFileData);
-	if (hFindFile == (HANDLE)-1) {
+
+	time_t filetime = GetFileUnixtime(filepath);
+	if (filetime == -1) {
 		*oNewtime = -1;
-		FindClose((HANDLE)-1);
 		return 1;
 	}
-	
-	unsigned int filetime = GetUnixtimeFromFiletime(findFileData.ftLastWriteTime);
+
 	if (oldUnixtime < filetime) {
 		*oNewtime = filetime;
-		FindClose(hFindFile);
 		return 2;
 	}
-	else {
-		*oNewtime = oldUnixtime;
-		FindClose(hFindFile);
-		return 0;
-	}
-#else
-	// FIXME(linux): stub
-	if (!IsFileExist(filepath))
-		return 1;
+
+	*oNewtime = oldUnixtime;
 	return 0;
-#endif // _WIN32
 }
 
 //439820

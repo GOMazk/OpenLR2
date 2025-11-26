@@ -224,9 +224,9 @@ bool RECORDING::PrepareAVIRecord(double framerate, int bit, CSTR filename, uint 
 #endif // _WIN32
 }
 
-#ifdef _WIN32
 //4bfcb0
 int RECORDING::InsertAudioToMovie(CSTR pathAudio, bool deleteFlag) {
+#ifdef _WIN32
 	CSTR path(pathAudio);
 	bool isMp3 = path.lower().right(3).isSame("mp3");
 
@@ -261,8 +261,10 @@ int RECORDING::InsertAudioToMovie(CSTR pathAudio, bool deleteFlag) {
 	if (deleteFlag) remove(pathAudio);
 
 	return 1;
-}
+#else
+	return {}; // TODO(linux): stub
 #endif // _WIN32
+}
 
 //4bfec0
 static int REC_COPYFILE(FILE *oFile, FILE *iFile, uint size){

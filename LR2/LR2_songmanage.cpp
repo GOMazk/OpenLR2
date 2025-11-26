@@ -402,22 +402,7 @@ int EditTag(SONGDATA *song, sqlite3 *sql) {
 	sqlite3_stmt *stmt;
 	CSTR query;
 
-	auto last_write = [](const char* filepath) -> time_t {
-#ifdef _WIN32
-		_WIN32_FIND_DATAA findFileData;
-		HANDLE hFindFile = FindFirstFileA(filepath, &findFileData);
-		if (hFindFile == (HANDLE)-1) {
-			FindClose(hFindFile);
-			return -1;
-		}
-		FindClose(hFindFile);
-		return GetUnixtimeFromFiletime(findFileData.ftLastWriteTime);
-#else
-		return GetNowUnixtime(); // FIXME(linux): stub
-#endif // _WIN32
-	};
-
-	int wtime = last_write(song->filepath);
+	int wtime = GetFileUnixtime(song->filepath);
 	int ntime = GetNowUnixtime();
 	int temp;
 	if (song->folderType == 0 || song->folderType == 5) {
@@ -808,10 +793,8 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 
 //4474a0
 int UninstallSong(CSTR path, sqlite3 *sql) {
-#ifdef _WIN32
-	SHFILEOPSTRUCTA sh;
 	char query[2048];
-	
+
 	CSTR dir(path.getDirectory());
 	CSTR crc(AssignCRC32(dir));
 
@@ -823,23 +806,23 @@ int UninstallSong(CSTR path, sqlite3 *sql) {
 
 	dir.nullAtPos(dir.length()-1);
 
-	memset(&sh, 0, sizeof(SHFILEOPSTRUCTA));
+#ifdef _WIN32
+	SHFILEOPSTRUCTA sh{};
 	sh.wFunc = FO_DELETE; //3
 	sh.pFrom = dir;
 	sh.pTo = NULL;
 	sh.fFlags = FOF_NOERRORUI | FOF_NOCONFIRMATION | FOF_SILENT; //0x414
 
 	return (SHFileOperationA(&sh) == 0);
-#else
-	// FIXME(linux): stub
+#else // TODO: check if error handling matches and then consolidate the two.
+	// std::error_code ec; // not tested. dear game, pls never delete my stuff
+	// std::filesystem::remove_all(dir.body, ec);
 	return {};
 #endif // _WIN32
 }
 
 //4476b0
 int Rename(CSTR path, sqlite3 *sql) {
-#ifdef _WIN32
-	SHFILEOPSTRUCTA sh;
 	char query[2048];
 
 	CSTR newpath(path);
@@ -847,16 +830,18 @@ int Rename(CSTR path, sqlite3 *sql) {
 
 	sqlite3_snprintf(2048, query, "DELETE FROM song WHERE path=\'%q\'", path.body);
 	SQL_Run(query, sql);
-	
-	memset(&sh, 0, sizeof(SHFILEOPSTRUCTA));
+
+#ifdef _WIN32
+	SHFILEOPSTRUCTA sh{};
 	sh.wFunc = FO_RENAME; //4
 	sh.pFrom = path;
 	sh.pTo = newpath;
 	sh.fFlags = FOF_NOERRORUI | FOF_NOCONFIRMATION | FOF_SILENT; //0x414
 
 	return (SHFileOperationA(&sh) == 0);
-#else
-	// FIXME(linux): stub
+#else // TODO: check if error handling matches and then consolidate the two.
+	std::error_code ec;
+	std::filesystem::rename(path.body, newpath.body, ec);
 	return {};
 #endif // _WIN32
 }
@@ -1253,40 +1238,36 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
 
 	sqlite3_stmt *pStmt;
-	int newTime, time;
 	char sBuf[1024];
-	int chg = 0;
 	int cAlready = 0, cNot = 0, cChange = 0;
 
 	GetTimeWrap();
 	SQL_prepare(query, sql, &pStmt);
-	int now = GetNowUnixtime();
+	const int now = GetNowUnixtime();
 
 	while (sqlite3_step(pStmt) == 100) {
-		time = sqlite3_column_int(pStmt, 1);
+		const int time = sqlite3_column_int(pStmt, 1);
 		CSTR str = SQL_GetColumn(0, pStmt);
 		if (!str.left(8).isSame("LR2files")) {
-			int flgFile = 0, flgFolder = 0;
-			
-			if (IsBmsFile(str)) 
-				flgFile = 1;
-			else if(IsLR2Folder(str))
-				flgFolder = 1;
+			const bool is_bms_file = IsBmsFile(str);
+			const bool is_lr2folder = IsLR2Folder(str);
 
-			int isJbPath = 0;
+			int is_path_in_jukebox = 0;
 			for (int i = 0; i < jb->numOfPath; i++) {
 				if (str.left(jb->path[i].length()).isSame(&jb->path[i])) {
-					isJbPath = 1;
+					is_path_in_jukebox = 1;
 				}
 			}
-			if (jb->numOfPath == 0 || isJbPath){
-				chg = IsFileChanged(time, str, &newTime);
+
+			if (jb->numOfPath == 0 || is_path_in_jukebox){
+				int newTime;
+				const int chg = IsFileChanged(time, str, &newTime);
 				if (chg == 0) {
 					cAlready++;
 				}
 				else if (chg == 1) {
 					cNot++;
-					if (flgFile) {
+					if (is_bms_file) {
 						SQL_Run(sqlite3_snprintf(512, sBuf, "DELETE FROM song WHERE path=\'%q\'", str.body), sql); 
 					}
 					else {
@@ -1295,7 +1276,7 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
 				}
 				else if (chg == 2) {
 					cChange++;
-					if (flgFile) {
+					if (is_bms_file) {
 						SQL_Run(sqlite3_snprintf(1024, sBuf, "DELETE FROM song WHERE path=\'%q\'", str.body), sql);
 						BMSMETA meta;
 						ParseBMSMETA(&meta, str, 1);
@@ -1303,7 +1284,7 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
 						SQL_Run(sqlite3_snprintf(1024, sBuf, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
 							meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, newTime, str.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body,AssignCRC32(meta.parentfolderpath).body,meta.maxbpm,meta.minbpm,meta.random,meta.longnote,meta.judge,meta.keymode,meta.bga,meta.difficulty,meta.hasTxt,meta.notecount,now,meta.exlevel), sql);
 					}
-					else if (flgFolder) {
+					else if (is_lr2folder) {
 						SQL_Run(sqlite3_snprintf(1024, sBuf, "DELETE FROM folder WHERE path=\'%q\'", str.body), sql);
 						BMSMETA meta;
 						ParseBMSMETA(&meta, str, 1);
@@ -1332,7 +1313,7 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
 				
 			}
 			else {
-				if (flgFile) {
+				if (is_bms_file) {
 					SQL_Run(sqlite3_snprintf(512, sBuf, "DELETE FROM song WHERE path=\'%q\'", str.body), sql);
 				}
 				else {
@@ -2595,13 +2576,14 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 			CSTR path;
 			path = SQL_GetColumn(6, pStmt);
 
-			bool notJukebox = 1;
+			bool is_path_not_in_jukebox = 1;
 
 			for (int i = 0; i < jb->numOfPath; i++) {
 				if (path.isSame(&jb->path[i]))
-					notJukebox = 0;
+					is_path_not_in_jukebox = 0;
 			}
-			if(notJukebox) {
+
+			if(is_path_not_in_jukebox) {
 				ErrorLogFmtAdd("エラーフォルダを削除します。%s\n", path.body);
 				sqlite3_snprintf(1024, query, "DELETE FROM folder WHERE path = \'%s\'", path.body);
 				SQL_Run(query, sql);

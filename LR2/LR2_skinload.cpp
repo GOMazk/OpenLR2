@@ -1,5 +1,4 @@
 ﻿#include "LR2_skinload.h"
-#include "Engine.h"
 #include "LR2_skindraw.h"
 #include "LR2_configsave.h"
 

@@ -3,6 +3,10 @@
 #include "LR2_skinobject.h"
 #include "LR2_skinload.h"
 
+#ifndef _WIN32
+#include "En_dxlibstub.h"
+#endif // _WIN32
+
 //49bf60
 int InitDrawingBuffer(DrawingBuf *drb){
 	for (int i = 0; i < drb->count; i++) {
@@ -1012,7 +1016,6 @@ void LRDrawText(int* grHandle, DSTdraw *dstd, CSTR *str, ImageFont *imF) {
 
 //49b7c0
 void LRDrawTextInput(int* hFont, DSTdraw *dstd, int* hInput, ImageFont *imgfont) {
-#ifdef _WIN32
 	IMEINPUTDATA* pIME;
 	CSTR buf(0x401);
 	int grLen;
@@ -1068,9 +1071,6 @@ void LRDrawTextInput(int* hFont, DSTdraw *dstd, int* hInput, ImageFont *imgfont)
 			LRDrawText(hFont, dstd, &buf, imgfont);
 		}
 	}
-#else
-	// FIXME(linux): stub
-#endif // _WIN32
 }
 
 //49bc50

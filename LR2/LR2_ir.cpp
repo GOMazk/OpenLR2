@@ -649,7 +649,7 @@ int NETWORK::HTTPrequest() {
 	ErrorLogAdd(this->request_debug);
 	return 0;
 #else
-	return -1; // FIXME(linux): stub
+	return -1; // TODO(linux): stub
 #endif // _WIN32
 }
 
@@ -834,7 +834,7 @@ int NETWORK::Login(int isDirectPlay) {
 		return -99;
 	}
 #else
-	if (true) { // FIXME(linux): stub
+	if (true) { // TODO(linux): stub
 		this->request_debug = "linux\n";
 		this->request_result = "happy with yourself?\n";
 		this->isOnline = false;

@@ -9,6 +9,10 @@
 
 #include <DxLib/DxLib.h>
 
+#ifndef _WIN32
+#include "En_dxlibstub.h"
+#endif // _WIN32
+
 //40e790 // _mRet __mRet : return ret, ret : return !ret
 bool GetOptionFlag_dst(game *gs, int option) {
 	int t = 0;
@@ -2677,11 +2681,7 @@ int Proc_Text(game *g, sqlite3 *sql, char flag) {
 	}
 
 	if ( (g->KeyInput.mouse_buttonL == 3) || (g->KeyInput.mouse_buttonR == 3) ) {
-#ifdef WIN32
 		DeleteKeyInput(g->txtStruct.hKeyInput);
-#else
-		// FIXME(linux): stub
-#endif // WIN32
 		g->txtStruct.st_text_num = -1;
 	}
 
@@ -2693,7 +2693,6 @@ int Proc_Text(game *g, sqlite3 *sql, char flag) {
 				&& MouseOnObject(&g->skstruct.otherObject[0].dst[i], &g->timer1, &g->KeyInput.mouse_oldX, &g->KeyInput.mouse_oldY)) {
 				g->sSelect.is_mouseOnTextInput = 1;
 				if (g->KeyInput.mouse_buttonL == 3) {
-#ifdef WIN32
 					InitKeyInput();
 
 					int st = g->skstruct.otherObject[0].src[i].st;
@@ -2721,9 +2720,6 @@ int Proc_Text(game *g, sqlite3 *sql, char flag) {
 					if (g->txtStruct.st_text_num != 30) {
 						SetKeyInputString(GetStringFromArray(g->txtStruct.st_text_num, g->txtStruct.objectStr), g->txtStruct.hKeyInput);
 					}
-#else
-					// FIXME(linux): stub
-#endif // WIN32
 				}
 			}
 			AddDrawingBuffer_Text(&g->skstruct.drBuf, &g->skstruct.otherObject[0].src[i], &g->skstruct.otherObject[0].dst[i], &g->timer1);
@@ -2734,7 +2730,6 @@ int Proc_Text(game *g, sqlite3 *sql, char flag) {
 	if (g->txtStruct.st_text_num != -1) {
 		g->sSelect.is_mouseOnTextInput = 1;
 
-#ifdef _WIN32
 		if (CheckKeyInput(g->txtStruct.hKeyInput) >= 1 && flag == 0) {
 			//CheckKeyInput() 0:doing 1:done 2:cancle -1:error
 			if (CheckKeyInput(g->txtStruct.hKeyInput) == 1) {
@@ -2896,9 +2891,6 @@ int Proc_Text(game *g, sqlite3 *sql, char flag) {
 			g->txtStruct.st_text_num = -1;
 			SetTimeLapse(4, &g->timer1);
 		}
-#else
-					// FIXME(linux): stub
-#endif // WIN32
 	}
 
 	g->KeyInput.mouse_buttonL = mouseL;
