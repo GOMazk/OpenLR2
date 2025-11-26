@@ -294,6 +294,13 @@ int ReleaseSysSound(game *g){
 	return 1;
 }
 
+static void adjust_input_filepath(CSTR& path)
+{
+#ifndef _WIN32
+	path.replace("\\", "/");
+#endif // _WIN32
+}
+
 //414a10
 int ReadLR2SoundSet(game *g, CSTR filepath, char reFlag) {
 	SkinUser sku;
@@ -395,6 +402,7 @@ int ReadLR2SoundSet(game *g, CSTR filepath, char reFlag) {
 			}
 			else if (fBuf.left(11).isSame("#CUSTOMFILE")) {
 				SplitCSV(fBuf, &csv, ",");
+				adjust_input_filepath(csv.str[2]);
 				wildStr[wildCount].assign(&csv.str[2]);
 				wildCFilename[wildCount].assign(&sku.customize_filename[wildCount]);
 				if (wildCFilename[wildCount].isSame("RANDOM")) {
@@ -405,6 +413,7 @@ int ReadLR2SoundSet(game *g, CSTR filepath, char reFlag) {
 			}
 			else if (fBuf.left(13).isSame("#CUSTOMFOLDER")) {
 				SplitCSV(fBuf, &csv, ",");
+				adjust_input_filepath(csv.str[2]);
 				wildStr[wildCount].assign(&csv.str[2]);
 				wildCFilename[wildCount].assign(&sku.customize_filename[wildCount]);
 				wildCount++;
@@ -417,9 +426,7 @@ int ReadLR2SoundSet(game *g, CSTR filepath, char reFlag) {
 				}
 			}
 
-#ifndef _WIN32 // TODO(linux): check if needed
-			csv.str[1].replace("\\" ,"/");
-#endif // _WIN32
+			adjust_input_filepath(csv.str[1]); // TODO: move up?
 			if (fBuf.left(7).isSame("#SELECT") && !load_select) {
 				LoadSound(&g->audio, &g->audio.sysSound.select, GetRandomFileNoError(csv.str[1], dir), 1, g->config.sound.disabledsp, 0);
 				if (g->audio.sysSound.select.load) load_select = true;

@@ -776,25 +776,16 @@ CSTR GetRandomFile(CSTR path, char fOnlyName) {
 	return path;
 #else
 	// FIXME(linux): stub
-	path.replace("\\", "/");
 	return path;
 #endif // _WIN32
 }
 
 //43abe0
-CSTR GetRandomFileNoError(CSTR path, CSTR dir) {
-#ifndef _WIN32
-	// TODO(linux): check if needed
-	path.replace("\\" ,"/");
-	dir.replace("\\" ,"/");
-#endif // _WIN32
-	CSTR filepath;
-	filepath.assign(GetRandomFile(path, 0));
-	if (filepath.isDiff("ERROR")) return CSTR(filepath);
-	dir.add(&path);
-	filepath.assign(GetRandomFile(path, 0));
-	if (filepath.isDiff("ERROR")) return CSTR(filepath);
-	return CSTR(path);
+CSTR GetRandomFileNoError(CSTR path, CSTR /*dir*/) {
+	// TODO: 'dir' suspiciously not used
+	CSTR filepath = GetRandomFile(path, 0);
+	if (filepath.isDiff("ERROR")) return filepath;
+	return path;
 }
 
 //443550 _ need simplification

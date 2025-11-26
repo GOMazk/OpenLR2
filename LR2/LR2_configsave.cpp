@@ -1,18 +1,23 @@
 ﻿#include "LR2_configsave.h"
 
+static void adjust_input_filepath(CSTR& path)
+{
+#ifndef _WIN32
+	path.replace("\\", "/");
+#endif // _WIN32
+}
+
 //43c220
 int Read_JukeboxPath(CONFIG_JUKEBOX *box, TiXmlDocument *xml){
-	char *str;
-	TiXmlElement *cur;
-
 	if (xml == NULL) {
 		return 0;
 	}
 	box->numOfPath = 0;
-	
+
+	TiXmlElement *cur;
 	if ((cur = xml->FirstChildElement("config")) && (cur = cur->FirstChildElement("jukebox")) &&
 		(cur = cur->FirstChildElement("path")) && cur->ToElement()) {
-		
+
 		cstrSprintf(&box->path[0], "%s", cur->ToElement()->GetText());
 		CSTR tp2;
 		tp2.assign(&box->path[0]);
@@ -20,16 +25,18 @@ int Read_JukeboxPath(CONFIG_JUKEBOX *box, TiXmlDocument *xml){
 			tp2.left(tp2.length() - 1);
 			box->path[0].assign(tp2.outstr());
 		}
+		adjust_input_filepath(box->path[0]);
 		box->numOfPath = 1;
 
 		while (box->numOfPath < 1000 && (cur = cur->NextSiblingElement()) && cur->ToElement()) {
-			cstrSprintf(box->path + box->numOfPath, "%s", cur->ToElement()->GetText());
-			CSTR tp;
-			tp.assign(box->path + box->numOfPath);
+			cstrSprintf(&box->path[box->numOfPath], "%s", cur->ToElement()->GetText());
+			adjust_input_filepath(box->path[box->numOfPath]);
 			box->numOfPath++;
 		}
+
 		return 1;
 	}
+
 	return -1;
 }
 
@@ -1041,6 +1048,7 @@ int ReadConfig(game* g, const char* filepath) {
 	ReadXml_Int("config", "system", "maindisplay", 0, &g->config.system.maindisplay, hXml);
 	Read_JukeboxPath(&g->config.jukebox, hXml);
 	ReadXml_Str("config", "system", "newsongfolder", "NEW SONG/", &g->config.jukebox.newsongfolder, hXml);
+	adjust_input_filepath(g->config.jukebox.newsongfolder);
 	ReadXml_Int("config", "system", "titleflash", 24, &g->config.jukebox.titleflash, hXml);
 	ReadXml_Int("config", "system", "softwarerendering", 0, &g->config.system.softwarerendering, hXml);
 	ReadXml_Int("config", "system", "autoreload", 2, &g->config.jukebox.autoreload, hXml);
