@@ -1798,6 +1798,7 @@ int ProcS_Play(game *g, sqlite3* sql) {
 			g->net.GetTargetInfo(0, md5, &gData, &gName, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp);
 		}
 		else {
+			int origGauge = g->config.play.gaugeOption[0];
 			//TOFIX : seed is not putted into replaydata, when use ghostbattle. (retry puts seed) (see also ParseBmsFile())
 			if(g->sSelect.bmsList[g->sSelect.cur_song].keymode > 9)
 				g->net.GetTargetInfo(0, md5, &gData, &gName, &g->config.play.gaugeOption[0], &g->config.play.random[0], &g->config.play.random[1], &g->config.play.dpflip, &g->gameplay.randomseed, &iTemp);
@@ -1806,6 +1807,10 @@ int ProcS_Play(game *g, sqlite3* sql) {
 			
 			g->config.play.gaugeOption[1] = g->config.play.gaugeOption[0];
 			g->config.play.random[1] = g->config.play.random[0];
+
+			if (g->config.play.m_gas) {
+				g->config.play.gaugeOption[0] = origGauge;
+			}
 		}
 	}
 

@@ -1128,6 +1128,7 @@ struct PLAYERSTATUS {
 	int time_newScore = 0;
 	int note_current = 0;
 	int clearType = 0;
+	int clearGaugeTypeCourse = 0;
 	EXTENDEDPLAYERSTATS extendedStats = {};
 	std::array<EXTENDEDPLAYERSTATS, 20> extendedColumnStats = {};
 	EXTENDEDPLAYERSTATS extendedStatsCourse = {};

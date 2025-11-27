@@ -256,9 +256,33 @@ int FlipScore(game *g){
 	return 1;
 }
 
-//4086d0
-int CheckCourseClear(game *g) {
+static int GetBestClearedGauge(gameplay& gameplay, int playerIdx, CONFIG_PLAY& cfg, bool limitToCourse) {
+	PLAYERSTATUS& player = gameplay.player[playerIdx];
+	if (playerIdx == 1 && gameplay.ghostBattle) return player.gaugeType;
+	if (cfg.gaugeOption[playerIdx] == 5) return 5;
+	constexpr std::array<int, 5> gaugeArr({ 4, 2, 1, 0, 3 });
+	unsigned int i = 0;
+	if (limitToCourse)
+		for (; i < gaugeArr.size(); i++)
+			if (gaugeArr[i] == gameplay.player[playerIdx].clearGaugeTypeCourse)
+				break;
+	auto is_gauge_alive = [](int gaugeIdx, double hp) {
+		switch (gaugeIdx) {
+		case 0:
+		case 3:
+			return hp >= 80.;
+		default: return hp >= 2.;
+		}
+		};
+	for (; i < gaugeArr.size(); i++)
+		if (is_gauge_alive(gaugeArr[i], player.HP[gaugeArr[i]]))
+			return gaugeArr[i];
+	if (gameplay.courseType == 2) return 0;
+	return 3;
+}
 
+//4086d0
+int CheckCourseClear(game* g) {
 	if (g->gameplay.courseStageNow < g->gameplay.courseStageCount - 1) {
 		for (int i = g->gameplay.courseStageNow - 1; i < g->gameplay.courseStageCount; i++) {
 			g->gameplay.player[0].total_note += g->sSelect.bmsList[g->sSelect.cur_song].courseTotalnote[i];
@@ -266,7 +290,7 @@ int CheckCourseClear(game *g) {
 		}
 	}
 
-	std::array<int, 2> gauge = { g->gameplay.player[0].gaugeType, g->gameplay.player[1].gaugeType };
+	std::array<int, 2> gauge = { g->gameplay.player[0].clearGaugeTypeCourse, g->gameplay.player[1].clearGaugeTypeCourse };
 	for (int p = 0; p < 2; p++) {
 		memcpy(g->gameplay.player[p].judgecount, g->gameplay.player[p].judgecount2, sizeof(int) * 6);
 		g->gameplay.player[p].exscore = g->gameplay.player[p].judgecount[4] + g->gameplay.player[p].judgecount[5] * 2;
@@ -598,7 +622,19 @@ int SaveResult(game *g, sqlite3* sql) {
 	}
 
 	if (g->gameplay.isAutoplay) return -1;
-
+	if (g->config.play.m_gas) {
+		g->gameplay.player[0].lastCourseGaugeType = g->gameplay.player[0].gaugeType; // If you finish a course stage with exscore 0, this code won't run and you may start the next stage with same gauge as one displayed on result... First hit note will reset it back to normal.
+		g->gameplay.player[0].gaugeType = GetBestClearedGauge(g->gameplay, 0, g->config.play, g->gameplay.courseStageNow != 0);
+	}
+	auto is_gauge_better = [](int gauge1, int gauge2) {
+		if (gauge1 == 5) return true;
+		if (gauge2 == 5) return false;
+		constexpr std::array<int, 6> gaugeWeight({ 1, 2, 3, 0, 4 });
+		return gaugeWeight[gauge1] > gaugeWeight[gauge2];
+	};
+	if (g->gameplay.courseStageNow == 0 || is_gauge_better(g->gameplay.player[0].clearGaugeTypeCourse, g->gameplay.player[0].gaugeType)) {
+		g->gameplay.player[0].clearGaugeTypeCourse = g->gameplay.player[0].gaugeType;
+	}
 	CheckClear(&g->gameplay.player[0], g->gameplay.player[0].gaugeType, g->gameplay.isCourse);
 	if (g->gameplay.courseType == 0 || g->gameplay.courseType == 2) {
 		ErrorLogFmtAdd("エキスパ用のスコア保存処理を行います\n");
@@ -757,6 +793,13 @@ int SaveResult(game *g, sqlite3* sql) {
 		ErrorLogFmtAdd("通常のスコア保存処理を行います\n");
 		
 		if (g->config.play.battle == 1) {
+			if (g->config.play.m_gas) {
+				g->gameplay.player[1].lastCourseGaugeType = g->gameplay.player[1].gaugeType;
+				g->gameplay.player[1].gaugeType = GetBestClearedGauge(g->gameplay, 1, g->config.play, g->gameplay.courseStageNow != 0);
+			}
+			if (g->gameplay.courseStageNow == 0 || is_gauge_better(g->gameplay.player[1].clearGaugeTypeCourse, g->gameplay.player[1].gaugeType)) {
+				g->gameplay.player[1].clearGaugeTypeCourse = g->gameplay.player[1].gaugeType;
+			}
 			CheckClear(&g->gameplay.player[1], g->gameplay.player[1].gaugeType, g->gameplay.isCourse);
 		}
 		else {

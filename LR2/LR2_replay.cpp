@@ -301,6 +301,17 @@ int InputToReplay(REPLAY *rp, inputStructure *is, int timing, int scratchSide) {
 	return 1;
 }
 
+int OverwriteReplayData(REPLAY* rp, int timing, uchar op, short value) {
+	for (int i = 0; i < rp->count; i++) {
+		ReplayData& data = rp->data[i];
+		if (data.op == op) {
+			data.value = value;
+			break;
+		}
+	}
+	return 1;
+}
+
 //4c1490
 int REPLAY_ApplyJudgeNote(gameplay *gp, Timer *T, game *g, uint judge, int player, int dp) {
 

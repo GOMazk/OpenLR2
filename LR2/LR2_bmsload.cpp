@@ -255,6 +255,7 @@ int InitGameplay(gameplay *gp, CONFIG_PLAY *cfg) {
 		int prevNotecurrent = gp->player[p].note_current2;
 		int prevGaugeType = gp->player[p].gaugeType;
 		int prevLastCourseGaugeType = gp->player[p].lastCourseGaugeType;
+		int prevClearGaugeTypeCourse = gp->player[p].clearGaugeTypeCourse;
 		auto prevHP = gp->player[p].HP;
 		double prevHP_print = gp->player[p].HP[prevGaugeType];
 		EXTENDEDPLAYERSTATS extendedStatsCourse = gp->player[p].extendedStatsCourse;
@@ -267,6 +268,7 @@ int InitGameplay(gameplay *gp, CONFIG_PLAY *cfg) {
 		if (gp->courseStageNow > 0) {
 			gp->player[p].gaugeType = prevGaugeType;
 			gp->player[p].lastCourseGaugeType = prevLastCourseGaugeType;
+			gp->player[p].clearGaugeTypeCourse = prevClearGaugeTypeCourse;
 			gp->player[p].HP = prevHP;
 			gp->player[p].HP_print = prevHP_print;
 			gp->player[p].now_combo_course = prevNowcombo;
@@ -3200,8 +3202,6 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 	if (cfg->play.hsfix == 4 && gp->minBPM != gp->maxBPM)
 		gp->isForceEasy = 1;
 	if (cfg->play.random[0] == 4 || cfg->play.random[1] == 4)
-		gp->isForceEasy = 1;
-	if (cfg->play.gaugeOption[0] == 3)
 		gp->isForceEasy = 1;
 	if ((cfg->play.p1_assist == 1 || cfg->play.p2_assist == 1) && (7 < meta->keymode || cfg->play.battle != 2))
 		gp->isForceEasy = 1;

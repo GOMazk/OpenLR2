@@ -13,6 +13,7 @@ int SaveReplay(REPLAY * rp, CSTR songMD5, CSTR localID);
 int AddReplayData(REPLAY * rp, int timing, uchar op, short value);
 int AddReplayDataHeader(CONFIG_PLAY * cfg, REPLAY * rp, AUDIO * snd, gameplay * gp);
 int InputToReplay(REPLAY * rp, inputStructure * is, int timing, int scratchSide);
+int OverwriteReplayData(REPLAY* rp, int timing, uchar op, short value);
 
 //read replay
 int REPLAY_ApplyJudgeNote(gameplay * gp, Timer * T, game * g, uint judge, int player, int dp);

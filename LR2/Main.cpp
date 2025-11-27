@@ -1420,37 +1420,42 @@ int main(int argc, char** argv) {
 									if (gs.sSelect.bmsList[gs.sSelect.cur_song].courseType == 2 || gs.sSelect.bmsList[gs.sSelect.cur_song].courseType == 0) {
 										CSTR tmp;
 										cstrSprintf(&tmp, "__%d", gs.gameplay.courseStageNow);
+										OverwriteReplayData(&gs.gameplay.replay, 0, 0x65, static_cast<short>(gs.gameplay.player[0].clearGaugeTypeCourse));
+										OverwriteReplayData(&gs.gameplay.replay, 0, 0x97, static_cast<short>(gs.gameplay.player[1].clearGaugeTypeCourse));
 										SaveReplay(&gs.gameplay.replay, tmp, gs.config.player.id);
 									}
 									else if (gs.config.play.replay == 1) {
+										OverwriteReplayData(&gs.gameplay.replay, 0, 0x65, static_cast<short>(gs.gameplay.player[0].gaugeType));
+										OverwriteReplayData(&gs.gameplay.replay, 0, 0x97, static_cast<short>(gs.gameplay.player[1].gaugeType));
 										if (SaveReplay(&gs.gameplay.replay, gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1) 
 											gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
 									}
 									else if (gs.config.play.replay == 2) {
 										if (gs.sSelect.bmsList[gs.sSelect.cur_song].mybest.stat_exscore <= gs.gameplay.player[0].exscore && gs.gameplay.player[0].exscore > 0) {
+											OverwriteReplayData(&gs.gameplay.replay, 0, 0x65, static_cast<short>(gs.gameplay.player[0].gaugeType));
+											OverwriteReplayData(&gs.gameplay.replay, 0, 0x97, static_cast<short>(gs.gameplay.player[1].gaugeType));
 											if (SaveReplay(&gs.gameplay.replay, gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1)
 												gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
 										}
 									}
 									else if (gs.config.play.replay == 3) {
 										if (gs.gameplay.player[0].clearType >= 2 && gs.gameplay.player[0].exscore > 0) {
+											OverwriteReplayData(&gs.gameplay.replay, 0, 0x65, static_cast<short>(gs.gameplay.player[0].gaugeType));
+											OverwriteReplayData(&gs.gameplay.replay, 0, 0x97, static_cast<short>(gs.gameplay.player[1].gaugeType));
 											if (SaveReplay(&gs.gameplay.replay, gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1)
 												gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
 										}
 									}
 									else if (gs.config.play.replay == 4) {
 										if (gs.gameplay.player[0].clearType == 5 && gs.gameplay.player[0].exscore > 0) {
+											OverwriteReplayData(&gs.gameplay.replay, 0, 0x65, static_cast<short>(gs.gameplay.player[0].gaugeType));
+											OverwriteReplayData(&gs.gameplay.replay, 0, 0x97, static_cast<short>(gs.gameplay.player[1].gaugeType));
 											if (SaveReplay(&gs.gameplay.replay, gs.sSelect.bmsList[gs.sSelect.cur_song].hash, gs.config.player.id) == 1)
 												gs.sSelect.bmsList[gs.sSelect.cur_song].replayExist = 1;
 										}
 									}
 								}
 								ReleaseReplayBuffer(&gs.gameplay.replay);
-							}
-
-							if (gs.gameplay.courseType == 0 || gs.gameplay.courseType == 2) {
-								gs.gameplay.player[0].lastCourseGaugeType = gs.gameplay.player[0].gaugeType;
-								gs.gameplay.player[1].lastCourseGaugeType = gs.gameplay.player[1].gaugeType;
 							}
 
 							if (gs.gameplay.isAutoplay == 1 && (gs.gameplay.courseType == 0 || gs.gameplay.courseType == 2) && gs.gameplay.courseStageNow < gs.gameplay.courseStageCount -1  && gs.gameplay.flag_closingPhase == 0) {
