@@ -1170,8 +1170,11 @@ int InitSound(AUDIO *aud, uint bufferLength, int numBuffer, char fDisable, int o
 		if (driver > numDrivers - 1) {
 			driver = 0;
 		}
-		FMOD_System_GetDriverInfo(aud->fmodSys, driver, driverName, sizeof(driverName), NULL, NULL, NULL, NULL);
-		ErrorLogFmtAdd("PLAYBACK DRIVER:%s\n", driverName);
+		if (FMOD_System_GetDriverInfo(aud->fmodSys, driver, driverName, sizeof(driverName), nullptr, nullptr, nullptr, nullptr) == FMOD_OK) {
+			ErrorLogFmtAdd("PLAYBACK DRIVER:%s\n", driverName);
+		} else {
+			ErrorLogFmtAdd("FMOD_System_GetDriverInfo failed");
+		}
 		FMOD_System_SetDriver(aud->fmodSys, driver);
 		ErrorLogAdd("バッファサイズの設定を行います...");
 		//FMOD_System_GetHardwareChannels(aud->fmodSys, &chn2D, &chn3D, &chnTotal);

@@ -383,6 +383,30 @@ int ParseLR2SkinCustom(SkinManage *skm, CSTR filepath) {
 int MakeSkinList(SkinManage *skm, CSTR dir) {
 	if (dir.right(1).isDiff("\\") && dir.right(1).isDiff("/"))
 		dir.add("\\");
+#ifdef _WIN32
+	CSTR filter;
+	filter.assign(&dir).add("*");
+	HANDLE hFindFile, hFindFileOld;
+	_WIN32_FIND_DATAA findFileData;
+	hFindFile = FindFirstFileA(filter, &findFileData);
+	do{
+		if ( (findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0) {
+			filter.assign(&dir).add(findFileData.cFileName);
+			if (filter.right(8).isSame(".lr2skin") || filter.right(6).isSame(".lr2ss")) ParseLR2SkinCustom(skm, filter);
+		}
+		else {  //logic arranged
+		if (strcmp("..", findFileData.cFileName) && strcmp(".", findFileData.cFileName)) {
+			filter.assign(&dir).add(findFileData.cFileName).add("\\");
+			MakeSkinList(skm, filter);
+		}
+		}
+		hFindFileOld = hFindFile;
+		if (FindNextFileA(hFindFile, &findFileData) == 0) {
+			FindClose(hFindFileOld);
+			return 0;
+		}
+	} while (true);
+#else // TODO(utf-8): use this
 #ifndef _WIN32
 	dir.replace("\\", "/");
 #endif // _WIN32
@@ -398,4 +422,5 @@ int MakeSkinList(SkinManage *skm, CSTR dir) {
 		}
 	}
 	return 0;
+#endif // _WIN32
 }

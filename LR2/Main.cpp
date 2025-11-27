@@ -5,8 +5,8 @@
 #include "LR2.h"
 #include "Scenes.h"
 
+#include <chrono>
 #include <filesystem>
-#include <string>
 #include <thread>
 
 #include <DxLib/DxLib.h>
@@ -27,13 +27,15 @@ int WINAPI WinMain(HINSTANCE /*hInstance*/, HINSTANCE /*hPrevInstance*/, LPSTR /
 	return main(__argc, __argv);
 }
 
+/* TODO(utf-8): use this
 static std::filesystem::path GetExecutablePath()
 {
-	char fullpath[256] = { 0 };
-	if (!GetModuleFileNameA(nullptr, fullpath, sizeof(fullpath)))
+	wchar_t fullpath[256]{};
+	if (!GetModuleFileNameW(nullptr, fullpath, std::size(fullpath)))
 		return {};
 	return std::filesystem::path(fullpath).parent_path();
 }
+*/
 
 #else
 
@@ -46,7 +48,7 @@ static void MessageBoxA(const char*, const char* title, const char* desc, const 
 
 static std::filesystem::path GetExecutablePath()
 {
-	char fullpath[256] = { 0 };
+	char fullpath[256]{};
 
 	char process_path[] = "/proc/self/exe";
 	const auto bytes =
@@ -93,9 +95,22 @@ int main(int argc, char** argv) {
 
 	int tmp;
 
-	auto curDir = GetExecutablePath();
-	std::filesystem::current_path(curDir);
-	gs.baseDirectory.assign(curDir.string().c_str(), 0).add("/");
+#ifdef _WIN32
+	{
+		char curDir[260];
+		GetModuleFileName(NULL, (LPCH)curDir, 260);
+		*(char*)(strrchr(curDir, '\\') + 1) = '\x00';
+		SetCurrentDirectory((LPCSTR)curDir);
+		gs.baseDirectory.assign(curDir, 0).add("/");
+	}
+#else // TODO(utf-8): use this
+	{
+		auto curDir = GetExecutablePath();
+		std::filesystem::current_path(curDir);
+		gs.baseDirectory.assign(curDir.string().c_str(), 0).add("/");
+	}
+#endif // _WIN32
+
 	gs.is_starter = false;
 	auto copy_if_not_exists = [](auto&& from, auto&& to_) {
 		std::filesystem::path to = to_;

@@ -592,7 +592,7 @@ int NETWORK::HTTPrequest() {
 		for (; i != timeout; i++) {
 			recvBuf = "";
 			int recvSize = recv(s, recvBuf, recvBuf.msize() - 1, 0);
-			if (this->waitForHandle == 1) {
+			if (this->waitForHandle) {
 				request = "DISCONNECT";
 				break;
 			}
@@ -730,23 +730,25 @@ int OpenWebRanking(CSTR songmd5){
 #endif
 }
 
-//4bc6b0 //
-void IRsendScore(NETWORK *ir) {
-	int httpResponse;
-	CSTR sData;
-
+static void ThreadProc_IRsendScore(NETWORK *ir) {
 	ErrorLogAdd("LR2IRにスコアを送信します。\n");
-	cstrSprintf(&sData, "%s%s%d%d", ir->IR_passMD5.body, ir->myRanking.songMD5.body,ir->myRanking.exscore, ir->myRanking.clear);
-	sData = MD5str(sData);
+	CSTR scorehash;
+	cstrSprintf(&scorehash, "%s%s%d%d", ir->IR_passMD5.body, ir->myRanking.songMD5.body,ir->myRanking.exscore, ir->myRanking.clear);
+	scorehash = MD5str(scorehash);
 
 	cstrSprintf(&ir->param, "songmd5=%s&id=%d&passmd5=%s&title=%s&genre=%s&artist=%s&maxbpm=%d&minbpm=%d&&playlevel=%d&clear=%d&exscore=%d&pg=%d&gr=%d&gd=%d&bd=%d&pr=%d&maxcombo=%d&playcount=%d&clearcount=%d&rate=%d&minbp=%d&totalnotes=%d&opt_history=%d&opt_this=%d&line=%d&judge=%d&inputtype=%d&ghost=%s&rseed=%d&clear_db=%d&clear_ex=%d&clear_sd=%d&scorehash=%s"
 		, ir->myRanking.songMD5.body, ir->IR_ID, ir->IR_passMD5.body, UrlEncode(ir->myRanking.title).body, UrlEncode(ir->myRanking.genre).body, UrlEncode(ir->myRanking.artist).body,
 		ir->myRanking.maxbpm, ir->myRanking.minbpm, ir->myRanking.playlevel, ir->myRanking.clear, ir->myRanking.exscore, ir->myRanking.pg, ir->myRanking.gr, ir->myRanking.gd, ir->myRanking.bd, ir->myRanking.pr, ir->myRanking.maxcombo,
 		ir->myRanking.playcount, ir->myRanking.clearcount, ir->myRanking.rate, ir->myRanking.minbp, ir->myRanking.totalnotes, ir->myRanking.opt_history, ir->myRanking.opt_this, ir->myRanking.line, ir->myRanking.judge,
-		ir->myRanking.inputtype, ir->myRanking.ghost.body, ir->myRanking.rseed,	ir->myRanking.clear_db, ir->myRanking.clear_ex, ir->myRanking.clear_sd, UrlEncode(sData).body);
+		ir->myRanking.inputtype, ir->myRanking.ghost.body, ir->myRanking.rseed,	ir->myRanking.clear_db, ir->myRanking.clear_ex, ir->myRanking.clear_sd, UrlEncode(scorehash).body);
 
 	ir->target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/score.cgi";
-	httpResponse = 0; //DEBUG: do not send IR before test is done enough. ir->HTTPrequest();
+	int httpResponse;
+	if constexpr (true) { // DEBUG: do not send IR before test is done enough.
+		httpResponse = 0;
+	} else {
+		httpResponse = ir->HTTPrequest();
+	}
 	if (httpResponse == 1) {
 		ir->IRresultMessage = "スコアを送信しました";
 		ir->GetRanking(ir->myRanking.songMD5, 1);
@@ -755,6 +757,8 @@ void IRsendScore(NETWORK *ir) {
 		ir->IRresultMessage = "サーバーとの接続に失敗しました";
 	}
 	ErrorLogAdd("送信終了\n");
+
+	ir->hHandle.detach(); // Detach ourselves TODO: refactor surrounding code to avoid this
 }
 
 //4bc970
@@ -954,7 +958,7 @@ int NETWORK::MakeIRsendScoreThread() {
 	this->waitForHandle = false;
 	this->rankingData.Init();
 	this->IRstatus = 1;
-	this->hHandle = std::jthread(IRsendScore, this);
+	this->hHandle = std::jthread(ThreadProc_IRsendScore, this);
 	return 0;
 }
 

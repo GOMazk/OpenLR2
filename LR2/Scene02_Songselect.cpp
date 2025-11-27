@@ -64,12 +64,7 @@ int SetTarget(game *g) {
 	return 1;
 }
 
-
-
-//401fe0
-void ThreadProc_LoadBanner(void *param) { // TODO: take game&
-	game* g = (game*)param;
-
+static void ThreadProc_LoadBanner(game* g) {
 	CSTR path;
 	CSTR dir(g->sSelect.bmsList[g->sSelect.cur_song].filepath.getDirectory());
 
@@ -85,7 +80,6 @@ void ThreadProc_LoadBanner(void *param) { // TODO: take game&
 			}
 		}
 	}
-	return;
 }
 
 //4021a0
@@ -1540,10 +1534,7 @@ void CheckNewSong(glb_dbgame *glb) {
 	(glb->pGame->sSelect).unk4fc4[2] = '\0';
 }
 
-//4181b0
-void ThreadProc_RankingAutoUpdate(void *param) { // TODO: take game&
-	game *g = (game*)param;
-
+static void ThreadProc_RankingAutoUpdate(game* g) {
 	CSTR hash = g->sSelect.bmsList[g->sSelect.cur_song].hash;
 	g->net.rankingData.Init();
 	g->net.rankingData.rivalID = 0;
@@ -1552,7 +1543,6 @@ void ThreadProc_RankingAutoUpdate(void *param) { // TODO: take game&
 	if (g->sSelect.stack_query[g->sSelect.cur].findStrPos("__RIVAL__") >= 0) {
 		g->net.rankingData.rivalID = g->sSelect.stack_rivalID[g->sSelect.cur];
 	}
-	g->sSelect.isRankingAutoUpdateThread = 1;
 	CSTR path;
 	if (hash.length() < 50) cstrSprintf(&path, "LR2files/Ir/%s.xml", hash.body);
 	else cstrSprintf(&path, "LR2files/Ir/%s.xml", hash.makeCRCstr().body);
@@ -1580,7 +1570,6 @@ void ThreadProc_RankingAutoUpdate(void *param) { // TODO: take game&
 		}
 
 		if (GetNowUnixtime() - GetFileUnixtime(path) < 86400 || g->config.network.autoupdate == 0) { //86400 is 24hours
-			g->sSelect.isRankingAutoUpdateThread = 0;
 			return;
 		}
 	}
@@ -1589,13 +1578,11 @@ void ThreadProc_RankingAutoUpdate(void *param) { // TODO: take game&
 
 	if (!g->config.network.autoupdate) {
 		if (!isIR2) g->net.IRstatus = 0;
-		g->sSelect.isRankingAutoUpdateThread = 0;
 		return;
 	}
 
 	if (g->net.rankUpdateDelayLevel >= 3) {
 		if (!isIR2) g->net.IRstatus = 5;
-		g->sSelect.isRankingAutoUpdateThread = 0;
 		return;
 	}
 
@@ -1604,7 +1591,6 @@ void ThreadProc_RankingAutoUpdate(void *param) { // TODO: take game&
 	while (GetTimeLapse(177, &g->timer1) <g->net.waitTime) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(4));
 		if (g->net.waitForHandle || (isIR2 && (g->KeyInput.p1_buttonInput[4] == 2 || g->KeyInput.p2_buttonInput[4] == 2))) {
-			g->sSelect.isRankingAutoUpdateThread = 0;
 			ResetTimeLapse(177, &g->timer1);
 			g->net.IRstatus = isIR2 ? 2 : 0;
 			return;
@@ -1616,8 +1602,6 @@ void ThreadProc_RankingAutoUpdate(void *param) { // TODO: take game&
 	ErrorLogAdd("接続を開始します\n");
 
 	if (hash.isSame(g->sSelect.bmsList[g->sSelect.cur_song].hash) == 0) {
-		ErrorLogAdd("IRスレッド強制終了\n");
-		g->net.IRstatus = -3;
 		ErrorLogAdd("IRスレッド強制終了\n");
 		g->net.IRstatus = -3;
 	}
@@ -1654,15 +1638,11 @@ void ThreadProc_RankingAutoUpdate(void *param) { // TODO: take game&
 	}
 
 	SetObjectStrings_SongSelect(g);
-	g->sSelect.isRankingAutoUpdateThread = 0;
 }
 
-//419440
-int CountCallLoadPreview = 0;
-void LoadPreview(game *g) {
+static void ThreadProc_LoadPreview(game *g) {
 	BMSMETA meta;
-	
-	CountCallLoadPreview++;
+
 	if (!IsFileExist(g->gameplay.previewBMSfilepath)) {
 		g->gameplay.isPreviewLoad = 0;
 		g->gameplay.previewStatus = 0;
@@ -1702,8 +1682,6 @@ void LoadPreview(game *g) {
 		g->gameplay.isPreviewLoad = 0;
 	}
 }
-
-
 
 
 //41cb80
@@ -2681,7 +2659,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 			g->gameplay.previewStatus = 1;
 			g->gameplay.previewBMShash = g->sSelect.bmsList[g->sSelect.cur_song].hash;
 			g->gameplay.previewBMSfilepath = g->sSelect.bmsList[g->sSelect.cur_song].filepath;
-			g->gameplay.hThreadPreview = std::jthread(LoadPreview, g);
+			g->gameplay.hThreadPreview = std::jthread(ThreadProc_LoadPreview, g);
 		}
 		else if (g->gameplay.previewStatus) {
 			if (g->gameplay.previewBMShash.isDiff(g->sSelect.bmsList[g->sSelect.cur_song].hash)) {

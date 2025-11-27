@@ -14,11 +14,6 @@ int SetBmsFilter(game * g, sqlite3 * sql);
 int GetSongCursor(game * g);
 
 int LoadFontForSongs(game * gs, char flag);
-void ThreadProc_LoadBanner(void * param);
-
-void ThreadProc_RankingAutoUpdate(void * param);
-
-void LoadPreview(game *g);
 
 //playoption
 int SetPlayOption(game * g, sqlite3 * sql);

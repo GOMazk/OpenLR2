@@ -407,42 +407,42 @@ struct SONGDATA { /* 712bytes */
 	CSTR stagefile;
 	CSTR banner;
 	CSTR backBMP;
-	int isStagefile;
-	int isBanner;
-	int isBackBMP;
-	uint difficulty;
-	int level;
-	int exlevel;
-	int keymode;
-	int folderType; /* 0,5:song 1:folder 2:levelfolder 3,4,6:folder 7:newcourse 8:course 9:randomcourse */
-	int maxBPM;
-	int minBPM;
-	int bga;
-	int txt;
-	int longnote;
-	int random;
-	int judge;
-	int replayExist;
-	int favorite;
-	int adddate;
-	int difficultyLevel[5]; /* 0:beginner 1:nomal 2:hyper 3:another 4:insane */
-	int difficultyExist[5]; /* 0:beginner 1:nomal 2:hyper 3:another 4:insane */
-	int difficultyLevelBarLamp[5]; /* 0:beginner 1:nomal 2:hyper 3:another 4:insane */
-	int difficultyCount; /* 0:beginner 1:nomal 2:hyper 3:another 4:insane */
+	int isStagefile{};
+	int isBanner{};
+	int isBackBMP{};
+	uint difficulty{};
+	int level{};
+	int exlevel{};
+	int keymode{};
+	int folderType{}; /* 0,5:song 1:folder 2:levelfolder 3,4,6:folder 7:newcourse 8:course 9:randomcourse */
+	int maxBPM{};
+	int minBPM{};
+	int bga{};
+	int txt{};
+	int longnote{};
+	int random{};
+	int judge{};
+	int replayExist{};
+	int favorite{};
+	int adddate{};
+	int difficultyLevel[5]{}; /* 0:beginner 1:nomal 2:hyper 3:another 4:insane */
+	int difficultyExist[5]{}; /* 0:beginner 1:nomal 2:hyper 3:another 4:insane */
+	int difficultyLevelBarLamp[5]{}; /* 0:beginner 1:nomal 2:hyper 3:another 4:insane */
+	int difficultyCount{}; /* 0:beginner 1:nomal 2:hyper 3:another 4:insane */
 	CSTR courseTitle[10];
 	CSTR courseSubtitle[10];
 	CSTR courseHash[10];
-	int courseLevel[10];
-	int courseStageDifficulty[10];
-	int courseTotalnote[10];
-	int courseID;
-	int courseStageCount;
-	int coursePlayable; /* have all songs */
-	char courseReadOnly;
-	int courseKeys[10];
-	int courseType; /* 0:expert 1:nonstop 2:class */
-	int courseIR; /* IR flag */
-	int grHandle;
+	int courseLevel[10]{};
+	int courseStageDifficulty[10]{};
+	int courseTotalnote[10]{};
+	int courseID{};
+	int courseStageCount{};
+	int coursePlayable{}; /* have all songs */
+	char courseReadOnly{};
+	int courseKeys[10]{};
+	int courseType{}; /* 0:expert 1:nonstop 2:class */
+	int courseIR{}; /* IR flag */
+	int grHandle{};
 	struct STATUS mybest;
 	struct STATUS rivalRecord;
 };
@@ -632,34 +632,34 @@ struct SOUNDDATA {
 };
 
 struct inputStructure {
-	unsigned char inputID[2048]; /* 0:keybd 0x100:joypad 0x200:MIDI */
-	int inputTime[2048]; /* 0:keybd 0x100:joypad 0x200:MIDI */
-	unsigned char p1_buttonInput[20]; /* byte100 */
-	unsigned char p2_buttonInput[20];
-	unsigned char otherbuttons[60];
-	char mouse_buttonL; /* 0:not pressed 1:just pressed 2:pressed 3:released */
-	char mouse_buttonR;
-	char mouse_buttonW;
-	char mouse_button4;
-	int mouse_oldX;
-	int mouse_oldY;
-	int mouse_moveflag;
-	int mouse_moveX;
-	int mouse_moveY;
-	int mousewheel;
-	int drag_start_time;
-	int is_doubleclick;
-	int is_drag_now;
-	int midi_n;
-	int midi_v;
-	int config_keymode; /* 0:7k 1:9k 2:5k */
-	int config_button; /* for selection */
-	int config_button_inMap; /* for use */
-	int config_key; 
-	int mouse_recentMoveTime;
-	int keyboard_presscount;
-	int joypad_presscount;
-	int MIDI_presscount;
+	unsigned char inputID[2048]{}; /* 0:keybd 0x100:joypad 0x200:MIDI */
+	int inputTime[2048]{}; /* 0:keybd 0x100:joypad 0x200:MIDI */
+	unsigned char p1_buttonInput[20]{}; /* byte100 */
+	unsigned char p2_buttonInput[20]{};
+	unsigned char otherbuttons[60]{};
+	char mouse_buttonL{}; /* 0:not pressed 1:just pressed 2:pressed 3:released */
+	char mouse_buttonR{};
+	char mouse_buttonW{};
+	char mouse_button4{};
+	int mouse_oldX{};
+	int mouse_oldY{};
+	int mouse_moveflag{};
+	int mouse_moveX{};
+	int mouse_moveY{};
+	int mousewheel{};
+	int drag_start_time{};
+	int is_doubleclick{};
+	int is_drag_now{};
+	int midi_n{};
+	int midi_v{};
+	int config_keymode{}; /* 0:7k 1:9k 2:5k */
+	int config_button{}; /* for selection */
+	int config_button_inMap{}; /* for use */
+	int config_key{};
+	int mouse_recentMoveTime{};
+	int keyboard_presscount{};
+	int joypad_presscount{};
+	int MIDI_presscount{};
 };
 
 struct SkinAdjust {
@@ -885,36 +885,36 @@ struct SYSTEMSOUND {
 };
 
 struct AUDIO_PARAM {
-	struct FMOD_DSP * DSP_fx[3];
-	struct FMOD_DSP * DSP_eq[7];
-	struct FMOD_DSP * DSP_pitch;
-	int fx_volume_on;
-	int fx_on[3];
-	int pitch_on;
-	int eq_on;
-	int eq_preset;
-	int fxType[3];
-	int fxParam[3][2];
-	int fxChannel[3];
-	int eq_gain[7];
-	int pitch_amount;
-	int pitch_type; //0:freq 1:pitch 2:speed
-	int volume_key;
-	int volume_BGM;
-	int volume_master;
-	double unk4e0[5];
-	double stagePitch[5];
-	double stageBgmVolume[5];
-	double stageKeyVolume[5];
-	int time_fadeout_start;
-	int time_fadeout_end;
-	float fadeout_volume;
-	int time_fadePreview_start;
-	int time_fadePreview_end;
-	float fadePreviewCurrentVolume;
-	float fadePreviewStartVolume;
-	float fadePreviewTargetVolume;
-	char fadePreviewIsQuiet;
+	struct FMOD_DSP * DSP_fx[3]{};
+	struct FMOD_DSP * DSP_eq[7]{};
+	struct FMOD_DSP * DSP_pitch{};
+	int fx_volume_on{};
+	int fx_on[3]{};
+	int pitch_on{};
+	int eq_on{};
+	int eq_preset{};
+	int fxType[3]{};
+	int fxParam[3][2]{};
+	int fxChannel[3]{};
+	int eq_gain[7]{};
+	int pitch_amount{};
+	int pitch_type{}; //0:freq 1:pitch 2:speed
+	int volume_key{};
+	int volume_BGM{};
+	int volume_master{};
+	double unk4e0[5]{};
+	double stagePitch[5]{};
+	double stageBgmVolume[5]{};
+	double stageKeyVolume[5]{};
+	int time_fadeout_start{};
+	int time_fadeout_end{};
+	float fadeout_volume{};
+	int time_fadePreview_start{};
+	int time_fadePreview_end{};
+	float fadePreviewCurrentVolume{};
+	float fadePreviewStartVolume{};
+	float fadePreviewTargetVolume{};
+	char fadePreviewIsQuiet{};
 };
 
 struct AUDIO {
@@ -1032,7 +1032,6 @@ struct SONGSELECT {
 	double levelBarGraph[5];
 	double levelIndicatorAnimation[5];
 	struct CONFIG_SELECT filter;
-	char isRankingAutoUpdateThread; /* IR */
 	int rivalID;
 	struct COURSESELECT course;
 	int isExLevel;
