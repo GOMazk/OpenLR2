@@ -322,6 +322,8 @@ int main(int argc, char** argv) {
 		}
 #endif // _WIN32
 
+		// DxLib-for-Linux can only set title of an already existing window
+		if constexpr (!is_linux()) { SetMainWindowText(LR2TITLE); }
 		// DxLib-for-Linux only writes to stderr when writing to the log file.
 		SetOutApplicationLogValidFlag(gs.config.system.outputlog || is_linux());
 #ifdef _WIN32
@@ -343,7 +345,7 @@ int main(int argc, char** argv) {
 		}
 #endif // _WIN32
 		if (DxLib_Init() != -1) {
-			SetMainWindowText(LR2TITLE);
+			if constexpr (is_linux()) { SetMainWindowText(LR2TITLE); }
 			ChangeFont("", 0);
 			SetLogFontSize(14); //DXLIBVER: change this for further dxlib version
 #ifdef _WIN32
