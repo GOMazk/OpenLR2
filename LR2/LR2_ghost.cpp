@@ -84,7 +84,7 @@ int PLAYSCORE::ResizeJudgeQueue(size_t size){
 		this->judge_queue_count = 1000;
 	}
 	this->judge_queue = (char *)realloc(this->judge_queue, size);
-	for (int i = this->judge_queue_count; i < this->judge_queue_count + size; i++) {
+	for (int i = this->judge_queue_count; i < size; i++) {
 		this->judge_queue[i] = -1;
 	}
 	this->judge_queue_count = this->judge_queue_count + size;
@@ -94,7 +94,7 @@ int PLAYSCORE::ResizeJudgeQueue(size_t size){
 //4a8740
 int PLAYSCORE::AddJudgeQueue(char judge){
 	if (this->judgecount == this->judge_queue_count) {
-		ResizeJudgeQueue(1000);
+		ResizeJudgeQueue(this->judge_queue_count + 1000);
 	}
 	this->judge_queue[this->judgecount] = judge;
 	this->judgecount = this->judgecount + 1;
