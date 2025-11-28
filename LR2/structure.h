@@ -1368,7 +1368,7 @@ struct NETWORK {
 	CSTR IR_passMD5;
 	CSTR IR_name;
 	int IR_ID{0};
-	int rivals[20];
+	int rivals[20]{};
 	int rivalcount{};
 	int getrival{};
 	CSTR domain = "www.dream-pro.info";
