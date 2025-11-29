@@ -18132,7 +18132,9 @@ int SearchCourseFromDB(sqlite3 *sql, SONGSELECT *ss, int keys, int multistagemod
 			if (song.mybest.rank == 0 && song.mybest.stat_pgreat + song.mybest.stat_great > 0)
 				song.mybest.rank = 1;
 		}
-		song.mybest.rank = 1;
+	    else {
+	      bmslist.mybest.rank = 8;
+	    }
 		song.mybest.clear_db = sqlite3_column_int(pStmt, 20);
 		song.mybest.op_history = sqlite3_column_int(pStmt, 21);
 		song.mybest.clear_sd = sqlite3_column_int(pStmt, 24);
