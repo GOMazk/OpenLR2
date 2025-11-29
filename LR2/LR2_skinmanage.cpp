@@ -116,7 +116,7 @@ int SetFirstSkins(game *g){
 		ErrorLogAdd("14keysスキンが有りません。\n");
 	}
 	if (SetFirstSkin_10k(sm, SKINTYPE_10KEYS, &g->config.skin.skinFilePath[3]) == -1) {
-		ErrorLogAdd("14keysスキンが有りません。\n");
+		ErrorLogAdd("10keysスキンが有りません。\n");
 	}
 	if (SetFirstSkin(sm, SKINTYPE_9KEYS, &g->config.skin.skinFilePath[4]) == -1) {
 		ErrorLogAdd("9keysスキンが有りません。\n");
