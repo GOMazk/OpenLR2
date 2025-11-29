@@ -1969,12 +1969,12 @@ uint SetObjectValue_Num(game *g, int op) {
 			break;
 		}
 		case 163:{
-			int time = GetTimeLapse(41, &g->timer1) - g->gameplay.song_runtime;
+			int time = g->gameplay.song_runtime - GetTimeLapse(41, &g->timer1);
 			if (time / 1000 > 0) return time / 1000 / 60;
 			break;
 		}
 		case 164:{
-			int time = GetTimeLapse(41, &g->timer1) - g->gameplay.song_runtime;
+			int time = g->gameplay.song_runtime - GetTimeLapse(41, &g->timer1);
 			if (time / 1000 > 0) return time / 1000 % 60;
 			break;
 		}
