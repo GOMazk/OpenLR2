@@ -13,6 +13,7 @@
 #include <cmath>
 #include <array>
 #include <cstdint>
+#include <codecvt>
 
 using std::uintptr_t;
 
@@ -603,6 +604,14 @@ int RecordFadeout(AUDIO *aud, double from, double length) {
 	return 1;
 }
 
+static std::string s2utf8(const std::string_view& str, unsigned int codepage) {
+	int size_needed = MultiByteToWideChar(codepage, 0, str.data(), (int)str.size(), NULL, 0);
+	std::wstring wstr(size_needed, 0);
+	MultiByteToWideChar(codepage, 0, str.data(), (int)str.size(), wstr.data(), size_needed);
+	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
+	return converter.to_bytes(wstr);
+}
+
 //4b8bb0
 int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, int loop, int disableDSP, int previewFlag) {
 
@@ -671,7 +680,7 @@ int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, int loop, int disable
 					}
 				}
 			}
-			result = FMOD_System_CreateSound(aud->fmodSys, filepath, mode, NULL, &sound->fmod_sound);
+			result = FMOD_System_CreateSound(aud->fmodSys, s2utf8(filepath.body, 932).c_str(), mode, NULL, &sound->fmod_sound);
 		}
 
 		sound->flag2c = 0;
