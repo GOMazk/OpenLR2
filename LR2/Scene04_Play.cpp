@@ -869,8 +869,6 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats) {
 				stats.epr++;
 				stats.lastFastSlow = 1;
-				stats.epr++;
-				stats.lastFastSlow = 1;
 			};
 			increment_extended(extendedStats);
 			increment_extended(extendedColumnStats);
@@ -997,8 +995,6 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 			g->gameplay.bmsobj_note[lane].noteVal = note.val;
 			PlaySound(&g->audio, &g->gameplay.keysound[g->gameplay.bmsobj_note[lane].noteVal], g->audio.chnStageKey[note.stage], note.stage);
 			auto increment_extended = [](EXTENDEDPLAYERSTATS& stats) {
-				stats.epr++;
-				stats.lastFastSlow = 1;
 				stats.epr++;
 				stats.lastFastSlow = 1;
 			};
