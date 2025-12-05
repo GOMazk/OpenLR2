@@ -5,8 +5,8 @@ int InitImageFont(ImageFont * imgfont);
 int ReadImageFont(CSTR filename, ImageFont * imgfont);
 
 //imagefont img load on draw
-int LoadFontGraph(ImageFont * imgfont, int * fontNum);
-int LoadFontCharGraph(ImageFont * imgfont, ushort vChar);
+int LoadFontGraph(ImageFont * imgfont, int fontNum);
+int LoadFontCharGraph(ImageFont * imgfont, char32_t vChar);
 int LoadFontForText(ImageFont * imgfont, CSTR * str);
 
 //skinobj

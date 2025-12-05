@@ -1,4 +1,7 @@
-﻿#pragma comment(lib,"ws2_32.lib")
+﻿#include <fstream>
+#include <sstream>
+#include <string>
+#pragma comment(lib,"ws2_32.lib")
 #include "LR2_ir.h"
 #include "DxLib/DxLib.h"
 #include "tinyxml/tinyxml.h"
@@ -105,22 +108,23 @@ void RANKING::Init() {
 }
 
 int RANKING::ParseXML(const char* path) {
-	
-	TiXmlDocument *hXml;
-	TiXmlElement *cur;
-	
 	Init();
 	ErrorLogFmtAdd("ランキングデータのパースを開始します。パス%s\n", path);
 
-	hXml = new TiXmlDocument(path);
-	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
-		if (hXml) {
-			delete(hXml);
-		}
-		ErrorLogFmtAdd("ランキングファイルが見つかりません\n");
-		return 0;
-	}
+	TiXmlDocument *hXml = new TiXmlDocument(path);
 
+	std::string s;
+	{
+		std::ifstream ifs{path};
+		std::stringstream ss;
+		ss << ifs.rdbuf();
+		s = ss.str();
+	}
+	s = ansi2utf(s.c_str(), 932);
+	// NOTE: TIXML_ENCODING_UTF8 or for whatever other reason it ignores `encoding='shift_jis'` in the header.
+	hXml->Parse(s.c_str(), nullptr, TIXML_ENCODING_UTF8);
+
+	TiXmlElement *cur;
 	cur = hXml->FirstChildElement("lastupdate");
 	if (cur && cur->ToElement()) {
 		cstrSprintf(&this->lastupdate, "%s", cur->ToElement()->GetText());

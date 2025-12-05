@@ -97,16 +97,17 @@ if(WIN32)
     target_link_libraries(OpenLR2Lib PUBLIC winmm.lib)
 endif()
 
-if(${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC")
-    # FIXME(utf-8): not supported on any other compilers. Move to UTF-8.
-    target_compile_options(OpenLR2Lib PUBLIC /execution-charset:shift-JIS)
+if(WIN32)
+    # FIXME: only do this for msvc, `${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC"` doesn't work
+    target_compile_options(OpenLR2Lib PUBLIC /utf-8)
 endif()
 
-add_executable(OpenLR2 WIN32 LR2/Main.cpp)
+add_executable(OpenLR2 WIN32 LR2/Main.cpp OpenLR2.manifest)
 set_target_properties(OpenLR2 PROPERTIES CXX_STANDARD 23)
 target_link_libraries(OpenLR2 PUBLIC OpenLR2Lib)
 
 if(WIN32)
+    # FIXME: SkinEditor manifest
     add_executable(
         SkinEditor
         WIN32

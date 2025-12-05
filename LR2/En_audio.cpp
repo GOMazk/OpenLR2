@@ -13,7 +13,7 @@
 #include <cmath>
 #include <array>
 #include <cstdint>
-
+#include "filesystem.h"
 using std::uintptr_t;
 
 #ifdef _WIN32
@@ -441,7 +441,7 @@ void WriteSoundFile(AUDIO *aud, CSTR filename, uint size) {
 	FILE* _File;
 	char header1[12], header2[24], header3[8];
 
-	_File = fopen(filename, "wb");
+	_File = fopen(filename.body, "wb");
 	if ((size != 0) && (size <= aud->size)) {
 		aud->size = size;
 	}
@@ -597,21 +597,6 @@ int RecordFadeout(AUDIO *aud, double from, double length) {
 	return 1;
 }
 
-static std::string s2utf8(const std::string_view str, unsigned int codepage) {
-#ifdef _WIN32
-	int size_needed = MultiByteToWideChar(codepage, 0, str.data(), static_cast<int>(str.size()), nullptr, 0);
-	auto wstr = std::make_unique_for_overwrite<wchar_t[]>(size_needed);
-	MultiByteToWideChar(codepage, 0, str.data(), static_cast<int>(str.size()), wstr.get(), size_needed);
-	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
-	return converter.to_bytes(wstr.get(), wstr.get() + size_needed);
-#else
-	if (codepage == CP_ACP) { // Already UTF-8
-		return std::string{str};
-	}
-	return std::string{str}; // unused currently :P
-#endif // _WIN32
-}
-
 int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, int loop, int /*disableDSP*/, int previewFlag) {
 
 	CSTR path;
@@ -638,7 +623,7 @@ int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, int loop, int /*disab
 		FMOD_RESULT result;
 		if (aud->cmd_mediaOut) {
 			FMOD_MODE mode = FMOD_ACCURATETIME | FMOD_LOOP_OFF;
-			result = FMOD_System_CreateSound(aud->fmodSys, filepath, mode, NULL, &sound->fmod_sound); 
+			result = FMOD_System_CreateSound(aud->fmodSys, filepath.body, mode, nullptr, &sound->fmod_sound); 
 			SOUND_normalize(aud, sound);
 		}
 		else {
@@ -646,7 +631,7 @@ int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, int loop, int /*disab
 			if (previewFlag != 0) {
 				mode |= FMOD_CREATESTREAM;
 			}
-			result = FMOD_System_CreateSound(aud->fmodSys, s2utf8(filepath.body, CP_ACP).c_str(), mode, NULL, &sound->fmod_sound);
+			result = FMOD_System_CreateSound(aud->fmodSys, filepath.body, mode, nullptr, &sound->fmod_sound);
 		}
 
 		sound->flag2c = 0;
@@ -668,7 +653,7 @@ int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, int loop, int /*disab
 	}
 
 	if (previewFlag) SetCreateSoundDataType(3);
-	sound->soundHandle = LoadSoundMem(filepath, 3, -1);
+	sound->soundHandle = LoadSoundMem(filepath.body, 3, -1);
 	if (previewFlag) SetCreateSoundDataType(0);
 	if (sound->soundHandle == -1) {
 		sound->filename.fillzero();

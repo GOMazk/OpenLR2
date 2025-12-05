@@ -1,8 +1,9 @@
 ﻿#include "LR2_skinmanage.h"
+#include "En_fileutil.h"
 #include "Engine.h"
 #include "LR2_configsave.h"
 #include "filesystem.h"
-
+#include "filesystem.h"
 #include <filesystem>
 
 //maybe deleted by compiler, restored it for convenience
@@ -222,13 +223,14 @@ int ParseLR2SkinCustom(SkinManage *skm, CSTR filepath) {
 
 	cstrSprintf(&md5Filepath, fs::make_preferred("LR2files/SkinCustomize/%s.xml").data(), MD5str(filepath) );
 	ReadSkinCustomize(&skCustom, md5Filepath);
-	pFile = fopen(filepath, "r");
+	pFile = fopen(filepath.body, "r");
 	if (!pFile) return 0;
 
 	pBuffer = buffer.outstr();
 	for (pBuffer = fgets(pBuffer,256,pFile) ; pBuffer ; pBuffer = fgets(pBuffer, 256, pFile)) {
 		buffer.trimWhiteSpace();
 		DealWhiteSpace(&buffer);
+		buffer = ansi2utf(pBuffer, 932).c_str();
 		if (buffer.left(12).isSame("#INFORMATION")) {
 			SplitCSV(buffer, &csvBuf, ",");
 			if (csvBuf.val[1] < 0) {
@@ -381,30 +383,6 @@ int ParseLR2SkinCustom(SkinManage *skm, CSTR filepath) {
 int MakeSkinList(SkinManage *skm, CSTR dir) {
 	if (dir.right(1).isDiff("\\") && dir.right(1).isDiff("/"))
 		dir.add("\\");
-#ifdef _WIN32
-	CSTR filter;
-	filter.assign(&dir).add("*");
-	HANDLE hFindFile, hFindFileOld;
-	_WIN32_FIND_DATAA findFileData;
-	hFindFile = FindFirstFileA(filter, &findFileData);
-	do{
-		if ( (findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0) {
-			filter.assign(&dir).add(findFileData.cFileName);
-			if (filter.right(8).isSame(".lr2skin") || filter.right(6).isSame(".lr2ss")) ParseLR2SkinCustom(skm, filter);
-		}
-		else {  //logic arranged
-		if (strcmp("..", findFileData.cFileName) && strcmp(".", findFileData.cFileName)) {
-			filter.assign(&dir).add(findFileData.cFileName).add("\\");
-			MakeSkinList(skm, filter);
-		}
-		}
-		hFindFileOld = hFindFile;
-		if (FindNextFileA(hFindFile, &findFileData) == 0) {
-			FindClose(hFindFileOld);
-			return 0;
-		}
-	} while (true);
-#else // TODO(utf-8): use this
 #ifndef _WIN32
 	dir.replace("\\", "/");
 #endif // _WIN32
@@ -420,5 +398,4 @@ int MakeSkinList(SkinManage *skm, CSTR dir) {
 		}
 	}
 	return 0;
-#endif // _WIN32
 }

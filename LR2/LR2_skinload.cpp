@@ -1,8 +1,9 @@
 ﻿#include "LR2_skinload.h"
 #include "LR2_skindraw.h"
 #include "LR2_configsave.h"
+#include "En_fileutil.h"
 #include "filesystem.h"
-
+#include "filesystem.h"
 bool IsMultibyte(byte ch){
 	/*if (0x80 < ch) {
 		if (ch < 0xa0) return true;
@@ -435,12 +436,7 @@ int InitSkin(skstruct *sk, int /*unused*/, char font) {
 	InitSRC(&sk->src_README[1]);
 	InitDST(&sk->dst_README[1]);
 	for (int i = 0; i < 10; i++) {
-		if (sk->ImageFonts[i].images == NULL) {
-			sk->ImageFonts[i].images = (FontImage*)malloc(1000 * sizeof(FontImage));
-		}
-		if (sk->ImageFonts[i].chars == NULL) {
-			sk->ImageFonts[i].chars = (FontChar*)malloc(0x3bce * sizeof(FontChar));
-		}
+		sk->ImageFonts[i].images.resize(1000);
 	}
 	sk->count = 0;
 	sk->num_of_struct = 0;
@@ -520,9 +516,9 @@ int InitImageFont(ImageFont *imgfont) {
 	imgfont->size = 0;
 	imgfont->kerning = 0;
 	imgfont->filepath[0] = '\0';
-	for (int i = 0; i < 0x3BCE; i++) {
-		DeleteGraph(imgfont->chars[i].grHandle);
-		imgfont->chars[i].grHandle = -1;
+	for (auto& [ch, chTex] : imgfont->chars) {
+		DeleteGraph(chTex.grHandle);
+		chTex.grHandle = -1;
 	}
 	for (int i = 0; i < 1000; i++) {
 		DeleteGraph(imgfont->images[i].grHandle);
@@ -540,9 +536,9 @@ int ReadImageFont(CSTR filename, ImageFont *imgfont) {
 	if (strcmp(str1, imgfont->filepath)) {
 		imgfont->size = 0;
 		imgfont->kerning = 0;
-		for (int i = 0; i < 0x3bce; i++) {
-			DeleteGraph(imgfont->chars[i].grHandle);
-			imgfont->chars[i].grHandle = -1;
+		for (auto& [idx, chTex] : imgfont->chars) {
+			DeleteGraph(chTex.grHandle);
+			chTex.grHandle = -1;
 		}
 		for (int i = 0; i < 1000; i++) {
 			DeleteGraph(imgfont->images[i].grHandle);
@@ -566,11 +562,35 @@ int ReadImageFont(CSTR filename, ImageFont *imgfont) {
 				DealWhiteSpace(&str2);
 				SplitCSV(str2, &csvBuf, ",");
 				if (*str2.atPos(1) == 'R') {
-					imgfont->chars[csvBuf.val[1]].srcX = csvBuf.val[3];
-					imgfont->chars[csvBuf.val[1]].srcY = csvBuf.val[4];
-					imgfont->chars[csvBuf.val[1]].width = csvBuf.val[5];
-					imgfont->chars[csvBuf.val[1]].height = csvBuf.val[6];
-					imgfont->chars[csvBuf.val[1]].ImageNum = csvBuf.val[2];
+					char s_sjis[3]{ 0 };
+					int chInt = csvBuf.val[1];
+					if (chInt >= 0 && chInt <= 255)
+					{
+						// ID = ASCII
+						s_sjis[0] = chInt & 0xFF;
+					}
+					else if (chInt >= 256 && chInt <= 8126)
+					{
+						// ID = Shift-JIS文字コードを10進数に変換して32832を引いた値
+						int i = chInt + 32832;
+						s_sjis[0] = (i >> 8) & 0xFF;
+						s_sjis[1] = i & 0xFF;
+					}
+					else if (chInt >= 8127 && chInt <= 15306)
+					{
+						// ID = Shift-JIS文字コードを10進数に変換して49281を引いてた値
+						int i = chInt + 49281;
+						s_sjis[0] = (i >> 8) & 0xFF;
+						s_sjis[1] = i & 0xFF;
+					}
+					std::u32string u32Ch = utf8_to_utf32(ansi2utf(s_sjis, 932));
+					char32_t chIdx = u32Ch.front();
+					auto& chTex = imgfont->chars[chIdx];
+					chTex.srcX = csvBuf.val[3];
+					chTex.srcY = csvBuf.val[4];
+					chTex.width = csvBuf.val[5];
+					chTex.height = csvBuf.val[6];
+					chTex.ImageNum = csvBuf.val[2];
 				}
 				else if (*str2.atPos(1) == 'M') {
 					imgfont->kerning = csvBuf.val[1];
@@ -591,68 +611,42 @@ int ReadImageFont(CSTR filename, ImageFont *imgfont) {
 	return 1;
 }
 
-int LoadFontGraph(ImageFont *imgfont, int *fontNum){
-	int fnum;
-	
-	fnum = *fontNum;
-	if ( 0 <= fnum && fnum < 1000 && imgfont->images[fnum].grHandle == -1 ) {
+int LoadFontGraph(ImageFont *imgfont, int fontNum) {
+	if ( 0 <= fontNum && fontNum < 1000 && imgfont->images[fontNum].grHandle == -1 ) {
 		CSTR str(imgfont->filepath, 0);
-		str.add(imgfont->images[fnum].filename);
-		DeleteGraph(imgfont->images[fnum].grHandle);
-		imgfont->images[fnum].grHandle = LoadGraph(str, 0);
+		str.add(imgfont->images[fontNum].filename);
+		DeleteGraph(imgfont->images[fontNum].grHandle);
+		imgfont->images[fontNum].grHandle = LoadGraph(str, 0);
 		return 1;
 	}
 	return 0;
 }
 
-int LoadFontCharGraph(ImageFont *imgfont, ushort vChar){
-	FontImage *fb;
-	int fNum;
-	FontChar *fc;
-
-	if (0x3bcd < vChar) {
-		return 0;
-	}
-	fc = imgfont->chars;
-	fNum = fc[vChar].ImageNum;
-	if (0 <= fNum && fNum < 1000 && fc[vChar].grHandle == -1 && 0 < fc[vChar].height && 0 < fc[vChar].width) {
-		fb = imgfont->images;
-		if (fb[fNum].grHandle == -1) {
-			LoadFontGraph(imgfont, &fc[vChar].ImageNum);
-			fb = imgfont->images;
+int LoadFontCharGraph(ImageFont *imgfont, char32_t vChar) {
+	auto& fc = imgfont->chars[vChar];
+	int fNum = fc.ImageNum;
+	auto& fb = imgfont->images[fNum];
+	if (0 <= fNum && fNum < 1000 && fc.grHandle == -1 && 0 < fc.height && 0 < fc.width) {
+		if (fb.grHandle == -1) {
+			LoadFontGraph(imgfont, fc.ImageNum);
 			/* load failure check */
-			if (fb[imgfont->chars[vChar].ImageNum].grHandle == -1) {
+			if (fb.grHandle == -1) {
 				return 0;
 			}
 		}
-		fc = imgfont->chars + vChar;
-		imgfont->chars[vChar].grHandle = DerivationGraph(fc->srcX, fc->srcY, fc->width, fc->height, fb[fc->ImageNum].grHandle);
+		fc.grHandle = DerivationGraph(fc.srcX, fc.srcY, fc.width, fc.height, fb.grHandle);
 		return 1;
 	}
 	return 0;
 }
 
 int LoadFontForText(ImageFont *imgfont, CSTR *str){
-	ushort twochar;
-
-	if (str->length() <= 0) return 0;
-
-	for (int i = 0; *str->atPos(i) && i < str->length(); ) {
-		if ( IsMultibyte(*str->atPos(i)) ) {
-			twochar = (*str->atPos(i) << 8) + (uchar)*str->atPos(i + 1);
-			if (twochar >= 0x9ffe) {
-				twochar += 0xbfbf;
-			}
-			twochar += 0x7fc0;
-			i += 2;
-		}
-		else {
-			twochar = (uchar)*str->atPos(i);
-			i++;
-		}
-
-		if (imgfont->chars[twochar].grHandle == -1){
-			LoadFontCharGraph(imgfont,twochar);
+	if (str->length() <= 0 /*|| imgfont->size == 0*/) return 0;
+	std::u32string u32str = utf8_to_utf32(str->body);
+	for (auto& ch : u32str) {
+		auto& chTex = imgfont->chars[ch];
+		if (chTex.grHandle == -1) {
+			LoadFontCharGraph(imgfont, ch);
 		}
 	}
 	return 1;
@@ -944,7 +938,7 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 	ErrorLogFmtAdd("スキンの読み込みを開始します。 %s\n", FilePath.body);
 	ErrorLogTabAdd();
 
-	pFile = fopen(FilePath, "r");
+	pFile = fopen(FilePath.body, "r");
 	CSTR dir(FilePath.getDirectory());
 	line = 0;
 
@@ -955,6 +949,7 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 	}
 	pFbuf = fBuf.outstr();
 	for (pFbuf = fgets(pFbuf, 1023, pFile); pFbuf; pFbuf = fgets(pFbuf, 1023, pFile)) {
+		fBuf = ansi2utf(pFbuf, 932).c_str();
 		//if (sk->image.dstSize - 1 == sk->image.srcSize) {
 		//	sk->image.src = (SRCstruct*)realloc(sk->image.src, (sk->image.dstSize + 50) * sizeof(SRCstruct));
 		//	sk->image.dst = (DSTstruct*)realloc(sk->image.dst, (sk->image.dstSize + 50) * sizeof(DSTstruct));
@@ -1090,7 +1085,7 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 						else {
 							SplitCSV(fBuf, &csv, ",");
 							//sk->fontHandle[sk->num_of_struct] = CreateFontToHandle(sk->fontname, csv.val[1], csv.val[2], csv.val[3], 0, -1, 0, -1, -1); //DxLib3.02
-							sk->fontHandle[sk->num_of_struct] = CreateFontToHandle(sk->fontname, csv.val[1], csv.val[2], csv.val[3], 0, -1, 0, -1); //DxLib3.24f
+							sk->fontHandle[sk->num_of_struct] = CreateFontToHandle(sk->fontname.body, csv.val[1], csv.val[2], csv.val[3], DX_CHARSET_UTF8, -1, 0, -1); //DxLib3.24f
 							if (sk->fontHandle[sk->num_of_struct] == -1) {
 								sk->fontHandle[sk->num_of_struct] = 0;
 							}

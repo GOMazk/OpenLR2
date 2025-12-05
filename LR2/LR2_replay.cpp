@@ -1,7 +1,7 @@
 ﻿#include "LR2_replay.h"
 #include "Engine.h"
 #include "filesystem.h"
-
+#include "filesystem.h"
 #include <filesystem>
 #include <system_error>
 
@@ -127,7 +127,7 @@ int SaveReplay(REPLAY *rp, CSTR songMD5, CSTR localID) {
 
 	CSTR path;
 	cstrSprintf(&path, fs::make_preferred("LR2files/Replay/%s/%s.lr2rep").data(), localID.body, songMD5.body);
-	pFile = fopen(path, "wb");
+	pFile = fopen(path.body, "wb");
 	if (pFile == NULL) {
 		ErrorLogAdd("リプレイデータの保存に失敗しました。\n");
 		return -1;

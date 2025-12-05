@@ -60,23 +60,11 @@ static bool UTF8toANSI(LPCSTR str, char *oBuf, size_t *oSize){
 }
 
 int SQL_Run(CSTR queryStr, sqlite3 *sql) {
-	size_t size;
-	ANSItoUTF8(queryStr, nullptr, &size);
-	CSTR oBuf;
-	oBuf.resize2(size + 1);
-	memset(oBuf.body, 0, size + 1);
-	ANSItoUTF8(queryStr, oBuf.body, &size);
-	return sqlite3_exec(sql, oBuf.body, nullptr, nullptr, nullptr);
+	return sqlite3_exec(sql, queryStr.body, nullptr, nullptr, nullptr);
 }
 
 int SQL_prepare(CSTR queryStr, sqlite3 *sql, sqlite3_stmt **ppStmt) {
-	size_t size;
-	ANSItoUTF8(queryStr, nullptr, &size);
-	CSTR oBuf;
-	oBuf.resize2(size + 1);
-	memset(oBuf.body, 0, size + 1);
-	ANSItoUTF8(queryStr, oBuf.body, &size);
-	return sqlite3_prepare(sql, oBuf.body, -1, ppStmt, nullptr);
+	return sqlite3_prepare(sql, queryStr.body, -1, ppStmt, nullptr);
 }
 
 CSTR SQL_GetColumn(int i, sqlite3_stmt *pStmt){
@@ -89,15 +77,6 @@ CSTR SQL_GetColumn(int i, sqlite3_stmt *pStmt){
 	// Cast safety: it's safe to cast from unsigned char* to char*
 	const char* columnText = reinterpret_cast<const char*>(sqlite3_column_text(pStmt, i));
 
-	size_t size;
-	UTF8toANSI(columnText, nullptr, &size);
-
-	CSTR oBuf;
-	oBuf.resize2(size + 1);
-	memset(oBuf.body, 0, size + 1);
-
-	UTF8toANSI(columnText, oBuf.body, &size);
-	oBuf.body[size] = '\0';
-
+	CSTR oBuf(columnText);
 	return oBuf;
 }

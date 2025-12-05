@@ -1,11 +1,14 @@
 #include "strclass.h"
-
+#include "filesystem.h"
 #include <cstring>
 #include <span>
 #include <string>
 #include <string_view>
 #include <cstdarg>
 #include <cctype>
+#include <filesystem>
+
+#include "En_fileutil.h"
 
 typedef unsigned char byte;
 
@@ -50,53 +53,13 @@ DWORD CSTR::CRC32() {
 	if (0 < (int)(pcVar3 + 1)) {
 		do {
 			uVar4 = uVar4 ^ (int)pcVar2[iVar5];
-			if ((uVar4 & 1) == 0) {
-				uVar4 = uVar4 >> 1;
-			}
-			else {
-				uVar4 = uVar4 >> 1 ^ 0xedb88320;
-			}
-			if ((uVar4 & 1) == 0) {
-				uVar4 = uVar4 >> 1;
-			}
-			else {
-				uVar4 = uVar4 >> 1 ^ 0xedb88320;
-			}
-			if ((uVar4 & 1) == 0) {
-				uVar4 = uVar4 >> 1;
-			}
-			else {
-				uVar4 = uVar4 >> 1 ^ 0xedb88320;
-			}
-			if ((uVar4 & 1) == 0) {
-				uVar4 = uVar4 >> 1;
-			}
-			else {
-				uVar4 = uVar4 >> 1 ^ 0xedb88320;
-			}
-			if ((uVar4 & 1) == 0) {
-				uVar4 = uVar4 >> 1;
-			}
-			else {
-				uVar4 = uVar4 >> 1 ^ 0xedb88320;
-			}
-			if ((uVar4 & 1) == 0) {
-				uVar4 = uVar4 >> 1;
-			}
-			else {
-				uVar4 = uVar4 >> 1 ^ 0xedb88320;
-			}
-			if ((uVar4 & 1) == 0) {
-				uVar4 = uVar4 >> 1;
-			}
-			else {
-				uVar4 = uVar4 >> 1 ^ 0xedb88320;
-			}
-			if ((uVar4 & 1) == 0) {
-				uVar4 = uVar4 >> 1;
-			}
-			else {
-				uVar4 = uVar4 >> 1 ^ 0xedb88320;
+			for (int i = 0; i < 8; i++) {
+				if ((uVar4 & 1) == 0) {
+					uVar4 = uVar4 >> 1;
+				}
+				else {
+					uVar4 = uVar4 >> 1 ^ 0xedb88320;
+				}
 			}
 			iVar5 = iVar5 + 1;
 		} while (iVar5 < (int)(pcVar3 + 1));
@@ -569,34 +532,21 @@ CSTR& CSTR::operator=(const char *str) {
 	return assign(str, 0);
 }
 
-CSTR CSTR::getDirectory() {
-	byte ch;
-	int len;
-	char *str;
-	int pos;
-	int i;
-
-	i = 0;
-	str = this->body;
-	pos = -1;
-	len = length();
-	while (str[i] != '\0') {
-		if ( i >= len - 1 ) break;
-		ch = str[i];
-		if ((byte)((ch ^ 0x20) + 0x5f) < 0x3c) {
-			i = i + 2;
-		}
-		else {
-			if ((ch == '\\') || (ch == '/')) {
-				pos = i;
-			}
-			i = i + 1;
-		}
-	}
-	return left(pos + 1);
+[[nodiscard]] inline const char* cs(const std::u8string& s)
+{
+	// Don't try making this take fs::path, pray on lifetime extension.
+	return reinterpret_cast<const char*>(s.c_str());
 }
 
-CSTR CSTR::getParaentDirectory() {
+CSTR CSTR::getDirectory() {
+	CSTR out;
+	std::filesystem::path path(reinterpret_cast<char8_t*>(this->body));
+	out.assign(cs(path.parent_path().u8string()));
+	*out.atPos(out.length()) = std::filesystem::path::preferred_separator;
+	return out;
+}
+
+CSTR CSTR::getParentDirectory() {
 	return getDirectory().getDirectory();
 }
 

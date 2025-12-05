@@ -3,7 +3,7 @@
 #include "LR2_replay.h"
 #include "LR2_skinobject.h"
 #include "LR2_configsave.h"
-
+#include "filesystem.h"
 #include "filesystem.h"
 
 int FxByMIDI(game *g) {
@@ -345,12 +345,13 @@ int ReadLR2SoundSet(game *g, CSTR filepath, char reFlag) {
 		int t = sku.customize_value[i];
 		if (899 < t &&  t < 1000) dst_op[t] = 1;
 	}
-	hFile = fopen(filepath, "r");
+	hFile = fopen(filepath.body, "r");
 	if (!hFile) return 0;
 	CSTR fBuf(260);
 	char* pFbuf;
 	pFbuf = fBuf.outstr();
 	for (pFbuf = fgets(pFbuf, 256, hFile); pFbuf; pFbuf = fgets(pFbuf, 256, hFile)) {
+		fBuf = ansi2utf(pFbuf, 932).c_str();
 		if (*fBuf.atPos(0) == '#') {
 			fBuf.trimWhiteSpace();
 			DealWhiteSpace(&fBuf);

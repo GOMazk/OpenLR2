@@ -250,7 +250,6 @@ int WORKSPACE::LoadSkin(char* path) {
     for (int i = 0; i < 20; i++) g.skstruct.customfile[i].fillzero();
     g.skstruct.skinMD5.fillzero();
     g.skstruct.skFontname.fillzero();
-    memset(&g.skstruct, 0, sizeof(skstruct));
     for (int i = 0; i < 200; i++) g.skstruct.caption[i].fillzero();
     for (int i = 0; i < 200; i++) g.skstruct.caption[i].assign("(null)");
     for (int i = 0; i < 200; i++) g.skstruct.GrHandle[i] = -1;

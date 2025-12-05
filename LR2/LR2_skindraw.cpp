@@ -856,45 +856,17 @@ int LRDrawImg(int *grHandle, DSTdraw *dstD) {
 }
 
 int GetTextGraphLength(CSTR *str, ImageFont *imF) {
-	int pos;
-	int ret;
-	char ch;
-	ushort vCh;
-	int x, y;
-
-	pos = 0;
-	ret = 0;
-
-	if (*(str->atPos(0)) == '\0') return 0;
-	do {
-		if (str->length() <= pos) return ret;
-		ch = *str->atPos(pos);
-		// 'ch < 0x81 || (0x9f < ch && (ch < 0xe0 || 0xfd < ch))' is replaced with !IsMultiByte()
-		if (!IsMultibyte(ch)) {
-			if (ch < 0)
-				vCh = *str->atPos(pos) + 0x100;
-			else
-				vCh = *str->atPos(pos);
-		}
-		else {
-			vCh = (*str->atPos(pos) << 8) + (uchar)*str->atPos(pos + 1);
-			if (vCh > 0xFF) {
-				if (vCh >= 0x9ffe) vCh += 0xbfbf;
-				vCh += 0x7fc0;
-			}
-		}
-		if (vCh >= 0x3bce) vCh = 0x3f;
-		
-		if (imF->chars[vCh].grHandle == -1) LoadFontCharGraph(imF, vCh);
-		GetGraphSize(imF->chars[vCh].grHandle, &x, &y);
-
-		ch = *str->atPos(pos);
-		if (!IsMultibyte(ch)) pos += 1;
-		else pos += 2;
-		ret += imF->kerning + x;
-		if (*str->atPos(pos) == 0 || pos >= str->length()) ret -= imF->kerning;
-	} while (*str->atPos(pos) != '\0');
-	return ret;
+	int totalX = 0;
+	if (str->length() == 0) return 0;
+	std::u32string u32Str = utf8_to_utf32(str->body);
+	for (auto& ch : u32Str) {
+		int x = 0, y = 0;
+		auto& chTex = imF->chars[ch];
+		if (chTex.grHandle == -1) LoadFontCharGraph(imF, ch);
+		GetGraphSize(chTex.grHandle, &x, &y);
+		totalX += imF->kerning + x;
+	}
+	return totalX - imF->kerning;
 }
 
 void LRDrawText(int* grHandle, DSTdraw *dstd, CSTR *str, ImageFont *imF) {
@@ -926,12 +898,7 @@ void LRDrawText(int* grHandle, DSTdraw *dstd, CSTR *str, ImageFont *imF) {
 					dstd->x = dstd->x - (int)(width*wl);
 				}
 				GetTimeWrap();
-				if (wl == 1.0 && hl == 1.0) {
-					DrawStringToHandle(dstd->x, dstd->y, str->outstr(), GetColor(dstd->r, dstd->g, dstd->b), *grHandle, 0, 0);
-				}
-				else {
-					DrawExtendStringToHandle(dstd->x, dstd->y, wl, hl, str->outstr(), GetColor(dstd->r, dstd->g, dstd->b), *grHandle, 0, 0);
-				}
+				DrawExtendStringToHandle(dstd->x, dstd->y, wl, hl, str->outstr(), GetColor(dstd->r, dstd->g, dstd->b), *grHandle, 0, 0);
 			}
 		}
 	}
@@ -955,39 +922,24 @@ void LRDrawText(int* grHandle, DSTdraw *dstd, CSTR *str, ImageFont *imF) {
 			}
 
 			wSum = 0.0;
-			for (int i = 0; *str->atPos(i) && i < str->length();) {
-				ch = *str->atPos(i);
-				// 'ch < 0x81 || (0x9f < ch && (ch < 0xe0 || 0xfd < ch))' is replaced with !IsMultiByte()
-				if (IsMultibyte(ch)) {
-					vCh = (*str->atPos(i) << 8) + (uchar)*str->atPos(i + 1);
-
-					if (vCh >= 0x9ffe) vCh += 0xbfbf;
-					vCh += 0x7fc0;
-				}
-				else {
-					vCh = (uchar)*str->atPos(i);
-				}
-				if (vCh >= 0x3bce) vCh = 0x3f;
-
-				if (imF->chars[vCh].grHandle == -1) LoadFontCharGraph(imF, vCh);
-				
-				GetGraphSize(imF->chars[vCh].grHandle, &x, &y);
+			std::u32string u32Str = utf8_to_utf32(str->body);
+			for (auto ch : u32Str) {
+				auto chTex = imF->chars[ch];
+				GetGraphSize(chTex.grHandle, &x, &y);
 				xf = x;
 				yf = y;
 				if (xf <= 0.0) {
-					vCh = 0x3f;
-					GetGraphSize(imF->chars[0x3f].grHandle, &x, &y);
+					ch = U'?';
+					chTex = imF->chars[ch];
+					GetGraphSize(chTex.grHandle, &x, &y);
 					xf = x;
 					yf = y;
 				}
 				xf *= wl;
-				if (vCh != 0x20 && vCh != 0x0A && imF->chars[vCh].grHandle != -1) {
-					DrawExtendGraphF(dstd->x + wSum, dstd->y, dstd->x + wSum + xf, dstd->y + hl*yf, imF->chars[vCh].grHandle, 1);
+				if (ch != U' ' && ch != U'\n' && chTex.grHandle != -1) {
+					DrawExtendGraphF(dstd->x + wSum, dstd->y, dstd->x + wSum + xf, dstd->y + hl * yf, chTex.grHandle, 1);
 				}
-				ch = *str->atPos(i);
-				if (IsMultibyte(ch)) i += 2; 
-				else i += 1;
-				wSum = imF->kerning*wl + xf + wSum;
+				wSum = imF->kerning * wl + xf + wSum;
 			}
 			return;
 		}

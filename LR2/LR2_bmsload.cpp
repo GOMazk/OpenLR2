@@ -2,7 +2,7 @@
 #include "Engine.h"
 #include "LR2_replay.h"
 #include "filesystem.h"
-
+#include "filesystem.h"
 #include <algorithm>
 #include <unordered_map>
 
@@ -1786,32 +1786,32 @@ unsigned char channelConvert[] = { 0x00, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3c, 0x3
 									0x00, 0x3c, 0x35, 0x36, 0x37, 0x38, 0x39, 0x00, 0x3a, 0x3b };
 int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMSMETA *meta, int bgaFlag, int scratchSide) {
 
-	std::unordered_map<double, int> notesPerBpm;
-	double avgBPM_bpmsum;
-	float prevStageLastNoteTime;
-	int avgBPM_notes;
-	int noteRandomTable[2][10];
-	FILE *hFile;
+	std::unordered_map<double, int> notesPerBpm{};
+	double avgBPM_bpmsum{};
+	float prevStageLastNoteTime{};
+	int avgBPM_notes{};
+	int noteRandomTable[2][10]{};
+	FILE* hFile{};
 
-	int randomVal;
-	bool ifOn;
-	int channel;
+	int randomVal{};
+	bool ifOn{};
+	int channel{};
 
-	double endtime;
-	double nowBPM;
+	double endtime{};
+	double nowBPM{};
 
-	int rank;
+	int rank{};
 
-	int stages;
+	int stages{};
 
-	LaneStruct tmpLane[10];
-	double BPMslot[1296], STOPslot[1296];
-	int bmsobj_stageFirst;
-	double oldSpeedMultiplier;
+	LaneStruct tmpLane[10]{};
+	double BPMslot[1296]{}, STOPslot[1296]{};
+	int bmsobj_stageFirst{};
+	double oldSpeedMultiplier{};
 		
 	char mapAdded[2][10] = { 0, };
 	double prevStageTime = -1.0;
-	double meaLength;
+	double meaLength{};
 
 
 	if (cfg->play.random[0] == 5 && cfg->play.p1_assist == 1) {
@@ -1852,8 +1852,6 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 	}
 	ErrorLogFmtAdd("RANDOMSEEDは%dです。\n", gp->randomseed);
 	SRand(gp->randomseed);
-
-	CSTR dir = filename.getDirectory();
 
 	for (int i = 0; i < 1296; i++) BPMslot[i] = -1.0;
 	for (int i = 0; i < 1296; i++) STOPslot[i] = -1.0;
@@ -2002,7 +2000,7 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 				ErrorLogFmtAdd("エキスパ:ステージ=%d、フルパス=%s\n", gp->courseStageNow, filename.body);
 			}
 		}
-		hFile = fopen(filename, "r");
+		hFile = fopen(filename.body, "r");
 		if (hFile == NULL) {
 			ErrorLogAdd("BMSを開けません。\n");
 			return -1;
@@ -2032,6 +2030,7 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 				*fBuf.atPos(0) = '\0';
 				continue;
 			}
+			fBuf = ansi2utf(pFbuf, 932).c_str();
 			fBufOrg = fBuf;
 			fBuf.upper();
 

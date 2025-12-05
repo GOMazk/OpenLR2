@@ -2,7 +2,7 @@
 #include "Engine.h"
 #include "LR2_statlong.h"
 #include "filesystem.h"
-
+#include "filesystem.h"
 #include <iterator>
 
 #ifdef _WIN32
@@ -2680,7 +2680,7 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	InitBMSMETA(meta);
 	notes = 0.0;
 	flagIf = 0;
-	pFile = fopen(filepath, "r");
+	pFile = fopen(filepath.body, "r");
 	if (pFile == NULL) return 0;
 
 	CSTR dir(filepath.getDirectory()); // check this works as intended
@@ -2690,6 +2690,7 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	CSTR buffer(102401);
 	char* pBuffer = buffer.outstr();
 	for (pBuffer = fgets(pBuffer, 102400, pFile); pBuffer; pBuffer = fgets(pBuffer, 102400, pFile)) {
+		buffer = ansi2utf(pBuffer, 932).c_str();
 
 		if (buffer.left(3).isSame("#IF") && buffer.left(5).isDiff("#IF 1")) {
 			flagIf = 1;
@@ -2899,7 +2900,7 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	} // TOFIX: meta->filepath is not loaded yet, so above this is useless hahahaha
 	//TOFIX: find difficulty at left???
 	makeFileHash(filepath, meta->hash); //test : CSTR to char* as oBuf : possible
-	meta->parentfolderpath = filepath.getParaentDirectory();
+	meta->parentfolderpath = filepath.getParentDirectory();
 	meta->filepath = filepath;
 	meta->filename = filepath.getFilename();
 	meta->folderpath = filepath.getDirectory();

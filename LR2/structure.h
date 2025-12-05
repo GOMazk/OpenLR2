@@ -3,6 +3,8 @@
 #include <array>
 #include <mutex>
 #include <thread>
+#include <unordered_map>
+#include <vector>
 
 #include "strclass.h"
 
@@ -468,8 +470,8 @@ struct COURSESELECT {
 };
 
 struct CSVbuf {
-	int val[30];
-	CSTR str[30];
+	int val[30]{};
+	CSTR str[30]{};
 };
 struct DSTdraw { /* 80bytes,4*0x14 */
 	float x;
@@ -522,17 +524,17 @@ struct DSTstruct { /* 44bytes.4*0x0b */
 };
 
 struct FontChar {
-	int srcX;
-	int srcY;
-	int width;
-	int height;
-	int ImageNum;
-	int grHandle;
+	int srcX{};
+	int srcY{};
+	int width{};
+	int height{};
+	int ImageNum{};
+	int grHandle = -1;
 };
 
 struct FontImage {
-	char filename[32];
-	int grHandle;
+	char filename[32]{};
+	int grHandle = -1;
 };
 
 struct RECORDING {
@@ -681,11 +683,11 @@ struct SkinAdjust {
 };
 
 struct ImageFont {
-	int size;
-	int kerning;
-	char filepath[260];
-	struct FontImage * images; /* est.array size 1000 */
-	struct FontChar * chars; /* est.array size 0x3bce */
+	int size{};
+	int kerning{};
+	char filepath[260]{};
+	std::vector<FontImage> images; /* est.array size 1000 */
+	std::unordered_map<char32_t, FontChar> chars;
 };
 
 struct SRCstruct { /* 68bytes,4*0x11 */
@@ -716,116 +718,116 @@ struct SkinObject {
 };
 
 struct skstruct {
-	char op[1000];
-	int startinput_start;
-	int startinput_rank;
-	int startinput_update;
-	int scenetime;
-	int loadstart;
-	int loadend;
-	int playstart;
-	int fadeout;
-	int close; /* =skip */
-	int GrHandle[200]; /* //101_gr_title */
-	int grIsMovie[200];
-	int count;
-	CSTR caption[200];
-	int fontHandle[10];
-	int num_of_struct;
-	struct ImageFont ImageFonts[10];
-	int num_of_ImageFont;
-	struct SkinObject image; /* 200//Image */
-	struct SkinObject otherObject[8]; /* 20//0:text 1:buttoon 2:slider 3:onmouse 4:BGA 5:bargraph 6:number 7:mask */
-	int BAR_CENTER;
-	struct SRCstruct src_BAR_BODY[10];
-	struct DSTstruct dst_BAR_BODY_OFF[30];
-	struct DSTstruct dst_BAR_BODY_ON[30];
-	struct SRCstruct src_BAR_TITLE[5];
-	struct DSTstruct dst_BAR_TITLE[5];
-	int bar_availabe_from;
-	int bar_availabe_to;
-	struct SRCstruct src_BAR_FLASH;
-	struct DSTstruct dst_BAR_FLASH;
-	struct SRCstruct src_BAR_LEVEL[10];
-	struct DSTstruct dst_BAR_LEVEL[10];
-	struct SRCstruct src_BAR_LAMP[10];
-	struct DSTstruct dst_BAR_LAMP[10];
+	char op[1000]{};
+	int startinput_start{};
+	int startinput_rank{};
+	int startinput_update{};
+	int scenetime{};
+	int loadstart{};
+	int loadend{};
+	int playstart{};
+	int fadeout{};
+	int close{}; /* =skip */
+	int GrHandle[200]{}; /* //101_gr_title */
+	int grIsMovie[200]{};
+	int count{};
+	CSTR caption[200]{};
+	int fontHandle[10]{};
+	int num_of_struct{};
+	struct ImageFont ImageFonts[10]{};
+	int num_of_ImageFont{};
+	struct SkinObject image {}; /* 200//Image */
+	struct SkinObject otherObject[8]{}; /* 20//0:text 1:buttoon 2:slider 3:onmouse 4:BGA 5:bargraph 6:number 7:mask */
+	int BAR_CENTER{};
+	struct SRCstruct src_BAR_BODY[10]{};
+	struct DSTstruct dst_BAR_BODY_OFF[30]{};
+	struct DSTstruct dst_BAR_BODY_ON[30]{};
+	struct SRCstruct src_BAR_TITLE[5]{};
+	struct DSTstruct dst_BAR_TITLE[5]{};
+	int bar_availabe_from{};
+	int bar_availabe_to{};
+	struct SRCstruct src_BAR_FLASH {};
+	struct DSTstruct dst_BAR_FLASH {};
+	struct SRCstruct src_BAR_LEVEL[10]{};
+	struct DSTstruct dst_BAR_LEVEL[10]{};
+	struct SRCstruct src_BAR_LAMP[10]{};
+	struct DSTstruct dst_BAR_LAMP[10]{};
 	//undefined unused[2240];
-	struct SRCstruct src_BAR_MY_LAMP[10];
-	struct DSTstruct dst_BAR_MY_LAMP[10];
-	struct SRCstruct src_BAR_RIVAL_LAMP[10];
-	struct DSTstruct dst_BAR_RIVAL_LAMP[10];
-	struct SRCstruct src_BAR_RANK[10];
-	struct DSTstruct dst_BAR_RANK[10];
-	struct SRCstruct src_BAR_RIVAL[10];
-	struct DSTstruct dst_BAR_RIVAL[10];
-	struct SRCstruct src_BAR_STAR[10];
-	struct DSTstruct dst_BAR_STAR[10];
-	struct DSTstruct dst_BAR_STAGEFILE;
-	struct SRCstruct src_MOUSECURSOR;
-	struct DSTstruct dst_MOUSECURSOR;
-	struct SRCstruct src_NOTE[20];
-	struct SRCstruct src_MINE[20];
-	struct SRCstruct src_LN_START[20];
-	struct SRCstruct src_LN_END[20];
-	struct SRCstruct src_LN_BODY[20];
-	struct SRCstruct src_AUTO_NOTE[20];
-	struct SRCstruct src_AUTO_MINE[20];
-	struct SRCstruct src_AUTO_LN_START[20];
-	struct SRCstruct src_AUTO_LN_END[20];
-	struct SRCstruct src_AUTO_LN_BODY[20];
-	struct DSTstruct dst_NOTE[20];
-	struct SRCstruct src_LINE[2];
-	struct DSTstruct dst_LINE[2];
-	struct SRCstruct src_JUDGELINE[2];
-	struct DSTstruct dst_JUDGELINE[2];
-	struct SRCstruct src_NOWJUDGE_1P[6];
-	struct DSTstruct dst_NOWJUDGE_1P[6];
-	struct SRCstruct src_NOWCOMBO_1P[6];
-	struct DSTstruct dst_NOWCOMBO_1P[6];
-	struct SRCstruct src_NOWJUDGE_2P[6];
-	struct DSTstruct dst_NOWJUDGE_2P[6];
-	struct SRCstruct src_NOWCOMBO_2P[6];
-	struct DSTstruct dst_NOWCOMBO_2P[6];
-	struct SRCstruct src_GROOVEGAUGE[2];
-	struct DSTstruct dst_GROOVEGAUGE[2];
-	double scratchAngle_1;
-	double scratchAngle_2;
-	struct SRCstruct src_GAUGECHART_1P[2];
-	struct DSTstruct dst_GAUGECHART_1P[2];
-	struct SRCstruct src_GAUGECHART_2P[2];
-	struct DSTstruct dst_GAUGECHART_2P[2];
-	struct SRCstruct src_SCORECHART[3];
-	struct DSTstruct dst_SCORECHART[3];
-	struct SRCstruct src_THUMBNAIL;
-	struct DSTstruct dst_THUMBNAIL;
-	struct SRCstruct src_README[2];
-	struct DSTstruct dst_README[2];
-	CSTR helpfilePath[10];
-	int helpfileCount;
-	int flag_BGA;
-	int scratchside_1;
-	int scratchside_2;
-	int flag_flip;
-	int textmergin_1;
-	int textmergin_2;
-	struct DrawingBuf drBuf;
-	CSTR fontname;
-	struct SkinAdjust adjust;
-	CSTR skinMD5;
-	CSTR skFontname;
-	int disableimagefont; /* bool */
-	CSTR customfileRANDOM[100];
-	CSTR customfile[100];
-	int customfile_count;
-	int reloadbanner;
-	struct SRCstruct src_EVENT_MODE_CURSOR;
-	struct DSTstruct dst_EVENT_MODE_CURSOR_ON[10];
-	struct DSTstruct dst_EVENT_MODE_CURSOR_OFF[10];
-	int event_STARTINPUT[10];
-	int event_FADEOUT[10];
-	struct DSTstruct dst_EVENT_LOADINGBG[5];
-	int horizontal;
+	struct SRCstruct src_BAR_MY_LAMP[10]{};
+	struct DSTstruct dst_BAR_MY_LAMP[10]{};
+	struct SRCstruct src_BAR_RIVAL_LAMP[10]{};
+	struct DSTstruct dst_BAR_RIVAL_LAMP[10]{};
+	struct SRCstruct src_BAR_RANK[10]{};
+	struct DSTstruct dst_BAR_RANK[10]{};
+	struct SRCstruct src_BAR_RIVAL[10]{};
+	struct DSTstruct dst_BAR_RIVAL[10]{};
+	struct SRCstruct src_BAR_STAR[10]{};
+	struct DSTstruct dst_BAR_STAR[10]{};
+	struct DSTstruct dst_BAR_STAGEFILE {};
+	struct SRCstruct src_MOUSECURSOR {};
+	struct DSTstruct dst_MOUSECURSOR {};
+	struct SRCstruct src_NOTE[20]{};
+	struct SRCstruct src_MINE[20]{};
+	struct SRCstruct src_LN_START[20]{};
+	struct SRCstruct src_LN_END[20]{};
+	struct SRCstruct src_LN_BODY[20]{};
+	struct SRCstruct src_AUTO_NOTE[20]{};
+	struct SRCstruct src_AUTO_MINE[20]{};
+	struct SRCstruct src_AUTO_LN_START[20]{};
+	struct SRCstruct src_AUTO_LN_END[20]{};
+	struct SRCstruct src_AUTO_LN_BODY[20]{};
+	struct DSTstruct dst_NOTE[20]{};
+	struct SRCstruct src_LINE[2]{};
+	struct DSTstruct dst_LINE[2]{};
+	struct SRCstruct src_JUDGELINE[2]{};
+	struct DSTstruct dst_JUDGELINE[2]{};
+	struct SRCstruct src_NOWJUDGE_1P[6]{};
+	struct DSTstruct dst_NOWJUDGE_1P[6]{};
+	struct SRCstruct src_NOWCOMBO_1P[6]{};
+	struct DSTstruct dst_NOWCOMBO_1P[6]{};
+	struct SRCstruct src_NOWJUDGE_2P[6]{};
+	struct DSTstruct dst_NOWJUDGE_2P[6]{};
+	struct SRCstruct src_NOWCOMBO_2P[6]{};
+	struct DSTstruct dst_NOWCOMBO_2P[6]{};
+	struct SRCstruct src_GROOVEGAUGE[2]{};
+	struct DSTstruct dst_GROOVEGAUGE[2]{};
+	double scratchAngle_1{};
+	double scratchAngle_2{};
+	struct SRCstruct src_GAUGECHART_1P[2]{};
+	struct DSTstruct dst_GAUGECHART_1P[2]{};
+	struct SRCstruct src_GAUGECHART_2P[2]{};
+	struct DSTstruct dst_GAUGECHART_2P[2]{};
+	struct SRCstruct src_SCORECHART[3]{};
+	struct DSTstruct dst_SCORECHART[3]{};
+	struct SRCstruct src_THUMBNAIL {};
+	struct DSTstruct dst_THUMBNAIL {};
+	struct SRCstruct src_README[2]{};
+	struct DSTstruct dst_README[2]{};
+	CSTR helpfilePath[10]{};
+	int helpfileCount{};
+	int flag_BGA{};
+	int scratchside_1{};
+	int scratchside_2{};
+	int flag_flip{};
+	int textmergin_1{};
+	int textmergin_2{};
+	struct DrawingBuf drBuf {};
+	CSTR fontname{};
+	struct SkinAdjust adjust {};
+	CSTR skinMD5{};
+	CSTR skFontname{};
+	int disableimagefont{}; /* bool */
+	CSTR customfileRANDOM[100]{};
+	CSTR customfile[100]{};
+	int customfile_count{};
+	int reloadbanner{};
+	struct SRCstruct src_EVENT_MODE_CURSOR {};
+	struct DSTstruct dst_EVENT_MODE_CURSOR_ON[10]{};
+	struct DSTstruct dst_EVENT_MODE_CURSOR_OFF[10]{};
+	int event_STARTINPUT[10]{};
+	int event_FADEOUT[10]{};
+	struct DSTstruct dst_EVENT_LOADINGBG[5]{};
+	int horizontal{};
 };
 
 struct MYRANKING {
@@ -939,16 +941,16 @@ struct AUDIO {
 };
 
 struct NoteStruct {
-	double bmsTiming;
-	double realTiming;
-	double val;
-	int active;
-	bool lnHeadFast;
-	double bmsTiming_ln;
-	double realTiming_ln;
-	int op; /* channel */
-	int mine; /* soundchannel/mine */
-	int stage;
+	double bmsTiming{};
+	double realTiming{};
+	double val{};
+	int active{};
+	bool lnHeadFast{};
+	double bmsTiming_ln{};
+	double realTiming_ln{};
+	int op{}; /* channel */
+	int mine{}; /* soundchannel/mine */
+	int stage{};
 };
 
 struct SONGSELECT {
@@ -1403,8 +1405,8 @@ struct NETWORK {
 struct game {
 	struct ConfigStruct config;
 	struct SONGSELECT sSelect;
-	struct skstruct skstruct;
-	struct skstruct skstruct2;
+	struct skstruct skstruct {};
+	struct skstruct skstruct2 {};
 	struct SkinManage skinData;
 	struct inputStructure KeyInput;
 	struct Timer timer1;

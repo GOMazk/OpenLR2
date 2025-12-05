@@ -1,12 +1,69 @@
 ﻿#include "En_fileutil.h"
 #include <md5.h>
 #include "DxLib/DxLib.h" //log
-
+#include <codecvt>
+#include "filesystem.h"
 #ifndef _WIN32
 #include <chrono>
 #include <filesystem>
 #include <sys/stat.h>
 #endif // _WIN32
+
+std::wstring utf2ws(const std::string_view str) {
+	int size_needed = MultiByteToWideChar(CP_UTF8, 0, str.data(), str.size(), nullptr, 0);
+	std::wstring wstr(size_needed, 0);
+	MultiByteToWideChar(CP_UTF8, 0, str.data(), str.size(), wstr.data(), size_needed);
+	return wstr;
+}
+
+std::string ws2utf(const std::wstring_view wstr) {
+	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
+	return converter.to_bytes(wstr.data());
+}
+
+std::string utf2ansi(const std::string_view in, unsigned int codepage) {
+	int size_needed = MultiByteToWideChar(CP_UTF8, 0, in.data(), in.size(), nullptr, 0);
+	std::wstring wstr(size_needed, 0);
+	MultiByteToWideChar(CP_UTF8, 0, in.data(), in.size(), wstr.data(), size_needed);
+	size_needed = WideCharToMultiByte(codepage, 0, wstr.data(), wstr.size(), nullptr, 0, 0, 0);
+	std::string out(size_needed, 0);
+	WideCharToMultiByte(codepage, 0, wstr.data(), wstr.size(), out.data(), out.size(), 0, 0);
+	return out;
+}
+
+std::string ansi2utf(const std::string_view str, unsigned int codepage) {
+	int size_needed = MultiByteToWideChar(codepage, 0, str.data(), static_cast<int>(str.size()), nullptr, 0);
+	auto wstr = std::make_unique_for_overwrite<wchar_t[]>(size_needed);
+	MultiByteToWideChar(codepage, 0, str.data(), static_cast<int>(str.size()), wstr.get(), size_needed);
+	std::wstring_convert<std::codecvt_utf8<wchar_t>, wchar_t> converter;
+	return converter.to_bytes(wstr.get(), wstr.get() + size_needed);
+}
+
+std::u32string utf8_to_utf32(const std::string& str) {
+	std::u32string out;
+	// FIXME: std::use_facet is already deprecated and removed in C++26, and is not supported well in Wine.
+	static const auto locale = std::locale("ja_JP.UTF8");
+	static const auto& facet_u32_u8 = std::use_facet<std::codecvt<char32_t, char, std::mbstate_t>>(locale);
+	out.resize(str.size() * facet_u32_u8.max_length(), '\0');
+
+	std::mbstate_t s;
+	const char* from_next = str.data();
+	char32_t* to_next = out.data();
+
+	std::codecvt_base::result res;
+	do
+	{
+		res = facet_u32_u8.in(s, from_next, &str[str.size()], from_next, to_next, &out[out.size()], to_next);
+
+		// skip unconvertiable chars (which is impossible though)
+		if (res == std::codecvt_base::error)
+			from_next++;
+
+	} while (res == std::codecvt_base::error);
+
+	out.resize(to_next - &out[0]);
+	return out;
+}
 
 int makeFileHash(LPCSTR filepath, LPCSTR oBuf) {
 	FILE* pFile;
@@ -53,9 +110,8 @@ time_t GetFileUnixtime(CSTR str) {
 	}
 
 #ifdef _WIN32
-	WIN32_FIND_DATA FindFileData;
-	LPWIN32_FIND_DATAA lpFindFileData = (LPWIN32_FIND_DATAA)&FindFileData;
-	HANDLE hFindFile = FindFirstFileA(str, lpFindFileData);
+	WIN32_FIND_DATAW FindFileData;
+	HANDLE hFindFile = FindFirstFileW(utf2ws(str.body).c_str(), &FindFileData);
 	if (hFindFile == (HANDLE)-1) {
 		ErrorLogFmtAdd("ファイルのLR2TIME取得エラー:%sが見つからない\n", str.body);
 		return -1;
@@ -80,14 +136,15 @@ CSTR GetRandomFileOnDir(CSTR path, char fOnlyName) {
 #ifdef _WIN32
 	CSTR oBuf;
 	//CSTR str1,str2,str3;
-	WIN32_FIND_DATA FindFileData;
+	WIN32_FIND_DATAW FindFileData;
 	HANDLE hFindFile;
 	int fileCount = 0;
 	CSTR str1( path.left(path.findStrPos("*")) );
 	CSTR str2( path.right(path.length() - str1.length() - 1) );
 	CSTR str3( str1 );
 	str3.add("*");
-	hFindFile = FindFirstFileA(str3, (LPWIN32_FIND_DATAA)&FindFileData);
+	std::wstring wstr = utf2ws(str3.body);
+	hFindFile = FindFirstFileW(wstr.c_str(), &FindFileData);
 	if (hFindFile == (HANDLE)-1) {
 		//oBuf = CSTR("ERROR");
 		return CSTR("ERROR");
@@ -96,37 +153,39 @@ CSTR GetRandomFileOnDir(CSTR path, char fOnlyName) {
 		if (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
 			if (strcmp("..", (char*)FindFileData.cFileName) && strcmp(".", (char*)FindFileData.cFileName)) fileCount++;
 		}
-	} while (FindNextFileA(hFindFile, (LPWIN32_FIND_DATAA)&FindFileData));
+	} while (FindNextFileW(hFindFile, &FindFileData));
 	FindClose(hFindFile);
 	if (fileCount > 0) {
 		fileCount = GetRand(fileCount - 1);
 
-		hFindFile = FindFirstFileA(str3, (LPWIN32_FIND_DATAA)&FindFileData);
+		hFindFile = FindFirstFileW(wstr.c_str(), &FindFileData);
 		if (hFindFile != (HANDLE)-1) {
 			do {
 				if (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-					if (strcmp("..", (char*)FindFileData.cFileName) && strcmp(".", (char*)FindFileData.cFileName)) {
+					std::string filename = ws2utf(FindFileData.cFileName);
+					if (strcmp("..", filename.c_str()) && strcmp(".", filename.c_str())) {
 						//LAB_00438327
 						int i = 0;
 						while (i < fileCount) {
-							FindNextFileA(hFindFile, (LPWIN32_FIND_DATAA)&FindFileData);
+							FindNextFileW(hFindFile, &FindFileData);
 							if (FindFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) {
-								if (strcmp("..", (char*)FindFileData.cFileName) && strcmp(".", (char*)FindFileData.cFileName)) i++;
+								filename = ws2utf(FindFileData.cFileName);
+								if (strcmp("..", filename.c_str()) && strcmp(".", filename.c_str())) i++;
 							}
 						}
 						FindClose(hFindFile);
 						path.assign(&str1);
-						path.add((char*)FindFileData.cFileName);
+						path.add(filename.c_str());
 						path.add(&str2);
 						if (fOnlyName) {
 							//oBuf = CSTR(FindFileData.cFileName);
-							return CSTR((char*)FindFileData.cFileName);
+							return CSTR(filename.c_str());
 						}
 						//oBuf = CSTR(path);
 						return CSTR(path);
 					}
 				}
-				FindNextFileA(hFindFile, (LPWIN32_FIND_DATAA)&FindFileData);
+				FindNextFileW(hFindFile, &FindFileData);
 			} while (true);
 		}
 	}
@@ -298,10 +357,10 @@ bool IsFileExist(CSTR path) {
 
 #ifdef _WIN32
 	HANDLE hFindFile;
-	_WIN32_FIND_DATAA findFileData;
+	_WIN32_FIND_DATAW findFileData;
 	char dirFlag = 0;
 
-	hFindFile = FindFirstFileA(path, &findFileData);
+	hFindFile = FindFirstFileW(utf2ws(path.body).c_str(), &findFileData);
 	FindClose(hFindFile);
 	return hFindFile != (HANDLE)-1;
 #else
@@ -699,31 +758,33 @@ CSTR GetRandomFile(CSTR path, char fOnlyName) {
 	}
 
 #ifdef _WIN32
-	WIN32_FIND_DATA FindFileData;
+	std::wstring wpath = utf2ws(path.body);
+	WIN32_FIND_DATAW FindFileData;
 	//count files for random
-	HANDLE hFindFile = FindFirstFileA(path, (LPWIN32_FIND_DATAA)&FindFileData);
+	HANDLE hFindFile = FindFirstFileW(wpath.c_str(), &FindFileData);
 	if (hFindFile == (HANDLE)-1) return CSTR("ERROR");
 	
 	count = 0;
 	do {
 		count++;
-	} while (FindNextFileA(hFindFile, (LPWIN32_FIND_DATAA)&FindFileData));
+	} while (FindNextFileW(hFindFile, &FindFileData));
 	if (count < 1) return CSTR("ERROR");
 
 	count = GetRand(count - 1);
 
 	//get file by random
-	hFindFile = FindFirstFileA(path, (LPWIN32_FIND_DATAA)&FindFileData);
+	hFindFile = FindFirstFileW(wpath.c_str(), &FindFileData);
 	if (hFindFile == (HANDLE)-1) return CSTR("ERROR");
 
 	for (int i = 0; i < count; i++) {
-		FindNextFile(hFindFile, &FindFileData);
+		FindNextFileW(hFindFile, &FindFileData);
 	}
 	FindClose(hFindFile);
 	path.assign(path.getDirectory());
-	path.add((char*)FindFileData.cFileName);
+	std::string filename = ws2utf(FindFileData.cFileName);
+	path.add(filename.c_str());
 	if (fOnlyName) {
-		path.assign((char*)FindFileData.cFileName);
+		path.assign(filename.c_str());
 		path.nullAtPos(path.findStrPos("."));
 	}
 	return path;

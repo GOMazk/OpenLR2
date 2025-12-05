@@ -1,9 +1,10 @@
 ﻿#include "En_recordmovie.h"
-
+#include "filesystem.h"
 #include <cstring>
 
 #include "structure.h"
 #include "filesystem.h"
+#include "En_fileutil.h"
 
 #include <DxLib/DxLib.h>
 
@@ -387,7 +388,7 @@ bool Mp3toWavP(char *iPath, char *oPath) {
 		_exit(1);
 	}
 
-	oFile = fopen(oPath, "wb");
+	oFile = fopen(iPath, "wb");
 	if (oFile == NULL) {
 		ErrorLogFmtAdd("出力ファイルが開けません(%s)。\n", oPath);
 		_exit(1);

@@ -7,7 +7,7 @@
 #include "LR2_statplay.h"
 #include "Scenes.h"
 #include "filesystem.h"
-
+#include "filesystem.h"
 #include <DxLib/DxLib.h>
 
 #ifndef _WIN32
@@ -4255,7 +4255,7 @@ int ReadOptionstrFile(OptionString *arrOpStr, CSTR filepath) {
 	CSVbuf csv;
 
 	DefineOptionStrNum(arrOpStr);
-	pFile = fopen(filepath, "r");
+	pFile = fopen(filepath.body, "r");
 	if (pFile == 0) {
 		ErrorLogAdd("オプション文字列リストが見つかりません。\n");
 		return 0;
@@ -4263,6 +4263,7 @@ int ReadOptionstrFile(OptionString *arrOpStr, CSTR filepath) {
 
 	pFbuf = fBuf.outstr();
 	for (pFbuf = fgets(pFbuf, bufSize, pFile); pFbuf; pFbuf = fgets(pFbuf, bufSize, pFile)) {
+		fBuf = ansi2utf(pFbuf, 932).c_str();
 		if (*(fBuf.atPos(0)) == '#') {
 			SplitCSV(fBuf, &csv, ",");
 

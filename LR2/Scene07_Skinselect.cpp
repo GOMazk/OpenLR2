@@ -1,17 +1,10 @@
 #include "Scene07_Skinselect.h"
 #include "LR2.h"
 #include "Scenes.h"
-
+#include "filesystem.h"
 #include "filesystem.h"
 
 int SkinSelect_SoundSet(game *g, CSTR filepath) {
-	
-	FILE *pFile;
-
-	CSTR fBuf(1024);
-	char* pFbuf;
-	CSVbuf csv;
-
 	StopSysSound(g);
 	ReleaseSound(&g->audio, &g->audio.sysSound.select);
 	ReleaseSound(&g->audio, &g->audio.sysSound.folder_open);
@@ -27,25 +20,30 @@ int SkinSelect_SoundSet(game *g, CSTR filepath) {
 	ReleaseSound(&g->audio, &g->audio.sysSound.exselect);
 	if (g->audio.is_fmod_disabled == 0) FMOD_System_Update(g->audio.fmodSys);
 	
-	pFile = fopen(filepath, "r");
+	FILE* pFile = fopen(filepath.body, "r");
 	if (pFile == 0) return 0;
 
-	pFbuf = fBuf.outstr();
-	for (pFbuf = fgets(pFbuf, 1023, pFile); pFbuf; pFbuf = fgets(pFbuf, 1023, pFile)) {
-		if (*fBuf.atPos(0) = '#') {
-			fBuf.trimWhiteSpace();
-			DealWhiteSpace(&fBuf);
-			if (isdigit(*fBuf.atPos(1)) && isdigit(*fBuf.atPos(2))) {
-				
-				int type = atol(fBuf.getSliced(1, 2));
-				if (type < 0) continue;
+	CSVbuf csv;
 
-				SplitCSV(fBuf, &csv, ",");
-				g->config.skin.skinFilePath[type] = csv.str[1];
-				SetFirstSkin_5k(&g->skinData, (SKINTYPE)type, &g->config.skin.skinFilePath[type]);
-			}
-			*fBuf.atPos(0) = 0;
+	CSTR fBuf(1024);
+	char* pFbuf = fBuf.outstr();
+	for (pFbuf = fgets(pFbuf, 1023, pFile); pFbuf; pFbuf = fgets(pFbuf, 1023, pFile)) {
+		if (*fBuf.atPos(0) != '#') {
+			continue;
 		}
+		fBuf.trimWhiteSpace();
+		DealWhiteSpace(&fBuf);
+		fBuf = ansi2utf(pFbuf, 932).c_str();
+		if (isdigit(*fBuf.atPos(1)) && isdigit(*fBuf.atPos(2))) {
+
+			int type = atol(fBuf.getSliced(1, 2));
+			if (type < 0) continue;
+
+			SplitCSV(fBuf, &csv, ",");
+			g->config.skin.skinFilePath[type] = csv.str[1];
+			SetFirstSkin_5k(&g->skinData, (SKINTYPE)type, &g->config.skin.skinFilePath[type]);
+		}
+		*fBuf.atPos(0) = 0;
 	}
 
 	fclose(pFile);
