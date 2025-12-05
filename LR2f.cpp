@@ -7781,7 +7781,7 @@ int SkinSelect_SoundSet(game *g, CSTR filepath) {
 
 	pFbuf = fBuf.outstr();
 	for (pFbuf = fgets(pFbuf, 1023, pFile); pFbuf; pFbuf = fgets(pFbuf, 1023, pFile)) {
-		if (*fBuf.atPos(0) = '#') {
+		if (*fBuf.atPos(0) == '#') {
 			fBuf.trimWhiteSpace();
 			DealWhiteSpace(&fBuf);
 			if (isdigit(*fBuf.atPos(1)) && isdigit(*fBuf.atPos(2))) {
