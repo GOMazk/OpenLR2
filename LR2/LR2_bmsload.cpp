@@ -2,7 +2,6 @@
 #include "Engine.h"
 #include "LR2_replay.h"
 #include "filesystem.h"
-#include "filesystem.h"
 #include <algorithm>
 #include <unordered_map>
 
@@ -476,16 +475,35 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 
 	std::unique_lock l{gp->criticalSection};
 
+	std::vector<int> keysoundLoadQueue;
+	std::vector<std::jthread> keysoundsLoadWorkers;
+	std::atomic<int> keysoundsLoaded = 0;
+	std::atomic<bool> keysoundsLoadAbort = false;
+	keysoundLoadQueue.reserve(6480);
+	keysoundsLoadWorkers.resize(std::max(2u, cfg->system.coreCount / 2));
 	for (int i = 0; i < 6480; i++) {
 		if (gp->keysound_filename[i].length() > 0) {
-			LoadSound(aud, &gp->keysound[i], gp->keysound_filename[i], 0, cfg->sound.disabledsp, (gp->isPreviewLoad != 0));
-			if (gp->keysound[i].length > 60000 && gp->keysound[i].load) gp->flag_longsound = 1;
-			gp->loadObject_loaded++;
-		}
-		if (gp->flag_closingPhase || (gp->previewStatus != 1 && noVideo)) {
-			return 1;
+			keysoundLoadQueue.push_back(i);
 		}
 	}
+	for (auto& worker : keysoundsLoadWorkers) {
+		worker = std::jthread([&]() {
+			while (!keysoundsLoadAbort) {
+				int queue_i = keysoundsLoaded++;
+				if (queue_i >= keysoundLoadQueue.size())
+					break;
+				int i = keysoundLoadQueue[queue_i];
+				LoadSound(aud, &gp->keysound[i], gp->keysound_filename[i], 0, cfg->sound.disabledsp, (gp->isPreviewLoad != 0));
+				if (gp->keysound[i].length > 60000 && gp->keysound[i].load) gp->flag_longsound = 1;
+				gp->loadObject_loaded++;
+				if (gp->flag_closingPhase || (gp->previewStatus != 1 && noVideo)) {
+					keysoundsLoadAbort = true;
+				}
+			}
+		});
+	}
+	std::for_each(keysoundsLoadWorkers.begin(), keysoundsLoadWorkers.end(), [](auto& worker) { if (worker.joinable()) worker.join(); });
+	if (keysoundsLoadAbort) return 1;
 
 	gp->flag_0note = 1;
 	for (int i = 0; i < gp->bmsobj.count; i++) {
