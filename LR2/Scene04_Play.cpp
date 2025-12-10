@@ -1151,7 +1151,7 @@ int ProcI_Play(game *g) {
 	}
 
 	auto proc_quickrestart = [](game& game) {
-		if (game.gameplay.replay.status == 2 || game.config.play.m_lunaris != 0) return;
+		if (game.gameplay.replay.status == 2 || game.gameplay.player[0].totalnotes <= game.gameplay.player[0].note_current || game.config.play.m_lunaris != 0) return;
 		if (game.KeyInput.p1_buttonInput[12] == 1 || game.KeyInput.p2_buttonInput[12] == 1) return QuickRestart(game, true);
 		if (game.KeyInput.p1_buttonInput[13] == 1 || game.KeyInput.p2_buttonInput[13] == 1) return QuickRestart(game, false);
 	};
