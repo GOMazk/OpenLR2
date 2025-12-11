@@ -82,6 +82,9 @@ int main(int argc, char** argv) {
 	int wSizeX;
 	game gs;
 
+	gs.config.system.coreCount = std::thread::hardware_concurrency();
+	if (gs.config.system.coreCount == 0) gs.config.system.coreCount = 2;
+
 	const bool use_dx9 = getenv("OPENLR2_NO_DX9") == nullptr; // chown2: crashes on DxLib_Init with DX9 for me
 
 	int tmp;

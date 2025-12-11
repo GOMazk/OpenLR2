@@ -332,7 +332,8 @@ struct CONFIG_SYSTEM {
 	int windowsize_x; 
 	int windowsize_y; 
 	int maindisplay; 
-	int softwarerendering; 
+	int softwarerendering;
+	unsigned int coreCount = 0;
 };
 
 struct CONFIG_TOOLS {
