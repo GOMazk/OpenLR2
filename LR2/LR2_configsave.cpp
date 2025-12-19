@@ -1,6 +1,8 @@
 ﻿#include "LR2_configsave.h"
+#include "En_xml.h"
 #include "filesystem.h"
 #include <filesystem>
+#include <fstream>
 #include <iterator>
 
 static void adjust_input_filepath(CSTR& path)
@@ -58,7 +60,7 @@ int ReadKeyConfig(game *game, const char *FilePath) {
 	memset(game->config.input.buttonMap, 0, 16 * 40 * sizeof(int));
 
 	hXml = new TiXmlDocument(FilePath);
-	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+	if (!parse_xml_utf(hXml, FilePath)) {
 		if (hXml) {
 			delete(hXml);
 		}
@@ -140,7 +142,7 @@ int ReadMIDI(game *gs, const char *filepath){
 	(gs->config).input.midi_control[0x27] = 0;
 
 	hXml = new TiXmlDocument(filepath);
-	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+	if (!parse_xml_utf(hXml, filepath)) {
 		if (hXml) {
 			delete(hXml);
 		}
@@ -195,7 +197,7 @@ int WriteConfigXml(game *g, const char *filename){
 	
 	pFile = fopen(filename, "w");
 	if (pFile == NULL) return 0; 
-	
+
 	fputs("<?xml version=\"1.0\" encoding=\"shift_jis\"?>\n", pFile);
 	fputs("<config>\n", pFile);
 
@@ -606,6 +608,7 @@ int WriteConfigXml(game *g, const char *filename){
 
 	fputs("</config>\n", pFile);
 	fclose(pFile);
+	file_utf_to_ansi(filename);
 	return 1;
 }
 
@@ -742,6 +745,7 @@ int WriteKeyConfig(game *g, const char *filepath, int key) {
 
 	fputs("</keyconfig>\n", pFile);
 	fclose(pFile);
+	file_utf_to_ansi(filepath);
 	return 1;
 }
 
@@ -799,6 +803,7 @@ int WriteMidiXml(game *g, const char *filename) {
 	fputs("\t</program>\n", pFile);
 	fputs("</midi>\n", pFile);
 	fclose(pFile);
+	file_utf_to_ansi(filename);
 	return 1;
 }
 
@@ -841,7 +846,7 @@ int ReadSkinCustomize(SkinUser *sku, char *FilePath) {
 	(sku->adjust).rate_y = 100;
 	
 	hXml = new TiXmlDocument(FilePath);
-	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+	if (!parse_xml_utf(hXml, FilePath)) {
 		if (hXml) {
 			delete(hXml);
 		}
@@ -1023,7 +1028,7 @@ int WriteSkinCustomizeXml(SkinUser *sku, char *filepath) {
 
 	fputs("</skincustomize>\n", pFile);
 	fclose(pFile);
-
+	file_utf_to_ansi(filepath);
 	return 1;
 }
 
@@ -1039,7 +1044,7 @@ int ReadConfig(game* g, const char* filepath) {
 	hXml = new TiXmlDocument(filepath);
 
 	hXml->SetCondenseWhiteSpace(false);
-	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+	if (!parse_xml_utf(hXml, filepath)) {
 		if (hXml) {
 			delete(hXml);
 		}

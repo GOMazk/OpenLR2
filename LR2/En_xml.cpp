@@ -1,5 +1,32 @@
 ﻿#include "En_xml.h"
 #include "tinyxml/tinyxml.h"
+#include "En_fileutil.h"
+#include <fstream>
+#include <sstream>
+
+void file_utf_to_ansi(const char* filepath) {
+	std::string ansi;
+	{
+		std::ifstream fileIn(filepath);
+		std::stringstream utf;
+		utf << fileIn.rdbuf();
+		ansi = utf2ansi(utf.str(), 932);
+	}
+	{
+		std::ofstream fileOut(filepath, std::ios::trunc);
+		fileOut.write(ansi.c_str(), ansi.length());
+	}
+}
+
+bool parse_xml_utf(TiXmlDocument* xml, const char* filepath) {
+	std::ifstream file(filepath);
+	if (!file.good()) return false;
+	std::stringstream total;
+	total << file.rdbuf();
+	std::string totalUtf = ansi2utf(total.str(), 932);
+	xml->Parse(totalUtf.c_str(), 0, TIXML_ENCODING_UTF8);
+	return true;
+}
 
 int ReadXml_Int(const char *level1, const char *level2, const char *level3, int initvalue, int *oBuf, TiXmlDocument *xmlData){
 	TiXmlElement *cur;

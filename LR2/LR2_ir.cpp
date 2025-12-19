@@ -8,6 +8,7 @@
 #include "En_dbio.h"
 #include "En_fileutil.h"
 #include "En_timer.h"
+#include "En_xml.h"
 #include "filesystem.h"
 
 #ifdef _WIN32
@@ -113,16 +114,7 @@ int RANKING::ParseXML(const char* path) {
 
 	TiXmlDocument *hXml = new TiXmlDocument(path);
 
-	std::string s;
-	{
-		std::ifstream ifs{path};
-		std::stringstream ss;
-		ss << ifs.rdbuf();
-		s = ss.str();
-	}
-	s = ansi2utf(s.c_str(), 932);
-	// NOTE: TIXML_ENCODING_UTF8 or for whatever other reason it ignores `encoding='shift_jis'` in the header.
-	hXml->Parse(s.c_str(), nullptr, TIXML_ENCODING_UTF8);
+	parse_xml_utf(hXml, path);
 
 	TiXmlElement *cur;
 	cur = hXml->FirstChildElement("lastupdate");
@@ -273,13 +265,7 @@ int ParseRivalData(long ID) {
 	
 	cstrSprintf(&path, fs::make_preferred("LR2files/Rival/%d.xml").data(), ID);
 	hXml = new TiXmlDocument(path);
-	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
-		if (hXml) {
-			delete(hXml);
-		}
-		printfDx("ID%4d:ライバルデータにアクセスできません。\n", ID);
-		return 0;
-	}
+	parse_xml_utf(hXml, path.body);
 
 	std::string name;
 	cur = hXml->FirstChildElement("rivalname");
@@ -396,10 +382,10 @@ int ParseRivalData(long ID) {
 	SQL_Run("COMMIT", pRivalDB);
 	sqlite3_close(pRivalDB);
 
-	std::string name_as_cp932 = utf2ansi(name, 932);
 	CSTR cfolder;
 	cstrSprintf(&cfolder, "#COMMAND __RIVAL__\n#MAXTRACKS %d\n#CATEGORY ライバルフォルダ\n#TITLE %s\n#INFORMATION_A %sのプレイした曲を表示します\n#INFORMAION_B\n",
-			ID, name_as_cp932.c_str(), name_as_cp932.c_str());
+			ID, name.c_str(), name.c_str());
+	cfolder = utf2ansi(cfolder.body, 932).c_str();
 	cstrSprintf(&path, fs::make_preferred("LR2files/Rival/%d.lr2folder").data(), ID);
 	cfolder.toFile(path);
 	printfDx("ID%06d:ライバルデータ[%s]を更新しました。更新スコア数%d\n", ID, name.c_str(), count);
@@ -425,8 +411,9 @@ int NETWORK::GetInsaneList() {
 	}
 	ScreenFlip();
 
-	hXml = new TiXmlDocument(fs::make_preferred("LR2files/Database/exlevel.xml").data());
-	if (hXml->LoadFile(TIXML_ENCODING_UNKNOWN) == false) {
+	std::string path = fs::make_preferred("LR2files/Database/exlevel.xml").data();
+	hXml = new TiXmlDocument(path.c_str());
+	if (!parse_xml_utf(hXml, path.c_str())) {
 		if (hXml) {
 			delete(hXml);
 		}
@@ -793,7 +780,7 @@ int NETWORK::GetTargetInfo(int mode, CSTR songmd5, CSTR *oData, CSTR *oName, int
 	}
 
 	CSVbuf csv;
-	SplitCSV(httpResult, &csv, ",");
+	SplitCSV(ansi2utf(httpResult.body, 932).c_str(), &csv, ",");
 	if (csv.str[1].length()) {
 		if (mode == 8) {
 			*oName = "AVERAGE";
