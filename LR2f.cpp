@@ -21310,6 +21310,7 @@ int ReadImageFont(CSTR filename, ImageFont *imgfont) {
 	if (strcmp(str1, imgfont->filepath)) {
 		imgfont->size = 0;
 		imgfont->kerning = 0;
+		imgfont->filepath[0] = '\0';
 		for (int i = 0; i < 0x3bce; i++) {
 			DeleteGraph(imgfont->chars[i].grHandle);
 			imgfont->chars[i].grHandle = -1;
