@@ -413,7 +413,6 @@ int main(int argc, char** argv) {
 	gs.gameplay.flag_threadExist = 0;
 	gs.gameplay.flag_gameinput = false;
 	InitBmsList(&gs.sSelect);
-	CSTR unk("(null)");
 	gs.sSelect.maniac_cursor = 0;
 	gs.sSelect.flag_maniacPanel = '\0';
 	if (gs.cmd_directplay && !gs.is_starter) { //logic arranged
