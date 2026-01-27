@@ -3542,7 +3542,6 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 			}
 			else {
 				if (intArr[lane] == -1) { //case first note of lane
-					ErrorLogFmtAdd("追加->%d", lane);
 					memcpy(&gp->bmsobj_note[lane].notes[gp->bmsobj_note[lane].count], &gp->bmsobj.notes[i], sizeof(NoteStruct));
 					gp->bmsobj_note[lane].count++;
 					intArr[lane] = i;
@@ -3550,7 +3549,6 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 				}
 				else if (gp->bmsobj.notes[i].realTiming > gp->bmsobj.notes[intArr[lane]].realTiming_ln) {
 					if (gp->bmsobj.notes[i].realTiming != gp->bmsobj.notes[intArr[lane]].realTiming) {
-						ErrorLogFmtAdd("追加->%d", lane);
 						memcpy(&gp->bmsobj_note[lane].notes[gp->bmsobj_note[lane].count], &gp->bmsobj.notes[i], sizeof(NoteStruct));
 						gp->bmsobj_note[lane].count++;
 						intArr[lane] = i;

@@ -1,4 +1,8 @@
-﻿#include "structure.h"
+﻿/*
+ * Not existing 'filepath' when reading is not an error.
+ */
+
+#include "structure.h"
 #include "Engine.h"
 
 int Read_JukeboxPath(CONFIG_JUKEBOX *box, TiXmlDocument *xml);
@@ -12,6 +16,9 @@ int WriteMidiXml(game * g, const char * filename);
 
 int ReadConfig(game* gs, const char* filepath);
 int WriteConfigXml(game * g, const char * filename);
+
+int ReadOpenLr2Config(game* gs, const char* filepath);
+int WriteOpenLr2ConfigXml(game * g, const char * filename);
 
 int ReadSkinCustomize(SkinUser * sku, char * FilePath);
 int WriteSkinCustomizeXml(SkinUser * sku, char * filepath);

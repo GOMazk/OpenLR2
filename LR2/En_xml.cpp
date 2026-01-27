@@ -18,14 +18,13 @@ void file_utf_to_ansi(const char* filepath) {
 	}
 }
 
-bool parse_xml_utf(TiXmlDocument* xml, const char* filepath) {
+bool parse_cp932_xml(TiXmlDocument* xml, const char* filepath) {
 	std::ifstream file(filepath);
 	if (!file.good()) return false;
 	std::stringstream total;
 	total << file.rdbuf();
 	std::string totalUtf = ansi2utf(total.str(), 932);
-	xml->Parse(totalUtf.c_str(), 0, TIXML_ENCODING_UTF8);
-	return true;
+	return xml->Parse(totalUtf.c_str(), 0, TIXML_ENCODING_UTF8) != nullptr;
 }
 
 int ReadXml_Int(const char *level1, const char *level2, const char *level3, int initvalue, int *oBuf, TiXmlDocument *xmlData){
@@ -49,6 +48,13 @@ int ReadXml_Int(const char *level1, const char *level2, const char *level3, int 
 	}
 	*oBuf = initvalue;
 	return -1;
+}
+
+int ReadXml_PositiveIntAsBool(const char *level1, const char *level2, const char *level3, bool initvalue, bool *oBuf, TiXmlDocument *xmlData) {
+	int v;
+	int ret = ReadXml_Int(level1, level2, level3, static_cast<int>(initvalue), &v, xmlData);
+	*oBuf = v > 0;
+	return ret;
 }
 
 int ReadXml_Str(const char *level1, const char *level2, const char *level3, const CSTR initvalue, CSTR* oBuf, TiXmlDocument *xmlData) {

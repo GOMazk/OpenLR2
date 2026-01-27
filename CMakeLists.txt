@@ -102,8 +102,7 @@ if(WIN32)
     target_link_libraries(OpenLR2Lib PUBLIC winmm.lib)
 endif()
 
-if(WIN32)
-    # FIXME: only do this for msvc, `${CMAKE_CXX_COMPILER_ID} STREQUAL "MSVC"` doesn't work
+if(MSVC)
     target_compile_options(OpenLR2Lib PUBLIC /utf-8)
 endif()
 

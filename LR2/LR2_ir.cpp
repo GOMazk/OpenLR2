@@ -114,7 +114,7 @@ int RANKING::ParseXML(const char* path) {
 
 	TiXmlDocument *hXml = new TiXmlDocument(path);
 
-	parse_xml_utf(hXml, path);
+	parse_cp932_xml(hXml, path);
 
 	TiXmlElement *cur;
 	cur = hXml->FirstChildElement("lastupdate");
@@ -124,14 +124,14 @@ int RANKING::ParseXML(const char* path) {
 
 	cur = hXml->FirstChildElement("ranking");
 	if (!cur) {
-		if (hXml) delete(hXml);
+		delete(hXml);
 		ErrorLogFmtAdd("ランキングの読み込みに失敗しました。xmlの書式をミスってるかも。\n");
 		return 0;
 	}
 
 	cur = cur->FirstChildElement("score");
 	if (!cur) {
-		if (hXml) delete(hXml);
+		delete(hXml);
 		ErrorLogFmtAdd("スコアの更新がありません。\n");
 		return 0;
 	}
@@ -209,7 +209,7 @@ int RANKING::ParseXML(const char* path) {
 		cur = cur->NextSiblingElement();
 	}
 
-	if (hXml) delete(hXml);
+	delete(hXml);
 	ErrorLogFmtAdd("ランキングデータのパースに成功しました。 合計プレイヤー %d\n", rankingCount);
 	
 	qsort(ranking, rankingCount, sizeof(RANKINGPLAYER), CMP_PlayerByExscore);
@@ -265,7 +265,7 @@ int ParseRivalData(long ID) {
 	
 	cstrSprintf(&path, fs::make_preferred("LR2files/Rival/%d.xml").data(), ID);
 	hXml = new TiXmlDocument(path);
-	parse_xml_utf(hXml, path.body);
+	parse_cp932_xml(hXml, path.body);
 
 	std::string name;
 	cur = hXml->FirstChildElement("rivalname");
@@ -278,9 +278,7 @@ int ParseRivalData(long ID) {
 
 	cur = hXml->FirstChildElement("scorelist");
 	if (!cur) {
-		if (hXml) {
-			delete(hXml);
-		}
+		delete(hXml);
 		ErrorLogFmtAdd("ライバルデータ読み込みに失敗しました。xmlが変かも\n");
 		printfDx("ライバルデータの読み込みに失敗しました。ID%06d\n", ID);
 		return 0;
@@ -288,9 +286,7 @@ int ParseRivalData(long ID) {
 
 	cur = cur->FirstChildElement("score");
 	if (!cur) {
-		if (hXml) {
-			delete(hXml);
-		}
+		delete(hXml);
 		ErrorLogFmtAdd("ライバルデータの読み込みに失敗しました。スコアが存在しないかも\n");
 		printfDx("ID%06d:ライバルデータ[%s]の更新はありません。\n", ID, name.c_str());
 		return 0;
@@ -374,9 +370,7 @@ int ParseRivalData(long ID) {
 
 		cur = cur->NextSiblingElement();
 	}
-	if (hXml) {
-		delete(hXml);
-	}
+	delete(hXml);
 	remove(path);
 
 	SQL_Run("COMMIT", pRivalDB);
@@ -413,27 +407,21 @@ int NETWORK::GetInsaneList() {
 
 	std::string path = fs::make_preferred("LR2files/Database/exlevel.xml").data();
 	hXml = new TiXmlDocument(path.c_str());
-	if (!parse_xml_utf(hXml, path.c_str())) {
-		if (hXml) {
-			delete(hXml);
-		}
+	if (!parse_cp932_xml(hXml, path.c_str())) {
+		delete(hXml);
 		printfDx("発狂レベルリストにアクセスできません。\n");
 		ErrorLogFmtAdd("発狂難度リストにアクセスできません。\n");
 		return 0;
 	}
 	cur = hXml->FirstChildElement("list");
 	if (!cur) {
-		if (hXml) {
-			delete(hXml);
-		}
+		delete(hXml);
 		printfDx("発狂レベルリストの読み込みに失敗しました。\n");
 		return 0;
 	}
 	cur = cur->FirstChildElement("song");
 	if (!cur) {
-		if (hXml) {
-			delete(hXml);
-		}
+		delete(hXml);
 		printfDx("発狂レベルリストの更新はありません。\n");
 		return 0;
 	}
@@ -456,7 +444,7 @@ int NETWORK::GetInsaneList() {
 		cur = cur->NextSiblingElement();
 	}
 
-	if (hXml) delete(hXml);
+	delete(hXml);
 	SQL_Run("COMMIT", pSongDB);
 	sqlite3_close(pSongDB);
 	return 1;
