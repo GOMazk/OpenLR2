@@ -590,94 +590,25 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 			}
 		}
 
-		//if (cfg_select->ignore5key == 1) {
-		//	cstrSprintf(&sd.folder, "%s", sqlite3_column_text(stmt, 9));
-		//	if (nowFolder.isDiff(&sd.folder)) {
-		//		//v4 = 0;
-		//	}
-		//	else {
-		//		if (keymode_A == 5) {
-		//			if (sd.keymode == 7) {
-		//				//slistCount -= v4;
-		//				//v4=0;
-		//				//jmp
-		//			}
-		//		}
-		//		else if (keymode_A == 10 && sd.keymode == 14) {
-		//			//slistCount -= v4;
-		//			//v4;
-		//			//jmp
-		//		}
-		//		if (keymode_A != sd.keymode) {
-		//			//v4 = 0;
-		//		}
-		//	}
-		//}
-
 		if (slistCount < 0)	slistCount = 0;
 
 		if (sd.favorite == 2) continue;
 
-		//I'm uncertain, need check
-		switch (sd.keymode) {
-			case 7:
-				if (keys == 7) break;
-			case 5:
-				if (key == 1) break;
-			default:
-				switch (sd.keymode) {
-					case 14:
-						if (keys >= 14) break;
-					case 10:
-						if (key == 4) break;
-					default:{
-							bool bKeyfilter; //looks like there is no variable, but I had no idea
-							if (sd.keymode == 9) bKeyfilter = keys == 9;
-							else if (sd.keymode == 10) bKeyfilter = keys == 10;
-							else if (sd.keymode == 5) bKeyfilter = keys == 5;
-							else bKeyfilter = sd.keymode == 0;
-							if (!bKeyfilter && key != 0) continue;
-						}
-						break;
-				}
-				break;
-		}
-		//if (sd.keymode == 7) {
-		//	if (keys != 7 && key != 1) {
-		//		if (sd.keymode == 14) {
-		//			if (keys < 14 && key != 4) {
-		//				//rjtlrl
-		//			}
-		//		}
-		//	}
-		//}
-		//else {
-		//	if (sd.keymode < 9) {
-		//		if(key != 1) {
-		//			if (sd.keymode == 14) {
-		//				if (keys < 14 && key != 4) {
-		//					//rjtlrl
-		//					//breakkk
-		//				}
-		//			}
-		//		}
-		//	}
-		//	if (sd.keymode == 14) {
-		//		if (key != 4) {
-		//			//rjtlrl
-		//		}
-		//	}
-		//	else {
-		//		//rjtlrl:
-		//		//	if (sd.keymode == 9) v5 = keys == 9;
-		//		//	else if (sd.keymode == 10) v5 = keys == 10;
-		//		//	else if (sd.keymode == 5) v5 = keys == 5;
-		//		//	else v5 = sd.keymode == 0;
-		//		//	if (!v5 && key != 0) continue;
-		//	}
-		//}
+		auto keymode_allowed_for_playstyle = [](int keymode, int playstyle, int playstyle_keys) {
+			if (playstyle == 0 /*all*/) {
+				return true;
+			}
+			switch(keymode) {
+			case 5: return keymode == playstyle_keys || playstyle == 1 /*single*/;
+			case 7: return keymode == playstyle_keys || playstyle == 1 /*single*/;
+			case 9: return keymode == playstyle_keys;
+			case 10: return keymode == playstyle_keys || playstyle == 4 /*double*/;
+			case 14: return keymode == playstyle_keys || playstyle == 4 /*double*/;
+			default: return false; // unreachable?
+			}
+		};
+		if (!keymode_allowed_for_playstyle(sd.keymode, key, keys)) continue;
 
-		sd.keymode = sqlite3_column_int(stmt, 18);
 		sd.difficulty = sqlite3_column_int(stmt, 15);
 		cstrSprintf(&newFolder, "%s", sqlite3_column_text(stmt, 9));
 		if (sd.keymode > 0) {
@@ -703,10 +634,10 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 			sd.mybest.rseed = sqlite3_column_int(stmt, 51);
 			sd.mybest.complete = sqlite3_column_int(stmt, 52);
 		}
-		if (sqlite3_column_int(stmt, 18) == 0) {
+		if (mode == 0) {
 			workingFolder = newFolder;
 			COPY_SONGDATA(&slist[slistCount], &sd);
-			nowMode = sqlite3_column_int(stmt, 18);
+			nowMode = mode;
 			difficultyCount = 1;
 
 			slistCount++;
@@ -717,7 +648,7 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 		}
 		else if (newFolder.isDiff(workingFolder)) {
 			workingFolder = newFolder;
-			nowMode = sqlite3_column_int(stmt,18);
+			nowMode = mode;
 			nowDifficulty = sd.difficulty;
 			difficultyCount = 1;
 			COPY_SONGDATA(&slist[slistCount], &sd);
@@ -728,8 +659,8 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 			keymode_B = sd.keymode;
 			keymode_A = sd.keymode;
 		}
-		else if (sqlite3_column_int(stmt, 18) != nowMode) {
-			nowMode = sqlite3_column_int(stmt, 18);
+		else if (mode != nowMode) {
+			nowMode = mode;
 			nowDifficulty = sd.difficulty;
 			difficultyCount = 1;
 			COPY_SONGDATA(&slist[slistCount], &sd);
