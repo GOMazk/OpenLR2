@@ -484,9 +484,9 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 
 	std::unique_lock l{gp->criticalSection};
 
-	std::vector<int> keysoundLoadQueue;
+	std::vector<unsigned int> keysoundLoadQueue;
 	std::vector<std::jthread> keysoundsLoadWorkers;
-	std::atomic<int> keysoundsLoaded = 0;
+	std::atomic<unsigned int> keysoundsLoaded = 0;
 	std::atomic<bool> keysoundsLoadAbort = false;
 	keysoundLoadQueue.reserve(SLOTS);
 	for (int i = 0; i < SLOTS; i++) {
@@ -494,13 +494,15 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 			keysoundLoadQueue.push_back(i);
 		}
 	}
-	for (auto i : std::views::iota(0u, std::max(2u, cfg->system.coreCount / 2) + 1)) {
+	const auto workerCount = std::max(2u, cfg->system.coreCount / 2);
+	keysoundsLoadWorkers.reserve(workerCount);
+	for (auto _ : std::views::iota(0u, workerCount + 1)) {
 		keysoundsLoadWorkers.emplace_back([&]() {
 			while (!keysoundsLoadAbort) {
-				int queue_i = keysoundsLoaded++;
+				unsigned int queue_i = keysoundsLoaded++;
 				if (queue_i >= keysoundLoadQueue.size())
 					break;
-				int i = keysoundLoadQueue[queue_i];
+				unsigned int i = keysoundLoadQueue[queue_i];
 				LoadSound(aud, &gp->keysound[i], gp->keysound_filename[i], 0, cfg->sound.disabledsp, (gp->isPreviewLoad != 0));
 				if (gp->keysound[i].length > 60000 && gp->keysound[i].load) gp->flag_longsound = 1;
 				gp->loadObject_loaded++;
