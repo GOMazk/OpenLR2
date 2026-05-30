@@ -3245,6 +3245,7 @@ int SetFirstSkins(game *g){
 	if (SetFirstSkin(sm, SKINTYPE_COURSEEDIT, &g->config.skin.skinFilePath[20]) == -1) {
 		ErrorLogAdd("コース編集スキンが有りません。\n"); //course edit
 		//15:course result was here, but I moved it on the correct order
+	}
 	return 1;
 }
 
@@ -8809,7 +8810,7 @@ int InitSelectBySearchResult(game *g, sqlite3 *sql) {
 				LoopInRange(0, 7, 1, &g->sSelect.filterKey);
 				if (g->config.select.ignorekeyall == 1 && g->sSelect.filterKey == 0) g->sSelect.filterKey = 1;
 				if (g->config.select.ignorekeysingle == 1 && g->sSelect.filterKey == 1) g->sSelect.filterKey = 2;
-				if (g->config.select.ignorekeysingle == 1 && g->sSelect.filterKey == 4) g->sSelect.filterKey = 5;
+				if (g->config.select.ignorekeydouble == 1 && g->sSelect.filterKey == 4) g->sSelect.filterKey = 5;
 				if (g->config.select.ignoredp == 1 && (4 <= g->sSelect.filterKey && g->sSelect.filterKey <= 6)) g->sSelect.filterKey = 7;
 				if (g->config.select.ignorepms == 1 && g->sSelect.filterKey == 7) g->sSelect.filterKey = 0;
 				if (g->config.select.ignorekeyall == 1 && g->sSelect.filterKey == 0) g->sSelect.filterKey = 1;
@@ -13048,7 +13049,7 @@ void ProcGameThread(game *g) {
 		Sleep(16);
 		if (g->gameplay.flag_closingPhase) {
 			g->gameplay.flag_threadExist = 0;
-			break;
+			return;
 		}
 	}
 
@@ -13063,7 +13064,7 @@ void ProcGameThread(game *g) {
 		Sleep(16);
 		if (g->gameplay.flag_closingPhase) {
 			g->gameplay.flag_threadExist = 0;
-			break;
+			return;
 		}
 	}
 
@@ -13077,7 +13078,7 @@ void ProcGameThread(game *g) {
 		ReactInput(g);
 		if (g->gameplay.flag_closingPhase) {
 			g->gameplay.flag_threadExist = 0;
-			break;
+			return;
 		}
 	}
 
@@ -14920,6 +14921,7 @@ int ReadKeyConfig(game *game, const char *FilePath) {
 			delete(hXml);
 		}
 		hXml = NULL;
+		return 0;
 	}
 
 	ReadXml_Int_Multi("keyconfig", "key01", "id", (game->config).input.buttonMap[1], hXml);
@@ -17384,6 +17386,7 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 		}
 		else if (nowDifficulty == sd.difficulty || difficulty == 0) {
 			difficultyCount++;
+			COPY_SONGDATA(&slist[slistCount], &sd);
 			
 			slistCount++;
 			folderSongCount++;
@@ -18133,7 +18136,7 @@ int SearchCourseFromDB(sqlite3 *sql, SONGSELECT *ss, int keys, int multistagemod
 				song.mybest.rank = 1;
 		}
 	    else {
-	      bmslist.mybest.rank = 8;
+	      song.mybest.rank = 8;
 	    }
 		song.mybest.clear_db = sqlite3_column_int(pStmt, 20);
 		song.mybest.op_history = sqlite3_column_int(pStmt, 21);

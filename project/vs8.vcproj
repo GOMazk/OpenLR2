@@ -175,14 +175,6 @@
 				>
 			</File>
 			<File
-				RelativePath="..\LR2input.cpp"
-				>
-			</File>
-			<File
-				RelativePath="..\LR2startup.cpp"
-				>
-			</File>
-			<File
 				RelativePath="..\Main.cpp"
 				>
 			</File>
@@ -226,14 +218,6 @@
 			</File>
 			<File
 				RelativePath="..\LR2f.h"
-				>
-			</File>
-			<File
-				RelativePath="..\LR2input.h"
-				>
-			</File>
-			<File
-				RelativePath="..\LR2startup.h"
 				>
 			</File>
 			<File

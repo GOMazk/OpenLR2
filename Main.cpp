@@ -291,7 +291,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 		ErrorLogAdd(gs.net.request_result);
 	}
 
-	loadingGrHandle = LoadGraph("LR2files/Config/loading.bmp", 0)
+	loadingGrHandle = LoadGraph("LR2files/Config/loading.bmp", 0);
 	SetBackground(loadingGrHandle);
 
 	memcpy(gs.config.jukebox.rival, gs.net.rivals, 4 * 20);
@@ -820,7 +820,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 						if (gs.sSelect.bmsList[gs.sSelect.cur_song].keymode == 5) {
 							LoadScene(&gs.skstruct, gs.config.skin.skinFilePath[13], gs.skinData.Data[gs.skinData.skinID[13]].informationP5, 0);
 							if (gs.skinData.Data[gs.skinData.skinID[13]].type != SKINTYPE_5KEYSBATTLE)
-								ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+								ReadKeyConfig(&gs, "LR2files/Config/keyconfig.xml");
 							else 
 								ReadKeyConfig(&gs, "LR2files\\Config\\keyconfig_5.xml");
 						}
@@ -851,7 +851,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 								else if (gs.config.play.battle == 1) {
 									LoadScene(&gs.skstruct, gs.config.skin.skinFilePath[13], gs.skinData.Data[gs.skinData.skinID[13]].informationP5, 0);
 									if (gs.skinData.Data[gs.skinData.skinID[13]].type != SKINTYPE_5KEYSBATTLE)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig.xml").data());
+										ReadKeyConfig(&gs, "LR2files/Config/keyconfig.xml");
 									else
 										ReadKeyConfig(&gs, "LR2files\\Config\\keyconfig_5.xml");
 								}
@@ -903,7 +903,7 @@ int WINAPI WinMain(HINSTANCE hInstance, HINSTANCE hPrevInstance, LPSTR lpCmdLine
 								else if (gs.config.play.battle == 1 || gs.config.play.battle == 2) {
 									LoadScene(&gs.skstruct, gs.config.skin.skinFilePath[13], gs.skinData.Data[gs.skinData.skinID[13]].informationP5, 0);
 									if (gs.skinData.Data[gs.skinData.skinID[13]].type == SKINTYPE_5KEYSBATTLE)
-										ReadKeyConfig(&gs, fs::make_preferred("LR2files/Config/keyconfig_5.xml").data());
+										ReadKeyConfig(&gs, "LR2files/Config/keyconfig_5.xml");
 									else
 										ReadKeyConfig(&gs, "LR2files\\Config\\keyconfig.xml");
 								}
