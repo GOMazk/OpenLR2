@@ -1,42 +1,45 @@
 # OpenLR2
 Rewritten source code of bms player Lunatic Rave 2
-Project started Jan, 2021.(and aged about 1 year) And now it's about to release.
 
-if there is any different behavior with LR2beta3100201, plaese let me know.
+Project started Jan, 2021. And now it's about to release (aged about one and half year sry).
 
-current progress is refactoring at LR2Beta4 branch
+current progress is 'doing whatever'
 
 original codes remain at LR2Beta3-v100201 branch
 
-# is it really open source?
-I didn't decide yet, I asked stakeholders(IR manager) but there was no reply
+## is it really open source?
+~I didn't decide yet, I mailed to stakeholder(IR manager) but there was no reply~
 
-# installation
+LR2IR is closed, so YES
+
+# For users
+## installation
 get original LR2 beta3 100201
 
 put OpenLR2.exe into the folder and run (or you can replace original LR2body.exe )
 
-# caution
+## caution
 It uses same score DB with origianl one.
 
-To avoid data corruption, do not run this on where you played original LR2 (or use -ns option).
+If you want to avoid potential data corruption, do not run this on where you played original LR2 (or use -ns option), 
 
-recommend use newly installed LR2.
+or backup your 'LR2files\Database\Score\'
 
-sending score to LR2IR is disabled to avoid accidents.
+~sending score to LR2IR is disabled to avoid accidents.~
 
-(accidents can be occur, by saving score with OpenLR2 and sending score with original LR2. DO NOT MIX yet)
+~(accidents can be occur, by saving score with OpenLR2 and sending score with original LR2. DO NOT MIX yet)~
 
-# known issues
+## known issues
  - score save issue on NONSTOP MIX
  - readme left click scroll is faster than original (not important)
 
-# build
-use visual studio 2022, right click on OpenLR2_vs22, build. x86 release build only
+# For developers
+## build
+use visual studio 2022, right click on OpenLR2_vs22, build. I'm working on x86 release build only
 
-# libraries
+## libraries (you don't need getting these)
 *DxLib 3.01a => 3.24f(custom old dxa)
-	orginal library is dxlib 3.01a, not available. we can get 3.01 or 3.02.
+	currently using custom dxlib to read dxa files.
 
 *FMODex 4.13.4(080401) => FMOD 2.3.10
  
