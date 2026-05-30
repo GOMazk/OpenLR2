@@ -6,3 +6,5 @@ project/*.user
 /SkinEditor
 /Win32
 /SkinEditor_DX9
+/project/Release
+/.vs
