@@ -29,6 +29,22 @@ or backup your 'LR2files\Database\Score\'
 
 ~(accidents can be occur, by saving score with OpenLR2 and sending score with original LR2. DO NOT MIX yet)~
 
+## New features
+
+- Proper fullscreen support - The game doesn't crash on Alt+Tab or Fullscreen->Window change in the game menu
+  
+- Gauge Auto Shift (GAS) - Changes the gauge to the easier one automatically if you failed on the selected one. Turn it on in MANIAC OPTIONS (F2 -> 3rd page)
+  
+- Fast/Slow support
+  
+- Quick restart - Lets you restart the chart without going to result screen. Press both Start and Select, then quickly release and press either Start for a new random, or Select for the same random you had before.
+  
+- MainBPM Hi-Speed Fix - Hi-Speed anchor is set at the most prevalent BPM in the chart.
+  
+- UTF-8 support - Essentially means you don't need to change the locale in Windows settings to play.
+  
+- Base62 support - support more keysounds on some newer charts that require them.
+
 ## I want use HD skins
 <img width="441" height="64" alt="image" src="https://github.com/user-attachments/assets/30f21a53-aa14-430b-ae74-9a11c62f3c49" />
 
