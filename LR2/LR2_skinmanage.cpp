@@ -193,7 +193,7 @@ int InitSkinData(SkinManage *skm){
 }
 
 int ExpandSkinMax(SkinManage *skm){
-	skm->Data = (SkinHeader *)realloc(skm->Data, (skm->Max + 100) * 0xb14);
+	skm->Data = (SkinHeader *)realloc(skm->Data, (skm->Max + 100) * sizeof(SkinHeader));
 	assert(skm->Data != nullptr);
 	memset(skm->Data + skm->Max, 0, sizeof(SkinHeader) * 100);
 	if (skm->Max < skm->Max + 100) {
