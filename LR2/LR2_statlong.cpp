@@ -39,7 +39,7 @@ int ReadPlayerScore(CSTR id, CSTR pass, PLAYERSTATISTIC *pstat) {
 	sqlite3_open(dbPath, &scoreDB);
 	ErrorLogFmtAdd("成功\n");
 
-	sqlite3_snprintf(256, str, "SELECT * FROM player WHERE id = \'%s\'", id.body);
+	sqlite3_snprintf(256, str, "SELECT * FROM player WHERE id = \'%q\'", id.body);
 	query = str;
 
 	SQL_prepare(query, scoreDB, &stmt);
