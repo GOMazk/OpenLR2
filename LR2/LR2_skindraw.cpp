@@ -28,7 +28,7 @@ int AllocDrawingBuffer(DrawingBuf *drb){
 		drb->top[i] = -1;
 		drb->bottom[i] = -1;
 	}
-	drb->dstd = (DSTdraw *)malloc(drb->max * 0x50);
+	drb->dstd = (DSTdraw *)malloc(drb->max * sizeof(DSTdraw));
 	if (drb->dstd == (DSTdraw *)0x0) {
 		ErrorLogAdd("描画用バッファのメモリ取得に失敗しました。\n");
 		return -1;
@@ -38,7 +38,7 @@ int AllocDrawingBuffer(DrawingBuf *drb){
 
 int ReallocDrawingBuffer(DrawingBuf *drb){
 	drb->max = drb->max + 1000;
-	drb->dstd = (DSTdraw *)realloc(drb->dstd, drb->max * 0x50);
+	drb->dstd = (DSTdraw *)realloc(drb->dstd, drb->max * sizeof(DSTdraw));
 	assert(drb->dstd != nullptr);
 	if (drb->dstd == (DSTdraw *)0x0) {
 		ErrorLogAdd("描画用バッファのメモリ再取得に失敗しました。\n");
