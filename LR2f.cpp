@@ -17003,7 +17003,7 @@ int EditTag(SONGDATA *song, sqlite3 *sql) {
 	HANDLE hFindFile;
 	_WIN32_FIND_DATAA findFileData;
 	sqlite3_stmt *stmt;
-	CSTR query;
+	char query[1024];
 
 	hFindFile = FindFirstFileA(song->filepath, &findFileData);
 	if (hFindFile == (HANDLE)-1) {

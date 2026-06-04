@@ -10,3 +10,6 @@ project/*.user
 /.vs
 /ExampleIR
 /OpenLR2_vs22/x64
+/Debug
+/OpenLR2_vs22
+/x64
