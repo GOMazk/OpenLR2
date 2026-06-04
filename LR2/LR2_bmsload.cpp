@@ -693,6 +693,8 @@ int InitGameplay_retry(gameplay *gp, AUDIO *snd, game *g) {
 	}
 
 	for (int i = 0; i < SINGLESLOTS; i++) {
+		PauseMovieToGraph(gp->bgaHandle[i]);
+		SeekMovieToGraph(gp->bgaHandle[i], 0);
 		gp->bgaHandleHandle[i] = -1;
 	}
 

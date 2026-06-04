@@ -1107,7 +1107,7 @@ static void QuickRestart(game& game, bool newRandom) {
 		game.gameplay.flag_retry = 0;
 	}
 
-	ReleaseBGA(&game); // ugly place for this
+	if (game.gameplay.flag_retry == 0) ReleaseBGA(&game); // ugly place for this
 	StopAllKeysound(&game);
 }
 

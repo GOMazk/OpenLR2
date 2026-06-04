@@ -200,9 +200,8 @@ static void QuickRestart(game& game, bool newRandom) {
 		game.gameplay.flag_retry = 0;
 	}
 
-	for (int i = 0; i < SLOTS; i++) {
-		StopSound(&game.audio, &game.gameplay.keysound[i]);
-	}
+	if (game.gameplay.flag_retry == 0) ReleaseBGA(&game); // ugly place for this
+	StopAllKeysound(&game);
 }
 
 char fWaitHiScoreUpdateInput = 0;
