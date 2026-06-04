@@ -610,9 +610,11 @@ int SaveResult(game *g, sqlite3* sql) {
 		g->gameplay.isNosave = 0;
 	}
 
+	g->gameplay.player[0].lastCourseGaugeType = g->gameplay.player[0].gaugeType; // If you finish a course stage with exscore 0, this code won't run and you may start the next stage with same gauge as one displayed on result... First hit note will reset it back to normal.
+
 	if (g->gameplay.isAutoplay) return -1;
+
 	if (g->config.play.m_gas) {
-		g->gameplay.player[0].lastCourseGaugeType = g->gameplay.player[0].gaugeType; // If you finish a course stage with exscore 0, this code won't run and you may start the next stage with same gauge as one displayed on result... First hit note will reset it back to normal.
 		g->gameplay.player[0].gaugeType = GetBestClearedGauge(g->gameplay, 0, g->config.play, g->gameplay.courseStageNow != 0);
 	}
 	auto is_gauge_better = [](int gauge1, int gauge2) {
