@@ -8410,7 +8410,7 @@ int ProcS_Select(game *g) {
 			SetObjectString(150 + i, g->sSelect.course.data[i].title, g->txtStruct.objectStr);
 			SetObjectString(160 + i, g->sSelect.course.data[i].subtitle, g->txtStruct.objectStr);
 		}
-		SetObjectString(170, g->sSelect.bmsList[g->sSelect.cur_song].title, g->txtStruct.objectStr);
+		SetObjectString(170, g->sSelect.course.name, g->txtStruct.objectStr);
 	}
 	else if(g->sSelect.bmsList[g->sSelect.cur_song].folderType == 8){
 		for (int i = 0; i < 5; i++) {
