@@ -1,9 +1,15 @@
 #pragma once
 
+// CustomIR public ABI between OpenLR2 host and third-party IR DLLs.
+// DLLs export GetMethodTable(MethodTable&); leave unimplemented slots as nullptr.
+// MethodTable and struct layouts are append-only: do not reorder slots or change IRScoreV1 fields.
+// Module implementation guide: ExampleIR/README.md
+
 #include <string>
 #include <array>
 #include <vector>
 
+// Play/course result payload for SendScoreV1 (submitted after a chart finishes).
 struct IRScoreV1 {
 	struct SONG {
 		std::string hash;
@@ -100,12 +106,14 @@ struct IRScoreV1 {
 	} graphs{};
 };
 
+// SendScoreV1 return value.
 enum class SendScoreStatus: int {
 	Ok = 0,
 	Retry,
 	Fail,
 };
 
+// Shared query input for Fetch*V1 slots (song metadata + option fingerprint).
 struct IRRankQueryV1 {
 	IRScoreV1::SONG song{};
 	IRScoreV1::SETTINGS settings{};
@@ -114,16 +122,19 @@ struct IRRankQueryV1 {
 	int clearType{};
 };
 
+// FetchResultRankV1 output; result-screen rank display (skin #92/#93). rank/playerCount 0 = unknown.
 struct IRRankResultV1 {
 	int rank{};
 	int playerCount{};
 };
 
+// FetchChartStatsV1 output; song-select chart stats. clearDistribution indexed by clear type.
 struct IRChartStatsV1 {
 	int playerCount{};
 	std::array<int, 6> clearDistribution{};
 };
 
+// One row in FetchLeaderboardV1 output; F3 in-game ranking board entry.
 struct IRLeaderboardEntryV1 {
 	int rank{};
 	int playerId{};
@@ -142,6 +153,7 @@ struct IRLeaderboardEntryV1 {
 	std::string displayName;
 };
 
+// FetchLeaderboardV1 output; F3 in-game ranking board.
 struct IRLeaderboardResultV1 {
 	int playerCount{};
 	int myRank{};
@@ -149,6 +161,7 @@ struct IRLeaderboardResultV1 {
 	std::vector<IRLeaderboardEntryV1> entries;
 };
 
+// FetchRivalChartV1 output; song-select rival row.
 struct IRRivalChartV1 {
 	int playerId{};
 	int exscore{};
@@ -166,18 +179,21 @@ struct IRRivalChartV1 {
 	bool hasPlay{};
 };
 
+// Return value for all fetch MethodTable slots.
 enum class FetchRankStatus: int {
 	Ok = 0,
 	Retry,
 	Fail,
 };
 
+// GetProviderMetaV1 output; F5 web ranking URL templates ({hash} placeholder).
 struct IRProviderMetaV1 {
 	const char* webRankingChartUrlTemplate = nullptr;
 	const char* webRankingCourseUrlTemplate = nullptr;
 	const char* apiVersion = nullptr;
 };
 
+// FetchIrGhostV1 query; play-scene ghost target (e.g. g-battle rival).
 struct IRGhostQueryV1 {
 	IRScoreV1::SONG song{};
 	int mode = 0;
@@ -185,6 +201,7 @@ struct IRGhostQueryV1 {
 	int targetPlayerId = 0;
 };
 
+// FetchIrGhostV1 output; play-scene ghost replay data.
 struct IRGhostResultV1 {
 	std::string displayName;
 	std::string ghostData;
