@@ -1202,7 +1202,7 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
 						SQL_Run(sqlite3_snprintf(1024, sBuf, "DELETE FROM folder WHERE path=\'%q\'", str.body), sql);
 						BMSMETA meta;
 						ParseBMSMETA(&meta, str, 1);
-						SQL_Run(sqlite3_snprintf(1024, sBuf, "INSERT INTO folder (path , title , parent , category , info_a , info_b , command , max , date , type , banner , adddate) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d , %d , 2 , %s , %d) ",
+						SQL_Run(sqlite3_snprintf(1024, sBuf, "INSERT INTO folder (path , title , parent , category , info_a , info_b , command , max , date , type , banner , adddate) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d , %d , 2 , \'%q\' , %d) ",
 							str.body, meta.title.body, AssignCRC32(meta.folderpath).body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.tag.body, meta.selLevel, newTime, meta.bannerpath.body, now), sql);
 					}
 					else {

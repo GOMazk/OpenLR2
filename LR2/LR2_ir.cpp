@@ -545,7 +545,11 @@ int NETWORK::HTTPrequest() {
 		ioctlsocket(s, 0x8004667e, &argp);
 
 		request.fillzero();
-		cstrSprintf(&request, "POST %s HTTP/1.0\r\nContent-Length:%d\n\n%s", this->target_URL.body, this->param.length(), this->param.body);
+		cstrSprintf(&request, "POST %s HTTP/1.0\r\n"
+							  "Content-Type: application/x-www-form-urlencoded\r\n"
+							  "Content-Length:%d\r\n"
+							  "\r\n"
+							  "%s", this->target_URL.body, this->param.length(), this->param.body);
 
 		if (send(s, request, request.length() + 1, 0) < 0) {
 			cstrSprintf(&this->request_debug, "データの送信に失敗しました : %d\n", WSAGetLastError());
@@ -724,12 +728,7 @@ static void ThreadProc_IRsendScore(NETWORK *ir) {
 			ir->myRanking.rseed, ir->myRanking.clear_db, ir->myRanking.clear_ex,
 			ir->myRanking.clear_sd, scorehash.body);
 	ir->target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/score.cgi";
-	int httpResponse;
-	if constexpr (true) { // DEBUG: do not send IR before test is done enough.
-		httpResponse = 0;
-	} else {
-		httpResponse = ir->HTTPrequest();
-	}
+	const int httpResponse = ir->HTTPrequest();
 	if (httpResponse == 1) {
 		ir->IRresultMessage = "スコアを送信しました";
 		ir->GetRanking(ir->myRanking.songMD5, 1);

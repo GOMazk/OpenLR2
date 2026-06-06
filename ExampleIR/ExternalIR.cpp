@@ -24,7 +24,7 @@ static bool Login() {
     return true;
 }
 
-static bool SendScore(const IRScoreV1& score) {
+static SendScoreStatus SendScore(const IRScoreV1& score) {
     // Process your score here, and output the result where you want it, perhaps send it to a URL.
     // This method is ran on its own thread at each score result, both for normal plays and courses.
     // It will run even for scores that wouldn't be sent to LR2IR or saved to the score.db, it's up to the module to filter them.
@@ -32,7 +32,7 @@ static bool SendScore(const IRScoreV1& score) {
     // If a module wants to retry sending the score, it should return 'false'. 
     // OpenLR2 will retry several times, after which the score will be dropped.
     constexpr const char* lamps[6] = { "NO PLAY", "FAIL", "EASY", "NORMAL", "HARD", "FULL COMBO" };
-    if (score.settings.assist[score.state.player]) return true;
+    if (score.settings.assist[score.state.player]) return SendScoreStatus::Fail;
     std::string filename = std::format("score{}.txt", State::scoresSaved);
     State::scoresSaved++;
     std::string processedScore = std::format(
@@ -59,7 +59,7 @@ static bool SendScore(const IRScoreV1& score) {
     );
     std::ofstream dump(State::path / filename);
     dump << processedScore;
-    return true;
+    return SendScoreStatus::Ok;
 }
 
 extern "C" __declspec(dllexport) void GetMethodTable(MethodTable& table) {

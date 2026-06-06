@@ -329,23 +329,12 @@ char * cstrSprintf(CSTR *str, const char *format, ...) {
 }
 
 int CSTR::toFile(const char *filepath) {
-	char *_Str;
-	FILE *_File;
-	char *pcVar2;
-
-	_File = fopen(filepath, "w");
-	if (_File == (FILE *)0x0) {
+	FILE *f = fopen(filepath, "w");
+	if (f == nullptr) {
 		return -1;
 	}
-	_Str = body;
-	if (_Str == (char *)0x0) {
-		pcVar2 = (char *)0x0;
-	}
-	else {
-		pcVar2 = (char*)strlen(_Str);
-	}
-	fwrite(_Str, 1, (size_t)(pcVar2 + 1), _File);
-	fclose(_File);
+	fwrite(body, 1, body ? strlen(body) : 0, f);
+	fclose(f);
 	return 1;
 }
 
