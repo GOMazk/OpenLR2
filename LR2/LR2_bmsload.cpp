@@ -1,6 +1,8 @@
 ﻿#include "LR2_bmsload.h"
 #include "Engine.h"
 #include "LR2_replay.h"
+#include "Unrandomizer_SeedMap5K.h"
+#include "Unrandomizer_SeedMap7K.h"
 #include "filesystem.h"
 
 #include <algorithm>
@@ -1870,11 +1872,25 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 	oldSpeedMultiplier = gp->freqSpeedMultiplier;
 
 	//TOFIX : seed is not putted into replaydata, when use ghostbattle. (retry puts seed) (see also ProcS_Play())
-	if (gp->randomseed) {
+	if (gp->randomseed != 0) {
 		ErrorLogFmtAdd("RANDSEEDを引き継ぎます\n");
 	}
 	else if (gp->replay.status != 2) {
-		gp->randomseed = GetRand(0x7ffe);
+		if (cfg->play.random[0] == 2 && gp->forceRandomLayout != 0) {
+			ErrorLogFmtAdd("Force random layout %d for keymode %d\n", gp->forceRandomLayout, gp->keymode);
+			switch (gp->keymode) {
+			case 5: gp->randomseed = GetSeed5K(gp->forceRandomLayout); break;
+			case 7: gp->randomseed = GetSeed7K(gp->forceRandomLayout); break;
+			default: ErrorLogAdd("Unsupported keymode for forcing random layout\n"); break;
+			}
+			if (gp->randomseed == 0xFFFF) {
+				ErrorLogAdd("Impossible random layout\n");
+				gp->randomseed = 0;
+			}
+		}
+		if (gp->randomseed == 0) {
+			gp->randomseed = GetRand(0x7ffe);
+		}
 		if (gp->replay.status == 1) {
 			AddReplayData(&gp->replay, 0, 200, (short)gp->randomseed);
 		}
