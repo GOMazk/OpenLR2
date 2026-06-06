@@ -308,9 +308,9 @@ int main(int argc, char** argv) {
 				}
 			}
 		}
-		SetWaitVSyncFlag(gs.config.system.vsync);
+		SetWaitVSyncFlag(0); //VSYNC
 		ChangeWindowMode(1);
-		SetWaitVSyncFlag(gs.config.system.vsync);
+		SetWaitVSyncFlag(0); //VSYNC
 	}
 
 	if ((gs.config.system.maindisplay < 1) || (GetDirectDrawDeviceNum() <= gs.config.system.maindisplay)) {
@@ -329,10 +329,10 @@ int main(int argc, char** argv) {
 	SetMultiThreadFlag(1);
 #endif // _WIN32
 	if ((gs.is_recordmode == '\0') && (gs.rec.recMode == 0)) {
-		SetWaitVSyncFlag(gs.config.system.vsync);
+		SetWaitVSyncFlag(0); //VSYNC
 	}
 	else {
-		SetWaitVSyncFlag(1);
+		SetWaitVSyncFlag(1); //VSYNC
 		ErrorLogFmtAdd("動画作成モードなのでVSyncを待ちます。\n");
 	}
 #ifdef _WIN32
@@ -343,6 +343,7 @@ int main(int argc, char** argv) {
 	if (use_dx9) {
 		SetUseDirect3DVersion(DX_DIRECT3D_9); //DXLIBVER: if not set, it's DX11 (over 3.13e)
 	}
+	SetUseDisplayIndex(-1);
 #endif // _WIN32
 	if (DxLib_Init() == -1) return 0;
 	if constexpr (is_linux()) { SetMainWindowText(LR2TITLE); }
@@ -414,11 +415,11 @@ int main(int argc, char** argv) {
 
 	//mainphase
 	if ((gs.is_recordmode == '\0') && (gs.auto2avi == '\0')) {
-		SetWaitVSyncFlag(gs.config.system.vsync);
+		SetWaitVSyncFlag(0); //VSYNC
 #ifdef _WIN32
 		ChangeWindowMode(gs.config.system.screenmode);
 #endif // _WIN32
-		SetWaitVSyncFlag(gs.config.system.vsync);
+		SetWaitVSyncFlag(0); //VSYNC
 		SetDrawScreen(DX_SCREEN_BACK);
 	}
 	gs.procSelecter = 2;
@@ -1886,17 +1887,17 @@ int main(int argc, char** argv) {
 			printfDx("maxGAP %.3f\n", gs.timer1.maxGAP);
 			printfDx("avgGAP %.3f\n", gs.timer1.avgOnlyGAP);
 			printfDx("GAP ticks %d / %d\n", gs.timer1.GAPcount, gs.timer1.GAPtick);
-			//TEST END
-			//TEST2
-			int dx, dy;
 #ifdef _WIN32
 			printfDx("%s ", GetUseDirect3DVersion() == 3? "DX11" : "DX9"); //none:0 DX_DIRECT3D_9:1 9EX:2 11:3 default 2? //DEBUG
 #endif // _WIN32
-			printfDx("%s\n", gs.config.system.screenmode? "windowed":"fullscreen");
+			printfDx("%s ", gs.config.system.screenmode? "windowed":"fullscreen");
+			if (GetWaitVSyncFlag()) SetWaitVSyncFlag(0); //TEST
+			printfDx("%s\n", DxLib::GetWaitVSyncFlag() ? "Vsync" : "");
+			int dx, dy;
 			GetDrawScreenSize(&dx, &dy);
 			GetWindowSize(&screenSizeX, &screenSizeY);
 			printfDx("skin %d %d >> scrn %d %d\n", dx, dy, screenSizeX, screenSizeY);
-			//TEST2 END
+			//TEST END
 		}
 		gs.sSelect.flag_maniacPanel = 0;
 		if(gs.procSelecter == 2){
@@ -1911,11 +1912,11 @@ int main(int argc, char** argv) {
 						gs.skstruct.ImageFonts[i].filepath[0] = 0;
 					}
 					SetGraphMode(640, 480, (gs.config.system.highcolor == 0 ? 32 : 16), 60); //TODO_RESOULUTION
-					SetWaitVSyncFlag(gs.config.system.vsync);
+					SetWaitVSyncFlag(0); //VSYNC
 #ifdef _WIN32
 					ChangeWindowMode(gs.config.system.screenmode);
 #endif // _WIN32
-					SetWaitVSyncFlag(gs.config.system.vsync);
+					SetWaitVSyncFlag(0); //VSYNC
 					SetDrawScreen(DX_SCREEN_BACK);
 					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_SELECT);
 					SetMouseDispFlag(0);
@@ -1955,11 +1956,11 @@ int main(int argc, char** argv) {
 						gs.skstruct.ImageFonts[i].filepath[0] = 0;
 					}
 					SetGraphMode(640, 480, (gs.config.system.highcolor == 0 ? 32 : 16), 60); //TODO_RESOULUTION
-					SetWaitVSyncFlag(gs.config.system.vsync);
+					SetWaitVSyncFlag(0); //VSYNC
 #ifdef _WIN32
 					ChangeWindowMode(gs.config.system.screenmode);
 #endif // _WIN32
-					SetWaitVSyncFlag(gs.config.system.vsync);
+					SetWaitVSyncFlag(0); //VSYNC
 					SetDrawScreen(DX_SCREEN_BACK);
 					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_SELECT);
 					SetMouseDispFlag(0);
@@ -2059,11 +2060,12 @@ int main(int argc, char** argv) {
 		GetTimeWrap();
 		if (gs.isSkipDrawTick == 0) {
 			if (gs.gameplay.flag_gameinput != 0 && gs.config.system.thread == 0 && gs.config.system.vsync == 1 && gs.is_recordmode == 0) {
-				//GetVSyncTime() always return 0 in dxlib3.02, and not exists in 3.12a.
-				while ( (GetTimeWrap() - gs.timer1.vSyncTick >= 0 - 3) == 0) {
-					if (GetTimeWrap() - gs.timer1.gameTick >= 0 - 4) break;
+				//TODO : Get appropriate device
+				double a = DxLib::GetRefreshRate() + 1.0 ;
+				double m_lMillisecPerFrame = 1000 / a;
+
+				while (GetTimeWrap() - gs.timer1.vSyncTick < m_lMillisecPerFrame) {
 					ProcGame(&gs);
-					//WaitTimer(1); //TESTING
 				}
 			}
 			gs.timer1.vSyncTick = GetTimeWrap();
@@ -2133,6 +2135,10 @@ int main(int argc, char** argv) {
 					}
 				}
 			}
+
+
+			if (GetWaitVSyncFlag()) SetWaitVSyncFlag(0); //TEST
+
 			ScreenFlip(); //DXlib Vsync works on here
 			GetTimeWrap();
 
@@ -2191,11 +2197,11 @@ int main(int argc, char** argv) {
 				gs.skstruct.ImageFonts[i].filepath[0] = 0;
 			}
 			SetGraphMode(640, 480, (gs.config.system.highcolor == 0 ? 32 : 16), 60); //TODO_RESOULUTION
-			SetWaitVSyncFlag(gs.config.system.vsync);
+			SetWaitVSyncFlag(0); //VSYNC
 #ifdef _WIN32
 			ChangeWindowMode(gs.config.system.screenmode);
 #endif // _WIN32
-			SetWaitVSyncFlag(gs.config.system.vsync);
+			SetWaitVSyncFlag(0); //VSYNC
 			SetDrawScreen(DX_SCREEN_BACK);
 			for (int i = 0; i < 900; i++) {
 				gs.skstruct.op[i] = GetOptionFlag_dst(&gs, i);
@@ -2206,7 +2212,7 @@ int main(int argc, char** argv) {
 				gs.skstruct2.op[i] = 0;
 			}
 			LoadSceneG(&gs, &gs.skstruct, SKINTYPE_SELECT);
-			SetWaitVSyncFlag(gs.config.system.vsync);
+			SetWaitVSyncFlag(0); //VSYNC
 			SetMouseDispFlag(0);
 			gs.is_clicked_screenModeChange = 0;
 			SetObjectStrings_SongSelect(&gs);
@@ -2222,7 +2228,7 @@ int main(int argc, char** argv) {
 			SetGraphMode(640, 480, (gs.config.system.highcolor == 0 ? 32 : 16), 60); //TODO_RESOULUTION
 			SetDrawScreen(DX_SCREEN_BACK);
 			LoadSceneG(&gs, &gs.skstruct, SKINTYPE_SELECT);
-			SetWaitVSyncFlag(gs.config.system.vsync);
+			SetWaitVSyncFlag(0); //VSYNC
 			SetMouseDispFlag(0);
 			gs.is_clicked_screenModeChange = 0;
 			gs.config.system.screenmode = GetWindowModeFlag();
