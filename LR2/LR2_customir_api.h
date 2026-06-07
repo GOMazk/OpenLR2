@@ -2,6 +2,7 @@
 
 #include <string>
 #include <array>
+#include <vector>
 
 struct IRScoreV1 {
 	struct SONG {
@@ -105,9 +106,34 @@ enum class SendScoreStatus: int {
 	Fail,
 };
 
+struct IRRankPlayerV1 {
+	std::string name;
+	std::string comment;
+	int id{};
+	int sp{};
+	int dp{};
+	int clear{};
+	int notes{};
+	int combo{};
+	int pg{};
+	int gr{};
+	int gd{};
+	int bd{};
+	int pr{};
+	int minbp{};
+	int option{};
+	int playcount{};
+	int ranking{};
+};
+
 struct IRRankResultV1 {
-	int rank{};
-	int playerCount{};
+	int myRank{};
+	int totalPlayer{};
+	std::string lastupdate;
+	int totalPlaycount{};
+	std::array<int, 6> clearPlayers{};
+	int rivalRank{};
+	std::vector<IRRankPlayerV1> ranking;
 };
 
 enum class GetStatus: int {

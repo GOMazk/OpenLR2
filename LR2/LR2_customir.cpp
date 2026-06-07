@@ -414,18 +414,112 @@ namespace {
 		}
 	}
 
-	void ApplyResultRank(game& g, int curSong, const IRRankResultV1& merged) {
+	void CopyIrRankPlayerToRankingPlayer(RANKINGPLAYER& dest, const IRRankPlayerV1& src) {
+		cstrSprintf(&dest.name, "%s", src.name.c_str());
+		dest.id = src.id;
+		dest.sp = src.sp;
+		dest.dp = src.dp;
+		dest.clear = src.clear;
+		dest.notes = src.notes;
+		dest.combo = src.combo;
+		dest.pg = src.pg;
+		dest.gr = src.gr;
+		dest.gd = src.gd;
+		dest.bd = src.bd;
+		dest.pr = src.pr;
+		dest.minbp = src.minbp;
+		dest.option = src.option;
+		dest.playcount = src.playcount;
+		dest.ranking = src.ranking;
+		cstrSprintf(&dest.comment, "%s", src.comment.c_str());
+	}
+
+	enum class IrRankApplyContext {
+		Result,
+		SongSelectRestore,
+	};
+
+	bool HasIrRankPayload(const IRRankResultV1& result) {
+		if (result.myRank > 0 || result.totalPlayer > 0) {
+			return true;
+		}
+		if (!result.ranking.empty()) {
+			return true;
+		}
+		if (!result.lastupdate.empty()) {
+			return true;
+		}
+		if (result.totalPlaycount > 0) {
+			return true;
+		}
+		for (int count : result.clearPlayers) {
+			if (count != 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	void ApplyIrRankResult(game& g, int curSong, const IRRankResultV1& result, IrRankApplyContext ctx) {
 		if (curSong < 0 || curSong >= g.sSelect.bmsListCount) {
 			return;
 		}
 		STATUS& best = g.sSelect.bmsList[curSong].mybest;
-		if (merged.rank > 0) {
-			best.IRranking = merged.rank;
-			g.net.rankingData.myRanking = merged.rank;
+		RANKING& rd = g.net.rankingData;
+
+		if (!result.ranking.empty()) {
+			const int preservedMyId = rd.myID;
+			const int preservedRivalId = rd.rivalID;
+			rd.Init();
+			rd.myID = preservedMyId;
+			rd.rivalID = preservedRivalId;
+
+			const int boardSize = static_cast<int>(result.ranking.size());
+			rd.ExpandRankingBuffer(boardSize);
+			for (int i = 0; i < boardSize; ++i) {
+				CopyIrRankPlayerToRankingPlayer(rd.ranking[i], result.ranking[i]);
+			}
 		}
-		if (merged.playerCount > 0) {
-			best.IRplayercount = merged.playerCount;
-			g.net.rankingData.rankingCount = merged.playerCount;
+
+		if (result.myRank > 0) {
+			rd.myRanking = result.myRank;
+		}
+		if (result.totalPlayer > 0) {
+			rd.rankingCount = result.totalPlayer;
+		}
+		if (!result.lastupdate.empty()) {
+			cstrSprintf(&rd.lastupdate, "%s", result.lastupdate.c_str());
+		}
+		if (result.totalPlaycount > 0) {
+			rd.totalPlaycount = result.totalPlaycount;
+		}
+		bool mergeClearPlayers = result.totalPlayer > 0;
+		if (!mergeClearPlayers) {
+			for (int count : result.clearPlayers) {
+				if (count != 0) {
+					mergeClearPlayers = true;
+					break;
+				}
+			}
+		}
+		if (mergeClearPlayers) {
+			for (int i = 0; i < 6; ++i) {
+				rd.clearPlayers[i] = result.clearPlayers[i];
+			}
+		}
+
+		if (rd.myRanking > 0) {
+			best.IRranking = rd.myRanking;
+		}
+		if (rd.rankingCount > 0) {
+			best.IRplayercount = rd.rankingCount;
+		}
+		if (rd.rankingCount > 0) {
+			if (ctx == IrRankApplyContext::Result) {
+				best.IRclearRate = (rd.rankingCount + rd.clearPlayers[1] - rd.clearPlayers[0]) / rd.rankingCount;
+			} else {
+				best.IRclearRate = (rd.clearPlayers[2] + rd.clearPlayers[3] + rd.clearPlayers[4] + rd.clearPlayers[5]) * 100 / rd.rankingCount;
+			}
 		}
 	}
 
@@ -734,14 +828,14 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 			if (status == GetStatus::Fail) {
 				OverlayNotification("'%s' failed to get result rank\n", provider->Name().c_str());
 			} else if (status == GetStatus::Ok) {
-				if (out.rank > 0 || out.playerCount > 0) {
+				if (HasIrRankPayload(out)) {
 					merged = out;
 					gotResult = true;
 				}
 			}
 
 			if (gotResult) {
-				ApplyResultRank(*gamePtr, curSong, merged);
+				ApplyIrRankResult(*gamePtr, curSong, merged, IrRankApplyContext::Result);
 			}
 		});
 }
@@ -771,7 +865,7 @@ void CUSTOMIR_MANAGER::OnSongSelectRestoreRank(game& game) {
 		OverlayNotification("'%s' failed to restore cached rank\n", displayModules.front()->Name().c_str());
 		return;
 	}
-	if (status == GetStatus::Ok && (out.rank > 0 || out.playerCount > 0)) {
-		ApplyResultRank(game, curSong, out);
+	if (status == GetStatus::Ok && HasIrRankPayload(out)) {
+		ApplyIrRankResult(game, curSong, out, IrRankApplyContext::SongSelectRestore);
 	}
 }
