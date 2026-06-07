@@ -1283,6 +1283,35 @@ int CmdSearch(game *g, CSTR *cmd, sqlite3 *sql) {
 			return 1;
 		}
 	}
+	else if (cmd->isSame("/random")) {
+		*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
+		return 1;
+	}
+	else if (cmd->starts_with("/random ")) {
+		auto s = std::string_view{ cmd->body }.substr(std::string_view{ "/random " }.length());
+		unsigned int val;
+		auto [ptr, ec] = std::from_chars(s.data(), s.data() + s.size(), val);
+		if (ec != std::errc()) {
+			*cmd = ("INVALID NUMBER: " + std::string(s)).c_str();
+			return 1;
+		}
+		if (val == 0) {
+			g->gameplay.forceRandomLayout = 0;
+			*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
+		}
+		else if (val >= 12345 && val <= 54321) {
+			g->gameplay.forceRandomLayout = val * 100 + 67;
+			*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
+		}
+		else if (val >= 1234567 && val <= 7654321) {
+			g->gameplay.forceRandomLayout = val;
+			*cmd = g->gameplay.forceRandomLayout == 0 ? "OFF" : std::to_string(g->gameplay.forceRandomLayout).c_str();
+		}
+		else {
+			*cmd = ("OUT OF RANGE NUMBER: " + std::to_string(val)).c_str();
+		}
+		return 1;
+	}
 	else {
 		*cmd = "COMMAND ERROR";
 		return 1;

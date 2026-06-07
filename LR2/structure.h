@@ -1319,6 +1319,8 @@ struct gameplay {
 	int fadeoutBGAend[10];
 	int bgaMixer[10];
 	char isPreviewLoad;
+	int randomLayoutForDisplay[2];
+	unsigned int forceRandomLayout; // 0 = disabled
 	std::future<void> hThreadPreview;
 	int previewStatus; /* 1:start 2:loaded */
 	CSTR previewBMShash;
