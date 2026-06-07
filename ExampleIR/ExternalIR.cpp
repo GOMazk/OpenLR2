@@ -112,6 +112,11 @@ namespace {
             ParseJsonIntField(obj, "\"ranking\"", row.ranking);
             ParseJsonIntField(obj, "\"id\"", row.id);
             ParseJsonIntField(obj, "\"clear\"", row.clear);
+            ParseJsonIntField(obj, "\"notes\"", row.notes);
+            ParseJsonIntField(obj, "\"combo\"", row.combo);
+            ParseJsonIntField(obj, "\"pg\"", row.pg);
+            ParseJsonIntField(obj, "\"gr\"", row.gr);
+            ParseJsonIntField(obj, "\"minbp\"", row.minbp);
             const std::size_t namePos = obj.find("\"name\":\"");
             if (namePos != std::string::npos) {
                 const std::size_t nameStart = namePos + 8;
@@ -169,24 +174,73 @@ namespace {
             return;
         }
         output << std::format(
-            R"({{"myRank":{},"totalPlayer":{},"totalPlaycount":{},"clearPlayers":[{},{},{},{},{},{}],"lastupdate":"example","ranking":[{{"name":"ExampleTop1","ranking":1,"id":1,"clear":5}},{{"name":"ExampleTop2","ranking":2,"id":2,"clear":4}},{{"name":"ExampleTop3","ranking":3,"id":3,"clear":3}}]}})",
+            R"({{"myRank":{},"totalPlayer":{},"totalPlaycount":{},"clearPlayers":[{},{},{},{},{},{}],"lastupdate":"example","ranking":[)",
             result.myRank,
             result.totalPlayer,
             result.totalPlaycount,
             result.clearPlayers[0], result.clearPlayers[1], result.clearPlayers[2],
             result.clearPlayers[3], result.clearPlayers[4], result.clearPlayers[5]);
+        for (std::size_t i = 0; i < result.ranking.size(); ++i) {
+            const IRRankPlayerV1& row = result.ranking[i];
+            if (i > 0) {
+                output << ',';
+            }
+            output << std::format(
+                R"({{"name":"{}","ranking":{},"id":{},"clear":{},"notes":{},"combo":{},"pg":{},"gr":{},"minbp":{}}})",
+                row.name,
+                row.ranking,
+                row.id,
+                row.clear,
+                row.notes,
+                row.combo,
+                row.pg,
+                row.gr,
+                row.minbp);
+        }
+        output << "]}";
     }
 
+    // IRRankPlayerV1 row fields match dream-pro IR XML <score> child tags (LR2files/Ir/*.xml ParseXML).
     void FillExampleStubRank(IRRankResultV1& out) {
         out = {};
-        out.myRank = 42;
+        out.myRank = 1;
         out.totalPlayer = 128;
         out.totalPlaycount = 512;
         out.clearPlayers = { 10, 20, 30, 40, 50, 60 };
         out.ranking = {
-            { .name = "ExampleTop1", .id = 1, .clear = 5, .ranking = 1 },
-            { .name = "ExampleTop2", .id = 2, .clear = 4, .ranking = 2 },
-            { .name = "ExampleTop3", .id = 3, .clear = 3, .ranking = 3 },
+            {
+                .name = "ExampleIR#1",
+                .id = 79847,
+                .clear = 4,
+                .notes = 2006,
+                .combo = 739,
+                .pg = 1616,
+                .gr = 354,
+                .minbp = 28,
+                .ranking = 1,
+            },
+            {
+                .name = "ExampleIR#2",
+                .id = 79846,
+                .clear = 4,
+                .notes = 2006,
+                .combo = 720,
+                .pg = 1600,
+                .gr = 340,
+                .minbp = 32,
+                .ranking = 2,
+            },
+            {
+                .name = "ExampleIR#3",
+                .id = 79845,
+                .clear = 3,
+                .notes = 2006,
+                .combo = 700,
+                .pg = 1580,
+                .gr = 330,
+                .minbp = 40,
+                .ranking = 3,
+            },
         };
     }
 }
