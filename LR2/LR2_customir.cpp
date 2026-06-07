@@ -115,28 +115,20 @@ std::vector<std::shared_ptr<CustomIR>> CUSTOMIR_MANAGER::ResolveSidecarModules()
 	return sidecarModules;
 }
 
-std::vector<std::shared_ptr<CustomIR>> CUSTOMIR_MANAGER::ResolveDisplayModules() const {
-	if (mActiveProvider.length() == 0) {
-		return {};
-	}
-	for (const auto& module : mModules) {
-		if (module->Name() == mActiveProvider.body) {
-			return { module };
-		}
-	}
-	return {};
-}
-
 bool CUSTOMIR_MANAGER::ProvidesResultRank() const {
-	return std::ranges::any_of(ResolveDisplayModules(), [](const std::shared_ptr<CustomIR>& module) {
-		return module->mMethods.GetResultRankV1 != nullptr;
-	});
+	if (mActiveProvider.length() == 0) {
+		return false;
+	}
+	const auto it = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
+	return it != mModules.end() && (*it)->mMethods.GetResultRankV1 != nullptr;
 }
 
 bool CUSTOMIR_MANAGER::ProvidesCachedRankRestore() const {
-	return std::ranges::any_of(ResolveDisplayModules(), [](const std::shared_ptr<CustomIR>& module) {
-		return module->mMethods.RestoreCachedRankV1 != nullptr;
-	});
+	if (mActiveProvider.length() == 0) {
+		return false;
+	}
+	const auto it = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
+	return it != mModules.end() && (*it)->mMethods.RestoreCachedRankV1 != nullptr;
 }
 
 void CUSTOMIR_MANAGER::EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> sidecarModules) {
@@ -207,7 +199,7 @@ void CUSTOMIR_MANAGER::Initialize(const std::filesystem::path& directory, const 
 		}
 	}
 
-	if (mActiveProvider.length() > 0 && ResolveDisplayModules().empty()) {
+	if (mActiveProvider.length() > 0 && std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name) == mModules.end()) {
 		ErrorLogFmtAdd(
 			"CustomIR: network/customir_provider '%s' not found; display fetch disabled, SendScore still active\n",
 			mActiveProvider.body
@@ -729,12 +721,11 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 	const auto sidecarModules = ResolveSidecarModules();
 	EnqueueSidecarSend(scoreV1, sidecarModules);
 
-	if (!ProvidesResultRank()) {
+	if (mActiveProvider.length() == 0) {
 		return;
 	}
-
-	const auto displayModules = ResolveDisplayModules();
-	if (displayModules.empty()) {
+	const auto displayIt = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
+	if (displayIt == mModules.end() || (*displayIt)->mMethods.GetResultRankV1 == nullptr) {
 		return;
 	}
 
@@ -743,7 +734,7 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 	}
 
 	mResultIrFuture = std::async(std::launch::async,
-		[this, provider = displayModules.front(), scoreV1, curSong, gamePtr = &game]() {
+		[this, provider = *displayIt, scoreV1, curSong, gamePtr = &game]() {
 			SendScoreWithRetry(provider, scoreV1);
 
 			IRRankResultV1 merged{};
@@ -766,28 +757,26 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 }
 
 void CUSTOMIR_MANAGER::OnSongSelectRestoreRank(game& game) {
-	if (!ProvidesCachedRankRestore()) {
-		return;
-	}
-
 	const int curSong = game.sSelect.cur_song;
 	if (curSong < 0 || curSong >= game.sSelect.bmsListCount) {
+		return;
+	}
+	if (mActiveProvider.length() == 0) {
+		return;
+	}
+	const auto displayIt = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
+	if (displayIt == mModules.end() || (*displayIt)->mMethods.RestoreCachedRankV1 == nullptr) {
 		return;
 	}
 
 	const SONGDATA& entry = game.sSelect.bmsList[curSong];
 
-	const auto displayModules = ResolveDisplayModules();
-	if (displayModules.empty()) {
-		return;
-	}
-
 	SeedResultRankFromMybest(game, curSong);
 
 	IRRankResultV1 out{};
-	const GetStatus status = displayModules.front()->RestoreCachedRank(entry.hash.body, out);
+	const GetStatus status = (*displayIt)->RestoreCachedRank(entry.hash.body, out);
 	if (status == GetStatus::Fail) {
-		OverlayNotification("'%s' failed to restore cached rank\n", displayModules.front()->Name().c_str());
+		OverlayNotification("'%s' failed to restore cached rank\n", (*displayIt)->Name().c_str());
 		return;
 	}
 	if (status == GetStatus::Ok && HasIrRankPayload(out)) {
