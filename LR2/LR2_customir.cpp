@@ -102,7 +102,7 @@ CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
 }
 
 std::vector<std::shared_ptr<CustomIR>> CUSTOMIR_MANAGER::ResolveSidecarModules() const {
-	if (mActiveProvider.length() == 0 || !ProvidesResultRank()) {
+	if (!mActiveProvider.body || !mActiveProvider.body[0] || !ProvidesResultRank()) {
 		return mModules;
 	}
 	std::vector<std::shared_ptr<CustomIR>> sidecarModules;
@@ -116,7 +116,7 @@ std::vector<std::shared_ptr<CustomIR>> CUSTOMIR_MANAGER::ResolveSidecarModules()
 }
 
 bool CUSTOMIR_MANAGER::ProvidesResultRank() const {
-	if (mActiveProvider.length() == 0) {
+	if (!mActiveProvider.body || !mActiveProvider.body[0]) {
 		return false;
 	}
 	const auto it = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
@@ -124,7 +124,7 @@ bool CUSTOMIR_MANAGER::ProvidesResultRank() const {
 }
 
 bool CUSTOMIR_MANAGER::ProvidesCachedRankRestore() const {
-	if (mActiveProvider.length() == 0) {
+	if (!mActiveProvider.body || !mActiveProvider.body[0]) {
 		return false;
 	}
 	const auto it = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
@@ -199,7 +199,7 @@ void CUSTOMIR_MANAGER::Initialize(const std::filesystem::path& directory, const 
 		}
 	}
 
-	if (mActiveProvider.length() > 0 && std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name) == mModules.end()) {
+	if (mActiveProvider.body && mActiveProvider.body[0] && std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name) == mModules.end()) {
 		ErrorLogFmtAdd(
 			"CustomIR: network/customir_provider '%s' not found; display fetch disabled, SendScore still active\n",
 			mActiveProvider.body
@@ -219,7 +219,7 @@ void CUSTOMIR_MANAGER::Login() {
 		} else {
 			OverlayNotification("[%s] Failed to log in\n", ir->Name().c_str());
 		}
-		if (mActiveProvider.length() > 0 && ir->Name() == mActiveProvider.body && loginOk) {
+		if (mActiveProvider.body && mActiveProvider.body[0] && ir->Name() == mActiveProvider.body && loginOk) {
 			mProviderLoggedIn = true;
 		}
 	}
@@ -721,7 +721,7 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 	const auto sidecarModules = ResolveSidecarModules();
 	EnqueueSidecarSend(scoreV1, sidecarModules);
 
-	if (mActiveProvider.length() == 0) {
+	if (!mActiveProvider.body || !mActiveProvider.body[0]) {
 		return;
 	}
 	const auto displayIt = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
@@ -761,7 +761,7 @@ void CUSTOMIR_MANAGER::OnSongSelectRestoreRank(game& game) {
 	if (curSong < 0 || curSong >= game.sSelect.bmsListCount) {
 		return;
 	}
-	if (mActiveProvider.length() == 0) {
+	if (!mActiveProvider.body || !mActiveProvider.body[0]) {
 		return;
 	}
 	const auto displayIt = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
