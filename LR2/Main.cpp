@@ -377,7 +377,7 @@ int main(int argc, char** argv) {
 		std::error_code ec; // ignore errors
 		std::filesystem::path path("LR2files/CustomIRs");
 		std::filesystem::create_directories(path, ec);
-		gs.net.customIR.Initialize(path);
+		gs.net.customIR.Initialize(path, gs.config.network.customIrProvider);
 	}
 	gs.net.customIR.Login();
 

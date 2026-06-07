@@ -5,16 +5,13 @@
 #include "En_input.h"
 
 #include <array>
-#include <cctype>
 #include <chrono>
 #include <cmath>
 #include <cstring>
 #include <filesystem>
-#include <fstream>
 #include <future>
 #include <ranges>
 #include <thread>
-#include <string_view>
 #include <type_traits>
 
 #include <DxLib/DxLib.h>
@@ -104,70 +101,14 @@ CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
 	}
 }
 
-namespace {
-	std::string TrimAscii(std::string_view text) {
-		std::size_t begin = 0;
-		while (begin < text.size() && std::isspace(static_cast<unsigned char>(text[begin]))) {
-			++begin;
-		}
-		std::size_t end = text.size();
-		while (end > begin && std::isspace(static_cast<unsigned char>(text[end - 1]))) {
-			--end;
-		}
-		return std::string(text.substr(begin, end - begin));
-	}
-
-	bool ParseActiveIniProviderLine(std::string_view line, std::string& providerOut) {
-		line = TrimAscii(line);
-		if (line.empty() || line[0] == '#' || line[0] == ';') {
-			return false;
-		}
-		const std::size_t eq = line.find('=');
-		if (eq == std::string_view::npos) {
-			return false;
-		}
-		const std::string key = TrimAscii(line.substr(0, eq));
-		if (key != "provider") {
-			return false;
-		}
-		providerOut = TrimAscii(line.substr(eq + 1));
-		return true;
-	}
-}
-
-void CUSTOMIR_MANAGER::LoadActiveProviderConfig(const std::filesystem::path& customIrRoot) {
-	mActiveProvider.clear();
-	const std::filesystem::path configPath = customIrRoot / "active.ini";
-	if (!std::filesystem::is_regular_file(configPath)) {
-		return;
-	}
-
-	std::ifstream input(configPath);
-	if (!input) {
-		ErrorLogFmtAdd("CustomIR: failed to open active.ini at '%s'\n", configPath.string().c_str());
-		return;
-	}
-
-	std::string line;
-	while (std::getline(input, line)) {
-		if (ParseActiveIniProviderLine(line, mActiveProvider) && !mActiveProvider.empty()) {
-			break;
-		}
-	}
-
-	if (!mActiveProvider.empty()) {
-		ErrorLogFmtAdd("CustomIR: active provider '%s' from active.ini\n", mActiveProvider.c_str());
-	}
-}
-
 std::vector<std::shared_ptr<CustomIR>> CUSTOMIR_MANAGER::ResolveSidecarModules() const {
-	if (mActiveProvider.empty() || !ProvidesResultRank()) {
+	if (mActiveProvider.length() == 0 || !ProvidesResultRank()) {
 		return mModules;
 	}
 	std::vector<std::shared_ptr<CustomIR>> sidecarModules;
 	sidecarModules.reserve(mModules.size());
 	for (const auto& module : mModules) {
-		if (module->Name() != mActiveProvider) {
+		if (module->Name() != mActiveProvider.body) {
 			sidecarModules.push_back(module);
 		}
 	}
@@ -175,11 +116,11 @@ std::vector<std::shared_ptr<CustomIR>> CUSTOMIR_MANAGER::ResolveSidecarModules()
 }
 
 std::vector<std::shared_ptr<CustomIR>> CUSTOMIR_MANAGER::ResolveDisplayModules() const {
-	if (mActiveProvider.empty()) {
+	if (mActiveProvider.length() == 0) {
 		return {};
 	}
 	for (const auto& module : mModules) {
-		if (module->Name() == mActiveProvider) {
+		if (module->Name() == mActiveProvider.body) {
 			return { module };
 		}
 	}
@@ -250,7 +191,8 @@ void CUSTOMIR_MANAGER::EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<
 		}));
 }
 
-void CUSTOMIR_MANAGER::Initialize(const std::filesystem::path& directory) {
+void CUSTOMIR_MANAGER::Initialize(const std::filesystem::path& directory, const CSTR& activeProvider) {
+	mActiveProvider.assign(&activeProvider);
 	for (auto& dir : std::filesystem::directory_iterator(directory)) {
 		if (!dir.is_directory()) {
 			ErrorLogFmtAdd("'%s' skipped for loading custom IR module, not a directory\n", dir.path().string().c_str());
@@ -269,16 +211,10 @@ void CUSTOMIR_MANAGER::Initialize(const std::filesystem::path& directory) {
 		}
 	}
 
-	LoadActiveProviderConfig(directory);
-
-	if (!mModules.empty() && mActiveProvider.empty()) {
+	if (mActiveProvider.length() > 0 && ResolveDisplayModules().empty()) {
 		ErrorLogFmtAdd(
-			"CustomIR: no provider in active.ini; display fetch disabled, SendScore still active\n"
-		);
-	} else if (!mActiveProvider.empty() && ResolveDisplayModules().empty()) {
-		ErrorLogFmtAdd(
-			"CustomIR: provider '%s' not found; display fetch disabled, SendScore still active\n",
-			mActiveProvider.c_str()
+			"CustomIR: network/customir_provider '%s' not found; display fetch disabled, SendScore still active\n",
+			mActiveProvider.body
 		);
 	}
 }
@@ -295,7 +231,7 @@ void CUSTOMIR_MANAGER::Login() {
 		} else {
 			OverlayNotification("[%s] Failed to log in\n", ir->Name().c_str());
 		}
-		if (!mActiveProvider.empty() && ir->Name() == mActiveProvider && loginOk) {
+		if (mActiveProvider.length() > 0 && ir->Name() == mActiveProvider.body && loginOk) {
 			mProviderLoggedIn = true;
 		}
 	}

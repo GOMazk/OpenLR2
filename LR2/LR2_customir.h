@@ -1,13 +1,13 @@
 #pragma once
 
 #include "LR2_customir_api.h"
+#include "strclass.h"
 
 #include <array>
 #include <filesystem>
 #include <future>
 #include <memory>
 #include <string>
-#include <string_view>
 #include <type_traits>
 #include <vector>
 
@@ -48,7 +48,7 @@ public:
 	CUSTOMIR_MANAGER operator=(CUSTOMIR_MANAGER&&) = delete;
 	CUSTOMIR_MANAGER(CUSTOMIR_MANAGER&&) = delete;
 	~CUSTOMIR_MANAGER();
-	void Initialize(const std::filesystem::path& directory, std::string_view activeProvider);
+	void Initialize(const std::filesystem::path& directory, const CSTR& activeProvider);
 	void Login();
 	void BeginResultIr(game& game, sqlite3* sql, int player);
 	void OnSongSelectRestoreRank(game& game);
@@ -67,6 +67,6 @@ private:
 	std::vector<std::shared_ptr<CustomIR>> mModules;
 	std::vector<std::future<void>> mSendThreads;
 	std::future<void> mResultIrFuture;
-	std::string mActiveProvider;
+	CSTR mActiveProvider;
 	bool mProviderLoggedIn = false;
 };
