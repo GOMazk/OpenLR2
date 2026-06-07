@@ -4,247 +4,12 @@
 #include <filesystem>
 #include <fstream>
 #include <format>
-#include <string_view>
 
 #include <windows.h>
 
 namespace State {
     static std::filesystem::path path;
     static int scoresSaved = 0;
-}
-
-// Example-only rank cache in IR/{cacheKey}.json next to this DLL (module policy; host never reads/writes it).
-namespace {
-    std::string CacheStorageKey(std::string_view hash) {
-        if (hash.empty()) {
-            return {};
-        }
-        if (hash.size() <= 50) {
-            return std::string(hash);
-        }
-        std::string key;
-        key.reserve(8);
-        unsigned int crc = 0xFFFFFFFFu;
-        for (unsigned char ch : hash) {
-            crc ^= ch;
-            for (int bit = 0; bit < 8; ++bit) {
-                const unsigned int mix = (crc & 1u) ? 0xEDB88320u : 0u;
-                crc = (crc >> 1) ^ mix;
-            }
-        }
-        crc ^= 0xFFFFFFFFu;
-        return std::format("{:08X}", crc);
-    }
-
-    std::filesystem::path RankCachePath(std::string_view hash) {
-        const std::string key = CacheStorageKey(hash);
-        if (key.empty()) {
-            return {};
-        }
-        return State::path / "IR" / (key + ".json");
-    }
-
-    bool ParseJsonIntField(std::string_view content, std::size_t from, std::string_view key, int& value) {
-        const std::size_t pos = content.find(key, from);
-        if (pos == std::string::npos) {
-            return false;
-        }
-        const char* cursor = content.data() + pos + key.size();
-        while (*cursor != '\0' && (*cursor < '0' || *cursor > '9') && *cursor != '-') {
-            ++cursor;
-        }
-        value = std::atoi(cursor);
-        return true;
-    }
-
-    bool ParseJsonIntField(std::string_view content, std::string_view key, int& value) {
-        return ParseJsonIntField(content, 0, key, value);
-    }
-
-    bool ParseClearPlayersArray(std::string_view content, std::array<int, 6>& clearPlayers) {
-        const std::size_t pos = content.find("\"clearPlayers\"");
-        if (pos == std::string::npos) {
-            return false;
-        }
-        const std::size_t arrayStart = content.find('[', pos);
-        if (arrayStart == std::string::npos) {
-            return false;
-        }
-        std::size_t cursor = arrayStart + 1;
-        for (int i = 0; i < 6; ++i) {
-            while (cursor < content.size()
-                && (content[cursor] < '0' || content[cursor] > '9')
-                && content[cursor] != '-') {
-                ++cursor;
-            }
-            if (cursor >= content.size()) {
-                return false;
-            }
-            clearPlayers[i] = std::atoi(content.data() + cursor);
-            cursor = content.find(',', cursor);
-            if (cursor == std::string::npos && i < 5) {
-                return false;
-            }
-            if (cursor != std::string::npos) {
-                ++cursor;
-            }
-        }
-        return true;
-    }
-
-    void ParseRankingBoard(std::string_view content, std::vector<IRRankPlayerV1>& ranking) {
-        const std::size_t boardPos = content.find("\"ranking\":[");
-        if (boardPos == std::string::npos) {
-            return;
-        }
-        std::size_t cursor = boardPos + 11;
-        while (cursor < content.size()) {
-            const std::size_t objPos = content.find('{', cursor);
-            if (objPos == std::string::npos) {
-                break;
-            }
-            const std::size_t objEnd = content.find('}', objPos);
-            if (objEnd == std::string::npos) {
-                break;
-            }
-            const std::string_view obj = content.substr(objPos, objEnd - objPos + 1);
-            IRRankPlayerV1 row{};
-            ParseJsonIntField(obj, "\"ranking\"", row.ranking);
-            ParseJsonIntField(obj, "\"id\"", row.id);
-            ParseJsonIntField(obj, "\"clear\"", row.clear);
-            ParseJsonIntField(obj, "\"notes\"", row.notes);
-            ParseJsonIntField(obj, "\"combo\"", row.combo);
-            ParseJsonIntField(obj, "\"pg\"", row.pg);
-            ParseJsonIntField(obj, "\"gr\"", row.gr);
-            ParseJsonIntField(obj, "\"minbp\"", row.minbp);
-            const std::size_t namePos = obj.find("\"name\":\"");
-            if (namePos != std::string::npos) {
-                const std::size_t nameStart = namePos + 8;
-                const std::size_t nameEnd = obj.find('"', nameStart);
-                if (nameEnd != std::string::npos) {
-                    row.name = std::string(obj.substr(nameStart, nameEnd - nameStart));
-                }
-            }
-            if (row.ranking > 0 || !row.name.empty()) {
-                ranking.push_back(row);
-            }
-            cursor = objEnd + 1;
-            if (cursor < content.size() && content[cursor] == ']') {
-                break;
-            }
-        }
-    }
-
-    bool ReadRankCache(std::string_view hash, IRRankResultV1& out) {
-        const std::filesystem::path cachePath = RankCachePath(hash);
-        if (cachePath.empty() || !std::filesystem::is_regular_file(cachePath)) {
-            return false;
-        }
-        std::ifstream input(cachePath);
-        if (!input) {
-            return false;
-        }
-        const std::string content((std::istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
-        out = {};
-        if (content.find("\"myRank\"") == std::string::npos
-            || content.find("\"totalPlayer\"") == std::string::npos) {
-            return false;
-        }
-        if (!ParseJsonIntField(content, "\"myRank\"", out.myRank)) {
-            return false;
-        }
-        if (!ParseJsonIntField(content, "\"totalPlayer\"", out.totalPlayer)) {
-            return false;
-        }
-        ParseJsonIntField(content, "\"totalPlaycount\"", out.totalPlaycount);
-        ParseClearPlayersArray(content, out.clearPlayers);
-        ParseRankingBoard(content, out.ranking);
-        return out.myRank > 0 || out.totalPlayer > 0 || !out.ranking.empty();
-    }
-
-    void WriteRankCache(std::string_view hash, const IRRankResultV1& result) {
-        const std::filesystem::path cachePath = RankCachePath(hash);
-        if (cachePath.empty()) {
-            return;
-        }
-        std::error_code ec;
-        std::filesystem::create_directories(cachePath.parent_path(), ec);
-        std::ofstream output(cachePath, std::ios::trunc);
-        if (!output) {
-            return;
-        }
-        output << std::format(
-            R"({{"myRank":{},"totalPlayer":{},"totalPlaycount":{},"clearPlayers":[{},{},{},{},{},{}],"lastupdate":"{}","ranking":[)",
-            result.myRank,
-            result.totalPlayer,
-            result.totalPlaycount,
-            result.clearPlayers[0], result.clearPlayers[1], result.clearPlayers[2],
-            result.clearPlayers[3], result.clearPlayers[4], result.clearPlayers[5],
-            result.lastupdate);
-        for (std::size_t i = 0; i < result.ranking.size(); ++i) {
-            const IRRankPlayerV1& row = result.ranking[i];
-            if (i > 0) {
-                output << ',';
-            }
-            output << std::format(
-                R"({{"name":"{}","ranking":{},"id":{},"clear":{},"notes":{},"combo":{},"pg":{},"gr":{},"minbp":{}}})",
-                row.name,
-                row.ranking,
-                row.id,
-                row.clear,
-                row.notes,
-                row.combo,
-                row.pg,
-                row.gr,
-                row.minbp);
-        }
-        output << "]}";
-    }
-
-    // IRRankPlayerV1 row fields match dream-pro IR XML <score> child tags (LR2files/Ir/*.xml ParseXML).
-    void FillExampleStubRank(IRRankResultV1& out) {
-        out = {};
-        out.myRank = 1;
-        out.totalPlayer = 128;
-        out.totalPlaycount = 512;
-        out.lastupdate = "2010-01-01 00:00:00";
-        out.clearPlayers = { 10, 20, 30, 40, 50, 60 };
-        out.ranking = {
-            {
-                .name = "ExampleIR#1",
-                .id = 79847,
-                .clear = 4,
-                .notes = 2006,
-                .combo = 739,
-                .pg = 1616,
-                .gr = 354,
-                .minbp = 28,
-                .ranking = 1,
-            },
-            {
-                .name = "ExampleIR#2",
-                .id = 79846,
-                .clear = 4,
-                .notes = 2006,
-                .combo = 720,
-                .pg = 1600,
-                .gr = 340,
-                .minbp = 32,
-                .ranking = 2,
-            },
-            {
-                .name = "ExampleIR#3",
-                .id = 79845,
-                .clear = 3,
-                .notes = 2006,
-                .combo = 700,
-                .pg = 1580,
-                .gr = 330,
-                .minbp = 40,
-                .ranking = 3,
-            },
-        };
-    }
 }
 
 static const char* GetName() {
@@ -261,27 +26,82 @@ static bool Login() {
 }
 
 static GetStatus RestoreCachedRank(const char* songHash, IRRankResultV1& out) {
-    // Optional slot: song-select read-only restore by hash (RestoreCachedRankV1). No write on miss.
+    // Optional (RestoreCachedRankV1). Song select, display provider only. Host passes songHash; fill out.
+    // Skeleton: sample IRRankResultV1 below (host maps out → rankingData + mybest).
     out = {};
     if (songHash == nullptr || songHash[0] == '\0') {
         return GetStatus::Ok;
     }
-    ReadRankCache(songHash, out);
+    out.myRank = 1;
+    out.totalPlayer = 128;
+    out.totalPlaycount = 512;
+    out.lastupdate = "2010-01-01 00:00:00";
+    out.clearPlayers = { 10, 20, 30, 40, 50, 60 };
+    out.ranking = {
+        {
+            .name = "ExampleIR#1",
+            .id = 79847,
+            .clear = 4,
+            .notes = 2006,
+            .combo = 739,
+            .pg = 1616,
+            .gr = 354,
+            .minbp = 28,
+            .ranking = 1,
+        },
+        {
+            .name = "ExampleIR#2",
+            .id = 79846,
+            .clear = 4,
+            .notes = 2006,
+            .combo = 720,
+            .pg = 1600,
+            .gr = 340,
+            .minbp = 32,
+            .ranking = 2,
+        },
+    };
     return GetStatus::Ok;
 }
 
 static GetStatus GetResultRank(const IRScoreV1& score, IRRankResultV1& out) {
-    // Post-score rank fetch. Fill IRRankResultV1; Cache TTL is module policy.
+    // Optional (GetResultRankV1). Result screen, display provider only. Host passes score; fill out.
+    // Skeleton: sample IRRankResultV1 below (host maps out → rankingData + mybest). Host waits via IsResultIrPending.
+    //
+    // score: same IRScoreV1 snapshot as SendScore for this result (LR2_customir_api.h).
     out = {};
     if (score.song.hash.empty()) {
         return GetStatus::Ok;
     }
-
-    if (ReadRankCache(score.song.hash, out)) {
-        return GetStatus::Ok;
-    }
-    FillExampleStubRank(out);
-    WriteRankCache(score.song.hash, out);
+    out.myRank = 1;
+    out.totalPlayer = 128;
+    out.totalPlaycount = 512;
+    out.lastupdate = "2010-01-01 00:00:00";
+    out.clearPlayers = { 10, 20, 30, 40, 50, 60 };
+    out.ranking = {
+        {
+            .name = "ExampleIR#1",
+            .id = 79847,
+            .clear = 4,
+            .notes = 2006,
+            .combo = 739,
+            .pg = 1616,
+            .gr = 354,
+            .minbp = 28,
+            .ranking = 1,
+        },
+        {
+            .name = "ExampleIR#2",
+            .id = 79846,
+            .clear = 4,
+            .notes = 2006,
+            .combo = 720,
+            .pg = 1600,
+            .gr = 340,
+            .minbp = 32,
+            .ranking = 2,
+        },
+    };
     return GetStatus::Ok;
 }
 
