@@ -1,14 +1,98 @@
 #include <LR2_customir_api.h>
 
+#include <cstdlib>
 #include <filesystem>
 #include <fstream>
 #include <format>
+#include <string_view>
 
 #include <windows.h>
 
 namespace State {
     static std::filesystem::path path;
     static int scoresSaved = 0;
+}
+
+// Example-only rank cache in IR/{cacheKey}.json next to this DLL (module policy; host never reads/writes it).
+namespace {
+    // cacheKey: song hash if len <= 50, else CRC32 hex (same filename idea as dream-pro LR2files/Ir/{hash}.xml).
+    std::string CacheStorageKey(std::string_view hash) {
+        if (hash.empty()) {
+            return {};
+        }
+        if (hash.size() <= 50) {
+            return std::string(hash);
+        }
+        std::string key;
+        key.reserve(8);
+        unsigned int crc = 0xFFFFFFFFu;
+        for (unsigned char ch : hash) {
+            crc ^= ch;
+            for (int bit = 0; bit < 8; ++bit) {
+                const unsigned int mix = (crc & 1u) ? 0xEDB88320u : 0u;
+                crc = (crc >> 1) ^ mix;
+            }
+        }
+        crc ^= 0xFFFFFFFFu;
+        return std::format("{:08X}", crc);
+    }
+
+    std::filesystem::path RankCachePath(std::string_view hash) {
+        const std::string key = CacheStorageKey(hash);
+        if (key.empty()) {
+            return {};
+        }
+        return State::path / "IR" / (key + ".json");
+    }
+
+    bool ReadRankCache(std::string_view hash, IRRankResultV1& out) {
+        const std::filesystem::path cachePath = RankCachePath(hash);
+        if (cachePath.empty() || !std::filesystem::is_regular_file(cachePath)) {
+            return false;
+        }
+        std::ifstream input(cachePath);
+        if (!input) {
+            return false;
+        }
+        std::string content((std::istreambuf_iterator<char>(input)), std::istreambuf_iterator<char>());
+        if (content.find("\"rank\"") == std::string::npos || content.find("\"playerCount\"") == std::string::npos) {
+            return false;
+        }
+        out = {};
+        const auto parseField = [&content](std::string_view key, int& value) -> bool {
+            const std::size_t pos = content.find(key);
+            if (pos == std::string::npos) {
+                return false;
+            }
+            const char* cursor = content.c_str() + pos + key.size();
+            while (*cursor != '\0' && (*cursor < '0' || *cursor > '9') && *cursor != '-') {
+                ++cursor;
+            }
+            value = std::atoi(cursor);
+            return true;
+        };
+        if (!parseField("\"rank\"", out.rank)) {
+            return false;
+        }
+        if (!parseField("\"playerCount\"", out.playerCount)) {
+            return false;
+        }
+        return out.rank > 0 || out.playerCount > 0;
+    }
+
+    void WriteRankCache(std::string_view hash, const IRRankResultV1& result) {
+        const std::filesystem::path cachePath = RankCachePath(hash);
+        if (cachePath.empty()) {
+            return;
+        }
+        std::error_code ec;
+        std::filesystem::create_directories(cachePath.parent_path(), ec);
+        std::ofstream output(cachePath, std::ios::trunc);
+        if (!output) {
+            return;
+        }
+        output << std::format(R"({{"rank":{},"playerCount":{}}})", result.rank, result.playerCount);
+    }
 }
 
 static const char* GetName() {
@@ -24,15 +108,34 @@ static bool Login() {
     return true;
 }
 
+static GetStatus RestoreCachedRank(const char* songHash, IRRankResultV1& out) {
+    // Optional slot: song-select read-only restore by hash (RestoreCachedRankV1). No write on miss.
+    out = {};
+    if (songHash == nullptr || songHash[0] == '\0') {
+        return GetStatus::Ok;
+    }
+    ReadRankCache(songHash, out);
+    return GetStatus::Ok;
+}
+
 static GetStatus GetResultRank(const IRScoreV1& score, IRRankResultV1& out) {
     // Fetch this play's rank from your IR, e.g. via HTTP using score.song.hash and score.exscore.
-    // Called on its own thread after SendScore, on the result screen.
+    // Called on its own thread after SendScore, on the result screen only.
     // Fill out.rank (1 = first place) and out.playerCount; OpenLR2 shows these on the result screen.
+    // This example: read IR/{cacheKey}.json; on miss write stub rank/playerCount (real modules may use HTTP instead).
 
-    (void)score;
     out = {};
+    if (score.song.hash.empty()) {
+        return GetStatus::Ok;
+    }
+
+    if (ReadRankCache(score.song.hash, out)) {
+        return GetStatus::Ok;
+    }
+
     out.rank = 42;
     out.playerCount = 128;
+    WriteRankCache(score.song.hash, out);
     return GetStatus::Ok;
 }
 
@@ -81,7 +184,9 @@ extern "C" __declspec(dllexport) void GetMethodTable(MethodTable& table) {
     table.GetName = &GetName;
     table.LoginV1 = &Login;
     table.SendScoreV1 = &SendScore;
+    // Optional rank slots; set to nullptr if unused. Each is independent.
     table.GetResultRankV1 = &GetResultRank;
+    table.RestoreCachedRankV1 = &RestoreCachedRank;
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,

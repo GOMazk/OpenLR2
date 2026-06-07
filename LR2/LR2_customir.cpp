@@ -89,6 +89,11 @@ GetStatus CustomIR::GetResultRank(const IRScoreV1& score, IRRankResultV1& out) {
 	return mMethods.GetResultRankV1(score, out);
 }
 
+GetStatus CustomIR::RestoreCachedRank(const char* songHash, IRRankResultV1& out) {
+	if (mMethods.RestoreCachedRankV1 == nullptr) return GetStatus::Ok;
+	return mMethods.RestoreCachedRankV1(songHash, out);
+}
+
 CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
 	// Make sure all scores are sent before exiting out of the process. (Can hang for up to ~15 minutes...)
 	for (auto& thread : mSendThreads) {
@@ -192,6 +197,10 @@ bool CUSTOMIR_MANAGER::AnyDisplayModuleSupports(bool (CustomIR::*pred)() const) 
 
 bool CUSTOMIR_MANAGER::ProvidesResultRank() const {
 	return AnyDisplayModuleSupports(&CustomIR::SupportsResultRank);
+}
+
+bool CUSTOMIR_MANAGER::ProvidesCachedRankRestore() const {
+	return AnyDisplayModuleSupports(&CustomIR::SupportsRestoreCachedRank);
 }
 
 void CUSTOMIR_MANAGER::EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> sidecarModules) {
@@ -735,4 +744,34 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 				ApplyResultRank(*gamePtr, curSong, merged);
 			}
 		});
+}
+
+void CUSTOMIR_MANAGER::OnSongSelectRestoreRank(game& game) {
+	if (!ProvidesCachedRankRestore()) {
+		return;
+	}
+
+	const int curSong = game.sSelect.cur_song;
+	if (curSong < 0 || curSong >= game.sSelect.bmsListCount) {
+		return;
+	}
+
+	const SONGDATA& entry = game.sSelect.bmsList[curSong];
+
+	const auto displayModules = ResolveDisplayModules();
+	if (displayModules.empty()) {
+		return;
+	}
+
+	SeedResultRankFromMybest(game, curSong);
+
+	IRRankResultV1 out{};
+	const GetStatus status = displayModules.front()->RestoreCachedRank(entry.hash.body, out);
+	if (status == GetStatus::Fail) {
+		OverlayNotification("'%s' failed to restore cached rank\n", displayModules.front()->Name().c_str());
+		return;
+	}
+	if (status == GetStatus::Ok && (out.rank > 0 || out.playerCount > 0)) {
+		ApplyResultRank(game, curSong, out);
+	}
 }

@@ -24,8 +24,10 @@ public:
 	SendScoreStatus SendScore(const IRScoreV1& score);
 
 	GetStatus GetResultRank(const IRScoreV1& score, IRRankResultV1& out);
+	GetStatus RestoreCachedRank(const char* songHash, IRRankResultV1& out);
 
 	[[nodiscard]] bool SupportsResultRank() const { return mMethods.GetResultRankV1 != nullptr; }
+	[[nodiscard]] bool SupportsRestoreCachedRank() const { return mMethods.RestoreCachedRankV1 != nullptr; }
 	[[nodiscard]] bool SupportsSendScoreV1() const { return mMethods.SendScoreV1 != nullptr; }
 	[[nodiscard]] const std::string& Name() const { return mName; };
 private:
@@ -48,10 +50,12 @@ public:
 	void Initialize(const std::filesystem::path& directory);
 	void Login();
 	void BeginResultIr(game& game, sqlite3* sql, int player);
+	void OnSongSelectRestoreRank(game& game);
 	[[nodiscard]] bool IsResultIrPending() const;
 	[[nodiscard]] bool IsProviderLoggedIn() const { return mProviderLoggedIn; }
 	[[nodiscard]] bool HasLoadedModules() const { return !mModules.empty(); }
 	[[nodiscard]] bool ProvidesResultRank() const;
+	[[nodiscard]] bool ProvidesCachedRankRestore() const;
 	[[nodiscard]] bool ShouldMirrorLegacyRankToMybest() const { return !ProvidesResultRank(); }
 private:
 	void LoadActiveProviderConfig(const std::filesystem::path& customIrRoot);

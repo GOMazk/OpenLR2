@@ -1,6 +1,6 @@
 # Copy to LR2files/CustomIRs/active.ini
 # CustomIR DLLs load from LR2files/CustomIRs/ regardless of config.xml lr2ir (dream-pro only).
-# provider = display module for result-screen rank (GetResultRankV1); blocks until rank returns (with dream-pro hHandle).
+# provider = display module for result-screen rank (GetResultRankV1) and song-select cache restore (RestoreCachedRankV1); blocks until rank returns (with dream-pro hHandle).
 # Other loaded DLLs (e.g. BokutachiIR) POST in the background and do not block the result screen.
 # Must match GetName() from the DLL (not always the folder name).
 # If missing or wrong: rank fetch off (warning log); all modules still Login + background SendScore.
