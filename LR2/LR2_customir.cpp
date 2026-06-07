@@ -155,6 +155,7 @@ void CUSTOMIR_MANAGER::EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<
 			finishedThreads.push_back(static_cast<int>(i));
 		}
 	}
+	// Deferred deletion because we need to keep the std::future for whatever reason
 	std::ranges::reverse(finishedThreads);
 	for (auto i : finishedThreads) {
 		mSendThreads.erase(mSendThreads.begin() + i);
