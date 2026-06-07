@@ -504,6 +504,8 @@ int ReadImageFont(CSTR filename, ImageFont *imgfont) {
 		}
 
 		FileRead_close(f);
+
+		LoadFontCharGraph(imgfont, U'?');
 	}
 
 	return 1;

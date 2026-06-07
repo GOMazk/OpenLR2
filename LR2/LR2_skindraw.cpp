@@ -863,33 +863,24 @@ int GetTextGraphLength(CSTR *str, ImageFont *imF) {
 		int x = 0, y = 0;
 		auto& chTex = imF->chars[ch];
 		if (chTex.grHandle == -1) LoadFontCharGraph(imF, ch);
-		GetGraphSize(chTex.grHandle, &x, &y);
+		GetGraphSize(chTex.grHandle != -1 ? chTex.grHandle : imF->chars[U'?'].grHandle, &x, &y);
 		totalX += imF->kerning + x;
 	}
 	return totalX - imF->kerning;
 }
 
 void LRDrawText(int* grHandle, DSTdraw *dstd, CSTR *str, ImageFont *imF) {
-	double hl;
-	float width, wl;
-	int iDum;
-	char ch;
-	ushort vCh;
-	int x, y, size;
-	float xf, yf, wSum;
-
 	if (imF->size <= 0 || dstd->h == 0.0 || dstd->w == 0.0 || str->length() < 1) {		
 		if (dstd->h != 0.0 && dstd->w != 0.0 && str->length() > 0 && *grHandle != -1) {
+			int size = 0, iDum = 0;
 			SetDrawMode(dstd->filter);
 			SetDrawBlendMode(dstd->blend, dstd->a);
 			SetDrawBright(dstd->r, dstd->g, dstd->b);
 			GetFontStateToHandle(0, &size, &iDum, *grHandle);
-			hl = dstd->h / (float)size;
-			width = GetDrawStringWidthToHandle(str->outstr(), str->length(), *grHandle, 0);
+			double hl = dstd->h / (float)size;
+			float width = GetDrawStringWidthToHandle(str->outstr(), str->length(), *grHandle, 0);
 			if (width != 0.0) {
-				if (width > dstd->w) wl = dstd->w / width;
-				else wl = 1.0;
-			
+				float wl = width > dstd->w ? wl = dstd->w / width : 1.f;
 				wl = wl * hl;
 				if (dstd->align == 1) {
 					dstd->x = dstd->x - (int)(width*wl*0.5);
@@ -906,13 +897,10 @@ void LRDrawText(int* grHandle, DSTdraw *dstd, CSTR *str, ImageFont *imF) {
 		SetDrawMode(dstd->filter);
 		SetDrawBlendMode(dstd->blend, dstd->a);
 		SetDrawBright(dstd->r, dstd->g, dstd->b);
-		hl = dstd->h / (float)imF->size;
-		width = GetTextGraphLength(str, imF);
-
+		double hl = dstd->h / (float)imF->size;
+		float width = GetTextGraphLength(str, imF);
 		if (width != 0.0) {
-			if (width > dstd->w) wl = dstd->w / width;
-			else wl = 1.0;
-		
+			float wl = width > dstd->w ? wl = dstd->w / width : 1.f;		
 			wl = wl * hl;
 			if (dstd->align == 1) {
 				dstd->x = dstd->x - (int)(width*wl*0.5);
@@ -920,10 +908,11 @@ void LRDrawText(int* grHandle, DSTdraw *dstd, CSTR *str, ImageFont *imF) {
 			else if (dstd->align == 2) {
 				dstd->x = dstd->x - (int)(width*wl);
 			}
-
-			wSum = 0.0;
+			float wSum = 0.f;
 			std::u32string u32Str = utf8_to_utf32(str->body);
 			for (auto ch : u32Str) {
+				int x = 0, y = 0;
+				float xf = 0.f, yf = 0.f;
 				auto chTex = imF->chars[ch];
 				GetGraphSize(chTex.grHandle, &x, &y);
 				xf = x;
@@ -939,7 +928,7 @@ void LRDrawText(int* grHandle, DSTdraw *dstd, CSTR *str, ImageFont *imF) {
 				if (ch != U' ' && ch != U'\n' && chTex.grHandle != -1) {
 					DrawExtendGraph(dstd->x + wSum + 0.5f, dstd->y + 0.5f, dstd->x + wSum + xf + 0.5f, dstd->y + hl * yf + 0.5f, chTex.grHandle, 1);
 				}
-				wSum = imF->kerning * wl + xf + wSum;
+				wSum += imF->kerning * wl + xf;
 			}
 			return;
 		}
