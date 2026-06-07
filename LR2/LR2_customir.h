@@ -16,7 +16,10 @@
 struct game;
 struct sqlite3;
 
+class CUSTOMIR_MANAGER;
+
 class CustomIR {
+	friend class CUSTOMIR_MANAGER;
 public:
 	CustomIR() = delete;
 	CustomIR(const std::filesystem::path& directory);
@@ -27,9 +30,6 @@ public:
 	GetStatus GetResultRank(const IRScoreV1& score, IRRankResultV1& out);
 	GetStatus RestoreCachedRank(const char* songHash, IRRankResultV1& out);
 
-	[[nodiscard]] bool SupportsResultRank() const { return mMethods.GetResultRankV1 != nullptr; }
-	[[nodiscard]] bool SupportsRestoreCachedRank() const { return mMethods.RestoreCachedRankV1 != nullptr; }
-	[[nodiscard]] bool SupportsSendScoreV1() const { return mMethods.SendScoreV1 != nullptr; }
 	[[nodiscard]] const std::string& Name() const { return mName; };
 private:
 	struct ModuleDeleter {
@@ -60,9 +60,9 @@ public:
 	[[nodiscard]] bool ShouldMirrorLegacyRankToMybest() const { return !ProvidesResultRank(); }
 private:
 	void EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> sidecarModules);
+	[[nodiscard]] static bool SendScoreWithRetry(const std::shared_ptr<CustomIR>& module, const IRScoreV1& scoreV1);
 	[[nodiscard]] std::vector<std::shared_ptr<CustomIR>> ResolveSidecarModules() const;
 	[[nodiscard]] std::vector<std::shared_ptr<CustomIR>> ResolveDisplayModules() const;
-	[[nodiscard]] bool AnyDisplayModuleSupports(bool (CustomIR::*pred)() const) const;
 
 	std::vector<std::shared_ptr<CustomIR>> mModules;
 	std::vector<std::future<void>> mSendThreads;

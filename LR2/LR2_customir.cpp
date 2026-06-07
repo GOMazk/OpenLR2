@@ -127,21 +127,16 @@ std::vector<std::shared_ptr<CustomIR>> CUSTOMIR_MANAGER::ResolveDisplayModules()
 	return {};
 }
 
-bool CUSTOMIR_MANAGER::AnyDisplayModuleSupports(bool (CustomIR::*pred)() const) const {
-	for (const auto& module : ResolveDisplayModules()) {
-		if ((module.get()->*pred)()) {
-			return true;
-		}
-	}
-	return false;
-}
-
 bool CUSTOMIR_MANAGER::ProvidesResultRank() const {
-	return AnyDisplayModuleSupports(&CustomIR::SupportsResultRank);
+	return std::ranges::any_of(ResolveDisplayModules(), [](const std::shared_ptr<CustomIR>& module) {
+		return module->mMethods.GetResultRankV1 != nullptr;
+	});
 }
 
 bool CUSTOMIR_MANAGER::ProvidesCachedRankRestore() const {
-	return AnyDisplayModuleSupports(&CustomIR::SupportsRestoreCachedRank);
+	return std::ranges::any_of(ResolveDisplayModules(), [](const std::shared_ptr<CustomIR>& module) {
+		return module->mMethods.RestoreCachedRankV1 != nullptr;
+	});
 }
 
 void CUSTOMIR_MANAGER::EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> sidecarModules) {
@@ -459,32 +454,25 @@ namespace {
 			}
 		}
 	}
+}
 
-	bool SendScoreWithRetry(const std::shared_ptr<CustomIR>& module, const IRScoreV1& scoreV1) {
-		constexpr int tryMax = 6;
-		int tryCount = 1;
-		while (tryCount <= tryMax) {
-			const SendScoreStatus status = module->SupportsSendScoreV1()
-				? module->SendScore(scoreV1)
-				: SendScoreStatus::Fail;
-			switch (status) {
-			case SendScoreStatus::Fail:
-				if (!module->SupportsSendScoreV1()) {
-					OverlayNotification("'%s' has no SendScore handler\n", module->Name().c_str());
-				} else {
-					OverlayNotification("'%s' failed to submit score\n", module->Name().c_str());
-				}
-				return false;
-			case SendScoreStatus::Ok:
-				return true;
-			case SendScoreStatus::Retry:
-				std::this_thread::sleep_for(std::chrono::seconds(static_cast<int>(std::pow(4, tryCount))));
-				tryCount++;
-				break;
-			}
+bool CUSTOMIR_MANAGER::SendScoreWithRetry(const std::shared_ptr<CustomIR>& module, const IRScoreV1& scoreV1) {
+	constexpr int tryMax = 6;
+	int tryCount = 1;
+	while (tryCount <= tryMax) {
+		switch (module->SendScore(scoreV1)) {
+		case SendScoreStatus::Fail:
+			OverlayNotification("'%s' failed to submit score\n", module->Name().c_str());
+			return false;
+		case SendScoreStatus::Ok:
+			return true;
+		case SendScoreStatus::Retry:
+			std::this_thread::sleep_for(std::chrono::seconds(static_cast<int>(std::pow(4, tryCount))));
+			tryCount++;
+			break;
 		}
-		return false;
 	}
+	return false;
 }
 
 void IRScoreInternal::MakeScoreV1(IRScoreV1& scoreOut) const {
