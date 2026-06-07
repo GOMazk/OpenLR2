@@ -3,10 +3,11 @@ Rewritten source code of BMS player Lunatic Rave 2. Project started in January 2
 Original code accessible at [LR2Beta3-v100201](https://github.com/GOMazk/OpenLR2/tree/LR2Beta3-v100201)
 
 ## Open source?
+
 After the closure of LR2IR, the project has been made public.
 
-# For users
 ## Installation
+
 - Download unmodified Lunatic Rave 2 beta3 100201 [archive.org Download](
 https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?mode=download)
 
@@ -18,6 +19,11 @@ https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR
 > To avoid data corruption, it's generally recommended to have a fresh LR2 directory, or use the "-ns" flag.
 > 
 > Backing up your "LR2files\Database\Score\" folder is highly recommended.
+
+> [!NOTE]
+> Existing song.db will be refreshed on first OpenLR2 launch.
+> That is normal.
+> This is needed because LR2 didn't account for leap year days in database timestamps.
 
 ## New Features
 
@@ -36,19 +42,24 @@ https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR
 - Base62 support – support more keysounds on some newer charts that require them.
 
 ## How do I use HD skins with OpenLR2?
+
 <img width="441" height="64" alt="image" src="https://github.com/user-attachments/assets/30f21a53-aa14-430b-ae74-9a11c62f3c49" />
 
 - Add the corresponding #RESOLUTION under #INFORMATION in your .lr2skin files for each of the game scenes (music select, decide, play, result, course result...) Refer to the image above as an example.
 
 ## Known issues
+
  - score save issue on NONSTOP MIX
  - readme left click scroll is faster than original (not important)
 
 # For developers
+
 ## Build
+
 Use visual studio 2022, right click on OpenLR2_vs22, build. I'm working on x86 release build only
 
 ## Libraries (you don't need to get these)
+
 *DxLib 3.01a => 3.24f (custom old dxa) – currently using custom dxlib to read dxa files.
 
 *FMODex 4.13.4(080401) => FMOD 2.3.10
