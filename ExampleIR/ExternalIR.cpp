@@ -174,12 +174,13 @@ namespace {
             return;
         }
         output << std::format(
-            R"({{"myRank":{},"totalPlayer":{},"totalPlaycount":{},"clearPlayers":[{},{},{},{},{},{}],"lastupdate":"example","ranking":[)",
+            R"({{"myRank":{},"totalPlayer":{},"totalPlaycount":{},"clearPlayers":[{},{},{},{},{},{}],"lastupdate":"{}","ranking":[)",
             result.myRank,
             result.totalPlayer,
             result.totalPlaycount,
             result.clearPlayers[0], result.clearPlayers[1], result.clearPlayers[2],
-            result.clearPlayers[3], result.clearPlayers[4], result.clearPlayers[5]);
+            result.clearPlayers[3], result.clearPlayers[4], result.clearPlayers[5],
+            result.lastupdate);
         for (std::size_t i = 0; i < result.ranking.size(); ++i) {
             const IRRankPlayerV1& row = result.ranking[i];
             if (i > 0) {
@@ -206,6 +207,7 @@ namespace {
         out.myRank = 1;
         out.totalPlayer = 128;
         out.totalPlaycount = 512;
+        out.lastupdate = "2010-01-01 00:00:00";
         out.clearPlayers = { 10, 20, 30, 40, 50, 60 };
         out.ranking = {
             {
