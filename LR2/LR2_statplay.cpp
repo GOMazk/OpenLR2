@@ -770,10 +770,12 @@ int SaveResult(game *g, sqlite3* sql) {
 				g->net.myRanking.ghost = ReadGhost(sql, bms.hash);
 				g->net.MakeIRsendScoreThread();
 
-				bms.mybest.IRranking = g->net.rankingData.myRanking;
-				bms.mybest.IRplayercount = g->net.rankingData.rankingCount;
-				if (g->net.rankingData.rankingCount > 0) {
-					bms.mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
+				if (g->net.customIR.ShouldMirrorLegacyRankToMybest()) {
+					bms.mybest.IRranking = g->net.rankingData.myRanking;
+					bms.mybest.IRplayercount = g->net.rankingData.rankingCount;
+					if (g->net.rankingData.rankingCount > 0) {
+						bms.mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
+					}
 				}
 			}
 			SetObjectString(20, g->net.IRresultMessage, g->txtStruct.objectStr);
@@ -1102,10 +1104,12 @@ int SaveResult(game *g, sqlite3* sql) {
 							g->net.myRanking.ghost = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
 							g->net.MakeIRsendScoreThread();
 
-							g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
-							g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount = g->net.rankingData.rankingCount;
-							if (g->net.rankingData.rankingCount > 0) {
-								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
+							if (g->net.customIR.ShouldMirrorLegacyRankToMybest()) {
+								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
+								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount = g->net.rankingData.rankingCount;
+								if (g->net.rankingData.rankingCount > 0) {
+									g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
+								}
 							}
 						}
 						else {
@@ -1147,10 +1151,12 @@ int SaveResult(game *g, sqlite3* sql) {
 							g->net.myRanking.ghost = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
 							g->net.MakeIRsendScoreThread();
 
-							g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
-							g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount = g->net.rankingData.rankingCount;
-							if (g->net.rankingData.rankingCount > 0) {
-								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
+							if (g->net.customIR.ShouldMirrorLegacyRankToMybest()) {
+								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
+								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount = g->net.rankingData.rankingCount;
+								if (g->net.rankingData.rankingCount > 0) {
+									g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
+								}
 							}
 						}
 					}

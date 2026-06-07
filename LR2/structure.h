@@ -27,6 +27,7 @@
 
 
 struct sqlite3;
+struct game;
 
 typedef unsigned char   undefined;
 typedef unsigned int    ImageBaseOffset32;
@@ -1405,6 +1406,8 @@ struct NETWORK {
 
 	int HTTPrequest();
 	void WaitAndInitRanking();
+	[[nodiscard]] bool IsResultIrPending() const;
+	void BeginResultIr(game& g, sqlite3 *sql, int player);
 	int GetRanking(CSTR hash, char flagInit);
 
 	int GetRivalInfo(int ID_rival);

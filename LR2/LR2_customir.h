@@ -8,6 +8,7 @@
 #include <memory>
 #include <string>
 #include <type_traits>
+#include <vector>
 
 #include <wtypes.h>
 
@@ -22,6 +23,10 @@ public:
 	bool Login();
 	SendScoreStatus SendScore(const IRScoreV1& score);
 
+	GetStatus GetResultRank(const IRScoreV1& score, IRRankResultV1& out);
+
+	[[nodiscard]] bool SupportsResultRank() const { return mMethods.GetResultRankV1 != nullptr; }
+	[[nodiscard]] bool SupportsSendScoreV1() const { return mMethods.SendScoreV1 != nullptr; }
 	[[nodiscard]] const std::string& Name() const { return mName; };
 private:
 	struct ModuleDeleter {
@@ -42,8 +47,22 @@ public:
 	~CUSTOMIR_MANAGER();
 	void Initialize(const std::filesystem::path& directory);
 	void Login();
-	void SendScore(game& game, sqlite3* sql, int player);
+	void BeginResultIr(game& game, sqlite3* sql, int player);
+	[[nodiscard]] bool IsResultIrPending() const;
+	[[nodiscard]] bool IsProviderLoggedIn() const { return mProviderLoggedIn; }
+	[[nodiscard]] bool HasLoadedModules() const { return !mModules.empty(); }
+	[[nodiscard]] bool ProvidesResultRank() const;
+	[[nodiscard]] bool ShouldMirrorLegacyRankToMybest() const { return !ProvidesResultRank(); }
 private:
+	void LoadActiveProviderConfig(const std::filesystem::path& customIrRoot);
+	void EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> sidecarModules);
+	[[nodiscard]] std::vector<std::shared_ptr<CustomIR>> ResolveSidecarModules() const;
+	[[nodiscard]] std::vector<std::shared_ptr<CustomIR>> ResolveDisplayModules() const;
+	[[nodiscard]] bool AnyDisplayModuleSupports(bool (CustomIR::*pred)() const) const;
+
 	std::vector<std::shared_ptr<CustomIR>> mModules;
 	std::vector<std::future<void>> mSendThreads;
+	std::future<void> mResultIrFuture;
+	std::string mActiveProvider;
+	bool mProviderLoggedIn = false;
 };

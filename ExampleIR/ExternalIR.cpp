@@ -24,6 +24,18 @@ static bool Login() {
     return true;
 }
 
+static GetStatus GetResultRank(const IRScoreV1& score, IRRankResultV1& out) {
+    // Fetch this play's rank from your IR, e.g. via HTTP using score.song.hash and score.exscore.
+    // Called on its own thread after SendScore, on the result screen.
+    // Fill out.rank (1 = first place) and out.playerCount; OpenLR2 shows these on the result screen.
+
+    (void)score;
+    out = {};
+    out.rank = 42;
+    out.playerCount = 128;
+    return GetStatus::Ok;
+}
+
 static SendScoreStatus SendScore(const IRScoreV1& score) {
     // Process your score here, and output the result where you want it, perhaps send it to a URL.
     // This method is ran on its own thread at each score result, both for normal plays and courses.
@@ -69,6 +81,7 @@ extern "C" __declspec(dllexport) void GetMethodTable(MethodTable& table) {
     table.GetName = &GetName;
     table.LoginV1 = &Login;
     table.SendScoreV1 = &SendScore;
+    table.GetResultRankV1 = &GetResultRank;
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,

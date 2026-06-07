@@ -105,8 +105,20 @@ enum class SendScoreStatus: int {
 	Fail,
 };
 
+struct IRRankResultV1 {
+	int rank{};
+	int playerCount{};
+};
+
+enum class GetStatus: int {
+	Ok = 0,
+	Retry,
+	Fail,
+};
+
 struct MethodTable {
 	const char*(__cdecl* GetName)() = nullptr;
 	bool(__cdecl* LoginV1)() = nullptr;
 	SendScoreStatus(__cdecl* SendScoreV1)(const IRScoreV1& score) = nullptr;
+	GetStatus(__cdecl* GetResultRankV1)(const IRScoreV1& score, IRRankResultV1& out) = nullptr;
 };

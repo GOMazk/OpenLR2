@@ -1118,7 +1118,7 @@ int main(int argc, char** argv) {
 					ProcS_Play(&gs, sql3);
 					break;
 				case SCENE_RESULT:
-					ProcS_Result(&gs);
+					ProcS_Result(&gs, sql3);
 					break;
 				case SCENE_KEYCONFIG:
 					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_KEYCONFIG);
@@ -1465,7 +1465,6 @@ int main(int argc, char** argv) {
 					}
 					else if (gs.gameplay.player[0].judgecount[3] + gs.gameplay.player[0].judgecount[4] + gs.gameplay.player[0].judgecount[5] != 0) {
 						SaveResult(&gs, sql3);
-						gs.net.customIR.SendScore(gs, sql3, 0);
 					}
 					else if (gs.config.play.m_lunaris == 0 && gs.config.play.battle != 1) {
 						gs.procSelecter = 2;
@@ -1477,7 +1476,6 @@ int main(int argc, char** argv) {
 					}
 					else if ((gs.gameplay.player[1].judgecount[3] + gs.gameplay.player[1].judgecount[4] + gs.gameplay.player[1].judgecount[5] != 0) || gs.config.play.battle != 1) {
 						SaveResult(&gs, sql3);
-						gs.net.customIR.SendScore(gs, sql3, 1);
 					}
 					else {
 						gs.procSelecter = 2;
