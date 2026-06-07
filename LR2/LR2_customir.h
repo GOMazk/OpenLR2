@@ -7,6 +7,7 @@
 #include <future>
 #include <memory>
 #include <string>
+#include <string_view>
 #include <type_traits>
 #include <vector>
 
@@ -47,7 +48,7 @@ public:
 	CUSTOMIR_MANAGER operator=(CUSTOMIR_MANAGER&&) = delete;
 	CUSTOMIR_MANAGER(CUSTOMIR_MANAGER&&) = delete;
 	~CUSTOMIR_MANAGER();
-	void Initialize(const std::filesystem::path& directory);
+	void Initialize(const std::filesystem::path& directory, std::string_view activeProvider);
 	void Login();
 	void BeginResultIr(game& game, sqlite3* sql, int player);
 	void OnSongSelectRestoreRank(game& game);
@@ -58,7 +59,6 @@ public:
 	[[nodiscard]] bool ProvidesCachedRankRestore() const;
 	[[nodiscard]] bool ShouldMirrorLegacyRankToMybest() const { return !ProvidesResultRank(); }
 private:
-	void LoadActiveProviderConfig(const std::filesystem::path& customIrRoot);
 	void EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> sidecarModules);
 	[[nodiscard]] std::vector<std::shared_ptr<CustomIR>> ResolveSidecarModules() const;
 	[[nodiscard]] std::vector<std::shared_ptr<CustomIR>> ResolveDisplayModules() const;

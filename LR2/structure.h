@@ -181,6 +181,7 @@ struct CONFIG_NETWORK {
 	CSTR mail;
 	int autoupdate{};
 	int getrival{};
+	CSTR customIrProvider;
 };
 
 struct CONFIG_PLAY {
