@@ -71,6 +71,18 @@ static consteval bool is_linux()
 #endif
 }
 
+static bool run_tests() {
+	if (CSTR fp = "C:\\a\\b\\c\\d.bms"; fp.getDirectory().body != std::string_view{"C:\\a\\b\\c\\"}) {
+		ErrorLogFmtAdd("1: %s\n", fp.getDirectory().body);
+		return false;
+	}
+	if (CSTR fp = "C:\\a\\b\\c\\d.bms"; fp.getParentDirectory().body != std::string_view{"C:\\a\\b\\"}) {
+		ErrorLogFmtAdd("2: %s\n", fp.getParentDirectory().body);
+		return false;
+	}
+	return true;
+}
+
 int main(int argc, char** argv) {
 #ifdef _DEBUG
 	while (!IsDebuggerPresent()) std::this_thread::sleep_for(std::chrono::milliseconds(200));
@@ -156,6 +168,7 @@ int main(int argc, char** argv) {
 	gs.rec.recMode = 0;
 	gs.audio.replay2avi = false;
 	gs.skstruct.drBuf.isDisabled = '\0';
+	bool test_mode = false;
 	bool use_dx9 = false;
 	//commandline
 	for (int i = 1; i < argc; i++) {
@@ -223,19 +236,28 @@ int main(int argc, char** argv) {
 		else if (tStr2.starts_with("-dx9")) {
 			use_dx9 = true;
 		}
+		else if (tStr2.starts_with("-test")) {
+			test_mode = true;
+		}
 	}
 	gs.config.system.thread = 0;
+	if (test_mode) {
+		if(!run_tests()) {
+			ErrorLogAdd("tests failed\n");
+			return 1;
+		}
+		ErrorLogAdd("tests passed\n");
+		return 0;
+	}
 	CSTR pathScoreDB;
 	cstrSprintf(&pathScoreDB, "LR2files/Database/Score/%s.db", gs.config.player.id.body);
-	if (gs.is_starter == '\0') {
-		if (IsFileExist(pathScoreDB) == false) {
+	if (!gs.is_starter) {
+		if (!IsFileExist(pathScoreDB)) {
 			MessageBoxA(NULL, "スコアデータベースが見つかりません。\nconfig.exeで作成して下さい。", "エラー", 0);
 			return -1;
 		}
-		if (gs.is_starter == '\0') {
-			if (ReadPlayerScore(gs.config.player.id, gs.config.player.pass, &gs.gameplay.playerstat) == 0) {
-				return -1;
-			}
+		if (ReadPlayerScore(gs.config.player.id, gs.config.player.pass, &gs.gameplay.playerstat) == 0) {
+			return -1;
 		}
 	}
 	//make beta3 score backup

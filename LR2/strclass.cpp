@@ -30,14 +30,11 @@ CSTR::CSTR(int size) {
 }
 
 CSTR::~CSTR() {
-	if (body) free(body);
+	free(body);
 }
 
 int CSTR::length() {
-	if (body)
-		return strlen(body);
-	else
-		return 0;
+	return body ? strlen(body) : 0;
 }
 
 DWORD CSTR::CRC32() {

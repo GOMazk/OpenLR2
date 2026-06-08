@@ -63,6 +63,7 @@ void CustomIR::ModuleDeleter::operator()(std::remove_pointer_t<HMODULE>* handle)
 }
 
 bool CustomIR::Initialize() {
+	if (mMethods.GetName == nullptr) return false;
 	mName = mMethods.GetName();
 	if (mName.empty()) return false;
 	return true;
