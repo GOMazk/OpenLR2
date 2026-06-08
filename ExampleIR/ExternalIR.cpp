@@ -27,38 +27,39 @@ static bool Login() {
 
 static GetStatus RestoreCachedRank(const char* songHash, IRRankResultV1& out) {
     // Optional (RestoreCachedRankV1). Song select, display provider only. Host passes songHash; fill out.
-    // Skeleton: sample IRRankResultV1 below (host maps out → rankingData + mybest).
+    // Skeleton: the values below are returned for every song (if you build the DLL as-is, every chart shows this board).
+    // Replace with cache loaded from disk (written in GetResultRank, e.g. keyed by songHash) for per-song data.
     out = {};
     if (songHash == nullptr || songHash[0] == '\0') {
         return GetStatus::Ok;
     }
-    out.myRank = 1;
-    out.totalPlayer = 128;
-    out.totalPlaycount = 512;
-    out.lastupdate = "2010-01-01 00:00:00";
-    out.clearPlayers = { 10, 20, 30, 40, 50, 60 };
+    out.myRank = 18;
+    out.totalPlayer = 64;
+    out.totalPlaycount = 200;
+    out.lastupdate = "2009-06-15 18:30:00";
+    out.clearPlayers = { 0, 25, 20, 15, 10, 5 };
     out.ranking = {
         {
             .name = "ExampleIR#1",
-            .id = 79847,
-            .clear = 4,
-            .notes = 2006,
-            .combo = 739,
-            .pg = 1616,
-            .gr = 354,
-            .minbp = 28,
-            .ranking = 1,
+            .id = 70100,
+            .clear = 3,
+            .notes = 1200,
+            .combo = 520,
+            .pg = 980,
+            .gr = 180,
+            .minbp = 42,
+            .ranking = 18,
         },
         {
             .name = "ExampleIR#2",
-            .id = 79846,
-            .clear = 4,
-            .notes = 2006,
-            .combo = 720,
-            .pg = 1600,
-            .gr = 340,
-            .minbp = 32,
-            .ranking = 2,
+            .id = 70101,
+            .clear = 3,
+            .notes = 1200,
+            .combo = 505,
+            .pg = 960,
+            .gr = 190,
+            .minbp = 48,
+            .ranking = 19,
         },
     };
     return GetStatus::Ok;
@@ -66,18 +67,19 @@ static GetStatus RestoreCachedRank(const char* songHash, IRRankResultV1& out) {
 
 static GetStatus GetResultRank(const IRScoreV1& score, IRRankResultV1& out) {
     // Optional (GetResultRankV1). Result screen, display provider only. Host passes score; fill out.
-    // Skeleton: sample IRRankResultV1 below (host maps out → rankingData + mybest). Host waits via IsResultIrPending.
-    //
-    // score: same IRScoreV1 snapshot as SendScore for this result (LR2_customir_api.h).
+    // Host waits via IsResultIrPending. score is the same IRScoreV1 snapshot as SendScore (LR2_customir_api.h).
+    // Skeleton: fixed IRRankResultV1 below. The host applies out on the result screen and mybest; that
+    // state persists until restart or until the user picks a different song folder on song select. To
+    // show the same board when browsing songs, persist out here and load it in RestoreCachedRank.
     out = {};
     if (score.song.hash.empty()) {
         return GetStatus::Ok;
     }
-    out.myRank = 1;
-    out.totalPlayer = 128;
-    out.totalPlaycount = 512;
+    out.myRank = 3;
+    out.totalPlayer = 256;
+    out.totalPlaycount = 1024;
     out.lastupdate = "2010-01-01 00:00:00";
-    out.clearPlayers = { 10, 20, 30, 40, 50, 60 };
+    out.clearPlayers = { 0, 50, 40, 30, 20, 10 };
     out.ranking = {
         {
             .name = "ExampleIR#1",
@@ -88,7 +90,7 @@ static GetStatus GetResultRank(const IRScoreV1& score, IRRankResultV1& out) {
             .pg = 1616,
             .gr = 354,
             .minbp = 28,
-            .ranking = 1,
+            .ranking = 3,
         },
         {
             .name = "ExampleIR#2",
@@ -99,7 +101,7 @@ static GetStatus GetResultRank(const IRScoreV1& score, IRRankResultV1& out) {
             .pg = 1600,
             .gr = 340,
             .minbp = 32,
-            .ranking = 2,
+            .ranking = 4,
         },
     };
     return GetStatus::Ok;
