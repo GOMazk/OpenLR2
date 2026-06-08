@@ -528,7 +528,9 @@ CSTR CSTR::getDirectory() {
 }
 
 CSTR CSTR::getParentDirectory() {
-	return getDirectory().getDirectory();
+	CSTR dir(getDirectory());
+	dir.cutDirectorySeparator();
+	return dir.getDirectory();
 }
 
 CSTR& CSTR::cutDirectorySeparator() {
