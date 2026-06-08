@@ -525,11 +525,9 @@ CSTR CSTR::getDirectory() {
 }
 
 CSTR CSTR::getParentDirectory() {
-	CSTR out;
-	out.assign(std::filesystem::path{ this->body }.parent_path().parent_path().string().c_str());
-	*out.atPos(out.length() + 1) = '\0';
-	*out.atPos(out.length()) = std::filesystem::path::preferred_separator;
-	return out;
+	CSTR dir(getDirectory());
+	dir.cutDirectorySeparator();
+	return dir.getDirectory();
 }
 
 CSTR& CSTR::cutDirectorySeparator() {
