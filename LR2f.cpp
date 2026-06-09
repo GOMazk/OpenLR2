@@ -11687,7 +11687,7 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 						g->sSelect.prevList[i].title = g->net.rankingData.ranking[i].name;
 						g->sSelect.prevList[i].level = i + 1;
 						g->sSelect.prevList[i].difficulty = 0;
-						g->sSelect.prevList[i].isStagefile = 0;
+						g->sSelect.prevList[i].folderType = 0;
 						g->sSelect.prevList[i].rivalRecord.stat_exscore = g->net.rankingData.ranking[i].gr + g->net.rankingData.ranking[i].pg * 2;
 						g->sSelect.prevList[i].rivalRecord.playcount = g->net.rankingData.ranking[i].playcount;
 						g->sSelect.prevList[i].rivalRecord.total_notes = g->net.rankingData.ranking[i].notes;
