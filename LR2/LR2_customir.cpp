@@ -102,13 +102,13 @@ CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
 }
 
 std::vector<std::shared_ptr<CustomIR>> CUSTOMIR_MANAGER::ResolveSidecarModules() const {
-	if (!mActiveProvider.body || !mActiveProvider.body[0] || !ProvidesResultRank()) {
+	if (mActiveProvider.empty() || !ProvidesResultRank()) {
 		return mModules;
 	}
 	std::vector<std::shared_ptr<CustomIR>> sidecarModules;
 	sidecarModules.reserve(mModules.size());
 	for (const auto& module : mModules) {
-		if (module->Name() != mActiveProvider.body) {
+		if (module->Name() != mActiveProvider) {
 			sidecarModules.push_back(module);
 		}
 	}
@@ -116,18 +116,18 @@ std::vector<std::shared_ptr<CustomIR>> CUSTOMIR_MANAGER::ResolveSidecarModules()
 }
 
 bool CUSTOMIR_MANAGER::ProvidesResultRank() const {
-	if (!mActiveProvider.body || !mActiveProvider.body[0]) {
+	if (mActiveProvider.empty()) {
 		return false;
 	}
-	const auto it = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
+	const auto it = std::ranges::find(mModules, mActiveProvider, &CustomIR::Name);
 	return it != mModules.end() && (*it)->mMethods.GetResultRankV1 != nullptr;
 }
 
 bool CUSTOMIR_MANAGER::ProvidesCachedRankRestore() const {
-	if (!mActiveProvider.body || !mActiveProvider.body[0]) {
+	if (mActiveProvider.empty()) {
 		return false;
 	}
-	const auto it = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
+	const auto it = std::ranges::find(mModules, mActiveProvider, &CustomIR::Name);
 	return it != mModules.end() && (*it)->mMethods.RestoreCachedRankV1 != nullptr;
 }
 
@@ -180,7 +180,7 @@ void CUSTOMIR_MANAGER::EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<
 }
 
 void CUSTOMIR_MANAGER::Initialize(const std::filesystem::path& directory, const CSTR& activeProvider) {
-	mActiveProvider.assign(&activeProvider);
+	mActiveProvider = activeProvider.body ? activeProvider.body : "";
 	for (auto& dir : std::filesystem::directory_iterator(directory)) {
 		if (!dir.is_directory()) {
 			ErrorLogFmtAdd("'%s' skipped for loading custom IR module, not a directory\n", dir.path().string().c_str());
@@ -199,10 +199,10 @@ void CUSTOMIR_MANAGER::Initialize(const std::filesystem::path& directory, const 
 		}
 	}
 
-	if (mActiveProvider.body && mActiveProvider.body[0] && std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name) == mModules.end()) {
+	if (!mActiveProvider.empty() && std::ranges::find(mModules, mActiveProvider, &CustomIR::Name) == mModules.end()) {
 		ErrorLogFmtAdd(
 			"CustomIR: network/customir_provider '%s' not found; display fetch disabled, SendScore still active\n",
-			mActiveProvider.body
+			mActiveProvider.c_str()
 		);
 	}
 }
@@ -219,7 +219,7 @@ void CUSTOMIR_MANAGER::Login() {
 		} else {
 			OverlayNotification("[%s] Failed to log in\n", ir->Name().c_str());
 		}
-		if (mActiveProvider.body && mActiveProvider.body[0] && ir->Name() == mActiveProvider.body && loginOk) {
+		if (!mActiveProvider.empty() && ir->Name() == mActiveProvider && loginOk) {
 			mProviderLoggedIn = true;
 		}
 	}
@@ -721,10 +721,10 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 	const auto sidecarModules = ResolveSidecarModules();
 	EnqueueSidecarSend(scoreV1, sidecarModules);
 
-	if (!mActiveProvider.body || !mActiveProvider.body[0]) {
+	if (mActiveProvider.empty()) {
 		return;
 	}
-	const auto displayIt = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
+	const auto displayIt = std::ranges::find(mModules, mActiveProvider, &CustomIR::Name);
 	if (displayIt == mModules.end() || (*displayIt)->mMethods.GetResultRankV1 == nullptr) {
 		return;
 	}
@@ -761,10 +761,10 @@ void CUSTOMIR_MANAGER::OnSongSelectRestoreRank(game& game) {
 	if (curSong < 0 || curSong >= game.sSelect.bmsListCount) {
 		return;
 	}
-	if (!mActiveProvider.body || !mActiveProvider.body[0]) {
+	if (mActiveProvider.empty()) {
 		return;
 	}
-	const auto displayIt = std::ranges::find(mModules, mActiveProvider.body, &CustomIR::Name);
+	const auto displayIt = std::ranges::find(mModules, mActiveProvider, &CustomIR::Name);
 	if (displayIt == mModules.end() || (*displayIt)->mMethods.RestoreCachedRankV1 == nullptr) {
 		return;
 	}
