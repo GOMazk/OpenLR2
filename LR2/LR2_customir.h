@@ -61,6 +61,8 @@ public:
 private:
 	void EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> sidecarModules);
 	[[nodiscard]] static bool SendScoreWithRetry(const std::shared_ptr<CustomIR>& module, const IRScoreV1& scoreV1);
+	static void SidecarSendAsync(IRScoreV1 scoreV1, std::vector<std::shared_ptr<CustomIR>> modules);
+	static void ResultIrAsync(std::shared_ptr<CustomIR> provider, IRScoreV1 scoreV1, int curSong, game* game);
 	[[nodiscard]] std::vector<std::shared_ptr<CustomIR>> ResolveSidecarModules() const;
 
 	std::vector<std::shared_ptr<CustomIR>> mModules;

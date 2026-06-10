@@ -148,35 +148,11 @@ void CUSTOMIR_MANAGER::EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<
 		mSendThreads.erase(mSendThreads.begin() + i);
 	}
 
-	mSendThreads.push_back(std::async(std::launch::async,
-		[scoreV1, toSend = std::move(sidecarModules)]() mutable {
-			constexpr int tryMax = 6;
-			int tryCount = 1;
-			while (!toSend.empty() && tryCount <= tryMax) {
-				std::vector<std::future<SendScoreStatus>> sendThreads;
-				sendThreads.reserve(toSend.size());
-				for (const auto& module : toSend) {
-					sendThreads.push_back(std::async(std::launch::async, &CustomIR::SendScore, module, scoreV1));
-				}
-
-				for (const auto& [i, t] : std::views::enumerate(sendThreads) | std::views::reverse) {
-					switch (t.get()) {
-					case SendScoreStatus::Fail:
-						OverlayNotification("'%s' failed to submit score\n", toSend[i]->Name().c_str());
-						[[fallthrough]];
-					case SendScoreStatus::Ok:
-						toSend.erase(toSend.begin() + static_cast<std::ptrdiff_t>(i));
-						break;
-					case SendScoreStatus::Retry:
-						break;
-					}
-				}
-
-				const auto sleepFor = static_cast<int>(std::pow(4, tryCount));
-				std::this_thread::sleep_for(std::chrono::seconds(sleepFor));
-				tryCount++;
-			}
-		}));
+	mSendThreads.push_back(std::async(
+		std::launch::async,
+		&CUSTOMIR_MANAGER::SidecarSendAsync,
+		scoreV1,
+		std::move(sidecarModules)));
 }
 
 void CUSTOMIR_MANAGER::Initialize(const std::filesystem::path& directory, const CSTR& activeProvider) {
@@ -467,6 +443,51 @@ bool CUSTOMIR_MANAGER::SendScoreWithRetry(const std::shared_ptr<CustomIR>& modul
 	return false;
 }
 
+void CUSTOMIR_MANAGER::SidecarSendAsync(IRScoreV1 scoreV1, std::vector<std::shared_ptr<CustomIR>> toSend) {
+	constexpr int tryMax = 6;
+	int tryCount = 1;
+	while (!toSend.empty() && tryCount <= tryMax) {
+		std::vector<std::future<SendScoreStatus>> sendThreads;
+		sendThreads.reserve(toSend.size());
+		for (const auto& module : toSend) {
+			sendThreads.push_back(std::async(std::launch::async, &CustomIR::SendScore, module, scoreV1));
+		}
+
+		for (const auto& [i, t] : std::views::enumerate(sendThreads) | std::views::reverse) {
+			switch (t.get()) {
+			case SendScoreStatus::Fail:
+				OverlayNotification("'%s' failed to submit score\n", toSend[i]->Name().c_str());
+				[[fallthrough]];
+			case SendScoreStatus::Ok:
+				toSend.erase(toSend.begin() + static_cast<std::ptrdiff_t>(i));
+				break;
+			case SendScoreStatus::Retry:
+				break;
+			}
+		}
+
+		const auto sleepFor = static_cast<int>(std::pow(4, tryCount));
+		std::this_thread::sleep_for(std::chrono::seconds(sleepFor));
+		tryCount++;
+	}
+}
+
+void CUSTOMIR_MANAGER::ResultIrAsync(
+	std::shared_ptr<CustomIR> provider,
+	IRScoreV1 scoreV1,
+	int curSong,
+	game* gamePtr) {
+	(void)SendScoreWithRetry(provider, scoreV1);
+
+	IRRankResultV1 out{};
+	const GetStatus status = provider->GetResultRank(scoreV1, out);
+	if (status == GetStatus::Fail) {
+		OverlayNotification("'%s' failed to get result rank\n", provider->Name().c_str());
+		return;
+	}
+	ApplyIrRankResult(*gamePtr, curSong, out, IrRankApplyContext::Result);
+}
+
 void IRScoreInternal::MakeScoreV1(IRScoreV1& scoreOut) const {
 	scoreOut.song.hash = song.hash;
 	scoreOut.song.title = song.title;
@@ -733,18 +754,13 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 		mResultIrFuture.wait();
 	}
 
-	mResultIrFuture = std::async(std::launch::async,
-		[this, provider = *displayIt, scoreV1, curSong, gamePtr = &game]() {
-			(void)SendScoreWithRetry(provider, scoreV1);
-
-			IRRankResultV1 out{};
-			const GetStatus status = provider->GetResultRank(scoreV1, out);
-			if (status == GetStatus::Fail) {
-				OverlayNotification("'%s' failed to get result rank\n", provider->Name().c_str());
-				return;
-			}
-			ApplyIrRankResult(*gamePtr, curSong, out, IrRankApplyContext::Result);
-		});
+	mResultIrFuture = std::async(
+		std::launch::async,
+		&CUSTOMIR_MANAGER::ResultIrAsync,
+		*displayIt,
+		scoreV1,
+		curSong,
+		&game);
 }
 
 void CUSTOMIR_MANAGER::OnSongSelectRestoreRank(game& game) {
