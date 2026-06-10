@@ -16,8 +16,6 @@
 struct game;
 struct sqlite3;
 
-class CUSTOMIR_MANAGER;
-
 class CustomIR {
 public:
 	CustomIR() = delete;
