@@ -19,7 +19,6 @@ struct sqlite3;
 class CUSTOMIR_MANAGER;
 
 class CustomIR {
-	friend class CUSTOMIR_MANAGER;
 public:
 	CustomIR() = delete;
 	CustomIR(const std::filesystem::path& directory);
