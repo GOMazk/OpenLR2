@@ -424,7 +424,7 @@ namespace {
 	}
 }
 
-bool CUSTOMIR_MANAGER::SendScoreWithRetry(const std::shared_ptr<CustomIR>& module, const IRScoreV1& scoreV1) {
+bool CUSTOMIR_MANAGER::SendScoreWithRetry(const CustomIR& ir, const IRScoreV1& scoreV1) {
 	constexpr int tryMax = 6;
 	int tryCount = 1;
 	while (tryCount <= tryMax) {
