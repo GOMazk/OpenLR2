@@ -735,24 +735,15 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 
 	mResultIrFuture = std::async(std::launch::async,
 		[this, provider = *displayIt, scoreV1, curSong, gamePtr = &game]() {
-			SendScoreWithRetry(provider, scoreV1);
+			(void)SendScoreWithRetry(provider, scoreV1);
 
-			IRRankResultV1 merged{};
-			bool gotResult = false;
 			IRRankResultV1 out{};
 			const GetStatus status = provider->GetResultRank(scoreV1, out);
 			if (status == GetStatus::Fail) {
 				OverlayNotification("'%s' failed to get result rank\n", provider->Name().c_str());
-			} else if (status == GetStatus::Ok) {
-				if (HasIrRankPayload(out)) {
-					merged = out;
-					gotResult = true;
-				}
+				return;
 			}
-
-			if (gotResult) {
-				ApplyIrRankResult(*gamePtr, curSong, merged, IrRankApplyContext::Result);
-			}
+			ApplyIrRankResult(*gamePtr, curSong, out, IrRankApplyContext::Result);
 		});
 }
 
