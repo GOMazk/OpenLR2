@@ -66,6 +66,6 @@ private:
 	std::vector<std::shared_ptr<CustomIR>> mModules;
 	std::vector<std::future<void>> mSendThreads;
 	std::future<void> mResultIrFuture;
-	CSTR mActiveProvider;
+	std::string mActiveProvider;
 	bool mProviderLoggedIn = false;
 };
