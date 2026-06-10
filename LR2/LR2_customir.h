@@ -22,7 +22,7 @@ public:
 	CustomIR(const std::filesystem::path& directory);
 	bool Initialize();
 	bool Login();
-	SendScoreStatus SendScore(const IRScoreV1& score);
+	SendScoreStatus SendScore(const IRScoreV1& score) const;
 
 	GetStatus GetResultRank(const IRScoreV1& score, IRRankResultV1& out);
 	GetStatus RestoreCachedRank(const char* songHash, IRRankResultV1& out);
@@ -57,7 +57,7 @@ public:
 	[[nodiscard]] bool ShouldMirrorLegacyRankToMybest() const { return !ProvidesResultRank(); }
 private:
 	void EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> sidecarModules);
-	[[nodiscard]] static bool SendScoreWithRetry(const std::shared_ptr<CustomIR>& module, const IRScoreV1& scoreV1);
+	[[nodiscard]] static bool SendScoreWithRetry(const CustomIR& ir, const IRScoreV1& scoreV1);
 	static void SidecarSendAsync(IRScoreV1 scoreV1, std::vector<std::shared_ptr<CustomIR>> modules);
 	static void ResultIrAsync(std::shared_ptr<CustomIR> provider, IRScoreV1 scoreV1, int curSong, game* game);
 	[[nodiscard]] std::vector<std::shared_ptr<CustomIR>> ResolveSidecarModules() const;

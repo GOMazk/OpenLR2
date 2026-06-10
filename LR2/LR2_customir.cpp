@@ -76,7 +76,7 @@ bool CustomIR::Login() {
 	return mMethods.LoginV1();
 }
 
-SendScoreStatus CustomIR::SendScore(const IRScoreV1& score) {
+SendScoreStatus CustomIR::SendScore(const IRScoreV1& score) const {
 	if (mMethods.SendScoreV1 == nullptr) return SendScoreStatus::Fail;
 	return mMethods.SendScoreV1(score);
 }
@@ -426,9 +426,9 @@ bool CUSTOMIR_MANAGER::SendScoreWithRetry(const CustomIR& ir, const IRScoreV1& s
 	constexpr int tryMax = 6;
 	int tryCount = 1;
 	while (tryCount <= tryMax) {
-		switch (module->SendScore(scoreV1)) {
+		switch (ir.SendScore(scoreV1)) {
 		case SendScoreStatus::Fail:
-			OverlayNotification("'%s' failed to submit score\n", module->Name().c_str());
+			OverlayNotification("'%s' failed to submit score\n", ir.Name().c_str());
 			return false;
 		case SendScoreStatus::Ok:
 			return true;
@@ -475,7 +475,7 @@ void CUSTOMIR_MANAGER::ResultIrAsync(
 	IRScoreV1 scoreV1,
 	int curSong,
 	game* gamePtr) {
-	(void)SendScoreWithRetry(provider, scoreV1);
+	(void)SendScoreWithRetry(*provider, scoreV1);
 
 	IRRankResultV1 out{};
 	const GetStatus status = provider->GetResultRank(scoreV1, out);
