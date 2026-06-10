@@ -2560,11 +2560,11 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 
 		sqlite3_snprintf(256, query2, "ATTACH \'%q\' AS scoredb", scoreDBpath.body);
 		if (SQL_Run(query2, sql) != 0) {
-			ErrorLogAdd("スコアデータベースの接続に失敗しました。\n");
+			ErrorLogAdd("スコアデータベースの接続に失敗しました。 / Failed to attach the score database.\n");
 			return -1;
 		}
 		if (SQL_Run(fs::make_preferred("ATTACH \'LR2files/Database/tag.db\' AS tagdb").data(), sql) != 0) {
-			ErrorLogAdd("タグとかデータベースの接続に失敗しました。\n");
+			ErrorLogAdd("タグとかデータベースの接続に失敗しました。 / Failed to attach the tag database.\n");
 			return -1;
 		}
 	}
@@ -2573,7 +2573,7 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 		sqlite3_stmt *pStmt;
 
 		SQL_Run("BEGIN", sql);
-		ErrorLogAdd("エラーフォルダの検索を行います。\n");
+		ErrorLogAdd("エラーフォルダの検索を行います。 / Searching for orphaned folders.\n");
 
 		sqlite3_snprintf(1024, query, "SELECT * FROM folder WHERE parent = \'%s\'", AssignCRC32("ROOT").body);
 		SQL_prepare(query, sql, &pStmt);
@@ -2589,12 +2589,12 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 			}
 
 			if(is_path_not_in_jukebox) {
-				ErrorLogFmtAdd("エラーフォルダを削除します。%s\n", path.body);
+				ErrorLogFmtAdd("エラーフォルダを削除します。 / Removing orphaned folder: %s\n", path.body);
 				sqlite3_snprintf(1024, query, "DELETE FROM folder WHERE path = \'%s\'", path.body);
 				SQL_Run(query, sql);
 			}
 			else {
-				ErrorLogFmtAdd("ジュークボックスに登録されています。%s\n", path.body);
+				ErrorLogFmtAdd("ジュークボックスに登録されています。 / Registered in jukebox: %s\n", path.body);
 			}
 		}
 		sqlite3_finalize(pStmt);
@@ -2609,20 +2609,20 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 		}
 
 		if (jb->autoreload == 2 || flag_starter) {
-			ErrorLogAdd("フォルダ更新チェックを行います。\n");
+			ErrorLogAdd("フォルダ更新チェックを行います。 / Checking folder updates.\n");
 			ReloadSongsByQuery("SELECT path,date FROM folder", sql, jb);
-			ErrorLogAdd("ファイル更新チェックを行います。\n");
+			ErrorLogAdd("ファイル更新チェックを行います。 / Checking file updates.\n");
 			ReloadSongsByQuery("SELECT path,date FROM song", sql, jb);
 		}
 		else {
-			ErrorLogAdd("フォルダ更新チェック(ルートのみ)を行います。\n");
+			ErrorLogAdd("フォルダ更新チェック(ルートのみ)を行います。 / Checking folder updates (root only).\n");
 			sqlite3_snprintf(1024, query, "SELECT path,date FROM folder WHERE parent = \'%s\' OR date = 0", AssignCRC32("ROOT").body);
 			ReloadSongsByQuery(query, sql, jb);
 		}
 
-		ErrorLogAdd("未定義#DIFFICULTYの自動設定を行います。\n");
+		ErrorLogAdd("未定義#DIFFICULTYの自動設定を行います。 / Auto-assigning undefined #DIFFICULTY.\n");
 		SetUndefinedDifficulty(sql);
-		ErrorLogAdd("データベースチェックは終了しました。\n");
+		ErrorLogAdd("データベースチェックは終了しました。 / Database check finished.\n");
 
 		if (flag_starter == 0) {
 			SQL_Run(fs::make_preferred("DELETE FROM folder WHERE path LIKE \'LR2files/Rival/%\'").data(), sql);
