@@ -106,7 +106,7 @@ enum class SendScoreStatus: int {
 	Fail,
 };
 
-struct IRRankPlayerV1 {
+struct IRRankPlayer {
 	std::string name;
 	std::string comment;
 	int id{};
@@ -126,14 +126,14 @@ struct IRRankPlayerV1 {
 	int ranking{};
 };
 
-struct IRRankResultV1 {
+struct IRRankResult {
 	int myRank{};
 	int totalPlayer{};
 	std::string lastupdate;
 	int totalPlaycount{};
 	std::array<int, 6> clearPlayers{};
 	int rivalRank{};
-	std::vector<IRRankPlayerV1> ranking;
+	std::vector<IRRankPlayer> ranking;
 };
 
 enum class GetStatus: int {

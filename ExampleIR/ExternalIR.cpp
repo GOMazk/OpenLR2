@@ -25,8 +25,8 @@ static bool Login() {
     return true;
 }
 
-static GetStatus RestoreCachedRank(const char* songHash, IRRankResultV1& out) {
-    // Optional (RestoreCachedRankV1). Song select, display provider only. Host passes songHash; fill out.
+static GetStatus RestoreCachedRank(const char* songHash, IRRankResult& out) {
+    // Optional (RestoreCachedRank). Song select, display provider only. Host passes songHash; fill out.
     // Skeleton: the values below are returned for every song (if you build the DLL as-is, every chart shows this board).
     // Replace with cache loaded from disk (written in GetResultRank, e.g. keyed by songHash) for per-song data.
     out = {};
@@ -65,10 +65,10 @@ static GetStatus RestoreCachedRank(const char* songHash, IRRankResultV1& out) {
     return GetStatus::Ok;
 }
 
-static GetStatus GetResultRank(const IRScoreV1& score, IRRankResultV1& out) {
-    // Optional (GetResultRankV1). Result screen, display provider only. Host passes score; fill out.
+static GetStatus GetResultRank(const IRScoreV1& score, IRRankResult& out) {
+    // Optional (GetResultRank). Result screen, display provider only. Host passes score; fill out.
     // Host waits via IsResultIrPending. score is the same IRScoreV1 snapshot as SendScore (LR2_customir_api.h).
-    // Skeleton: fixed IRRankResultV1 below. The host applies out on the result screen and mybest; that
+    // Skeleton: fixed IRRankResult below. The host applies out on the result screen and mybest; that
     // state persists until restart or until the user picks a different song folder on song select. To
     // show the same board when browsing songs, persist out here and load it in RestoreCachedRank.
     out = {};
@@ -152,8 +152,8 @@ extern "C" __declspec(dllexport) void GetMethodTable(MethodTable& table) {
     table.GetName = &GetName;
     table.LoginV1 = &Login;
     table.SendScoreV1 = &SendScore;
-    table.GetResultRankV1 = &GetResultRank;
-    table.RestoreCachedRankV1 = &RestoreCachedRank;
+    table.GetResultRank = &GetResultRank;
+    table.RestoreCachedRank = &RestoreCachedRank;
 }
 
 BOOL APIENTRY DllMain( HMODULE hModule,

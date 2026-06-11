@@ -81,14 +81,14 @@ SendScoreStatus CustomIR::SendScore(const IRScoreV1& score) const {
 	return mMethods.SendScoreV1(score);
 }
 
-GetStatus CustomIR::GetResultRank(const IRScoreV1& score, IRRankResultV1& out) {
-	if (mMethods.GetResultRankV1 == nullptr) return GetStatus::Ok;
-	return mMethods.GetResultRankV1(score, out);
+GetStatus CustomIR::GetResultRank(const IRScoreV1& score, IRRankResult& out) {
+	if (mMethods.GetResultRank == nullptr) return GetStatus::Ok;
+	return mMethods.GetResultRank(score, out);
 }
 
-GetStatus CustomIR::RestoreCachedRank(const char* songHash, IRRankResultV1& out) {
-	if (mMethods.RestoreCachedRankV1 == nullptr) return GetStatus::Ok;
-	return mMethods.RestoreCachedRankV1(songHash, out);
+GetStatus CustomIR::RestoreCachedRank(const char* songHash, IRRankResult& out) {
+	if (mMethods.RestoreCachedRank == nullptr) return GetStatus::Ok;
+	return mMethods.RestoreCachedRank(songHash, out);
 }
 
 CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
@@ -312,7 +312,7 @@ namespace {
 		}
 	}
 
-	void CopyIrRankPlayerToRankingPlayer(RANKINGPLAYER& dest, const IRRankPlayerV1& src) {
+	void CopyIrRankPlayerToRankingPlayer(RANKINGPLAYER& dest, const IRRankPlayer& src) {
 		cstrSprintf(&dest.name, "%s", src.name.c_str());
 		dest.id = src.id;
 		dest.sp = src.sp;
@@ -337,7 +337,7 @@ namespace {
 		SongSelectRestore,
 	};
 
-	bool HasIrRankPayload(const IRRankResultV1& result) {
+	bool HasIrRankPayload(const IRRankResult& result) {
 		if (result.myRank > 0 || result.totalPlayer > 0) {
 			return true;
 		}
@@ -358,7 +358,7 @@ namespace {
 		return false;
 	}
 
-	void ApplyIrRankResult(game& g, int curSong, const IRRankResultV1& result, IrRankApplyContext ctx) {
+	void ApplyIrRankResult(game& g, int curSong, const IRRankResult& result, IrRankApplyContext ctx) {
 		if (curSong < 0 || curSong >= g.sSelect.bmsListCount) {
 			return;
 		}
@@ -477,7 +477,7 @@ void CUSTOMIR_MANAGER::ResultIrAsync(
 	game* gamePtr) {
 	(void)SendScoreWithRetry(*provider, scoreV1);
 
-	IRRankResultV1 out{};
+	IRRankResult out{};
 	const GetStatus status = provider->GetResultRank(scoreV1, out);
 	if (status == GetStatus::Fail) {
 		OverlayNotification("'%s' failed to get result rank\n", provider->Name().c_str());
@@ -778,7 +778,7 @@ void CUSTOMIR_MANAGER::OnSongSelectRestoreRank(game& game) {
 
 	SeedResultRankFromMybest(game, curSong);
 
-	IRRankResultV1 out{};
+	IRRankResult out{};
 	const GetStatus status = (*displayIt)->RestoreCachedRank(entry.hash.body, out);
 	if (status == GetStatus::Fail) {
 		OverlayNotification("'%s' failed to restore cached rank\n", (*displayIt)->Name().c_str());
