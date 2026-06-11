@@ -757,10 +757,11 @@ int main(int argc, char** argv) {
 				sink += k;
 				sink += R"(": )";
 			};
-			static const auto put_json_kv_atom = [](std::string& sink, std::string_view k, std::string_view v) {
+			// \param v nullable c-string since CSTR::body may be nullptr
+			static const auto put_json_kv_atom = [](std::string& sink, std::string_view k, const char* v) {
 				put_json_k_atom(sink, k);
 				sink += '"';
-				put_json_escaped(sink, v);
+				put_json_escaped(sink, v ? v : "");
 				sink += '"';
 			};
 			static const auto put_song_data = [](std::string& sink, game& g) {
