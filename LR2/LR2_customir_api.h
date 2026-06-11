@@ -146,6 +146,6 @@ struct MethodTable {
 	const char*(__cdecl* GetName)() = nullptr;
 	bool(__cdecl* LoginV1)() = nullptr;
 	SendScoreStatus(__cdecl* SendScoreV1)(const IRScoreV1& score) = nullptr;
-	GetStatus(__cdecl* GetResultRank)(const IRScoreV1& score, IRRankResult& out) = nullptr;
+	GetStatus(__cdecl* GetResultRank)(const char* songHash, IRRankResult& out) = nullptr;
 	GetStatus(__cdecl* RestoreCachedRank)(const char* songHash, IRRankResult& out) = nullptr;
 };

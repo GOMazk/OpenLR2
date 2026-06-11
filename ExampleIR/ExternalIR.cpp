@@ -65,14 +65,14 @@ static GetStatus RestoreCachedRank(const char* songHash, IRRankResult& out) {
     return GetStatus::Ok;
 }
 
-static GetStatus GetResultRank(const IRScoreV1& score, IRRankResult& out) {
-    // Optional (GetResultRank). Result screen, display provider only. Host passes score; fill out.
-    // Host waits via IsResultIrPending. score is the same IRScoreV1 snapshot as SendScore (LR2_customir_api.h).
+static GetStatus GetResultRank(const char* songHash, IRRankResult& out) {
+    // Optional (GetResultRank). Result screen, display provider only. Host passes songHash after SendScore completes.
+    // Host waits via IsResultIrPending. Fetch leaderboard from IR HTTP (chart-keyed by hash); fill out.
     // Skeleton: fixed IRRankResult below. The host applies out on the result screen and mybest; that
     // state persists until restart or until the user picks a different song folder on song select. To
     // show the same board when browsing songs, persist out here and load it in RestoreCachedRank.
     out = {};
-    if (score.song.hash.empty()) {
+    if (songHash == nullptr || songHash[0] == '\0') {
         return GetStatus::Ok;
     }
     out.myRank = 3;

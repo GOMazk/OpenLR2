@@ -24,7 +24,7 @@ public:
 	bool Login();
 	SendScoreStatus SendScore(const IRScoreV1& score) const;
 
-	GetStatus GetResultRank(const IRScoreV1& score, IRRankResult& out);
+	GetStatus GetResultRank(const char* songHash, IRRankResult& out);
 	GetStatus RestoreCachedRank(const char* songHash, IRRankResult& out);
 
 	[[nodiscard]] const std::string& Name() const { return mName; };

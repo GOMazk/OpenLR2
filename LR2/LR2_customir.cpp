@@ -81,9 +81,9 @@ SendScoreStatus CustomIR::SendScore(const IRScoreV1& score) const {
 	return mMethods.SendScoreV1(score);
 }
 
-GetStatus CustomIR::GetResultRank(const IRScoreV1& score, IRRankResult& out) {
+GetStatus CustomIR::GetResultRank(const char* songHash, IRRankResult& out) {
 	if (mMethods.GetResultRank == nullptr) return GetStatus::Ok;
-	return mMethods.GetResultRank(score, out);
+	return mMethods.GetResultRank(songHash, out);
 }
 
 GetStatus CustomIR::RestoreCachedRank(const char* songHash, IRRankResult& out) {
@@ -478,7 +478,7 @@ void CUSTOMIR_MANAGER::ResultIrAsync(
 	(void)SendScoreWithRetry(*provider, scoreV1);
 
 	IRRankResult out{};
-	const GetStatus status = provider->GetResultRank(scoreV1, out);
+	const GetStatus status = provider->GetResultRank(scoreV1.song.hash.c_str(), out);
 	if (status == GetStatus::Fail) {
 		OverlayNotification("'%s' failed to get result rank\n", provider->Name().c_str());
 		return;
