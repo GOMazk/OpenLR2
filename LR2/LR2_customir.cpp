@@ -364,8 +364,8 @@ namespace {
 		if (result.totalPlayer > 0) {
 			rd.rankingCount = result.totalPlayer;
 		}
-		if (!result.lastupdate.empty()) {
-			cstrSprintf(&rd.lastupdate, "%s", result.lastupdate.c_str());
+		if (result.lastupdate > 0) {
+			cstrSprintf(&rd.lastupdate, "%llu", result.lastupdate);
 		}
 		if (result.totalPlaycount > 0) {
 			rd.totalPlaycount = result.totalPlaycount;

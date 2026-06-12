@@ -1,7 +1,8 @@
 #pragma once
 
-#include <string>
 #include <array>
+#include <cstdint>
+#include <string>
 #include <vector>
 
 struct IRScoreV1 {
@@ -129,7 +130,7 @@ struct IRRankPlayer {
 struct IRRankResult {
 	int myRank{};
 	int totalPlayer{};
-	std::string lastupdate;
+	uint64_t lastupdate{}; // Seconds since Unix Epoch
 	int totalPlaycount{};
 	std::array<int, 6> clearPlayers{};
 	int rivalRank{};

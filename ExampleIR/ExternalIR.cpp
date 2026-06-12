@@ -36,7 +36,7 @@ static GetStatus RestoreCachedRank(const char* songHash, IRRankResult& out) {
     out.myRank = 18;
     out.totalPlayer = 64;
     out.totalPlaycount = 200;
-    out.lastupdate = "2009-06-15 18:30:00";
+    out.lastupdate = 1245000000;
     out.clearPlayers = { 0, 25, 20, 15, 10, 5 };
     out.ranking = {
         {
@@ -78,7 +78,7 @@ static GetStatus GetResultRank(const char* songHash, IRRankResult& out) {
     out.myRank = 3;
     out.totalPlayer = 256;
     out.totalPlaycount = 1024;
-    out.lastupdate = "2010-01-01 00:00:00";
+    out.lastupdate = 1262304000;
     out.clearPlayers = { 0, 50, 40, 30, 20, 10 };
     out.ranking = {
         {
