@@ -3246,8 +3246,9 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 	if (cfg->play.m_lunaris)
 		gp->isNosave = 1;
 
-	for (int i = 0; i < 20; i++) { //calculated Out of Bound
+	for (int i = 0; i < 10; i++) {
 		noteRandomTable[0][i] = i;
+		noteRandomTable[1][i] = i + 10;
 	}
 	for (int p = 0; p < 2; p++) {
 		if (cfg->play.random[p] == 1) { //mirror

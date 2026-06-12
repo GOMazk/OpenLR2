@@ -2,7 +2,30 @@
   "version": 3,
   "configurePresets": [
     {
-      "name": "windows-vs",
+      "name": "windows-vs-x64",
+      "generator": "Visual Studio 17 2022",
+      "architecture": {
+        "value": "x64",
+        "strategy": "set"
+      },
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS_INIT": "/MP /W4 /wo4244 /permissive-"
+      },
+      "condition": {
+        "type": "equals",
+        "lhs": "${hostSystemName}",
+        "rhs": "Windows"
+      }
+    },
+    {
+      "name": "windows-vs-x64-asan",
+      "inherits": "windows-vs-x64",
+      "cacheVariables": {
+        "CMAKE_CXX_FLAGS_INIT": "/MP /W4 /wo4244 /permissive- /fsanitize=address"
+      }
+    },
+    {
+      "name": "windows-vs-x86",
       "generator": "Visual Studio 17 2022",
       "architecture": {
         "value": "Win32",
@@ -18,8 +41,8 @@
       }
     },
     {
-      "name": "windows-vs-asan",
-      "inherits": "windows-vs",
+      "name": "windows-vs-x86-asan",
+      "inherits": "windows-vs-x86",
       "cacheVariables": {
         "CMAKE_CXX_FLAGS_INIT": "/MP /arch:IA32 /W4 /wo4244 /permissive- /fsanitize=address"
       }
@@ -27,20 +50,38 @@
   ],
   "buildPresets": [
     {
-      "name": "windows-vs-asan-debug",
-      "configurePreset": "windows-vs-asan",
+      "name": "windows-vs-x64-asan-debug",
+      "configurePreset": "windows-vs-x64-asan",
+      "displayName": "x64 Debug (ASAN)",
+      "configuration": "Debug"
+    },
+    {
+      "name": "windows-vs-x64-debug",
+      "configurePreset": "windows-vs-x64",
+      "displayName": "x64 Debug",
+      "configuration": "Debug"
+    },
+    {
+      "name": "windows-vs-x64-relwithdebinfo",
+      "configurePreset": "windows-vs-x64",
+      "displayName": "x64 RelWithDebInfo",
+      "configuration": "RelWithDebInfo"
+    },
+    {
+      "name": "windows-vs-x86-asan-debug",
+      "configurePreset": "windows-vs-x86-asan",
       "displayName": "x86 Debug (ASAN)",
       "configuration": "Debug"
     },
     {
-      "name": "windows-vs-debug",
-      "configurePreset": "windows-vs",
+      "name": "windows-vs-x86-debug",
+      "configurePreset": "windows-vs-x86",
       "displayName": "x86 Debug",
       "configuration": "Debug"
     },
     {
-      "name": "windows-vs-relwithdebinfo",
-      "configurePreset": "windows-vs",
+      "name": "windows-vs-x86-relwithdebinfo",
+      "configurePreset": "windows-vs-x86",
       "displayName": "x86 RelWithDebInfo",
       "configuration": "RelWithDebInfo"
     }

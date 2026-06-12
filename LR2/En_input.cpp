@@ -25,7 +25,9 @@ int InitInputStructure2(inputStructure *is){
 	is->mouse_buttonR = 0;
 	is->mouse_buttonW = 0;
 	is->mouse_button4 = 0;
-	memset(is->p1_buttonInput, 0, sizeof(char)*100);
+	memset(is->p1_buttonInput, 0, sizeof is->p1_buttonInput);
+	memset(is->p2_buttonInput, 0, sizeof is->p2_buttonInput);
+	memset(is->otherbuttons, 0, sizeof is->otherbuttons);
 	memset(is->inputID, 0, sizeof(char) * 0x600);
 	return 1;
 }
@@ -299,8 +301,10 @@ int WaitInput(inputStructure *is){
 	is->is_doubleclick = 0;
 	is->mousewheel = 0;
 	is->mouse_buttonL = 0;
-	memset(is->p1_buttonInput, 0, 100);
-	memset(is, 0, 0x600);
+	memset(is->p1_buttonInput, 0, sizeof is->p1_buttonInput);
+	memset(is->p2_buttonInput, 0, sizeof is->p2_buttonInput);
+	memset(is->otherbuttons, 0, sizeof is->otherbuttons);
+	memset(is->inputID, 0, 0x600);
 	while (FindPressedKey(is) == 0 && is->mouse_buttonL != 1 && is->mouse_buttonR != 1) {
 		WaitTimer(40);
 		ProcessInput(is, 0);
@@ -385,8 +389,11 @@ int InputToButton(inputStructure *is, CONFIG_INPUT *cfg_input, int player, int i
 		}
 	}
 	else {
-		for (int i = 0; i < 40; i++) {
-			unsigned char &button = is->p1_buttonInput[i];
+		for (unsigned char &button : is->p1_buttonInput) {
+			if (button == 1) button = 2;
+			else if (button == 3) button = 0;
+		}
+		for (unsigned char &button : is->p2_buttonInput) {
 			if (button == 1) button = 2;
 			else if (button == 3) button = 0;
 		}

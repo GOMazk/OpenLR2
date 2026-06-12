@@ -11,8 +11,8 @@ class CSTR {
 	public:
 		CSTR(int size);
 		~CSTR();
-		int length();
-		DWORD CRC32();
+		int length() const;
+		unsigned int CRC32() const;
 		int msize();
 		bool resize(size_t size);
 		//CSTR* add(const char *str, int len);

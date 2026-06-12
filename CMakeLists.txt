@@ -50,6 +50,7 @@ endif()
 add_library(md5 STATIC lib/md5.cpp)
 target_include_directories(md5 PUBLIC lib)
 
+# Separate target so that SkinEditor can use it
 add_library(
     OpenLR2Lib
     LR2/En_audio.cpp
@@ -126,32 +127,3 @@ endif()
 add_executable(OpenLR2 WIN32 LR2/Main.cpp OpenLR2.manifest)
 set_target_properties(OpenLR2 PROPERTIES CXX_STANDARD 23)
 target_link_libraries(OpenLR2 PUBLIC OpenLR2Lib)
-
-if(WIN32)
-    # FIXME: SkinEditor manifest
-    add_executable(
-        SkinEditor
-        WIN32
-        SkinEditor/ImageLoader.cpp
-        SkinEditor/imgui/imgui.cpp
-        SkinEditor/imgui/imgui_demo.cpp
-        SkinEditor/imgui/imgui_draw.cpp
-        SkinEditor/imgui/imgui_impl_sdl3.cpp
-        SkinEditor/imgui/imgui_impl_sdlrenderer3.cpp
-        SkinEditor/imgui/imgui_tables.cpp
-        SkinEditor/imgui/imgui_widgets.cpp
-        SkinEditor/main.cpp
-        SkinEditor/ImageLoader.cpp
-        SkinEditor/seWindowManager.cpp
-        SkinEditor/skin.cpp
-        SkinEditor/winWorkspace.cpp
-    )
-    set_target_properties(SkinEditor PROPERTIES CXX_STANDARD 23)
-    target_link_libraries(
-        SkinEditor
-        PUBLIC OpenLR2Lib ${CMAKE_CURRENT_LIST_DIR}/SkinEditor/SDL3.lib
-    )
-    target_include_directories(SkinEditor PUBLIC SkinEditor/SDL3/include)
-else()
-    message(WARNING "SkinEditor is not supported for this platform")
-endif()

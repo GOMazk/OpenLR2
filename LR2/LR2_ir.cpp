@@ -249,7 +249,7 @@ int CheckRivaldataNew(int rivalID) {
 	return ret;
 }
 
-int ParseRivalData(long ID) {
+static int ParseRivalData(int ID) {
 
 	CSTR path;
 	TiXmlDocument *hXml;
