@@ -337,27 +337,6 @@ namespace {
 		SongSelectRestore,
 	};
 
-	bool HasIrRankPayload(const IRRankResult& result) {
-		if (result.myRank > 0 || result.totalPlayer > 0) {
-			return true;
-		}
-		if (!result.ranking.empty()) {
-			return true;
-		}
-		if (!result.lastupdate.empty()) {
-			return true;
-		}
-		if (result.totalPlaycount > 0) {
-			return true;
-		}
-		for (int count : result.clearPlayers) {
-			if (count != 0) {
-				return true;
-			}
-		}
-		return false;
-	}
-
 	void ApplyIrRankResult(game& g, int curSong, const IRRankResult& result, IrRankApplyContext ctx) {
 		if (curSong < 0 || curSong >= g.sSelect.bmsListCount) {
 			return;
@@ -481,6 +460,9 @@ void CUSTOMIR_MANAGER::ResultIrAsync(
 	const GetStatus status = provider->GetResultRank(scoreV1.song.hash.c_str(), out);
 	if (status == GetStatus::Fail) {
 		OverlayNotification("'%s' failed to get result rank\n", provider->Name().c_str());
+		return;
+	}
+	if (status == GetStatus::Retry) {
 		return;
 	}
 	ApplyIrRankResult(*gamePtr, curSong, out, IrRankApplyContext::Result);
@@ -784,7 +766,8 @@ void CUSTOMIR_MANAGER::OnSongSelectRestoreRank(game& game) {
 		OverlayNotification("'%s' failed to restore cached rank\n", (*displayIt)->Name().c_str());
 		return;
 	}
-	if (status == GetStatus::Ok && HasIrRankPayload(out)) {
-		ApplyIrRankResult(game, curSong, out, IrRankApplyContext::SongSelectRestore);
+	if (status == GetStatus::Retry) {
+		return;
 	}
+	ApplyIrRankResult(game, curSong, out, IrRankApplyContext::SongSelectRestore);
 }
