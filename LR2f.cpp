@@ -17704,7 +17704,7 @@ int GetSongDataFromPath(CSTR filepath, SONGDATA *song, sqlite3 *sql, SONGSELECT 
 	song->bga = meta.bga;
 	song->difficulty = meta.difficulty;
 	song->exlevel = 0;
-	cstrSprintf(&song->fulltitle, "%s %s", meta.title.body, meta.subartist.body);
+	cstrSprintf(&song->fulltitle, "%s %s", meta.title.body, meta.subtitle.body);
 	song->folder = meta.folderpath;
 	song->genre = meta.genre;
 	song->hash = meta.hash;
