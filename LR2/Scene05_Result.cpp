@@ -1,8 +1,10 @@
-﻿#include "Scene05_Result.h"
+#include "Scene05_Result.h"
 #include "LR2.h"
 #include "Scenes.h"
 
-int ProcS_Result(game *g) {
+int ProcS_Result(game *g, sqlite3 *sql) {
+
+	g->net.BeginResultIr(*g, sql, 0);
 
 	LoadSceneG(g, &g->skstruct, SKINTYPE_RESULT);
 	
@@ -258,8 +260,8 @@ int ProcI_Result(game *g) {
 			SetObjectString(20, g->net.IRresultMessage, g->txtStruct.objectStr);
 		}
 		else {
-			if (GetTimeLapse(151, &g->timer1) <= g->skstruct.startinput_rank || GetTimeLapse(152, &g->timer1) != -1.0 || (g->net.isOnline && (g->net.isOnline != 1 || g->net.hHandle.joinable()))) {
-				if (GetTimeLapse(151, &g->timer1) > g->skstruct.startinput_rank && GetTimeLapse(152, &g->timer1) == -1.0 && g->net.isOnline && g->net.hHandle.joinable()) {
+			if (GetTimeLapse(151, &g->timer1) <= g->skstruct.startinput_rank || GetTimeLapse(152, &g->timer1) != -1.0 || g->net.IsResultIrPending()) {
+				if (GetTimeLapse(151, &g->timer1) > g->skstruct.startinput_rank && GetTimeLapse(152, &g->timer1) == -1.0 && g->net.IsResultIrPending()) {
 					fWaitHiScoreUpdateInput = 1;
 				}
 				else if (GetTimeLapse(152, &g->timer1) > g->skstruct.startinput_update && GetTimeLapse(2, &g->timer1) == -1.0) {

@@ -1799,9 +1799,12 @@ int ProcS_Select(game *g) {
 					g->sSelect.bmsList[g->sSelect.cur_song].filepath.getDirectory(),
 					g->sSelect.bmsList[g->sSelect.cur_song].banner));
 	}
-	if (g->net.isOnline && g->procSelecter == 2) {
-		g->net.WaitAndInitRanking();
-		if (g->sSelect.bmsList[g->sSelect.cur_song].keymode >= 5 && (g->sSelect.bmsList[g->sSelect.cur_song].courseStageCount < 1 || g->sSelect.bmsList[g->sSelect.cur_song].courseIR)) {
+	if (g->procSelecter == 2) {
+		if (g->net.customIR.ProvidesCachedRankRestore()) {
+			g->net.customIR.OnSongSelectRestoreRank(*g);
+		}
+		if (g->net.isOnline && g->sSelect.bmsList[g->sSelect.cur_song].keymode >= 5 && (g->sSelect.bmsList[g->sSelect.cur_song].courseStageCount < 1 || g->sSelect.bmsList[g->sSelect.cur_song].courseIR)) {
+			g->net.WaitAndInitRanking();
 			g->net.IRstatus = 1;
 			g->net.hHandle = std::jthread(ThreadProc_RankingAutoUpdate, g);
 			SetObjectStrings_SongSelect(g);

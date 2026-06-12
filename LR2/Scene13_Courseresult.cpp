@@ -150,10 +150,12 @@ int ProcS_subCourseResult(game *g, sqlite3 *sql) {
 			g->net.myRanking.ghost = "Z";
 			g->net.MakeIRsendScoreThread();
 
-			g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
-			g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount = g->net.rankingData.rankingCount;
-			if (g->net.rankingData.rankingCount > 0) {
-				g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
+			if (g->net.customIR.ShouldMirrorLegacyRankToMybest()) {
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
+				g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount = g->net.rankingData.rankingCount;
+				if (g->net.rankingData.rankingCount > 0) {
+					g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate = (g->net.rankingData.rankingCount + g->net.rankingData.clearPlayers[1] - g->net.rankingData.clearPlayers[0]) / g->net.rankingData.rankingCount;
+				}
 			}
 		}
 		SetObjectString(20, g->net.IRresultMessage, g->txtStruct.objectStr);
@@ -168,7 +170,7 @@ int ProcS_CourseResult(game *g, sqlite3 *sql) {
 	PlayerCheckAndSwap(&g->gameplay);
 	CheckCourseClear(g);
 	ProcS_subCourseResult(g, sql);
-	g->net.customIR.SendScore(*g, sql, 0);
+	g->net.BeginResultIr(*g, sql, 0);
 	LoadSceneG(g, &g->skstruct, SKINTYPE_COURSERESULT);
 	
 	if (g->skstruct.flag_flip) {

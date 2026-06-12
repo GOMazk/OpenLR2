@@ -2,11 +2,14 @@
 #include "LR2_customir_api.h"
 #include "structure.h"
 #include "LR2_songmanage.h"
+#include "En_input.h"
 
+#include <array>
+#include <chrono>
+#include <cmath>
+#include <cstring>
 #include <filesystem>
-#include <format>
 #include <future>
-#include <queue>
 #include <ranges>
 #include <thread>
 #include <type_traits>
@@ -74,9 +77,19 @@ bool CustomIR::Login() {
 	return mMethods.LoginV1();
 }
 
-SendScoreStatus CustomIR::SendScore(const IRScoreV1& score) {
+SendScoreStatus CustomIR::SendScore(const IRScoreV1& score) const {
 	if (mMethods.SendScoreV1 == nullptr) return SendScoreStatus::Fail;
 	return mMethods.SendScoreV1(score);
+}
+
+GetStatus CustomIR::GetResultRank(const char* songHash, IRRankResult& out) {
+	if (mMethods.GetResultRank == nullptr) return GetStatus::Ok;
+	return mMethods.GetResultRank(songHash, out);
+}
+
+GetStatus CustomIR::RestoreCachedRank(const char* songHash, IRRankResult& out) {
+	if (mMethods.RestoreCachedRank == nullptr) return GetStatus::Ok;
+	return mMethods.RestoreCachedRank(songHash, out);
 }
 
 CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
@@ -84,9 +97,65 @@ CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
 	for (auto& thread : mSendThreads) {
 		thread.get();
 	}
+	if (mResultIrFuture.valid()) {
+		mResultIrFuture.wait();
+	}
 }
 
-void CUSTOMIR_MANAGER::Initialize(const std::filesystem::path& directory) {
+std::vector<std::shared_ptr<CustomIR>> CUSTOMIR_MANAGER::ResolveSidecarModules() const {
+	if (mActiveProvider.empty() || !ProvidesResultRank()) {
+		return mModules;
+	}
+	std::vector<std::shared_ptr<CustomIR>> sidecarModules;
+	sidecarModules.reserve(mModules.size());
+	for (const auto& module : mModules) {
+		if (module->Name() != mActiveProvider) {
+			sidecarModules.push_back(module);
+		}
+	}
+	return sidecarModules;
+}
+
+bool CUSTOMIR_MANAGER::ProvidesResultRank() const {
+	if (mActiveProvider.empty()) {
+		return false;
+	}
+	return std::ranges::find(mModules, mActiveProvider, &CustomIR::Name) != mModules.end();
+}
+
+bool CUSTOMIR_MANAGER::ProvidesCachedRankRestore() const {
+	if (mActiveProvider.empty()) {
+		return false;
+	}
+	return std::ranges::find(mModules, mActiveProvider, &CustomIR::Name) != mModules.end();
+}
+
+void CUSTOMIR_MANAGER::EnqueueSidecarSend(const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> sidecarModules) {
+	if (sidecarModules.empty()) {
+		return;
+	}
+
+	std::vector<int> finishedThreads;
+	for (const auto& [i, it] : std::views::enumerate(mSendThreads)) {
+		if (it.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) {
+			finishedThreads.push_back(static_cast<int>(i));
+		}
+	}
+	// Deferred deletion because we need to keep the std::future for whatever reason
+	std::ranges::reverse(finishedThreads);
+	for (auto i : finishedThreads) {
+		mSendThreads.erase(mSendThreads.begin() + i);
+	}
+
+	mSendThreads.push_back(std::async(
+		std::launch::async,
+		&CUSTOMIR_MANAGER::SidecarSendAsync,
+		scoreV1,
+		std::move(sidecarModules)));
+}
+
+void CUSTOMIR_MANAGER::Initialize(const std::filesystem::path& directory, const CSTR& activeProvider) {
+	mActiveProvider = activeProvider.body ? activeProvider.body : "";
 	for (auto& dir : std::filesystem::directory_iterator(directory)) {
 		if (!dir.is_directory()) {
 			ErrorLogFmtAdd("'%s' skipped for loading custom IR module, not a directory\n", dir.path().string().c_str());
@@ -104,14 +173,29 @@ void CUSTOMIR_MANAGER::Initialize(const std::filesystem::path& directory) {
 			continue;
 		}
 	}
+
+	if (!mActiveProvider.empty() && std::ranges::find(mModules, mActiveProvider, &CustomIR::Name) == mModules.end()) {
+		ErrorLogFmtAdd(
+			"CustomIR: network/customir_provider '%s' not found; display fetch disabled, SendScore still active\n",
+			mActiveProvider.c_str()
+		);
+	}
 }
 
 void CUSTOMIR_MANAGER::Login() {
+	mProviderLoggedIn = false;
+	if (mModules.empty()) {
+		return;
+	}
 	for (auto& ir : mModules) {
-		if (ir->Login()) {
+		const bool loginOk = ir->Login();
+		if (loginOk) {
 			OverlayNotification("[%s] Logged in\n", ir->Name().c_str());
 		} else {
 			OverlayNotification("[%s] Failed to log in\n", ir->Name().c_str());
+		}
+		if (!mActiveProvider.empty() && ir->Name() == mActiveProvider && loginOk) {
+			mProviderLoggedIn = true;
 		}
 	}
 }
@@ -212,10 +296,198 @@ struct IRScoreInternal {
 	} graphs{};
 
 	IRScoreInternal(game& game, sqlite3* sql, int player);
-	void MakeScoreV1(IRScoreV1& scoreOut);
+	void MakeScoreV1(IRScoreV1& scoreOut) const;
 };
 
-void IRScoreInternal::MakeScoreV1(IRScoreV1& scoreOut) {
+namespace {
+	void SeedResultRankFromMybest(game& game, int curSong) {
+		if (curSong < 0 || curSong >= game.sSelect.bmsListCount) {
+			return;
+		}
+		const STATUS& best = game.sSelect.bmsList[curSong].mybest;
+		if (best.IRranking > 0) {
+			game.net.rankingData.myRanking = best.IRranking;
+		}
+		if (best.IRplayercount > 0) {
+			game.net.rankingData.rankingCount = best.IRplayercount;
+		}
+	}
+
+	void CopyIrRankPlayerToRankingPlayer(RANKINGPLAYER& dest, const IRRankPlayer& src) {
+		cstrSprintf(&dest.name, "%s", src.name.c_str());
+		dest.id = src.id;
+		dest.sp = src.sp;
+		dest.dp = src.dp;
+		dest.clear = src.clear;
+		dest.notes = src.notes;
+		dest.combo = src.combo;
+		dest.pg = src.pg;
+		dest.gr = src.gr;
+		dest.gd = src.gd;
+		dest.bd = src.bd;
+		dest.pr = src.pr;
+		dest.minbp = src.minbp;
+		dest.option = src.option;
+		dest.playcount = src.playcount;
+		dest.ranking = src.ranking;
+		cstrSprintf(&dest.comment, "%s", src.comment.c_str());
+	}
+
+	enum class IrRankApplyContext {
+		Result,
+		SongSelectRestore,
+	};
+
+	bool HasIrRankPayload(const IRRankResult& result) {
+		if (result.myRank > 0 || result.totalPlayer > 0) {
+			return true;
+		}
+		if (!result.ranking.empty()) {
+			return true;
+		}
+		if (!result.lastupdate.empty()) {
+			return true;
+		}
+		if (result.totalPlaycount > 0) {
+			return true;
+		}
+		for (int count : result.clearPlayers) {
+			if (count != 0) {
+				return true;
+			}
+		}
+		return false;
+	}
+
+	void ApplyIrRankResult(game& g, int curSong, const IRRankResult& result, IrRankApplyContext ctx) {
+		if (curSong < 0 || curSong >= g.sSelect.bmsListCount) {
+			return;
+		}
+		STATUS& best = g.sSelect.bmsList[curSong].mybest;
+		RANKING& rd = g.net.rankingData;
+
+		if (!result.ranking.empty()) {
+			const int preservedMyId = rd.myID;
+			const int preservedRivalId = rd.rivalID;
+			rd.Init();
+			rd.myID = preservedMyId;
+			rd.rivalID = preservedRivalId;
+
+			const int boardSize = static_cast<int>(result.ranking.size());
+			rd.ExpandRankingBuffer(boardSize);
+			for (int i = 0; i < boardSize; ++i) {
+				CopyIrRankPlayerToRankingPlayer(rd.ranking[i], result.ranking[i]);
+			}
+		}
+
+		if (result.myRank > 0) {
+			rd.myRanking = result.myRank;
+		}
+		if (result.totalPlayer > 0) {
+			rd.rankingCount = result.totalPlayer;
+		}
+		if (!result.lastupdate.empty()) {
+			cstrSprintf(&rd.lastupdate, "%s", result.lastupdate.c_str());
+		}
+		if (result.totalPlaycount > 0) {
+			rd.totalPlaycount = result.totalPlaycount;
+		}
+		bool mergeClearPlayers = result.totalPlayer > 0;
+		if (!mergeClearPlayers) {
+			for (int count : result.clearPlayers) {
+				if (count != 0) {
+					mergeClearPlayers = true;
+					break;
+				}
+			}
+		}
+		if (mergeClearPlayers) {
+			for (int i = 0; i < 6; ++i) {
+				rd.clearPlayers[i] = result.clearPlayers[i];
+			}
+		}
+
+		if (rd.myRanking > 0) {
+			best.IRranking = rd.myRanking;
+		}
+		if (rd.rankingCount > 0) {
+			best.IRplayercount = rd.rankingCount;
+		}
+		if (rd.rankingCount > 0) {
+			if (ctx == IrRankApplyContext::Result) {
+				best.IRclearRate = (rd.rankingCount + rd.clearPlayers[1] - rd.clearPlayers[0]) / rd.rankingCount;
+			} else {
+				best.IRclearRate = (rd.clearPlayers[2] + rd.clearPlayers[3] + rd.clearPlayers[4] + rd.clearPlayers[5]) * 100 / rd.rankingCount;
+			}
+		}
+	}
+}
+
+bool CUSTOMIR_MANAGER::SendScoreWithRetry(const CustomIR& ir, const IRScoreV1& scoreV1) {
+	constexpr int tryMax = 6;
+	int tryCount = 1;
+	while (tryCount <= tryMax) {
+		switch (ir.SendScore(scoreV1)) {
+		case SendScoreStatus::Fail:
+			OverlayNotification("'%s' failed to submit score\n", ir.Name().c_str());
+			return false;
+		case SendScoreStatus::Ok:
+			return true;
+		case SendScoreStatus::Retry:
+			std::this_thread::sleep_for(std::chrono::seconds(static_cast<int>(std::pow(4, tryCount))));
+			tryCount++;
+			break;
+		}
+	}
+	return false;
+}
+
+void CUSTOMIR_MANAGER::SidecarSendAsync(IRScoreV1 scoreV1, std::vector<std::shared_ptr<CustomIR>> toSend) {
+	constexpr int tryMax = 6;
+	int tryCount = 1;
+	while (!toSend.empty() && tryCount <= tryMax) {
+		std::vector<std::future<SendScoreStatus>> sendThreads;
+		sendThreads.reserve(toSend.size());
+		for (const auto& module : toSend) {
+			sendThreads.push_back(std::async(std::launch::async, &CustomIR::SendScore, module, scoreV1));
+		}
+
+		for (const auto& [i, t] : std::views::enumerate(sendThreads) | std::views::reverse) {
+			switch (t.get()) {
+			case SendScoreStatus::Fail:
+				OverlayNotification("'%s' failed to submit score\n", toSend[i]->Name().c_str());
+				[[fallthrough]];
+			case SendScoreStatus::Ok:
+				toSend.erase(toSend.begin() + static_cast<std::ptrdiff_t>(i));
+				break;
+			case SendScoreStatus::Retry:
+				break;
+			}
+		}
+
+		const auto sleepFor = static_cast<int>(std::pow(4, tryCount));
+		std::this_thread::sleep_for(std::chrono::seconds(sleepFor));
+		tryCount++;
+	}
+}
+
+void CUSTOMIR_MANAGER::ResultIrAsync(
+	std::shared_ptr<CustomIR> provider,
+	IRScoreV1 scoreV1,
+	int curSong,
+	game* gamePtr) {
+	(void)SendScoreWithRetry(*provider, scoreV1);
+
+	IRRankResult out{};
+	const GetStatus status = provider->GetResultRank(scoreV1.song.hash.c_str(), out);
+	if (status == GetStatus::Fail) {
+		OverlayNotification("'%s' failed to get result rank\n", provider->Name().c_str());
+		return;
+	}
+	ApplyIrRankResult(*gamePtr, curSong, out, IrRankApplyContext::Result);
+}
+
+void IRScoreInternal::MakeScoreV1(IRScoreV1& scoreOut) const {
 	scoreOut.song.hash = song.hash;
 	scoreOut.song.title = song.title;
 	scoreOut.song.subtitle = song.subtitle;
@@ -443,41 +715,77 @@ IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player) {
 	}
 }
 
-void CUSTOMIR_MANAGER::SendScore(game& game, sqlite3* sql, int player) {
-	// Deferred deletion because we need to keep the std::future for whatever reason
-	std::vector<int> finishedThreads;
-	for (const auto& [i, it] : std::views::enumerate(mSendThreads)) {
-		if (it.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) finishedThreads.push_back(i);
+bool CUSTOMIR_MANAGER::IsResultIrPending() const {
+	if (!mResultIrFuture.valid()) {
+		return false;
 	}
-	std::ranges::reverse(finishedThreads);
-	for (auto i : finishedThreads) {
-		mSendThreads.erase(mSendThreads.begin() + i);
+	return mResultIrFuture.wait_for(std::chrono::milliseconds(0)) != std::future_status::ready;
+}
+
+void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
+	if (mModules.empty()) {
+		return;
 	}
-	mSendThreads.push_back(std::async(std::launch::async, [](IRScoreInternal internal, std::vector<std::shared_ptr<CustomIR>> toSend) {
-		IRScoreV1 scoreV1;
-		internal.MakeScoreV1(scoreV1);
-		constexpr const int tryMax = 6;
-		int tryCount = 1;
-		while (!toSend.empty() && tryCount <= tryMax) {
-			std::vector<std::future<SendScoreStatus>> sendThreads;
-			sendThreads.reserve(toSend.size());
-			for (const auto& module : toSend) {
-				sendThreads.push_back(std::async(std::launch::async, &CustomIR::SendScore, module, scoreV1));
-			}
 
-			for (const auto& [i, t] : std::views::enumerate(sendThreads) | std::views::reverse) {
-				switch (t.get()) {
-				case SendScoreStatus::Fail:
-					OverlayNotification("'%s' failed to submit score\n", toSend[i]->Name().c_str());
-					[[fallthrough]];
-				case SendScoreStatus::Ok: toSend.erase(toSend.begin() + i); break;
-				case SendScoreStatus::Retry: break;
-				}
-			}
+	const int curSong = game.sSelect.cur_song;
+	if (curSong < 0 || curSong >= game.sSelect.bmsListCount) {
+		return;
+	}
 
-			const auto sleepFor = static_cast<int>(std::pow(4, tryCount));
-			std::this_thread::sleep_for(std::chrono::seconds(sleepFor));
-			tryCount++;
-		}
-	}, IRScoreInternal{ game, sql, player }, mModules));
+	IRScoreInternal internal{ game, sql, player };
+	IRScoreV1 scoreV1;
+	internal.MakeScoreV1(scoreV1);
+
+	SeedResultRankFromMybest(game, curSong);
+
+	const auto sidecarModules = ResolveSidecarModules();
+	EnqueueSidecarSend(scoreV1, sidecarModules);
+
+	if (!ProvidesResultRank()) {
+		return;
+	}
+	const auto displayIt = std::ranges::find(mModules, mActiveProvider, &CustomIR::Name);
+	if (displayIt == mModules.end()) {
+		return;
+	}
+
+	if (mResultIrFuture.valid()) {
+		mResultIrFuture.wait();
+	}
+
+	mResultIrFuture = std::async(
+		std::launch::async,
+		&CUSTOMIR_MANAGER::ResultIrAsync,
+		*displayIt,
+		scoreV1,
+		curSong,
+		&game);
+}
+
+void CUSTOMIR_MANAGER::OnSongSelectRestoreRank(game& game) {
+	const int curSong = game.sSelect.cur_song;
+	if (curSong < 0 || curSong >= game.sSelect.bmsListCount) {
+		return;
+	}
+	if (!ProvidesCachedRankRestore()) {
+		return;
+	}
+	const auto displayIt = std::ranges::find(mModules, mActiveProvider, &CustomIR::Name);
+	if (displayIt == mModules.end()) {
+		return;
+	}
+
+	const SONGDATA& entry = game.sSelect.bmsList[curSong];
+
+	SeedResultRankFromMybest(game, curSong);
+
+	IRRankResult out{};
+	const GetStatus status = (*displayIt)->RestoreCachedRank(entry.hash.body, out);
+	if (status == GetStatus::Fail) {
+		OverlayNotification("'%s' failed to restore cached rank\n", (*displayIt)->Name().c_str());
+		return;
+	}
+	if (status == GetStatus::Ok && HasIrRankPayload(out)) {
+		ApplyIrRankResult(game, curSong, out, IrRankApplyContext::SongSelectRestore);
+	}
 }

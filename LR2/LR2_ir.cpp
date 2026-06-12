@@ -10,6 +10,7 @@
 #include "En_timer.h"
 #include "En_xml.h"
 #include "filesystem.h"
+#include "LR2_customir.h"
 
 #ifdef _WIN32
 #include <shellapi.h>
@@ -634,6 +635,14 @@ void NETWORK::WaitAndInitRanking() {
 	}
 	this->waitForHandle = false;
 	this->rankingData.Init();
+}
+
+bool NETWORK::IsResultIrPending() const {
+	return customIR.IsResultIrPending() || (isOnline && hHandle.joinable());
+}
+
+void NETWORK::BeginResultIr(game& g, sqlite3 *sql, int player) {
+	customIR.BeginResultIr(g, sql, player);
 }
 
 int NETWORK::GetRanking(CSTR hash, char flagInit) {
