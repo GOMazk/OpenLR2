@@ -27,6 +27,8 @@ static bool Login() {
 
 static GetStatus RestoreCachedRank(const char* songHash, IRRankResult& out) {
     // Optional (RestoreCachedRank). Song select, display provider only. Host passes songHash; fill out.
+    // Read-only: load board cache (e.g. LR2files/CustomIRs/<provider>/IR/<hash>.json) written in GetResultRank. Do not perform HTTP here.
+    // song-select summary and the START-double ranking list use ranking[] from this restore path.
     // Skeleton: the values below are returned for every song (if you build the DLL as-is, every chart shows this board).
     // Replace with cache loaded from disk (written in GetResultRank, e.g. keyed by songHash) for per-song data.
     out = {};
@@ -67,10 +69,13 @@ static GetStatus RestoreCachedRank(const char* songHash, IRRankResult& out) {
 
 static GetStatus GetResultRank(const char* songHash, IRRankResult& out) {
     // Optional (GetResultRank). Result screen, display provider only. Host passes songHash after SendScore completes.
-    // Host waits via IsResultIrPending. Fetch leaderboard from IR HTTP (chart-keyed by hash); fill out.
+    // Host waits via IsResultIrPending. This is the only rank-fetch path that may use HTTP (chart-keyed by hash); fill out.
+    // After a successful fetch, always write the board cache (same snapshot RestoreCachedRank reads).
+    // Include ranking[] so song select can show the START-double list.
     // Skeleton: fixed IRRankResult below. The host applies out on the result screen and mybest; that
     // state persists until restart or until the user picks a different song folder on song select. To
-    // show the same board when browsing songs, persist out here and load it in RestoreCachedRank.
+    // show the same board when browsing songs, persist out here (mandatory cache write) and load it in RestoreCachedRank.
+    // Skeleton below performs no HTTP and no cache write; replace with HTTP + mandatory cache write.
     out = {};
     if (songHash == nullptr || songHash[0] == '\0') {
         return GetStatus::Ok;
