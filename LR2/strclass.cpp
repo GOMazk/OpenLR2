@@ -33,35 +33,25 @@ CSTR::~CSTR() {
 	free(body);
 }
 
-int CSTR::length() {
+int CSTR::length() const {
 	return body ? strlen(body) : 0;
 }
 
-DWORD CSTR::CRC32() {
-	char *pcVar2;
-	int pcVar3;
-	unsigned int uVar4;
-	int iVar5;
-
-	pcVar2 = body;
-	pcVar3 = length();
-	uVar4 = 0xffffffff;
-	iVar5 = 0;
-	if (0 < (int)(pcVar3 + 1)) {
-		do {
-			uVar4 = uVar4 ^ (int)pcVar2[iVar5];
-			for (int i = 0; i < 8; i++) {
-				if ((uVar4 & 1) == 0) {
-					uVar4 = uVar4 >> 1;
-				}
-				else {
-					uVar4 = uVar4 >> 1 ^ 0xedb88320;
-				}
+unsigned int CSTR::CRC32() const {
+	unsigned int crc = 0xffffffff;
+	int j = 0;
+	for (int i = 0; i < length() + 1; i++) {
+		crc ^= body[i];
+		for (int k = 0; k < 8; k++) {
+			if ((crc & 1) == 0) {
+				crc = crc >> 1;
 			}
-			iVar5 = iVar5 + 1;
-		} while (iVar5 < (int)(pcVar3 + 1));
+			else {
+				crc = crc >> 1 ^ 0xedb88320;
+			}
+		}
 	}
-	return ~uVar4;
+	return ~crc;
 }
 
 int CSTR::msize() {

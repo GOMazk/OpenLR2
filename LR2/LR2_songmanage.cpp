@@ -498,7 +498,9 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 	if ((cfg_select->ignoredifficultyall == 1) && (difficulty == 0)) difficulty = 1;
 
 	if (query.findStrPos("__NEWSONG__") > -1) {
-		cstrSprintf(&query, "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE adddate > %d", GetNowUnixtime() - cfg_select->titleflash * 3600);
+		cstrSprintf(&query,
+				"SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE adddate > %lld",
+				static_cast<long long>(GetNowUnixtime() - cfg_select->titleflash * 3600));
 	}
 
 	if (query.left(6).isDiff("SELECT")) return -1;

@@ -2842,13 +2842,13 @@ int Proc_Text(game *g, sqlite3 *sql, char flag) {
 
 							}
 						}
-						else if (atol(buf) >= 50) {
-							cstrSprintf(&query, "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE maxbpm=%d OR minbpm=%d", atol(buf), atol(buf));
+						else if (int v = atol(buf); v >= 50) {
+							cstrSprintf(&query, "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE maxbpm=%d OR minbpm=%d", v, v);
 							buf.add(" BPM");
 						}
-						else if (atol(buf) > 0) {
-							cstrSprintf(&query, "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE level = %d", atol(buf));
-							cstrSprintf(&buf, "LEVEL %d", atol(buf));
+						else if (int v = atol(buf); v > 0) {
+							cstrSprintf(&query, "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE level = %d", v);
+							cstrSprintf(&buf, "LEVEL %d", v);
 						}
 
 						if (query.isSame("(null)")) {
