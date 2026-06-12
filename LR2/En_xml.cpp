@@ -2,7 +2,11 @@
 #include "tinyxml/tinyxml.h"
 #include "En_fileutil.h"
 #include <fstream>
+#include <ios>
 #include <sstream>
+#include <string>
+
+#include <DxLib/DxLib.h>
 
 void file_utf_to_ansi(const char* filepath) {
 	std::string ansi;
@@ -24,7 +28,14 @@ bool parse_cp932_xml(TiXmlDocument* xml, const char* filepath) {
 	std::stringstream total;
 	total << file.rdbuf();
 	std::string totalUtf = ansi2utf(total.str(), 932);
-	return xml->Parse(totalUtf.c_str(), 0, TIXML_ENCODING_UTF8) != nullptr;
+	// NOTE: Parse returns nullptr if the document doesn't have a trailing newline. Maybe a TinyXML bug.
+	// We care because BeMusicSeeker creates such config.xml.
+	xml->Parse(totalUtf.c_str(), 0, TIXML_ENCODING_UTF8);
+	if (xml->Error()) {
+		ErrorLogFmtAdd("parse_cp932_xml(%s:%d:%d) error: %s\n", filepath, xml->ErrorRow(), xml->ErrorCol(), xml->ErrorDesc());
+		return false;
+	}
+	return true;
 }
 
 int ReadXml_Int(const char *level1, const char *level2, const char *level3, int initvalue, int *oBuf, TiXmlDocument *xmlData){
