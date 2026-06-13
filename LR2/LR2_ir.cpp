@@ -825,7 +825,7 @@ int NETWORK::Login(int isDirectPlay) {
 	cstrSprintf(&this->param, "passmd5=%s&id=%d&name=%s&version=%d",
 			this->IR_passMD5.body, this->IR_ID,
 			UrlEncode(utf2ansi(this->IR_name.body, 932).c_str()).body,
-			100130);
+			LR2BUILDDATE);
 	this->target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/login.cgi";
 	if (this->HTTPrequest() != 1) {
 		this->request_result = "サーバーとの接続に失敗しました。\n";
