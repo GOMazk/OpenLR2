@@ -711,7 +711,7 @@ static void ThreadProc_IRsendScore(NETWORK *ir) {
 			"d&pr=%d&maxcombo=%d&playcount=%d&clearcount=%d&rate=%d&minbp=%d&"
 			"totalnotes=%d&opt_history=%d&opt_this=%d&line=%d&judge=%d&"
 			"inputtype=%d&ghost=%s&rseed=%d&clear_db=%d&clear_ex=%d&clear_sd=%"
-			"d&scorehash=%s",
+			"d&scorehash=%s&version=%s",
 			ir->myRanking.songMD5.body, ir->IR_ID, ir->IR_passMD5.body,
 			UrlEncode(utf2ansi(ir->myRanking.title.body, 932).c_str()).body,
 			UrlEncode(utf2ansi(ir->myRanking.genre.body, 932).c_str()).body,
@@ -726,7 +726,7 @@ static void ThreadProc_IRsendScore(NETWORK *ir) {
 			ir->myRanking.opt_this, ir->myRanking.line, ir->myRanking.judge,
 			ir->myRanking.inputtype, ir->myRanking.ghost.body,
 			ir->myRanking.rseed, ir->myRanking.clear_db, ir->myRanking.clear_ex,
-			ir->myRanking.clear_sd, scorehash.body);
+			ir->myRanking.clear_sd, scorehash.body, LR2BUILDDATE);
 	ir->target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/score.cgi";
 	const int httpResponse = ir->HTTPrequest();
 	if (httpResponse == 1) {
