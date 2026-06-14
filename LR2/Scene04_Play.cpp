@@ -368,8 +368,10 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 	SoundGetCurrentTime(&g->audio, &g->gameplay.muon);
 	NONE_004b6770();
 	double songtimer = RealTimeToBMSTime(&g->gameplay, GetTimeLapse(41, T) + cfg->judgetiming);
+	double songtimer_render = RealTimeToRenderTime(&g->gameplay, GetTimeLapse(41, T) + cfg->judgetiming);
 	if (g->gameplay.bpmChangedBmstime > 0) {
 		songtimer = g->gameplay.bpmChangedBmstime * 2 - songtimer;
+		songtimer_render = g->gameplay.bpmChangedBmstime * 2 - songtimer_render; 
 	}
 
 	int lineCount = 0;
@@ -384,17 +386,17 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 		}
 		
 		if (sk->dst_LINE[0].draw == nullptr) break; // Empty skin
-		if ((sk->horizontal == 0 && sk->dst_LINE[0].draw->y + (songtimer - g->gameplay.bmsobj_line.notes[i].bmsTiming)* speed * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0 > drawStartHeight)
-			|| (sk->horizontal == 1 && (g->gameplay.bmsobj_line.notes[i].bmsTiming - songtimer)* speed * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 640.0 > drawStartHeight)) { 
+		if ((sk->horizontal == 0 && sk->dst_LINE[0].draw->y + (songtimer_render - g->gameplay.bmsobj_line.notes[i].renderTiming)* speed * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0 > drawStartHeight)
+			|| (sk->horizontal == 1 && (g->gameplay.bmsobj_line.notes[i].renderTiming - songtimer_render)* speed * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 640.0 > drawStartHeight)) { 
 						
-			float p1_y = sk->adjust.note_1p_y + (songtimer - g->gameplay.bmsobj_line.notes[i].bmsTiming)* cfg->hiSpeed[0] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
-			float p2_y = sk->adjust.note_2p_y + (songtimer - g->gameplay.bmsobj_line.notes[i].bmsTiming)* cfg->hiSpeed[0] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
+			float p1_y = sk->adjust.note_1p_y + (songtimer_render - g->gameplay.bmsobj_line.notes[i].renderTiming)* cfg->hiSpeed[0] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
+			float p2_y = sk->adjust.note_2p_y + (songtimer_render - g->gameplay.bmsobj_line.notes[i].renderTiming)* cfg->hiSpeed[0] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
 			//if (p2_y > 0.0) p2_y = 0; //TOFIX : delete these for skinadjust
 			//if (p1_y > 0.0) p1_y = 0.0;
 
 			p2_y += g->gameplay.nabeatsu_y; //TOFIX : 1p 2p doesn't match (no nabeatsu_y on battle 2p measure_line). move it to below
 			if (cfg->battle == 1) {
-				p2_y = sk->adjust.note_2p_y + (songtimer - g->gameplay.bmsobj_line.notes[i].bmsTiming)* cfg->hiSpeed[1] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
+				p2_y = sk->adjust.note_2p_y + (songtimer_render - g->gameplay.bmsobj_line.notes[i].renderTiming)* cfg->hiSpeed[1] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
 			}
 
 			AddDrawingBuffer_PlayArea(&sk->drBuf, &sk->src_LINE[0], &sk->dst_LINE[0], T, g->gameplay.nabeatsu_x + sk->adjust.note_1p_x, g->gameplay.nabeatsu_y + p1_y, 255, sk->adjust.size_x, 0.0, 1);
@@ -415,8 +417,8 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 
 		for (int i = g->gameplay.bmsobj_note[key].draw_count; i < g->gameplay.bmsobj_note[key].count; i++) {
 			if (sk->dst_NOTE[key].dstCount > 0) {
-				if (sk->horizontal != 0 || sk->dst_NOTE[key].draw->y + cfg->basespeed / 100.0 * g->gameplay.speedmultiplier * speed * (songtimer - g->gameplay.bmsobj_note[key].notes[i].bmsTiming) / 600.0 <= drawStartHeight) {
-					if (sk->horizontal != 1 || (g->gameplay.bmsobj_note[key].notes[i].bmsTiming - songtimer) * g->gameplay.speedmultiplier * speed * (cfg->basespeed / 100.0) / 600.0 >= 640.0) {
+				if (sk->horizontal != 0 || sk->dst_NOTE[key].draw->y + cfg->basespeed / 100.0 * g->gameplay.speedmultiplier * speed * (songtimer_render - g->gameplay.bmsobj_note[key].notes[i].renderTiming) / 600.0 <= drawStartHeight) {
+					if (sk->horizontal != 1 || (g->gameplay.bmsobj_note[key].notes[i].renderTiming - songtimer_render) * g->gameplay.speedmultiplier * speed * (cfg->basespeed / 100.0) / 600.0 >= 640.0) {
 						break;
 					}
 				}
@@ -424,8 +426,8 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 				int note_x, note_y, notesize_x, notesize_y, noteL_y;
 				LaneStruct &thisLane = g->gameplay.bmsobj_note[key];
 
-				note_y = (songtimer - thisLane.notes[i].bmsTiming) * (cfg->basespeed / 100.0) * g->gameplay.speedmultiplier * speed / 600.0;
-				noteL_y = (songtimer - thisLane.notes[i].bmsTiming_ln) * (cfg->basespeed / 100.0) * g->gameplay.speedmultiplier * speed / 600.0;
+				note_y = (songtimer_render - thisLane.notes[i].renderTiming) * (cfg->basespeed / 100.0) * g->gameplay.speedmultiplier * speed / 600.0;
+				noteL_y = (songtimer_render - thisLane.notes[i].renderTiming_ln) * (cfg->basespeed / 100.0) * g->gameplay.speedmultiplier * speed / 600.0;
 
 				float pos_y = 0.0;
 				if (sk->dst_NOTE[key].draw->y != 0.0) {
