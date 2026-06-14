@@ -136,6 +136,7 @@ struct BMSMETA {
 
 struct BPMtiming {
 	double converted;
+	double render_converted;
 	double BPM;
 	double realtime;
 };
@@ -956,11 +957,13 @@ struct AUDIO {
 struct NoteStruct {
 	double bmsTiming{};
 	double realTiming{};
+	double renderTiming{};
 	double val{};
 	int active{};
 	bool lnHeadFast{};
 	double bmsTiming_ln{};
 	double realTiming_ln{};
+	double renderTiming_ln{};
 	int op{}; /* channel */
 	int mine{}; /* soundchannel/mine */
 	int stage{};

@@ -19,6 +19,7 @@ int ReleaseBGA(game *g);
 //notes
 bool isVisibleNote(int ch);
 double RealTimeToBMSTime(gameplay *gp, double time);
+double RealTimeToRenderTime(gameplay *gp, double time);
 
 int CMP_NotesByBmsTiming(const void * p1, const void * p2);
 int CMP_NotesByRealTiming(const void * p1, const void * p2);
