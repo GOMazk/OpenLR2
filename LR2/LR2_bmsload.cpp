@@ -2700,7 +2700,7 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 					gp->bpmt_data[gp->bpmt_count].BPM = 0;
 					gp->bpmt_data[gp->bpmt_count].realtime = bpmt_realtime;
 					gp->bpmt_data[gp->bpmt_count].converted = bpmt_bmstime;
-					gp->bpmt_data[gp->bpmt_count].render_converted = bpmt_bmstime;
+					gp->bpmt_data[gp->bpmt_count].render_converted = bpmt_rendertime;
 					gp->bpmt_count++;
 
 					if (gp->bpmt_count == gp->bpmt_buffersize) {
