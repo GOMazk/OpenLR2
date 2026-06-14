@@ -1,8 +1,5 @@
 #include "structure.h"
 
-#define LR2CLIENT "OpenLR2"
-#define LR2BUILDDATE "260608"
-
 int CMP_PlayerByExscore(const void *p1, const void *p2);
 int CheckRivaldataNew(int rivalID);
 CSTR UrlEncode(CSTR in);

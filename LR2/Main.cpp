@@ -15,8 +15,6 @@ extern "C" {
 #include <sqlite/sqlite3.h>
 }
 
-#define LR2VERSIONSTRING LR2CLIENT " version " LR2BUILDDATE
-
 #ifdef _WIN32
 
 #include <windows.h>

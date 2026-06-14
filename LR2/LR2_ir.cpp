@@ -2,6 +2,7 @@
 #include <sstream>
 #include <string>
 #pragma comment(lib,"ws2_32.lib")
+#include "Version.h"
 #include "LR2_ir.h"
 #include "DxLib/DxLib.h"
 #include "tinyxml/tinyxml.h"
