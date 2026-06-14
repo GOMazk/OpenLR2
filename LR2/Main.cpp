@@ -1606,11 +1606,13 @@ int main(int argc, char** argv) {
 					if (gs.gameplay.courseType == 0 || gs.gameplay.courseType == 2) {
 						gs.gameplay.player[0].gaugeType = gs.gameplay.player[0].lastCourseGaugeType;
 						gs.gameplay.player[1].gaugeType = gs.gameplay.player[1].lastCourseGaugeType;
-						if (gs.gameplay.courseStageNow < gs.gameplay.courseStageCount -1 && gs.gameplay.player[0].clearType != 0 && (gs.gameplay.player[1].clearType != 0 || gs.config.play.battle != 1) && gs.gameplay.player[0].HP[gs.gameplay.player[0].gaugeType] >= 2.0) {
-							gs.gameplay.courseStageNow++;
-							gs.procSelecter = 4;
+						if (gs.procSelecter != 4) {
+							if (gs.gameplay.courseStageNow < gs.gameplay.courseStageCount -1 && gs.gameplay.player[0].clearType != 0 && (gs.gameplay.player[1].clearType != 0 || gs.config.play.battle != 1) && gs.gameplay.player[0].HP[gs.gameplay.player[0].gaugeType] >= 2.0) {
+								gs.gameplay.courseStageNow++;
+								gs.procSelecter = 4;
+							}
+							else gs.procSelecter = 13;
 						}
-						else gs.procSelecter = 13;
 					}
 					break;
 				case 6:
@@ -1645,7 +1647,7 @@ int main(int argc, char** argv) {
 							}
 						}
 					}	
-					gs.procSelecter = 2;
+					if (gs.procSelecter != 4) gs.procSelecter = 2;
 					StopSysSound(&gs);
 					break;
 				}
