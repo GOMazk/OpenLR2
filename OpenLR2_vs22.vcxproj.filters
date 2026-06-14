@@ -150,6 +150,9 @@
     <ClInclude Include="LR2\LR2_customir_api.h">
       <Filter>헤더 파일</Filter>
     </ClInclude>
+    <ClInclude Include="LR2\Version.h">
+      <Filter>헤더 파일</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="LR2\dbgtool.cpp">

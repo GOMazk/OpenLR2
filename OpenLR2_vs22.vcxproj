@@ -70,6 +70,7 @@
     <ClInclude Include="LR2\Scenes.h" />
     <ClInclude Include="LR2\strclass.h" />
     <ClInclude Include="LR2\structure.h" />
+    <ClInclude Include="LR2\Version.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="lib\md5.cpp" />

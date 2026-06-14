@@ -1,4 +1,5 @@
-﻿#include "Engine.h"
+﻿#include "Version.h"
+#include "Engine.h"
 
 #include "LR2_audio.h"
 #include "LR2_bmsload.h"

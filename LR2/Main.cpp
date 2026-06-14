@@ -15,9 +15,6 @@ extern "C" {
 #include <sqlite/sqlite3.h>
 }
 
-#define LR2TITLE "OpenLR2 version 260608"
-#define LR2VERSIONSTRING "OpenLR2 version 260608"
-
 #ifdef _WIN32
 
 #include <windows.h>
@@ -346,7 +343,7 @@ int main(int argc, char** argv) {
 #endif // _WIN32
 
 	// DxLib-for-Linux can only set title of an already existing window
-	if constexpr (!is_linux()) { SetMainWindowText(LR2TITLE); }
+	if constexpr (!is_linux()) { SetMainWindowText(LR2VERSIONSTRING); }
 	// DxLib-for-Linux only writes to stderr when writing to the log file.
 	SetOutApplicationLogValidFlag(gs.config.system.outputlog || is_linux());
 #ifdef _WIN32
@@ -370,7 +367,7 @@ int main(int argc, char** argv) {
 	SetUseDisplayIndex(-1);
 #endif // _WIN32
 	if (DxLib_Init() == -1) return 0;
-	if constexpr (is_linux()) { SetMainWindowText(LR2TITLE); }
+	if constexpr (is_linux()) { SetMainWindowText(LR2VERSIONSTRING); }
 	ChangeFont("", 0);
 	SetLogFontSize(14); //DXLIBVER: change this for further dxlib version
 #ifdef _WIN32
