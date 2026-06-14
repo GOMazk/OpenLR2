@@ -196,7 +196,7 @@ static void QuickRestart(game& game, bool newRandom) {
 	game.gameplay.flag_retry = newRandom ? 0 : 1;
 	game.gameplay.randomseed = newRandom ? 0 : game.gameplay.randomseed;
 
-	if (game.gameplay.courseType == 0 || game.gameplay.courseType == 2) {
+	if ((game.gameplay.courseType == 0 || game.gameplay.courseType == 2) && game.gameplay.courseStageNow != 0) {
 		game.gameplay.courseStageNow = 0;
 		game.gameplay.flag_retry = 0;
 	}
