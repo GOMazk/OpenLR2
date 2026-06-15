@@ -3,8 +3,12 @@
 #include "LR2_statlong.h"
 #include "filesystem.h"
 #include "filesystem.h"
+#include <cstring>
 #include <iterator>
 #include <ranges>
+#include <string>
+#include <unordered_map>
+#include <unordered_set>
 #include <vector>
 
 #ifdef _WIN32
@@ -12,6 +16,200 @@
 #endif // _WIN32
 
 int EnabledInsane;
+
+namespace {
+
+struct ReloadScanContext {
+	bool fullSongPassWillRun = false;
+	int folderScanSkippedExistingSongs = 0;
+	int folderScanParsedNewSongs = 0;
+	int folderScanProgressUpdates = 0;
+	int songPassSkippedProcessedSongs = 0;
+	int songPassHashCheckedSongs = 0;
+	int songPassHashMatchedSongs = 0;
+	int songPassHashChangedSongs = 0;
+	int songPassHashFailedSongs = 0;
+	int songPassFolderProgressUpdates = 0;
+	int songPassRowProgressUpdates = 0;
+	int songPassMessagePumpTicks = 0;
+	std::unordered_set<std::string> songPaths;
+	std::unordered_set<std::string> processedSongPaths;
+	std::unordered_map<std::string, std::string> songHashes;
+	std::string songPassDisplayedFolder;
+};
+
+std::string MakePathKey(CSTR path) {
+	return path.body ? std::string(path.body) : std::string();
+}
+
+bool HasCachedSong(const ReloadScanContext* context, CSTR path) {
+	return context && context->songPaths.find(MakePathKey(path)) != context->songPaths.end();
+}
+
+const std::string* GetCachedSongHash(const ReloadScanContext* context, CSTR path) {
+	if (!context) return nullptr;
+	const auto it = context->songHashes.find(MakePathKey(path));
+	if (it == context->songHashes.end()) return nullptr;
+	return &it->second;
+}
+
+void MarkSongProcessed(ReloadScanContext* context, CSTR path) {
+	if (!context) return;
+	context->processedSongPaths.insert(MakePathKey(path));
+}
+
+bool WasSongProcessed(const ReloadScanContext* context, CSTR path) {
+	return context && context->processedSongPaths.find(MakePathKey(path)) != context->processedSongPaths.end();
+}
+
+void PumpReloadSongPassMessages(ReloadScanContext* context) {
+	if (!context) return;
+	context->songPassMessagePumpTicks++;
+	if (context->songPassMessagePumpTicks % 256 == 0) {
+		ProcessMessage();
+	}
+}
+
+void ShowReloadFolderPassProgress(ReloadScanContext* context, const size_t processed, const size_t total, CSTR path) {
+	if (!context || !context->fullSongPassWillRun || total == 0) return;
+	if (processed != total && processed % 64 != 0) {
+		ProcessMessage();
+		return;
+	}
+
+	context->folderScanProgressUpdates++;
+	const int percent = static_cast<int>(100 * processed / total);
+
+	if (hBackImage > 0) {
+		DrawGraph(0, 0, hBackImage, 0);
+	}
+	printfDx("Now Loading...\n%d / %d (%d%%)\n%s\n",
+		static_cast<int>(processed),
+		static_cast<int>(total),
+		percent,
+		path.body);
+	ScreenFlip();
+	ClsDrawScreen();
+	clsDx();
+	ProcessMessage();
+}
+
+void ShowReloadSongPassProgress(ReloadScanContext* context, const size_t processed, const size_t total) {
+	if (!context || !context->fullSongPassWillRun || total == 0) return;
+	if (context->songPassFolderProgressUpdates > 0) {
+		PumpReloadSongPassMessages(context);
+		return;
+	}
+	if (processed != total && processed % 512 != 0) {
+		PumpReloadSongPassMessages(context);
+		return;
+	}
+
+	context->songPassRowProgressUpdates++;
+	const int width = 300;
+	const int height = 14;
+	const int x = 0;
+	const int y = 32;
+
+	const int filled = static_cast<int>(width * processed / total);
+	const int percent = static_cast<int>(100 * processed / total);
+
+	if (hBackImage > 0) {
+		DrawGraph(0, 0, hBackImage, 0);
+	}
+	printfDx("Checking song files...\n%d / %d (%d%%)\n", static_cast<int>(processed), static_cast<int>(total), percent);
+	DrawBox(x, y, x + width, y + height, GetColor(64, 64, 64), true);
+	DrawBox(x, y, x + filled, y + height, GetColor(255, 255, 255), true);
+	ScreenFlip();
+	ClsDrawScreen();
+	clsDx();
+	ProcessMessage();
+}
+
+void ShowReloadSongPassFolder(ReloadScanContext* context, CSTR path) {
+	if (!context || !context->fullSongPassWillRun) return;
+
+	CSTR folder(path.getDirectory());
+	const std::string folderKey = MakePathKey(folder);
+	if (folderKey == context->songPassDisplayedFolder) {
+		PumpReloadSongPassMessages(context);
+		return;
+	}
+
+	context->songPassDisplayedFolder = folderKey;
+	context->songPassFolderProgressUpdates++;
+	printfDx("Checking song folder...\n%s\n", folder.body);
+	if (hBackImage > 0) {
+		DrawGraph(0, 0, hBackImage, 0);
+	}
+	ScreenFlip();
+	ClsDrawScreen();
+	clsDx();
+	ProcessMessage();
+}
+
+void BuildSongReloadSnapshot(sqlite3* sql, ReloadScanContext* context) {
+	if (!context) return;
+
+	sqlite3_stmt* pStmt = nullptr;
+	if (sqlite3_prepare(sql, "SELECT path,hash FROM song", -1, &pStmt, nullptr) != 0) {
+		return;
+	}
+	while (sqlite3_step(pStmt) == 100) {
+		CSTR path = SQL_GetColumn(0, pStmt);
+		CSTR hash = SQL_GetColumn(1, pStmt);
+		const std::string pathKey = MakePathKey(path);
+		context->songPaths.insert(pathKey);
+		context->songHashes.emplace(pathKey, MakePathKey(hash));
+	}
+	sqlite3_finalize(pStmt);
+
+	ErrorLogFmtAdd("Reload scan cache prepared: %d songs\n", static_cast<int>(context->songPaths.size()));
+}
+
+bool RefreshSongDateIfHashMatches(ReloadScanContext* context, sqlite3* sql, CSTR path, const int newTime, char* queryBuffer, const size_t queryBufferSize) {
+	if (!context || !context->fullSongPassWillRun) return false;
+
+	const std::string* cachedHash = GetCachedSongHash(context, path);
+	if (!cachedHash || cachedHash->empty()) return false;
+
+	ShowReloadSongPassFolder(context, path);
+
+	CSTR currentHash;
+	if (makeFileHash(path.body, currentHash.body) != 1) {
+		context->songPassHashFailedSongs++;
+		return false;
+	}
+
+	context->songPassHashCheckedSongs++;
+	if (strcmp(currentHash.body, cachedHash->c_str()) != 0) {
+		context->songPassHashChangedSongs++;
+		return false;
+	}
+
+	SQL_Run(sqlite3_snprintf(static_cast<int>(queryBufferSize), queryBuffer, "UPDATE song SET date = %d WHERE path = \'%q\'", newTime, path.body), sql);
+	context->songPassHashMatchedSongs++;
+	MarkSongProcessed(context, path);
+	return true;
+}
+
+void LogReloadScanCacheSummary(const char* label, const ReloadScanContext& context) {
+	ErrorLogFmtAdd("Reload scan cache summary (%s): skipped existing in folder scan %d, parsed new in folder scan %d, progress updates in folder scan %d, skipped processed in song pass %d, hash checked in song pass %d, hash matched in song pass %d, hash changed in song pass %d, hash failed in song pass %d, folder progress updates in song pass %d, row progress updates in song pass %d\n",
+		label,
+		context.folderScanSkippedExistingSongs,
+		context.folderScanParsedNewSongs,
+		context.folderScanProgressUpdates,
+		context.songPassSkippedProcessedSongs,
+		context.songPassHashCheckedSongs,
+		context.songPassHashMatchedSongs,
+		context.songPassHashChangedSongs,
+		context.songPassHashFailedSongs,
+		context.songPassFolderProgressUpdates,
+		context.songPassRowProgressUpdates);
+}
+
+} // namespace
+
 // thiscall in original code
 SONGDATA * COPY_SONGDATA(SONGDATA *s1, SONGDATA *s2){
 	s1->title = s2->title;
@@ -1078,7 +1276,7 @@ static void RepairSongHierarchy(sqlite3 *sql) {
 	}
 }
 
-int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
+static int SearchSongsFromPathWithContext(CSTR root, sqlite3 *sql, CSTR path, ReloadScanContext* reloadContext) {
 #ifdef _WIN32
 	HANDLE hFindFile;
 	_WIN32_FIND_DATAA findFileData;
@@ -1107,12 +1305,21 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 				searchPath = root;
 				searchPath.add(findFileData.cFileName);
 				filetime = GetUnixtimeFromFiletime(findFileData.ftLastWriteTime);
-				ErrorLogFmtAdd("曲を発見しました。　パス:%s\n", searchPath.body);
-				ParseBMSMETA(&meta, searchPath, 1);
-				LoadBMSMETAFromDB(&meta, sql);
-				sqlite3_snprintf(2048, str, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
-					meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, filetime, searchPath.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body, AssignCRC32(meta.parentfolderpath).body, meta.maxbpm, meta.minbpm, meta.random, meta.longnote, meta.judge, meta.keymode, meta.bga, meta.difficulty, meta.hasTxt, meta.notecount, now, meta.exlevel);
-				SQL_Run(str, sql);
+				if (reloadContext && reloadContext->fullSongPassWillRun && HasCachedSong(reloadContext, searchPath)) {
+					reloadContext->folderScanSkippedExistingSongs++;
+				}
+				else {
+					ErrorLogFmtAdd("曲を発見しました。　パス:%s\n", searchPath.body);
+					ParseBMSMETA(&meta, searchPath, 1);
+					LoadBMSMETAFromDB(&meta, sql);
+					sqlite3_snprintf(2048, str, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
+						meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, filetime, searchPath.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body, AssignCRC32(meta.parentfolderpath).body, meta.maxbpm, meta.minbpm, meta.random, meta.longnote, meta.judge, meta.keymode, meta.bga, meta.difficulty, meta.hasTxt, meta.notecount, now, meta.exlevel);
+					SQL_Run(str, sql);
+					MarkSongProcessed(reloadContext, searchPath);
+					if (reloadContext && reloadContext->fullSongPassWillRun) {
+						reloadContext->folderScanParsedNewSongs++;
+					}
+				}
 				count++;
 			}
 			else if (((findFileData.dwFileAttributes & FILE_ATTRIBUTE_DIRECTORY) == 0) && IsLR2Folder(findFileData.cFileName)){
@@ -1149,7 +1356,7 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 					ErrorLogAdd("再帰検索を行います。\n");
 					CSTR subPath(root);
 					subPath.add(findFileData.cFileName).add("\\");
-					count += SearchSongsFromPath(searchPath, sql, subPath);
+					count += SearchSongsFromPathWithContext(searchPath, sql, subPath, reloadContext);
 				}
 			}
 			else {
@@ -1158,7 +1365,7 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 					ErrorLogAdd("再帰検索を行います。\n");
 					CSTR subPath(root);
 					subPath.add(findFileData.cFileName).add("\\");
-					count += SearchSongsFromPath(searchPath, sql, subPath);
+					count += SearchSongsFromPathWithContext(searchPath, sql, subPath, reloadContext);
 				}
 			}
 		}
@@ -1175,8 +1382,12 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 #endif // _WIN32
 }
 
+int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
+	return SearchSongsFromPathWithContext(root, sql, path, nullptr);
+}
+
 // TODO:arrange duplicated code
-int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
+static int ReloadSongsByQueryWithContext(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb, ReloadScanContext* reloadContext) {
 
 	sqlite3_stmt *pStmt;
 	char sBuf[1024];
@@ -1194,10 +1405,30 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
 	}
 	sqlite3_finalize(pStmt);
 
+	const bool showFolderPassProgress = reloadContext && reloadContext->fullSongPassWillRun && query.isSame("SELECT path,date FROM folder");
+	const bool showSongPassProgress = reloadContext && reloadContext->fullSongPassWillRun && query.isSame("SELECT path,date FROM song");
+	if (showFolderPassProgress) {
+		ShowReloadFolderPassProgress(reloadContext, 0, pathList.size(), CSTR(""));
+	}
+
+	size_t rowIndex = 0;
 	for (const auto& [str, time] : std::views::zip(pathList, timeList)) {
+		rowIndex++;
+		if (showFolderPassProgress) {
+			ShowReloadFolderPassProgress(reloadContext, rowIndex, pathList.size(), str);
+		}
+		else if (showSongPassProgress) {
+			ShowReloadSongPassProgress(reloadContext, rowIndex, pathList.size());
+		}
 		if (!str.left(8).isSame("LR2files")) {
 			const bool is_bms_file = IsBmsFile(str);
 			const bool is_lr2folder = IsLR2Folder(str);
+
+			if (is_bms_file && WasSongProcessed(reloadContext, str)) {
+				reloadContext->songPassSkippedProcessedSongs++;
+				cAlready++;
+				continue;
+			}
 
 			int is_path_in_jukebox = 0;
 			for (int i = 0; i < jb->numOfPath; i++) {
@@ -1224,12 +1455,16 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
 				else if (chg == 2) {
 					cChange++;
 					if (is_bms_file) {
+						if (RefreshSongDateIfHashMatches(reloadContext, sql, str, newTime, sBuf, sizeof(sBuf))) {
+							continue;
+						}
 						SQL_Run(sqlite3_snprintf(1024, sBuf, "DELETE FROM song WHERE path=\'%q\'", str.body), sql);
 						BMSMETA meta;
 						ParseBMSMETA(&meta, str, 1);
 						LoadBMSMETAFromDB(&meta, sql);
 						SQL_Run(sqlite3_snprintf(1024, sBuf, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
 							meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, newTime, str.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body,AssignCRC32(meta.parentfolderpath).body,meta.maxbpm,meta.minbpm,meta.random,meta.longnote,meta.judge,meta.keymode,meta.bga,meta.difficulty,meta.hasTxt,meta.notecount,now,meta.exlevel), sql);
+						MarkSongProcessed(reloadContext, str);
 					}
 					else if (is_lr2folder) {
 						SQL_Run(sqlite3_snprintf(1024, sBuf, "DELETE FROM folder WHERE path=\'%q\'", str.body), sql);
@@ -1247,12 +1482,12 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
 							if (meta.judge != 2) meta.judge = 1;
 							if (SQL_Run(sqlite3_snprintf(512, sBuf, "INSERT INTO folder (path , title , parent , category , info_a , info_b , command , max , date , type  , banner , adddate) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d , %d , %d , \'%q\' , %d) ",
 								str.body, meta.title.body, AssignCRC32(meta.folderpath).body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.tag.body, meta.selLevel, newTime, meta.judge, meta.bannerpath.body, now), sql) == 0) {
-								SearchSongsFromPath(str, sql, str);
+								SearchSongsFromPathWithContext(str, sql, str, reloadContext);
 							}
 						}
 						else {
 							if (SQL_Run(sqlite3_snprintf(512, sBuf, "UPDATE folder SET date = %d , adddate = %d WHERE path = \'%q\'", newTime, now, str.body), sql) == 0) {
-								SearchSongsFromPath(str, sql, str);
+								SearchSongsFromPathWithContext(str, sql, str, reloadContext);
 							}
 						}
 					}
@@ -1284,6 +1519,10 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
 	}
 	ErrorLogFmtAdd("更新しました / Updated. missing %d changed %d\n", cNot, cChange);
 	return 2;
+}
+
+int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
+	return ReloadSongsByQueryWithContext(query, sql, jb, nullptr);
 }
 
 int CMP_SongDataByDifficulty(const void *p1, const void *p2) {
@@ -2549,10 +2788,20 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 		}
 
 		if (jb->autoreload == 2 || flag_starter) {
+			ReloadScanContext reloadContext;
+			reloadContext.fullSongPassWillRun = true;
+			BuildSongReloadSnapshot(sql, &reloadContext);
+
 			ErrorLogAdd("フォルダ更新チェックを行います。 / Checking folder updates.\n");
-			ReloadSongsByQuery("SELECT path,date FROM folder", sql, jb);
+			const int folderReloadResult = ReloadSongsByQueryWithContext("SELECT path,date FROM folder", sql, jb, &reloadContext);
+			ErrorLogFmtAdd("Reload scan checkpoint: after folder query result %d\n", folderReloadResult);
+			LogReloadScanCacheSummary("after folder query", reloadContext);
+
 			ErrorLogAdd("ファイル更新チェックを行います。 / Checking file updates.\n");
-			ReloadSongsByQuery("SELECT path,date FROM song", sql, jb);
+			ErrorLogAdd("Reload scan checkpoint: before song query\n");
+			const int songReloadResult = ReloadSongsByQueryWithContext("SELECT path,date FROM song", sql, jb, &reloadContext);
+			ErrorLogFmtAdd("Reload scan checkpoint: after song query result %d\n", songReloadResult);
+			LogReloadScanCacheSummary("after song query", reloadContext);
 		}
 		else {
 			ErrorLogAdd("フォルダ更新チェック(ルートのみ)を行います。 / Checking folder updates (root only).\n");
