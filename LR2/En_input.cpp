@@ -284,11 +284,6 @@ void ProcessInput(inputStructure *is, int interval) {
 			is->MIDI_presscount++;
 		}
 	}
-
-	for (int i = 1; i < 0x600; i++) {
-		if (is->inputID[i] == 1) break;
-	}
-
 }
 
 void CALLBACK MIDIInProc(HMIDIIN /*hMidiIn*/, uint wMsg, dword /*dwInstance*/, dword dwParam1, dword dwParam2){

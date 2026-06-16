@@ -1,0 +1,52 @@
+diff -uNrp DxLibMake.old/Linux/DxLogLinux.cpp DxLibMake.new/Linux/DxLogLinux.cpp
+--- DxLibMake.old/Linux/DxLogLinux.cpp
++++ DxLibMake.new/Linux/DxLogLinux.cpp
+@@ -24,8 +24,8 @@
+ #include "../DxMemory.h"
+ #include "../DxGraphics.h"
+ #include "DxGraphicsLinux.h"
+-#include "DxObjectiveCPP.h"
+ #include <wchar.h>
++#include <stdio.h>
+ 
+ #ifndef DX_NON_NAMESPACE
+ 
+@@ -57,7 +57,7 @@ extern int LogFileInitialize_PF( const w
+ 
+ 	// 初期化フラグを立てる
+ 	LogData.PF.InitializeFlag = TRUE ;
+-
++/*
+ 	// エラーログファイルのパスをコピー
+ 	LogData.PF.LogDataPath[ 0 ] = '\0' ;
+ 	GetDocumentsDirPathForChar( LogData.PF.LogDataPath, sizeof( LogData.PF.LogDataPath ) ) ;
+@@ -94,7 +94,7 @@ extern int LogFileInitialize_PF( const w
+ 			}
+ 		}
+ 	}
+-
++*/
+ 	// 終了
+ 	return 0 ;
+ }
+@@ -135,7 +135,7 @@ extern int LogFileAdd_WCHAR_T_PF( const
+ 
+ 	Bytes = ConvString( ( char * )ErrorStr, -1, WCHAR_T_CHARCODEFORMAT, ErrorStrUseBuffer, ErrorStrUseBufferBytes, DX_CHARCODEFORMAT_UTF8 ) ;
+ 
+-	// エラーログファイルを開く
++/*	// エラーログファイルを開く
+ 	if( Bytes > 1 &&
+ 		LogData.PF.LogDataPath[ 0 ] != '\0' )
+ 	{
+@@ -168,9 +168,9 @@ extern int LogFileAdd_WCHAR_T_PF( const
+ 			}
+ 		}
+ 	}
+-
++*/
+ 	// コンソールにも出力
+-	DxObjectiveCPP_Class::NSLog( "%s", ErrorStrUseBuffer ) ;
++	fprintf(stderr,  "%s", ErrorStrUseBuffer ) ;
+ 
+ 	if( ErrorStrTempBuffer != NULL )
+ 	{

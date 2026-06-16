@@ -1,0 +1,14 @@
+diff -uNrp DxLibMake.old/Linux/DxSoundLinux.h DxLibMake.new/Linux/DxSoundLinux.h
+--- DxLibMake.old/Linux/DxSoundLinux.h
++++ DxLibMake.new/Linux/DxSoundLinux.h
+@@ -17,8 +17,8 @@
+ #include "../DxLib.h"
+ #include "../DxThread.h"
+ 
+-#include <OpenAL/al.h>
+-#include <OpenAL/alc.h>
++#include <AL/al.h>
++#include <AL/alc.h>
+ 
+ #ifndef DX_NON_NAMESPACE
+ 

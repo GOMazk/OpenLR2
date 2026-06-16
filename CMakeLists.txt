@@ -35,20 +35,68 @@ if(WIN32)
     #         IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/lib/FMOD/bin64/fmod.dll
     #         IMPORTED_IMPLIB ${CMAKE_CURRENT_LIST_DIR}/lib/FMOD/bin64/fmod_vc.lib
     # )
+elseif(LINUX)
+    add_library(FMOD SHARED IMPORTED GLOBAL)
+    target_include_directories(FMOD INTERFACE lib)
+    set_target_properties(
+        FMOD
+        PROPERTIES
+            IMPORTED_LOCATION
+                ${CMAKE_CURRENT_LIST_DIR}/lib/FMOD/bin64/libfmod.so.14
+            IMPORTED_LOCATION_DEBUG
+                ${CMAKE_CURRENT_LIST_DIR}/lib/FMOD/bin64/libfmodL.so.14
+    )
 else()
     message(FATAL_ERROR "No FMOD for this platform")
 endif()
 
 if(WIN32)
     add_library(DxLib INTERFACE IMPORTED GLOBAL)
-    target_include_directories(DxLib INTERFACE lib)
-    target_link_directories(DxLib INTERFACE lib/DxLib)
+    target_include_directories(DxLib INTERFACE lib/DxLib)
+    target_link_directories(DxLib INTERFACE lib/DxLib/DxLib)
+elseif(LINUX)
+    add_library(DxLib STATIC IMPORTED GLOBAL)
+    set_target_properties(
+        DxLib
+        PROPERTIES
+            IMPORTED_LOCATION
+                ${CMAKE_CURRENT_LIST_DIR}/lib/dxlib-for-linux/DxLib/DxLibMake/libDxLib.a
+    )
+
+    target_include_directories(DxLib INTERFACE lib/dxlib-for-linux/DxLib)
+
+    target_link_libraries(
+        DxLib
+        INTERFACE
+            # Missing in there
+            jpeg
+            # lib/dxlib-for-linux/DxLib/Makefile DEP_LIBS
+            EGL
+            GL
+            X11
+            ogg
+            openal
+            opus
+            opusfile
+            opusurl
+            png
+            pthread
+            theora
+            theoradec
+            theoraenc
+            tiff
+            tiffxx
+            vorbis
+            vorbisenc
+            vorbisfile
+            z
+    )
 else()
     message(FATAL_ERROR "No DxLib for this platform")
 endif()
 
-add_library(md5 STATIC lib/md5.cpp)
-target_include_directories(md5 PUBLIC lib)
+add_library(md5 STATIC lib/md5/md5.cpp)
+target_include_directories(md5 PUBLIC lib/md5)
 
 # Separate target so that SkinEditor can use it
 add_library(
@@ -78,6 +126,7 @@ add_library(
     LR2/LR2_songmanage.cpp
     LR2/LR2_statlong.cpp
     LR2/LR2_statplay.cpp
+    LR2/LR2_version.cpp
     LR2/Scene02_Songselect.cpp
     LR2/Scene03_Decide.cpp
     LR2/Scene04_Play.cpp
@@ -124,6 +173,15 @@ else()
     # target_link_options(OpenLR2Lib PUBLIC -Wl,--stack,10485760)
 endif()
 
+if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+    set(ARCH_SUFFIX "_x64")
+elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+    set(ARCH_SUFFIX "_x86")
+else()
+    message(FATAL_ERROR "Unsupported CMAKE_SIZEOF_VOID_P")
+endif()
+
 add_executable(OpenLR2 WIN32 LR2/Main.cpp OpenLR2.manifest)
 set_target_properties(OpenLR2 PROPERTIES CXX_STANDARD 23)
 target_link_libraries(OpenLR2 PUBLIC OpenLR2Lib)
+set_target_properties(OpenLR2 PROPERTIES OUTPUT_NAME "OpenLR2${ARCH_SUFFIX}")

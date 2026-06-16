@@ -1,0 +1,36 @@
+diff -uNrp DxLibMake.old/DxCompileConfig.h DxLibMake.new/DxCompileConfig.h
+--- DxLibMake.old/DxCompileConfig.h
++++ DxLibMake.new/DxCompileConfig.h
+@@ -197,11 +197,13 @@
+ 
+ #ifndef __APPLE__
+ #ifndef __ANDROID__
++#ifndef __linux__
+ 	#define WINDOWS_DESKTOP_OS
++#endif // __linux__
+ #endif // __ANDROID__
+ #endif // __APPLE__
+ 
+-#if defined( DX_GCC_COMPILE ) || defined( __ANDROID__ ) || defined( __APPLE__ ) || defined( BC2_COMPILER )
++#if defined( DX_GCC_COMPILE ) || defined( __linux__ ) || defined( __ANDROID__ ) || defined( __APPLE__ ) || defined( BC2_COMPILER )
+ 	#define USE_ULL
+ #endif
+ 
+@@ -224,7 +226,7 @@
+ 	#endif // DX_NON_MEDIA_FOUNDATION
+ #endif // WINDOWS_DESKTOP_OS
+ 
+-#if defined( __ANDROID__ ) || defined( __APPLE__ )
++#if defined( __linux__ ) || defined( __ANDROID__ ) || defined( __APPLE__ )
+ //#define DX_NON_2DDRAW
+ #define DX_NON_ACM
+ #define DX_NON_DSHOW_MP3
+@@ -400,7 +402,7 @@
+ 
+ 
+ 
+-#if defined( _WIN64 ) || defined( __ANDROID__ ) || defined( __APPLE__ ) || defined( DX_GCC_COMPILE )
++#if defined( _WIN64 ) || defined( __linux__ ) || defined( __ANDROID__ ) || defined( __APPLE__ ) || defined( DX_GCC_COMPILE )
+ 	#ifndef DX_NON_INLINE_ASM
+ 		#define DX_NON_INLINE_ASM
+ 	#endif

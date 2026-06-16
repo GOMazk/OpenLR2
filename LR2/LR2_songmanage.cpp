@@ -7,6 +7,8 @@
 #include <iterator>
 #include <ranges>
 #include <string>
+#include <string_view>
+#include <charconv>
 #include <unordered_map>
 #include <unordered_set>
 #include <vector>
@@ -206,6 +208,86 @@ void LogReloadScanCacheSummary(const char* label, const ReloadScanContext& conte
 		context.songPassHashFailedSongs,
 		context.songPassFolderProgressUpdates,
 		context.songPassRowProgressUpdates);
+}
+
+char ToUpperAscii(char ch) {
+	if ('a' <= ch && ch <= 'z') return ch - ('a' - 'A');
+	return ch;
+}
+
+bool StartsWithICaseAscii(std::string_view str, std::string_view head) {
+	if (str.size() < head.size()) return false;
+	for (size_t i = 0; i < head.size(); ++i) {
+		if (ToUpperAscii(str[i]) != ToUpperAscii(head[i])) return false;
+	}
+	return true;
+}
+
+bool IsDigitAscii(char ch) {
+	return '0' <= ch && ch <= '9';
+}
+
+bool GetRawBodyInt(std::string_view line, std::string_view head, int& out) {
+	if (!StartsWithICaseAscii(line, head)) return false;
+	if (line.size() <= head.size() + 1) return false;
+
+	int value = 0;
+	const auto result = std::from_chars(line.data() + head.size() + 1, line.data() + line.size(), value);
+	if (result.ec != std::errc()) return false;
+
+	out = value;
+	return true;
+}
+
+void UpdateBpmRange(BMSMETA& meta, const int bpm) {
+	if (bpm <= 0) return;
+	if (meta.maxbpm == 0) {
+		meta.maxbpm = bpm;
+		meta.minbpm = bpm;
+	}
+	else if (bpm > meta.maxbpm) {
+		meta.maxbpm = bpm;
+	}
+	else if (bpm < meta.minbpm) {
+		meta.minbpm = bpm;
+	}
+}
+
+bool IsTextCommand(std::string_view line) {
+	return StartsWithICaseAscii(line, "#TITLE") ||
+		StartsWithICaseAscii(line, "#GENRE") ||
+		StartsWithICaseAscii(line, "#CATEGORY") ||
+		StartsWithICaseAscii(line, "#SUBTITLE") ||
+		StartsWithICaseAscii(line, "#ARTIST") ||
+		StartsWithICaseAscii(line, "#SUBARTIST") ||
+		StartsWithICaseAscii(line, "#INFORMATION_A") ||
+		StartsWithICaseAscii(line, "#INFORMATION_B") ||
+		StartsWithICaseAscii(line, "#TAG") ||
+		StartsWithICaseAscii(line, "#COMMAND") ||
+		StartsWithICaseAscii(line, "#STAGEFILE") ||
+		StartsWithICaseAscii(line, "#BANNER") ||
+		StartsWithICaseAscii(line, "#BACKBMP");
+}
+
+bool ParseTextCommand(BMSMETA& meta, CSTR& line) {
+	if (GetDifficulty(&line, "#TITLE", &meta.title, &meta.subtitle, &meta.difficulty)) return true;
+	if (GetStringBodyStr(&line, "#GENRE", &meta.genre)) {
+		CSTR none;
+		GetDifficulty(&line, "#GENRE", &none, &none, &meta.difficulty);
+		return true;
+	}
+	if (GetStringBodyStr(&line, "#CATEGORY", &meta.genre)) return true;
+	if (GetStringBodyStr(&line, "#SUBTITLE", &meta.subtitle)) return true;
+	if (GetStringBodyStr(&line, "#ARTIST", &meta.artist)) return true;
+	if (GetStringBodyStr(&line, "#SUBARTIST", &meta.subartist)) return true;
+	if (GetStringBodyStr(&line, "#INFORMATION_A", &meta.artist)) return true;
+	if (GetStringBodyStr(&line, "#INFORMATION_B", &meta.subartist)) return true;
+	if (GetStringBodyStr(&line, "#TAG", &meta.tag)) return true;
+	if (GetStringBodyStr(&line, "#COMMAND", &meta.tag)) return true;
+	if (GetStringBodyStr(&line, "#STAGEFILE", &meta.stagefilepath)) return true;
+	if (GetStringBodyStr(&line, "#BANNER", &meta.bannerpath)) return true;
+	if (GetStringBodyStr(&line, "#BACKBMP", &meta.backBMPpath)) return true;
+	return false;
 }
 
 } // namespace
@@ -2521,7 +2603,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 			int diffCycle = *diffFilter;
 			do {
 				if (*diffFilter == 0) break;
-				*diffFilter++;
+				*diffFilter += 1;
 				if (*diffFilter >= 6) *diffFilter = 0;
 				if (ss->filter.ignoredifficultyall && *diffFilter == 0) *diffFilter = 1;
 			} while (diffcount[*diffFilter] == 0);
@@ -2554,7 +2636,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 		}
 		else{
 			int modeCycle = *mode;
-			for (*mode = modeCycle + 1; *mode != modeCycle; *mode++) {
+			for (*mode = modeCycle + 1; *mode != modeCycle; *mode += 1) {
 				if (*mode == 8) *mode = 0;
 				if (ss->filter.ignorekeyall == 1 && *mode == 0) *mode = 1;
 				if (ss->filter.ignorekeysingle == 1 && *mode == 1) *mode = 2;
@@ -2847,32 +2929,34 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 	return 1;
 }
 
-int InitBMSMETA(BMSMETA *meta) {
-	meta->title.fillzero();
-	meta->subtitle.fillzero();
-	meta->artist.fillzero();
-	meta->subartist.fillzero();
-	meta->hash.fillzero();
-	meta->filename.fillzero();
-	meta->stagefilepath.fillzero();
-	meta->bannerpath.fillzero();
-	meta->parentfolderpath.fillzero();
-	meta->folderpath.fillzero();
-	meta->tag.fillzero();
-	meta->backBMPpath.fillzero();
-	meta->filepath.fillzero();
-	meta->selLevel = 0;
-	meta->exlevel = 0;
-	meta->notecount = 0;
-	meta->maxbpm = 0;
-	meta->minbpm = 0;
-	meta->longnote = 0;
-	meta->random = 0;
-	meta->bga = 0;
-	meta->hasTxt = 0;
-	meta->keymode = 5;
-	meta->difficulty = -1;
-	meta->judge = 2;
+int InitBMSMETA(BMSMETA *meta_) {
+	auto& meta = *meta_;
+	meta.hash.fillzero();
+	meta.title.fillzero();
+	meta.subtitle.fillzero();
+	meta.artist.fillzero();
+	meta.subartist.fillzero();
+	meta.genre.fillzero();
+	meta.filepath.fillzero();
+	meta.filename.fillzero();
+	meta.stagefilepath.fillzero();
+	meta.bannerpath.fillzero();
+	meta.backBMPpath.fillzero();
+	meta.parentfolderpath.fillzero();
+	meta.folderpath.fillzero();
+	meta.tag.fillzero();
+	meta.notecount = 0;
+	meta.maxbpm = 0;
+	meta.minbpm = 0;
+	meta.keymode = 5;
+	meta.longnote = 0;
+	meta.selLevel = 0;
+	meta.exlevel = 0;
+	meta.judge = 2;
+	meta.difficulty = -1;
+	meta.random = 0;
+	meta.bga = 0;
+	meta.hasTxt = 0;
 	return 1;
 }
 
@@ -2904,84 +2988,55 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	if (filepath.right(4).isSame(".pms")) meta->keymode = 9;
 
 	CSTR buffer(102401);
-	char* pBuffer = buffer.outstr();
-	for (pBuffer = fgets(pBuffer, 102400, pFile); pBuffer; pBuffer = fgets(pBuffer, 102400, pFile)) {
-		buffer = ansi2utf(pBuffer, 932).c_str();
+	while (char* pBuffer = fgets(buffer.outstr(), 102400, pFile)) {
+		const char* line = pBuffer;
+		const auto lineLen = static_cast<int>(strlen(line));
+		const std::string_view lineView{line, static_cast<size_t>(lineLen)};
 
-		if (buffer.left(3).isSame("#IF") && buffer.left(5).isDiff("#IF 1")) {
+		if (lineView.starts_with("#IF") && !lineView.starts_with("#IF 1")) {
 			flagIf = 1;
 		}
-		else if (buffer.left(6).isSame("#ENDIF")) {
+		else if (lineView.starts_with("#ENDIF")) {
 			flagIf = 0;
 		}
-		else if (buffer.left(1).isDiff("#") || flagIf) {
-			pBuffer = buffer.atPos(0);
+		else if (line[0] != '#' || flagIf) {
 		}
 		else {
-			buffer.trimWhiteSpace();
-			DealWhiteSpace(&buffer);
-			if (GetDifficulty(&buffer, CSTR("#TITLE"), &meta->title, &meta->subtitle, &meta->difficulty)) {}
-			else if (GetStringBodyStr(&buffer, CSTR("#GENRE"), &meta->genre)) {
-				CSTR none;
-				GetDifficulty(&buffer, CSTR("#GENRE"), &none, &none, &meta->difficulty);
+			if (IsTextCommand(lineView)) {
+				CSTR utfLine(ansi2utf(line, 932).c_str());
+				utfLine.trimWhiteSpace();
+				DealWhiteSpace(&utfLine);
+				ParseTextCommand(*meta, utfLine);
 			}
-			else if (GetStringBodyStr(&buffer, CSTR("#CATEGORY"), &meta->genre)) {}
-			else if (GetStringBodyStr(&buffer, CSTR("#SUBTITLE"), &meta->subtitle)) {}
-			else if (GetStringBodyStr(&buffer, CSTR("#ARTIST"), &meta->artist)) {}
-			else if (GetStringBodyStr(&buffer, CSTR("#SUBARTIST"), &meta->subartist)) {}
-			else if (GetStringBodyInt(&buffer, CSTR("#PLAYLEVEL"), &meta->selLevel)) {}
-			else if (GetStringBodyInt(&buffer, CSTR("#EXLEVEL"), &meta->exlevel)) {}
-			else if (GetStringBodyInt(&buffer, CSTR("#MAXTRACKS"), &meta->selLevel)) {}
-			else if (GetStringBodyInt(&buffer, CSTR("#DIFFICULTY"), &meta->difficulty)) {}
-			else if (GetStringBodyStr(&buffer, CSTR("#INFORMATION_A"), &meta->artist)) {}
-			else if (GetStringBodyStr(&buffer, CSTR("#INFORMATION_B"), &meta->subartist)) {}
-			else if (GetStringBodyStr(&buffer, CSTR("#TAG"), &meta->tag)) {}
-			else if (GetStringBodyStr(&buffer, CSTR("#COMMAND"), &meta->tag)) {}
-			else if (GetStringBodyStr(&buffer, CSTR("#STAGEFILE"), &meta->stagefilepath)) {}
-			else if (GetStringBodyStr(&buffer, CSTR("#BANNER"), &meta->bannerpath)) {}
-			else if (GetStringBodyStr(&buffer, CSTR("#BACKBMP"), &meta->backBMPpath)) {}
-			else if (buffer.left(13).isSame("#CUSTOMFOLDER")) {
+			else if (GetRawBodyInt(lineView, "#PLAYLEVEL", meta->selLevel)) {}
+			else if (GetRawBodyInt(lineView, "#EXLEVEL", meta->exlevel)) {}
+			else if (GetRawBodyInt(lineView, "#MAXTRACKS", meta->selLevel)) {}
+			else if (GetRawBodyInt(lineView, "#DIFFICULTY", meta->difficulty)) {}
+			else if (lineView.starts_with("#CUSTOMFOLDER")) {
 				meta->judge = 2;
 			}
-			else if (buffer.left(7).isSame("#FP/DSC")) {
+			else if (lineView.starts_with("#FP/DSC")) {
 				meta->keymode = 9;
 			}
-			else if (GetStringBodyInt(&buffer, CSTR("#RANK"), &meta->judge)) {}
-			else if (buffer.left(6).isSame("#LNOBJ")) {
+			else if (GetRawBodyInt(lineView, "#RANK", meta->judge)) {}
+			else if (lineView.starts_with("#LNOBJ")) {
 				meta->longnote = 1;
-				lnobj = Base36ToInt(*buffer.atPos(7), *buffer.atPos(8));
+				const char ch1 = lineLen > 7 ? line[7] : '\0';
+				const char ch2 = lineLen > 8 ? line[8] : '\0';
+				lnobj = Base36ToInt(ch1, ch2);
 			}
-			else if (buffer.left(4).isSame("#BMP")) {
+			else if (lineView.starts_with("#BMP")) {
 				meta->bga = 1;
 			}
-			else if (buffer.left(5).isSame("#RAND")) {
+			else if (lineView.starts_with("#RAND")) {
 				meta->random = 1;
 			}
-			else if (buffer.left(4).isSame("#BPM")) {
-				int bpm;
-				if (buffer.left(5).isSame("#BPM ")) {
-					bpm = atol(buffer.right(buffer.length() - 5));
-				}
-				else {
-					bpm = atol(buffer.right(buffer.length() - 7));
-				}
-
-				if (bpm > 0) {
-					if (meta->maxbpm == 0) {
-						meta->maxbpm = bpm;
-						meta->minbpm = bpm;
-					}
-					else if (bpm > meta->maxbpm) {
-						meta->maxbpm = bpm;
-					}
-					else if (bpm < meta->minbpm) {
-						meta->minbpm = bpm;
-					}
-				}
+			else if (lineView.starts_with("#BPM")) {
+				UpdateBpmRange(*meta, lineView.starts_with("#BPM ") ? atol(line + 5) : (lineLen > 7 ? atol(line + 7) : 0));
 			}
-			else if( isdigit(*(buffer.atPos(1))) && isdigit(*(buffer.atPos(2))) && isdigit(*(buffer.atPos(3))) && isdigit(*(buffer.atPos(4))) && isdigit(*(buffer.atPos(5))) ){
+			else if (lineLen > 5 && IsDigitAscii(line[1]) && IsDigitAscii(line[2]) && IsDigitAscii(line[3]) && IsDigitAscii(line[4]) && IsDigitAscii(line[5])) {
 				//TOFIX : There is no need to decrease variable data, still it does. it makes karinote include invisible and longnote(0.5 to 1)
-				int data = atol(buffer.getSliced(4, 2));
+				int data = (line[4] - '0') * 10 + line[5] - '0';
 				if (51 <= data && data <= 69) {
 					data -= 40;
 					meta->longnote = 1;
@@ -3004,35 +3059,25 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 				}
 				
 				if (data == 3) {
-					int c = (buffer.length() - 7) / 2;
+					int c = (lineLen - 7) / 2;
 					for (int cur = 7, i = 0; i < c; cur += 2, i++) {
-						int d = HEXcharToInt(*buffer.atPos(cur), *buffer.atPos(cur + 1));
-						if (d > 0) {
-							if (meta->maxbpm == 0) {
-								meta->maxbpm = d;
-								meta->minbpm = d;
-							}
-							else if (d > meta->maxbpm) {
-								meta->maxbpm = d;
-							}
-							else if (d < meta->minbpm) {
-								meta->minbpm = d;
-							}
-						}
+						UpdateBpmRange(*meta, HEXcharToInt(line[cur], line[cur + 1]));
 					}
 				}
 				else if (11 <= data && data <= 29) {
-					int c = (buffer.length() - 7) / 2;
+					int c = (lineLen - 7) / 2;
 					for (int cur = 7, i = 0; i < c; cur += 2, i++) {
-						if (Base36ToInt(*buffer.atPos(cur), *buffer.atPos(cur + 1)) && Base36ToInt(*buffer.atPos(cur), *buffer.atPos(cur + 1)) != lnobj ) {
+						const int obj = Base36ToInt(line[cur], line[cur + 1]);
+						if (obj && obj != lnobj) {
 							notes++;
 						}
 					}
 				}
 				else if (51 <= data && data <= 69) {
-					int c = (buffer.length() - 7) / 2;
+					int c = (lineLen - 7) / 2;
 					for (int cur = 7, i = 0; i < c; cur += 2, i++) {
-						if (Base36ToInt(*buffer.atPos(cur), *buffer.atPos(cur + 1)) && Base36ToInt(*buffer.atPos(cur), *buffer.atPos(cur + 1)) != lnobj ) {
+						const int obj = Base36ToInt(line[cur], line[cur + 1]);
+						if (obj && obj != lnobj) {
 							notes += 0.5;
 						}
 					}

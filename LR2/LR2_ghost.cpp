@@ -729,7 +729,7 @@ int WriteGhostInDatabase(sqlite3 *sql, CSTR songMD5, PLAYSCORE *score) {
 	if (sqlite3_bind_text(pStmt, 2, songMD5.body, songMD5.length(), nullptr) != SQLITE_OK) {
 		ErrorLogAdd("sqlite3_bind_text error\n");
 	}
-	if (sqlite3_step(pStmt) != SQLITE_OK) {
+	if (sqlite3_step(pStmt) != SQLITE_DONE) {
 		ErrorLogAdd("sqlite3_step error\n");
 	}
 	if (sqlite3_finalize(pStmt) != SQLITE_OK) {

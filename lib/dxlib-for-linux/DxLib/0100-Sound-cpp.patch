@@ -1,0 +1,35 @@
+diff -uNrp DxLibMake.old/Linux/DxSoundLinux.cpp DxLibMake.new/Linux/DxSoundLinux.cpp
+--- DxLibMake.old/Linux/DxSoundLinux.cpp
++++ DxLibMake.new/Linux/DxSoundLinux.cpp
+@@ -16,7 +16,6 @@
+ // インクルード----------------------------------------------------------------
+ #include "DxSoundLinux.h"
+ #include "DxFileLinux.h"
+-#include "DxSystemLinux_ObjC.h"
+ #include "../DxSound.h"
+ #include "../DxSystem.h"
+ #include "../DxMemory.h"
+@@ -708,12 +707,12 @@ extern int InitializeSoundSystem_PF_Timi
+ 	}
+ 
+ 	// 自前ミキシングを使用する
+-	SoundSysData.EnableSelfMixingFlag = TRUE ;
++	SoundSysData.EnableSelfMixingFlag = FALSE ;
+ 
+ 	if( SoundSysData.EnableSelfMixingFlag )
+ 	{
+ 		// 自前ミキシングのセットアップ
+-		SelfMixingPlayer_Setup() ;
++		//SelfMixingPlayer_Setup() ;
+ 	}
+ 	else
+ 	{
+@@ -890,7 +889,7 @@ extern	int		TerminateSoundSystem_PF_Timi
+ 	// 自前ミキシングかどうかで処理を分岐
+ 	if( SoundSysData.EnableSelfMixingFlag )
+ 	{
+-		SelfMixingPlayer_Terminate() ;
++		//SelfMixingPlayer_Terminate() ;
+ 	}
+ 	else
+ 	{

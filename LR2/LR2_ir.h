@@ -1,6 +1,7 @@
-#include "structure.h"
+#pragma once
 
-int CMP_PlayerByExscore(const void *p1, const void *p2);
+#include "strclass.h"
+
 int CheckRivaldataNew(int rivalID);
 CSTR UrlEncode(CSTR in);
 int OpenWebRanking(CSTR songmd5);

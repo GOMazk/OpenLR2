@@ -1,0 +1,11 @@
+diff -uNrp DxLibMake.old/DxDataTypeLinux.h DxLibMake.new/DxDataTypeLinux.h
+--- DxLibMake.old/DxDataTypeLinux.h
++++ DxLibMake.new/DxDataTypeLinux.h
+@@ -11,6 +11,7 @@
+ 
+ // インクルード ------------------------------------------------------------------
+ #include "DxCompileConfig.h"
++#include <stdint.h>
+ 
+ // #ifndef DX_NON_NAMESPACE
+ // 

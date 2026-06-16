@@ -1,0 +1,21 @@
+diff -uNrp DxLibMake.old/Linux/DxFileLinux.cpp DxLibMake.new/Linux/DxFileLinux.cpp
+--- DxLibMake.old/Linux/DxFileLinux.cpp
++++ DxLibMake.new/Linux/DxFileLinux.cpp
+@@ -10,8 +10,6 @@
+ #define DX_MAKE
+ 
+ // インクルード ---------------------------------------------------------------
+-#include "DxSystemLinux.h"
+-#include "DxSystemLinux_ObjC.h"
+ #include "../DxFile.h"
+ #include "../DxLog.h"
+ #include "../DxChar.h"
+@@ -97,7 +95,7 @@ static int LINUX_wchar_t_to_utf8_Path( c
+ 	// １文字目が / でも \\ でもなければアプリケーションディレクトリをアクセスすると判断する
+ 	if( FullPath[ 0 ] != L'/' && FullPath[ 0 ] != L'\\' )
+ 	{
+-		const char *ApplicationDirPath = GetApplicationDirectory() ;
++		const char *ApplicationDirPath = "." ;
+ 		int StrLength = ( int )CL_strlen( DX_CHARCODEFORMAT_UTF8, ApplicationDirPath ) ;
+     
+ 		CL_strcpy( DX_CHARCODEFORMAT_UTF8, utf8_PathBuffer, ApplicationDirPath ) ;

@@ -806,9 +806,9 @@ int RightLaneTo2P(LaneStruct *lane, int start, CHARTCONVERTER *cc) {
 
 	int op = 0;
 	//it may work as original code. maybe
-	for (int i = 6; i >= 0; i--) {
+	for (int i = 7; i >= 1; i--) {
 		if (cc->noteCountPerLane[i] > 0) {
-			op = 11 + i;
+			op = 10 + i;
 			break;
 		}
 	}
@@ -829,7 +829,7 @@ int Move3rdLaneTo2P(LaneStruct *lane, int start, CHARTCONVERTER *cc) {
 	int laneA = 0, laneB = 0, laneC = 0, laneD = 0;
 
 	for (int i = 0; i < 7; i++) {
-		if (cc->noteCountPerLane[i] > 0) {
+		if (cc->noteCountPerLane[i+1] > 0) {
 			if (laneA == 0) {
 				laneA = 11 + i;
 			}
@@ -1619,7 +1619,7 @@ int DPsplitLaneScratch(LaneStruct *lane, int start, CHARTCONVERTER *cc) {
 	int scratchNoteID = -1, oldScratchNoteID = -1;
 	int LaneA[20];
 
-	for (int i = start; i < lane->count; i++) {
+	for (int i = start; true; i++) {
 
 		if (lane->notes[i].realTiming > realTimeLastNote) {
 			realTimeLastNote = lane->notes[i].realTiming;
@@ -1647,6 +1647,7 @@ int DPsplitLaneScratch(LaneStruct *lane, int start, CHARTCONVERTER *cc) {
 					}
 				}
 				else {
+					lane->notes[scratchNoteID].op += 10;
 					if (cc->assist2p == 0) {
 						for (int j = scratchNoteID; j > 0; j--) {
 							if (lane->notes[j].op == 2) break;
@@ -1666,6 +1667,8 @@ int DPsplitLaneScratch(LaneStruct *lane, int start, CHARTCONVERTER *cc) {
 			}
 		}
 
+		if (i >= lane->count) break;
+
 		if (lane->notes[i].op == 2) break;
 
 		if (lane->notes[i].op == 10) {
@@ -1683,31 +1686,30 @@ int DPsplitLaneScratch(LaneStruct *lane, int start, CHARTCONVERTER *cc) {
 
 int SPtoDP(LaneStruct *lane, int baseNoteID, CHARTCONVERTER *cc) {
 
-	cc->unused14404 = 0;
-	for (int i = 0; i < 7; i++) cc->noteCountPerLane[i] = 0;
+	for (int i = 0; i < 8; i++) cc->noteCountPerLane[i] = 0;
 	cc->laneCount = 0;
 
 	for (int i = 0; i < SINGLESLOTS; i++) {
 		cc->arr1[i].count = 0;
-		cc->arr1[i].field3_0xc = -1;
+		cc->arr1[i].side = -1;
 		cc->arr3[i].field3_0xc = -1;
 	}
 	for (int i = baseNoteID + 1; i < lane->count; i++) {
 		if (lane->notes[i].op == 2) break;
 		if (10 <= lane->notes[i].op && lane->notes[i].op <= 17) {
-			cc->noteCountPerLane[lane->notes[i].op - 11]++;
+			cc->noteCountPerLane[lane->notes[i].op - 10]++;
 			if (lane->notes[i].op != 10) {
-				cc->arr1[cc->arr3[lane->notes[i].op].soundLoadID].count++;
-				cc->arr1[cc->arr3[lane->notes[i].op].soundLoadID].field3_0xc = 0;
+				cc->arr1[cc->arr3[(int)lane->notes[i].val].soundLoadID].count++;
+				cc->arr1[cc->arr3[(int)lane->notes[i].val].soundLoadID].side = 0;
 			}
 		}
 	}
 
-	for (int i = 0; i < 7; i++) {
+	for (int i = 1; i <= 7; i++) {
 		if (cc->noteCountPerLane[i]) cc->laneCount++;
 	}
 
-	qsort(&cc->arr1, SINGLESLOTS, sizeof(cc->arr1), CMP_CCARRbyCount);
+	qsort(&cc->arr1, SINGLESLOTS, sizeof(struct_0x14), CMP_CCARRbyCount);
 
 	bool fA = false, fB = false;
 	if (cc->arr2[0].count && cc->arr1[0].count&& ((cc->arr1[0].ID == cc->arr2[0].ID && (cc->arr1[1].ID == cc->arr2[1].ID || cc->arr1[1].ID == cc->arr2[2].ID || cc->arr1[2].ID == cc->arr2[1].ID || cc->arr1[2].ID == cc->arr2[2].ID)) 
@@ -1725,55 +1727,66 @@ int SPtoDP(LaneStruct *lane, int baseNoteID, CHARTCONVERTER *cc) {
 		cc->unk14428 = 0;
 	}
 
-	qsort(&cc->arr2, SINGLESLOTS,sizeof(cc->arr2), CMP_CCARRbyID);
+	qsort(&cc->arr2, SINGLESLOTS,sizeof(struct_0x14), CMP_CCARRbyID);
 	if (fA) {
 		for (int i = 0; i < SINGLESLOTS; i++) {
-			if (cc->arr2[i].field3_0xc == 0) cc->arr2[i].field3_0xc = 1;
-			else if (cc->arr2[i].field3_0xc == 1) cc->arr2[i].field3_0xc = 0;
+			if (cc->arr2[i].side == 0) cc->arr2[i].side = 1;
+			else if (cc->arr2[i].side == 1) cc->arr2[i].side = 0;
 		}
 	}
 
+	int unk8 = 0, unk10 = 0;
 	int unkArr[2] = { 0,0 };
 	for (int i = 0; i < SINGLESLOTS; i++) {
+		int unk9 = cc->arr1[i].count;
 		if (cc->arr1[i].count > 0) {
-			if (fB && cc->arr2[cc->arr1[i].ID].field3_0xc != -1 && i == 0) {
-				unkArr[cc->arr2[cc->arr1[0].ID].field3_0xc] += cc->arr1[0].count; //really 0. not i
-				cc->arr1[0].field3_0xc = cc->arr2[cc->arr1[i].ID].field3_0xc;
+			if (fB && cc->arr2[cc->arr1[i].ID].side != -1 && i == 0) {
+				unkArr[cc->arr2[cc->arr1[0].ID].side] += cc->arr1[0].count; //really 0. not i
+				cc->arr1[0].side = cc->arr2[cc->arr1[i].ID].side;
+				unk8 = unkArr[1];
+				unk10 = unkArr[0];
 			}
-			else if (unkArr[0] == 0 && unkArr[1] == 0) {
+			else if (unk10 == 0 && unk8 == 0) {
 				if (cc->flagSplitUnknown == 0) {
-					cc->arr1[i].field3_0xc = 0;
+					cc->arr1[i].side = 0;
 					unkArr[0] = cc->arr1[i].count;
+					unk10 = cc->arr1[i].count;
 				}
 				else {
-					cc->arr1[i].field3_0xc = 1;
+					cc->arr1[i].side = 1;
 					unkArr[1] = cc->arr1[i].count;
+					unk8 = cc->arr1[i].count;
+					unk9 = unk10;
+					unk10 = unk9;
 				}
 				cc->flagSplitUnknown ^= 1;
+				
 			}
-			else /*if (0 < 0)*/ {
-				cc->arr1[i].field3_0xc = 1;
-				unkArr[1] += cc->arr1[i].count;
+			else if (unk8 < unk10) {
+				unk8 += cc->arr1[i].count;
+				cc->arr1[i].side = 1;
+				unkArr[1] = unk8;
 			}
-			//else {
-			//	cc->arr1[i].field3_0xc = 0;
-			//	unkArr[0] += cc->arr1[i].count;
-			//}
+			else {
+				unk10 += cc->arr1[i].count;
+				cc->arr1[i].side = 0;
+				unkArr[0] = unk10;
+			}
 		}
 	}
 	
 	for (int i = 0; i < SINGLESLOTS; i++) {
 		cc->arr2[i].count = cc->arr1[i].count;
 		cc->arr2[i].ID = cc->arr1[i].ID;
-		cc->arr2[i].field3_0xc = cc->arr1[i].field3_0xc;
+		cc->arr2[i].side = cc->arr1[i].side;
 	}
 
-	qsort(&cc->arr1, SINGLESLOTS, sizeof(cc->arr1), CMP_CCARRbyID);
+	qsort(&cc->arr1, SINGLESLOTS, sizeof(struct_0x14), CMP_CCARRbyID);
 	for (int i = baseNoteID + 1; i < lane->count; i++) {
 
 		if (lane->notes[i].op == 2) break;
 		if (11 <= lane->notes[i].op && lane->notes[i].op <= 17) {
-			int t = cc->arr1[cc->arr3[(int)lane->notes[i].val].soundLoadID].field3_0xc;
+			int t = cc->arr1[cc->arr3[(int)lane->notes[i].val].soundLoadID].side;
 			
 			if (t == 0) {}
 			else if (t == 1) {
@@ -1970,13 +1983,13 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 		cc.arr1[i].ID = i;
 		cc.arr1[i].filenameHead.fillzero();
 		cc.arr1[i].count = 0;
-		cc.arr1[i].field3_0xc = -1;
+		cc.arr1[i].side = -1;
 		cc.arr1[i].field4_0x10 = 0;
 
 		cc.arr2[i].ID = i;
 		cc.arr2[i].filenameHead.fillzero();
 		cc.arr2[i].count = 0;
-		cc.arr2[i].field3_0xc = -1;
+		cc.arr2[i].side = -1;
 
 		cc.arr3[i].soundLoadID = 0;
 		cc.arr3[i].field1_0x4 = 0;

@@ -191,6 +191,7 @@ int Proc_Result(game *g, skstruct *sk, Timer *T) {
 }
 
 static void QuickRestart(game& game, bool newRandom) {
+	game.procPhase = 0;
 	game.procSelecter = 4;
 	game.gameplay.flag_retry = newRandom ? 0 : 1;
 	game.gameplay.randomseed = newRandom ? 0 : game.gameplay.randomseed;

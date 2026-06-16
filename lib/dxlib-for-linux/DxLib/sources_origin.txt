@@ -1,0 +1,55 @@
+DxBaseFunc%.h           Match
+DxBaseFunc%.cpp         Match
+DxBaseImage%.h          Match
+DxBaseImage%.cpp        Match
+DxFile%.h               iOS
+DxFile%.cpp             iOS(*1)
+DxFont%.h               iOS
+DxFont%.cpp             iOS(に寄せ、不足分をダミーで埋める)
+DxGraphics%.h           Android(+Xlib)
+DxGraphics%.cpp         Scratch(両者統合+Xlib)
+DxGraphicsFilter%.h     Android
+DxGraphicsFilter%.cpp   Android
+DxInput%.h              Scratch(Xlibで書き直し)
+DxInput%.cpp            Scratch(Xlibで書き直し)
+DxLive2DCubism4%.h      Match
+DxLive2DCubism4%.cpp    Match
+DxLog%.h                iOS
+DxLog%.cpp              iOS(*1,stderr化)
+DxMask%.h               Android
+DxMask%.cpp             Match
+DxMemory%.h             Match
+DxMemory%.cpp           Match
+DxModel%.h              Android
+DxModel%.cpp            Android
+DxMovie%.h              Match
+DxMovie%.cpp            Android(コメントのみ差)
+DxNetwork%.h            Match
+DxNetwork%.cpp          Match
+DxSound%.h              iOS(ヘッダ修正)
+DxSound%.cpp            iOS(*1)
+DxSoundConvert%.h       Match
+DxSoundConvert%.cpp     Match
+DxSystem%.h             Scratch(大幅書き直し)
+DxSystem%.cpp           Scratch(大幅書き直し)
+DxThread%.h             Match
+DxThread%.cpp           Android(ヘッダ追加)
+DxUseCLibOgg%.h         Match
+DxUseCLibOgg%.cpp       Match
+DxShaderCodeBin_Base3D_%.cpp                Match
+DxShaderCodeBin_Base_%.cpp                  Match
+DxShaderCodeBin_Filter_%.cpp                Match
+DxShaderCodeBin_Live2D_Cubism4_%.cpp        Android
+DxShaderCodeBin_Model_%.cpp                 Match
+DxShaderCodeBin_RgbaMix_%.cpp               Match
+DxShader_Common_%.h                         Match
+DxShader_DataType_%.h                       Match
+DxShader_FS_%.h                             Match
+DxShader_VS_%.h                             Match
+
+# *1: ObjCのincludeは削る
+
+# 以下Android/iOS特化のため不要
+# DxJava%.h               DxJava%.cpp
+# DxObjectiveCPP.h        DxObjectiveCPP.mm
+# DxSystem%_ObjC.h        DxSystem%_ObjC.mm

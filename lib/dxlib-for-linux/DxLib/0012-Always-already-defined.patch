@@ -1,0 +1,28 @@
+diff -uNrp DxLibMake.old/DxGraphicsFilter.cpp DxLibMake.new/DxGraphicsFilter.cpp
+--- DxLibMake.old/DxGraphicsFilter.cpp
++++ DxLibMake.new/DxGraphicsFilter.cpp
+@@ -3102,10 +3102,10 @@ extern int GraphFilter_Level( GRAPHFILTE
+ 	// シェーダーが使えるかどうかで処理を分岐
+ 	if( GSYS.HardInfo.UseShader == TRUE )
+ 	{
+-		int  Always ;
++		int  Always_ ;
+ 
+ 		// ガンマ補正テーブルのセットアップ
+-		Always = FALSE ;
++		Always_ = FALSE ;
+ 		if( GraphFilterShaderHandle.GammaTex < 0 )
+ 		{
+ 			SETUP_GRAPHHANDLE_GPARAM GParam ;
+@@ -3115,9 +3115,9 @@ extern int GraphFilter_Level( GRAPHFILTE
+ 			GraphFilterShaderHandle.GammaTex = Graphics_Image_MakeGraph_UseGParam( &GParam, 256, 1, FALSE, FALSE, 0, FALSE ) ;
+ 			NS_SetDeleteHandleFlag( GraphFilterShaderHandle.GammaTex, &GraphFilterShaderHandle.GammaTex ) ;
+ 			GraphFilterShaderHandle.PrevGamma = -10000000.0f ;
+-			Always = TRUE ;
++			Always_ = TRUE ;
+ 		}
+-		if( Always == TRUE || _FABS( GraphFilterShaderHandle.PrevGamma - Gamma ) > 0.0001f )
++		if( Always_ == TRUE || _FABS( GraphFilterShaderHandle.PrevGamma - Gamma ) > 0.0001f )
+ 		{
+ 			BASEIMAGE GammaBaseImage ;
+ 			NS_CreateXRGB8ColorBaseImage( 256, 1, &GammaBaseImage ) ;

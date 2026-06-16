@@ -4,6 +4,7 @@
 #include "Scenes.h"
 #include "filesystem.h"
 #include "LR2_customir.h"
+#include "LR2_version.h"
 
 #include <chrono>
 #include <filesystem>
@@ -14,9 +15,6 @@
 extern "C" {
 #include <sqlite/sqlite3.h>
 }
-
-#define LR2TITLE "OpenLR2 version 260608"
-#define LR2VERSIONSTRING "OpenLR2 version 260608"
 
 #ifdef _WIN32
 
@@ -346,7 +344,7 @@ int main(int argc, char** argv) {
 #endif // _WIN32
 
 	// DxLib-for-Linux can only set title of an already existing window
-	if constexpr (!is_linux()) { SetMainWindowText(LR2TITLE); }
+	if constexpr (!is_linux()) { SetMainWindowText(openlr2::versionName); }
 	// DxLib-for-Linux only writes to stderr when writing to the log file.
 	SetOutApplicationLogValidFlag(gs.config.system.outputlog || is_linux());
 #ifdef _WIN32
@@ -370,7 +368,7 @@ int main(int argc, char** argv) {
 	SetUseDisplayIndex(-1);
 #endif // _WIN32
 	if (DxLib_Init() == -1) return 0;
-	if constexpr (is_linux()) { SetMainWindowText(LR2TITLE); }
+	if constexpr (is_linux()) { SetMainWindowText(openlr2::versionName); }
 	ChangeFont("", 0);
 	SetLogFontSize(14); //DXLIBVER: change this for further dxlib version
 #ifdef _WIN32
@@ -418,21 +416,21 @@ int main(int argc, char** argv) {
 			: fs::make_preferred("LR2files/Database/song.db").data(), &sql3);
 	LoadLR2CustomFolder(sql3, &gs.config.jukebox, pathScoreDB, gs.is_starter, gs.cmd_directplay);
 	if (gs.cmd_directplay == false) {
-		if (gs.config.network.lr2ir == 1 && (((unsigned char)gs.config.jukebox.customfolder & 0x80) != 0)) {
-			gs.net.GetInsaneList();
+		if (loadingGrHandle > 0) {
+			DrawGraph(0, 0, loadingGrHandle, 0);
+		}
+		if (((unsigned char)gs.config.jukebox.customfolder & 0x80) != 0) {
+			if (gs.config.network.lr2ir == 1) {
+				gs.net.GetInsaneList();
+			}
+			gs.net.ApplyInsaneList();
 		}
 		if (gs.is_starter == false) {
-			printfDx(LR2VERSIONSTRING"\n");
+			printfDx("%s\n", openlr2::versionName);
 			printfDx("PUSH ANY KEY\n");
-			if (loadingGrHandle > 0) {
-				DrawGraph(0, 0, loadingGrHandle, 0);
-			}
 			ScreenFlip();
 			if (WaitInput(&gs.KeyInput) == -1) return 0;
 			printfDx("READY");
-		}
-		if (loadingGrHandle > 0) {
-			DrawGraph(0, 0, loadingGrHandle, 0);
 		}
 		ScreenFlip();
 	}
@@ -1609,11 +1607,13 @@ int main(int argc, char** argv) {
 					if (gs.gameplay.courseType == 0 || gs.gameplay.courseType == 2) {
 						gs.gameplay.player[0].gaugeType = gs.gameplay.player[0].lastCourseGaugeType;
 						gs.gameplay.player[1].gaugeType = gs.gameplay.player[1].lastCourseGaugeType;
-						if (gs.gameplay.courseStageNow < gs.gameplay.courseStageCount -1 && gs.gameplay.player[0].clearType != 0 && (gs.gameplay.player[1].clearType != 0 || gs.config.play.battle != 1) && gs.gameplay.player[0].HP[gs.gameplay.player[0].gaugeType] >= 2.0) {
-							gs.gameplay.courseStageNow++;
-							gs.procSelecter = 4;
+						if (gs.procSelecter != 4) {
+							if (gs.gameplay.courseStageNow < gs.gameplay.courseStageCount -1 && gs.gameplay.player[0].clearType != 0 && (gs.gameplay.player[1].clearType != 0 || gs.config.play.battle != 1) && gs.gameplay.player[0].HP[gs.gameplay.player[0].gaugeType] >= 2.0) {
+								gs.gameplay.courseStageNow++;
+								gs.procSelecter = 4;
+							}
+							else gs.procSelecter = 13;
 						}
-						else gs.procSelecter = 13;
 					}
 					break;
 				case 6:
@@ -1648,7 +1648,7 @@ int main(int argc, char** argv) {
 							}
 						}
 					}	
-					gs.procSelecter = 2;
+					if (gs.procSelecter != 4) gs.procSelecter = 2;
 					StopSysSound(&gs);
 					break;
 				}
