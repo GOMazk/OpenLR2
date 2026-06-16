@@ -19069,7 +19069,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 			int diffCycle = *diffFilter;
 			do {
 				if (*diffFilter == 0) break;
-				*diffFilter++;
+				*diffFilter += 1;
 				if (*diffFilter >= 6) *diffFilter = 0;
 				if (ss->filter.ignoredifficultyall && *diffFilter == 0) *diffFilter = 1;
 			} while (diffcount[*diffFilter] == 0);
@@ -19102,7 +19102,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 		}
 		else{
 			int modeCycle = *mode;
-			for (*mode = modeCycle + 1; *mode != modeCycle; *mode++) {
+			for (*mode = modeCycle + 1; *mode != modeCycle; *mode += 1) {
 				if (*mode == 8) *mode = 0;
 				if (ss->filter.ignorekeyall == 1 && *mode == 0) *mode = 1;
 				if (ss->filter.ignorekeysingle == 1 && *mode == 1) *mode = 2;
