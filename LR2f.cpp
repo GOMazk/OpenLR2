@@ -29542,16 +29542,16 @@ void RAWSOUND::MakeSampleRate44100(void) {
 					for (int j = 0; j < count; j++) {
 						int aupos = i / (44100.0 / (double)this->samples);
 						DWORD val = *(dword*)(this->data + aupos * 4);
-						WORD hi = (int)((double)(unk[1] - HIWORD(val)) * (count / (double)(count + 1))) + HIWORD(val);
-						WORD lo = (int)((double)(unk[0] - LOWORD(val)) * (count / (double)(count + 1))) + LOWORD(val);
+						int hi = (int)((double)(unk[1] - HIWORD(val)) * (count / (double)(count + 1))) + HIWORD(val);
+						int lo = (int)((double)(unk[0] - LOWORD(val)) * (count / (double)(count + 1))) + LOWORD(val);
 
 						if ((int)hi >= 0x8000) hi = 0x7fff;
-						else if ((int)hi < -0x8000) hi = 0xffff8000;
+						else if ((int)hi < -0x8000) hi = -0x8000;
 
 						if ((int)lo >= 0x8000) lo = 0x7fff;
-						else if ((int)lo < -0x8000) lo = 0xffff8000;
+						else if ((int)lo < -0x8000) lo = -0x8000;
 
-						*unkd[j] = (hi << 16) | (lo && 0xffff);
+						*unkd[j] = (hi << 16) | (lo & 0xffff);
 					}
 
 					int aupos = i / (44100.0 / (double)this->samples);
