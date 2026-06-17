@@ -1319,10 +1319,7 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 				searchPath = root;
 				searchPath.add(findFileData.cFileName);
 				filetime = GetUnixtimeFromFiletime(findFileData.ftLastWriteTime);
-				if (g_fullSongPass && g_knownSongPaths.contains(MakePathKey(searchPath))) {
-					// already in DB — song pass will verify via hash
-				}
-				else {
+				if (!g_fullSongPass || !g_knownSongPaths.contains(MakePathKey(searchPath))) {
 					ErrorLogFmtAdd("曲を発見しました。　パス:%s\n", searchPath.body);
 					ParseBMSMETA(&meta, searchPath, 1);
 					LoadBMSMETAFromDB(&meta, sql);
