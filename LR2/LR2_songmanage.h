@@ -1,5 +1,11 @@
+#pragma once
+
 #include "structure.h"
 #include "Engine.h"
+
+// Checks which full-reload pass is running, so ReloadSongsByQuery can show the right
+// loading-screen feedback without having to recognise the SQL text.
+enum class ReloadProgress { None, FolderPass, SongPass };
 
 SONGDATA * COPY_SONGDATA(SONGDATA *s1, SONGDATA *s2);
 int InitSongData(SONGDATA * song);
@@ -18,7 +24,7 @@ int InitBMSMETA(BMSMETA * meta);
 int ParseBMSMETA(BMSMETA * meta, CSTR filepath, char flag);
 
 int SearchSongsFromPath(CSTR root, sqlite3 * sql, CSTR path); //into DB
-int ReloadSongsByQuery(CSTR query, sqlite3 * sql, CONFIG_JUKEBOX * jb); //check reload condition and run
+int ReloadSongsByQuery(CSTR query, sqlite3 * sql, CONFIG_JUKEBOX * jb, ReloadProgress progress = ReloadProgress::None); //check reload condition and run
 int GetFolderDataFromPath(CSTR path, sqlite3 * sql);
 int LoadLR2CustomFolder(sqlite3 * sql, CONFIG_JUKEBOX * jb, CSTR scoreDBpath, char flag_starter, char flag_direct); //not coustomfolder only, but init DB and manage it
 
