@@ -26053,6 +26053,7 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 					case 23:
 						if (isPMS) channel = 39;
 						else channel = -1;
+						break;
 					case 24:
 						if (isDSC) channel = 37;
 						else channel = 36;
