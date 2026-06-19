@@ -684,6 +684,7 @@ int SaveResult(game *g, sqlite3* sql) {
 				bms.mybest.op_best = g->gameplay.player[0].gaugeType + g->config.play.random[0] * 10 + g->config.play.random[1] * 100 + g->config.play.dpflip * 1000;
 			}
 
+			bms.mybest.isIRDerivedRecord = false;
 			isNewRecord = true;
 		}
 
