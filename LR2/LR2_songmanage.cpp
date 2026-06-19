@@ -992,6 +992,7 @@ int GetSongData(CSTR songMD5, SONGDATA *song, sqlite3 *sql, SONGSELECT *ss) {
 	char buf[1024];
 	sqlite3_stmt *stmt;
 	int ret = 0;
+	CSTR IR_DERIVED_RECORD_HASH = "IR_DERIVED_RECORD";
 
 	InitSongData(song);
 	query = sqlite3_snprintf(1024, buf, "SELECT * FROM song LEFT JOIN score ON song.hash = score.hash WHERE song.hash = \'%s\'", songMD5.body);
@@ -1066,7 +1067,9 @@ int GetSongData(CSTR songMD5, SONGDATA *song, sqlite3 *sql, SONGSELECT *ss) {
 			song->mybest.complete = sqlite3_column_int(stmt, 52);
 
 			besthash = SQL_GetColumn(46, stmt);
-			if (isSameScoreHash(&song->mybest, &ss->playerPassMD5, &song->hash, &besthash)) {
+			bool isIRDerivedRecord = besthash.isSame(IR_DERIVED_RECORD_HASH);
+
+			if (isSameScoreHash(&song->mybest, &ss->playerPassMD5, &song->hash, &besthash) || isIRDerivedRecord) {
 				song->mybest.stat_exscore = song->mybest.stat_great + song->mybest.stat_pgreat * 2;
 				if (song->mybest.total_notes < 1) 
 					song->mybest.total_notes = sqlite3_column_int(stmt, 26);
@@ -1075,7 +1078,14 @@ int GetSongData(CSTR songMD5, SONGDATA *song, sqlite3 *sql, SONGSELECT *ss) {
 					song->mybest.stat_score = (song->mybest.stat_good + song->mybest.stat_great * 2 + song->mybest.stat_pgreat * 4) * 50000 / song->mybest.total_notes;
 
 				if (song->mybest.minbp == 0 && song->mybest.clear != 5)
-					song->mybest.minbp = -1; 
+					song->mybest.minbp = -1;
+
+				if (isIRDerivedRecord) {
+					song->mybest.isIRDerivedRecord = 1;
+				}
+				else {
+					song->mybest.isIRDerivedRecord = 0;
+				}
 			}
 			else {
 				song->mybest = {};
