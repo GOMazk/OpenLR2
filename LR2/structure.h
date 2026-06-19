@@ -409,7 +409,7 @@ struct STATUS {
 	char IRthreadEnd{};
 	int complete{};
 	int rseed{};
-	int isIRDerivedRecord{};
+	bool isIRDerivedRecord{};
 };
 
 struct SONGDATA { /* 712bytes */
