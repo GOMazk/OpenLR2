@@ -1716,12 +1716,23 @@ int SearchCourseFromDB(sqlite3 *sql, SONGSELECT *ss, int keys, int multistagemod
 		song.mybest.rseed = sqlite3_column_int(pStmt, 27);
 		song.mybest.complete = sqlite3_column_int(pStmt, 28);
 		str = SQL_GetColumn(22, pStmt);
-		if (isSameScoreHash(&song.mybest, &ss->playerPassMD5, &song.hash, &str)) {
+
+		CSTR IR_DERIVED_RECORD_HASH = "IR_DERIVED_RECORD";
+		bool isIRDerivedRecord = str.isSame(IR_DERIVED_RECORD_HASH);
+
+		if (isSameScoreHash(&song.mybest, &ss->playerPassMD5, &song.hash, &str) || isIRDerivedRecord) {
 			song.mybest.stat_exscore = song.mybest.stat_great + song.mybest.stat_pgreat * 2;
 			if (song.mybest.stat_score > 0) {
 				song.mybest.stat_score = (song.mybest.stat_good + song.mybest.stat_exscore) * 2 * 50000 / song.mybest.total_notes;
 			}
 			if (song.mybest.minbp == 0 && song.mybest.clear != 5) song.mybest.minbp = -1;
+
+			if (isIRDerivedRecord) {
+				song.mybest.isIRDerivedRecord = 1;
+			}
+			else {
+				song.mybest.isIRDerivedRecord = 0;
+			}
 		}
 		else {
 			song.mybest = {};
