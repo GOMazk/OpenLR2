@@ -2304,15 +2304,26 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 								}
 							}
 						}
+
+						CSTR IR_DERIVED_RECORD_HASH = "IR_DERIVED_RECORD";
 						CSTR bestHash;
 						bestHash = SQL_GetColumn(46, pStmt);
-						if (isSameScoreHash(&song.mybest, &ss->playerPassMD5, &song.hash, &bestHash)) {
+
+						bool isIRDerived = bestHash.isSame(IR_DERIVED_RECORD_HASH);
+						if (isSameScoreHash(&song.mybest, &ss->playerPassMD5, &song.hash, &bestHash) || isIRDerived) {
 							song.mybest.stat_exscore = song.mybest.stat_great + song.mybest.stat_pgreat * 2;
 							if (song.mybest.total_notes > 0) {
 								song.mybest.stat_score = ((song.mybest.stat_good + song.mybest.stat_exscore * 2) * 50000) /	song.mybest.total_notes;
 							}
 							if ((song.mybest.minbp == 0) && (song.mybest.clear != 5)) {
 								song.mybest.minbp = -1;
+							}
+
+							if (isIRDerived) {
+								song.mybest.isIRDerivedRecord = 1;
+							}
+							else {
+								song.mybest.isIRDerivedRecord = 0;
 							}
 						}
 						else {
