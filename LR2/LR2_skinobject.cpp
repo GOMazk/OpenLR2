@@ -2214,6 +2214,8 @@ uint SetObjectValue_Num(game *g, int op) {
 			//293 is same 180
 		case 294: //TOFIX : IR clear rate
 			break;
+		case 300:
+			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.isIRDerivedRecord;
 		case 295: return g->gameplay.randomLayoutForDisplay[0]; // LR2OOL SP and DP 1P random
 		case 418: return g->gameplay.randomLayoutForDisplay[1]; // LR2OOL DP 2P random
 	}
