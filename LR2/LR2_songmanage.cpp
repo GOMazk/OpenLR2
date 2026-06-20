@@ -940,7 +940,7 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 			sd.mybest.clearcount = sqlite3_column_int(stmt, 40);
 			sd.mybest.failcount = sqlite3_column_int(stmt, 41);
 			sd.mybest.rank = sqlite3_column_int(stmt, 42);
-			sd.mybest.rate = sqlite3_column_int(stmt, 43);	
+			sd.mybest.rate = sqlite3_column_int(stmt, 43);
 			sd.mybest.clear_db = sqlite3_column_int(stmt, 44);
 			sd.mybest.op_history = sqlite3_column_int(stmt, 45);
 			sd.mybest.clear_sd = sqlite3_column_int(stmt, 48);
@@ -2421,7 +2421,6 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 								}
 							}
 						}
-
 						CSTR bestHash;
 						bestHash = SQL_GetColumn(46, pStmt);
 						if (isSameScoreHash(&song.mybest, &ss->playerPassMD5, &song.hash, &bestHash)) {

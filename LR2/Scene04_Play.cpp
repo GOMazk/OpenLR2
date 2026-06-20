@@ -1904,7 +1904,6 @@ int ProcS_Play(game *g, sqlite3* sql) {
 	}
 
 	g->gameplay.highScore.InitJudgeQueue();
-
 	if (g->gameplay.isGhostDisabled == 0) {
 		const SONGDATA& songData = g->sSelect.bmsList[g->sSelect.cur_song];
 
