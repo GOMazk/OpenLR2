@@ -18,7 +18,7 @@
 #endif // _WIN32
 
 int EnabledInsane;
-constexpr auto&& IR_DERIVED_RECORD_HASH = "IR_DERIVED_RECORD";
+static constexpr auto&& IR_DERIVED_RECORD_HASH = "IR_DERIVED_RECORD";
 
 namespace {
 
