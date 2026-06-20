@@ -1419,9 +1419,9 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 
 		case 626:
-			return gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.isIRDerivedRecord;
+			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.isIRDerivedRecord) return ret;
 			break;
-
+			
 		case 640:
 			if (gs->config.play.battle == 2) {
 				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_db == 0) return ret;
