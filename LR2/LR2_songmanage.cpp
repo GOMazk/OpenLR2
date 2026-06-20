@@ -1179,7 +1179,7 @@ int GetSongData(CSTR songMD5, SONGDATA *song, sqlite3 *sql, SONGSELECT *ss) {
 			LoadIRDerivedRecord(sql, *song);
 
 			besthash = SQL_GetColumn(46, stmt);
-			if (isSameScoreHash(&song->mybest, &ss->playerPassMD5, &song->hash, &besthash) || song->hasIRDerivedRecord) {
+			if (isSameScoreHash(&song->mybest, &ss->playerPassMD5, &song->hash, &besthash)) {
 				song->mybest.stat_exscore = song->mybest.stat_great + song->mybest.stat_pgreat * 2;
 				if (song->mybest.total_notes < 1) 
 					song->mybest.total_notes = sqlite3_column_int(stmt, 26);
@@ -1821,7 +1821,7 @@ int SearchCourseFromDB(sqlite3 *sql, SONGSELECT *ss, int keys, int multistagemod
 		LoadIRDerivedRecord(sql, song);
 
 		str = SQL_GetColumn(22, pStmt);
-		if (isSameScoreHash(&song.mybest, &ss->playerPassMD5, &song.hash, &str) || song.hasIRDerivedRecord) {
+		if (isSameScoreHash(&song.mybest, &ss->playerPassMD5, &song.hash, &str)) {
 			song.mybest.stat_exscore = song.mybest.stat_great + song.mybest.stat_pgreat * 2;
 			if (song.mybest.stat_score > 0) {
 				song.mybest.stat_score = (song.mybest.stat_good + song.mybest.stat_exscore) * 2 * 50000 / song.mybest.total_notes;
@@ -2424,7 +2424,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 
 						CSTR bestHash;
 						bestHash = SQL_GetColumn(46, pStmt);
-						if (isSameScoreHash(&song.mybest, &ss->playerPassMD5, &song.hash, &bestHash) || song.hasIRDerivedRecord) {
+						if (isSameScoreHash(&song.mybest, &ss->playerPassMD5, &song.hash, &bestHash)) {
 							song.mybest.stat_exscore = song.mybest.stat_great + song.mybest.stat_pgreat * 2;
 							if (song.mybest.total_notes > 0) {
 								song.mybest.stat_score = ((song.mybest.stat_good + song.mybest.stat_exscore * 2) * 50000) /	song.mybest.total_notes;
