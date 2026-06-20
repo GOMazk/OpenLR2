@@ -684,7 +684,6 @@ int SaveResult(game *g, sqlite3* sql) {
 				bms.mybest.op_best = g->gameplay.player[0].gaugeType + g->config.play.random[0] * 10 + g->config.play.random[1] * 100 + g->config.play.dpflip * 1000;
 			}
 
-			bms.mybest.isIRDerivedRecord = false;
 			isNewRecord = true;
 		}
 
@@ -705,7 +704,6 @@ int SaveResult(game *g, sqlite3* sql) {
 		bms.mybest.op_history |= ConvertOptionHistory(g);
 
 		CheckMission(g);
-
 		UpdateScoreDB(bms.hash, &bms.mybest, sql, &g->sSelect.playerPassMD5);
 
 		if (isNewRecord) {
@@ -715,7 +713,7 @@ int SaveResult(game *g, sqlite3* sql) {
 		UpdatePlayerStat(&g->gameplay.playerstat, sql);
 		g->sSelect.oldIRrank = bms.mybest.IRranking;
 
-		if (!bms.mybest.isIRDerivedRecord && g->net.isOnline && g->is_starter == 0) {
+		if (g->net.isOnline && g->is_starter == 0) {
 			ErrorLogAdd("IRに登録しますか？\n");
 			g->net.myRanking.InitRanking();
 			if (g->gameplay.flag_longsound || g->gameplay.flag_0note) {

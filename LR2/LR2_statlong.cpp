@@ -51,6 +51,40 @@ int ReadPlayerScore(CSTR id, CSTR pass, PLAYERSTATISTIC *pstat) {
 		return 0;
 	}
 
+	constexpr const char* createTableQuery =
+		"CREATE TABLE IF NOT EXISTS imported_score ("
+		"hash TEXT PRIMARY KEY, "
+		"clear INTEGER, "
+		"perfect INTEGER, "
+		"great INTEGER, "
+		"good INTEGER, "
+		"bad INTEGER, "
+		"poor INTEGER, "
+		"totalnotes INTEGER, "
+		"maxcombo INTEGER, "
+		"minbp INTEGER, "
+		"playcount INTEGER, "
+		"clearcount INTEGER, "
+		"failcount INTEGER, "
+		"rank INTEGER, "
+		"rate INTEGER, "
+		"clear_db INTEGER, "
+		"op_history INTEGER, "
+		"scorehash TEXT, "
+		"ghost TEXT, "
+		"clear_sd INTEGER, "
+		"clear_ex INTEGER, "
+		"op_best INTEGER, "
+		"rseed INTEGER, "
+		"complete INTEGER"
+		");";
+
+	if (sqlite3_exec(scoreDB, createTableQuery, nullptr, nullptr, nullptr) != SQLITE_OK) {
+		MessageBoxA(NULL, "Error creating IR Derived Score Table", "Error", 0);
+		sqlite3_close(scoreDB);
+		return 0;
+	}
+
 	MD5inDB = SQL_GetColumn(1, stmt);
 	if (passMD5.isSame(&MD5inDB) == 0) {
 		MessageBoxA(NULL, "パスワードが違います。", "エラー", 0);
@@ -208,6 +242,11 @@ int UpdateScoreDB(CSTR hash, STATUS *stat, sqlite3 *sql, CSTR *passMD5) {
 			, stat->clear, stat->stat_pgreat, stat->stat_great, stat->stat_good, stat->stat_bad, stat->stat_poor, stat->total_notes, stat->stat_maxcombo, stat->minbp, stat->playcount, stat->clearcount, stat->failcount, stat->op_history, scoreMD5.body, stat->rank, stat->rate, stat->clear_db, stat->clear_sd, stat->clear_ex, stat->op_best, stat->rseed, stat->complete, hash.body);
 		SQL_Run(query, sql);
 	}
+
+	// delete imported score from IR
+	CSTR delQuery;
+	cstrSprintf(&delQuery, "DELETE FROM imported_score WHERE hash = \'%s\'", hash.body);
+	SQL_Run(delQuery, sql);
 	sqlite3_exec(sql, "COMMIT", 0, 0, 0);
 	return 1;
 }

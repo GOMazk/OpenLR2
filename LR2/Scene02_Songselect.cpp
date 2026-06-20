@@ -2621,6 +2621,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 					}
 				}
 
+				bool hasIRDerivedRecord = g->sSelect.bmsList[bar].hasIRDerivedRecord;
 				if (g->sSelect.bmsList[bar].rivalRecord.stat_exscore < 1 || g->net.rankingData.showRanking != 0) {
 					if (g->net.rankingData.showRanking == 1) {
 						AddDrawingBuffer_Object(&g->skstruct.drBuf, &g->skstruct.src_BAR_LAMP[g->sSelect.bmsList[bar].rivalRecord.clear], &g->skstruct.dst_BAR_LAMP[g->sSelect.bmsList[bar].rivalRecord.clear], &g->timer1, dstd3.x, dstd3.y);
@@ -2628,16 +2629,24 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 					else {
 						int t = g->config.play.battle;
 						if (g->config.play.battle == 3) {
-							t = g->sSelect.bmsList[bar].mybest.clear_sd;
+							t = hasIRDerivedRecord ?
+								g->sSelect.bmsList[bar].myIRbest.clear_sd :
+								g->sSelect.bmsList[bar].mybest.clear_sd;
 						}
 						else if (g->config.play.battle == 2) {
-							t = g->sSelect.bmsList[bar].mybest.clear_db;
+							t = hasIRDerivedRecord ?
+								g->sSelect.bmsList[bar].myIRbest.clear_db :
+								g->sSelect.bmsList[bar].mybest.clear_db;
 						}
 						else if (g->config.play.is_extra == 1) {
-							t = g->sSelect.bmsList[bar].mybest.clear_ex;
+							t = hasIRDerivedRecord ?
+								g->sSelect.bmsList[bar].myIRbest.clear_ex :
+								g->sSelect.bmsList[bar].mybest.clear_ex;
 						}
 						else {
-							t = g->sSelect.bmsList[bar].mybest.clear;
+							t = hasIRDerivedRecord ?
+								g->sSelect.bmsList[bar].myIRbest.clear :
+								g->sSelect.bmsList[bar].mybest.clear;
 						}
 						AddDrawingBuffer_Object(&g->skstruct.drBuf, &g->skstruct.src_BAR_LAMP[t], &g->skstruct.dst_BAR_LAMP[t], &g->timer1, dstd3.x, dstd3.y);
 					}
@@ -2646,16 +2655,24 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 					int t = g->config.play.battle;
 					int r = 0;
 					if (g->config.play.battle == 3) {
-						t = g->sSelect.bmsList[bar].mybest.clear_sd;
+						t = hasIRDerivedRecord ?
+							g->sSelect.bmsList[bar].myIRbest.clear_sd :
+							g->sSelect.bmsList[bar].mybest.clear_sd;
 					}
 					else if (g->config.play.battle == 2) {
-						t = g->sSelect.bmsList[bar].mybest.clear_db;
+						t = hasIRDerivedRecord ?
+							g->sSelect.bmsList[bar].myIRbest.clear_db :
+							g->sSelect.bmsList[bar].mybest.clear_db;
 					}
 					else if (g->config.play.is_extra == 1) {
-						t = g->sSelect.bmsList[bar].mybest.clear_ex;
+						t = hasIRDerivedRecord ?
+							g->sSelect.bmsList[bar].myIRbest.clear_ex :
+							g->sSelect.bmsList[bar].mybest.clear_ex;
 					}
 					else {
-						t = g->sSelect.bmsList[bar].mybest.clear;
+						t = hasIRDerivedRecord ?
+							g->sSelect.bmsList[bar].myIRbest.clear :
+							g->sSelect.bmsList[bar].mybest.clear;
 						r = g->sSelect.bmsList[bar].rivalRecord.clear;
 					}
 					AddDrawingBuffer_Object(&g->skstruct.drBuf, &g->skstruct.src_BAR_MY_LAMP[t], &g->skstruct.dst_BAR_MY_LAMP[t], &g->timer1, dstd3.x, dstd3.y);

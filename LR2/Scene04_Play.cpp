@@ -1904,8 +1904,18 @@ int ProcS_Play(game *g, sqlite3* sql) {
 	}
 
 	g->gameplay.highScore.InitJudgeQueue();
+
 	if (g->gameplay.isGhostDisabled == 0) {
-		ReadGhostToScore(sql,md5,&g->gameplay.highScore);
+		const SONGDATA& songData = g->sSelect.bmsList[g->sSelect.cur_song];
+
+		// Use IR Ghost only if its exscore is higher.
+		if (songData.hasIRDerivedRecord &&
+			songData.myIRbest.stat_exscore > songData.mybest.stat_exscore) {
+			ReadIRGhostToScore(sql, md5, &g->gameplay.highScore);
+		}
+		else {
+			ReadGhostToScore(sql, md5, &g->gameplay.highScore);
+		}
 	}
 
 	if (g->net.rankingData.target_ID > 0 && g->net.isOnline) {
