@@ -1417,6 +1417,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 625:
 			if (gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.stat_exscore > 0) return ret;
 			break;
+
 		case 626:
 			return gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.isIRDerivedRecord;
 			break;
