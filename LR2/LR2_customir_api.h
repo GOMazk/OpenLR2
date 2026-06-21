@@ -125,7 +125,6 @@ struct IRGhostResult {
 	int dpFlipOption{};
 	int randomSeed{};
 	int averageExscore{};
-	bool hasPlay{};
 };
 
 namespace openlr2 {
