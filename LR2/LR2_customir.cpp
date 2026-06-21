@@ -80,7 +80,7 @@ public:
 	SendScoreStatus SendScore(const IRScoreV1& score);
 	openlr2::GetStatus GetResultRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus RestoreCachedRank(const char* songHash, openlr2::IRRankResult& out);
-	openlr2::GetStatus GetGhost(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, IRGhostResult& out);
+	openlr2::GetStatus GetGhost(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, openlr2::IRGhostResult& out);
 
 	[[nodiscard]] const std::string& Name() const { return mName; };
 private:
@@ -153,7 +153,7 @@ openlr2::GetStatus CustomIR::RestoreCachedRank(const char* songHash, openlr2::IR
 	return mMethods.RestoreCachedRank(songHash, -1, out);
 }
 
-openlr2::GetStatus CustomIR::GetGhost(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, IRGhostResult& out) {
+openlr2::GetStatus CustomIR::GetGhost(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, openlr2::IRGhostResult& out) {
 	if (mMethods.GetGhost == nullptr) return openlr2::GetStatus::Fail;
 	return mMethods.GetGhost(songHash, mode, targetPlayerId, out);
 }
@@ -257,7 +257,7 @@ void CUSTOMIR_MANAGER::Login() {
 	}
 }
 
-std::optional<IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(CSTR songmd5, int mode, int targetPlayerId) const {
+std::optional<openlr2::IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(CSTR songmd5, int mode, int targetPlayerId) const {
 	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
 	if (irIt == mModules.end()) { return std::nullopt; }
 
@@ -274,7 +274,7 @@ std::optional<IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(CSTR songmd5, in
 
 	const char* songHash = songmd5.body;
 
-	IRGhostResult result{};
+	openlr2::IRGhostResult result{};
 	switch ((*irIt)->GetGhost(songHash, ghostMode, targetPlayerId, result)) {
 	case openlr2::GetStatus::Ok:
 		break;

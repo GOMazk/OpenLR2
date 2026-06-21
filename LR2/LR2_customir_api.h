@@ -240,8 +240,6 @@ enum class GetStatus: int {
 
 } // namespace openlr2
 
-using IRGhostResult = openlr2::IRGhostResult;
-
 struct MethodTable {
 	// Mandatory method. Module name must be unique among loaded modules.
 	const char*(OLR2_IR_API* GetName)() = nullptr;
@@ -276,5 +274,5 @@ struct MethodTable {
 	void* reserved5 = nullptr;
 	void* reserved6 = nullptr;
 	// This is called synchronously when play is entered to retrieve the ghost data for the play.
-	openlr2::GetStatus(OLR2_IR_API* GetGhost)(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, IRGhostResult& out) = nullptr;
+	openlr2::GetStatus(OLR2_IR_API* GetGhost)(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, openlr2::IRGhostResult& out) = nullptr;
 };
