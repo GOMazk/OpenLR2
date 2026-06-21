@@ -740,11 +740,13 @@ int WriteGhostInDatabase(sqlite3 *sql, CSTR songMD5, PLAYSCORE *score) {
 	return 0;
 }
 
-CSTR ReadGhost(sqlite3 *sql, CSTR songMD5) {
+CSTR ReadGhost(sqlite3 *sql, CSTR songMD5, bool useImportedGhost = false) {
 	ErrorLogAdd("データベースからゴーストを読み込みます\n");
 
+	const std::string query = std::format("SELECT ghost FROM {} WHERE hash = ?", useImportedGhost ? "imported_score" : "score");
+	
 	sqlite3_stmt *pStmt;
-	if (sqlite3_prepare_v3(sql, "SELECT ghost FROM score WHERE hash = ?", -1, 0, &pStmt, nullptr) != SQLITE_OK) {
+	if (sqlite3_prepare_v3(sql, query.c_str(), -1, 0, &pStmt, nullptr) != SQLITE_OK) {
 		ErrorLogAdd("sqlite3_prepare_v3 error\n");
 	}
 	if (sqlite3_bind_text(pStmt, 1, songMD5.body, songMD5.length(), nullptr) != SQLITE_OK) {
@@ -764,50 +766,14 @@ CSTR ReadGhost(sqlite3 *sql, CSTR songMD5) {
 	return ghostdata;
 }
 
-CSTR ReadIRGhost(sqlite3* sql, CSTR songMD5) {
-	ErrorLogAdd("データベースからゴーストを読み込みます\n");
-
-	sqlite3_stmt* pStmt;
-	if (sqlite3_prepare_v3(sql, "SELECT ghost FROM imported_score WHERE hash = ?", -1, 0, &pStmt, nullptr) != SQLITE_OK) {
-		ErrorLogAdd("sqlite3_prepare_v3 error\n");
-	}
-	if (sqlite3_bind_text(pStmt, 1, songMD5.body, songMD5.length(), nullptr) != SQLITE_OK) {
-		ErrorLogAdd("sqlite3_bind_text error\n");
-	}
-
-	CSTR ghostdata;
-	if (sqlite3_step(pStmt) == SQLITE_ROW) {
-		ghostdata.resize(sqlite3_column_bytes(pStmt, 0));
-		// Cast safety: it's safe to cast from unsigned char* to char*
-		ghostdata = reinterpret_cast<const char*>(sqlite3_column_text(pStmt, 0));
-	}
-	if (sqlite3_finalize(pStmt) != SQLITE_OK) {
-		ErrorLogAdd("sqlite3_finalize error\n");
-	}
-
-	return ghostdata;
-}
-
-int ReadGhostToScore(sqlite3 *sql, CSTR songMD5, PLAYSCORE *score) {
-	CSTR ghostdata = ReadGhost(sql, songMD5);
+int ReadGhostToScore(sqlite3 *sql, CSTR songMD5, PLAYSCORE *score, bool useImportedGhost = false) {
+	CSTR ghostdata = ReadGhost(sql, songMD5, useImportedGhost);
 
 	if (ghostdata.length() == 0) {
 		score->InitJudgeQueue();
 		return 1;
 	}
 	
-	score->DecodeGhostData(ghostdata);
-	return 1;
-}
-
-int ReadIRGhostToScore(sqlite3* sql, CSTR songMD5, PLAYSCORE* score) {
-	CSTR ghostdata = ReadIRGhost(sql, songMD5);
-
-	if (ghostdata.length() == 0) {
-		score->InitJudgeQueue();
-		return 1;
-	}
-
 	score->DecodeGhostData(ghostdata);
 	return 1;
 }
