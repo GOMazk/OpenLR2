@@ -257,9 +257,9 @@ void CUSTOMIR_MANAGER::Login() {
 	}
 }
 
-bool CUSTOMIR_MANAGER::TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* oData, CSTR* oName, int* oGaugeOption, int* oP1randomOption, int* oP2randomOption, int* oDpFlipOption, int* oRandomSeed, int* oExscore) const {
+std::optional<IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(CSTR songmd5, int mode, int targetPlayerId) const {
 	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
-	if (irIt == mModules.end()) { return false; }
+	if (irIt == mModules.end()) { return std::nullopt; }
 
 	openlr2::GhostMode ghostMode = openlr2::GhostMode::Top; // default is "top"; as dream-pro default
 	switch (mode) {
@@ -272,31 +272,21 @@ bool CUSTOMIR_MANAGER::TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* o
 	const char* songHash = songmd5.body;
 
 	IRGhostResult result{};
-	switch ((*irIt)->GetGhost(songHash, ghostMode, g.net.rankingData.target_ID, result)) {
+	switch ((*irIt)->GetGhost(songHash, ghostMode, targetPlayerId, result)) {
 	case openlr2::GetStatus::Ok:
 		break;
 	case openlr2::GetStatus::Retry:
 		OverlayNotification("'%s' failed to get ghost data - ignoring retry\n", (*irIt)->Name().c_str());
-		return false;
+		return std::nullopt;
 	case openlr2::GetStatus::Fail:
 		OverlayNotification("'%s' failed to get ghost data\n", (*irIt)->Name().c_str());
-		return false;
+		return std::nullopt;
 	}
 
-	if (ghostMode == openlr2::GhostMode::Average) {
-		*oName = "AVERAGE";
-		*oExscore = result.averageExscore;
-		return result.averageExscore > 0;
+	if (ghostMode == openlr2::GhostMode::Average && result.averageExscore <= 0) {
+		return std::nullopt;
 	}
-	*oName = result.displayName.c_str();
-	oData->fillzero();
-	if (!result.ghostData.empty()) oData->add(result.ghostData.c_str());
-	*oGaugeOption = result.gaugeOption;
-	*oP1randomOption = result.p1randomOption;
-	*oP2randomOption = result.p2randomOption;
-	*oDpFlipOption = result.dpFlipOption;
-	*oRandomSeed = result.randomSeed;
-	return true;
+	return result;
 }
 
 struct IRScoreInternal {

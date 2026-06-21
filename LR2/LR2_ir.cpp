@@ -709,7 +709,20 @@ int OpenWebRanking(CSTR songmd5){
 
 bool NETWORK::GetTargetInfo(game& g, int mode, CSTR songmd5, CSTR *oData, CSTR *oName, int *oDigit1, int *oDigit2, int *oDigit3, int *oDigit4, int *oSeed, int *oExscore) {
 	WaitForRankingHandle();
-	if (customIR.TryGetTargetInfo(g, songmd5, mode, oData, oName, oDigit1, oDigit2, oDigit3, oDigit4, oSeed, oExscore)) {
+	if (auto result = customIR.TryGetTargetInfo(songmd5, mode, g.net.rankingData.target_ID)) {
+		if (mode == 8) {
+			*oName = "AVERAGE";
+			*oExscore = result->averageExscore;
+			return true;
+		}
+		*oName = result->displayName.c_str();
+		oData->fillzero();
+		if (!result->ghostData.empty()) oData->add(result->ghostData.c_str());
+		*oDigit1 = result->gaugeOption;
+		*oDigit2 = result->p1randomOption;
+		*oDigit3 = result->p2randomOption;
+		*oDigit4 = result->dpFlipOption;
+		*oSeed = result->randomSeed;
 		return true;
 	}
 	if (isOnline) {
