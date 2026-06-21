@@ -5,7 +5,6 @@
 #include "structure.h"
 
 #include <algorithm>
-#include <atomic>
 #include <array>
 #include <chrono>
 #include <cmath>
@@ -170,7 +169,7 @@ CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
 	}
 }
 
-static void SendScoreWithBlockingRetry(CustomIR& ir, const IRScoreV1& scoreV1, game* gamePtr, std::shared_ptr<std::atomic<int>> sendScorePending) {
+static void SendScoreWithBlockingRetry(CustomIR& ir, const IRScoreV1& scoreV1) {
 	constexpr int tryMax = 6;
 	int tryCount = 1;
 	bool finished = false;
@@ -192,14 +191,8 @@ static void SendScoreWithBlockingRetry(CustomIR& ir, const IRScoreV1& scoreV1, g
 	if (!finished) {
 		OverlayNotification("'%s' failed to submit score after %d attempts\n", ir.Name().c_str(), tryCount);
 	}
-	if (gamePtr == nullptr || sendScorePending == nullptr) {
-		return;
-	}
-	if (sendScorePending->fetch_sub(1) == 1) {
-		gamePtr->gameplay.p1Score.InitJudgeQueue();
-	}
 }
-static void SendScoreMultiplexed(std::vector<std::future<void>>& mSendThreads, const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> irs, game* gamePtr, std::shared_ptr<std::atomic<int>> sendScorePending) {
+static void SendScoreMultiplexed(std::vector<std::future<void>>& mSendThreads, const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> irs) {
 	std::vector<int> finishedThreads;
 	for (const auto& [i, it] : std::views::enumerate(mSendThreads)) {
 		if (it.wait_for(std::chrono::milliseconds(0)) == std::future_status::ready) {
@@ -216,13 +209,11 @@ static void SendScoreMultiplexed(std::vector<std::future<void>>& mSendThreads, c
 	for (const auto& ir : irs) {
 		mSendThreads.push_back(std::async(
 					std::launch::async,
-					[](std::shared_ptr<CustomIR> ir, IRScoreV1 score, game* gamePtr, std::shared_ptr<std::atomic<int>> sendScorePending) {
-						SendScoreWithBlockingRetry(*ir, score, gamePtr, sendScorePending);
+					[](std::shared_ptr<CustomIR> ir, IRScoreV1 score) {
+						SendScoreWithBlockingRetry(*ir, score);
 					},
 					ir,
-					scoreV1,
-					gamePtr,
-					sendScorePending));
+					scoreV1));
 	}
 }
 
@@ -663,8 +654,8 @@ std::optional<openlr2::IRRankResult> CUSTOMIR_MANAGER::RestoreCachedRank(const c
 	abort(); // unreachable
 }
 
-static std::optional<openlr2::IRRankResult> ResultIrAsync(std::shared_ptr<CustomIR> ir, IRScoreV1 score, game* gamePtr, std::shared_ptr<std::atomic<int>> sendScorePending) {
-	SendScoreWithBlockingRetry(*ir, score, gamePtr, sendScorePending);
+static std::optional<openlr2::IRRankResult> ResultIrAsync(std::shared_ptr<CustomIR> ir, IRScoreV1 score) {
+	SendScoreWithBlockingRetry(*ir, score);
 
 	std::optional<openlr2::IRRankResult> out{ openlr2::IRRankResult{} };
 	switch (ir->GetResultRank(score.song.hash.c_str(), *out)) {
@@ -684,18 +675,18 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 	}
 
 	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
-	auto sendScorePending = std::make_shared<std::atomic<int>>(static_cast<int>(mModules.size()));
 	IRScoreInternal internal{ game, sql, player };
 	IRScoreV1 scoreV1;
 	internal.MakeScoreV1(scoreV1);
+	if (player == 0) {
+		game.gameplay.p1Score.InitJudgeQueue();
+	}
 
 	SendScoreMultiplexed(
 			mSendThreads, scoreV1,
 			mModules | std::views::filter([&](const std::shared_ptr<CustomIR> &module) {
 				return module->Name() != mDisplayIr;
-				}) | std::ranges::to<std::vector>(),
-			&game,
-			sendScorePending);
+				}) | std::ranges::to<std::vector>());
 
 	if (irIt == mModules.end()) {
 		return;
@@ -704,7 +695,7 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 		ErrorLogAdd("BUG: we have an unexpected mResultIrFuture");
 		mResultIrFuture.get();
 	}
-	mResultIrFuture = std::async(std::launch::async, &ResultIrAsync, *irIt, scoreV1, &game, sendScorePending);
+	mResultIrFuture = std::async(std::launch::async, &ResultIrAsync, *irIt, scoreV1);
 }
 
 static void fill_ranking_player_from_customir(RANKINGPLAYER& dest, const openlr2::IRRankPlayer& src, int ranking) {
