@@ -727,8 +727,24 @@ bool NETWORK::GetTargetInfo(game& g, int mode, CSTR songmd5, CSTR *oData, CSTR *
 		case openlr2::Gauge::GAttack: *oDigit1 = 5; break;
 		default: *oDigit1 = 0; break;
 		}
-		*oDigit2 = static_cast<int>(result->randomOption[0]);
-		*oDigit3 = static_cast<int>(result->randomOption[1]);
+		switch (result->randomOption[0]) {
+		case openlr2::Random::No: *oDigit2 = 0; break;
+		case openlr2::Random::Mirror: *oDigit2 = 1; break;
+		case openlr2::Random::Random: *oDigit2 = 2; break;
+		case openlr2::Random::SRandom: *oDigit2 = 3; break;
+		case openlr2::Random::Scatter: *oDigit2 = 4; break;
+		case openlr2::Random::Converge: *oDigit2 = 5; break;
+		default: *oDigit2 = 0; break;
+		}
+		switch (result->randomOption[1]) {
+		case openlr2::Random::No: *oDigit3 = 0; break;
+		case openlr2::Random::Mirror: *oDigit3 = 1; break;
+		case openlr2::Random::Random: *oDigit3 = 2; break;
+		case openlr2::Random::SRandom: *oDigit3 = 3; break;
+		case openlr2::Random::Scatter: *oDigit3 = 4; break;
+		case openlr2::Random::Converge: *oDigit3 = 5; break;
+		default: *oDigit3 = 0; break;
+		}
 		*oDigit4 = result->dpflip ? 1 : 0;
 		*oSeed = result->rseed >= 0 ? result->rseed : 0; //TOFIX: 0 is a valid seed
 		return true;
