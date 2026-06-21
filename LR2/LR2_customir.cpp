@@ -80,7 +80,7 @@ public:
 	SendScoreStatus SendScore(const IRScoreV1& score);
 	openlr2::GetStatus GetResultRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus RestoreCachedRank(const char* songHash, openlr2::IRRankResult& out);
-	openlr2::GetStatus GetGhost(const char* songHash, int mode, int targetPlayerId, IRGhostResult& out);
+	openlr2::GetStatus GetGhost(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, IRGhostResult& out);
 
 	[[nodiscard]] const std::string& Name() const { return mName; };
 private:
@@ -153,7 +153,7 @@ openlr2::GetStatus CustomIR::RestoreCachedRank(const char* songHash, openlr2::IR
 	return mMethods.RestoreCachedRank(songHash, -1, out);
 }
 
-openlr2::GetStatus CustomIR::GetGhost(const char* songHash, int mode, int targetPlayerId, IRGhostResult& out) {
+openlr2::GetStatus CustomIR::GetGhost(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, IRGhostResult& out) {
 	if (mMethods.GetGhost == nullptr) return openlr2::GetStatus::Fail;
 	return mMethods.GetGhost(songHash, mode, targetPlayerId, out);
 }
@@ -261,10 +261,18 @@ bool CUSTOMIR_MANAGER::TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* o
 	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
 	if (irIt == mModules.end()) { return false; }
 
+	openlr2::GhostMode ghostMode = openlr2::GhostMode::Top; // default is "top"; as dream-pro default
+	switch (mode) {
+	case 0: ghostMode = openlr2::GhostMode::Target; break;
+	case 6: ghostMode = openlr2::GhostMode::Top; break;
+	case 7: ghostMode = openlr2::GhostMode::Next; break;
+	case 8: ghostMode = openlr2::GhostMode::Average; break;
+	}
+
 	const char* songHash = songmd5.body;
 
 	IRGhostResult result{};
-	switch ((*irIt)->GetGhost(songHash, mode, g.net.rankingData.target_ID, result)) {
+	switch ((*irIt)->GetGhost(songHash, ghostMode, g.net.rankingData.target_ID, result)) {
 	case openlr2::GetStatus::Ok:
 		break;
 	case openlr2::GetStatus::Retry:
@@ -275,7 +283,7 @@ bool CUSTOMIR_MANAGER::TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* o
 		return false;
 	}
 
-	if (mode == 8) {
+	if (ghostMode == openlr2::GhostMode::Average) {
 		*oName = "AVERAGE";
 		*oExscore = result.averageExscore;
 		return result.averageExscore > 0;

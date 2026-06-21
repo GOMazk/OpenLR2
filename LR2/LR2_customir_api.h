@@ -146,6 +146,13 @@ enum class InputType : int {
 	Midi,
 };
 
+enum class GhostMode : int {
+	Target = 0,
+	Top = 6,
+	Next = 7,
+	Average = 8,
+};
+
 enum class Lamp : int {
 	NoPlay = 0,
 	Fail,
@@ -259,5 +266,5 @@ struct MethodTable {
 	void* reserved5 = nullptr;
 	void* reserved6 = nullptr;
 	// This is called synchronously when play is entered to retrieve the ghost data for the play.
-	openlr2::GetStatus(OLR2_IR_API* GetGhost)(const char* songHash, int mode, int targetPlayerId, IRGhostResult& out) = nullptr;
+	openlr2::GetStatus(OLR2_IR_API* GetGhost)(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, IRGhostResult& out) = nullptr;
 };
