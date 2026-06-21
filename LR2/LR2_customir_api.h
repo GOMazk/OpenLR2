@@ -119,10 +119,10 @@ enum class SendScoreStatus: int {
 struct IRGhostResult {
 	std::string displayName;
 	std::string ghostData;
-	int optionDigit1{};
-	int optionDigit2{};
-	int optionDigit3{};
-	int optionDigit4{};
+	int gaugeOption{};
+	int p1randomOption{};
+	int p2randomOption{};
+	int dpFlipOption{};
 	int randomSeed{};
 	int averageExscore{};
 	bool hasPlay{};

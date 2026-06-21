@@ -284,10 +284,10 @@ bool CUSTOMIR_MANAGER::TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* o
 	*oName = result.displayName.c_str();
 	oData->fillzero();
 	if (!result.ghostData.empty()) oData->add(result.ghostData.c_str());
-	*oDigit1 = result.optionDigit1;
-	*oDigit2 = result.optionDigit2;
-	*oDigit3 = result.optionDigit3;
-	*oDigit4 = result.optionDigit4;
+	*oDigit1 = result.gaugeOption;
+	*oDigit2 = result.p1randomOption;
+	*oDigit3 = result.p2randomOption;
+	*oDigit4 = result.dpFlipOption;
 	*oSeed = result.randomSeed;
 	return true;
 }
