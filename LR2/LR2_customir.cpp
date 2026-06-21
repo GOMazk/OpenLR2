@@ -261,6 +261,7 @@ std::optional<IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(CSTR songmd5, in
 	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
 	if (irIt == mModules.end()) { return std::nullopt; }
 
+	openlr2::GhostMode ghostMode{};
 	switch (mode) {
 	case 0: ghostMode = openlr2::GhostMode::Target; break;
 	case 6: ghostMode = openlr2::GhostMode::Top; break;
@@ -268,7 +269,7 @@ std::optional<IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(CSTR songmd5, in
 	case 8: ghostMode = openlr2::GhostMode::Average; break;
 	default:
 		ErrorLogFmtAdd("Invalid ghost mode: %d\n", mode);
-		return false;
+		return std::nullopt;
 	}
 
 	const char* songHash = songmd5.body;
