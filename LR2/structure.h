@@ -1179,7 +1179,7 @@ struct PLAYSCORE {
 	char GetJudgeFromQueue(void);
 	int SetDefaultGhost(int target, int notes);
 	int SetGhost(int exscore, int notes, CSTR name);
-	CSTR EncodeGhostData(void);
+	CSTR EncodeGhostData(void) const;
 	int DecodeGhostData(CSTR data);
 	int SetScore(PLAYERSTATUS *pstat, char flagExpect);
 };

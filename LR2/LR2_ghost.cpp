@@ -167,7 +167,7 @@ int PLAYSCORE::SetGhost(int exscore, int notes, CSTR name){
 	return 1;
 }
 
-CSTR PLAYSCORE::EncodeGhostData(void) {
+CSTR PLAYSCORE::EncodeGhostData(void) const {
 	if (this->judge_queue_len == 0) return "GHOST_ERROR";
 
 	int rep = 0;
@@ -440,30 +440,6 @@ CSTR PLAYSCORE::EncodeGhostData(void) {
 
 		o++;
 	}
-
-	this->name.fillzero();
-	this->totalnotes = 0;
-	this->nownote = 0;
-	this->exscore = 0;
-	this->rate = 0;
-	this->judge_queue_len = 0;
-	this->judgeExpect[0] = 0;
-	this->judge[0] = 0;
-	this->judgeExpect[1] = 0;
-	this->judge[1] = 0;
-	this->judgeExpect[2] = 0;
-	this->judge[2] = 0;
-	this->judgeExpect[3] = 0;
-	this->judge[3] = 0;
-	this->judgeExpect[4] = 0;
-	this->judge[4] = 0;
-	this->judgeExpect[5] = 0;
-	this->judge[5] = 0;
-	this->ghostReadCount = 0;
-	this->judge_queue_capacity = 0;
-	free(this->judge_queue);
-	this->judge_queue = NULL;
-	this->judge_queue_capacity = 0;
 
 	return str;
 }
