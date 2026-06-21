@@ -26,7 +26,7 @@ static bool Login() {
 }
 
 static SendScoreStatus SendScore(const IRScoreV1& score) {
-    std::println(std::cout, "SendScore({{.song.hash={}}}, ghostData={})", score.song.hash, score.ghostData);
+    std::println(std::cout, "SendScore({{.song.hash={}}})", score.song.hash);
     constexpr const char* lamps[6] = { "NO PLAY", "FAIL", "EASY", "NORMAL", "HARD", "FULL COMBO" };
     if (score.settings.assist[score.state.player]) return SendScoreStatus::Fail;
     std::string filename = std::format("score{}.txt", State::scoresSaved);
