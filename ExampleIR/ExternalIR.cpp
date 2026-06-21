@@ -26,7 +26,7 @@ static bool Login() {
 }
 
 static SendScoreStatus SendScore(const IRScoreV1& score) {
-    std::println(std::cout, "SendScore({{.song.hash={}}})", score.song.hash);
+    std::println(std::cout, "SendScore({{.song.hash={}}}, ghostData={})", score.song.hash, score.ghostData);
     constexpr const char* lamps[6] = { "NO PLAY", "FAIL", "EASY", "NORMAL", "HARD", "FULL COMBO" };
     if (score.settings.assist[score.state.player]) return SendScoreStatus::Fail;
     std::string filename = std::format("score{}.txt", State::scoresSaved);
@@ -43,7 +43,8 @@ static SendScoreStatus SendScore(const IRScoreV1& score) {
         "fast: {}\n"
         "slow: {}\n"
         "cb: {}\n"
-        "lamp: {}\n",
+        "lamp: {}\n"
+        "ghostData: {}\n",
         score.song.hash, score.state.keymode, score.exscore,
         score.judgements_total.epg + score.judgements_total.lpg,
         score.judgements_total.egr + score.judgements_total.lgr,
@@ -51,7 +52,8 @@ static SendScoreStatus SendScore(const IRScoreV1& score) {
         score.judgements_total.ebd + score.judgements_total.lbd,
         score.judgements_total.epr + score.judgements_total.lpr,
         score.judgements_total.fast, score.judgements_total.slow, score.judgements_total.cb,
-        lamps[score.clearType]
+        lamps[score.clearType],
+        score.ghostData
     );
     std::ofstream dump(State::path / filename);
     dump << processedScore;
