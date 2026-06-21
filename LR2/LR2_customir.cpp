@@ -1,7 +1,6 @@
 #include "LR2_customir.h"
 
 #include "LR2_customir_api.h"
-#include "LR2_ghost.h"
 #include "LR2_songmanage.h"
 #include "structure.h"
 
@@ -623,12 +622,6 @@ IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player) {
 		CSTR ghostCstr = gameplay.p1Score.EncodeGhostData();
 		if (ghostCstr.length() > 0 && ghostCstr.isDiff("GHOST_ERROR") != 0) {
 			ghostData = ghostCstr.body;
-		}
-		else if (sql != nullptr) {
-			CSTR dbGhost = ReadGhost(sql, curSong.hash);
-			if (dbGhost.length() > 0) {
-				ghostData = dbGhost.body;
-			}
 		}
 	}
 }
