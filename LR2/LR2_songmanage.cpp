@@ -19,9 +19,6 @@
 
 int EnabledInsane;
 static constexpr auto&& IR_DERIVED_RECORD_HASH = "IR_DERIVED_RECORD";
-static constexpr auto&& IR_RECORD_COLUMNS =
-"clear, perfect, great, good, bad, poor, totalnotes, maxcombo, minbp, "
-"rank, rate, clear_db, clear_sd, clear_ex, op_best, rseed, complete";
 
 namespace {
 
@@ -229,9 +226,11 @@ bool ParseTextCommand(BMSMETA& meta, CSTR& line) {
 
 // IR Records are locally compared and updated to the original record in lr2.
 void LoadIRDerivedRecord(sqlite3* sql, SONGDATA& sd) {
-	const std::string sqlQuery = std::format("SELECT {} FROM imported_score WHERE hash = ?;", IR_RECORD_COLUMNS);
+	const char* sqlQuery = "SELECT clear, perfect, great, good, bad, poor, totalnotes, maxcombo, minbp, "
+		"rank, rate, clear_db, clear_sd, clear_ex, op_best, rseed, complete "
+		"FROM imported_score WHERE hash = ?";
 	sqlite3_stmt* stmt;
-	if (sqlite3_prepare_v2(sql, sqlQuery.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
+	if (sqlite3_prepare_v2(sql, sqlQuery, -1, &stmt, nullptr) == SQLITE_OK) {
 		sqlite3_bind_text(stmt, 1, sd.hash.body, -1, SQLITE_STATIC);
 		int stepResult = sqlite3_step(stmt);
 
