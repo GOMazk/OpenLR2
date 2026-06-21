@@ -269,9 +269,11 @@ bool CUSTOMIR_MANAGER::TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* o
 	case openlr2::GetStatus::Ok:
 		break;
 	case openlr2::GetStatus::Retry:
+		OverlayNotification("'%s' failed to get ghost data - ignoring retry\n", ir->Name().c_str());
 		return false;
 	case openlr2::GetStatus::Fail:
-		return false;
+		OverlayNotification("'%s' failed to get ghost data\n", ir->Name().c_str());
+	return false;
 	}
 
 	if (mode == 8) {
