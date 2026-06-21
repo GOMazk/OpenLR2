@@ -204,9 +204,7 @@ static void SendScoreMultiplexed(std::vector<std::future<void>>& mSendThreads, c
 	for (const auto& ir : irs) {
 		mSendThreads.push_back(std::async(
 					std::launch::async,
-					[](std::shared_ptr<CustomIR> ir, IRScoreV1 score) {
-						SendScoreWithBlockingRetry(*ir, score);
-					},
+					[](std::shared_ptr<CustomIR> ir, IRScoreV1 score){ SendScoreWithBlockingRetry(*ir, score); },
 					ir,
 					scoreV1));
 	}
@@ -669,7 +667,6 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 		return;
 	}
 
-	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
 	IRScoreInternal internal{ game, sql, player };
 	IRScoreV1 scoreV1;
 	internal.MakeScoreV1(scoreV1);
@@ -683,6 +680,7 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 				return module->Name() != mDisplayIr;
 				}) | std::ranges::to<std::vector>());
 
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
 	if (irIt == mModules.end()) {
 		return;
 	}
