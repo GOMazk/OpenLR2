@@ -250,7 +250,6 @@ struct MethodTable {
 	// Ran on its own thread at score result, both for normal plays and courses.
 	// This is called even with scores that wouldn't be sent to LR2IR or saved to the score.db, it's up to the module to
 	// filter them.
-	// score.ghostData is populated when live ghost capture succeeded; upload or ignore per IR policy.
 	// For soft errors, SendScore should return SendScoreStatus::Retry. The game will retry calling a sensible amount
 	// times with a backoff then.
 	SendScoreStatus(OLR2_IR_API* SendScoreV1)(const IRScoreV1& score) = nullptr;
