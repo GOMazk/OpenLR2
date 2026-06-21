@@ -107,7 +107,7 @@ struct IRScoreV1 {
 		std::array<int, 1000> exscore{};
 		std::array<int, 1000> rate{};
 	} graphs{};
-	std::string ghostData{};
+	std::string ghostData{}; // In LR2 ghost format. May not be present in some cases, e.g. course scores.
 };
 
 enum class SendScoreStatus: int {
