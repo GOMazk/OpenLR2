@@ -879,7 +879,7 @@ struct MYRANKING {
 	int clear_sd;
 	int clear_db;
 	int rseed;
-	CSTR ghost; /* struct to? */
+	CSTR _ghost; // TODO: remove when we throw out memset usage
 
 	void InitRanking();
 };

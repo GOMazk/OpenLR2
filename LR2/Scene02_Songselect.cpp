@@ -1179,7 +1179,7 @@ int CmdSearch(game *g, CSTR *cmd, sqlite3 *sql) {
 				g->net.myRanking.judge = meta.judge;
 				g->net.myRanking.inputtype = 2; //TOFIX: input device MIDI??
 
-				g->net.myRanking.ghost = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
+				const CSTR ghostString = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
 				CSTR scorehash;
 				cstrSprintf(&scorehash, "%s%s%d%d", g->net.IR_passMD5.body, g->net.myRanking.songMD5.body, g->net.myRanking.exscore, g->net.myRanking.clear);
 				scorehash = MD5str(scorehash);
@@ -1211,7 +1211,7 @@ int CmdSearch(game *g, CSTR *cmd, sqlite3 *sql) {
 						g->net.myRanking.line,
 						g->net.myRanking.judge,
 						g->net.myRanking.inputtype,
-						g->net.myRanking.ghost.body,
+						ghostString.body,
 						g->net.myRanking.rseed,
 						g->net.myRanking.clear_db,
 						g->net.myRanking.clear_ex,

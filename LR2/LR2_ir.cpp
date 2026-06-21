@@ -26,7 +26,7 @@ void MYRANKING::InitRanking() {
 	this->title.fillzero();
 	this->genre.fillzero();
 	this->artist.fillzero();
-	this->ghost.fillzero();
+	this->_ghost.fillzero();
 	this->maxbpm = 0;
 	this->minbpm = 0;
 	this->playlevel = 0;
