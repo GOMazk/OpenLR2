@@ -35,7 +35,7 @@ public:
 	void BeginResultIr(game& game, sqlite3* sql, int player);
 	void Initialize(const std::filesystem::path& directory, std::string activeProvider);
 	void Login();
-	bool TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* oData, CSTR* oName, int* oDigit1, int* oDigit2, int* oDigit3, int* oDigit4, int* oSeed, int* oExscore) const;
+	bool TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* oData, CSTR* oName, int* oGaugeOption, int* oP1randomOption, int* oP2randomOption, int* oDpFlipOption, int* oRandomSeed, int* oExscore) const;
 private:
 	std::vector<std::shared_ptr<CustomIR>> mModules;
 	std::vector<std::future<void>> mSendThreads;

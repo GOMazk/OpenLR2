@@ -274,7 +274,7 @@ void CUSTOMIR_MANAGER::Login() {
 	}
 }
 
-bool CUSTOMIR_MANAGER::TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* oData, CSTR* oName, int* oDigit1, int* oDigit2, int* oDigit3, int* oDigit4, int* oSeed, int* oExscore) const {
+bool CUSTOMIR_MANAGER::TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* oData, CSTR* oName, int* oGaugeOption, int* oP1randomOption, int* oP2randomOption, int* oDpFlipOption, int* oRandomSeed, int* oExscore) const {
 	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
 	if (irIt == mModules.end()) { return false; }
 
@@ -301,11 +301,11 @@ bool CUSTOMIR_MANAGER::TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* o
 	*oName = result.displayName.c_str();
 	oData->fillzero();
 	if (!result.ghostData.empty()) oData->add(result.ghostData.c_str());
-	*oDigit1 = result.gaugeOption;
-	*oDigit2 = result.p1randomOption;
-	*oDigit3 = result.p2randomOption;
-	*oDigit4 = result.dpFlipOption;
-	*oSeed = result.randomSeed;
+	*oGaugeOption = result.gaugeOption;
+	*oP1randomOption = result.p1randomOption;
+	*oP2randomOption = result.p2randomOption;
+	*oDpFlipOption = result.dpFlipOption;
+	*oRandomSeed = result.randomSeed;
 	return true;
 }
 
