@@ -1655,7 +1655,7 @@ int CMP_SongDataByDifficulty(const void *p1, const void *p2) {
 	return 0;
 }
 
-int CMP_SongDataByClear(const void *p1, const void *p2) {
+int CMP_SongDataByClear(const void* p1, const void* p2) {
 	SONGDATA* s1 = (SONGDATA*)p1;
 	SONGDATA* s2 = (SONGDATA*)p2;
 
@@ -1663,7 +1663,9 @@ int CMP_SongDataByClear(const void *p1, const void *p2) {
 		return s1->folderType - s2->folderType;
 	}
 
-	if (s1->mybest.clear != s2->mybest.clear) return s1->mybest.clear - s2->mybest.clear;
+	STATUS s1best = s1->myIRbest.has_value() ? s1->myIRbest.value() : s1->mybest;
+	STATUS s2best = s2->myIRbest.has_value() ? s2->myIRbest.value() : s2->mybest;
+	if (s1best.clear != s2best.clear) return s1best.clear - s2best.clear;
 
 	return CMP_SongDataByDifficulty(p1, p2);
 }
