@@ -730,7 +730,7 @@ bool NETWORK::GetTargetInfo(game& g, int mode, CSTR songmd5, CSTR *oData, CSTR *
 		*oDigit2 = static_cast<int>(result->randomOption[0]);
 		*oDigit3 = static_cast<int>(result->randomOption[1]);
 		*oDigit4 = result->dpflip ? 1 : 0;
-		*oSeed = result->rseed >= 0 ? result->rseed : 0;
+		*oSeed = result->rseed >= 0 ? result->rseed : 0; //TOFIX: 0 is a valid seed
 		return true;
 	}
 	if (isOnline) {
