@@ -101,7 +101,7 @@ static openlr2::GetStatus GetGhost(const char* songHash, openlr2::GhostMode mode
     out.gauge = openlr2::Gauge::Survival;
     out.randomOption = { openlr2::Random::No, openlr2::Random::No };
     out.dpflip = false;
-    out.rseed = 0;
+    out.rseed = 2179; // 1357246
     return openlr2::GetStatus::Ok;
 }
 
