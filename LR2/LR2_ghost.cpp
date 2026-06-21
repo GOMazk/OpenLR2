@@ -740,7 +740,7 @@ int WriteGhostInDatabase(sqlite3 *sql, CSTR songMD5, PLAYSCORE *score) {
 	return 0;
 }
 
-CSTR ReadGhost(sqlite3 *sql, CSTR songMD5, bool useImportedGhost = false) {
+CSTR ReadGhost(sqlite3 *sql, CSTR songMD5, bool useImportedGhost) {
 	ErrorLogAdd("データベースからゴーストを読み込みます\n");
 
 	const std::string query = std::format("SELECT ghost FROM {} WHERE hash = ?", useImportedGhost ? "imported_score" : "score");
@@ -766,7 +766,7 @@ CSTR ReadGhost(sqlite3 *sql, CSTR songMD5, bool useImportedGhost = false) {
 	return ghostdata;
 }
 
-int ReadGhostToScore(sqlite3 *sql, CSTR songMD5, PLAYSCORE *score, bool useImportedGhost = false) {
+int ReadGhostToScore(sqlite3 *sql, CSTR songMD5, PLAYSCORE *score, bool useImportedGhost) {
 	CSTR ghostdata = ReadGhost(sql, songMD5, useImportedGhost);
 
 	if (ghostdata.length() == 0) {

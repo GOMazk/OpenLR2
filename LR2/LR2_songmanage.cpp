@@ -19,6 +19,9 @@
 
 int EnabledInsane;
 static constexpr auto&& IR_DERIVED_RECORD_HASH = "IR_DERIVED_RECORD";
+static constexpr auto&& IR_RECORD_COLUMNS =
+"clear, perfect, great, good, bad, poor, totalnotes, maxcombo, minbp, "
+"rank, rate, clear_db, clear_sd, clear_ex, op_best, rseed, complete";
 
 namespace {
 
@@ -226,44 +229,44 @@ bool ParseTextCommand(BMSMETA& meta, CSTR& line) {
 
 // IR Records are locally compared and updated to the original record in lr2.
 void LoadIRDerivedRecord(sqlite3* sql, SONGDATA& sd) {
-	const char* sqlQuery = "SELECT * FROM imported_score WHERE hash = ?;";
+	const std::string sqlQuery = std::format("SELECT {} FROM imported_score WHERE hash = ?;", IR_RECORD_COLUMNS);
 	sqlite3_stmt* stmt;
-	if (sqlite3_prepare_v2(sql, sqlQuery, -1, &stmt, nullptr) == SQLITE_OK) {
+	if (sqlite3_prepare_v2(sql, sqlQuery.c_str(), -1, &stmt, nullptr) == SQLITE_OK) {
 		sqlite3_bind_text(stmt, 1, sd.hash.body, -1, SQLITE_STATIC);
 		int stepResult = sqlite3_step(stmt);
 
 		if (stepResult == SQLITE_ROW) {
 
-			STATUS& myIRbest = sd.myIRbest;
+			STATUS myIRbest;
 			const STATUS& mybest = sd.mybest;
 
-			int clear = sqlite3_column_int(stmt, 1);
-			int pgreat = sqlite3_column_int(stmt, 2);
-			int great = sqlite3_column_int(stmt, 3);
-			int good = sqlite3_column_int(stmt, 4);
-			int bad = sqlite3_column_int(stmt, 5);
-			int poor = sqlite3_column_int(stmt, 6);
-			int total_notes = sqlite3_column_int(stmt, 7);
-			int maxcombo = sqlite3_column_int(stmt, 8);
-			int minbp = sqlite3_column_int(stmt, 9);
-			int rank = sqlite3_column_int(stmt, 13);
-			int rate = sqlite3_column_int(stmt, 14);
-			int clear_db = sqlite3_column_int(stmt, 15);
-			int clear_sd = sqlite3_column_int(stmt, 19);
-			int clear_ex = sqlite3_column_int(stmt, 20);
-			int op_best = sqlite3_column_int(stmt, 21);
-			int rseed = sqlite3_column_int(stmt, 22);
-			int complete = sqlite3_column_int(stmt, 23);
+			int clear = sqlite3_column_int(stmt, 0);
+			int perfect = sqlite3_column_int(stmt, 1);
+			int great = sqlite3_column_int(stmt, 2);
+			int good = sqlite3_column_int(stmt, 3);
+			int bad = sqlite3_column_int(stmt, 4);
+			int poor = sqlite3_column_int(stmt, 5);
+			int totalnotes = sqlite3_column_int(stmt, 6);
+			int maxcombo = sqlite3_column_int(stmt, 7);
+			int minbp = sqlite3_column_int(stmt, 8);
+			int rank = sqlite3_column_int(stmt, 9);
+			int rate = sqlite3_column_int(stmt, 10);
+			int clear_db = sqlite3_column_int(stmt, 11);
+			int clear_sd = sqlite3_column_int(stmt, 12);
+			int clear_ex = sqlite3_column_int(stmt, 13);
+			int op_best = sqlite3_column_int(stmt, 14);
+			int rseed = sqlite3_column_int(stmt, 15);
+			int complete = sqlite3_column_int(stmt, 16);
 
-			int stat_score = (good + great * 2 + pgreat * 4) * 50000 / total_notes;
-			int stat_exscore = pgreat * 2 + great;
+			int stat_score = (good + great * 2 + perfect * 4) * 50000 / totalnotes;
+			int stat_exscore = perfect * 2 + great;
 			if (!minbp) {
 				minbp = bad + poor;
 			}
 
 			if (stat_exscore > mybest.stat_exscore)
 			{
-				myIRbest.stat_pgreat = pgreat;
+				myIRbest.stat_pgreat = perfect;
 				myIRbest.stat_great = great;
 				myIRbest.stat_good = good;
 				myIRbest.stat_bad = bad;
@@ -293,7 +296,7 @@ void LoadIRDerivedRecord(sqlite3* sql, SONGDATA& sd) {
 			}
 			
 			// total_notes can be zero
-			myIRbest.total_notes = std::max(mybest.total_notes, total_notes);
+			myIRbest.total_notes = std::max(mybest.total_notes, totalnotes);
 			// STATUS.clear == 5 means full combo
 			myIRbest.minbp = mybest.clear == 5 ? std::min(mybest.minbp, minbp) : minbp;
 			myIRbest.stat_maxcombo = std::max(mybest.stat_maxcombo, maxcombo);
@@ -310,7 +313,7 @@ void LoadIRDerivedRecord(sqlite3* sql, SONGDATA& sd) {
 			myIRbest.complete = std::max(mybest.complete, complete);
 
 			myIRbest.op_history = mybest.op_history;
-			sd.hasIRDerivedRecord = true;
+			sd.myIRbest = myIRbest;
 		}
 
 		sqlite3_finalize(stmt);
@@ -425,10 +428,9 @@ SONGDATA * COPY_SONGDATA(SONGDATA *s1, SONGDATA *s2){
 	s1->courseType = s2->courseType;
 	s1->courseIR = s2->courseIR;
 	s1->grHandle = s2->grHandle;
-	s1->hasIRDerivedRecord = s2->hasIRDerivedRecord;
 	
+	s1->myIRbest = s2->myIRbest;
 	memcpy(&s1->mybest, &s2->mybest, sizeof(STATUS));
-	memcpy(&s1->myIRbest, &s2->myIRbest, sizeof(STATUS));
 	memcpy(&s1->rivalRecord, &s2->rivalRecord, sizeof(STATUS));
 	return s1;
 }
@@ -494,14 +496,12 @@ int InitSongData(SONGDATA *song){
 	song->courseStageCount = 0;
 	song->coursePlayable = 0;
 	song->mybest = {};
-	song->myIRbest = {};
+	song->myIRbest.reset();
 	song->rivalRecord = {};
 	(song->mybest).minbp = -1;
-	(song->myIRbest).minbp = -1;
 	song->courseType = -1;
 	song->courseIR = 0;
 	song->courseReadOnly = 0;
-	song->hasIRDerivedRecord = false;
 	if (song->grHandle != -1) {
 		DeleteGraph(song->grHandle);
 	}
@@ -1024,12 +1024,13 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 			song->mybest.playcount += slist[i].mybest.playcount;
 			song->mybest.clearcount += slist[i].mybest.clearcount;
 			song->mybest.failcount += slist[i].mybest.failcount;
-			if (slist[i].hasIRDerivedRecord)
+			if (slist[i].myIRbest.has_value())
 			{
-				if (slist[i].myIRbest.clear != song->mybest.clear && slist[i].myIRbest.clear <= song->mybest.clear)
-					song->mybest.clear = slist[i].myIRbest.clear;
-				if (slist[i].myIRbest.clear_db != song->mybest.clear_db && slist[i].myIRbest.clear_db <= song->mybest.clear_db)
-					song->mybest.clear_db = slist[i].myIRbest.clear_db;
+				const STATUS& myIRbest = slist[i].myIRbest.value();
+				if (myIRbest.clear != song->mybest.clear && myIRbest.clear <= song->mybest.clear)
+					song->mybest.clear = myIRbest.clear;
+				if (myIRbest.clear_db != song->mybest.clear_db && myIRbest.clear_db <= song->mybest.clear_db)
+					song->mybest.clear_db = myIRbest.clear_db;
 			}
 			else
 			{
