@@ -296,9 +296,10 @@ void LoadIRDerivedRecord(sqlite3* sql, SONGDATA& sd) {
 			
 			// total_notes can be zero
 			myIRbest.total_notes = std::max(mybest.total_notes, totalnotes);
+
 			// STATUS.clear == 5 means full combo
 			myIRbest.minbp = mybest.clear == 5 ? std::min(mybest.minbp, minbp) : minbp;
-			myIRbest.stat_maxcombo = std::max(mybest.stat_maxcombo, maxcombo);
+			myIRbest.stat_maxcombo = mybest.clear == 5 ? totalnotes : std::max(mybest.stat_maxcombo, maxcombo);
 
 			// ignore playcounts
 			myIRbest.playcount = mybest.playcount;
