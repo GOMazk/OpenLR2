@@ -718,11 +718,11 @@ bool NETWORK::GetTargetInfo(game& g, int mode, CSTR songmd5, CSTR *oData, CSTR *
 		*oName = result->displayName.c_str();
 		oData->fillzero();
 		if (!result->ghostData.empty()) oData->add(result->ghostData.c_str());
-		*oDigit1 = result->gaugeOption;
-		*oDigit2 = result->p1randomOption;
-		*oDigit3 = result->p2randomOption;
-		*oDigit4 = result->dpFlipOption;
-		*oSeed = result->randomSeed;
+		*oDigit1 = result->gauge == openlr2::Gauge::Unknown ? 0 : static_cast<int>(result->gauge) - 1;
+		*oDigit2 = static_cast<int>(result->randomOption[0]);
+		*oDigit3 = static_cast<int>(result->randomOption[1]);
+		*oDigit4 = result->dpflip ? 1 : 0;
+		*oSeed = result->rseed >= 0 ? result->rseed : 0;
 		return true;
 	}
 	if (isOnline) {

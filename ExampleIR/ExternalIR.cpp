@@ -98,11 +98,10 @@ static openlr2::GetStatus GetGhost(const char* songHash, openlr2::GhostMode mode
     }
     out.displayName = "EXAMPLE";
     out.ghostData = "#EXAMPLE,1,0,LXZ,"; // this ghost will do almost perfect play.
-    out.gaugeOption = 1;
-    out.p1randomOption = 0;
-    out.p2randomOption = 0;
-    out.dpFlipOption = 0;
-    out.randomSeed = 0;
+    out.gauge = openlr2::Gauge::Survival;
+    out.randomOption = { openlr2::Random::No, openlr2::Random::No };
+    out.dpflip = false;
+    out.rseed = 0;
     return openlr2::GetStatus::Ok;
 }
 

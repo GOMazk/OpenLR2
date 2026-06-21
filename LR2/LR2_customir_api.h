@@ -116,17 +116,6 @@ enum class SendScoreStatus: int {
 	Fail,
 };
 
-struct IRGhostResult {
-	std::string displayName;
-	std::string ghostData;
-	int gaugeOption{};
-	int p1randomOption{};
-	int p2randomOption{};
-	int dpFlipOption{};
-	int randomSeed{};
-	int averageExscore{};
-};
-
 namespace openlr2 {
 
 enum class Gauge : int {
@@ -169,6 +158,25 @@ enum class Random : int {
 	SRandom,
 	Scatter, // AKA H-Random
 	Converge, // AKA All-Scratch
+};
+
+struct IRGhostResult {
+	std::string displayName;
+	std::string ghostData;
+	// P1 and P2 random layouts.
+	// Should be 0 if the layout is not known, or the corresponding \ref randomOption is not noran, mirror, or random.
+	// Examples: 1234567 54321 135792468.
+	std::array<int, 2> randomLayout{};
+	std::array<Random, 2> randomOption{};
+	Gauge gauge{Gauge::Unknown};
+	// LR2 rseed. If not known, the layout from \ref randomLayout can be used instead.
+	// -1 if unknown, 0-0x7ffe otherwise.
+	int rseed{-1};
+	bool dpflip{};
+	bool reserved1{};
+	bool reserved2{};
+	bool reserved3{};
+	int averageExscore{};
 };
 
 // \warning Experimental API, may be changed.
@@ -231,6 +239,8 @@ enum class GetStatus: int {
 };
 
 } // namespace openlr2
+
+using IRGhostResult = openlr2::IRGhostResult;
 
 struct MethodTable {
 	// Mandatory method. Module name must be unique among loaded modules.
