@@ -1026,7 +1026,7 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 			song->mybest.failcount += slist[i].mybest.failcount;
 			if (slist[i].myIRbest.has_value())
 			{
-				const STATUS& myIRbest = slist[i].myIRbest.value();
+				const STATUS& myIRbest = *(slist[i].myIRbest);
 				if (myIRbest.clear != song->mybest.clear && myIRbest.clear <= song->mybest.clear)
 					song->mybest.clear = myIRbest.clear;
 				if (myIRbest.clear_db != song->mybest.clear_db && myIRbest.clear_db <= song->mybest.clear_db)
@@ -1663,8 +1663,8 @@ int CMP_SongDataByClear(const void* p1, const void* p2) {
 		return s1->folderType - s2->folderType;
 	}
 
-	STATUS s1best = s1->myIRbest.has_value() ? s1->myIRbest.value() : s1->mybest;
-	STATUS s2best = s2->myIRbest.has_value() ? s2->myIRbest.value() : s2->mybest;
+	STATUS s1best = s1->myIRbest.has_value() ? *(s1->myIRbest) : s1->mybest;
+	STATUS s2best = s2->myIRbest.has_value() ? *(s2->myIRbest) : s2->mybest;
 	if (s1best.clear != s2best.clear) return s1best.clear - s2best.clear;
 
 	return CMP_SongDataByDifficulty(p1, p2);

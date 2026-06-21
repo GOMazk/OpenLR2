@@ -7,7 +7,6 @@
 #include "LR2_statplay.h"
 #include "Scenes.h"
 #include "filesystem.h"
-#include "filesystem.h"
 #include <DxLib/DxLib.h>
 
 #ifndef _WIN32
@@ -20,7 +19,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 	bool ret = (option >= 0);
 	if (!ret) option = -option;
 	const SONGDATA& songData = gs->sSelect.bmsList[gs->sSelect.cur_song];
-	const std::optional<STATUS>& myIRbest = songData.myIRbest;
+	const STATUS& mybest = songData.myIRbest.has_value() ? *songData.myIRbest : songData.mybest;
 
 	switch (option) {
 		case 0:
@@ -294,251 +293,247 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 100: //TODO : make more readable
 			if (gs->config.play.battle == 2) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_db : songData.mybest.clear_db) == 0) return ret;
+				if (mybest.clear_db == 0) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_ex : songData.mybest.clear_ex) == 0) return ret;
+				if (mybest.clear_ex == 0) return ret;
 			}
 			else if(gs->config.play.battle == 3){
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_sd : songData.mybest.clear_sd) == 0) return ret;
+				if (mybest.clear_sd == 0) return ret;
 			}
 			else {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) == 0) return ret;
+				if (mybest.clear == 0) return ret;
 			}
 			break;
 		case 101:
 			if (gs->config.play.battle == 2) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_db : songData.mybest.clear_db) == 1) return ret;
+				if (mybest.clear_db == 1) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_ex : songData.mybest.clear_ex) == 1) return ret;
+				if (mybest.clear_ex == 1) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_sd : songData.mybest.clear_sd) == 1) return ret;
+				if (mybest.clear_sd == 1) return ret;
 			}
 			else {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) == 1) return ret;
+				if (mybest.clear == 1) return ret;
 			}
 			break;
 		case 102:
 			if (gs->config.play.battle == 2) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_db : songData.mybest.clear_db) == 2) return ret;
+				if (mybest.clear_db == 2) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_ex : songData.mybest.clear_ex) == 2) return ret;
+				if (mybest.clear_ex == 2) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_sd : songData.mybest.clear_sd) == 2) return ret;
+				if (mybest.clear_sd == 2) return ret;
 			}
 			else {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) == 2) return ret;
+				if (mybest.clear == 2) return ret;
 			}
 			break;
 		case 103:
 			if (gs->config.play.battle == 2) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_db : songData.mybest.clear_db) == 3) return ret;
+				if (mybest.clear_db == 3) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_ex : songData.mybest.clear_ex) == 3) return ret;
+				if (mybest.clear_ex == 3) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_sd : songData.mybest.clear_sd) == 3) return ret;
+				if (mybest.clear_sd == 3) return ret;
 			}
 			else {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) == 3) return ret;
+				if (mybest.clear == 3) return ret;
 			}
 			break;
 		case 104:
 			if (gs->config.play.battle == 2) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_db : songData.mybest.clear_db) == 4) return ret;
+				if (mybest.clear_db == 4) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_ex : songData.mybest.clear_ex) == 4) return ret;
+				if (mybest.clear_ex == 4) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_sd : songData.mybest.clear_sd) == 4) return ret;
+				if (mybest.clear_sd == 4) return ret;
 			}
 			else {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) == 4) return ret;
+				if (mybest.clear == 4) return ret;
 			}
 			break;
 		case 105:
 			if (gs->config.play.battle == 2) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_db : songData.mybest.clear_db) == 5) return ret;
+				if (mybest.clear_db == 5) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_ex : songData.mybest.clear_ex) == 5) return ret;
+				if (mybest.clear_ex == 5) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear_sd : songData.mybest.clear_sd) == 5) return ret;
+				if (mybest.clear_sd == 5) return ret;
 			}
 			else {
 				if (songData.keymode <= 0) return !ret;
-				if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) == 5) return ret;
+				if (mybest.clear == 5) return ret;
 			}
 			break;
 
 		case 110:
-			if (songData.keymode > 0 &&
-				(myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) &&
-				(myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) > 7)
+			if (songData.keymode > 0 && mybest.clear && mybest.rank > 7)
 				return ret;
 			break;
 		
 		case 111:
 			if (songData.keymode <= 0) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) < 1) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) > 6 && (myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) < 8) return ret; //why???
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 6 && mybest.rank < 8) return ret; //why???
 			break;
 		case 112:
 			if (songData.keymode <= 0) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) < 1) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) > 5 && (myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) < 7) return ret;
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 5 && mybest.rank < 7) return ret;
 			break;
 		case 113:
 			if (songData.keymode <= 0) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) < 1) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) > 4 && (myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) < 6) return ret;
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 4 && mybest.rank < 6) return ret;
 			break;
 		case 114:
 			if (songData.keymode <= 0) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) < 1) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) > 3 && (myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) < 5) return ret;
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 3 && mybest.rank < 5) return ret;
 			break;
 		case 115:
 			if (songData.keymode <= 0) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) < 1) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) > 2 && (myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) < 4) return ret;
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 2 && mybest.rank < 4) return ret;
 			break;
 		case 116:
 			if (songData.keymode <= 0) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) < 1) return !ret;
-			if ((myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) > 1 && (myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) < 3) return ret;
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 1 && mybest.rank < 3) return ret;
 			break;
 		case 117:
-			if (songData.keymode > 0 &&
-				(myIRbest.has_value() ? songData.myIRbest.value().clear : songData.mybest.clear) > 0 &&
-				(myIRbest.has_value() ? songData.myIRbest.value().rank : songData.mybest.rank) < 2)
+			if (songData.keymode > 0 && mybest.clear > 0 && mybest.rank < 2)
 				return ret;
 			break;
 
 		case 118:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 1) return ret;
+			if (mybest.op_history & 1) return ret;
 			break;
 		case 119:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 2) return ret;
+			if (mybest.op_history & 2) return ret;
 			break;
 		case 120:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 4) return ret;
+			if (mybest.op_history & 4) return ret;
 			break;
 		case 121:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 8) return ret;
+			if (mybest.op_history & 8) return ret;
 			break;
 		case 122:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x10) return ret;
+			if (mybest.op_history & 0x10) return ret;
 			break;
 		case 123:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x20) return ret;
+			if (mybest.op_history & 0x20) return ret;
 			break;
 		case 124:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x40) return ret;
+			if (mybest.op_history & 0x40) return ret;
 			break;
 		case 125:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x80) return ret;
+			if (mybest.op_history & 0x80) return ret;
 			break;
 		case 126:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x100) return ret;
+			if (mybest.op_history & 0x100) return ret;
 			break;
 		case 127:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x200) return ret;
+			if (mybest.op_history & 0x200) return ret;
 			break;
 		case 128:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x400) return ret;
+			if (mybest.op_history & 0x400) return ret;
 			break;
 		case 129:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x800) return ret;
+			if (mybest.op_history & 0x800) return ret;
 			break;
 		case 130:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x1000) return ret;
+			if (mybest.op_history & 0x1000) return ret;
 			break;
 		case 131:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x2000) return ret;
+			if (mybest.op_history & 0x2000) return ret;
 			break;
 		case 132:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x4000) return ret;
+			if (mybest.op_history & 0x4000) return ret;
 			break;
 		case 133:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x8000) return ret;
+			if (mybest.op_history & 0x8000) return ret;
 			break;
 		case 134:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x10000) return ret;
+			if (mybest.op_history & 0x10000) return ret;
 			break;
 		case 135:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x20000) return ret;
+			if (mybest.op_history & 0x20000) return ret;
 			break;
 		case 136:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x40000) return ret;
+			if (mybest.op_history & 0x40000) return ret;
 			break;
 		case 137:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x80000) return ret;
+			if (mybest.op_history & 0x80000) return ret;
 			break;
 		case 138:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x100000) return ret;
+			if (mybest.op_history & 0x100000) return ret;
 			break;
 		case 139:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x200000) return ret;
+			if (mybest.op_history & 0x200000) return ret;
 			break;
 		case 140:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x400000) return ret;
+			if (mybest.op_history & 0x400000) return ret;
 			break;
 		case 141:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x800000) return ret;
+			if (mybest.op_history & 0x800000) return ret;
 			break;
 		case 142:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x1000000) return ret;
+			if (mybest.op_history & 0x1000000) return ret;
 			break;
 		case 143:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x2000000) return ret;
+			if (mybest.op_history & 0x2000000) return ret;
 			break;
 		case 144:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x4000000) return ret;
+			if (mybest.op_history & 0x4000000) return ret;
 			break;
 		case 145:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x8000000) return ret;
+			if (mybest.op_history & 0x8000000) return ret;
 			break;
 		case 146:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x10000000) return ret;
+			if (mybest.op_history & 0x10000000) return ret;
 			break;
 		case 147:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x20000000) return ret;
+			if (mybest.op_history & 0x20000000) return ret;
 			break;
 		case 148:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x40000000) return ret;
+			if (mybest.op_history & 0x40000000) return ret;
 			break;
 		case 149:
-			if ((myIRbest.has_value() ? songData.myIRbest.value().op_history : songData.mybest.op_history) & 0x80000000) return ret;
+			if (mybest.op_history & 0x80000000) return ret;
 			break;
 
 		case 150:
@@ -1424,7 +1419,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 
 		case 626:
-			if (myIRbest.has_value()) return ret;
+			if (songData.myIRbest.has_value()) return ret;
 			break;
 			
 		case 640:
@@ -1634,7 +1629,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 uint SetObjectValue_Num(game *g, int op) {
 	DATEDATA Date;
 	const SONGDATA& songData = g->sSelect.bmsList[g->sSelect.cur_song];
-	const std::optional<STATUS>& myIRbest = songData.myIRbest;
+	const STATUS& mybest = songData.myIRbest.has_value() ? *songData.myIRbest : songData.mybest;
 
 	switch (op) {
 		case 10:
@@ -1747,31 +1742,24 @@ uint SetObjectValue_Num(game *g, int op) {
 
 		case 70:
 			if (g->sSelect.metaSelected.keymode == 7 || g->sSelect.metaSelected.keymode == 14)
-				return myIRbest.has_value() ?
-				songData.myIRbest.value().stat_score : songData.mybest.stat_score;
+				return mybest.stat_score;
 			else
-				return myIRbest.has_value() ?
-				songData.myIRbest.value().stat_score / 20 * 10 : songData.mybest.stat_score / 20 * 10;
+				return mybest.stat_score / 20 * 10;
 		case 71:
-			return myIRbest.has_value() ? songData.myIRbest.value().stat_exscore : songData.mybest.stat_exscore;
+			return mybest.stat_exscore;
 		case 72:
-			return myIRbest.has_value() ? (songData.myIRbest.value().total_notes * 2) : (songData.mybest.total_notes * 2);
+			return mybest.total_notes * 2;
 		case 73:
-			if (myIRbest.has_value()) {
-				if (songData.myIRbest.value().total_notes)
-					return (songData.myIRbest.value().stat_exscore * 100) / (songData.myIRbest.value().total_notes * 2);
-				if (songData.mybest.total_notes)
-					return (songData.mybest.stat_exscore * 100) / (songData.mybest.total_notes * 2);
+			if (mybest.total_notes) {
+				return (mybest.stat_exscore * 100) / (mybest.total_notes * 2);
 			}
 			break;
 		case 74:
-			return myIRbest.has_value() ? songData.myIRbest.value().total_notes : songData.mybest.total_notes;
+			return mybest.total_notes;
 		case 75:
-			return myIRbest.has_value() ? songData.myIRbest.value().stat_maxcombo : songData.mybest.stat_maxcombo;
+			return mybest.stat_maxcombo;
 		case 76:
-			return myIRbest.has_value() ?
-				(songData.myIRbest.value().minbp != -1) * songData.myIRbest.value().minbp :
-				(songData.mybest.minbp != -1) * songData.mybest.minbp;
+			return (mybest.minbp != -1) * mybest.minbp;
 		case 77:
 			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount;
 		case 78:
@@ -1779,44 +1767,34 @@ uint SetObjectValue_Num(game *g, int op) {
 		case 79:
 			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount - g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount;
 		case 80:
-			return myIRbest.has_value() ? songData.myIRbest.value().stat_pgreat : songData.mybest.stat_pgreat;
+			return mybest.stat_pgreat;
 		case 81:
-			return myIRbest.has_value() ? songData.myIRbest.value().stat_great : songData.mybest.stat_great;
+			return mybest.stat_great;
 		case 82:
-			return myIRbest.has_value() ? songData.myIRbest.value().stat_good : songData.mybest.stat_good;
+			return mybest.stat_good;
 		case 83:
-			return myIRbest.has_value() ? songData.myIRbest.value().stat_bad : songData.mybest.stat_bad;
+			return mybest.stat_bad;
 		case 84:
-			return myIRbest.has_value() ? songData.myIRbest.value().stat_poor : songData.mybest.stat_poor;
+			return mybest.stat_poor;
 		case 85:
-			if (myIRbest.has_value() && songData.myIRbest.value().total_notes)
-				return (songData.myIRbest.value().stat_pgreat * 100) / songData.myIRbest.value().total_notes;
-			if (songData.mybest.total_notes)
-				return (songData.mybest.stat_pgreat * 100) / songData.mybest.total_notes;
+			if (mybest.total_notes)
+				return (mybest.stat_pgreat * 100) / mybest.total_notes;
 			break;
 		case 86:
-			if (myIRbest.has_value() && songData.myIRbest.value().total_notes)
-				return (songData.myIRbest.value().stat_great * 100) / songData.myIRbest.value().total_notes;
-			if (songData.mybest.total_notes)
-				return (songData.mybest.stat_great * 100) / songData.mybest.total_notes;
+			if (mybest.total_notes)
+				return (mybest.stat_great * 100) / mybest.total_notes;
 			break;
 		case 87:
-			if (myIRbest.has_value() && songData.myIRbest.value().total_notes)
-				return (songData.myIRbest.value().stat_good * 100) / songData.myIRbest.value().total_notes;
-			if (songData.mybest.total_notes)
-				return (songData.mybest.stat_good * 100) / songData.mybest.total_notes;
+			if (mybest.total_notes)
+				return (mybest.stat_good * 100) / mybest.total_notes;
 			break;
 		case 88:
-			if (myIRbest.has_value() && songData.myIRbest.value().total_notes)
-				return (songData.myIRbest.value().stat_bad * 100) / songData.myIRbest.value().total_notes;
-			if (songData.mybest.total_notes)
-				return (songData.mybest.stat_bad * 100) / songData.mybest.total_notes;
+			if (mybest.total_notes)
+				return (mybest.stat_bad * 100) / mybest.total_notes;
 			break;
 		case 89:
-			if (myIRbest.has_value() && songData.myIRbest.value().total_notes)
-				return (songData.myIRbest.value().stat_poor * 100) / songData.myIRbest.value().total_notes;
-			if (songData.mybest.total_notes)
-				return (songData.mybest.stat_poor * 100) / songData.mybest.total_notes;
+			if (mybest.total_notes)
+				return (mybest.stat_poor * 100) / mybest.total_notes;
 			break;
 		case 90:
 		case 290:
@@ -1831,9 +1809,7 @@ uint SetObjectValue_Num(game *g, int op) {
 		case 94:
 			return songData.mybest.IRclearRate;
 		case 95:
-			return myIRbest.has_value() ?
-				songData.myIRbest.value().stat_exscore - songData.rivalRecord.stat_exscore : 
-				songData.mybest.stat_exscore - songData.rivalRecord.stat_exscore;
+			return mybest.stat_exscore - songData.rivalRecord.stat_exscore;
 		case 96:
 			return songData.level;
 
@@ -2256,7 +2232,7 @@ int SetObjectValue_Bargraph(game *g) {
 
 	float max, val;
 	const SONGDATA& songData = g->sSelect.bmsList[g->sSelect.cur_song];
-	const std::optional<STATUS>& myIRbest = songData.myIRbest;
+	const STATUS& mybest = songData.myIRbest.has_value() ? *songData.myIRbest : songData.mybest;
 
 	for (int i = 0; i < g->skstruct.otherObject[5].srcSize; i++) {
 
@@ -2443,49 +2419,49 @@ int SetObjectValue_Bargraph(game *g) {
 					break;
 
 				case 40:
-					max = myIRbest.has_value() ? songData.myIRbest.value().total_notes : songData.mybest.total_notes;
-					val = myIRbest.has_value() ? songData.myIRbest.value().stat_pgreat : songData.mybest.stat_pgreat;
+					max = mybest.total_notes;
+					val = mybest.stat_pgreat;
 					break;
 
 				case 41:
-					max = myIRbest.has_value() ? songData.myIRbest.value().total_notes : songData.mybest.total_notes;
-					val = myIRbest.has_value() ? songData.myIRbest.value().stat_great : songData.mybest.stat_great;
+					max = mybest.total_notes;
+					val = mybest.stat_great;
 					break;
 
 				case 42:
-					max = myIRbest.has_value() ? songData.myIRbest.value().total_notes : songData.mybest.total_notes;
-					val = myIRbest.has_value() ? songData.myIRbest.value().stat_good : songData.mybest.stat_good;
+					max = mybest.total_notes;
+					val = mybest.stat_good;
 					break;
 
 				case 43:
-					max = myIRbest.has_value() ? songData.myIRbest.value().total_notes : songData.mybest.total_notes;
-					val = myIRbest.has_value() ? songData.myIRbest.value().stat_bad : songData.mybest.stat_bad;
+					max = mybest.total_notes;
+					val = mybest.stat_bad;
 					break;
 
 				case 44:
-					max = myIRbest.has_value() ? songData.myIRbest.value().total_notes : songData.mybest.total_notes;
-					val = myIRbest.has_value() ? songData.myIRbest.value().stat_poor : songData.mybest.stat_poor;
+					max = mybest.total_notes;
+					val = mybest.stat_poor;
 					break;
 
 				case 45:
-					max = myIRbest.has_value() ? songData.myIRbest.value().total_notes : songData.mybest.total_notes;
-					val = myIRbest.has_value() ? songData.myIRbest.value().stat_maxcombo : songData.mybest.stat_maxcombo;
+					max = mybest.total_notes;
+					val = mybest.stat_maxcombo;
 					break;
 
 				case 46:
 					if ((songData.keymode == 7) || (songData.keymode == 0xe)) {
 						max = 20000.0;
-						val = myIRbest.has_value() ? songData.myIRbest.value().stat_score : songData.mybest.stat_score;
+						val = mybest.stat_score;
 					}
 					else {
 						max = 10000.0;
-						val = myIRbest.has_value() ? songData.myIRbest.value().stat_score : songData.mybest.stat_score;
+						val = mybest.stat_score;
 					}
 					break;
 
 				case 47:
-					max = myIRbest.has_value() ? (songData.myIRbest.value().total_notes * 2) : (songData.mybest.total_notes * 2);
-					val = myIRbest.has_value() ? songData.myIRbest.value().stat_exscore : songData.mybest.stat_exscore;
+					max = mybest.total_notes * 2;
+					val = mybest.stat_exscore;
 					break;
 			}
 
