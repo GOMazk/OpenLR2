@@ -621,10 +621,7 @@ IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player) {
 	}
 
 	if (!courseScore && _player == 0) {
-		CSTR ghostCstr = gameplay.p1Score.EncodeGhostData();
-		if (ghostCstr.length() > 0 && ghostCstr.isDiff("GHOST_ERROR") != 0) {
-			ghostData = ghostCstr.body;
-		}
+		ghostData = gameplay.resultGhostForIr;
 	}
 }
 
@@ -669,9 +666,6 @@ void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
 	IRScoreInternal internal{ game, sql, player };
 	IRScoreV1 scoreV1;
 	internal.MakeScoreV1(scoreV1);
-	if (player == 0) {
-		game.gameplay.p1Score.InitJudgeQueue();
-	}
 
 	SendScoreMultiplexed(
 			mSendThreads, scoreV1,

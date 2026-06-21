@@ -6,6 +6,11 @@
 
 int ProcS_Result(game *g, sqlite3 *sql) {
 
+	g->gameplay.resultGhostForIr.clear();
+	CSTR ghostCstr = g->gameplay.p1Score.EncodeGhostData();
+	if (ghostCstr.length() > 0 && ghostCstr.isDiff("GHOST_ERROR") != 0) {
+		g->gameplay.resultGhostForIr = ghostCstr.body;
+	}
 	g->net.customIR.BeginResultIr(*g, sql, 0);
 
 	LoadSceneG(g, &g->skstruct, SKINTYPE_RESULT);
