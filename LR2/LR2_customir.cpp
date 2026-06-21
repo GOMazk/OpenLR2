@@ -1,6 +1,7 @@
 #include "LR2_customir.h"
 
 #include "LR2_customir_api.h"
+#include "LR2_ghost.h"
 #include "LR2_songmanage.h"
 #include "structure.h"
 
@@ -77,7 +78,7 @@ public:
 	CustomIR(const std::filesystem::path& directory);
 	bool Initialize();
 	bool Login();
-	SendScoreStatus SendScore(const IRScoreV1& score);
+	SendScoreStatus SendScore(const IRScoreV1& score) const;
 	openlr2::GetStatus GetResultRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus RestoreCachedRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus FetchIrGhost(const IRScoreV1& score, int mode, int targetPlayerId, IRGhostResult& out) const;
@@ -138,7 +139,7 @@ bool CustomIR::Login() {
 	return mMethods.LoginV1();
 }
 
-SendScoreStatus CustomIR::SendScore(const IRScoreV1& score) {
+SendScoreStatus CustomIR::SendScore(const IRScoreV1& score) const {
 	if (mMethods.SendScoreV1 == nullptr) return SendScoreStatus::Fail;
 	return mMethods.SendScoreV1(score);
 }
@@ -378,6 +379,7 @@ struct IRScoreInternal {
 	double rate{};
 	int clearType{};
 	int inputType{};
+	std::string ghostData{};
 	struct GRAPHDATA {
 		std::array<std::array<int, 1000>, 6> hp{};
 		std::array<int, 1000> combo{};
@@ -481,6 +483,7 @@ void IRScoreInternal::MakeScoreV1(IRScoreV1& scoreOut) const {
 	scoreOut.graphs.combo = graphs.combo;
 	scoreOut.graphs.exscore = graphs.exscore;
 	scoreOut.graphs.rate = graphs.rate;
+	scoreOut.ghostData = ghostData;
 }
 
 IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player) {
@@ -614,6 +617,19 @@ IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player) {
 		memcpy(graphs.combo.data(), statgraph.combo, graphs.combo.size());
 		memcpy(graphs.exscore.data(), statgraph.exscore, graphs.exscore.size());
 		memcpy(graphs.rate.data(), gameplay.rategraph[_player].val, graphs.rate.size());
+	}
+
+	if (!courseScore && _player == 0) {
+		CSTR ghostCstr = gameplay.p1Score.EncodeGhostData();
+		if (ghostCstr.length() > 0 && ghostCstr.isDiff("GHOST_ERROR") != 0) {
+			ghostData = ghostCstr.body;
+		}
+		else if (sql != nullptr) {
+			CSTR dbGhost = ReadGhost(sql, curSong.hash);
+			if (dbGhost.length() > 0) {
+				ghostData = dbGhost.body;
+			}
+		}
 	}
 }
 
