@@ -1423,7 +1423,7 @@ struct NETWORK {
 	NETWORK();
 	int WS_clean();
 	int Login(int isDirectPlay);
-	int MakeIRsendScoreThread();
+	int MakeIRsendScoreThread(CSTR ghostString);
 };
 
 struct game {

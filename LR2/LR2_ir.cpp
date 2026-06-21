@@ -719,7 +719,7 @@ bool NETWORK::GetTargetInfo(game& g, int mode, CSTR songmd5, CSTR *oData, CSTR *
 	return false;
 }
 
-static void ThreadProc_IRsendScore(NETWORK *ir) {
+static void ThreadProc_IRsendScore(NETWORK *ir, CSTR ghostString) {
 	ErrorLogAdd("LR2IRにスコアを送信します。\n");
 	CSTR scorehash;
 	cstrSprintf(&scorehash, "%s%s%d%d", ir->IR_passMD5.body, ir->myRanking.songMD5.body,ir->myRanking.exscore, ir->myRanking.clear);
@@ -744,7 +744,7 @@ static void ThreadProc_IRsendScore(NETWORK *ir) {
 			ir->myRanking.clearcount, ir->myRanking.rate, ir->myRanking.minbp,
 			ir->myRanking.totalnotes, ir->myRanking.opt_history,
 			ir->myRanking.opt_this, ir->myRanking.line, ir->myRanking.judge,
-			ir->myRanking.inputtype, ir->myRanking.ghost.body,
+			ir->myRanking.inputtype, ghostString.body,
 			ir->myRanking.rseed, ir->myRanking.clear_db, ir->myRanking.clear_ex,
 			ir->myRanking.clear_sd, scorehash.body);
 	ir->target_URL = "http://www.dream-pro.info/~lavalse/LR2IR/2/score.cgi";
@@ -947,7 +947,7 @@ int NETWORK::Login(int isDirectPlay) {
 	return -3;
 }
 
-int NETWORK::MakeIRsendScoreThread() {
+int NETWORK::MakeIRsendScoreThread(CSTR ghostString) {
 	GetTimeWrap();
 	this->waitForHandle = true;
 	if (hHandle.joinable()) {
@@ -956,7 +956,7 @@ int NETWORK::MakeIRsendScoreThread() {
 	this->waitForHandle = false;
 	this->rankingData.Init();
 	this->IRstatus = 1;
-	this->hHandle = std::jthread(ThreadProc_IRsendScore, this);
+	this->hHandle = std::jthread(ThreadProc_IRsendScore, this, ghostString);
 	return 0;
 }
 

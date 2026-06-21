@@ -767,8 +767,8 @@ int SaveResult(game *g, sqlite3* sql) {
 				g->net.myRanking.judge = meta.judge;
 
 				g->net.myRanking.inputtype = DetermineResultPlayDevice(&g->KeyInput);
-				g->net.myRanking.ghost = ReadGhost(sql, bms.hash);
-				g->net.MakeIRsendScoreThread();
+				const CSTR ghostString = ReadGhost(sql, bms.hash);
+				g->net.MakeIRsendScoreThread(ghostString);
 
 				if (!g->config.network.displayIr.length()) {
 					bms.mybest.IRranking = g->net.rankingData.myRanking;
@@ -1101,8 +1101,8 @@ int SaveResult(game *g, sqlite3* sql) {
 							g->net.myRanking.judge = meta.judge;
 
 							g->net.myRanking.inputtype = DetermineResultPlayDevice(&g->KeyInput);
-							g->net.myRanking.ghost = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
-							g->net.MakeIRsendScoreThread();
+							const CSTR ghostString = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
+							g->net.MakeIRsendScoreThread(ghostString);
 
 							if (!g->config.network.displayIr.length()) {
 								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
@@ -1148,8 +1148,8 @@ int SaveResult(game *g, sqlite3* sql) {
 							g->net.myRanking.line = g->sSelect.bmsList[g->sSelect.cur_song].keymode;
 							
 							g->net.myRanking.inputtype = DetermineResultPlayDevice(&g->KeyInput);
-							g->net.myRanking.ghost = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
-							g->net.MakeIRsendScoreThread();
+							const CSTR ghostString = ReadGhost(sql, g->sSelect.bmsList[g->sSelect.cur_song].hash);
+							g->net.MakeIRsendScoreThread(ghostString);
 
 							if (!g->config.network.displayIr.length()) {
 								g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
