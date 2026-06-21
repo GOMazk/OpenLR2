@@ -294,23 +294,23 @@ void LoadIRDerivedRecord(sqlite3* sql, SONGDATA& sd) {
 				myIRbest.stat_score = mybest.stat_score;
 			}
 			
-			// total_notes can be zero
-			myIRbest.total_notes = std::max(mybest.total_notes, totalnotes);
-
-			// STATUS.clear == 5 means full combo
-			myIRbest.minbp = mybest.clear == 5 ? std::min(mybest.minbp, minbp) : minbp;
-			myIRbest.stat_maxcombo = mybest.clear == 5 ? totalnotes : std::max(mybest.stat_maxcombo, maxcombo);
-
-			// ignore playcounts
-			myIRbest.playcount = mybest.playcount;
-			myIRbest.clearcount = mybest.clearcount;
-			myIRbest.failcount = mybest.failcount;
-
 			myIRbest.clear = std::max(mybest.clear, clear);
 			myIRbest.clear_db = std::max(mybest.clear_db, clear_db);
 			myIRbest.clear_sd = std::max(mybest.clear_sd, clear_sd);
 			myIRbest.clear_ex = std::max(mybest.clear_ex, clear_ex);
 			myIRbest.complete = std::max(mybest.complete, complete);
+
+			// total_notes can be zero
+			myIRbest.total_notes = std::max(mybest.total_notes, totalnotes);
+
+			// STATUS.clear == 5 means full combo
+			myIRbest.minbp = myIRbest.clear == 5 ? std::min(mybest.minbp, minbp) : minbp;
+			myIRbest.stat_maxcombo = myIRbest.clear == 5 ? totalnotes : std::max(mybest.stat_maxcombo, maxcombo);
+
+			// ignore playcounts
+			myIRbest.playcount = mybest.playcount;
+			myIRbest.clearcount = mybest.clearcount;
+			myIRbest.failcount = mybest.failcount;
 
 			myIRbest.op_history = mybest.op_history;
 			sd.myIRbest = myIRbest;
