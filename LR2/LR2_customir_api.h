@@ -115,6 +115,18 @@ enum class SendScoreStatus: int {
 	Fail,
 };
 
+struct IRGhostResult {
+	std::string displayName;
+	std::string ghostData;
+	int optionDigit1{};
+	int optionDigit2{};
+	int optionDigit3{};
+	int optionDigit4{};
+	int randomSeed{};
+	int averageExscore{};
+	bool hasPlay{};
+};
+
 namespace openlr2 {
 
 enum class Gauge : int {
@@ -245,4 +257,6 @@ struct MethodTable {
 	void* reserved4 = nullptr;
 	void* reserved5 = nullptr;
 	void* reserved6 = nullptr;
+	// dream-pro getghost.cgi parity: mode 0=target, 6=top, 7=next, 8=average.
+	openlr2::GetStatus(OLR2_IR_API* GetGhost)(const IRScoreV1& score, int mode, int targetPlayerId, IRGhostResult& out) = nullptr;
 };

@@ -87,6 +87,23 @@ static openlr2::GetStatus GetResultRank(const char* songHash, int /*reserved*/, 
     return openlr2::GetStatus::Ok;
 }
 
+static openlr2::GetStatus GetGhost(const IRScoreV1& score, int mode, int /*targetPlayerId*/, IRGhostResult& out) {
+    std::println(std::cout, "GetGhost({{.song.hash={}}}, mode={})", score.song.hash, mode);
+    out = {};
+    if (mode == 8) {
+        out.averageExscore = 800;
+        return openlr2::GetStatus::Ok;
+    }
+    out.displayName = "EXAMPLE";
+    out.ghostData = "#EXAMPLE,1,0,LXZ,"; // this ghost will do almost perfect play.
+    out.optionDigit1 = 1;
+    out.optionDigit2 = 0;
+    out.optionDigit3 = 0;
+    out.optionDigit4 = 0;
+    out.randomSeed = 0;
+    return openlr2::GetStatus::Ok;
+}
+
 extern "C" OLR2_IR_EXPORT void GetMethodTable(MethodTable& table) {
     // Fill out the pointers to methods you want to use. Leave them at nullptr if you don't want to use them.
     // As API gets updated, new methods may appear available at MethodTable, but old ones will never be removed or their
@@ -96,6 +113,7 @@ extern "C" OLR2_IR_EXPORT void GetMethodTable(MethodTable& table) {
     table.SendScoreV1 = &SendScore;
     table.GetResultRank = &GetResultRank;
     table.RestoreCachedRank = &RestoreCachedRank;
+    table.GetGhost = &GetGhost;
 }
 
 #ifdef _WIN32

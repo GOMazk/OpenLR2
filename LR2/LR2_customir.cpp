@@ -80,6 +80,7 @@ public:
 	SendScoreStatus SendScore(const IRScoreV1& score);
 	openlr2::GetStatus GetResultRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus RestoreCachedRank(const char* songHash, openlr2::IRRankResult& out);
+	openlr2::GetStatus FetchIrGhost(const IRScoreV1& score, int mode, int targetPlayerId, IRGhostResult& out) const;
 
 	[[nodiscard]] const std::string& Name() const { return mName; };
 private:
@@ -150,6 +151,11 @@ openlr2::GetStatus CustomIR::GetResultRank(const char* songHash, openlr2::IRRank
 openlr2::GetStatus CustomIR::RestoreCachedRank(const char* songHash, openlr2::IRRankResult& out) {
 	if (mMethods.RestoreCachedRank == nullptr) return openlr2::GetStatus::Fail;
 	return mMethods.RestoreCachedRank(songHash, -1, out);
+}
+
+openlr2::GetStatus CustomIR::FetchIrGhost(const IRScoreV1& score, int mode, int targetPlayerId, IRGhostResult& out) const {
+	if (mMethods.GetGhost == nullptr) return openlr2::GetStatus::Fail;
+	return mMethods.GetGhost(score, mode, targetPlayerId, out);
 }
 
 CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
@@ -249,6 +255,39 @@ void CUSTOMIR_MANAGER::Login() {
 			OverlayNotification("[%s] Failed to log in\n", ir->Name().c_str());
 		}
 	}
+}
+
+bool CUSTOMIR_MANAGER::TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* oData, CSTR* oName, int* oDigit1, int* oDigit2, int* oDigit3, int* oDigit4, int* oSeed, int* oExscore) const {
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt == mModules.end()) { return false; }
+
+	IRScoreV1 score{};
+	score.song.hash = songmd5.body != nullptr ? songmd5.body : "";
+
+	IRGhostResult result{};
+	switch ((*irIt)->FetchIrGhost(score, mode, g.net.rankingData.target_ID, result)) {
+	case openlr2::GetStatus::Ok:
+		break;
+	case openlr2::GetStatus::Retry:
+		return false;
+	case openlr2::GetStatus::Fail:
+		return false;
+	}
+
+	if (mode == 8) {
+		*oName = "AVERAGE";
+		*oExscore = result.averageExscore;
+		return result.averageExscore > 0;
+	}
+	*oName = result.displayName.c_str();
+	oData->fillzero();
+	if (!result.ghostData.empty()) oData->add(result.ghostData.c_str());
+	*oDigit1 = result.optionDigit1;
+	*oDigit2 = result.optionDigit2;
+	*oDigit3 = result.optionDigit3;
+	*oDigit4 = result.optionDigit4;
+	*oSeed = result.randomSeed;
+	return true;
 }
 
 struct IRScoreInternal {

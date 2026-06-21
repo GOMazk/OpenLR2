@@ -6,6 +6,7 @@
 #include "En_timer.h"
 #include "En_xml.h"
 #include "LR2_ir.h"
+#include "LR2_customir.h"
 #include "LR2_version.h"
 #include "filesystem.h"
 #include "tinyxml/tinyxml.h"
@@ -629,13 +630,17 @@ int NETWORK::HTTPrequest() {
 #endif // _WIN32
 }
 
-void NETWORK::WaitAndInitRanking() {
+void NETWORK::WaitForRankingHandle() {
 	GetTimeWrap();
 	this->waitForHandle = true;
 	if (hHandle.joinable()) {
 		hHandle.join();
 	}
 	this->waitForHandle = false;
+}
+
+void NETWORK::WaitAndInitRanking() {
+	WaitForRankingHandle();
 	this->rankingData.Init();
 }
 
@@ -700,6 +705,18 @@ int OpenWebRanking(CSTR songmd5){
 	cstrSprintf(&url, "xdg-open \"http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?mode=ranking&bmsmd5=%s#status&\" &", songmd5.body);
 	return system(url.body) == 0;
 #endif
+}
+
+bool NETWORK::GetTargetInfo(game& g, int mode, CSTR songmd5, CSTR *oData, CSTR *oName, int *oDigit1, int *oDigit2, int *oDigit3, int *oDigit4, int *oSeed, int *oExscore) {
+	WaitForRankingHandle();
+	if (customIR.TryGetTargetInfo(g, songmd5, mode, oData, oName, oDigit1, oDigit2, oDigit3, oDigit4, oSeed, oExscore)) {
+		return true;
+	}
+	if (isOnline) {
+		WaitAndInitRanking();
+		return GetTargetInfo(mode, songmd5, oData, oName, oDigit1, oDigit2, oDigit3, oDigit4, oSeed, oExscore) != 0;
+	}
+	return false;
 }
 
 static void ThreadProc_IRsendScore(NETWORK *ir) {
