@@ -96,10 +96,10 @@ static openlr2::GetStatus GetGhost(const IRScoreV1& score, int mode, int /*targe
     }
     out.displayName = "EXAMPLE";
     out.ghostData = "#EXAMPLE,1,0,LXZ,"; // this ghost will do almost perfect play.
-    out.optionDigit1 = 1;
-    out.optionDigit2 = 0;
-    out.optionDigit3 = 0;
-    out.optionDigit4 = 0;
+    out.gaugeOption = 1;
+    out.p1randomOption = 0;
+    out.p2randomOption = 0;
+    out.dpFlipOption = 0;
     out.randomSeed = 0;
     return openlr2::GetStatus::Ok;
 }
