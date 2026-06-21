@@ -172,25 +172,20 @@ CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
 static void SendScoreWithBlockingRetry(CustomIR& ir, const IRScoreV1& scoreV1) {
 	constexpr int tryMax = 6;
 	int tryCount = 1;
-	bool finished = false;
-	while (!finished && tryCount <= tryMax) {
+	while (tryCount <= tryMax) {
 		switch (ir.SendScore(scoreV1)) {
 		case SendScoreStatus::Fail:
 			OverlayNotification("'%s' failed to submit score\n", ir.Name().c_str());
-			finished = true;
-			break;
+			return;
 		case SendScoreStatus::Ok:
-			finished = true;
-			break;
+			return;
 		case SendScoreStatus::Retry:
 			std::this_thread::sleep_for(std::chrono::seconds(static_cast<int>(std::pow(4, tryCount))));
 			tryCount++;
 			break;
 		}
 	}
-	if (!finished) {
-		OverlayNotification("'%s' failed to submit score after %d attempts\n", ir.Name().c_str(), tryCount);
-	}
+	OverlayNotification("'%s' failed to submit score after %d attempts\n", ir.Name().c_str(), tryCount);
 }
 static void SendScoreMultiplexed(std::vector<std::future<void>>& mSendThreads, const IRScoreV1& scoreV1, std::vector<std::shared_ptr<CustomIR>> irs) {
 	std::vector<int> finishedThreads;
