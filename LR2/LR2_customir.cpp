@@ -77,10 +77,10 @@ public:
 	CustomIR(const std::filesystem::path& directory);
 	bool Initialize();
 	bool Login();
-	SendScoreStatus SendScore(const IRScoreV1& score) const;
+	SendScoreStatus SendScore(const IRScoreV1& score);
 	openlr2::GetStatus GetResultRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus RestoreCachedRank(const char* songHash, openlr2::IRRankResult& out);
-	openlr2::GetStatus GetGhost(const char* songHash, int mode, int targetPlayerId, IRGhostResult& out) const;
+	openlr2::GetStatus GetGhost(const char* songHash, int mode, int targetPlayerId, IRGhostResult& out);
 
 	[[nodiscard]] const std::string& Name() const { return mName; };
 private:
@@ -138,7 +138,7 @@ bool CustomIR::Login() {
 	return mMethods.LoginV1();
 }
 
-SendScoreStatus CustomIR::SendScore(const IRScoreV1& score) const {
+SendScoreStatus CustomIR::SendScore(const IRScoreV1& score) {
 	if (mMethods.SendScoreV1 == nullptr) return SendScoreStatus::Fail;
 	return mMethods.SendScoreV1(score);
 }
@@ -153,7 +153,7 @@ openlr2::GetStatus CustomIR::RestoreCachedRank(const char* songHash, openlr2::IR
 	return mMethods.RestoreCachedRank(songHash, -1, out);
 }
 
-openlr2::GetStatus CustomIR::GetGhost(const char* songHash, int mode, int targetPlayerId, IRGhostResult& out) const {
+openlr2::GetStatus CustomIR::GetGhost(const char* songHash, int mode, int targetPlayerId, IRGhostResult& out) {
 	if (mMethods.GetGhost == nullptr) return openlr2::GetStatus::Fail;
 	return mMethods.GetGhost(songHash, mode, targetPlayerId, out);
 }
