@@ -148,9 +148,9 @@ enum class InputType : int {
 
 enum class GhostMode : int {
 	Target = 0,
-	Top = 6,
-	Next = 7,
-	Average = 8,
+	Top,
+	Next,
+	Average,
 };
 
 enum class Lamp : int {
