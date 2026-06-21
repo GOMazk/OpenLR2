@@ -80,7 +80,7 @@ public:
 	SendScoreStatus SendScore(const IRScoreV1& score) const;
 	openlr2::GetStatus GetResultRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus RestoreCachedRank(const char* songHash, openlr2::IRRankResult& out);
-	openlr2::GetStatus GetGhost(const IRScoreV1& score, int mode, int targetPlayerId, IRGhostResult& out) const;
+	openlr2::GetStatus GetGhost(const char* songHash, int mode, int targetPlayerId, IRGhostResult& out) const;
 
 	[[nodiscard]] const std::string& Name() const { return mName; };
 private:
@@ -153,9 +153,9 @@ openlr2::GetStatus CustomIR::RestoreCachedRank(const char* songHash, openlr2::IR
 	return mMethods.RestoreCachedRank(songHash, -1, out);
 }
 
-openlr2::GetStatus CustomIR::GetGhost(const IRScoreV1& score, int mode, int targetPlayerId, IRGhostResult& out) const {
+openlr2::GetStatus CustomIR::GetGhost(const char* songHash, int mode, int targetPlayerId, IRGhostResult& out) const {
 	if (mMethods.GetGhost == nullptr) return openlr2::GetStatus::Fail;
-	return mMethods.GetGhost(score, mode, targetPlayerId, out);
+	return mMethods.GetGhost(songHash, mode, targetPlayerId, out);
 }
 
 CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
@@ -261,11 +261,10 @@ bool CUSTOMIR_MANAGER::TryGetTargetInfo(game& g, CSTR songmd5, int mode, CSTR* o
 	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
 	if (irIt == mModules.end()) { return false; }
 
-	IRScoreV1 score{};
-	score.song.hash = songmd5.body != nullptr ? songmd5.body : "";
+	const char* songHash = songmd5.body;
 
 	IRGhostResult result{};
-	switch ((*irIt)->GetGhost(score, mode, g.net.rankingData.target_ID, result)) {
+	switch ((*irIt)->GetGhost(songHash, mode, g.net.rankingData.target_ID, result)) {
 	case openlr2::GetStatus::Ok:
 		break;
 	case openlr2::GetStatus::Retry:

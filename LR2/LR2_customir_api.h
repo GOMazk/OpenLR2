@@ -259,6 +259,6 @@ struct MethodTable {
 	void* reserved4 = nullptr;
 	void* reserved5 = nullptr;
 	void* reserved6 = nullptr;
-	// dream-pro getghost.cgi parity: mode 0=target, 6=top, 7=next, 8=average.
-	openlr2::GetStatus(OLR2_IR_API* GetGhost)(const IRScoreV1& score, int mode, int targetPlayerId, IRGhostResult& out) = nullptr;
+	// dream-pro getghost.cgi parity: mode 0=target, 6=top, 7=next, 8=average. Chart key: songHash only.
+	openlr2::GetStatus(OLR2_IR_API* GetGhost)(const char* songHash, int mode, int targetPlayerId, IRGhostResult& out) = nullptr;
 };

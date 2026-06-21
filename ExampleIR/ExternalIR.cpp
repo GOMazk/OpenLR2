@@ -89,8 +89,8 @@ static openlr2::GetStatus GetResultRank(const char* songHash, int /*reserved*/, 
     return openlr2::GetStatus::Ok;
 }
 
-static openlr2::GetStatus GetGhost(const IRScoreV1& score, int mode, int /*targetPlayerId*/, IRGhostResult& out) {
-    std::println(std::cout, "GetGhost({{.song.hash={}}}, mode={})", score.song.hash, mode);
+static openlr2::GetStatus GetGhost(const char* songHash, int mode, int /*targetPlayerId*/, IRGhostResult& out) {
+    std::println(std::cout, "GetGhost({{}}, mode={})", songHash != nullptr ? songHash : "", mode);
     out = {};
     if (mode == 8) {
         out.averageExscore = 800;
