@@ -718,7 +718,15 @@ bool NETWORK::GetTargetInfo(game& g, int mode, CSTR songmd5, CSTR *oData, CSTR *
 		*oName = result->displayName.c_str();
 		oData->fillzero();
 		if (!result->ghostData.empty()) oData->add(result->ghostData.c_str());
-		*oDigit1 = result->gauge == openlr2::Gauge::Unknown ? 0 : static_cast<int>(result->gauge) - 1;
+		switch (result->gauge) {
+		case openlr2::Gauge::Groove: *oDigit1 = 0; break;
+		case openlr2::Gauge::Survival: *oDigit1 = 1; break;
+		case openlr2::Gauge::Death: *oDigit1 = 2; break;
+		case openlr2::Gauge::Easy: *oDigit1 = 3; break;
+		case openlr2::Gauge::PAttack: *oDigit1 = 4; break;
+		case openlr2::Gauge::GAttack: *oDigit1 = 5; break;
+		default: *oDigit1 = 0; break;
+		}
 		*oDigit2 = static_cast<int>(result->randomOption[0]);
 		*oDigit3 = static_cast<int>(result->randomOption[1]);
 		*oDigit4 = result->dpflip ? 1 : 0;
