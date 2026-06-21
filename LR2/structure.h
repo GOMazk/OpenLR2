@@ -3,6 +3,7 @@
 #include <array>
 #include <future>
 #include <mutex>
+#include <optional>
 #include <string>
 #include <thread>
 #include <unordered_map>
@@ -464,6 +465,9 @@ struct SONGDATA { /* 712bytes */
 	int courseType{}; /* 0:expert 1:nonstop 2:class */
 	int courseIR{}; /* IR flag */
 	int grHandle{};
+
+	// If present, this will contain score for the song imported from the IR with best properties mixed in with 'mybest'.
+	std::optional<STATUS> myIRbest;
 	struct STATUS mybest;
 	struct STATUS rivalRecord;
 };

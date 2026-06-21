@@ -7,7 +7,6 @@
 #include "LR2_statplay.h"
 #include "Scenes.h"
 #include "filesystem.h"
-#include "filesystem.h"
 #include <DxLib/DxLib.h>
 
 #ifndef _WIN32
@@ -19,13 +18,14 @@ bool GetOptionFlag_dst(game *gs, int option) {
 	int t = 0;
 	bool ret = (option >= 0);
 	if (!ret) option = -option;
-
+	const SONGDATA& songData = gs->sSelect.bmsList[gs->sSelect.cur_song];
+	const STATUS& mybest = songData.myIRbest.has_value() ? *songData.myIRbest : songData.mybest;
 
 	switch (option) {
 		case 0:
 			return true;
 		case 1:
-			t = gs->sSelect.bmsList[gs->sSelect.cur_song].folderType;
+			t = songData.folderType;
 			if (t == 1) return ret;
 			if (t == 2) return ret;
 			if (t == 3) return ret;
@@ -35,24 +35,24 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 
 		case 2:
-			t = gs->sSelect.bmsList[gs->sSelect.cur_song].folderType;
+			t = songData.folderType;
 			if (t == 0) return ret;
 			if (t == 5) return ret;
 			break;
 
 		case 3:
-			t = gs->sSelect.bmsList[gs->sSelect.cur_song].folderType;
+			t = songData.folderType;
 			if (t == 8) return ret;
 			break;
 
 		case 4:
-			t = gs->sSelect.bmsList[gs->sSelect.cur_song].folderType;
+			t = songData.folderType;
 			if (t == 7) return ret;
 			if (t == 9) return ret;
 			break;
 
 		case 5:
-			t = gs->sSelect.bmsList[gs->sSelect.cur_song].folderType;
+			t = songData.folderType;
 			if (t == 0) return ret;
 			if (t == 5) return ret;
 			if (t == 8) return ret;
@@ -234,15 +234,15 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 72:
 		case 73:
 		case 74:
-			t = gs->sSelect.bmsList[gs->sSelect.cur_song].keymode;
+			t = songData.keymode;
 			if (t == 5 || t == 10) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevel[option - 70] <= gs->config.select.levelbarflash_5) return ret;
+				if (songData.difficultyLevel[option - 70] <= gs->config.select.levelbarflash_5) return ret;
 			}
 			else if (t == 7 || t == 14) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevel[option - 70] <= gs->config.select.levelbarflash_7) return ret;
+				if (songData.difficultyLevel[option - 70] <= gs->config.select.levelbarflash_7) return ret;
 			}
 			else if (t == 9) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevel[option - 70] <= gs->config.select.levelbarflash_9) return ret;
+				if (songData.difficultyLevel[option - 70] <= gs->config.select.levelbarflash_9) return ret;
 			}
 			break;
 
@@ -251,15 +251,15 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 77:
 		case 78:
 		case 79:
-			t = gs->sSelect.bmsList[gs->sSelect.cur_song].keymode;
+			t = songData.keymode;
 			if (t == 5 || t == 10) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevel[option - 75] > gs->config.select.levelbarflash_5) return ret;
+				if (songData.difficultyLevel[option - 75] > gs->config.select.levelbarflash_5) return ret;
 			}
 			else if (t == 7 || t == 14) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevel[option - 75] > gs->config.select.levelbarflash_7) return ret;
+				if (songData.difficultyLevel[option - 75] > gs->config.select.levelbarflash_7) return ret;
 			}
 			else if (t == 9) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevel[option - 75] > gs->config.select.levelbarflash_9) return ret;
+				if (songData.difficultyLevel[option - 75] > gs->config.select.levelbarflash_9) return ret;
 			}
 			break;
 
@@ -292,248 +292,248 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			
 		case 100: //TODO : make more readable
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 0) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_db == 0) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 0) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_ex == 0) return ret;
 			}
 			else if(gs->config.play.battle == 3){
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 0) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_sd == 0) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 0) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear == 0) return ret;
 			}
 			break;
 		case 101:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 1) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_db == 1) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 1) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_ex == 1) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 1) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_sd == 1) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 1) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear == 1) return ret;
 			}
 			break;
 		case 102:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 2) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_db == 2) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 2) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_ex == 2) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 2) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_sd == 2) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 2) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear == 2) return ret;
 			}
 			break;
 		case 103:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 3) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_db == 3) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 3) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_ex == 3) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 3) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_sd == 3) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 3) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear == 3) return ret;
 			}
 			break;
 		case 104:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 4) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_db == 4) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 4) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_ex == 4) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 4) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_sd == 4) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 4) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear == 4) return ret;
 			}
 			break;
 		case 105:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_db == 5) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_db == 5) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_ex == 5) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_ex == 5) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear_sd == 5) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear_sd == 5) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear == 5) return ret;
+				if (songData.keymode <= 0) return !ret;
+				if (mybest.clear == 5) return ret;
 			}
 			break;
 
 		case 110:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 7)
+			if (songData.keymode > 0 && mybest.clear && mybest.rank > 7)
 				return ret;
 			break;
 		
 		case 111:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 6 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 8) return ret; //why???
+			if (songData.keymode <= 0) return !ret;
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 6 && mybest.rank < 8) return ret; //why???
 			break;
 		case 112:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 5 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 7) return ret;
+			if (songData.keymode <= 0) return !ret;
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 5 && mybest.rank < 7) return ret;
 			break;
 		case 113:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 4 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 6) return ret;
+			if (songData.keymode <= 0) return !ret;
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 4 && mybest.rank < 6) return ret;
 			break;
 		case 114:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 3 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 5) return ret;
+			if (songData.keymode <= 0) return !ret;
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 3 && mybest.rank < 5) return ret;
 			break;
 		case 115:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 2 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 4) return ret;
+			if (songData.keymode <= 0) return !ret;
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 2 && mybest.rank < 4) return ret;
 			break;
 		case 116:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode <= 0) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear < 1) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank > 1 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 3) return ret;
+			if (songData.keymode <= 0) return !ret;
+			if (mybest.clear < 1) return !ret;
+			if (mybest.rank > 1 && mybest.rank < 3) return ret;
 			break;
 		case 117:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.clear > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.rank < 2)
+			if (songData.keymode > 0 && mybest.clear > 0 && mybest.rank < 2)
 				return ret;
 			break;
 
 		case 118:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 1) return ret;
+			if (mybest.op_history & 1) return ret;
 			break;
 		case 119:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 2) return ret;
+			if (mybest.op_history & 2) return ret;
 			break;
 		case 120:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 4) return ret;
+			if (mybest.op_history & 4) return ret;
 			break;
 		case 121:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 8) return ret;
+			if (mybest.op_history & 8) return ret;
 			break;
 		case 122:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x10) return ret;
+			if (mybest.op_history & 0x10) return ret;
 			break;
 		case 123:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x20) return ret;
+			if (mybest.op_history & 0x20) return ret;
 			break;
 		case 124:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x40) return ret;
+			if (mybest.op_history & 0x40) return ret;
 			break;
 		case 125:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x80) return ret;
+			if (mybest.op_history & 0x80) return ret;
 			break;
 		case 126:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x100) return ret;
+			if (mybest.op_history & 0x100) return ret;
 			break;
 		case 127:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x200) return ret;
+			if (mybest.op_history & 0x200) return ret;
 			break;
 		case 128:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x400) return ret;
+			if (mybest.op_history & 0x400) return ret;
 			break;
 		case 129:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x800) return ret;
+			if (mybest.op_history & 0x800) return ret;
 			break;
 		case 130:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x1000) return ret;
+			if (mybest.op_history & 0x1000) return ret;
 			break;
 		case 131:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x2000) return ret;
+			if (mybest.op_history & 0x2000) return ret;
 			break;
 		case 132:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x4000) return ret;
+			if (mybest.op_history & 0x4000) return ret;
 			break;
 		case 133:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x8000) return ret;
+			if (mybest.op_history & 0x8000) return ret;
 			break;
 		case 134:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x10000) return ret;
+			if (mybest.op_history & 0x10000) return ret;
 			break;
 		case 135:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x20000) return ret;
+			if (mybest.op_history & 0x20000) return ret;
 			break;
 		case 136:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x40000) return ret;
+			if (mybest.op_history & 0x40000) return ret;
 			break;
 		case 137:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x80000) return ret;
+			if (mybest.op_history & 0x80000) return ret;
 			break;
 		case 138:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x100000) return ret;
+			if (mybest.op_history & 0x100000) return ret;
 			break;
 		case 139:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x200000) return ret;
+			if (mybest.op_history & 0x200000) return ret;
 			break;
 		case 140:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x400000) return ret;
+			if (mybest.op_history & 0x400000) return ret;
 			break;
 		case 141:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x800000) return ret;
+			if (mybest.op_history & 0x800000) return ret;
 			break;
 		case 142:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x1000000) return ret;
+			if (mybest.op_history & 0x1000000) return ret;
 			break;
 		case 143:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x2000000) return ret;
+			if (mybest.op_history & 0x2000000) return ret;
 			break;
 		case 144:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x4000000) return ret;
+			if (mybest.op_history & 0x4000000) return ret;
 			break;
 		case 145:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x8000000) return ret;
+			if (mybest.op_history & 0x8000000) return ret;
 			break;
 		case 146:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x10000000) return ret;
+			if (mybest.op_history & 0x10000000) return ret;
 			break;
 		case 147:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x20000000) return ret;
+			if (mybest.op_history & 0x20000000) return ret;
 			break;
 		case 148:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x40000000) return ret;
+			if (mybest.op_history & 0x40000000) return ret;
 			break;
 		case 149:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.op_history & 0x80000000) return ret;
+			if (mybest.op_history & 0x80000000) return ret;
 			break;
 
 		case 150:
@@ -580,97 +580,97 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 
 		case 170:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].bga == 0) return ret;
+			if (songData.bga == 0) return ret;
 			break;
 		case 171:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].bga == 1)return ret;
+			if (songData.bga == 1)return ret;
 			break;
 		case 172:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].longnote == 0) return ret;
+			if (songData.longnote == 0) return ret;
 			break;
 		case 173:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].longnote == 1)return ret;
+			if (songData.longnote == 1)return ret;
 			break;
 		case 174:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].txt == 0)return ret;
+			if (songData.txt == 0)return ret;
 			break;
 		case 175:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].txt > 0) return ret;
+			if (songData.txt > 0) return ret;
 			break;
 		case 176:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].maxBPM == gs->sSelect.bmsList[gs->sSelect.cur_song].minBPM) return ret;
+			if (songData.maxBPM == songData.minBPM) return ret;
 			break;
 		case 177:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].maxBPM != gs->sSelect.bmsList[gs->sSelect.cur_song].minBPM) return ret;
+			if (songData.maxBPM != songData.minBPM) return ret;
 			break;
 		case 178:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].random == 0) return ret;
+			if (songData.random == 0) return ret;
 			break;
 		case 179:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].random == 1) return ret;
+			if (songData.random == 1) return ret;
 			break;
 			
 		case 180:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].judge < 1) return ret;
+			if (songData.judge < 1) return ret;
 			break;
 		case 181:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].judge == 1) return ret;
+			if (songData.judge == 1) return ret;
 			break;
 		case 182:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].judge == 2) return ret;
+			if (songData.judge == 2) return ret;
 			break;
 		case 183:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].judge > 2) return ret;
+			if (songData.judge > 2) return ret;
 			break;
 
 		case 185:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode == 5 || gs->sSelect.bmsList[gs->sSelect.cur_song].keymode == 10) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].level < 10) return ret;
+			if (songData.keymode == 5 || songData.keymode == 10) {
+				if (songData.level < 10) return ret;
 			}
-			else if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode == 7 || gs->sSelect.bmsList[gs->sSelect.cur_song].keymode == 14) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].level < 13) return ret;
+			else if (songData.keymode == 7 || songData.keymode == 14) {
+				if (songData.level < 13) return ret;
 			}
-			else if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode == 9) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].level < 43) return ret;
+			else if (songData.keymode == 9) {
+				if (songData.level < 43) return ret;
 			}
 			break;
 		case 186:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode == 5 || gs->sSelect.bmsList[gs->sSelect.cur_song].keymode == 10) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].level > 9) return ret;
+			if (songData.keymode == 5 || songData.keymode == 10) {
+				if (songData.level > 9) return ret;
 			}
-			else if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode == 7 || gs->sSelect.bmsList[gs->sSelect.cur_song].keymode == 14) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].level > 12) return ret;
+			else if (songData.keymode == 7 || songData.keymode == 14) {
+				if (songData.level > 12) return ret;
 			}
-			else if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode == 9) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].level > 42) return ret;
+			else if (songData.keymode == 9) {
+				if (songData.level > 42) return ret;
 			}
 			break;
 
 		case 190:
 			if (gs->procSelecter == 7) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].isStagefile == 0)return ret;
+			if (songData.isStagefile == 0)return ret;
 			break;
 		case 191:
 			if (gs->procSelecter == 7) return !ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].isStagefile == 1)return ret;
+			if (songData.isStagefile == 1)return ret;
 			break;
 		case 192:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].isBanner == 0)return ret;
+			if (songData.isBanner == 0)return ret;
 			break;
 		case 193:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].isBanner == 1)return ret;
+			if (songData.isBanner == 1)return ret;
 			break;
 		case 194:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].isBackBMP == 0)return ret;
+			if (songData.isBackBMP == 0)return ret;
 			break;
 		case 195:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].isBackBMP == 1) return ret;
+			if (songData.isBackBMP == 1) return ret;
 			break;
 		case 196:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].replayExist == 0) return ret;
+			if (songData.replayExist == 0) return ret;
 			break;
 		case 197:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].replayExist == 1)return ret;
+			if (songData.replayExist == 1)return ret;
 			break;
 
 		case 200:
@@ -971,16 +971,16 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			if ((gs->gameplay.courseStageNow == gs->gameplay.courseStageCount - 1) && gs->gameplay.courseStageCount > 0) return ret;
 			break;
 		case 290:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].courseType != -1) return ret;
+			if (songData.courseType != -1) return ret;
 			break;
 		case 291:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].courseType == 1) return ret;
+			if (songData.courseType == 1) return ret;
 			break;
 		case 292:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].courseType == 0) return ret;
+			if (songData.courseType == 0) return ret;
 			break;
 		case 293:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].courseType == 2) return ret;
+			if (songData.courseType == 2) return ret;
 			break;
 
 			//300 is smae 220
@@ -1144,10 +1144,10 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			if (gs->gameplay.trialClear) return ret;
 			break;
 		case 334:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.IRranking == 0) {
+			if (songData.mybest.IRranking == 0) {
 				if (gs->sSelect.oldIRrank > 0) return ret;
 			}
-			else if (gs->sSelect.bmsList[gs->sSelect.cur_song].mybest.IRranking < gs->sSelect.oldIRrank) return ret;
+			else if (songData.mybest.IRranking < gs->sSelect.oldIRrank) return ret;
 			break;
 		case 335:
 			if (gs->gameplay.player[gs->skstruct.flag_flip].totalnotes != 0
@@ -1234,7 +1234,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 502:
 		case 503:
 		case 504:
-			if ((gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 0 || gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 5) && gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevel[option - 500] == -1)
+			if ((songData.folderType == 0 || songData.folderType == 5) && songData.difficultyLevel[option - 500] == -1)
 				return ret;
 			break;
 		case 505:
@@ -1242,7 +1242,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 507:
 		case 508:
 		case 509:
-			if ((gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 0 || gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 5) && gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevel[option - 505] != -1)
+			if ((songData.folderType == 0 || songData.folderType == 5) && songData.difficultyLevel[option - 505] != -1)
 				return ret;
 			break;
 		case 510:
@@ -1250,7 +1250,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 512:
 		case 513:
 		case 514:
-			if ((gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 0 || gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 5) && gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyExist[option - 510] == 1)
+			if ((songData.folderType == 0 || songData.folderType == 5) && songData.difficultyExist[option - 510] == 1)
 				return ret;
 			break;
 		case 515:
@@ -1258,7 +1258,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 517:
 		case 518:
 		case 519:
-			if ((gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 0 || gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 5) && gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyExist[option - 515] > 1)
+			if ((songData.folderType == 0 || songData.folderType == 5) && songData.difficultyExist[option - 515] > 1)
 				return ret;
 			break;
 		case 520:
@@ -1267,8 +1267,8 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 523:
 		case 524:
 		case 525:
-			if ((gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 0 || gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
-				&& gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevelBarLamp[0] == option - 520)
+			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
+				&& songData.difficultyLevelBarLamp[0] == option - 520)
 				return ret;
 			break;
 		case 530:
@@ -1277,8 +1277,8 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 533:
 		case 534:
 		case 535:
-			if ((gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 0 || gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
-				&& gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevelBarLamp[1] == option - 530)
+			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
+				&& songData.difficultyLevelBarLamp[1] == option - 530)
 				return ret;
 			break;
 		case 540:
@@ -1287,8 +1287,8 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 543:
 		case 544:
 		case 545:
-			if ((gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 0 || gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
-				&& gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevelBarLamp[2] == option - 540)
+			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
+				&& songData.difficultyLevelBarLamp[2] == option - 540)
 				return ret;
 			break;
 		case 550:
@@ -1297,8 +1297,8 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 553:
 		case 554:
 		case 555:
-			if ((gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 0 || gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
-				&& gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevelBarLamp[3] == option - 550)
+			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
+				&& songData.difficultyLevelBarLamp[3] == option - 550)
 				return ret;
 			break;
 		case 560:
@@ -1307,14 +1307,14 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 563:
 		case 564:
 		case 565:
-			if ((gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 0 || gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
-				&& gs->sSelect.bmsList[gs->sSelect.cur_song].difficultyLevelBarLamp[4] == option - 560)
+			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
+				&& songData.difficultyLevelBarLamp[4] == option - 560)
 				return ret;
 			break;
 
 		case 570: //TOFIX : forgot break?
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 7)return ret;
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].folderType == 9)return ret;
+			if (songData.folderType == 7)return ret;
+			if (songData.folderType == 9)return ret;
 		case 580:
 		case 581:
 		case 582:
@@ -1325,13 +1325,13 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 587:
 		case 588:
 		case 589:
-			if (gs->sSelect.course.isMakingCourse == 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].courseStageCount > option - 580) return ret;
+			if (gs->sSelect.course.isMakingCourse == 0 && songData.courseStageCount > option - 580) return ret;
 			break;
 		case 571: //TOFIX : forgot break?
 			if (gs->sSelect.course.isMakingCourse == 1) return ret;
 		case 572: //TOFIX : forgot break?
 			if (gs->sSelect.course.isMakingCourse == 0) return ret;
-			if(gs->sSelect.bmsList[gs->sSelect.cur_song].courseStageDifficulty[0] == option - 700) return ret;
+			if(songData.courseStageDifficulty[0] == option - 700) return ret;
 			break;
 			
 		case 590:
@@ -1412,120 +1412,124 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 
 		case 624:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.stat_exscore == 0) return ret;
+			if (songData.rivalRecord.stat_exscore == 0) return ret;
 			break;
 		case 625:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.stat_exscore > 0) return ret;
+			if (songData.rivalRecord.stat_exscore > 0) return ret;
 			break;
 
+		case 626:
+			if (songData.myIRbest.has_value()) return ret;
+			break;
+			
 		case 640:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_db == 0) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 0) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_ex == 0) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 0) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_sd == 0) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 0) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear == 0) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear == 0) return ret;
 			}
 			break;
 		case 641:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_db == 1) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 1) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_ex == 1) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 1) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_sd == 1) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 1) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear == 1) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear == 1) return ret;
 			}
 			break;
 		case 642:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_db == 2) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 2) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_ex == 2) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 2) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_sd == 2) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 2) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear == 2) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear == 2) return ret;
 			}
 			break;
 		case 643:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_db == 3) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 3) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_ex == 3) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 3) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_sd == 3) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 3) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear == 3) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear == 3) return ret;
 			}
 			break;
 		case 644:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_db == 4) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 4) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_ex == 4) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 4) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_sd == 4) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 4) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear == 4) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear == 4) return ret;
 			}
 			break;
 		case 645:
 			if (gs->config.play.battle == 2) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_db == 5) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 5) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_ex == 5) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 5) return ret;
 			}
 			else if (gs->config.play.battle == 3) {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear_sd == 5) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 5) return ret;
 			}
 			else {
-				if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear == 5) return ret;
+				if (songData.keymode > 0 && songData.rivalRecord.clear == 5) return ret;
 			}
 			break;
 			
 		case 650:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear >= 1 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank >= 8) return ret;
+			if (songData.keymode > 0 && songData.rivalRecord.clear >= 1 && songData.rivalRecord.rank >= 8) return ret;
 			break;
 		case 651:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear >= 1 && 7 <= gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank < 8) return ret;
+			if (songData.keymode > 0 && songData.rivalRecord.clear >= 1 && 7 <= songData.rivalRecord.rank && songData.rivalRecord.rank < 8) return ret;
 			break;
 		case 652:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear >= 1 && 6 <= gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank < 7) return ret;
+			if (songData.keymode > 0 && songData.rivalRecord.clear >= 1 && 6 <= songData.rivalRecord.rank && songData.rivalRecord.rank < 7) return ret;
 			break;
 		case 653:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear >= 1 && 5 <= gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank < 6) return ret;
+			if (songData.keymode > 0 && songData.rivalRecord.clear >= 1 && 5 <= songData.rivalRecord.rank && songData.rivalRecord.rank < 6) return ret;
 			break;
 		case 654:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear >= 1 && 4 <= gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank < 5) return ret;
+			if (songData.keymode > 0 && songData.rivalRecord.clear >= 1 && 4 <= songData.rivalRecord.rank && songData.rivalRecord.rank < 5) return ret;
 			break;
 		case 655:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear >= 1 && 3 <= gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank < 4) return ret;
+			if (songData.keymode > 0 && songData.rivalRecord.clear >= 1 && 3 <= songData.rivalRecord.rank && songData.rivalRecord.rank < 4) return ret;
 			break;
 		case 656:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear >= 1 && 2 <= gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank < 3) return ret;
+			if (songData.keymode > 0 && songData.rivalRecord.clear >= 1 && 2 <= songData.rivalRecord.rank && songData.rivalRecord.rank < 3) return ret;
 			break;
 		case 657:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].keymode > 0 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.clear >= 1 && gs->sSelect.bmsList[gs->sSelect.cur_song].rivalRecord.rank < 2) return ret;
+			if (songData.keymode > 0 && songData.rivalRecord.clear >= 1 && songData.rivalRecord.rank < 2) return ret;
 			break;
 
 		case 700:
@@ -1534,7 +1538,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 703:
 		case 704:
 		case 705:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].courseStageDifficulty[0] == option - 700) return ret;
+			if (songData.courseStageDifficulty[0] == option - 700) return ret;
 			break;
 		case 710:
 		case 711:
@@ -1542,7 +1546,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 713:
 		case 714:
 		case 715:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].courseStageDifficulty[1] == option - 710) return ret;
+			if (songData.courseStageDifficulty[1] == option - 710) return ret;
 			break;
 		case 720:
 		case 721:
@@ -1550,7 +1554,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 723:
 		case 724:
 		case 725:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].courseStageDifficulty[2] == option - 720) return ret;
+			if (songData.courseStageDifficulty[2] == option - 720) return ret;
 			break;
 		case 730:
 		case 731:
@@ -1558,7 +1562,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 733:
 		case 734:
 		case 735:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].courseStageDifficulty[3] == option - 730) return ret;
+			if (songData.courseStageDifficulty[3] == option - 730) return ret;
 			break;
 		case 740:
 		case 741:
@@ -1566,7 +1570,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 743:
 		case 744:
 		case 745:
-			if (gs->sSelect.bmsList[gs->sSelect.cur_song].courseStageDifficulty[4] == option - 740) return ret;
+			if (songData.courseStageDifficulty[4] == option - 740) return ret;
 			break;
 
 		case 800:
@@ -1624,6 +1628,8 @@ bool GetOptionFlag_dst(game *gs, int option) {
 
 uint SetObjectValue_Num(game *g, int op) {
 	DATEDATA Date;
+	const SONGDATA& songData = g->sSelect.bmsList[g->sSelect.cur_song];
+	const STATUS& mybest = songData.myIRbest.has_value() ? *songData.myIRbest : songData.mybest;
 
 	switch (op) {
 		case 10:
@@ -1736,24 +1742,24 @@ uint SetObjectValue_Num(game *g, int op) {
 
 		case 70:
 			if (g->sSelect.metaSelected.keymode == 7 || g->sSelect.metaSelected.keymode == 14)
-				return g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_score; 
-			else 
-				return g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_score / 20 * 10;
+				return mybest.stat_score;
+			else
+				return mybest.stat_score / 20 * 10;
 		case 71:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore;
+			return mybest.stat_exscore;
 		case 72:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes * 2;
+			return mybest.total_notes * 2;
 		case 73:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes) {
-				return (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore * 100) / (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes * 2);
+			if (mybest.total_notes) {
+				return (mybest.stat_exscore * 100) / (mybest.total_notes * 2);
 			}
 			break;
 		case 74:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
+			return mybest.total_notes;
 		case 75:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo;
+			return mybest.stat_maxcombo;
 		case 76:
-			return (g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp != -1) * g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp;
+			return (mybest.minbp != -1) * mybest.minbp;
 		case 77:
 			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount;
 		case 78:
@@ -1761,51 +1767,51 @@ uint SetObjectValue_Num(game *g, int op) {
 		case 79:
 			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount - g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount;
 		case 80:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat;
+			return mybest.stat_pgreat;
 		case 81:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great;
+			return mybest.stat_great;
 		case 82:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_good;
+			return mybest.stat_good;
 		case 83:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_bad;
+			return mybest.stat_bad;
 		case 84:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_poor;
+			return mybest.stat_poor;
 		case 85:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes) 
-				return (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat * 100) / g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
+			if (mybest.total_notes)
+				return (mybest.stat_pgreat * 100) / mybest.total_notes;
 			break;
 		case 86:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes)
-				return (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great * 100) / g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
+			if (mybest.total_notes)
+				return (mybest.stat_great * 100) / mybest.total_notes;
 			break;
 		case 87:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes)
-				return (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_good * 100) / g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
+			if (mybest.total_notes)
+				return (mybest.stat_good * 100) / mybest.total_notes;
 			break;
 		case 88:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes)
-				return (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_bad * 100) / g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
+			if (mybest.total_notes)
+				return (mybest.stat_bad * 100) / mybest.total_notes;
 			break;
 		case 89:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes)
-				return (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_poor * 100) / g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
+			if (mybest.total_notes)
+				return (mybest.stat_poor * 100) / mybest.total_notes;
 			break;
 		case 90:
 		case 290:
-			return (g->sSelect.bmsList[g->sSelect.cur_song].maxBPM) ? g->sSelect.bmsList[g->sSelect.cur_song].maxBPM : -1;
+			return (songData.maxBPM) ? songData.maxBPM : -1;
 		case 91:
 		case 291:
-			return (g->sSelect.bmsList[g->sSelect.cur_song].minBPM) ? g->sSelect.bmsList[g->sSelect.cur_song].minBPM : -1;
+			return (songData.minBPM) ? songData.minBPM : -1;
 		case 92:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking;
+			return songData.mybest.IRranking;
 		case 93:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount;
+			return songData.mybest.IRplayercount;
 		case 94:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate;
+			return songData.mybest.IRclearRate;
 		case 95:
-			return g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore - g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_exscore;
+			return mybest.stat_exscore - songData.rivalRecord.stat_exscore;
 		case 96:
-			return g->sSelect.bmsList[g->sSelect.cur_song].level;
+			return songData.level;
 
 		case 100:
 			if (g->sSelect.metaSelected.keymode == 7 || g->sSelect.metaSelected.keymode == 14)
@@ -2126,91 +2132,91 @@ uint SetObjectValue_Num(game *g, int op) {
 			return (g->net.waitTime - GetTimeLapse(177, &g->timer1)) / 1000.0;
 
 		case 250:
-			return g->sSelect.bmsList[g->sSelect.cur_song].courseLevel[0];
+			return songData.courseLevel[0];
 		case 251:
-			return g->sSelect.bmsList[g->sSelect.cur_song].courseLevel[1];
+			return songData.courseLevel[1];
 		case 252:
-			return g->sSelect.bmsList[g->sSelect.cur_song].courseLevel[2];
+			return songData.courseLevel[2];
 		case 253:
-			return g->sSelect.bmsList[g->sSelect.cur_song].courseLevel[3];
+			return songData.courseLevel[3];
 		case 254:
-			return g->sSelect.bmsList[g->sSelect.cur_song].courseLevel[4];
+			return songData.courseLevel[4];
 		case 255:
-			return g->sSelect.bmsList[g->sSelect.cur_song].courseLevel[5];
+			return songData.courseLevel[5];
 		case 256:
-			return g->sSelect.bmsList[g->sSelect.cur_song].courseLevel[6];
+			return songData.courseLevel[6];
 		case 257:
-			return g->sSelect.bmsList[g->sSelect.cur_song].courseLevel[7];
+			return songData.courseLevel[7];
 		case 258:
-			return g->sSelect.bmsList[g->sSelect.cur_song].courseLevel[8];
+			return songData.courseLevel[8];
 		case 259:
-			return g->sSelect.bmsList[g->sSelect.cur_song].courseLevel[9];
+			return songData.courseLevel[9];
 
 		case 270:
 			if ((g->sSelect.metaSelected.keymode != 7) && (g->sSelect.metaSelected.keymode != 14)) {
-				return (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_score / 20) * 10;
+				return (songData.rivalRecord.stat_score / 20) * 10;
 			}
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_score;
+			return songData.rivalRecord.stat_score;
 		case 271:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_exscore;
+			return songData.rivalRecord.stat_exscore;
 		case 272:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes * 2;
+			return songData.rivalRecord.total_notes * 2;
 		case 273:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes != 0)
-				return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_exscore * 100 / (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes * 2);
+			if (songData.rivalRecord.total_notes != 0)
+				return songData.rivalRecord.stat_exscore * 100 / (songData.rivalRecord.total_notes * 2);
 			break;
 		case 274:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes;
+			return songData.rivalRecord.total_notes;
 		case 275:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_maxcombo;
+			return songData.rivalRecord.stat_maxcombo;
 		case 276:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.minbp == -1) return 0;
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.minbp;
+			if (songData.rivalRecord.minbp == -1) return 0;
+			return songData.rivalRecord.minbp;
 		case 277:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.playcount;
+			return songData.rivalRecord.playcount;
 		case 278:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.clearcount;
+			return songData.rivalRecord.clearcount;
 		case 279:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.playcount - g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.clearcount;
+			return songData.rivalRecord.playcount - songData.rivalRecord.clearcount;
 		case 280:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_pgreat;
+			return songData.rivalRecord.stat_pgreat;
 		case 281:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_great;
+			return songData.rivalRecord.stat_great;
 		case 282:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_good;
+			return songData.rivalRecord.stat_good;
 		case 283:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_bad;
+			return songData.rivalRecord.stat_bad;
 		case 284:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_poor;
+			return songData.rivalRecord.stat_poor;
 		case 285:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes != 0) {
-				return (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_pgreat * 100) / g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes;
+			if (songData.rivalRecord.total_notes != 0) {
+				return (songData.rivalRecord.stat_pgreat * 100) / songData.rivalRecord.total_notes;
 			}
 			break;
 		case 286:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes != 0) {
-				return (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_great * 100) / g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes;
+			if (songData.rivalRecord.total_notes != 0) {
+				return (songData.rivalRecord.stat_great * 100) / songData.rivalRecord.total_notes;
 			}
 			break;
 		case 287:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes != 0) {
-				return (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_good * 100) / g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes;
+			if (songData.rivalRecord.total_notes != 0) {
+				return (songData.rivalRecord.stat_good * 100) / songData.rivalRecord.total_notes;
 			}
 			break;
 		case 288:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes != 0) {
-				return (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_bad * 100) / g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes;
+			if (songData.rivalRecord.total_notes != 0) {
+				return (songData.rivalRecord.stat_bad * 100) / songData.rivalRecord.total_notes;
 			}
 			break;
 		case 289:
-			if (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes != 0) {
-				return (g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.stat_poor * 100) / g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.total_notes;
+			if (songData.rivalRecord.total_notes != 0) {
+				return (songData.rivalRecord.stat_poor * 100) / songData.rivalRecord.total_notes;
 			}
 			break;
 			//290 is same 90
 			//291 is same 91
 		case 292:
-			return g->sSelect.bmsList[g->sSelect.cur_song].rivalRecord.IRranking;
+			return songData.rivalRecord.IRranking;
 			//293 is same 180
 		case 294: //TOFIX : IR clear rate
 			break;
@@ -2225,6 +2231,8 @@ uint SetObjectValue_Num(game *g, int op) {
 int SetObjectValue_Bargraph(game *g) {
 
 	float max, val;
+	const SONGDATA& songData = g->sSelect.bmsList[g->sSelect.cur_song];
+	const STATUS& mybest = songData.myIRbest.has_value() ? *songData.myIRbest : songData.mybest;
 
 	for (int i = 0; i < g->skstruct.otherObject[5].srcSize; i++) {
 
@@ -2246,17 +2254,17 @@ int SetObjectValue_Bargraph(game *g) {
 					break;
 
 				case 3:
-					if (g->sSelect.bmsList[g->sSelect.cur_song].keymode == 5 || g->sSelect.bmsList[g->sSelect.cur_song].keymode == 10) {
+					if (songData.keymode == 5 || songData.keymode == 10) {
 						max = 9.0;
-						val = g->sSelect.bmsList[g->sSelect.cur_song].level;
+						val = songData.level;
 					}
-					else if (g->sSelect.bmsList[g->sSelect.cur_song].keymode == 7 || g->sSelect.bmsList[g->sSelect.cur_song].keymode == 14) {
+					else if (songData.keymode == 7 || songData.keymode == 14) {
 						max = 12.0;
-						val = g->sSelect.bmsList[g->sSelect.cur_song].level;
+						val = songData.level;
 					}
-					else if (g->sSelect.bmsList[g->sSelect.cur_song].keymode == 9) {
+					else if (songData.keymode == 9) {
 						max = 42.0;
-						val = g->sSelect.bmsList[g->sSelect.cur_song].level;
+						val = songData.level;
 					}
 					else continue;
 					break;
@@ -2266,15 +2274,15 @@ int SetObjectValue_Bargraph(game *g) {
 				case 7:
 				case 8:
 				case 9:
-					if (g->sSelect.bmsList[g->sSelect.cur_song].keymode == 5 || g->sSelect.bmsList[g->sSelect.cur_song].keymode == 10) {
+					if (songData.keymode == 5 || songData.keymode == 10) {
 						max = g->config.select.levelbarflash_5;
 						val = g->sSelect.levelIndicatorAnimation[g->skstruct.otherObject[5].src[i].op1 - 5];
 					}
-					else if (g->sSelect.bmsList[g->sSelect.cur_song].keymode == 7 || g->sSelect.bmsList[g->sSelect.cur_song].keymode == 14) {
+					else if (songData.keymode == 7 || songData.keymode == 14) {
 						max = g->config.select.levelbarflash_7;
 						val = g->sSelect.levelIndicatorAnimation[g->skstruct.otherObject[5].src[i].op1 - 5];
 					}
-					else if (g->sSelect.bmsList[g->sSelect.cur_song].keymode == 9) {
+					else if (songData.keymode == 9) {
 						max = g->config.select.levelbarflash_9;
 						val = g->sSelect.levelIndicatorAnimation[g->skstruct.otherObject[5].src[i].op1 - 5];
 					}
@@ -2411,49 +2419,49 @@ int SetObjectValue_Bargraph(game *g) {
 					break;
 
 				case 40:
-					max = g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
-					val = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat;
+					max = mybest.total_notes;
+					val = mybest.stat_pgreat;
 					break;
 
 				case 41:
-					max = g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
-					val = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great;
+					max = mybest.total_notes;
+					val = mybest.stat_great;
 					break;
 
 				case 42:
-					max = g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
-					val = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_good;
+					max = mybest.total_notes;
+					val = mybest.stat_good;
 					break;
 
 				case 43:
-					max = g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
-					val = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_bad;
+					max = mybest.total_notes;
+					val = mybest.stat_bad;
 					break;
 
 				case 44:
-					max = g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
-					val = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_poor;
+					max = mybest.total_notes;
+					val = mybest.stat_poor;
 					break;
 
 				case 45:
-					max = g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes;
-					val = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo;
+					max = mybest.total_notes;
+					val = mybest.stat_maxcombo;
 					break;
 
 				case 46:
-					if ((g->sSelect.bmsList[g->sSelect.cur_song].keymode == 7) || (g->sSelect.bmsList[g->sSelect.cur_song].keymode == 0xe)) {
+					if ((songData.keymode == 7) || (songData.keymode == 0xe)) {
 						max = 20000.0;
-						val = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_score;
+						val = mybest.stat_score;
 					}
 					else {
 						max = 10000.0;
-						val = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_score;
+						val = mybest.stat_score;
 					}
 					break;
 
 				case 47:
-					max = (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes * 2);
-					val = g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore;
+					max = mybest.total_notes * 2;
+					val = mybest.stat_exscore;
 					break;
 			}
 

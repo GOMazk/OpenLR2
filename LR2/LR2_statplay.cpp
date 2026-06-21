@@ -704,7 +704,6 @@ int SaveResult(game *g, sqlite3* sql) {
 		bms.mybest.op_history |= ConvertOptionHistory(g);
 
 		CheckMission(g);
-
 		UpdateScoreDB(bms.hash, &bms.mybest, sql, &g->sSelect.playerPassMD5);
 
 		if (isNewRecord) {

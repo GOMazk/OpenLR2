@@ -717,11 +717,13 @@ int WriteGhostInDatabase(sqlite3 *sql, CSTR songMD5, PLAYSCORE *score) {
 	return 0;
 }
 
-CSTR ReadGhost(sqlite3 *sql, CSTR songMD5) {
+CSTR ReadGhost(sqlite3 *sql, CSTR songMD5, bool useImportedGhost) {
 	ErrorLogAdd("データベースからゴーストを読み込みます\n");
 
+	const std::string query = std::format("SELECT ghost FROM {} WHERE hash = ?", useImportedGhost ? "imported_score" : "score");
+	
 	sqlite3_stmt *pStmt;
-	if (sqlite3_prepare_v3(sql, "SELECT ghost FROM score WHERE hash = ?", -1, 0, &pStmt, nullptr) != SQLITE_OK) {
+	if (sqlite3_prepare_v3(sql, query.c_str(), -1, 0, &pStmt, nullptr) != SQLITE_OK) {
 		ErrorLogAdd("sqlite3_prepare_v3 error\n");
 	}
 	if (sqlite3_bind_text(pStmt, 1, songMD5.body, songMD5.length(), nullptr) != SQLITE_OK) {
@@ -741,8 +743,8 @@ CSTR ReadGhost(sqlite3 *sql, CSTR songMD5) {
 	return ghostdata;
 }
 
-int ReadGhostToScore(sqlite3 *sql, CSTR songMD5, PLAYSCORE *score) {
-	CSTR ghostdata = ReadGhost(sql, songMD5);
+int ReadGhostToScore(sqlite3 *sql, CSTR songMD5, PLAYSCORE *score, bool useImportedGhost) {
+	CSTR ghostdata = ReadGhost(sql, songMD5, useImportedGhost);
 
 	if (ghostdata.length() == 0) {
 		score->InitJudgeQueue();
