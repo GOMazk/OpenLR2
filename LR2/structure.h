@@ -3,6 +3,7 @@
 #include <array>
 #include <future>
 #include <mutex>
+#include <string>
 #include <thread>
 #include <unordered_map>
 #include <vector>
@@ -1423,7 +1424,7 @@ struct NETWORK {
 	NETWORK();
 	int WS_clean();
 	int Login(int isDirectPlay);
-	int MakeIRsendScoreThread(CSTR ghostString);
+	int MakeIRsendScoreThread(std::string ghostString);
 };
 
 struct game {

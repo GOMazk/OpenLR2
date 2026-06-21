@@ -147,7 +147,7 @@ int ProcS_subCourseResult(game *g, sqlite3 *sql) {
 			g->net.myRanking.clear_ex = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_ex;
 			g->net.myRanking.line = g->sSelect.bmsList[g->sSelect.cur_song].keymode;
 			g->net.myRanking.inputtype = DetermineResultPlayDevice(&g->KeyInput);
-			const CSTR ghostString = "Z";
+			std::string ghostString = "Z";
 			g->net.MakeIRsendScoreThread(ghostString);
 
 			if (!g->config.network.displayIr.length()) {
