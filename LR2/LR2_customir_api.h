@@ -162,7 +162,7 @@ enum class Random : int {
 
 struct IRGhostResult {
 	std::string displayName;
-	std::string ghostData;
+	std::string ghostData; // Example: E@3ZZ
 	// P1 and P2 random layouts.
 	// Should be 0 if the layout is not known, or the corresponding \ref randomOption is not noran, mirror, or random.
 	// Examples: 1234567 54321 135792468.
