@@ -176,7 +176,7 @@ struct IRGhostResult {
 	bool reserved1{};
 	bool reserved2{};
 	bool reserved3{};
-	int averageExscore{};
+	int averageExscore{}; // Only used if \ref GhostMode == \ref GhostMode::Average.
 };
 
 // \warning Experimental API, may be changed.
