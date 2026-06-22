@@ -275,7 +275,11 @@ std::optional<openlr2::IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(const c
 	openlr2::IRGhostResult result{};
 	switch ((*irIt)->GetGhost(songmd5, ghostMode, targetPlayerId, result)) {
 	case openlr2::GetStatus::Ok:
-		break;
+		if (ghostMode == openlr2::GhostMode::Average && result.averageExscore <= 0) {
+			ErrorLogAdd("CustomIR BUG: invalid averageExscore\n");
+			return std::nullopt;
+		}
+		return result;
 	case openlr2::GetStatus::Retry:
 		OverlayNotification("'%s' failed to get ghost data - ignoring retry\n", (*irIt)->Name().c_str());
 		return std::nullopt;
@@ -283,11 +287,9 @@ std::optional<openlr2::IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(const c
 		OverlayNotification("'%s' failed to get ghost data\n", (*irIt)->Name().c_str());
 		return std::nullopt;
 	}
-
-	if (ghostMode == openlr2::GhostMode::Average && result.averageExscore <= 0) {
-		return std::nullopt;
-	}
-	return result;
+	// TODO: remove 'abort()' from other handlers, logging an error and returning nothing instead. 
+	ErrorLogAdd("CustomIR BUG: invalid GetGhost return value\n");
+	return std::nullopt;
 }
 
 struct IRScoreInternal {
