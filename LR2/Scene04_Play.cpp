@@ -1805,15 +1805,15 @@ int ProcS_Play(game *g, sqlite3* sql) {
 	if (g->net.rankingData.target_ID > 0) { // remove check isOnline. it will be processed integrally within GetTargetInfo along with the CustomIR.
 		g->gameplay.targetScore.InitJudgeQueue();
 		if ((g->gameplay.ghostBattle == 0 && g->gameplay.isAutoplay != 1) || g->gameplay.replay.status == 2) {
-			g->net.GetTargetInfo(*g, 0, md5, &gData, &gName, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp);
+			g->net.GetTargetInfo(0, md5, &gData, &gName, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp);
 		}
 		else {
 			int origGauge = g->config.play.gaugeOption[0];
 			//TOFIX : seed is not putted into replaydata, when use ghostbattle. (retry puts seed) (see also ParseBmsFile())
 			if(g->sSelect.bmsList[g->sSelect.cur_song].keymode > 9)
-				g->net.GetTargetInfo(*g, 0, md5, &gData, &gName, &g->config.play.gaugeOption[0], &g->config.play.random[0], &g->config.play.random[1], &g->config.play.dpflip, &g->gameplay.randomseed, &iTemp);
+				g->net.GetTargetInfo(0, md5, &gData, &gName, &g->config.play.gaugeOption[0], &g->config.play.random[0], &g->config.play.random[1], &g->config.play.dpflip, &g->gameplay.randomseed, &iTemp);
 			else
-				g->net.GetTargetInfo(*g, 0, md5, &gData, &gName, &g->config.play.gaugeOption[0], &g->config.play.random[0], &g->config.play.random[1], &iTemp, &g->gameplay.randomseed, &iTemp);
+				g->net.GetTargetInfo(0, md5, &gData, &gName, &g->config.play.gaugeOption[0], &g->config.play.random[0], &g->config.play.random[1], &iTemp, &g->gameplay.randomseed, &iTemp);
 			
 			g->config.play.gaugeOption[1] = g->config.play.gaugeOption[0];
 			g->config.play.random[1] = g->config.play.random[0];
@@ -1971,7 +1971,7 @@ int ProcS_Play(game *g, sqlite3* sql) {
 			case 7:
 				if (g->gameplay.isGhostDisabled == 0) {
 					iTemp = 0;
-					g->net.GetTargetInfo(*g, g->config.play.p1_target, md5, &gData, &gName, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp);
+					g->net.GetTargetInfo(g->config.play.p1_target, md5, &gData, &gName, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp);
 					if (gData.length() > 0 && g->config.play.p1_target != 8) {
 						g->gameplay.targetScore.DecodeGhostData(gData);
 						g->gameplay.targetScore.name = gName;
@@ -1992,7 +1992,7 @@ int ProcS_Play(game *g, sqlite3* sql) {
 				if (g->gameplay.isGhostDisabled == 0) {
 					iTemp = 0;
 					int exscore = 0;
-					g->net.GetTargetInfo(*g, g->config.play.p1_target, md5, &gData, &gName, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp, &exscore);
+					g->net.GetTargetInfo(g->config.play.p1_target, md5, &gData, &gName, &iTemp, &iTemp, &iTemp, &iTemp, &iTemp, &exscore);
 					
 					if (exscore == 0) {
 						g->gameplay.targetScore.SetDefaultGhost(g->config.play.target_percent, g->gameplay.player[0].totalnotes);

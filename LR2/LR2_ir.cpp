@@ -707,9 +707,9 @@ int OpenWebRanking(CSTR songmd5){
 #endif
 }
 
-bool NETWORK::GetTargetInfo(game& g, int mode, CSTR songmd5, CSTR *oData, CSTR *oName, int *oDigit1, int *oDigit2, int *oDigit3, int *oDigit4, int *oSeed, int *oExscore) {
+bool NETWORK::GetTargetInfo(int mode, CSTR songmd5, CSTR *oData, CSTR *oName, int *oDigit1, int *oDigit2, int *oDigit3, int *oDigit4, int *oSeed, int *oExscore) {
 	WaitForRankingHandle();
-	if (auto result = customIR.TryGetTargetInfo(songmd5, mode, g.net.rankingData.target_ID)) {
+	if (auto result = customIR.TryGetTargetInfo(songmd5, mode, rankingData.target_ID)) {
 		if (mode == 8) {
 			*oName = "AVERAGE";
 			*oExscore = result->averageExscore;
@@ -751,7 +751,7 @@ bool NETWORK::GetTargetInfo(game& g, int mode, CSTR songmd5, CSTR *oData, CSTR *
 	}
 	if (isOnline) {
 		WaitAndInitRanking();
-		return GetTargetInfo(mode, songmd5, oData, oName, oDigit1, oDigit2, oDigit3, oDigit4, oSeed, oExscore) != 0;
+		return LR2IR_GetTargetInfo(mode, songmd5, oData, oName, oDigit1, oDigit2, oDigit3, oDigit4, oSeed, oExscore) != 0;
 	}
 	return false;
 }
@@ -798,7 +798,7 @@ static void ThreadProc_IRsendScore(NETWORK *ir, std::string ghostString) {
 	ir->hHandle.detach(); // Detach ourselves TODO: refactor surrounding code to avoid this
 }
 
-int NETWORK::GetTargetInfo(int mode, CSTR songmd5, CSTR *oData, CSTR *oName, int *oDigit1, int *oDigit2, int *oDigit3, int *oDigit4, int *oSeed, int *oExscore) {
+int NETWORK::LR2IR_GetTargetInfo(int mode, CSTR songmd5, CSTR *oData, CSTR *oName, int *oDigit1, int *oDigit2, int *oDigit3, int *oDigit4, int *oSeed, int *oExscore) {
 
 	CSTR search("top");
 
