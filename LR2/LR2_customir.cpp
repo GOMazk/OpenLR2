@@ -257,7 +257,7 @@ void CUSTOMIR_MANAGER::Login() {
 	}
 }
 
-std::optional<openlr2::IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(CSTR songmd5, int mode, int targetPlayerId) const {
+std::optional<openlr2::IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(const char* songmd5, int mode, int targetPlayerId) const {
 	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
 	if (irIt == mModules.end()) { return std::nullopt; }
 
@@ -272,10 +272,8 @@ std::optional<openlr2::IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(CSTR so
 		return std::nullopt;
 	}
 
-	const char* songHash = songmd5.body;
-
 	openlr2::IRGhostResult result{};
-	switch ((*irIt)->GetGhost(songHash, ghostMode, targetPlayerId, result)) {
+	switch ((*irIt)->GetGhost(songmd5, ghostMode, targetPlayerId, result)) {
 	case openlr2::GetStatus::Ok:
 		break;
 	case openlr2::GetStatus::Retry:
