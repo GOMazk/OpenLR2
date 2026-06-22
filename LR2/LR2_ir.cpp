@@ -750,7 +750,7 @@ bool NETWORK::GetTargetInfo(int mode, CSTR songmd5, CSTR *oData, CSTR *oName, in
 		return true;
 	}
 	if (isOnline) {
-		WaitAndInitRanking();
+		this->rankingData.Init();
 		return LR2IR_GetTargetInfo(mode, songmd5, oData, oName, oDigit1, oDigit2, oDigit3, oDigit4, oSeed, oExscore) != 0;
 	}
 	return false;
