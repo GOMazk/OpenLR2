@@ -179,7 +179,6 @@ struct IRGhostResult {
 	int averageExscore{}; // Only used if \ref GhostMode == \ref GhostMode::Average.
 };
 
-// \warning Experimental API, may be changed.
 struct IRRankPlayer {
 	std::string name; // Display name of the user
 	std::string comment; // User-defined comment of the score
@@ -215,7 +214,6 @@ struct IRRankPlayer {
 	uint64_t reserved7{};
 };
 
-// \warning Experimental API, may be changed.
 struct IRRankResult {
 	// The leaderboard. Top X players, usually 999.
 	std::vector<IRRankPlayer> ranking;
@@ -231,7 +229,6 @@ struct IRRankResult {
 	int totalPlaycount{};
 };
 
-// \warning Experimental API, may be changed.
 enum class GetStatus: int {
 	Ok = 0,
 	Retry,
@@ -257,21 +254,21 @@ struct MethodTable {
 	// The game awaits on this to complete before it lets the user out of result.
 	// Make sure to save the fetched result somewhere, so that RestoreCachedRank can then load it.
 	// Replace with HTTP + mandatory cache write.
-	// \warning Experimental API, may be changed.
 	openlr2::GetStatus(OLR2_IR_API* GetResultRank)(const char* songHash, int reserved, openlr2::IRRankResult& out) = nullptr;
 	// Called from song select when scrolling past 'songHash' song.
 	// Loads the leaderboard from where GetResultRank saved it.
 	// Do not perform HTTP here.
 	// Replace with cache read.
-	// \warning Experimental API, may be changed.
 	openlr2::GetStatus(OLR2_IR_API* RestoreCachedRank)(const char* songHash, int reserved, openlr2::IRRankResult& out) = nullptr;
-	// Forward compatibility, so you can try running IR modules designed for newer OpenLR2 versions.
+	// This is called synchronously when play is entered to retrieve the ghost data for the play.
+	openlr2::GetStatus(OLR2_IR_API* GetGhost)(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, openlr2::IRGhostResult& out) = nullptr;
+	// Forward compatibility.
+	// These fields will always be moved to the end of the struct when new fields are added.
+	// Thanks to this CustomIR module designed for newer game version won't write out-of-bounds memory when assigning fields of older MethodTable.
 	void* reserved1 = nullptr;
 	void* reserved2 = nullptr;
 	void* reserved3 = nullptr;
 	void* reserved4 = nullptr;
 	void* reserved5 = nullptr;
 	void* reserved6 = nullptr;
-	// This is called synchronously when play is entered to retrieve the ghost data for the play.
-	openlr2::GetStatus(OLR2_IR_API* GetGhost)(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, openlr2::IRGhostResult& out) = nullptr;
 };
