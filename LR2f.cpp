@@ -30137,7 +30137,7 @@ int NETWORK::HTTPrequest() {
 	}
 		
 	unsigned long argp = 1;
-	ioctlsocket(s, 0x8004667e, &argp);
+	ioctlsocket(s, FIONBIO, &argp);
 		
 	request.fillzero();
 	cstrSprintf(&request, "POST %s HTTP/1.0\r\nContent-Length:%d\n\n%s", this->target_URL, this->param.length(), this->param);
