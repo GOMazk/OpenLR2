@@ -26255,7 +26255,7 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 				isPMS = is9key;
 			}
 			else if (fBuf.left(5).isSame("#BPM ")) {
-				int val = atof(fBuf.right(fBuf.length() - 5));
+				double val = atof(fBuf.right(fBuf.length() - 5));
 				if (gp->BPM_fix <= 0.0) {
 					gp->BPM_fix = val * gp->freqSpeedMultiplier;
 				}
