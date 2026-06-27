@@ -13202,6 +13202,7 @@ int ProcS_Play(game *g, sqlite3* sql) {
 			scratchside = g->skstruct.scratchside_1 + g->skstruct.scratchside_2 * 2;
 		}
 
+		int tmpBattle = g->config.play.battle;
 		if (g->gameplay.ghostBattle) g->config.play.battle = 1;
 		if (g->rec.recMode == 4) {
 			ErrorLogFmtAdd("bms2aviの準備\n");
@@ -13231,6 +13232,7 @@ int ProcS_Play(game *g, sqlite3* sql) {
 		}
 
 		ParseBmsFile(&g->gameplay, g->sSelect.metaSelected.filepath, &g->audio, &g->config, &g->sSelect.metaSelected, g->skstruct.flag_BGA, scratchside);
+		g->config.play.battle = tmpBattle;
 	}
 	else {
 		InitGameplay_retry(&g->gameplay, &g->audio, g);
