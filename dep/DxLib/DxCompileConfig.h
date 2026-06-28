@@ -63,7 +63,7 @@
 //#define DX_NON_MOVIE
 
 // Switch の MP4 再生機能がいらない方は次のコメントを外してください
-//#define DX_NON_NSW_MP4
+#define DX_NON_NSW_MP4
 
 // ＴＧＡ画像の読み込み機能がいらない方は次のコメントを外してください
 //#define DX_NON_TGA
@@ -89,6 +89,7 @@
 // グラフィックス処理がいらない方は次のコメントを外してください
 //#define DX_NON_GRAPHICS
 
+// chown2: it's broken but useful for me in my virtual machine that doesn't support DX9 (WTF).
 // ソフトウエア２Ｄ描画がいらない方は次のコメントを外してください
 //#define DX_NON_2DDRAW
 
@@ -110,6 +111,7 @@
 // 文字列入力機能はいらない方は次のコメントを外して下さい
 //#define DX_NON_INPUTSTRING
 
+// WTF, required for some BGAs. Example: polycube - Enigma.
 // 通信機能がいらない方は次のコメントを外してください
 //#define DX_NON_NETWORK
 
@@ -139,11 +141,11 @@
 #define DX_USE_DXLIB_MEM_DUMP
 
 // モデルデータを扱う機能を使用しない方は次のコメントを外してください
-//#define DX_NON_MODEL
+#define DX_NON_MODEL
 
 // Bullet Physics をリンクしない場合は次のコメントを外してください
 // ※DxUseCLib.lib も再コンパイルする必要があります
-//#define DX_NON_BULLET_PHYSICS
+#define DX_NON_BULLET_PHYSICS
 
 // ＦＢＸファイルを読み込む機能を使用する方は次のコメントを外してください( 使用には FBX SDK のセットアップが必要です )
 //#define DX_LOAD_FBX_MODEL
@@ -198,7 +200,7 @@
 //#define DX_NON_SHADERCODE_BINARY
 
 // Live2D Cubism 4 関連の機能を使用しない場合は次のコメントを外してください
-//#define DX_NON_LIVE2D_CUBISM4
+#define DX_NON_LIVE2D_CUBISM4
 
 // ウィンドウを作成しない場合は次のコメントを外してください
 //#define DX_NON_WINDOW
