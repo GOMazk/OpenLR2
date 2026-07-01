@@ -319,6 +319,7 @@ void LoadIRDerivedRecord(sqlite3* sql, SONGDATA& sd) {
 		sqlite3_finalize(stmt);
 	}
 }
+
 } // namespace
 
 // thiscall in original code
@@ -798,14 +799,7 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 	CSTR nowFolder, newFolder, workingFolder;
 	int nowMode, nowDifficulty;
 
-	//key 0:ALL 1:SINGLE 2:7keys 3:5keys 4:DOUBLE 5:14keys 6:10keys 7:9buttons
-
-	if ((cfg_select->ignorekeyall == 1) && (key == 0)) key = 1;
-	if ((cfg_select->ignorekeysingle == 1) && (key == 1)) key = 2;
-	if ((cfg_select->ignorekeydouble == 1) && (key == 4)) key = 5;
-	if ((cfg_select->ignoredp == 1) && (3 < key && key < 7)) key = 7;
-	if ((cfg_select->ignorepms == 1) && (key == 7)) key = 0;
-	if ((cfg_select->ignorekeyall == 1) && (key == 0)) key = 1;
+	key = openlr2::adjustFilterKey(*cfg_select, key);
 	if ((cfg_select->ignoredifficultyall == 1) && (difficulty == 0)) difficulty = 1;
 
 	if (query.findStrPos("__NEWSONG__") > -1) {
@@ -1675,12 +1669,7 @@ int SearchCourseFromDB(sqlite3 *sql, SONGSELECT *ss, int keys, int multistagemod
 	sqlite3_stmt *pStmt;
 	CSTR str;
 
-	if (ss->filter.ignorekeyall == 1 && keys == 0) keys = 1;
-	if (ss->filter.ignorekeysingle == 1 && keys == 1) keys = 2;
-	if (ss->filter.ignorekeydouble == 1 && keys == 4) keys = 5;
-	if (ss->filter.ignoredp == 1 && 3 < keys && keys < 7) keys = 7;
-	if (ss->filter.ignorepms == 1 && keys == 7) keys = 0;
-	if (ss->filter.ignorekeyall == 1 && keys == 0) keys = 1;
+	keys = openlr2::adjustFilterKey(ss->filter, keys);
 
 	GetNowUnixtime();
 	ss->rivalID = 0;
@@ -1873,12 +1862,7 @@ int LoadBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *difficulty,
 
 	if (query.left(6).isDiff("SELECT")) return -1;
 
-	if (ss->filter.ignorekeyall == 1 && *key == 0) *key = 1;
-	if (ss->filter.ignorekeysingle == 1 && *key == 1) *key = 2;
-	if (ss->filter.ignorekeydouble == 1 && *key == 4) *key = 5;
-	if (ss->filter.ignoredp == 1 && 3 < *key && *key < 7) *key = 7;
-	if (ss->filter.ignorepms == 1 && *key == 7) *key = 0;
-	if (ss->filter.ignorekeyall == 1 && *key == 0) *key = 1;
+	*key = openlr2::adjustFilterKey(ss->filter, *key);
 	if (ss->filter.ignoredifficultyall == 1 && *difficulty == 0) *difficulty = 1;
 
 	SQL_prepare(query, sql, &stmt);
@@ -2127,13 +2111,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 	ss->isExLevel = 0;
 	if (query.findStrPos("exlevel") >= 0) ss->isExLevel = 1;
 
-	if (ss->filter.ignorekeyall == 1 && *mode == 0) *mode = 1;
-	if (ss->filter.ignorekeysingle == 1 && *mode == 1) *mode = 2;
-	if (ss->filter.ignorekeydouble == 1 && *mode == 4) *mode = 5;
-	if (ss->filter.ignoredp == 1 && 3 < *mode && *mode < 7) *mode = 7;
-	if (ss->filter.ignorepms == 1 && *mode == 7) *mode = 0;
-	if (ss->filter.ignorekeyall == 1 && *mode == 0) *mode = 1;
-	
+	*mode = openlr2::adjustFilterKey(ss->filter, *mode);
 	if (ss->filter.ignoredifficultyall == 1 && *diffFilter == 0 && flag == 0) *diffFilter = 1;
 	
 	bool isIgnore = 0, isRival = 0;
@@ -2680,12 +2658,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 			int modeCycle = *mode;
 			for (*mode = modeCycle + 1; *mode != modeCycle; *mode += 1) {
 				if (*mode == 8) *mode = 0;
-				if (ss->filter.ignorekeyall == 1 && *mode == 0) *mode = 1;
-				if (ss->filter.ignorekeysingle == 1 && *mode == 1) *mode = 2;
-				if (ss->filter.ignorekeydouble == 1 && *mode == 4) *mode = 5;
-				if (ss->filter.ignoredp == 1 && (3 < *mode && *mode < 7)) *mode = 7;
-				if (ss->filter.ignorepms == 1 && *mode == 7) *mode = 0;
-				if (ss->filter.ignorekeyall == 1 && *mode == 0) *mode = 1;
+				*mode = openlr2::adjustFilterKey(ss->filter, *mode);
 
 				bool exit = 1;
 				switch (*mode) {
@@ -3206,4 +3179,14 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	if (IsFileExist(dir)) meta->hasTxt = 1;
 	meta->notecount = notes;
 	return 1;
+}
+
+int openlr2::adjustFilterKey(CONFIG_SELECT const& cfg_select, int key) {
+	if (cfg_select.ignorekeyall == 1 && key == 0) key = 1;
+	if (cfg_select.ignorekeysingle == 1 && key == 1) key = 2;
+	if (cfg_select.ignorekeydouble == 1 && key == 4) key = 5;
+	if (cfg_select.ignoredp == 1 && key >= 4 && key <= 6) key = 7;
+	if (cfg_select.ignorepms == 1 && key == 7) key = 0;
+	if (cfg_select.ignorekeyall == 1 && key == 0) key = 1;
+	return key;
 }

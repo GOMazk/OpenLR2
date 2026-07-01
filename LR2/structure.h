@@ -257,9 +257,9 @@ struct CONFIG_PLAYER {
 };
 
 struct CONFIG_SELECT {
-	int difficulty{};
-	int sort{};
-	int key{};
+	int difficulty{}; // 0:ALL,1:EASY,2:STANDARD,3:HARD,4:EXPERT,5:ULTIMATE
+	int sort{}; // 0:OFF,1:TITLE,2:LEVEL,3:FOLDER,4:CLEAR,5:RANK
+	int key{}; // 0:ALL KEYS,1:SINGLE,2:7KEYS,3:5KEYS,4:DOUBLE,5:14KEYS,6:10KEYS,7:9KEYS
 	int searchmax{};
 	int randomclose{};
 	int speedfirst{};
@@ -1031,9 +1031,9 @@ struct SONGSELECT {
 	int unk4fb8[2]; /* folder map? */
 	char unk4fc4[3];
 	int searchFocused; /* about active? 2,4:multithread */
-	int filterDifficulty; 
-	int filterKey; 
-	int filterSort; 
+	int filterDifficulty; // \ref CONFIG_SELECT::difficulty
+	int filterKey; // \ref CONFIG_SELECT::key
+	int filterSort; // \ref CONFIG_SELECT::sort
 	int searchMax; /* and rivalID */
 	int isFolder;
 	CSTR selFilepath; 
