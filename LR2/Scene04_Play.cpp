@@ -21,6 +21,7 @@ static void MessageBoxA(const char*,const char* title,const char*desc,const char
 // Also see GetBestClearedGauge
 static int PerformGAS(const gameplay& gameplay, int playerIdx, const CONFIG_PLAY& cfg) {
 	const PLAYERSTATUS& player = gameplay.player[playerIdx];
+	if (gameplay.isAutoplay) return player.gaugeType;
 	if (playerIdx == 1 && gameplay.ghostBattle) return player.gaugeType;
 	if (cfg.gaugeOption[playerIdx] == 5) return 5;
 	constexpr std::array<int, 5> gaugeArr({ 4, 2, 1, 0, 3 });
@@ -1820,7 +1821,7 @@ int ProcS_Play(game *g, sqlite3* sql) {
 			g->config.play.gaugeOption[1] = g->config.play.gaugeOption[0];
 			g->config.play.random[1] = g->config.play.random[0];
 
-			if (g->config.play.m_gas) {
+			if (g->config.play.m_gas && !g->gameplay.isAutoplay) {
 				g->config.play.gaugeOption[0] = origGauge;
 			}
 		}

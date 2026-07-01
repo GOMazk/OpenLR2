@@ -251,6 +251,7 @@ int FlipScore(game *g){
 // Also see PerformGAS
 static int GetBestClearedGauge(const gameplay& gameplay, int playerIdx, const CONFIG_PLAY& cfg, bool limitToCourse) {
 	const PLAYERSTATUS& player = gameplay.player[playerIdx];
+	if (gameplay.isAutoplay) return player.gaugeType;
 	if (playerIdx == 1 && gameplay.ghostBattle) return player.gaugeType;
 	if (cfg.gaugeOption[playerIdx] == 5) return 5;
 	constexpr std::array<int, 5> gaugeArr({ 4, 2, 1, 0, 3 });
