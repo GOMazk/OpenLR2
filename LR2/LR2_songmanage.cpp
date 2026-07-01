@@ -803,7 +803,7 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 	if ((cfg_select->ignorekeyall == 1) && (key == 0)) key = 1;
 	if ((cfg_select->ignorekeysingle == 1) && (key == 1)) key = 2;
 	if ((cfg_select->ignorekeydouble == 1) && (key == 4)) key = 5;
-	if ((cfg_select->ignoredp == 1) && (key < 7)) key = 7; //TOFIX? : && key > 3
+	if ((cfg_select->ignoredp == 1) && (3 < key && key < 7)) key = 7;
 	if ((cfg_select->ignorepms == 1) && (key == 7)) key = 0;
 	if ((cfg_select->ignorekeyall == 1) && (key == 0)) key = 1;
 	if ((cfg_select->ignoredifficultyall == 1) && (difficulty == 0)) difficulty = 1;
@@ -1678,7 +1678,7 @@ int SearchCourseFromDB(sqlite3 *sql, SONGSELECT *ss, int keys, int multistagemod
 	if (ss->filter.ignorekeyall == 1 && keys == 0) keys = 1;
 	if (ss->filter.ignorekeysingle == 1 && keys == 1) keys = 2;
 	if (ss->filter.ignorekeydouble == 1 && keys == 4) keys = 5;
-	if (ss->filter.ignoredp == 1 && keys < 7) keys = 7;
+	if (ss->filter.ignoredp == 1 && 3 < keys && keys < 7) keys = 7;
 	if (ss->filter.ignorepms == 1 && keys == 7) keys = 0;
 	if (ss->filter.ignorekeyall == 1 && keys == 0) keys = 1;
 
