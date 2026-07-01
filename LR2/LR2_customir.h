@@ -31,7 +31,7 @@ public:
 	// \retval nullopt - Fail
 	std::future<std::optional<openlr2::IRRankResult>>& GetResult() { return mResultIrFuture; };
 	// Get the result with \ref GetResult
-	void BeginResultIr(game& game, sqlite3* sql, int player);
+	void BeginResultIr(game& game, sqlite3* sql, int player, std::string ghost);
 	void Initialize(const std::filesystem::path& directory, std::string activeProvider);
 	std::string Login();
 	[[nodiscard]] bool IsDisplayIrOnline() const;

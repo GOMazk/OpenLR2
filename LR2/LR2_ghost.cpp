@@ -168,7 +168,10 @@ int PLAYSCORE::SetGhost(int exscore, int notes, CSTR name){
 }
 
 CSTR PLAYSCORE::EncodeGhostData(void) const {
-	if (this->judge_queue_len == 0) return "GHOST_ERROR";
+	if (this->judge_queue_len == 0) {
+		ErrorLogAdd("BUG: EncodeGhostData -> judge_queue_len == 0\n");
+		return "";
+	}
 
 	int rep = 0;
 	CSTR buf;
@@ -441,6 +444,7 @@ CSTR PLAYSCORE::EncodeGhostData(void) const {
 		o++;
 	}
 
+	ErrorLogFmtAdd("EncodeGhostData -> %s\n", str.body);
 	return str;
 }
 

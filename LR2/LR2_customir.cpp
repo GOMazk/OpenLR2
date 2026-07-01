@@ -14,6 +14,7 @@
 #include <ranges>
 #include <string>
 #include <thread>
+#include <utility>
 
 #include <DxLib.h>
 
@@ -400,7 +401,7 @@ struct IRScoreInternal {
 		std::array<int, 1000> rate{};
 	} graphs{};
 
-	IRScoreInternal(game& game, sqlite3* sql, int player);
+	IRScoreInternal(game& game, sqlite3* sql, int player, std::string ghost);
 	void MakeScoreV1(IRScoreV1& scoreOut) const;
 };
 
@@ -500,7 +501,7 @@ void IRScoreInternal::MakeScoreV1(IRScoreV1& scoreOut) const {
 	scoreOut.songPlayLevel = songPlayLevel;
 }
 
-IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player) {
+IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player, std::string ghost) {
 	const SONGDATA& curSong = game.sSelect.bmsList[game.sSelect.cur_song];
 	bool courseSong = (game.gameplay.courseType == 0 || game.gameplay.courseType == 2) && game.procSelecter != 13;
 	bool courseScore = game.procSelecter == 13;
@@ -640,10 +641,11 @@ IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player) {
 
 		static_assert(sizeof(gameplay.rategraph[_player].val) == sizeof(graphs.rate));
 		std::ranges::copy(gameplay.rategraph[_player].val, graphs.rate.begin());
-	}
 
-	if (!courseScore && _player == 0) {
-		ghostData = gameplay.resultGhostForIr;
+		ghostData = std::move(ghost);
+		if (ghostData.empty()) {
+			ErrorLogAdd("BUG: empty ghost on non-course score\n");
+		}
 	}
 }
 
@@ -682,12 +684,12 @@ static std::optional<openlr2::IRRankResult> ResultIrAsync(std::shared_ptr<Custom
 	ErrorLogAdd("CustomIR BUG: invalid GetResultRank return value\n");
 	return std::nullopt;
 }
-void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player) {
+void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player, std::string ghost) {
 	if (mModules.empty()) {
 		return;
 	}
 
-	IRScoreInternal internal{ game, sql, player };
+	IRScoreInternal internal{ game, sql, player, std::move(ghost) };
 	IRScoreV1 scoreV1;
 	internal.MakeScoreV1(scoreV1);
 

@@ -1303,7 +1303,6 @@ struct gameplay {
 	int bpmChangedRealtime; /* timer142 */
 	int bpmChangedBmstime; /* bpm change timing */
 	char ghostBattle;
-	std::string resultGhostForIr;
 	struct CONFIG_PLAY targetCfg; /* //1p_speed ~ struct */
 	int delayDetectedCount;
 	int delayCheckCount;
