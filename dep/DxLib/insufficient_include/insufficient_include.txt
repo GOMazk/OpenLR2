@@ -1,0 +1,7 @@
+DxLibのコード上で依存ライブラリの内部ヘッダーを直接呼んでしまっているので
+vorbisのソースのヘッダーが一部取り込まれています。
+
+入手
+https://gitlab.xiph.org/xiph/vorbis/-/raw/v1.3.7/COPYING (COPYING-vorbis.txt)
+https://gitlab.xiph.org/xiph/vorbis/-/raw/v1.3.7/lib/misc.h
+https://gitlab.xiph.org/xiph/vorbis/-/raw/v1.3.7/lib/os.h
