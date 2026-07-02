@@ -30865,6 +30865,7 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 			Movie->TheoraSetupGraphHandleImage = TRUE ;
 		}
 		else
+#ifndef DX_NON_FILTER
 		// Theora を使用していて、画像の右側がアルファ情報ではなく、且つシェーダーが使用できる場合は処理を分岐
 		if( Movie->TheoraFlag && Movie->NotUseYUVFormatSurfaceFlag == FALSE && GSYS.HardInfo.UseShader )
 		{
@@ -30891,7 +30892,8 @@ extern void Graphics_Image_UpdateGraphMovie( MOVIEGRAPH *Movie, DWORD_PTR GrHand
 			Movie->TheoraSetupGraphHandleImage = TRUE ;
 		}
 		else
-#endif
+#endif // DX_NON_FILTER
+#endif // DX_NON_OGGTHEORA
 #ifndef DX_NON_FILTER
 		if( Movie->YGrHandle >= 0 )
 		{

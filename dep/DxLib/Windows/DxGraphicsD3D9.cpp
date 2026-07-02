@@ -1889,8 +1889,8 @@ extern int Graphics_D3D9_ShaderCode_Base_Initialize( void )
 	// 正常終了
 	return TRUE ;
 
+ERR:
 #ifndef DX_NON_NORMAL_DRAW_SHADER
-ERR :
 #ifndef DX_NON_SHADERCODE_BINARY
 	if( SCBASE->BaseShaderBinDxaImage != NULL )
 	{

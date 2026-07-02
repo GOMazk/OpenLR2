@@ -84,7 +84,7 @@
 //#define DX_NON_FILTER
 
 // 通常描画にプログラマブルシェーダーを使用しない方は次のコメントを外してください
-//#define DX_NON_NORMAL_DRAW_SHADER
+#define DX_NON_NORMAL_DRAW_SHADER
 
 // グラフィックス処理がいらない方は次のコメントを外してください
 //#define DX_NON_GRAPHICS
