@@ -1,4 +1,4 @@
-﻿// LR2IR integration is deprecated. Please help us improve CustomIR instead.
+// LR2IR integration is deprecated. Please help us improve CustomIR instead.
 
 #include <string>
 #include "En_dbio.h"
@@ -685,7 +685,7 @@ int NETWORK::GetRivalInfo(int rivalID) {
 	return 1;
 }
 
-int OpenWebRanking(CSTR songmd5){
+int LR2IR_OpenWebRanking(CSTR songmd5){
 #ifdef _WIN32
 	CSTR url;
 	cstrSprintf(&url, "\"http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?mode=ranking&bmsmd5=%s#status&\"", songmd5.body);
