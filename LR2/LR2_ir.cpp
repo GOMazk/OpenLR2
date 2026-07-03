@@ -1,4 +1,4 @@
-// LR2IR integration is deprecated. Please help us improve CustomIR instead.
+﻿// LR2IR integration is deprecated. Please help us improve CustomIR instead.
 
 #include <string>
 #include "En_dbio.h"
