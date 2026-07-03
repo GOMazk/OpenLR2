@@ -37,8 +37,4 @@
 #include "En_value.h"
 
 
-#include "DxLib/DxLib.h"
-
-
-//temp DEBUG
-#include "dbgtool.h"
+#include <DxLib.h>

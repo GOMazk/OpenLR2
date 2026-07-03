@@ -1,6 +1,6 @@
 ﻿#include "En_fileutil.h"
 #include <md5.h>
-#include "DxLib/DxLib.h" //log
+#include <DxLib.h>
 
 #ifdef _WIN32
 #include <codecvt>

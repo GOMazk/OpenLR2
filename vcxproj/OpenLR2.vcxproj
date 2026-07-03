@@ -27,98 +27,94 @@
     </ProjectConfiguration>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="LR2\dbgtool.h" />
-    <ClInclude Include="LR2\Engine.h" />
-    <ClInclude Include="LR2\En_audio.h" />
-    <ClInclude Include="LR2\En_dbio.h" />
-    <ClInclude Include="LR2\En_fileutil.h" />
-    <ClInclude Include="LR2\En_graphic.h" />
-    <ClInclude Include="LR2\En_input.h" />
-    <ClInclude Include="LR2\En_recordmovie.h" />
-    <ClInclude Include="LR2\En_timer.h" />
-    <ClInclude Include="LR2\En_value.h" />
-    <ClInclude Include="LR2\En_xml.h" />
-    <ClInclude Include="LR2\LR2.h" />
-    <ClInclude Include="LR2\LR2_audio.h" />
-    <ClInclude Include="LR2\LR2_bmsload.h" />
-    <ClInclude Include="LR2\LR2_configsave.h" />
-    <ClInclude Include="LR2\LR2_customir.h" />
-    <ClInclude Include="LR2\LR2_customir_api.h" />
-    <ClInclude Include="LR2\LR2_gameloop.h" />
-    <ClInclude Include="LR2\LR2_ghost.h" />
-    <ClInclude Include="LR2\LR2_ir.h" />
-    <ClInclude Include="LR2\LR2_makemp3.h" />
-    <ClInclude Include="LR2\LR2_replay.h" />
-    <ClInclude Include="LR2\LR2_skindraw.h" />
-    <ClInclude Include="LR2\LR2_skinload.h" />
-    <ClInclude Include="LR2\LR2_skinmanage.h" />
-    <ClInclude Include="LR2\LR2_skinobject.h" />
-    <ClInclude Include="LR2\LR2_songmanage.h" />
-    <ClInclude Include="LR2\LR2_statlong.h" />
-    <ClInclude Include="LR2\LR2_statplay.h" />
-    <ClInclude Include="LR2\Scene02_Songselect.h" />
-    <ClInclude Include="LR2\Scene03_Decide.h" />
-    <ClInclude Include="LR2\Scene04_Play.h" />
-    <ClInclude Include="LR2\Scene05_Result.h" />
-    <ClInclude Include="LR2\Scene06_Keyconfig.h" />
-    <ClInclude Include="LR2\Scene07_Skinselect.h" />
-    <ClInclude Include="LR2\Scene08_Lunaris.h" />
-    <ClInclude Include="LR2\Scene09_Po4menu.h" />
-    <ClInclude Include="LR2\Scene10_Po4decide.h" />
-    <ClInclude Include="LR2\Scene11_Po4select.h" />
-    <ClInclude Include="LR2\Scene13_Courseresult.h" />
-    <ClInclude Include="LR2\Scenes.h" />
-    <ClInclude Include="LR2\strclass.h" />
-    <ClInclude Include="LR2\structure.h" />
-    <ClInclude Include="LR2\LR2_version.h" />
+    <ClInclude Include="..\LR2\Engine.h" />
+    <ClInclude Include="..\LR2\En_audio.h" />
+    <ClInclude Include="..\LR2\En_dbio.h" />
+    <ClInclude Include="..\LR2\En_dxlibstub.h" />
+    <ClInclude Include="..\LR2\En_fileutil.h" />
+    <ClInclude Include="..\LR2\En_graphic.h" />
+    <ClInclude Include="..\LR2\En_input.h" />
+    <ClInclude Include="..\LR2\En_recordmovie.h" />
+    <ClInclude Include="..\LR2\En_timer.h" />
+    <ClInclude Include="..\LR2\En_value.h" />
+    <ClInclude Include="..\LR2\En_xml.h" />
+    <ClInclude Include="..\LR2\filesystem.h" />
+    <ClInclude Include="..\LR2\LR2.h" />
+    <ClInclude Include="..\LR2\LR2_audio.h" />
+    <ClInclude Include="..\LR2\LR2_bmsload.h" />
+    <ClInclude Include="..\LR2\LR2_configsave.h" />
+    <ClInclude Include="..\LR2\LR2_customir.h" />
+    <ClInclude Include="..\LR2\LR2_customir_api.h" />
+    <ClInclude Include="..\LR2\LR2_gameloop.h" />
+    <ClInclude Include="..\LR2\LR2_ghost.h" />
+    <ClInclude Include="..\LR2\LR2_ir.h" />
+    <ClInclude Include="..\LR2\LR2_makemp3.h" />
+    <ClInclude Include="..\LR2\LR2_replay.h" />
+    <ClInclude Include="..\LR2\LR2_skindraw.h" />
+    <ClInclude Include="..\LR2\LR2_skinload.h" />
+    <ClInclude Include="..\LR2\LR2_skinmanage.h" />
+    <ClInclude Include="..\LR2\LR2_skinobject.h" />
+    <ClInclude Include="..\LR2\LR2_songmanage.h" />
+    <ClInclude Include="..\LR2\LR2_statlong.h" />
+    <ClInclude Include="..\LR2\LR2_statplay.h" />
+    <ClInclude Include="..\LR2\LR2_version.h" />
+    <ClInclude Include="..\LR2\Scene02_Songselect.h" />
+    <ClInclude Include="..\LR2\Scene03_Decide.h" />
+    <ClInclude Include="..\LR2\Scene04_Play.h" />
+    <ClInclude Include="..\LR2\Scene05_Result.h" />
+    <ClInclude Include="..\LR2\Scene06_Keyconfig.h" />
+    <ClInclude Include="..\LR2\Scene07_Skinselect.h" />
+    <ClInclude Include="..\LR2\Scene08_Lunaris.h" />
+    <ClInclude Include="..\LR2\Scene09_Po4menu.h" />
+    <ClInclude Include="..\LR2\Scene10_Po4decide.h" />
+    <ClInclude Include="..\LR2\Scene11_Po4select.h" />
+    <ClInclude Include="..\LR2\Scene13_Courseresult.h" />
+    <ClInclude Include="..\LR2\Scenes.h" />
+    <ClInclude Include="..\LR2\strclass.h" />
+    <ClInclude Include="..\LR2\structure.h" />
+    <ClInclude Include="..\LR2\Unrandomizer_SeedMap5K.h" />
+    <ClInclude Include="..\LR2\Unrandomizer_SeedMap7K.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="lib\md5\md5.cpp" />
-    <ClCompile Include="lib\sqlite\sqlite3.c" />
-    <ClCompile Include="lib\tinyxml\tinystr.cpp" />
-    <ClCompile Include="lib\tinyxml\tinyxml.cpp" />
-    <ClCompile Include="lib\tinyxml\tinyxmlerror.cpp" />
-    <ClCompile Include="lib\tinyxml\tinyxmlparser.cpp" />
-    <ClCompile Include="LR2\dbgtool.cpp" />
-    <ClCompile Include="LR2\En_audio.cpp" />
-    <ClCompile Include="LR2\En_dbio.cpp" />
-    <ClCompile Include="LR2\En_fileutil.cpp" />
-    <ClCompile Include="LR2\En_graphic.cpp" />
-    <ClCompile Include="LR2\En_input.cpp" />
-    <ClCompile Include="LR2\En_recordmovie.cpp" />
-    <ClCompile Include="LR2\En_timer.cpp" />
-    <ClCompile Include="LR2\En_value.cpp" />
-    <ClCompile Include="LR2\En_xml.cpp" />
-    <ClCompile Include="LR2\LR2_audio.cpp" />
-    <ClCompile Include="LR2\LR2_bmsload.cpp" />
-    <ClCompile Include="LR2\LR2_configsave.cpp" />
-    <ClCompile Include="LR2\LR2_customir.cpp" />
-    <ClCompile Include="LR2\LR2_gameloop.cpp" />
-    <ClCompile Include="LR2\LR2_ghost.cpp" />
-    <ClCompile Include="LR2\LR2_ir.cpp" />
-    <ClCompile Include="LR2\LR2_makemp3.cpp" />
-    <ClCompile Include="LR2\LR2_replay.cpp" />
-    <ClCompile Include="LR2\LR2_skindraw.cpp" />
-    <ClCompile Include="LR2\LR2_skinload.cpp" />
-    <ClCompile Include="LR2\LR2_skinmanage.cpp" />
-    <ClCompile Include="LR2\LR2_skinobject.cpp" />
-    <ClCompile Include="LR2\LR2_songmanage.cpp" />
-    <ClCompile Include="LR2\LR2_statlong.cpp" />
-    <ClCompile Include="LR2\LR2_statplay.cpp" />
-    <ClCompile Include="LR2\LR2_version.cpp" />
-    <ClCompile Include="LR2\Main.cpp" />
-    <ClCompile Include="LR2\Scene02_Songselect.cpp" />
-    <ClCompile Include="LR2\Scene03_Decide.cpp" />
-    <ClCompile Include="LR2\Scene04_Play.cpp" />
-    <ClCompile Include="LR2\Scene05_Result.cpp" />
-    <ClCompile Include="LR2\Scene06_Keyconfig.cpp" />
-    <ClCompile Include="LR2\Scene07_Skinselect.cpp" />
-    <ClCompile Include="LR2\Scene08_Lunaris.cpp" />
-    <ClCompile Include="LR2\Scene09_Po4menu.cpp" />
-    <ClCompile Include="LR2\Scene10_Po4decide.cpp" />
-    <ClCompile Include="LR2\Scene11_Po4select.cpp" />
-    <ClCompile Include="LR2\Scene13_Courseresult.cpp" />
-    <ClCompile Include="LR2\strclass.cpp" />
+    <ClCompile Include="..\LR2\En_audio.cpp" />
+    <ClCompile Include="..\LR2\En_dbio.cpp" />
+    <ClCompile Include="..\LR2\En_fileutil.cpp" />
+    <ClCompile Include="..\LR2\En_graphic.cpp" />
+    <ClCompile Include="..\LR2\En_input.cpp" />
+    <ClCompile Include="..\LR2\En_recordmovie.cpp" />
+    <ClCompile Include="..\LR2\En_timer.cpp" />
+    <ClCompile Include="..\LR2\En_value.cpp" />
+    <ClCompile Include="..\LR2\En_xml.cpp" />
+    <ClCompile Include="..\LR2\LR2_audio.cpp" />
+    <ClCompile Include="..\LR2\LR2_bmsload.cpp" />
+    <ClCompile Include="..\LR2\LR2_configsave.cpp" />
+    <ClCompile Include="..\LR2\LR2_customir.cpp" />
+    <ClCompile Include="..\LR2\LR2_gameloop.cpp" />
+    <ClCompile Include="..\LR2\LR2_ghost.cpp" />
+    <ClCompile Include="..\LR2\LR2_ir.cpp" />
+    <ClCompile Include="..\LR2\LR2_makemp3.cpp" />
+    <ClCompile Include="..\LR2\LR2_replay.cpp" />
+    <ClCompile Include="..\LR2\LR2_skindraw.cpp" />
+    <ClCompile Include="..\LR2\LR2_skinload.cpp" />
+    <ClCompile Include="..\LR2\LR2_skinmanage.cpp" />
+    <ClCompile Include="..\LR2\LR2_skinobject.cpp" />
+    <ClCompile Include="..\LR2\LR2_songmanage.cpp" />
+    <ClCompile Include="..\LR2\LR2_statlong.cpp" />
+    <ClCompile Include="..\LR2\LR2_statplay.cpp" />
+    <ClCompile Include="..\LR2\LR2_version.cpp" />
+    <ClCompile Include="..\LR2\Main.cpp" />
+    <ClCompile Include="..\LR2\Scene02_Songselect.cpp" />
+    <ClCompile Include="..\LR2\Scene03_Decide.cpp" />
+    <ClCompile Include="..\LR2\Scene04_Play.cpp" />
+    <ClCompile Include="..\LR2\Scene05_Result.cpp" />
+    <ClCompile Include="..\LR2\Scene06_Keyconfig.cpp" />
+    <ClCompile Include="..\LR2\Scene07_Skinselect.cpp" />
+    <ClCompile Include="..\LR2\Scene08_Lunaris.cpp" />
+    <ClCompile Include="..\LR2\Scene09_Po4menu.cpp" />
+    <ClCompile Include="..\LR2\Scene10_Po4decide.cpp" />
+    <ClCompile Include="..\LR2\Scene11_Po4select.cpp" />
+    <ClCompile Include="..\LR2\Scene13_Courseresult.cpp" />
+    <ClCompile Include="..\LR2\strclass.cpp" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <VCProjectVersion>17.0</VCProjectVersion>
@@ -126,6 +122,7 @@
     <ProjectGuid>{01fa731b-9406-4b8b-8604-7023e88298f5}</ProjectGuid>
     <RootNamespace>OpenLR2vs22</RootNamespace>
     <WindowsTargetPlatformVersion>10.0</WindowsTargetPlatformVersion>
+    <ProjectName>OpenLR2</ProjectName>
   </PropertyGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'" Label="Configuration">
@@ -190,27 +187,57 @@
     <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
   </ImportGroup>
   <PropertyGroup Label="UserMacros" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
+    <OutDir>$(SolutionDir)out\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformTarget)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>OpenLR2_$(PlatformTarget)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugWithSanitizer|Win32'">
+    <OutDir>$(SolutionDir)out\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformTarget)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>OpenLR2_$(PlatformTarget)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|Win32'">
+    <OutDir>$(SolutionDir)out\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformTarget)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>OpenLR2_$(PlatformTarget)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)out\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformTarget)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>OpenLR2_$(PlatformTarget)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='DebugWithSanitizer|x64'">
+    <OutDir>$(SolutionDir)out\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformTarget)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>OpenLR2_$(PlatformTarget)</TargetName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)out\$(PlatformTarget)\$(Configuration)\</OutDir>
+    <IntDir>$(SolutionDir)build\$(PlatformTarget)\$(Configuration)\$(ProjectName)\</IntDir>
+    <TargetName>OpenLR2_$(PlatformTarget)</TargetName>
+  </PropertyGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|Win32'">
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX;WIN32_LEAN_AND_MEAN;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)lib\FMOD;$(ProjectDir)lib\DxLib;$(ProjectDir)lib\md5;$(ProjectDir)lib\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\DxLib;$(SolutionDir)dep\FMOD;$(SolutionDir)dep\md5;$(SolutionDir)dep\sqlite;$(SolutionDir)dep\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalOptions>/utf-8 /arch:IA32 %(AdditionalOptions)</AdditionalOptions>
       <FloatingPointModel>Precise</FloatingPointModel>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\FMODex\;$(ProjectDir)lib\FMOD\;$(ProjectDir)lib\DxLib\DxLib\;$(ProjectDir)lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;md5.lib;sqlite3.lib;tinyxml.lib;fmod_vc.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>true</ImageHasSafeExceptionHandlers>
       <StackReserveSize>10485760</StackReserveSize>
       <LargeAddressAware>true</LargeAddressAware>
@@ -225,21 +252,21 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX;WIN32_LEAN_AND_MEAN;WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)lib\FMOD;$(ProjectDir)lib\DxLib;$(ProjectDir)lib\md5;$(ProjectDir)lib\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\DxLib;$(SolutionDir)dep\FMOD;$(SolutionDir)dep\md5;$(SolutionDir)dep\sqlite;$(SolutionDir)dep\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalOptions>/utf-8 /arch:IA32  /fsanitize=address %(AdditionalOptions)</AdditionalOptions>
       <FloatingPointModel>Precise</FloatingPointModel>
       <LanguageStandard>stdcpp23</LanguageStandard>
       <LanguageStandard_C>stdc17</LanguageStandard_C>
-      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <DebugInformationFormat>EditAndContinue</DebugInformationFormat>
       <DisableSpecificWarnings>4244</DisableSpecificWarnings>
       <MultiProcessorCompilation>true</MultiProcessorCompilation>
     </ClCompile>
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\FMODex\;$(ProjectDir)lib\FMOD\;$(ProjectDir)lib\DxLib\DxLib\;$(ProjectDir)lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;md5.lib;sqlite3.lib;tinyxml.lib;fmod_vc.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>true</ImageHasSafeExceptionHandlers>
       <StackReserveSize>10485760</StackReserveSize>
       <LargeAddressAware>true</LargeAddressAware>
@@ -256,7 +283,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX;WIN32_LEAN_AND_MEAN;WIN32;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)lib\FMOD;$(ProjectDir)lib\DxLib;$(ProjectDir)lib\md5;$(ProjectDir)lib\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\DxLib;$(SolutionDir)dep\FMOD;$(SolutionDir)dep\md5;$(SolutionDir)dep\sqlite;$(SolutionDir)dep\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 /arch:IA32 %(AdditionalOptions)</AdditionalOptions>
       <FloatingPointModel>Precise</FloatingPointModel>
@@ -268,8 +295,8 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\FMODex\;$(ProjectDir)lib\FMOD\;$(ProjectDir)lib\DxLib\DxLib\;$(ProjectDir)lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;md5.lib;sqlite3.lib;tinyxml.lib;fmod_vc.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
       <ImageHasSafeExceptionHandlers>true</ImageHasSafeExceptionHandlers>
       <StackReserveSize>10485760</StackReserveSize>
       <LargeAddressAware>true</LargeAddressAware>
@@ -284,7 +311,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX;WIN32_LEAN_AND_MEAN;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)lib\FMOD;$(ProjectDir)lib\DxLib;$(ProjectDir)lib\md5;$(ProjectDir)lib\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\DxLib;$(SolutionDir)dep\FMOD;$(SolutionDir)dep\md5;$(SolutionDir)dep\sqlite;$(SolutionDir)dep\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <FloatingPointModel>Precise</FloatingPointModel>
@@ -296,10 +323,12 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\FMODex\;$(ProjectDir)lib\FMOD\;$(ProjectDir)lib\DxLib\DxLib\;$(ProjectDir)lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;md5.lib;sqlite3.lib;tinyxml.lib;fmod_vc.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
       <StackReserveSize>10485760</StackReserveSize>
       <LargeAddressAware>true</LargeAddressAware>
+      <ImageHasSafeExceptionHandlers>
+      </ImageHasSafeExceptionHandlers>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>$(SolutionDir)OpenLR2.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
@@ -311,7 +340,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX;WIN32_LEAN_AND_MEAN;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)lib\FMOD;$(ProjectDir)lib\DxLib;$(ProjectDir)lib\md5;$(ProjectDir)lib\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\DxLib;$(SolutionDir)dep\FMOD;$(SolutionDir)dep\md5;$(SolutionDir)dep\sqlite;$(SolutionDir)dep\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreadedDebug</RuntimeLibrary>
       <AdditionalOptions>/utf-8 /fsanitize=address %(AdditionalOptions)</AdditionalOptions>
       <FloatingPointModel>Precise</FloatingPointModel>
@@ -323,10 +352,12 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\FMODex\;$(ProjectDir)lib\FMOD\;$(ProjectDir)lib\DxLib\DxLib\;$(ProjectDir)lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;md5.lib;sqlite3.lib;tinyxml.lib;fmod_vc.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
       <StackReserveSize>10485760</StackReserveSize>
       <LargeAddressAware>true</LargeAddressAware>
+      <ImageHasSafeExceptionHandlers>
+      </ImageHasSafeExceptionHandlers>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>$(SolutionDir)OpenLR2.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>
@@ -340,7 +371,7 @@
       <SDLCheck>true</SDLCheck>
       <PreprocessorDefinitions>NOMINMAX;WIN32_LEAN_AND_MEAN;NDEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <ConformanceMode>true</ConformanceMode>
-      <AdditionalIncludeDirectories>$(ProjectDir)lib\FMOD;$(ProjectDir)lib\DxLib;$(ProjectDir)lib\md5;$(ProjectDir)lib\;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+      <AdditionalIncludeDirectories>$(SolutionDir)dep\DxLib;$(SolutionDir)dep\FMOD;$(SolutionDir)dep\md5;$(SolutionDir)dep\sqlite;$(SolutionDir)dep\tinyxml;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
       <RuntimeLibrary>MultiThreaded</RuntimeLibrary>
       <AdditionalOptions>/utf-8 %(AdditionalOptions)</AdditionalOptions>
       <FloatingPointModel>Precise</FloatingPointModel>
@@ -352,10 +383,12 @@
     <Link>
       <SubSystem>Windows</SubSystem>
       <GenerateDebugInformation>true</GenerateDebugInformation>
-      <AdditionalLibraryDirectories>$(ProjectDir)lib\FMODex\;$(ProjectDir)lib\FMOD\;$(ProjectDir)lib\DxLib\DxLib\;$(ProjectDir)lib\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
-      <AdditionalDependencies>winmm.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
+      <AdditionalLibraryDirectories>$(SolutionDir)lib\$(PlatformTarget)\$(Configuration)\;%(AdditionalLibraryDirectories)</AdditionalLibraryDirectories>
+      <AdditionalDependencies>winmm.lib;md5.lib;sqlite3.lib;tinyxml.lib;fmod_vc.lib;$(CoreLibraryDependencies);%(AdditionalDependencies)</AdditionalDependencies>
       <StackReserveSize>10485760</StackReserveSize>
       <LargeAddressAware>true</LargeAddressAware>
+      <ImageHasSafeExceptionHandlers>
+      </ImageHasSafeExceptionHandlers>
     </Link>
     <Manifest>
       <AdditionalManifestFiles>$(SolutionDir)OpenLR2.manifest %(AdditionalManifestFiles)</AdditionalManifestFiles>

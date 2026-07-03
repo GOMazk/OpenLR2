@@ -6,7 +6,7 @@
 #include "filesystem.h"
 #include "En_fileutil.h"
 
-#include <DxLib/DxLib.h>
+#include <DxLib.h>
 
 #ifdef _WIN32
 #pragma comment(lib,"vfw32.lib")

@@ -1,4 +1,0 @@
-compile DxLib 3.02 makefile in VS22, and use it
-add linker legacy_stdio_definitions.lib
-/SAFESEH:NO (release win32)
-and fails at LoadGraph() tga file. don't try it

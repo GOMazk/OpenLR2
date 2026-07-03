@@ -1,12 +1,12 @@
 ﻿#include "En_xml.h"
-#include "tinyxml/tinyxml.h"
+#include <tinyxml.h>
 #include "En_fileutil.h"
 #include <fstream>
 #include <ios>
 #include <sstream>
 #include <string>
 
-#include <DxLib/DxLib.h>
+#include <DxLib.h>
 
 void file_utf_to_ansi(const char* filepath) {
 	std::string ansi;

@@ -9,42 +9,61 @@ set(CMAKE_MSVC_RUNTIME_LIBRARY "MultiThreaded$<$<CONFIG:Debug>:Debug>")
 # We don't use them and they cause fake errors in clangd
 set(CMAKE_CXX_SCAN_FOR_MODULES OFF)
 
-add_library(SQLite STATIC lib/sqlite/sqlite3.c)
-target_include_directories(SQLite PUBLIC lib/sqlite)
+add_library(SQLite STATIC dep/sqlite/sqlite3.c)
+target_include_directories(SQLite PUBLIC dep/sqlite)
 
 add_library(
     TinyXML
     STATIC
-    lib/tinyxml/tinystr.cpp
-    lib/tinyxml/tinyxml.cpp
-    lib/tinyxml/tinyxmlerror.cpp
-    lib/tinyxml/tinyxmlparser.cpp
+    dep/tinyxml/tinystr.cpp
+    dep/tinyxml/tinyxml.cpp
+    dep/tinyxml/tinyxmlerror.cpp
+    dep/tinyxml/tinyxmlparser.cpp
 )
-target_include_directories(TinyXML PUBLIC lib/tinyxml)
+target_include_directories(TinyXML PUBLIC dep/tinyxml)
 
 if(WIN32)
-    add_library(FMOD INTERFACE IMPORTED GLOBAL)
-    target_include_directories(FMOD INTERFACE lib)
-    target_link_directories(FMOD INTERFACE lib/FMOD)
-    # TODO(no-vs-solutions): adjust paths with CMAKE_SIZEOF_VOID_P and use instead of target_link_directories
-    # set_target_properties(
-    #     FMOD
-    #     PROPERTIES
-    #         IMPORTED_LOCATION_DEBUG ${CMAKE_CURRENT_LIST_DIR}/lib/FMOD/bin64/fmodL.dll
-    #         IMPORTED_IMPLIB_DEBUG ${CMAKE_CURRENT_LIST_DIR}/lib/FMOD/bin64/fmodL_vc.lib
-    #         IMPORTED_LOCATION ${CMAKE_CURRENT_LIST_DIR}/lib/FMOD/bin64/fmod.dll
-    #         IMPORTED_IMPLIB ${CMAKE_CURRENT_LIST_DIR}/lib/FMOD/bin64/fmod_vc.lib
-    # )
+    add_library(FMOD SHARED IMPORTED GLOBAL)
+    target_include_directories(FMOD INTERFACE dep/FMOD)
+    if(CMAKE_SIZEOF_VOID_P EQUAL 8)
+        set_target_properties(
+            FMOD
+            PROPERTIES
+                IMPORTED_LOCATION_DEBUG
+                    ${CMAKE_CURRENT_LIST_DIR}/dep/FMOD/bin64/fmodL.dll
+                IMPORTED_IMPLIB_DEBUG
+                    ${CMAKE_CURRENT_LIST_DIR}/dep/FMOD/bin64/fmodL_vc.lib
+                IMPORTED_LOCATION
+                    ${CMAKE_CURRENT_LIST_DIR}/dep/FMOD/bin64/fmod.dll
+                IMPORTED_IMPLIB
+                    ${CMAKE_CURRENT_LIST_DIR}/dep/FMOD/bin64/fmod_vc.lib
+        )
+    elseif(CMAKE_SIZEOF_VOID_P EQUAL 4)
+        set_target_properties(
+            FMOD
+            PROPERTIES
+                IMPORTED_LOCATION_DEBUG
+                    ${CMAKE_CURRENT_LIST_DIR}/dep/FMOD/bin86/fmodL.dll
+                IMPORTED_IMPLIB_DEBUG
+                    ${CMAKE_CURRENT_LIST_DIR}/dep/FMOD/bin86/fmodL_vc.lib
+                IMPORTED_LOCATION
+                    ${CMAKE_CURRENT_LIST_DIR}/dep/FMOD/bin86/fmod.dll
+                IMPORTED_IMPLIB
+                    ${CMAKE_CURRENT_LIST_DIR}/dep/FMOD/bin86/fmod_vc.lib
+        )
+    else()
+        message(FATAL_ERROR "Unsupported CMAKE_SIZEOF_VOID_P")
+    endif()
 elseif(LINUX)
     add_library(FMOD SHARED IMPORTED GLOBAL)
-    target_include_directories(FMOD INTERFACE lib)
+    target_include_directories(FMOD INTERFACE dep/FMOD)
     set_target_properties(
         FMOD
         PROPERTIES
             IMPORTED_LOCATION
-                ${CMAKE_CURRENT_LIST_DIR}/lib/FMOD/bin64/libfmod.so.14
+                ${CMAKE_CURRENT_LIST_DIR}/dep/FMOD/bin64/libfmod.so.14
             IMPORTED_LOCATION_DEBUG
-                ${CMAKE_CURRENT_LIST_DIR}/lib/FMOD/bin64/libfmodL.so.14
+                ${CMAKE_CURRENT_LIST_DIR}/dep/FMOD/bin64/libfmodL.so.14
     )
 else()
     message(FATAL_ERROR "No FMOD for this platform")
@@ -52,25 +71,25 @@ endif()
 
 if(WIN32)
     add_library(DxLib INTERFACE IMPORTED GLOBAL)
-    target_include_directories(DxLib INTERFACE lib/DxLib)
-    target_link_directories(DxLib INTERFACE lib/DxLib/DxLib)
+    target_include_directories(DxLib INTERFACE dep/DxLib)
+    target_link_directories(DxLib INTERFACE dep/DxLib)
 elseif(LINUX)
     add_library(DxLib STATIC IMPORTED GLOBAL)
     set_target_properties(
         DxLib
         PROPERTIES
             IMPORTED_LOCATION
-                ${CMAKE_CURRENT_LIST_DIR}/lib/dxlib-for-linux/DxLib/DxLibMake/libDxLib.a
+                ${CMAKE_CURRENT_LIST_DIR}/dep/dxlib-for-linux/DxLib/DxLibMake/libDxLib.a
     )
 
-    target_include_directories(DxLib INTERFACE lib/dxlib-for-linux/DxLib)
+    target_include_directories(DxLib INTERFACE dep/dxlib-for-linux/DxLib/DxLib)
 
     target_link_libraries(
         DxLib
         INTERFACE
             # Missing in there
             jpeg
-            # lib/dxlib-for-linux/DxLib/Makefile DEP_LIBS
+            # dep/dxlib-for-linux/Dxdep/Makefile DEP_LIBS
             EGL
             GL
             X11
@@ -95,8 +114,8 @@ else()
     message(FATAL_ERROR "No DxLib for this platform")
 endif()
 
-add_library(md5 STATIC lib/md5/md5.cpp)
-target_include_directories(md5 PUBLIC lib/md5)
+add_library(md5 STATIC dep/md5/md5.cpp)
+target_include_directories(md5 PUBLIC dep/md5)
 
 # Separate target so that SkinEditor can use it
 add_library(
@@ -138,11 +157,10 @@ add_library(
     LR2/Scene10_Po4decide.cpp
     LR2/Scene11_Po4select.cpp
     LR2/Scene13_Courseresult.cpp
-    LR2/dbgtool.cpp
     LR2/strclass.cpp
 )
 set_target_properties(OpenLR2Lib PROPERTIES CXX_STANDARD 23)
-target_include_directories(OpenLR2Lib PUBLIC lib)
+target_include_directories(OpenLR2Lib PUBLIC dep)
 target_link_libraries(
     OpenLR2Lib
     PUBLIC DxLib FMOD SQLite TinyXML md5

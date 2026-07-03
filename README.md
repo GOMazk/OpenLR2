@@ -12,7 +12,7 @@ After the closure of LR2IR, the project has been made public.
 - Download unmodified Lunatic Rave 2 beta3 100201 [archive.org Download](
 https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?mode=download)
 
-- Place thew OpenLR2 executable in the root folder of your freshly downloaded LR2. You can also optionally replace the original LR2body.exe.
+- Place the OpenLR2 executable in the root folder of your freshly downloaded LR2. You can also optionally replace the original LR2body.exe.
 
 > [!CAUTION]
 > OpenLR2 uses the same score DB as the original LR2.
@@ -58,15 +58,15 @@ https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR
 Open the project folder in Visual Studio.
 It will automatically pick up the CMake project.
 
-Alternatively, use the .sln build. Open the `OpenLR2_vs22.sln` file in Visual Studio.
+Alternatively, use the .sln build. Open the `OpenLR2.sln` file in Visual Studio.
 
 ### Linux
 
 Only provided for development purposes, not for use in production.
 
 ```bash
-make -C ./lib/dxlib-for-linux/DxLib clean
-CXXFLAGS=$(pkg-config --cflags opusfile) make -C ./lib/dxlib-for-linux/DxLib -j$(nproc)
+make -C ./dep/dxlib-for-linux/DxLib clean
+CXXFLAGS=$(pkg-config --cflags opusfile) make -C ./dep/dxlib-for-linux/DxLib -j$(nproc)
 rm -rf build
 cmake -B build -DCMAKE_EXPORT_COMPILE_COMMANDS=1
 cmake --build build -j$(nproc)

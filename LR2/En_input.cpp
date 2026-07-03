@@ -1,7 +1,7 @@
 ﻿#include "En_input.h"
 #include "En_timer.h"
 #include "En_graphic.h"
-#include <DxLib/DxLib.h>
+#include <DxLib.h>
 
 #ifndef _WIN32
 #include "En_dxlibstub.h"

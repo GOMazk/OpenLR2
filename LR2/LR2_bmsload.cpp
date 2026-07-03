@@ -14,7 +14,7 @@
 #include <unordered_map>
 #include <vector>
 
-#include <DxLib/DxLib.h>
+#include <DxLib.h>
 
 
 

@@ -5,15 +5,16 @@
 #include "filesystem.h"
 #include "LR2_customir.h"
 #include "LR2_version.h"
+#include "En_dxlibstub.h"
 
 #include <chrono>
 #include <filesystem>
 #include <fstream>
 #include <thread>
 
-#include <DxLib/DxLib.h>
+#include <DxLib.h>
 extern "C" {
-#include <sqlite/sqlite3.h>
+#include <sqlite3.h>
 }
 
 #ifdef _WIN32
@@ -38,9 +39,13 @@ static std::filesystem::path GetExecutablePath()
 
 #include <iostream>
 
-static void MessageBoxA(const char*, const char* title, const char* desc, const char*)
+static int MessageBoxA(void* /*hwnd*/, const char* title, const char* desc, unsigned type)
 {
-	std::cout << "\n" << title << "\n\n" << desc << "\n" << std::flush;
+	std::cout << "\n MessageBoxA: " << title << "\n\n" << desc << "\n" << std::flush;
+	if (type != 0) {
+		std::cout << "this message box wanted some answer, but idc\n" << std::flush;
+	}
+	return 0;
 }
 
 static std::filesystem::path GetExecutablePath()
@@ -56,6 +61,7 @@ static std::filesystem::path GetExecutablePath()
 	return std::filesystem::path(fullpath).parent_path();
 }
 
+// Why does DxLib-for-Linux declare this if it doesn't implement it?..
 int DxLib::SetMouseDispFlag(int) { return {}; }
 
 #endif // _WIN32
@@ -81,7 +87,6 @@ static bool run_tests() {
 	return true;
 }
 
-#ifdef _WIN32
 static int g_exclusiveDisplayIndex = -1;
 
 static int FindMonitorThatContainsWindowCenter() {
@@ -180,10 +185,8 @@ static void ApplyScreenMode(int screenmode) {
 		}
 	}
 }
-#endif // _WIN32
 
 static double GetFrameLimiterRefreshRate() {
-#ifdef _WIN32
 	int refreshRate = 0;
 	if (g_exclusiveDisplayIndex >= 0 &&
 		GetDisplayInfo(g_exclusiveDisplayIndex, nullptr, nullptr, nullptr, nullptr, nullptr, &refreshRate) == 0 &&
@@ -197,7 +200,6 @@ static double GetFrameLimiterRefreshRate() {
 		refreshRate > 0) {
 		return (double)refreshRate;
 	}
-#endif // _WIN32
 
 	const double fallbackRefreshRate = DxLib::GetRefreshRate();
 	return fallbackRefreshRate > 0 ? fallbackRefreshRate : 60.0;
@@ -238,15 +240,15 @@ int main(int argc, char** argv) {
 	ErrorLogAdd("コンフィグを読み込みます…");
 
 	if (!ReadConfig(&gs, fs::make_preferred("LR2files/Config/config.xml").data()) && gs.is_starter == false) {
-		MessageBoxA(NULL, "Failed to read main config", "エラー", NULL);
+		MessageBoxA(NULL, "Failed to read main config", "エラー", 0);
 		return -1;
 	}
 	if (!ReadOpenLr2Config(&gs, fs::make_preferred("LR2files/Config/openlr2-config.xml").data()) && gs.is_starter == false) {
-		MessageBoxA(NULL, "Failed to read OpenLR2 config", "エラー", NULL);
+		MessageBoxA(NULL, "Failed to read OpenLR2 config", "エラー", 0);
 		return -1;
 	}
 	if (gs.config.jukebox.numOfPath <= 0 && gs.is_starter == false) {
-		MessageBoxA(NULL, "設定プログラムのJUKEBOX1タブで、\n曲を検索するフォルダの登録を行ってください。", "エラー", NULL);
+		MessageBoxA(NULL, "設定プログラムのJUKEBOX1タブで、\n曲を検索するフォルダの登録を行ってください。", "エラー", 0);
 		return -1;
 	}
 	ErrorLogAdd("成功しました\n");
@@ -422,7 +424,6 @@ int main(int argc, char** argv) {
 	if (gs.rec.recMode == 3) {
 		SetGraphMode(256, 256, 32, 60);
 	}
-#ifdef _WIN32
 	SetWindowSizeChangeEnableFlag(1, 1);
 	if (gs.audio.is_fmod_disabled == 0) {
 		SetNotSoundFlag(1);
@@ -463,15 +464,11 @@ int main(int argc, char** argv) {
 	else {
 		SetUseDirectDrawDeviceIndex(gs.config.system.maindisplay);
 	}
-#endif // _WIN32
 
 	// DxLib-for-Linux can only set title of an already existing window
 	if constexpr (!is_linux()) { SetMainWindowText(openlr2::versionName); }
-	// DxLib-for-Linux only writes to stderr when writing to the log file.
-	SetOutApplicationLogValidFlag(gs.config.system.outputlog || is_linux());
-#ifdef _WIN32
+	SetOutApplicationLogValidFlag(gs.config.system.outputlog);
 	SetMultiThreadFlag(1);
-#endif // _WIN32
 	if ((gs.is_recordmode == '\0') && (gs.rec.recMode == 0)) {
 		SetWaitVSyncFlag(0); //VSYNC
 	}
@@ -479,7 +476,6 @@ int main(int argc, char** argv) {
 		SetWaitVSyncFlag(1); //VSYNC
 		ErrorLogFmtAdd("動画作成モードなのでVSyncを待ちます。\n");
 	}
-#ifdef _WIN32
 	SetMultiThreadFlag(1);
 	SetUseFPUPreserveFlag(1);
 	SetUseDirectInputFlag(1); //DXLIBVER: not in original, but we need it to make same reaction.
@@ -488,14 +484,11 @@ int main(int argc, char** argv) {
 		SetUseDirect3DVersion(DX_DIRECT3D_9); //DXLIBVER: if not set, it's DX11 (over 3.13e)
 	}
 	SetUseDisplayIndex(-1);
-#endif // _WIN32
 	if (DxLib_Init() == -1) return 0;
 	if constexpr (is_linux()) { SetMainWindowText(openlr2::versionName); }
 	ChangeFont("", 0);
 	SetLogFontSize(14); //DXLIBVER: change this for further dxlib version
-#ifdef _WIN32
 	SetSysCommandOffFlag(gs.config.system.disablesystemkey, 0);
-#endif // _WIN32
 	SetDrawScreen(DX_SCREEN_BACK);
 	SetAlwaysRunFlag(1);
 	SetMouseDispFlag(0);
@@ -564,9 +557,7 @@ int main(int argc, char** argv) {
 	//mainphase
 	if ((gs.is_recordmode == '\0') && (gs.auto2avi == '\0')) {
 		SetWaitVSyncFlag(0); //VSYNC
-#ifdef _WIN32
 		ApplyScreenMode(gs.config.system.screenmode);
-#endif // _WIN32
 		SetWaitVSyncFlag(0); //VSYNC
 		SetDrawScreen(DX_SCREEN_BACK);
 	}
@@ -806,7 +797,6 @@ int main(int argc, char** argv) {
 	while (true) { //main loop
 		if (ProcessMessage() || !gs.procSelecter || gs.auto2avi) break;
 
-#ifdef _WIN32
 		if (GetWindowModeFlag()) { // windowed
 			int wSizeY;
 			int wSizeX;
@@ -818,7 +808,6 @@ int main(int argc, char** argv) {
 				gs.config.system.windowsize_y = wSizeY;
 			}
 		}
-#endif // _WIN32
 		DrawGraph(0, 0, backgroundGrHandle, 0);
 		if (gs.cmd_directplay && gs.procSelecter != 4 && gs.procSelecter != 5 && gs.procSelecter != 13 && gs.procPhase != 2 && gs.procPhase != 3) {
 			ErrorLogFmtAdd("break\n");
@@ -2039,9 +2028,7 @@ int main(int argc, char** argv) {
 			printfDx("maxGAP %.3f\n", gs.timer1.maxGAP);
 			printfDx("avgGAP %.3f\n", gs.timer1.avgOnlyGAP);
 			printfDx("GAP ticks %d / %d\n", gs.timer1.GAPcount, gs.timer1.GAPtick);
-#ifdef _WIN32
 			printfDx("%s ", GetUseDirect3DVersion() == 3? "DX11" : "DX9"); //none:0 DX_DIRECT3D_9:1 9EX:2 11:3 default 2? //DEBUG
-#endif // _WIN32
 			printfDx("%s ", gs.config.system.screenmode == 1 ? "windowed" : gs.config.system.screenmode == 2 ? "borderless" : "desktop");
 			if (GetWaitVSyncFlag()) SetWaitVSyncFlag(0); //TEST
 			printfDx("%s\n", DxLib::GetWaitVSyncFlag() ? "Vsync" : "");
@@ -2067,42 +2054,37 @@ int main(int argc, char** argv) {
 					}
 					SetGraphMode(resX, resY, (gs.config.system.highcolor == 0 ? 32 : 16), GetRefreshRate()); //redundant?
 					SetWaitVSyncFlag(0); //VSYNC
-#ifdef _WIN32
 					ChangeWindowMode(gs.config.system.screenmode);
-#endif // _WIN32
 					SetWaitVSyncFlag(0); //VSYNC
 					SetDrawScreen(DX_SCREEN_BACK);
 					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_SELECT);
 					SetMouseDispFlag(0);
 					gs.is_clicked_screenModeChange = 0;
-#ifdef _WIN32
 					if (gs.config.system.screenmode == 0) {
 						ChangeWindowMode(1);
 						ErrorLogAdd("ウインドウを閉じます\n");
+#ifdef _WIN32
 						CloseWindow(GetMainWindowHandle());
+#endif // _WIN32
 						ErrorLogAdd("成功\n");
 					}
-#endif // _WIN32
-					const CSTR& songHash = gs.sSelect.bmsList[gs.sSelect.cur_song].hash;
+					ErrorLogAdd("IRを出します\n");
 					if (gs.net.customIR.IsDisplayIrOnline()) {
-						ErrorLogAdd("IRを出します\n");
-						if (!gs.net.customIR.OpenWebRanking(songHash.body) && gs.config.network.lr2ir == 1) {
-							LR2IR_OpenWebRanking(songHash);
+						if (!gs.net.customIR.OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash.body) && gs.config.network.lr2ir == 1) {
+							LR2IR_OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash);
 						}
 					} else if (gs.config.network.lr2ir == 1) {
-						ErrorLogAdd("IRを出します\n");
-						LR2IR_OpenWebRanking(songHash);
+						LR2IR_OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash);
 					}
 				}
 				else {
 					ErrorLogAdd("IRを出します\n");
-					const CSTR& songHash = gs.sSelect.bmsList[gs.sSelect.cur_song].hash;
 					if (gs.net.customIR.IsDisplayIrOnline()) {
-						if (!gs.net.customIR.OpenWebRanking(songHash.body) && gs.config.network.lr2ir == 1) {
-							LR2IR_OpenWebRanking(songHash);
+						if (!gs.net.customIR.OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash.body) && gs.config.network.lr2ir == 1) {
+							LR2IR_OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash);
 						}
 					} else if (gs.config.network.lr2ir == 1) {
-						LR2IR_OpenWebRanking(songHash);
+						LR2IR_OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash);
 					}
 				}
 
@@ -2123,9 +2105,7 @@ int main(int argc, char** argv) {
 					}
 					SetGraphMode(resX, resY, (gs.config.system.highcolor == 0 ? 32 : 16), GetRefreshRate()); //redundant?
 					SetWaitVSyncFlag(0); //VSYNC
-#ifdef _WIN32
 					ChangeWindowMode(gs.config.system.screenmode);
-#endif // _WIN32
 					SetWaitVSyncFlag(0); //VSYNC
 					SetDrawScreen(DX_SCREEN_BACK);
 					LoadSceneG(&gs, &gs.skstruct, SKINTYPE_SELECT);
@@ -2363,9 +2343,7 @@ int main(int argc, char** argv) {
 			}
 			SetGraphMode(resX, resY, (gs.config.system.highcolor == 0 ? 32 : 16), GetRefreshRate()); //redundant?
 			SetWaitVSyncFlag(0); //VSYNC
-#ifdef _WIN32
 			ApplyScreenMode(gs.config.system.screenmode);
-#endif // _WIN32
 			SetWaitVSyncFlag(0); //VSYNC
 			SetDrawScreen(DX_SCREEN_BACK);
 			for (int i = 0; i < 900; i++) {
@@ -2386,7 +2364,6 @@ int main(int argc, char** argv) {
 			gs.is_clicked_screenModeChange = 0;
 			SetObjectStrings_SongSelect(&gs);
 		}
-#ifdef _WIN32
 		else if(GetWindowModeFlag() != (gs.config.system.screenmode == 1 ? 1 : 0)){ // 0 and 2 are both fullscreen
 			for (int i = 0; i < 200; i++) {
 				gs.skstruct.caption[i].fillzero();
@@ -2403,7 +2380,6 @@ int main(int argc, char** argv) {
 			gs.config.system.screenmode = GetWindowModeFlag();
 			SetObjectStrings_SongSelect(&gs);
 		}
-#endif // _WIN32
 		SetMouseDispFlag((gs.KeyInput.mouse_oldX >= 0 && gs.KeyInput.mouse_oldX < skinSizeX && gs.KeyInput.mouse_oldY >= 0 && gs.KeyInput.mouse_oldY < skinSizeY) ? 0 : 1); //TODO_RESOULUTION
 		if ( (gs.procSelecter == 2 || gs.procSelecter == 9) && gs.KeyInput.inputID[KEY_INPUT_ESCAPE]
 				&& (GetTimeLapse(4,&gs.timer1) < 0.0 || GetTimeLapse(4, &gs.timer1) > 100.0) 
@@ -2489,7 +2465,6 @@ int main(int argc, char** argv) {
 		StopSound(&gs.audio, &gs.gameplay.keysound[i]);
 		ReleaseSound(&gs.audio, &gs.gameplay.keysound[i]);
 	}
-	ErrorLogAdd("BMSの音を初期化しました\n");
 	StopSysSound(&gs);
 	ReleaseSysSound(&gs);
 	EndSound(&gs.audio);

@@ -1,5 +1,5 @@
 #include "Scene08_Lunaris.h"
-#include "DxLib/DxLib.h"
+#include <DxLib.h>
 #include "Engine.h"
 #include "LR2.h"
 

@@ -1,7 +1,7 @@
 #pragma once
 
 #include "structure.h"
-#include "FMOD/fmod.h"
+#include <fmod.h>
 
 const char * GetFMODerror(int errCode);
 

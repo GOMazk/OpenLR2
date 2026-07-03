@@ -9,9 +9,9 @@
 #include "LR2_customir.h"
 #include "LR2_version.h"
 #include "filesystem.h"
-#include "tinyxml/tinyxml.h"
+#include <tinyxml.h>
 
-#include <DxLib/DxLib.h>
+#include <DxLib.h>
 
 #ifdef _WIN32
 #pragma comment(lib, "ws2_32.lib")

@@ -1,14 +1,7 @@
-﻿#if _WIN64
-#pragma comment(lib,"bin64/fmod_vc.lib")
-#else
-#if _WIN32
-#pragma comment(lib,"bin86/fmod_vc.lib")
-#endif
-#endif
-#include "En_audio.h"
+﻿#include "En_audio.h"
 #include "strclass.h"
-#include "FMOD/fmod.h"
-#include "DxLib/DxLib.h"
+#include <fmod.h>
+#include <DxLib.h>
 #include <algorithm>
 #include <cmath>
 #include <array>
@@ -1082,13 +1075,7 @@ int InitSound(AUDIO *aud, uint bufferLength, int numBuffer, char fDisable, int o
 		FMOD_System_SetDSPBufferSize(aud->fmodSys, bufferLength, numBuffer);
 		ErrorLogAdd("\n");
 		FMOD_System_SetSoftwareChannels(aud->fmodSys, 0x100);
-		if (FMOD_System_Init(aud->fmodSys, 0x100, FMOD_INIT_NORMAL, NULL) != FMOD_OK) {
-			ErrorLogAdd("FMOD_System_Init failed!\n");
-			EndSound(aud);
-			return 1;
-		}
 
-#ifdef _WIN32
 		if ([&] {
 			switch (outputType) {
 			case 0:
@@ -1112,7 +1099,6 @@ int InitSound(AUDIO *aud, uint bufferLength, int numBuffer, char fDisable, int o
 				return 0;
 			}
 		}
-#endif // _WIN32
 
 		FMOD_System_GetNumDrivers(aud->fmodSys, &numDrivers);
 		if (driver + 1 > numDrivers) {
@@ -1124,6 +1110,12 @@ int InitSound(AUDIO *aud, uint bufferLength, int numBuffer, char fDisable, int o
 			ErrorLogFmtAdd("FMOD_System_GetDriverInfo failed\n");
 		}
 		FMOD_System_SetDriver(aud->fmodSys, driver);
+		if (FMOD_System_Init(aud->fmodSys, 0x100, FMOD_INIT_NORMAL, NULL) != FMOD_OK) {
+			ErrorLogAdd("FMOD_System_Init failed!\n");
+			EndSound(aud);
+			return 1;
+		}
+
 		ErrorLogAdd("バッファサイズの設定を行います...\n");
 		FMOD_System_CreateChannelGroup(aud->fmodSys, "bgm", &aud->chnBgm);
 		FMOD_System_CreateChannelGroup(aud->fmodSys, "key", &aud->chnKey);

@@ -15,7 +15,7 @@
 #include <string>
 #include <thread>
 
-#include <DxLib/DxLib.h>
+#include <DxLib.h>
 
 #ifdef _WIN32
 #include <libloaderapi.h>

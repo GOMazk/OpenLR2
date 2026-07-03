@@ -7,7 +7,7 @@
 #include "LR2_statplay.h"
 #include "Scenes.h"
 #include "filesystem.h"
-#include <DxLib/DxLib.h>
+#include <DxLib.h>
 
 #ifndef _WIN32
 #include "En_dxlibstub.h"

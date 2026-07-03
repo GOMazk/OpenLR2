@@ -1,7 +1,7 @@
 #pragma once
 
-#include "tinyxml/tinyxml.h"
-#include "sqlite/sqlite3.h"
+#include <tinyxml.h>
+#include <sqlite3.h>
 
 #include "structure.h"
 
