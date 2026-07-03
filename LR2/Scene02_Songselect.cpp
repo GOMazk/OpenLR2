@@ -1,6 +1,7 @@
 ﻿#include "Scene02_Songselect.h"
 #include "Engine.h"
 #include "LR2.h"
+#include "LR2_songmanage.h"
 #include "filesystem.h"
 #include <filesystem>
 #include <format>
@@ -2855,12 +2856,7 @@ int InitSelectBySearchResult(game *g, sqlite3 *sql) {
 			}
 			else if (g->sSelect.filter_clicked == 2) {
 				LoopInRange(0, 7, 1, &g->sSelect.filterKey);
-				if (g->config.select.ignorekeyall == 1 && g->sSelect.filterKey == 0) g->sSelect.filterKey = 1;
-				if (g->config.select.ignorekeysingle == 1 && g->sSelect.filterKey == 1) g->sSelect.filterKey = 2;
-				if (g->config.select.ignorekeydouble == 1 && g->sSelect.filterKey == 4) g->sSelect.filterKey = 5;
-				if (g->config.select.ignoredp == 1 && (4 <= g->sSelect.filterKey && g->sSelect.filterKey <= 6)) g->sSelect.filterKey = 7;
-				if (g->config.select.ignorepms == 1 && g->sSelect.filterKey == 7) g->sSelect.filterKey = 0;
-				if (g->config.select.ignorekeyall == 1 && g->sSelect.filterKey == 0) g->sSelect.filterKey = 1;
+				g->sSelect.filterKey = openlr2::adjustFilterKey(g->config.select, g->sSelect.filterKey);
 			}
 		}
 

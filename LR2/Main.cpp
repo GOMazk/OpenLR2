@@ -66,6 +66,26 @@ int DxLib::SetMouseDispFlag(int) { return {}; }
 
 #endif // _WIN32
 
+static bool IsWindowsVersionAbove1903()
+{
+#ifdef _WIN32
+	OSVERSIONINFOEX osvi{};
+	osvi.dwOSVersionInfoSize = sizeof(OSVERSIONINFOEX);
+	osvi.dwMajorVersion = 10;
+	osvi.dwMinorVersion = 0;
+	osvi.dwBuildNumber = 1903;
+
+	DWORDLONG dwlConditionMask{};
+	dwlConditionMask = VerSetConditionMask(dwlConditionMask, VER_MAJORVERSION, VER_GREATER_EQUAL);
+	dwlConditionMask = VerSetConditionMask(dwlConditionMask, VER_MINORVERSION, VER_GREATER_EQUAL);
+	dwlConditionMask = VerSetConditionMask(dwlConditionMask, VER_BUILDNUMBER, VER_GREATER);
+
+	return VerifyVersionInfo(&osvi, VER_MAJORVERSION | VER_MINORVERSION | VER_BUILDNUMBER, dwlConditionMask);
+#else
+	return false;
+#endif // _WIN32
+}
+
 static consteval bool is_linux()
 {
 #ifdef _WIN32
@@ -211,6 +231,15 @@ int main(int argc, char** argv) {
 	while (!IsDebuggerPresent()) std::this_thread::sleep_for(std::chrono::milliseconds(200));
 #endif // NDEBUG
 #endif // _WIN32
+
+	if constexpr (!is_linux()) {
+		if (!IsWindowsVersionAbove1903()) {
+			MessageBoxA(nullptr,
+					"Windows version is too old - expected at least Windows 10 1903."
+					" Expect issues.",
+					"エラー", 0);
+		}
+	}
 
 	game gs;
 

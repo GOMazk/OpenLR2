@@ -57,3 +57,8 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA * song, sqlite3 * sql, int difficu
 
 int LoadFilteredBmsListFromDB(CSTR query, sqlite3 * sql, SONGSELECT * ss, int * diffFilter, int * mode, uint sort, int rivalID, char flag);
 
+namespace openlr2 {
+
+int adjustFilterKey(CONFIG_SELECT const& cfg_select, int key);
+
+} // namespace openlr2

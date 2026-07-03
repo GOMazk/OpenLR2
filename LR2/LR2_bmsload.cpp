@@ -719,7 +719,6 @@ int InitGameplay_retry(gameplay *gp, AUDIO *snd, game *g) {
 	gp->lastMissTime = 0;
 	gp->misslayerTime[0] = 0;
 	gp->misslayerTime[1] = 0;
-	gp->resultGhostForIr.clear();
 	gp->p1Score.InitJudgeQueue();
 	gp->p1Score.ResetJudgeQueue(gp->player[0].totalnotes * 2);
 	gp->fxChangeInRecording = false;
@@ -4125,7 +4124,6 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 		}
 	}
 
-	gp->resultGhostForIr.clear();
 	gp->p1Score.InitJudgeQueue();
 	gp->p1Score.ResetJudgeQueue(gp->player[0].totalnotes * 2);
 	gp->BPM = gp->BPM_fix;
