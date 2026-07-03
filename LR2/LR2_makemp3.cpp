@@ -78,7 +78,7 @@ int Proc_Auto2avi(game *g, CSTR /*directory*/, CSTR filename) {
 
 	for (int i = 0; i < g->gameplay.bmsobj.count; i++) {
 		double len = 0;
-		if (g->gameplay.bmsobj.notes[i].op == 1 || (10 <= g->gameplay.bmsobj.notes[i].op  && g->gameplay.bmsobj.notes[i].op < 30)) {
+		if (g->gameplay.bmsobj.notes[i].op == CHANNEL_BGM || (CHANNEL_1P_NOTE_SC <= g->gameplay.bmsobj.notes[i].op  && g->gameplay.bmsobj.notes[i].op <= CHANNEL_2P_NOTE_END)) {
 			if (i + 1 < g->gameplay.bmsobj.count) {
 				double endtime = g->gameplay.keysound[(int)g->gameplay.bmsobj.notes[i].val].length;
 				if ((int)endtime < 0) {
@@ -89,7 +89,7 @@ int Proc_Auto2avi(game *g, CSTR /*directory*/, CSTR filename) {
 				for (int j = i + 1; j < g->gameplay.bmsobj.count; j++) {
 					if (endtime <= g->gameplay.bmsobj.notes[j].realTiming) break;
 					
-					if (g->gameplay.bmsobj.notes[j].op == 1 || (10 <= g->gameplay.bmsobj.notes[i].op  && g->gameplay.bmsobj.notes[i].op < 30)) {
+					if (g->gameplay.bmsobj.notes[j].op == CHANNEL_BGM || (CHANNEL_1P_NOTE_SC <= g->gameplay.bmsobj.notes[i].op  && g->gameplay.bmsobj.notes[i].op <= CHANNEL_2P_NOTE_END)) {
 
 						if ((int)g->gameplay.bmsobj.notes[i].val == (int)g->gameplay.bmsobj.notes[j].val) {
 							len = g->gameplay.bmsobj.notes[j].realTiming - g->gameplay.bmsobj.notes[i].realTiming;
@@ -131,7 +131,7 @@ int RecordBmsSound(game *g, CSTR oPath) {
 
 		for (int i = 0; i < g->gameplay.bmsobj.count; i++) {
 			double len = 0;
-			if (g->gameplay.bmsobj.notes[i].op == 1 || (10 <= g->gameplay.bmsobj.notes[i].op && g->gameplay.bmsobj.notes[i].op < 30)) {
+			if (g->gameplay.bmsobj.notes[i].op == CHANNEL_BGM || (CHANNEL_1P_NOTE_SC <= g->gameplay.bmsobj.notes[i].op && g->gameplay.bmsobj.notes[i].op <= CHANNEL_2P_NOTE_END)) {
 				if (i + 1 < g->gameplay.bmsobj.count) {
 					double endtime = g->gameplay.keysound[(int)g->gameplay.bmsobj.notes[i].val].length;
 					if ((int)endtime < 0) {
@@ -142,7 +142,7 @@ int RecordBmsSound(game *g, CSTR oPath) {
 					for (int j = i + 1; j < g->gameplay.bmsobj.count; j++) {
 						if (endtime <= g->gameplay.bmsobj.notes[j].realTiming) break;
 
-						if (g->gameplay.bmsobj.notes[j].op == 1 || (10 <= g->gameplay.bmsobj.notes[i].op  && g->gameplay.bmsobj.notes[i].op < 30)) {
+						if (g->gameplay.bmsobj.notes[j].op == CHANNEL_BGM || (CHANNEL_1P_NOTE_SC <= g->gameplay.bmsobj.notes[i].op  && g->gameplay.bmsobj.notes[i].op <= CHANNEL_2P_NOTE_END)) {
 
 							if ((int)g->gameplay.bmsobj.notes[i].val == (int)g->gameplay.bmsobj.notes[j].val) {
 								len = g->gameplay.bmsobj.notes[j].realTiming - g->gameplay.bmsobj.notes[i].realTiming;

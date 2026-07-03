@@ -3,6 +3,7 @@
 #include "LR2_statlong.h"
 #include "filesystem.h"
 #include "filesystem.h"
+#include <algorithm>
 #include <cstring>
 #include <iterator>
 #include <ranges>
@@ -322,118 +323,61 @@ void LoadIRDerivedRecord(sqlite3* sql, SONGDATA& sd) {
 
 } // namespace
 
-// thiscall in original code
-SONGDATA * COPY_SONGDATA(SONGDATA *s1, SONGDATA *s2){
-	s1->title = s2->title;
-	s1->subtitle = s2->subtitle;
-	s1->genre = s2->genre;
-	s1->artist = s2->artist;
-	s1->subartist = s2->subartist;
-	s1->filepath = s2->filepath;
-	s1->fulltitle = s2->fulltitle;
-	s1->tag = s2->tag;
-	s1->hash = s2->hash;
-	s1->folder = s2->folder;
-	s1->stagefile = s2->stagefile;
-	s1->banner = s2->banner;
-	s1->backBMP = s2->backBMP;
-	s1->isStagefile = s2->isStagefile;
-	s1->isBanner = s2->isBanner;
-	s1->isBackBMP = s2->isBackBMP;
-	s1->difficulty = s2->difficulty;
-	s1->level = s2->level;
-	s1->exlevel = s2->exlevel;
-	s1->keymode = s2->keymode;
-	s1->folderType = s2->folderType;
-	s1->maxBPM = s2->maxBPM;
-	s1->minBPM = s2->minBPM;
-	s1->bga = s2->bga;
-	s1->txt = s2->txt;
-	s1->longnote = s2->longnote;
-	s1->random = s2->random;
-	s1->judge = s2->judge;
-	s1->replayExist = s2->replayExist;
-	s1->favorite = s2->favorite;
-	s1->adddate = s2->adddate;
-	s1->difficultyLevel[0] = s2->difficultyLevel[0];
-	s1->difficultyLevel[1] = s2->difficultyLevel[1];
-	s1->difficultyLevel[2] = s2->difficultyLevel[2];
-	s1->difficultyLevel[3] = s2->difficultyLevel[3];
-	s1->difficultyLevel[4] = s2->difficultyLevel[4];
-	s1->difficultyExist[0] = s2->difficultyExist[0];
-	s1->difficultyExist[1] = s2->difficultyExist[1];
-	s1->difficultyExist[2] = s2->difficultyExist[2];
-	s1->difficultyExist[3] = s2->difficultyExist[3];
-	s1->difficultyExist[4] = s2->difficultyExist[4];
-	s1->difficultyLevelBarLamp[0] = s2->difficultyLevelBarLamp[0];
-	s1->difficultyLevelBarLamp[1] = s2->difficultyLevelBarLamp[1];
-	s1->difficultyLevelBarLamp[2] = s2->difficultyLevelBarLamp[2];
-	s1->difficultyLevelBarLamp[3] = s2->difficultyLevelBarLamp[3];
-	s1->difficultyLevelBarLamp[4] = s2->difficultyLevelBarLamp[4];
-	s1->difficultyCount = s2->difficultyCount;
+void COPY_SONGDATA(SONGDATA *self, SONGDATA *other){
+	self->title = other->title;
+	self->subtitle = other->subtitle;
+	self->genre = other->genre;
+	self->artist = other->artist;
+	self->subartist = other->subartist;
+	self->filepath = other->filepath;
+	self->fulltitle = other->fulltitle;
+	self->tag = other->tag;
+	self->hash = other->hash;
+	self->folder = other->folder;
+	self->stagefile = other->stagefile;
+	self->banner = other->banner;
+	self->backBMP = other->backBMP;
+	self->isStagefile = other->isStagefile;
+	self->isBanner = other->isBanner;
+	self->isBackBMP = other->isBackBMP;
+	self->difficulty = other->difficulty;
+	self->level = other->level;
+	self->exlevel = other->exlevel;
+	self->keymode = other->keymode;
+	self->folderType = other->folderType;
+	self->maxBPM = other->maxBPM;
+	self->minBPM = other->minBPM;
+	self->bga = other->bga;
+	self->txt = other->txt;
+	self->longnote = other->longnote;
+	self->random = other->random;
+	self->judge = other->judge;
+	self->replayExist = other->replayExist;
+	self->favorite = other->favorite;
+	self->adddate = other->adddate;
+	std::ranges::copy(other->difficultyLevel, self->difficultyLevel);
+	std::ranges::copy(other->difficultyExist, self->difficultyExist);
+	std::ranges::copy(other->difficultyLevelBarLamp, self->difficultyLevelBarLamp);
+	self->difficultyCount = other->difficultyCount;
 
-	for (int i = 0; i < 10; i++) {
-		s1->courseTitle[i] = s2->courseTitle[i];
-	}
-	for (int i = 0; i < 10; i++) {
-		s1->courseSubtitle[i] = s2->courseSubtitle[i];
-	}
-	for (int i = 0; i < 10; i++) {
-		s1->courseHash[i] = s2->courseHash[i];
-	}
-
-	s1->courseLevel[0] = s2->courseLevel[0];
-	s1->courseLevel[1] = s2->courseLevel[1];
-	s1->courseLevel[2] = s2->courseLevel[2];
-	s1->courseLevel[3] = s2->courseLevel[3];
-	s1->courseLevel[4] = s2->courseLevel[4];
-	s1->courseLevel[5] = s2->courseLevel[5];
-	s1->courseLevel[6] = s2->courseLevel[6];
-	s1->courseLevel[7] = s2->courseLevel[7];
-	s1->courseLevel[8] = s2->courseLevel[8];
-	s1->courseLevel[9] = s2->courseLevel[9];
-	s1->courseStageDifficulty[0] = s2->courseStageDifficulty[0];
-	s1->courseStageDifficulty[1] = s2->courseStageDifficulty[1];
-	s1->courseStageDifficulty[2] = s2->courseStageDifficulty[2];
-	s1->courseStageDifficulty[3] = s2->courseStageDifficulty[3];
-	s1->courseStageDifficulty[4] = s2->courseStageDifficulty[4];
-	s1->courseStageDifficulty[5] = s2->courseStageDifficulty[5];
-	s1->courseStageDifficulty[6] = s2->courseStageDifficulty[6];
-	s1->courseStageDifficulty[7] = s2->courseStageDifficulty[7];
-	s1->courseStageDifficulty[8] = s2->courseStageDifficulty[8];
-	s1->courseStageDifficulty[9] = s2->courseStageDifficulty[9];
-	s1->courseTotalnote[0] = s2->courseTotalnote[0];
-	s1->courseTotalnote[1] = s2->courseTotalnote[1];
-	s1->courseTotalnote[2] = s2->courseTotalnote[2];
-	s1->courseTotalnote[3] = s2->courseTotalnote[3];
-	s1->courseTotalnote[4] = s2->courseTotalnote[4];
-	s1->courseTotalnote[5] = s2->courseTotalnote[5];
-	s1->courseTotalnote[6] = s2->courseTotalnote[6];
-	s1->courseTotalnote[7] = s2->courseTotalnote[7];
-	s1->courseTotalnote[8] = s2->courseTotalnote[8];
-	s1->courseTotalnote[9] = s2->courseTotalnote[9];
-	s1->courseID = s2->courseID;
-	s1->courseStageCount = s2->courseStageCount;
-	s1->coursePlayable = s2->coursePlayable;
-	s1->courseReadOnly = s2->courseReadOnly;
-	s1->courseKeys[0] = s2->courseKeys[0];
-	s1->courseKeys[1] = s2->courseKeys[1];
-	s1->courseKeys[2] = s2->courseKeys[2];
-	s1->courseKeys[3] = s2->courseKeys[3];
-	s1->courseKeys[4] = s2->courseKeys[4];
-	s1->courseKeys[5] = s2->courseKeys[5];
-	s1->courseKeys[6] = s2->courseKeys[6];
-	s1->courseKeys[7] = s2->courseKeys[7];
-	s1->courseKeys[8] = s2->courseKeys[8];
-	s1->courseKeys[9] = s2->courseKeys[9];
-	s1->courseType = s2->courseType;
-	s1->courseIR = s2->courseIR;
-	s1->grHandle = s2->grHandle;
+	std::ranges::copy(other->courseTitle, self->courseTitle);
+	std::ranges::copy(other->courseSubtitle, self->courseSubtitle);
+	std::ranges::copy(other->courseHash, self->courseHash);
+	std::ranges::copy(other->courseLevel, self->courseLevel);
+	std::ranges::copy(other->courseStageDifficulty, self->courseStageDifficulty);
+	std::ranges::copy(other->courseTotalnote, self->courseTotalnote);
+	self->courseID = other->courseID;
+	self->courseStageCount = other->courseStageCount;
+	self->coursePlayable = other->coursePlayable;
+	self->courseReadOnly = other->courseReadOnly;
+	std::ranges::copy(other->courseKeys, self->courseKeys);
+	self->courseType = other->courseType;
+	self->courseIR = other->courseIR;
+	self->grHandle = other->grHandle;
 	
-	s1->myIRbest = s2->myIRbest;
-	memcpy(&s1->mybest, &s2->mybest, sizeof(STATUS));
-	memcpy(&s1->rivalRecord, &s2->rivalRecord, sizeof(STATUS));
-	return s1;
+	self->myIRbest = other->myIRbest;
+	memcpy(&self->mybest, &other->mybest, sizeof(STATUS));
+	memcpy(&self->rivalRecord, &other->rivalRecord, sizeof(STATUS));
 }
 
 int InitSongData(SONGDATA *song){
@@ -469,21 +413,9 @@ int InitSongData(SONGDATA *song){
 	song->adddate = 0;
 	song->difficultyCount = 0;
 	song->exlevel = 0;
-	song->difficultyLevel[0] = -1;
-	song->difficultyExist[0] = 0;
-	song->difficultyLevelBarLamp[0] = -1;
-	song->difficultyLevel[1] = -1;
-	song->difficultyExist[1] = 0;
-	song->difficultyLevelBarLamp[1] = -1;
-	song->difficultyLevel[2] = -1;
-	song->difficultyExist[2] = 0;
-	song->difficultyLevelBarLamp[2] = -1;
-	song->difficultyLevel[3] = -1;
-	song->difficultyExist[3] = 0;
-	song->difficultyLevelBarLamp[3] = -1;
-	song->difficultyLevel[4] = -1;
-	song->difficultyExist[4] = 0;
-	song->difficultyLevelBarLamp[4] = -1;
+	std::ranges::fill(song->difficultyLevel, -1);
+	std::ranges::fill(song->difficultyExist, 0);
+	std::ranges::fill(song->difficultyLevelBarLamp, -1);
 	for (int i = 0; i < 10; i++) {
 		song->courseTitle[i].fillzero();
 		song->courseSubtitle[i].fillzero();
@@ -3046,12 +2978,13 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 			}
 			else if (lineLen > 5 && IsDigitAscii(line[1]) && IsDigitAscii(line[2]) && IsDigitAscii(line[3]) && IsDigitAscii(line[4]) && IsDigitAscii(line[5])) {
 				//TOFIX : There is no need to decrease variable data, still it does. it makes karinote include invisible and longnote(0.5 to 1)
+				//TODO : This part can't use CHANNEL directly because they are not converted to LR2's inner channel
 				int data = (line[4] - '0') * 10 + line[5] - '0';
-				if (51 <= data && data <= 69) {
+				if (CHANNEL_1P_LN_1 <= data && data <= CHANNEL_2P_LN_END) {
 					data -= 40;
 					meta->longnote = 1;
 				}
-				if (31 <= data && data <= 49) {
+				if (CHANNEL_1P_HIDDEN_1 <= data && data <= CHANNEL_2P_HIDDEN_END) {
 					data -= 20;
 				}
 				if (meta->keymode != 9) {
@@ -3062,19 +2995,21 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 					else if (data == 28 || data == 29 || data == 48 || data == 49 || data == 68 || data == 69) {
 						meta->keymode = 14;
 					}
-					else if ((data > 20 && data < 30) || (data > 40 && data < 50) || (61 <= data && data < 70)) {
+					else if ((data > CHANNEL_2P_NOTE_SC && data <= CHANNEL_2P_NOTE_END)
+						|| (data > CHANNEL_2P_HIDDEN_SC && data <= CHANNEL_2P_HIDDEN_END)
+						|| (CHANNEL_2P_LN_SC + 1 <= data && data <= CHANNEL_2P_LN_END)) {//TODO: inconsitency
 						if (meta->keymode == 5) meta->keymode = 10;
 						else if(meta->keymode == 7) meta->keymode = 14;	
 					}
 				}
 				
-				if (data == 3) {
+				if (data == CHANNEL_BPM) {
 					int c = (lineLen - 7) / 2;
 					for (int cur = 7, i = 0; i < c; cur += 2, i++) {
 						UpdateBpmRange(*meta, HEXcharToInt(line[cur], line[cur + 1]));
 					}
 				}
-				else if (11 <= data && data <= 29) {
+				else if (CHANNEL_1P_NOTE_1 <= data && data <= CHANNEL_2P_NOTE_END) {
 					int c = (lineLen - 7) / 2;
 					for (int cur = 7, i = 0; i < c; cur += 2, i++) {
 						const int obj = Base36ToInt(line[cur], line[cur + 1]);
@@ -3083,7 +3018,7 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 						}
 					}
 				}
-				else if (51 <= data && data <= 69) {
+				else if (CHANNEL_1P_LN_1 <= data && data <= CHANNEL_2P_LN_END) {
 					int c = (lineLen - 7) / 2;
 					for (int cur = 7, i = 0; i < c; cur += 2, i++) {
 						const int obj = Base36ToInt(line[cur], line[cur + 1]);

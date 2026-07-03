@@ -320,7 +320,7 @@ int REPLAY_ApplyJudgeNote(gameplay *gp, Timer *T, game *g, uint judge, int playe
 	if (judge > 5) return 0;
 	
 	if (judge >= 1) {
-		if (player == 0 && gp->ghostBattle == 0 && gp->isAutoplay == 0 && g->config.play.battle != 1) {
+		if (player == 0 && gp->ghostBattle == 0 && gp->isAutoplay == 0 && g->config.play.battle != OPTION_BATTLE_BATTLE) {
 			while (gp->highScore.DealJudgeFromQueue() == 0) {}
 			while (gp->targetScore.DealJudgeFromQueue() == 0) {}
 

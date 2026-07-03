@@ -975,10 +975,10 @@ int SetObjectStrings_SongSelect(game *g) {
 	SetObjectString(84, g->txtStruct.option_str[5].str[g->config.play.m_HIDSUD1], g->txtStruct.objectStr);
 	SetObjectString(85, g->txtStruct.option_str[5].str[g->config.play.m_HIDSUD2], g->txtStruct.objectStr);
 
-	if (g->config.play.battle == 0) {
+	if (g->config.play.battle == OPTION_BATTLE_OFF) {
 		SetObjectString(69, g->txtStruct.option_str[7].str[0], g->txtStruct.objectStr);
 	}
-	else if (g->config.play.battle == 1) {
+	else if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 		int k = g->sSelect.bmsList[g->sSelect.cur_song].keymode;
 		if (k == 10 || k == 14) 
 			SetObjectString(69, g->txtStruct.option_str[7].str[5], g->txtStruct.objectStr);
@@ -987,14 +987,14 @@ int SetObjectStrings_SongSelect(game *g) {
 		else
 			SetObjectString(69, g->txtStruct.option_str[7].str[1], g->txtStruct.objectStr);
 	}
-	else if (g->config.play.battle == 2) {
+	else if (g->config.play.battle == OPTION_BATTLE_DBATTLE) {
 		int k = g->sSelect.bmsList[g->sSelect.cur_song].keymode;
 		if (k == 10 || k == 14 || k == 9)
 			SetObjectString(69, g->txtStruct.option_str[7].str[6], g->txtStruct.objectStr);
 		else
 			SetObjectString(69, g->txtStruct.option_str[7].str[2], g->txtStruct.objectStr);
 	}
-	else if (g->config.play.battle == 3) {
+	else if (g->config.play.battle == OPTION_BATTLE_SP2DP) {
 		int k = g->sSelect.bmsList[g->sSelect.cur_song].keymode;
 		if (k == 10 || k == 14)
 			SetObjectString(69, g->txtStruct.option_str[7].str[7], g->txtStruct.objectStr);
@@ -1003,7 +1003,7 @@ int SetObjectStrings_SongSelect(game *g) {
 		else
 			SetObjectString(69, g->txtStruct.option_str[7].str[3], g->txtStruct.objectStr);
 	}
-	else if (g->config.play.battle == 4) {
+	else if (g->config.play.battle == OPTION_BATTLE_GBATTLE) {
 		int k = g->sSelect.bmsList[g->sSelect.cur_song].keymode;
 		if (k == 10 || k == 14 || k == 9)
 			SetObjectString(69, g->txtStruct.option_str[7].str[6], g->txtStruct.objectStr);
@@ -1347,16 +1347,16 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 	if (g->KeyInput.p1_buttonInput[2] == 1 || g->KeyInput.p2_buttonInput[2] == 1) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 		int k = g->config.select.key;
-		if (k == 4 || k == 5 || k == 6 || (g->config.play.battle && k != 4)) {
+		if (k == 4 || k == 5 || k == 6 || (g->config.play.battle && k != OPTION_BATTLE_GBATTLE)) {
 			if (g->KeyInput.p1_buttonInput[2] == 1) {
-				LoopInRange(0, 5, 1, &g->config.play.random[0]);
+				LoopInRange(OPTION_RANDOM_OFF, OPTION_RANDOM_END, 1, &g->config.play.random[0]);
 			}
 			else if (g->KeyInput.p2_buttonInput[2] == 1) {
-				LoopInRange(0, 5, 1, &g->config.play.random[1]);
+				LoopInRange(OPTION_RANDOM_OFF, OPTION_RANDOM_END, 1, &g->config.play.random[1]);
 			}
 		}
 		else {
-			LoopInRange(0, 5, 1, &g->config.play.random[0]);
+			LoopInRange(OPTION_RANDOM_OFF, OPTION_RANDOM_END, 1, &g->config.play.random[0]);
 		}
 		SetObjectStrings_SongSelect(g);
 	}
@@ -1373,11 +1373,11 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 	}
 	if (g->KeyInput.p1_buttonInput[4] == 1 || g->KeyInput.p2_buttonInput[4] == 1) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
-		if (g->config.play.battle == 1 && g->KeyInput.p1_buttonInput[4] != 1) {
-			LoopInRange(0, 5, 1, &g->config.play.gaugeOption[1]);
+		if (g->config.play.battle == OPTION_BATTLE_BATTLE && g->KeyInput.p1_buttonInput[4] != 1) {
+			LoopInRange(OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, 1, &g->config.play.gaugeOption[1]);
 		}
 		else {
-			LoopInRange(0, 5, 1, &g->config.play.gaugeOption[0]);
+			LoopInRange(OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, 1, &g->config.play.gaugeOption[0]);
 		}
 		SetObjectStrings_SongSelect(g);
 	}
@@ -1407,7 +1407,7 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 
 	}
 	if ((g->KeyInput.p2_buttonInput[6] == 1 && g->KeyInput.p2_buttonInput[7] == 2) || (g->KeyInput.p2_buttonInput[7] == 1 && g->KeyInput.p2_buttonInput[6] == 2)) {
-		if (g->config.play.battle == 1) {
+		if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 			PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 			LoopInRange(0, 3, 1, &g->config.play.m_HIDSUD2);
 			SetObjectStrings_SongSelect(g);
@@ -1431,7 +1431,7 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 	}
 	if (g->KeyInput.p2_buttonInput[5] == 1 && g->KeyInput.p2_buttonInput[7] == 0 && g->KeyInput.p2_buttonInput[6] == 0) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
-		if (g->config.play.battle == 1) {
+		if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 			LoopInRange(g->config.play.hsmin, g->config.play.hsmax, -g->config.play.hsmargin, &g->config.play.hiSpeed[1]);
 		}
 		else {
@@ -1441,7 +1441,7 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 	}
 	if (g->KeyInput.p2_buttonInput[7] == 1 && g->KeyInput.p2_buttonInput[5] == 0 && g->KeyInput.p2_buttonInput[6] == 0) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
-		if (g->config.play.battle == 1) {
+		if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 			LoopInRange(g->config.play.hsmin, g->config.play.hsmax, g->config.play.hsmargin, &g->config.play.hiSpeed[1]);
 		}
 		else {
@@ -1451,16 +1451,16 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 	}
 	if ((g->KeyInput.p1_buttonInput[5] == 1 && g->KeyInput.p1_buttonInput[7] == 2) || (g->KeyInput.p2_buttonInput[5] == 1 && g->KeyInput.p2_buttonInput[7] == 2)) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
-		LoopInRange(0, 5, 1, &g->config.play.hsfix);
+		LoopInRange(OPTION_HSFIX_OFF, OPTION_HSFIX_END, 1, &g->config.play.hsfix);
 		SetObjectStrings_SongSelect(g);
 	}
 	if ((g->KeyInput.p1_buttonInput[5] == 2 && g->KeyInput.p1_buttonInput[7] == 1) || (g->KeyInput.p2_buttonInput[5] == 2 && g->KeyInput.p2_buttonInput[7] == 1)) {
-		if (g->config.play.battle == 1) {
+		if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 			PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
-			LoopInRange(0, 5, -1, &g->config.play.hsfix);
+			LoopInRange(OPTION_HSFIX_OFF, OPTION_HSFIX_END, -1, &g->config.play.hsfix);
 		}
 		else {
-			LoopInRange(0, 5, 1, &g->config.play.hsfix);
+			LoopInRange(OPTION_HSFIX_OFF, OPTION_HSFIX_END, 1, &g->config.play.hsfix);
 		}
 		SetObjectStrings_SongSelect(g);
 	}
@@ -1673,8 +1673,8 @@ static void ThreadProc_LoadPreview(game *g) {
 	meta = g->sSelect.metaSelected;
 
 	g->gameplay.bmsResourceLoaded = 0;
-	g->gameplay.flag_closingPhase = '\0';
-	g->gameplay.flag_gameinput = '\0';
+	g->gameplay.flag_closingPhase = 0;
+	g->gameplay.flag_gameinput = 0;
 	g->gameplay.isAutoplay = 1;
 	g->gameplay.courseType = -1;
 	g->gameplay.isCourse = 0;
@@ -2636,10 +2636,10 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 					}
 					else {
 						int t = g->config.play.battle;
-						if (g->config.play.battle == 3) {
+						if (g->config.play.battle == OPTION_BATTLE_SP2DP) {
 							t = mybest.clear_sd;
 						}
-						else if (g->config.play.battle == 2) {
+						else if (g->config.play.battle == OPTION_BATTLE_DBATTLE) {
 							t = mybest.clear_db;
 						}
 						else if (g->config.play.is_extra == 1) {
@@ -2654,10 +2654,10 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 				else {
 					int t = g->config.play.battle;
 					int r = 0;
-					if (g->config.play.battle == 3) {
+					if (g->config.play.battle == OPTION_BATTLE_SP2DP) {
 						t = mybest.clear_sd;
 					}
-					else if (g->config.play.battle == 2) {
+					else if (g->config.play.battle == OPTION_BATTLE_DBATTLE) {
 						t = mybest.clear_db;
 					}
 					else if (g->config.play.is_extra == 1) {
@@ -2745,7 +2745,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 			g->sSelect.bmsList[g->sSelect.cur_song].isBanner = 0;
 			continue;
 		}
-		if (ReCreateGraphFromSoftImage(sihandle, g->skstruct.GrHandle[GrH_Banner]) == -1)
+		if (ReCreateGraphFromSoftImage(sihandle, g->skstruct.GrHandle[GRHTYPE_BANNER]) == -1)
 			g->sSelect.bmsList[g->sSelect.cur_song].isBanner = 0;
 		DeleteSoftImage(sihandle);
 	}

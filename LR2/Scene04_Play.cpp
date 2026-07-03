@@ -89,7 +89,7 @@ int ApplyJudgeNote(int judge, game *g, int _player, int lane, Timer *T, char isR
 	if (judge >= 1) {
 		if (_player == 0) {
 			if(isReplay == 0) g->gameplay.p1Score.AddJudgeQueue(judge);
-			if (g->gameplay.ghostBattle == 0 && g->gameplay.isAutoplay == 0 && g->config.play.battle != 1) {
+			if (g->gameplay.ghostBattle == 0 && g->gameplay.isAutoplay == 0 && g->config.play.battle != OPTION_BATTLE_BATTLE) {
 				while (g->gameplay.highScore.DealJudgeFromQueue() == 0) {}
 				while (g->gameplay.targetScore.DealJudgeFromQueue() == 0) {}
 
@@ -397,7 +397,7 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 			//if (p1_y > 0.0) p1_y = 0.0;
 
 			p2_y += g->gameplay.nabeatsu_y; //TOFIX : 1p 2p doesn't match (no nabeatsu_y on battle 2p measure_line). move it to below
-			if (cfg->battle == 1) {
+			if (cfg->battle == OPTION_BATTLE_BATTLE) {
 				p2_y = sk->adjust.note_2p_y + (songtimer_render - g->gameplay.bmsobj_line.notes[i].renderTiming)* cfg->hiSpeed[1] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
 			}
 
@@ -412,7 +412,7 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 
 	for (int key = 0; key < 20; key++) {
 		int speed;
-		if (key < 10 || cfg->battle != 1) speed = cfg->hiSpeed[0];
+		if (key < 10 || cfg->battle != OPTION_BATTLE_BATTLE) speed = cfg->hiSpeed[0];
 		else speed = cfg->hiSpeed[1];
 
 		bool isDpGbattle = (key > 9 && g->gameplay.ghostBattle);
@@ -560,7 +560,7 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 						if (g->gameplay.bmsobj_note[key].notes[i].bmsTiming <= songtimer && g->gameplay.bmsobj_note[key].notes[i].bmsTiming_ln <= songtimer) {
 							if (g->gameplay.bmsobj_note[key].notes[i].mine <= 0) {
 								int p = 0;
-								if (cfg->battle == 1) p = key / 10;
+								if (cfg->battle == OPTION_BATTLE_BATTLE) p = key / 10;
 
 								g->gameplay.player[p].note_current++;
 								g->gameplay.player[p].note_current2++;
@@ -618,7 +618,7 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 									} while (g->gameplay.targetScore.DealJudgeFromQueue() == 0);
 									g->gameplay.bmsobj_note[key].draw_count++;
 								}
-								else if (cfg->battle == 1 || (g->skinData.select > 11 && g->procSelecter == 7)) {
+								else if (cfg->battle == OPTION_BATTLE_BATTLE || (g->skinData.select > 11 && g->procSelecter == 7)) {
 									if (g->net.rankingData.target_ID <= 0 || g->gameplay.targetScore.ghostReadCount <= 0) {
 										ApplyJudgeNote(5, g, key / 10, key, T, 0);
 										g->gameplay.bmsobj_note[key].draw_count++;
@@ -1242,12 +1242,12 @@ int ProcGame(game *g) {
 		if (g->gameplay.bmsobj.notes[g->gameplay.bmsobj.note_count].realTiming >= t142 || g->gameplay.bpmChangedBmstime >= 0) {
 			SoundGetCurrentTime(&g->audio, &g->gameplay.muon); //anti cheat
 			t142 = GetTimeLapse(142, &g->timer1);
-			if (g->gameplay.isPreviewLoad == '\0') {
+			if (g->gameplay.isPreviewLoad == 0) {
 				ReactInput(g);
 			}
 
 			if (g->is_starter || (g->procSelecter == 4 && g->procPhase != 2 && g->procPhase != 3)) {
-				if ((g->gameplay.player[0].HP[gaugeType[0]] >= 2.0 || g->config.play.battle == 1) && (g->gameplay.player[0].HP[gaugeType[0]] >= 2.0 || g->gameplay.player[1].HP[gaugeType[1]] >= 2.0 || g->config.play.battle != 1) || g->gameplay.isPreviewLoad) {
+				if ((g->gameplay.player[0].HP[gaugeType[0]] >= 2.0 || g->config.play.battle == OPTION_BATTLE_BATTLE) && (g->gameplay.player[0].HP[gaugeType[0]] >= 2.0 || g->gameplay.player[1].HP[gaugeType[1]] >= 2.0 || g->config.play.battle != OPTION_BATTLE_BATTLE) || g->gameplay.isPreviewLoad) {
 
 					if (g->gameplay.isAutoplay == 0 && g->config.play.m_lunaris == 0 && g->gameplay.isPreviewLoad == 0) {
 						oldt142 = t142;
@@ -1260,7 +1260,7 @@ int ProcGame(game *g) {
 						}
 						if (g->gameplay.ghostBattle == 0) {
 							for (int i = 10; i < 20; i++) {
-								ProcNoteOnTiming(g, i, g->KeyInput.p2_buttonInput[i - 10], t142, g->config.play.battle == 1);
+								ProcNoteOnTiming(g, i, g->KeyInput.p2_buttonInput[i - 10], t142, g->config.play.battle == OPTION_BATTLE_BATTLE);
 							}
 						}
 						if (g->gameplay.bpmChangedRealtime > 0) {
@@ -1268,7 +1268,7 @@ int ProcGame(game *g) {
 						}
 					}
 
-					if (g->config.play.m_lunaris == 0 && g->gameplay.isAutoplay == 0 && g->gameplay.replay.status != 2 && g->config.play.autojudge > 0 && g->config.play.battle != 1 && g->gameplay.autojudge_midcount > 9) {
+					if (g->config.play.m_lunaris == 0 && g->gameplay.isAutoplay == 0 && g->gameplay.replay.status != 2 && g->config.play.autojudge > 0 && g->config.play.battle != OPTION_BATTLE_BATTLE && g->gameplay.autojudge_midcount > 9) {
 
 						if (g->gameplay.autojudge_midsum > 0) g->config.play.judgetiming++;
 						else if (g->gameplay.autojudge_midsum < 0) g->config.play.judgetiming--;
@@ -1296,7 +1296,7 @@ int ProcGame(game *g) {
 					}
 
 					LogGraphPlayData(&g->gameplay.statgraph[0], &g->gameplay.player[0], t142, g->gameplay.song_runtime);
-					if (g->config.play.battle == 1 || g->gameplay.ghostBattle) LogGraphPlayData(&g->gameplay.statgraph[1], &g->gameplay.player[1], t142, g->gameplay.song_runtime);
+					if (g->config.play.battle == OPTION_BATTLE_BATTLE || g->gameplay.ghostBattle) LogGraphPlayData(&g->gameplay.statgraph[1], &g->gameplay.player[1], t142, g->gameplay.song_runtime);
 
 					LogGraphData(&g->gameplay.rategraph[0], g->gameplay.highScore.rate, t142, g->gameplay.song_runtime);
 					LogGraphData(&g->gameplay.rategraph[1], g->gameplay.targetScore.rate, t142, g->gameplay.song_runtime);
@@ -1543,7 +1543,7 @@ int ProcGame(game *g) {
 			}
 		}
 		
-		if ((g->gameplay.player[0].HP[gaugeType[0]] < 2.0 && g->config.play.battle != 1 && g->gameplay.ghostBattle == 0) || (g->gameplay.player[0].HP[gaugeType[0]] < 2.0 && g->gameplay.player[1].HP[gaugeType[1]] < 2.0 && (g->config.play.battle == 1 || g->gameplay.ghostBattle)) && (g->gameplay.isPreviewLoad == 0)) {
+		if ((g->gameplay.player[0].HP[gaugeType[0]] < 2.0 && g->config.play.battle != OPTION_BATTLE_BATTLE && g->gameplay.ghostBattle == 0) || (g->gameplay.player[0].HP[gaugeType[0]] < 2.0 && g->gameplay.player[1].HP[gaugeType[1]] < 2.0 && (g->config.play.battle == OPTION_BATTLE_BATTLE || g->gameplay.ghostBattle)) && (g->gameplay.isPreviewLoad == 0)) {
 			SetTimeLapse(3, &g->timer1);
 			g->procPhase = 3;
 			for (int i = 0; i < SLOTS; i++) {
@@ -1568,7 +1568,7 @@ int ProcGame(game *g) {
 		}
 		if (g->gameplay.ghostBattle == 0) {
 			for (int i = 10; i < 20; i++) {
-				ProcNoteOnTiming(g, i, g->KeyInput.p2_buttonInput[i - 10], t142, g->config.play.battle == 1);
+				ProcNoteOnTiming(g, i, g->KeyInput.p2_buttonInput[i - 10], t142, g->config.play.battle == OPTION_BATTLE_BATTLE);
 			}
 		}
 		if (g->gameplay.bpmChangedRealtime > 0) {
@@ -1599,7 +1599,7 @@ int ProcGame(game *g) {
 			}
 
 			LogGraphPlayData(&g->gameplay.statgraph[0], &g->gameplay.player[0], t142, g->gameplay.song_runtime);
-			if(g->config.play.battle == 1)
+			if(g->config.play.battle == OPTION_BATTLE_BATTLE)
 				LogGraphPlayData(&g->gameplay.statgraph[1], &g->gameplay.player[1], t142, g->gameplay.song_runtime);
 			LogGraphData(&g->gameplay.rategraph[0], g->gameplay.highScore.rate, t142, g->gameplay.song_runtime);
 			LogGraphData(&g->gameplay.rategraph[1], g->gameplay.targetScore.rate, t142, g->gameplay.song_runtime);
@@ -1614,7 +1614,7 @@ int ProcGame(game *g) {
 				}
 			}
 			LogGraphPlayerDataToEnd(&g->gameplay.statgraph[0], &g->gameplay.player[0]);
-			if(g->config.play.battle == 1)
+			if(g->config.play.battle == OPTION_BATTLE_BATTLE)
 				LogGraphPlayerDataToEnd(&g->gameplay.statgraph[1], &g->gameplay.player[1]);
 			for (int i = g->gameplay.rategraph[0].cursor; i < 1000; i++) {
 				g->gameplay.rategraph[0].val[i] = g->gameplay.highScore.rate;
@@ -1623,7 +1623,7 @@ int ProcGame(game *g) {
 				g->gameplay.rategraph[1].val[i] = g->gameplay.targetScore.rate;
 			}
 
-			if (g->gameplay.player[0].totalnotes > 0 && g->config.play.battle == 0) {
+			if (g->gameplay.player[0].totalnotes > 0 && g->config.play.battle == OPTION_BATTLE_OFF) {
 				if (g->gameplay.targetType == 1) 
 					g->gameplay.highScore.SetScore(&g->gameplay.player[1], 1);
 				else if (g->gameplay.targetType == 2) 
@@ -1831,24 +1831,24 @@ int ProcS_Play(game *g, sqlite3* sql) {
 	if (g->gameplay.flag_retry == 0) {
 		InitGameplay(&g->gameplay, &g->config.play);
 		scratchside = 0;
-		if (g->sSelect.metaSelected.keymode == 10 && g->config.play.battle == 0 && g->skinData.Data[g->skinData.skinID[3]].type == SKINTYPE_14KEYS) {
+		if (g->sSelect.metaSelected.keymode == 10 && g->config.play.battle == OPTION_BATTLE_OFF && g->skinData.Data[g->skinData.skinID[3]].type == SKINTYPE_14KEYS) {
 			scratchside = g->skstruct.scratchside_1 + g->skstruct.scratchside_2 * 2;
 		}
-		if (g->sSelect.metaSelected.keymode == 5 && (g->config.play.battle == 2 || g->config.play.battle == 3) && g->skinData.Data[g->skinData.skinID[3]].type == SKINTYPE_14KEYS) {
+		if (g->sSelect.metaSelected.keymode == 5 && (g->config.play.battle == OPTION_BATTLE_DBATTLE || g->config.play.battle == OPTION_BATTLE_SP2DP) && g->skinData.Data[g->skinData.skinID[3]].type == SKINTYPE_14KEYS) {
 			scratchside = g->skstruct.scratchside_1 + g->skstruct.scratchside_2 * 2;
 		}
-		if (g->sSelect.metaSelected.keymode == 10 && g->config.play.battle == 0 && g->skinData.Data[g->skinData.skinID[13]].type == SKINTYPE_7KEYSBATTLE) {
+		if (g->sSelect.metaSelected.keymode == 10 && g->config.play.battle == OPTION_BATTLE_OFF && g->skinData.Data[g->skinData.skinID[13]].type == SKINTYPE_7KEYSBATTLE) {
 			scratchside = g->skstruct.scratchside_1 + g->skstruct.scratchside_2 * 2;
 		}
-		if (g->sSelect.metaSelected.keymode == 5 && g->config.play.battle == 1 && g->skinData.Data[g->skinData.skinID[13]].type == SKINTYPE_7KEYSBATTLE) {
+		if (g->sSelect.metaSelected.keymode == 5 && g->config.play.battle == OPTION_BATTLE_BATTLE && g->skinData.Data[g->skinData.skinID[13]].type == SKINTYPE_7KEYSBATTLE) {
 			scratchside = g->skstruct.scratchside_1 + g->skstruct.scratchside_2 * 2;
 		}
-		if (g->sSelect.metaSelected.keymode == 5 && g->config.play.battle == 0 && g->skinData.Data[g->skinData.skinID[1]].type == SKINTYPE_7KEYS) {
+		if (g->sSelect.metaSelected.keymode == 5 && g->config.play.battle == OPTION_BATTLE_OFF && g->skinData.Data[g->skinData.skinID[1]].type == SKINTYPE_7KEYS) {
 			scratchside = g->skstruct.scratchside_1 + g->skstruct.scratchside_2 * 2;
 		}
 
 		int tmpBattle = g->config.play.battle;
-		if (g->gameplay.ghostBattle) g->config.play.battle = 1;
+		if (g->gameplay.ghostBattle) g->config.play.battle = OPTION_BATTLE_BATTLE;
 		if (g->rec.recMode == 4) {
 			ErrorLogFmtAdd("bms2aviの準備\n");
 			g->config.system.isablebmsthread = 1;

@@ -1081,10 +1081,10 @@ int ReadConfig(game* g, const char* filepath) {
 
 	ReadXml_Int("config", "play", "hs", 100, &g->config.play.hiSpeed[0], hXml);
 	g->config.play.hiSpeed[1] = g->config.play.hiSpeed[0];
-	ReadXml_Int("config", "play", "gauge", 0, g->config.play.gaugeOption, hXml);
-	ReadXml_Int("config", "play", "random", 0, &g->config.play.random[0], hXml);
+	ReadXml_Int("config", "play", "gauge", OPTION_GAUGE_GROOVE, g->config.play.gaugeOption, hXml);
+	ReadXml_Int("config", "play", "random", OPTION_RANDOM_OFF, &g->config.play.random[0], hXml);
 	ReadXml_Int("config", "play", "effect", 0, &g->config.play.m_HIDSUD1, hXml);
-	ReadXml_Int("config", "play", "hstype", 0, &g->config.play.hsfix, hXml);
+	ReadXml_Int("config", "play", "hstype", OPTION_HSFIX_OFF, &g->config.play.hsfix, hXml);
 	ReadXml_Int("config", "play", "hsmin", 10, &g->config.play.hsmin, hXml);
 	ReadXml_Int("config", "play", "hsmax", 900, &g->config.play.hsmax, hXml);
 	ReadXml_Int("config", "play", "hsmargin", 10, &g->config.play.hsmargin, hXml);

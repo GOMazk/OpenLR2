@@ -84,7 +84,7 @@ void RANKING::Init() {
 	this->totalPlaycount = 0;
 	this->rankingCount = 0;
 	this->myRanking = 0;
-	this->showRanking = '\0';
+	this->showRanking = 0;
 	for (int i = 0; i < this->rankingMax; i++) {
 		this->ranking[i].name.fillzero();
 		this->ranking[i].id = 0;
@@ -710,30 +710,30 @@ bool NETWORK::GetTargetInfo(int mode, CSTR songmd5, CSTR *oData, CSTR *oName, in
 		oData->fillzero();
 		if (!result->ghostData.empty()) oData->add(result->ghostData.c_str());
 		switch (result->gauge) {
-		case openlr2::Gauge::Groove: *oDigit1 = 0; break;
-		case openlr2::Gauge::Survival: *oDigit1 = 1; break;
-		case openlr2::Gauge::Death: *oDigit1 = 2; break;
-		case openlr2::Gauge::Easy: *oDigit1 = 3; break;
-		case openlr2::Gauge::PAttack: *oDigit1 = 4; break;
-		case openlr2::Gauge::GAttack: *oDigit1 = 5; break;
+		case openlr2::Gauge::Groove: *oDigit1 = OPTION_GAUGE_GROOVE; break;
+		case openlr2::Gauge::Survival: *oDigit1 = OPTION_GAUGE_HARD; break;
+		case openlr2::Gauge::Death: *oDigit1 = OPTION_GAUGE_DEATH; break;
+		case openlr2::Gauge::Easy: *oDigit1 = OPTION_GAUGE_EASY; break;
+		case openlr2::Gauge::PAttack: *oDigit1 = OPTION_GAUGE_PATTCK; break;
+		case openlr2::Gauge::GAttack: *oDigit1 = OPTION_GAUGE_GATTACK; break;
 		default: *oDigit1 = 0; break;
 		}
 		switch (result->randomOption[0]) {
-		case openlr2::Random::No: *oDigit2 = 0; break;
-		case openlr2::Random::Mirror: *oDigit2 = 1; break;
-		case openlr2::Random::Random: *oDigit2 = 2; break;
-		case openlr2::Random::SRandom: *oDigit2 = 3; break;
-		case openlr2::Random::Scatter: *oDigit2 = 4; break;
-		case openlr2::Random::Converge: *oDigit2 = 5; break;
+		case openlr2::Random::No: *oDigit2 = OPTION_RANDOM_OFF; break;
+		case openlr2::Random::Mirror: *oDigit2 = OPTION_RANDOM_MIRROR; break;
+		case openlr2::Random::Random: *oDigit2 = OPTION_RANDOM_RANDOM; break;
+		case openlr2::Random::SRandom: *oDigit2 = OPTION_RANDOM_SRANDOM; break;
+		case openlr2::Random::Scatter: *oDigit2 = OPTION_RANDOM_SCATTER; break;
+		case openlr2::Random::Converge: *oDigit2 = OPTION_RANDOM_CONVERGE; break;
 		default: *oDigit2 = 0; break;
 		}
 		switch (result->randomOption[1]) {
-		case openlr2::Random::No: *oDigit3 = 0; break;
-		case openlr2::Random::Mirror: *oDigit3 = 1; break;
-		case openlr2::Random::Random: *oDigit3 = 2; break;
-		case openlr2::Random::SRandom: *oDigit3 = 3; break;
-		case openlr2::Random::Scatter: *oDigit3 = 4; break;
-		case openlr2::Random::Converge: *oDigit3 = 5; break;
+		case openlr2::Random::No: *oDigit3 = OPTION_RANDOM_OFF; break;
+		case openlr2::Random::Mirror: *oDigit3 = OPTION_RANDOM_MIRROR; break;
+		case openlr2::Random::Random: *oDigit3 = OPTION_RANDOM_RANDOM; break;
+		case openlr2::Random::SRandom: *oDigit3 = OPTION_RANDOM_SRANDOM; break;
+		case openlr2::Random::Scatter: *oDigit3 = OPTION_RANDOM_SCATTER; break;
+		case openlr2::Random::Converge: *oDigit3 = OPTION_RANDOM_CONVERGE; break;
 		default: *oDigit3 = 0; break;
 		}
 		*oDigit4 = result->dpflip ? 1 : 0;

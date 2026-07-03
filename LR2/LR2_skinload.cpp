@@ -338,7 +338,7 @@ int InitSkin(skstruct *sk, int /*unused*/, char font) {
 	sk->count = 0;
 	sk->num_of_struct = 0;
 	sk->num_of_ImageFont = 0;
-	if (font == '\0') {
+	if (font == 0) {
 		InitFontToHandle();
 	}
 	for (int i = 0; i < 10; i++) {
@@ -369,13 +369,13 @@ int InitSkin(skstruct *sk, int /*unused*/, char font) {
 	}
 	sk->customfile_count = 0;
 	
-	DeleteGraph(sk->GrHandle[GrH_Preview]);
-	sk->GrHandle[GrH_Preview] = MakeGraph(skinSizeX, skinSizeY); //TODO_RESOULUTION
+	DeleteGraph(sk->GrHandle[GRHTYPE_PREVIEW]);
+	sk->GrHandle[GRHTYPE_PREVIEW] = MakeGraph(skinSizeX, skinSizeY); //TODO_RESOULUTION
 	DeleteGraph(sk->GrHandle[104]);
 	sk->GrHandle[104] = MakeGraph(256, 256);
-	if (sk->GrHandle[GrH_Stage] == -1) sk->GrHandle[GrH_Stage] = MakeGraph(640, 480);
-	if (sk->GrHandle[GrH_BackBMP] == -1) sk->GrHandle[GrH_BackBMP] = MakeGraph(640, 480);
-	if (sk->GrHandle[GrH_Banner] == -1) sk->GrHandle[GrH_Banner] = MakeGraph(300, 80);
+	if (sk->GrHandle[GRHTYPE_STAGE] == -1) sk->GrHandle[GRHTYPE_STAGE] = MakeGraph(640, 480);
+	if (sk->GrHandle[GRHTYPE_BACKBMP] == -1) sk->GrHandle[GRHTYPE_BACKBMP] = MakeGraph(640, 480);
+	if (sk->GrHandle[GRHTYPE_BANNER] == -1) sk->GrHandle[GRHTYPE_BANNER] = MakeGraph(300, 80);
 	DeleteGraph(sk->GrHandle[GRHTYPE_BLACK]);
 	sk->GrHandle[GRHTYPE_BLACK] = LoadGraph(fs::make_preferred("LR2files/Config/black.bmp").data());
 	DeleteGraph(sk->GrHandle[GRHTYPE_WHITE]);
@@ -780,7 +780,7 @@ int ApplyFlipside(skstruct *sk){
 }
 
 int ClearSkinGraph(skstruct *sk){
-	InitSkin(sk, 0, '\0');
+	InitSkin(sk, 0, 0);
 	for (int i = 0; i < 200; i++) {
 		sk->caption[i].fillzero();
 		sk->GrHandle[i] = -1;
@@ -1701,7 +1701,7 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 		ErrorLogFmtAdd("スキンの読み込みに成功しました。 %s\n", FilePath.body);
 		ErrorLogTabSub();
 		SetTransColor(0, 0xff, 0);
-		if (flipside != '\0') {
+		if (flipside != false) {
 			ApplyFlipside(sk);
 		}
 		return 1;

@@ -34,7 +34,7 @@ int Proc_Result(game *g, skstruct *sk, Timer *T) {
 		SetTimeLapse(151, T);
 	}
 
-	if (g->config.play.battle == 1 || sk->flag_flip == 0 || g->gameplay.ghostBattle) {
+	if (g->config.play.battle == OPTION_BATTLE_BATTLE || sk->flag_flip == 0 || g->gameplay.ghostBattle) {
 		
 		if (sk->src_GAUGECHART_1P[0].op1 <= 0) return 0;
 
@@ -76,9 +76,9 @@ int Proc_Result(game *g, skstruct *sk, Timer *T) {
 		}
 	}
 
-	if (g->config.play.battle == 1 || sk->flag_flip != 0 || g->gameplay.ghostBattle) {
+	if (g->config.play.battle == OPTION_BATTLE_BATTLE || sk->flag_flip != 0 || g->gameplay.ghostBattle) {
 		int p = 1;
-		if (g->config.play.battle != 1 && sk->flag_flip != 0) p = 0;
+		if (g->config.play.battle != OPTION_BATTLE_BATTLE && sk->flag_flip != 0) p = 0;
 
 		if (sk->src_GAUGECHART_2P[0].op1 <= 0) return 0;
 
@@ -237,7 +237,7 @@ int ProcI_Result(game *g) {
 	};
 	if (g->config.play.m_gas && g->procSelecter != 13 && g->gameplay.replay.status != 2) {
 		switch_gauge_display(g->gameplay, g->KeyInput.p1_buttonInput[13], g->gameplay.player[0]);
-		if (g->config.play.battle == 1) {
+		if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 			switch_gauge_display(g->gameplay, g->KeyInput.p2_buttonInput[13], g->gameplay.player[1]);
 		}
 		else {

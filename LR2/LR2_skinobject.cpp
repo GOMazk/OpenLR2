@@ -65,13 +65,13 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			if (t == 5) return ret;
 			if (t == 6) return ret;
 			t = gs->config.play.battle;
-			if (t == 2) return ret;
-			if (t == 3) return ret;
+			if (t == OPTION_BATTLE_DBATTLE) return ret;
+			if (t == OPTION_BATTLE_SP2DP) return ret;
 			break;
 
 		case 11:
 			t = gs->config.play.battle;
-			if (t == 1) return ret;
+			if (t == OPTION_BATTLE_BATTLE) return ret;
 			break;
 
 		case 12:
@@ -80,14 +80,14 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			if (t == 5) return ret;
 			if (t == 6) return ret;
 			t = gs->config.play.battle;
-			if (t == 1) return ret;
-			if (t == 2) return ret;
-			if (t == 3) return ret;
+			if (t == OPTION_BATTLE_BATTLE) return ret;
+			if (t == OPTION_BATTLE_DBATTLE) return ret;
+			if (t == OPTION_BATTLE_SP2DP) return ret;
 			break;
 
 		case 13:
 			t = gs->config.play.battle;
-			if (t == 1) return ret;
+			if (t == OPTION_BATTLE_BATTLE) return ret;
 			if (gs->gameplay.ghostBattle) return ret;
 			break;
 
@@ -291,7 +291,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 			
 		case 100: //TODO : make more readable
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_db == 0) return ret;
 			}
@@ -299,7 +299,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_ex == 0) return ret;
 			}
-			else if(gs->config.play.battle == 3){
+			else if(gs->config.play.battle == OPTION_BATTLE_SP2DP){
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_sd == 0) return ret;
 			}
@@ -309,7 +309,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 		case 101:
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_db == 1) return ret;
 			}
@@ -317,7 +317,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_ex == 1) return ret;
 			}
-			else if (gs->config.play.battle == 3) {
+			else if (gs->config.play.battle == OPTION_BATTLE_SP2DP) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_sd == 1) return ret;
 			}
@@ -327,7 +327,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 		case 102:
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_db == 2) return ret;
 			}
@@ -335,7 +335,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_ex == 2) return ret;
 			}
-			else if (gs->config.play.battle == 3) {
+			else if (gs->config.play.battle == OPTION_BATTLE_SP2DP) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_sd == 2) return ret;
 			}
@@ -345,7 +345,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 		case 103:
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_db == 3) return ret;
 			}
@@ -353,7 +353,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_ex == 3) return ret;
 			}
-			else if (gs->config.play.battle == 3) {
+			else if (gs->config.play.battle == OPTION_BATTLE_SP2DP) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_sd == 3) return ret;
 			}
@@ -363,7 +363,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 		case 104:
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_db == 4) return ret;
 			}
@@ -371,7 +371,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_ex == 4) return ret;
 			}
-			else if (gs->config.play.battle == 3) {
+			else if (gs->config.play.battle == OPTION_BATTLE_SP2DP) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_sd == 4) return ret;
 			}
@@ -381,7 +381,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 		case 105:
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_db == 5) return ret;
 			}
@@ -389,7 +389,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_ex == 5) return ret;
 			}
-			else if (gs->config.play.battle == 3) {
+			else if (gs->config.play.battle == OPTION_BATTLE_SP2DP) {
 				if (songData.keymode <= 0) return !ret;
 				if (mybest.clear_sd == 5) return ret;
 			}
@@ -569,11 +569,11 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 		case 162:
 			if (gs->sSelect.metaSelected.keymode == 14) return ret;
-			if (gs->sSelect.metaSelected.keymode == 7 && gs->config.play.battle > 1) return ret;
+			if (gs->sSelect.metaSelected.keymode == 7 && gs->config.play.battle > OPTION_BATTLE_BATTLE) return ret;
 			break;
 		case 163:
 			if (gs->sSelect.metaSelected.keymode == 10) return ret;
-			if (gs->sSelect.metaSelected.keymode == 5 && gs->config.play.battle > 1) return ret;
+			if (gs->sSelect.metaSelected.keymode == 5 && gs->config.play.battle > OPTION_BATTLE_BATTLE) return ret;
 			break;
 		case 164:
 			if (gs->sSelect.metaSelected.keymode == 9) return ret;
@@ -930,7 +930,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 270:
 			if (gs->procSelecter == 4) {
 				if ((gs->KeyInput.p1_buttonInput[12] == 2 || gs->KeyInput.p1_buttonInput[13] == 2) && gs->config.play.p1_lanecover && gs->gameplay.lanecoverDisplayP1) return ret;
-				if ((gs->KeyInput.p2_buttonInput[12] == 2 || gs->KeyInput.p2_buttonInput[13] == 2) && gs->config.play.p1_lanecover && gs->gameplay.lanecoverDisplayP1 && gs->config.play.battle != 1 && gs->config.play.battle != 4) return ret;
+				if ((gs->KeyInput.p2_buttonInput[12] == 2 || gs->KeyInput.p2_buttonInput[13] == 2) && gs->config.play.p1_lanecover && gs->gameplay.lanecoverDisplayP1 && gs->config.play.battle != OPTION_BATTLE_BATTLE && gs->config.play.battle != OPTION_BATTLE_GBATTLE) return ret;
 			}
 			break;
 		case 271:
@@ -1267,7 +1267,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 523:
 		case 524:
 		case 525:
-			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
+			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != OPTION_BATTLE_DBATTLE && gs->config.play.battle != OPTION_BATTLE_SP2DP
 				&& songData.difficultyLevelBarLamp[0] == option - 520)
 				return ret;
 			break;
@@ -1277,7 +1277,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 533:
 		case 534:
 		case 535:
-			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
+			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != OPTION_BATTLE_DBATTLE && gs->config.play.battle != OPTION_BATTLE_SP2DP
 				&& songData.difficultyLevelBarLamp[1] == option - 530)
 				return ret;
 			break;
@@ -1287,7 +1287,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 543:
 		case 544:
 		case 545:
-			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
+			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != OPTION_BATTLE_DBATTLE && gs->config.play.battle != OPTION_BATTLE_SP2DP
 				&& songData.difficultyLevelBarLamp[2] == option - 540)
 				return ret;
 			break;
@@ -1297,7 +1297,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 553:
 		case 554:
 		case 555:
-			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
+			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != OPTION_BATTLE_DBATTLE && gs->config.play.battle != OPTION_BATTLE_SP2DP
 				&& songData.difficultyLevelBarLamp[3] == option - 550)
 				return ret;
 			break;
@@ -1307,7 +1307,7 @@ bool GetOptionFlag_dst(game *gs, int option) {
 		case 563:
 		case 564:
 		case 565:
-			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != 2 && gs->config.play.battle != 3
+			if ((songData.folderType == 0 || songData.folderType == 5) && gs->config.play.is_extra != 1 && gs->config.play.battle != OPTION_BATTLE_DBATTLE && gs->config.play.battle != OPTION_BATTLE_SP2DP
 				&& songData.difficultyLevelBarLamp[4] == option - 560)
 				return ret;
 			break;
@@ -1423,13 +1423,13 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			break;
 			
 		case 640:
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 0) return ret;
 			}
-			else if (gs->config.play.is_extra == 1) {
+			else if (gs->config.play.is_extra == OPTION_BATTLE_BATTLE) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 0) return ret;
 			}
-			else if (gs->config.play.battle == 3) {
+			else if (gs->config.play.battle == OPTION_BATTLE_SP2DP) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 0) return ret;
 			}
 			else {
@@ -1437,13 +1437,13 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 		case 641:
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 1) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 1) return ret;
 			}
-			else if (gs->config.play.battle == 3) {
+			else if (gs->config.play.battle == OPTION_BATTLE_SP2DP) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 1) return ret;
 			}
 			else {
@@ -1451,13 +1451,13 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 		case 642:
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 2) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 2) return ret;
 			}
-			else if (gs->config.play.battle == 3) {
+			else if (gs->config.play.battle == OPTION_BATTLE_SP2DP) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 2) return ret;
 			}
 			else {
@@ -1465,13 +1465,13 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 		case 643:
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 3) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 3) return ret;
 			}
-			else if (gs->config.play.battle == 3) {
+			else if (gs->config.play.battle == OPTION_BATTLE_SP2DP) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 3) return ret;
 			}
 			else {
@@ -1479,13 +1479,13 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 		case 644:
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 4) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 4) return ret;
 			}
-			else if (gs->config.play.battle == 3) {
+			else if (gs->config.play.battle == OPTION_BATTLE_SP2DP) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 4) return ret;
 			}
 			else {
@@ -1493,13 +1493,13 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 		case 645:
-			if (gs->config.play.battle == 2) {
+			if (gs->config.play.battle == OPTION_BATTLE_DBATTLE) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_db == 5) return ret;
 			}
 			else if (gs->config.play.is_extra == 1) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_ex == 5) return ret;
 			}
-			else if (gs->config.play.battle == 3) {
+			else if (gs->config.play.battle == OPTION_BATTLE_SP2DP) {
 				if (songData.keymode > 0 && songData.rivalRecord.clear_sd == 5) return ret;
 			}
 			else {
@@ -2311,7 +2311,7 @@ int SetObjectValue_Bargraph(game *g) {
 					break;
 
 				case 14:
-					if (g->config.play.battle == 1) {
+					if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 						max = g->gameplay.player[1].totalnotes * 2;
 						val = g->gameplay.player[1].exscore;
 					}
@@ -2475,7 +2475,7 @@ int SetObjectValue_Bargraph(game *g) {
 					break;
 
 				case 58: // Extension: fast-slow
-					if (g->config.play.battle == 1) {
+					if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 						max = g->gameplay.player[1].extendedStats.slow + g->gameplay.player[1].extendedStats.fast;
 						val = g->gameplay.player[1].extendedStats.slow;
 					}
@@ -2483,7 +2483,7 @@ int SetObjectValue_Bargraph(game *g) {
 					break;
 
 				case 59: // Extension: fast-slow
-					if (g->config.play.battle == 1) {
+					if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 						max = g->gameplay.player[1].extendedStats.slow + g->gameplay.player[1].extendedStats.fast;
 						val = g->gameplay.player[1].extendedStats.fast;
 					}
@@ -3254,8 +3254,8 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 			//Option Play
 			case 40:
 				isClickSuccess = g->procSelecter == 4 || g->procSelecter == 5 || g->procSelecter == 13 ?
-					ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->gameplay.player[0].gaugeType, 0, 5, g->sSelect.panel) :
-					ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.gaugeOption[0], 0, 5, g->sSelect.panel);
+					ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->gameplay.player[0].gaugeType, OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel) :
+					ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.gaugeOption[0], OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3263,10 +3263,10 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 41:
-				if (g->config.play.battle == 1) {
+				if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 					isClickSuccess = g->procSelecter == 4 || g->procSelecter == 5 || g->procSelecter == 13 ?
-						ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->gameplay.player[1].gaugeType, 0, 5, g->sSelect.panel) :
-						ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.gaugeOption[1], 0, 5, g->sSelect.panel);
+						ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->gameplay.player[1].gaugeType, OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel) :
+						ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.gaugeOption[1], OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, g->sSelect.panel);
 					if (isClickSuccess == 2) {
 						PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 						SetObjectStrings_SongSelect(g);
@@ -3276,7 +3276,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 42:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.random[0], 0, 5, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.random[0], OPTION_RANDOM_OFF, OPTION_RANDOM_END, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3284,7 +3284,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 43:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.random[1], 0, 5, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.random[1], OPTION_RANDOM_OFF, OPTION_RANDOM_END, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3341,7 +3341,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 55:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.hsfix, 0, 5, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.hsfix, OPTION_HSFIX_OFF, OPTION_HSFIX_END, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);
@@ -3349,7 +3349,7 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				break;
 
 			case 56:
-				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.battle, 0, 4, g->sSelect.panel);
+				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.battle, OPTION_BATTLE_OFF, OPTION_BATTLE_END, g->sSelect.panel);
 				if (isClickSuccess == 2) {
 					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 					SetObjectStrings_SongSelect(g);

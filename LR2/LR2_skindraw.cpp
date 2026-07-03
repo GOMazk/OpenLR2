@@ -161,7 +161,7 @@ int GetSRCcycleNow(SRCstruct src, double time){
 }
 
 int AddDrawingBufferT(DrawingBuf *drb, int grHandle, DSTdraw *dstd){
-	if ((drb->isDisabled == '\0') && (grHandle != -1)) {
+	if ((drb->isDisabled == 0) && (grHandle != -1)) {
 		dstd->fontHandle = grHandle;
 		dstd->grHandle = -1;
 		if (drb->count < 2000) {
@@ -208,7 +208,7 @@ int AddDrawingBuffer_TextXY(DrawingBuf *drb, SRCstruct *src, DSTstruct *dst, Tim
 
 
 int AddDrawingBuffer(DrawingBuf *drb, int grHandle, DSTdraw *dstd){
-	if ((drb->isDisabled == '\0') && (grHandle != -1)) {
+	if ((drb->isDisabled == 0) && (grHandle != -1)) {
 		dstd->grHandle = grHandle;
 		dstd->fontHandle = -1;
 		if (drb->count == drb->max) {

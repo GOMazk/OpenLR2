@@ -20,8 +20,8 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 
 	if (g->po4procSelecter == 0) {
 		g->po4procSelecter = 1;
-		g->po4flagSceneStart = '\x01';
-		g->po4flagSceneEnd = '\0';
+		g->po4flagSceneStart = 1;
+		g->po4flagSceneEnd = 0;
 		g->sSelect.listCalculatedBar = 0;
 		g->sSelect.barMoveStartTime = GetTimeWrap();
 		g->sSelect.barMoveEndTime = GetTimeWrap();
@@ -487,10 +487,10 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 					else if (GetTimeLapse(410, &g->timer1) >= g->skstruct.playstart) {
 						SetTimeLapse(41, &g->timer1);
 						SetTimeLapse(142, &g->timer1);
-						if (g->config.play.gaugeOption[0] == 1 || g->config.play.gaugeOption[0] == 2 || g->config.play.gaugeOption[0] == 4 || g->config.play.gaugeOption[0] == 5) {
+						if (g->config.play.gaugeOption[0] == OPTION_GAUGE_HARD || g->config.play.gaugeOption[0] == OPTION_GAUGE_DEATH || g->config.play.gaugeOption[0] == OPTION_GAUGE_PATTCK || g->config.play.gaugeOption[0] == OPTION_GAUGE_GATTACK) {
 							SetTimeLapse(44, &g->timer1);
 						}
-						if (g->config.play.gaugeOption[1] == 1 || g->config.play.gaugeOption[1] == 2 || g->config.play.gaugeOption[1] == 4 || g->config.play.gaugeOption[1] == 5) {
+						if (g->config.play.gaugeOption[1] == OPTION_GAUGE_HARD || g->config.play.gaugeOption[1] == OPTION_GAUGE_DEATH || g->config.play.gaugeOption[1] == OPTION_GAUGE_PATTCK || g->config.play.gaugeOption[1] == OPTION_GAUGE_GATTACK) {
 							SetTimeLapse(45, &g->timer1);
 						}
 						g->gameplay.flag_gameinput = 1;

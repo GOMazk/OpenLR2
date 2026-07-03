@@ -5,13 +5,13 @@
 #include "Scene02_Songselect.h" //objstr in CheckMission()
 
 bool CheckScoreSaveConditon(game *g){ //TOFIX : p2_assist == 1 but no battle, doesn't match with actual condition
-	if ( (g->config.play.battle == 0 || g->config.play.battle == 4) && g->config.play.is_extra != 1
+	if ( (g->config.play.battle == OPTION_BATTLE_OFF || g->config.play.battle == OPTION_BATTLE_GBATTLE) && g->config.play.is_extra != 1
 		&& g->config.play.m_addlong == 0 && g->config.play.m_loudness <= 0
 		&& g->config.play.m_lunaris == 0 && g->config.play.hsfix != 4 && g->config.play.m_addmine == 0 
 		&& (g->config.play.m_addnote == 0 && g->config.play.is_extra == 0) && g->config.play.autokey == 0
 		&& (1 || g->sSelect.metaSelected.keymode < 10)
 		&& g->config.play.p1_assist == 0 && (g->config.play.p2_assist == 0 || g->sSelect.metaSelected.keymode < 10) 
-		&& g->config.play.random[0] < 4 && g->config.play.random[1] < 4) {
+		&& g->config.play.random[0] < OPTION_RANDOM_SCATTER && g->config.play.random[1] < OPTION_RANDOM_SCATTER) {
 		return true;
 	}
 	return false;
@@ -20,21 +20,21 @@ bool CheckScoreSaveConditon(game *g){ //TOFIX : p2_assist == 1 but no battle, do
 int CheckClearLampChallenge(game *g){ //TOFIX : p2_assist == 1 but no battle, doesn't match with actual condition
 	if (g->config.play.m_addlong == 1 || g->config.play.m_loudness > 0
 		|| g->config.play.m_lunaris || g->config.play.m_addlong > 0
-		|| g->config.play.m_addmine || g->config.play.m_addnote || g->config.play.battle == 1) {
+		|| g->config.play.m_addmine || g->config.play.m_addnote || g->config.play.battle == OPTION_BATTLE_BATTLE) {
 		return 0;
 	}
 
-	if (g->config.play.random[0] < 4 && g->config.play.random[1] < 4 && g->config.play.hsfix != 4
+	if (g->config.play.random[0] < OPTION_RANDOM_SCATTER && g->config.play.random[1] < OPTION_RANDOM_SCATTER && g->config.play.hsfix != OPTION_HSFIX_CONSTANT
 		&& g->config.play.autokey == 0 && (1 || g->sSelect.metaSelected.keymode < 10)
 		&& g->config.play.p1_assist == 0 && (g->config.play.p2_assist == 0 || g->sSelect.metaSelected.keymode < 10)) {
 		switch (g->procSelecter == 4 || g->procSelecter == 5 || g->procSelecter == 13
 			? g->gameplay.player[0].gaugeType
 			: g->config.play.gaugeOption[0]) {
-		case 1: return 3;
-		case 2: return 4;
-		case 3: return 1;
-		case 4: return 4;
-		case 5: return 3;
+		case OPTION_GAUGE_HARD: return 3;
+		case OPTION_GAUGE_DEATH: return 4;
+		case OPTION_GAUGE_EASY: return 1;
+		case OPTION_GAUGE_PATTCK: return 4;
+		case OPTION_GAUGE_GATTACK: return 3;
 		default: return 2;
 		}
 	}
@@ -63,75 +63,22 @@ uint ConvertOptionHistory(game *g){
 			return ret;
 		}
 		if (clear > 2) {
+			static_assert(OPTION_GAUGE_END < 8);
+			static_assert(OPTION_RANDOM_END < 8);
+			//static_assert(OPTION_HIDSUD_END < 8); //TODO
 			ret = 0;
-			switch (gauge) {
-				case 0:
-					ret = 1;
-					break;
-				case 1:
-					ret = 2;
-					break;
-				case 2:
-					ret = 4;
-					break;
-				case 3:
-					ret = 8;
-					break;
-				case 4:
-					ret = 0x10;
-					break;
-				case 5:
-					ret = 0x20;
-					break;
-				case 6:
-					ret = 0x40;
-					break;
-				case 7:
-					ret = 0x80;
-			}
-			switch (g->config.play.random[0]) {
-				case 0:
-					ret = ret | 0x100;
-					break;
-				case 1:
-					ret = ret | 0x200;
-					break;
-				case 2:
-					ret = ret | 0x400;
-					break;
-				case 3:
-					ret = ret | 0x800;
-					break;
-				case 4:
-					ret = ret | 0x1000;
-					break;
-				case 5:
-					ret = ret | 0x2000;
-					break;
-				case 6:
-					ret = ret | 0x4000;
-					break;
-				case 7:
-					ret = ret | 0x8000;
-			}
-			switch (g->config.play.m_HIDSUD1) {
-				case 0:
-					return ret | 0x10000;
-				case 1:
-					return ret | 0x20000;
-				case 2:
-					return ret | 0x40000;
-				case 3:
-					return ret | 0x80000;
-				case 4:
-					return ret | 0x100000;
-				case 5:
-					return ret | 0x200000;
-				case 6:
-					return ret | 0x400000;
-				case 7:
-					return ret | 0x800000;
-			}
+			if (gauge <= OPTION_GAUGE_END)
+				ret = ret | 0x1 << gauge ;
+			else
+				ErrorLogFmtAdd("BUG: invalid gauge: %d", gauge);
+			if (g->config.play.random[0] <= OPTION_RANDOM_END)
+				ret = ret | 0x100 << g->config.play.random[0];
+			else
+				ErrorLogFmtAdd("BUG: invalid random: %d", g->config.play.random);
+			if (g->config.play.m_HIDSUD1 <= 3)
+				ret = ret | 0x10000 << g->config.play.m_HIDSUD1;
+			else
+				ErrorLogFmtAdd("BUG: invalid m_HIDSUD1: %d", g->config.play.m_HIDSUD1);
 		}
 	}
 	return ret;
@@ -385,7 +332,7 @@ int CheckMission(game *g){
 		case 7:
 			gauge = g->config.play.random[0];
 			if ((g->config.play.random[0] == g->config.play.random[1] || g->sSelect.bmsList[g->sSelect.cur_song].keymode < 10) 
-				&& g->gameplay.player[0].totalnotes >= 100 && g->config.play.random[0] == 5) {
+				&& g->gameplay.player[0].totalnotes >= 100 && g->config.play.random[0] == OPTION_RANDOM_CONVERGE) {
 				g->gameplay.playerstat.trial = level + 1;
 			}
 			break;
@@ -425,13 +372,13 @@ int CheckMission(game *g){
 			break;
 		case 14:
 			if ((g->config.play.random[0] == g->config.play.random[1] || g->sSelect.bmsList[g->sSelect.cur_song].keymode < 10)
-				&& g->gameplay.player[0].totalnotes >= 500 && g->config.play.random[0] == 5) {
+				&& g->gameplay.player[0].totalnotes >= 500 && g->config.play.random[0] == OPTION_RANDOM_CONVERGE) {
 				g->gameplay.playerstat.trial = level + 1;
 			}
 			break;
 		case 15:
 			if (g->gameplay.isSpeedChanged == false && g->config.play.hiSpeed[0] == 50 &&
-				g->config.play.hsfix == 4 && g->gameplay.player[0].totalnotes >= 500) {
+				g->config.play.hsfix == OPTION_HSFIX_CONSTANT && g->gameplay.player[0].totalnotes >= 500) {
 				g->gameplay.playerstat.trial = level + 1;
 			}
 			break;
@@ -445,7 +392,7 @@ int CheckMission(game *g){
 				}
 				level = g->gameplay.playerstat.trial;
 			}
-			if (g->gameplay.player[0].totalnotes >= 500 && g->config.play.random[0] == 2 && g->config.play.m_HIDSUD1 == 3) {
+			if (g->gameplay.player[0].totalnotes >= 500 && g->config.play.random[0] == OPTION_RANDOM_RANDOM && g->config.play.m_HIDSUD1 == 3) {
 				g->gameplay.playerstat.trial = level + 1;
 			}
 			break;
@@ -477,7 +424,7 @@ int CheckMission(game *g){
 			break;
 		case 22:
 			if ((g->config.play.random[0] != g->config.play.random[1] && 9 < g->sSelect.bmsList[g->sSelect.cur_song].keymode) || gauge != 2) break;
-			if (g->config.play.random[0] == 3) {
+			if (g->config.play.random[0] == OPTION_RANDOM_SRANDOM) {
 				if (g->gameplay.player[0].totalnotes >= 1000) {
 					g->gameplay.playerstat.trial = level + 1;
 				}
@@ -485,7 +432,7 @@ int CheckMission(game *g){
 			break;
 		case 23:
 			if ((g->config.play.m_HIDSUD1 != g->config.play.m_HIDSUD2 && 9 < g->sSelect.bmsList[g->sSelect.cur_song].keymode)
-				|| g->config.play.m_HIDSUD1 != 1 || g->config.play.hsfix != 4 || g->config.play.hiSpeed[0] != 150)
+				|| g->config.play.m_HIDSUD1 != 1 || g->config.play.hsfix != OPTION_HSFIX_CONSTANT || g->config.play.hiSpeed[0] != 150)
 				break;
 			if (g->gameplay.player[0].totalnotes >= 1000) {
 				g->gameplay.playerstat.trial = level + 1;
@@ -493,7 +440,7 @@ int CheckMission(game *g){
 			break;
 		case 24:
 			if ((g->config.play.m_HIDSUD1 != g->config.play.m_HIDSUD2 && 9 < g->sSelect.bmsList[g->sSelect.cur_song].keymode)
-				|| g->config.play.m_HIDSUD1 != 2 || g->config.play.hsfix != 4) break;
+				|| g->config.play.m_HIDSUD1 != 2 || g->config.play.hsfix != OPTION_HSFIX_CONSTANT) break;
 			if (g->config.play.hiSpeed[0] == 250) {
 				if (g->gameplay.player[0].totalnotes >= 1000) {
 					g->gameplay.playerstat.trial = level + 1;
@@ -502,7 +449,7 @@ int CheckMission(game *g){
 			break;
 		case 25:
 			if (g->config.play.random[0] != g->config.play.random[1] && 9 < g->sSelect.bmsList[g->sSelect.cur_song].keymode) break;
-			if (g->config.play.random[0] == 5) {
+			if (g->config.play.random[0] == OPTION_RANDOM_CONVERGE) {
 				if (g->gameplay.player[0].totalnotes >= 1000) {
 					g->gameplay.playerstat.trial = level + 1;
 				}
@@ -517,7 +464,7 @@ int CheckMission(game *g){
 				}
 				level = g->gameplay.playerstat.trial;
 			}
-			if (g->config.play.random[0] == 2 && g->config.play.m_HIDSUD1 == 3 && g->gameplay.player[0].totalnotes >= 1000) {
+			if (g->config.play.random[0] == OPTION_RANDOM_RANDOM && g->config.play.m_HIDSUD1 == 3 && g->gameplay.player[0].totalnotes >= 1000) {
 				g->gameplay.playerstat.trial = level + 1;
 			}
 			break;
@@ -528,7 +475,7 @@ int CheckMission(game *g){
 			}
 			break;
 		case 28:
-			if (g->gameplay.isSpeedChanged == false && g->config.play.hsfix == 4 && g->config.play.hiSpeed[0] == 600 && g->gameplay.player[0].totalnotes >= 300) {
+			if (g->gameplay.isSpeedChanged == false && g->config.play.hsfix == OPTION_HSFIX_CONSTANT && g->config.play.hiSpeed[0] == 600 && g->gameplay.player[0].totalnotes >= 300) {
 				g->gameplay.playerstat.trial = level + 1;
 			}
 			break;
@@ -558,12 +505,12 @@ int CheckMission(game *g){
 			}
 			break;
 		case 34:
-			if (g->gameplay.isSpeedChanged == false && g->gameplay.player[0].totalnotes >= 1200 && g->config.play.hsfix == 4 && g->gameplay.song_runtime < 150000.0 && g->config.play.hiSpeed[0] == 30) {
+			if (g->gameplay.isSpeedChanged == false && g->gameplay.player[0].totalnotes >= 1200 && g->config.play.hsfix == OPTION_HSFIX_CONSTANT && g->gameplay.song_runtime < 150000.0 && g->config.play.hiSpeed[0] == 30) {
 				g->gameplay.playerstat.trial = level + 1;
 			}
 			break;
 		case 35:
-			if (g->gameplay.player[0].totalnotes >= 1200 && g->gameplay.song_runtime < 150000.0 && gauge == 1 && g->config.play.random[0] == 5) {
+			if (g->gameplay.player[0].totalnotes >= 1200 && g->gameplay.song_runtime < 150000.0 && gauge == 1 && g->config.play.random[0] == OPTION_RANDOM_CONVERGE) {
 				g->gameplay.playerstat.trial = level + 1;
 			}
 			break;
@@ -586,12 +533,12 @@ int CheckMission(game *g){
 		case 39:
 			if (g->gameplay.isSpeedChanged == false && (g->config.play.m_HIDSUD1 == g->config.play.m_HIDSUD2 || g->sSelect.bmsList[g->sSelect.cur_song].keymode < 10)
 				&& g->gameplay.player[0].totalnotes >= 1500 && g->gameplay.song_runtime < 150000.0 && g->config.play.hiSpeed[0] == 100
-				&& g->config.play.m_HIDSUD1 == 1 && g->config.play.hsfix == 4) {
+				&& g->config.play.m_HIDSUD1 == 1 && g->config.play.hsfix == OPTION_HSFIX_CONSTANT) {
 				g->gameplay.playerstat.trial = level + 1;
 			}
 			break;
 		case 40:
-			if (g->gameplay.player[0].totalnotes >= 1500 && g->gameplay.song_runtime < 150000.0 && g->config.play.random[0] == 5 && 0 < g->config.play.randFix[0]) {
+			if (g->gameplay.player[0].totalnotes >= 1500 && g->gameplay.song_runtime < 150000.0 && g->config.play.random[0] == OPTION_RANDOM_CONVERGE && 0 < g->config.play.randFix[0]) {
 				g->gameplay.playerstat.trial = level + 1;
 			}
 	}
@@ -786,7 +733,7 @@ int SaveResult(game *g, sqlite3* sql) {
 	else {
 		ErrorLogFmtAdd("通常のスコア保存処理を行います\n");
 		
-		if (g->config.play.battle == 1) {
+		if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 			g->gameplay.player[1].lastCourseGaugeType = g->gameplay.player[1].gaugeType;
 			if (g->config.play.m_gas && g->gameplay.replay.status != 2) {
 				g->gameplay.player[1].gaugeType = GetBestClearedGauge(g->gameplay, 1, g->config.play, g->gameplay.courseStageNow != 0);
@@ -814,7 +761,7 @@ int SaveResult(game *g, sqlite3* sql) {
 		if (g->gameplay.isNosave) return -1;
 		
 		if (g->gameplay.isForceEasy && g->gameplay.player[0].clearType > 2) {
-			if (g->gameplay.player[0].clearType == 5 && (g->config.play.p1_assist == 0 && g->config.play.p2_assist == 0) && ((g->config.play.random[0] != 4 && g->config.play.random[1] != 4) || g->gameplay.minBPM == g->gameplay.maxBPM)) {
+			if (g->gameplay.player[0].clearType == 5 && (g->config.play.p1_assist == 0 && g->config.play.p2_assist == 0) && ((g->config.play.random[0] != OPTION_RANDOM_SCATTER && g->config.play.random[1] != OPTION_RANDOM_SCATTER) || g->gameplay.minBPM == g->gameplay.maxBPM)) {
 				g->gameplay.isForceEasy = 0;
 			}
 			else {
@@ -822,7 +769,7 @@ int SaveResult(game *g, sqlite3* sql) {
 			}
 		}
 
-		if (g->config.play.battle != 1 || g->is_starter) {
+		if (g->config.play.battle != OPTION_BATTLE_BATTLE || g->is_starter) {
 
 			if ((g->gameplay.freqSpeedMultiplier < 1.0 || g->config.play.m_lunaris == 1) && g->is_starter == 0) {
 				if (g->gameplay.replay.status == 2) return -1;
@@ -844,7 +791,7 @@ int SaveResult(game *g, sqlite3* sql) {
 				return 0;
 			}
 
-			else if (g->config.play.battle == 2 && g->is_starter == 0) {
+			else if (g->config.play.battle == OPTION_BATTLE_DBATTLE && g->is_starter == 0) {
 				if (g->gameplay.replay.status == 2) return -1;
 
 				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_db < g->gameplay.player[0].clearType) {
@@ -872,7 +819,7 @@ int SaveResult(game *g, sqlite3* sql) {
 				return 0;
 			}
 
-			else if (g->config.play.battle == 3 && g->is_starter == 0) {
+			else if (g->config.play.battle == OPTION_BATTLE_SP2DP && g->is_starter == 0) {
 				if (g->gameplay.replay.status == 2) return -1;
 
 				if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear_sd < g->gameplay.player[0].clearType) {
@@ -928,7 +875,7 @@ int SaveResult(game *g, sqlite3* sql) {
 				return 0;
 			}
 
-			else if (((g->config.play.p1_assist == 1 || g->config.play.p2_assist == 1) || g->config.play.hsfix == 4 || (g->config.play.random[0] > 3 || g->config.play.random[1] > 3)) && g->is_starter == 0) { 
+			else if (((g->config.play.p1_assist == 1 || g->config.play.p2_assist == 1) || g->config.play.hsfix == OPTION_HSFIX_CONSTANT || (g->config.play.random[0] > OPTION_RANDOM_SRANDOM || g->config.play.random[1] > OPTION_RANDOM_SRANDOM)) && g->is_starter == 0) { 
 				if (g->gameplay.replay.status == 2) return -1;
 
 				if (g->gameplay.player[0].clearType > 2) g->gameplay.player[0].clearType = 2;

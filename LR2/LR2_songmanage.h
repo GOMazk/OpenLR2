@@ -7,7 +7,7 @@
 // loading-screen feedback without having to recognise the SQL text.
 enum class ReloadProgress { None, FolderPass, SongPass };
 
-SONGDATA * COPY_SONGDATA(SONGDATA *s1, SONGDATA *s2);
+void COPY_SONGDATA(SONGDATA *self, SONGDATA *other);
 int InitSongData(SONGDATA * song);
 
 int CMP_SongDataByExLevel(const void * p1, const void * p2);
