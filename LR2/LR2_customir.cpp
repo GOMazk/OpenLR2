@@ -20,6 +20,7 @@
 
 #ifdef _WIN32
 #include <libloaderapi.h>
+#include <shellapi.h>
 #include <wtypes.h>
 #else
 #include <dlfcn.h>
@@ -88,7 +89,7 @@ public:
 	openlr2::GetStatus GetResultRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus RestoreCachedRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus GetGhost(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, openlr2::IRGhostResult& out);
-
+	[[nodiscard]] const std::string& WebRankingUrlTemplate() const { return mWebRankingUrlTemplate; }
 	[[nodiscard]] const std::string& Name() const { return mName; };
 private:
 	struct ModuleDeleter {
@@ -96,6 +97,7 @@ private:
 	};
 	std::unique_ptr<std::remove_pointer_t<HMODULE>, ModuleDeleter> mDllHandle;
 	std::string mName;
+	std::string mWebRankingUrlTemplate;
 	MethodTable mMethods;
 };
 
@@ -125,6 +127,9 @@ CustomIR::CustomIR(const std::filesystem::path& _directory) {
 			continue;
 		};
 		mName = mMethods.GetName();
+		if (mMethods.webRankingUrlTemplate != nullptr) {
+			mWebRankingUrlTemplate = mMethods.webRankingUrlTemplate;
+		}
 		ErrorLogFmtAdd("CustomIR %s loaded: %s\n", filename.c_str(), mName.c_str());
 		break;
 	}
@@ -268,6 +273,35 @@ std::string CUSTOMIR_MANAGER::Login() {
 
 bool CUSTOMIR_MANAGER::IsDisplayIrOnline() const {
 	return std::ranges::contains(mLoggedInIrs, mDisplayIr);
+}
+
+int CUSTOMIR_MANAGER::OpenWebRanking(const char* songHash) const {
+	if (mDisplayIr.empty() || songHash == nullptr || songHash[0] == '\0') {
+		return 0;
+	}
+	const auto displayIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (displayIt == mModules.end()) {
+		return 0;
+	}
+	const std::string& templ = (*displayIt)->WebRankingUrlTemplate();
+	if (templ.empty()) {
+		return 0;
+	}
+	const std::string placeholder = "{hash}";
+	std::string url = templ;
+	const std::size_t pos = url.find(placeholder);
+	if (pos == std::string::npos) {
+		return 0;
+	}
+	url.replace(pos, placeholder.size(), songHash);
+#ifdef _WIN32
+	ShellExecuteA(NULL, "open", url.c_str(), NULL, NULL, 1);
+	return 1;
+#else
+	CSTR cmd;
+	cstrSprintf(&cmd, "xdg-open \"%s\" &", url.c_str());
+	return system(cmd.body) == 0 ? 1 : 0;
+#endif
 }
 
 std::optional<openlr2::IRGhostResult> CUSTOMIR_MANAGER::TryGetTargetInfo(const char* songmd5, int mode, int targetPlayerId) {

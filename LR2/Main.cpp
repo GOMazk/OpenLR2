@@ -2069,7 +2069,7 @@ int main(int argc, char** argv) {
 		}
 		gs.sSelect.flag_maniacPanel = 0;
 		if(gs.procSelecter == 2){
-			if ( (gs.KeyInput.inputID[KEY_INPUT_F5] == 1 || gs.sSelect.is_buttonIRpage != 0) && gs.sSelect.bmsList[gs.sSelect.cur_song].keymode > 4 && gs.config.network.lr2ir == 1) {
+			if ( (gs.KeyInput.inputID[KEY_INPUT_F5] == 1 || gs.sSelect.is_buttonIRpage != 0) && gs.sSelect.bmsList[gs.sSelect.cur_song].keymode > 4 && (gs.config.network.lr2ir == 1 || gs.net.customIR.IsDisplayIrOnline())) {
 				// Both desktop(0) and borderless(2) own the display: drop to windowed(1) before
 				// opening the external browser, otherwise exclusive blocks/crashes the browser show.
 				if (gs.config.system.screenmode == 0 || gs.config.system.screenmode == 2) {
@@ -2097,15 +2097,24 @@ int main(int argc, char** argv) {
 #endif // _WIN32
 						ErrorLogAdd("成功\n");
 					}
-					if (gs.config.network.lr2ir == 1) {
-						//same as below
-						ErrorLogAdd("IRを出します\n");
-						OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash);
+					ErrorLogAdd("IRを出します\n");
+					if (gs.net.customIR.IsDisplayIrOnline()) {
+						if (!gs.net.customIR.OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash.body) && gs.config.network.lr2ir == 1) {
+							LR2IR_OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash);
+						}
+					} else if (gs.config.network.lr2ir == 1) {
+						LR2IR_OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash);
 					}
 				}
 				else {
 					ErrorLogAdd("IRを出します\n");
-					OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash);
+					if (gs.net.customIR.IsDisplayIrOnline()) {
+						if (!gs.net.customIR.OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash.body) && gs.config.network.lr2ir == 1) {
+							LR2IR_OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash);
+						}
+					} else if (gs.config.network.lr2ir == 1) {
+						LR2IR_OpenWebRanking(gs.sSelect.bmsList[gs.sSelect.cur_song].hash);
+					}
 				}
 
 				if (gs.config.system.screenmode == 0) {

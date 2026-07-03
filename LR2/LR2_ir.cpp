@@ -685,7 +685,7 @@ int NETWORK::GetRivalInfo(int rivalID) {
 	return 1;
 }
 
-int OpenWebRanking(CSTR songmd5){
+int LR2IR_OpenWebRanking(CSTR songmd5){
 #ifdef _WIN32
 	CSTR url;
 	cstrSprintf(&url, "\"http://www.dream-pro.info/~lavalse/LR2IR/search.cgi?mode=ranking&bmsmd5=%s#status&\"", songmd5.body);

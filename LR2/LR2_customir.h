@@ -35,6 +35,7 @@ public:
 	void Initialize(const std::filesystem::path& directory, std::string activeProvider);
 	std::string Login();
 	[[nodiscard]] bool IsDisplayIrOnline() const;
+	int OpenWebRanking(const char* songHash) const;
 	// \note Delegates to the display IR
 	// \retval nullopt - Fail
 	std::optional<openlr2::IRGhostResult> TryGetTargetInfo(const char* songmd5, int mode, int targetPlayerId);

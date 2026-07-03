@@ -13,6 +13,7 @@
 namespace State {
     static std::filesystem::path path;
     static int scoresSaved = 0;
+    static std::string webRankingTemplate = "https://example.com/{hash}";
 }
 
 static const char* OLR2_IR_API GetName() {
@@ -115,6 +116,7 @@ extern "C" OLR2_IR_EXPORT void OLR2_IR_API GetMethodTable(MethodTable& table) {
     table.GetResultRank = &GetResultRank;
     table.RestoreCachedRank = &RestoreCachedRank;
     table.GetGhost = &GetGhost;
+    table.webRankingUrlTemplate = State::webRankingTemplate.c_str();
 }
 
 #ifdef _WIN32

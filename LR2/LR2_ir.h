@@ -4,6 +4,6 @@
 
 int CheckRivaldataNew(int rivalID);
 CSTR UrlEncode(CSTR in);
-int OpenWebRanking(CSTR songmd5);
+int LR2IR_OpenWebRanking(CSTR songmd5);
 
 int SaveIRID(int IRID, CSTR ID);
