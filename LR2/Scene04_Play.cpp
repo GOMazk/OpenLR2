@@ -1795,6 +1795,7 @@ int ProcS_Play(game *g, sqlite3* sql) {
 
 	g->gameplay.hThreadPreview = {};
 	g->gameplay.flag_closingPhase = 0;
+	g->gameplay.p1Score.InitJudgeQueue();
 	
 	CSTR gData, gName;
 	CSTR md5;

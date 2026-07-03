@@ -716,7 +716,6 @@ int WriteGhostInDatabase(sqlite3 *sql, CSTR songMD5, PLAYSCORE *score) {
 		ErrorLogAdd("sqlite3_finalize error\n");
 	}
 
-	score->InitJudgeQueue();
 	ErrorLogAdd("ゴーストの書き込みが終了しました\n");
 	return 0;
 }
