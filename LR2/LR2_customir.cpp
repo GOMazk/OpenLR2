@@ -88,8 +88,7 @@ public:
 	openlr2::GetStatus GetResultRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus RestoreCachedRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus GetGhost(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, openlr2::IRGhostResult& out);
-	[[nodiscard]] const char* WebRankingUrlTemplate() const;
-
+	[[nodiscard]] const std::string& WebRankingUrlTemplate() const { return mWebRankingUrlTemplate; }
 	[[nodiscard]] const std::string& Name() const { return mName; };
 private:
 	struct ModuleDeleter {
@@ -97,6 +96,7 @@ private:
 	};
 	std::unique_ptr<std::remove_pointer_t<HMODULE>, ModuleDeleter> mDllHandle;
 	std::string mName;
+	std::string mWebRankingUrlTemplate;
 	MethodTable mMethods;
 };
 
@@ -126,6 +126,9 @@ CustomIR::CustomIR(const std::filesystem::path& _directory) {
 			continue;
 		};
 		mName = mMethods.GetName();
+		if (mMethods.webRankingUrlTemplate != nullptr) {
+			mWebRankingUrlTemplate = mMethods.webRankingUrlTemplate;
+		}
 		ErrorLogFmtAdd("CustomIR %s loaded: %s\n", filename.c_str(), mName.c_str());
 		break;
 	}
@@ -162,10 +165,6 @@ openlr2::GetStatus CustomIR::RestoreCachedRank(const char* songHash, openlr2::IR
 openlr2::GetStatus CustomIR::GetGhost(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, openlr2::IRGhostResult& out) {
 	if (mMethods.GetGhost == nullptr) return openlr2::GetStatus::Fail;
 	return mMethods.GetGhost(songHash, mode, targetPlayerId, out);
-}
-
-const char* CustomIR::WebRankingUrlTemplate() const {
-	return mMethods.webRankingUrlTemplate;
 }
 
 CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() {
@@ -283,8 +282,8 @@ int CUSTOMIR_MANAGER::OpenWebRanking(const char* songHash) const {
 	if (displayIt == mModules.end()) {
 		return 0;
 	}
-	const char* templ = (*displayIt)->WebRankingUrlTemplate();
-	if (templ == nullptr || templ[0] == '\0') {
+	const std::string& templ = (*displayIt)->WebRankingUrlTemplate();
+	if (templ.empty()) {
 		return 0;
 	}
 	const std::string placeholder = "{hash}";
