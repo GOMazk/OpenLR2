@@ -670,8 +670,47 @@ extern BYTE DxShaderCodeBin_Base3D_D3D11[] ;
 
 #else // DX_NON_SHADERCODE_BINARY
 
-extern int  DxShaderCodeTxt_D3D11Convert ;
-extern BYTE DxShaderCodeTxt_D3D11[] ;
+extern unsigned char ShaderTxt_Base_PS_D3D11[];
+extern unsigned int ShaderTxt_Base_PS_D3D11_len;
+
+extern unsigned char ShaderTxt_Base_2D_VS_D3D11[];
+extern unsigned int ShaderTxt_Base_2D_VS_D3D11_len;
+
+extern unsigned char ShaderTxt_Base_3D_Simple_VS_D3D11[];
+extern unsigned int ShaderTxt_Base_3D_Simple_VS_D3D11_len;
+
+extern unsigned char ShaderTxt_Base_3D_PixelLighting_PS_D3D11[];
+extern unsigned int ShaderTxt_Base_3D_PixelLighting_PS_D3D11_len;
+
+extern unsigned char ShaderTxt_Base_3D_PixelLighting_VS_D3D11[];
+extern unsigned int ShaderTxt_Base_3D_PixelLighting_VS_D3D11_len;
+
+extern unsigned char ShaderTxt_Base_3D_VertexLighting_PS_D3D11[];
+extern unsigned int ShaderTxt_Base_3D_VertexLighting_PS_D3D11_len;
+
+extern unsigned char ShaderTxt_Base_3D_VertexLighting_VS_D3D11[];
+extern unsigned int ShaderTxt_Base_3D_VertexLighting_VS_D3D11_len;
+
+extern unsigned char ShaderTxt_DataTypeInclude_D3D11[];
+extern unsigned int ShaderTxt_DataTypeInclude_D3D11_len;
+
+extern unsigned char ShaderTxt_PixelShaderInclude_D3D11[];
+extern unsigned int ShaderTxt_PixelShaderInclude_D3D11_len;
+
+extern unsigned char ShaderTxt_VertexShaderInclude_D3D11[];
+extern unsigned int ShaderTxt_VertexShaderInclude_D3D11_len;
+
+extern unsigned char ShaderTxt_CommonInclude_D3D11[];
+extern unsigned int ShaderTxt_CommonInclude_D3D11_len;
+
+extern unsigned char ShaderTxt_DataTypeSubInclude_D3D11[];
+extern unsigned int ShaderTxt_DataTypeSubInclude_D3D11_len;
+
+extern unsigned char ShaderTxt_PSInclude_D3D11[];
+extern unsigned int ShaderTxt_PSInclude_D3D11_len;
+
+extern unsigned char ShaderTxt_VSInclude_D3D11[];
+extern unsigned int ShaderTxt_VSInclude_D3D11_len;
 
 #endif // DX_NON_SHADERCODE_BINARY
 
@@ -794,7 +833,6 @@ static int CreateD3D11Base3DNoLightingNormalPixelShader( int RenderBlendType, in
 HRESULT	__stdcall Graphics_D3D11_ShaderCompilerIncludeClass::Open( D_D3D_INCLUDE_TYPE /*IncludeType*/, LPCSTR pFileName, LPCVOID /*pParentData*/, LPCVOID *ppData, UINT *pBytes )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE *ShaderCode = &GraphicsHardDataDirect3D11.ShaderCode ;
-	int Addr ;
 	int Size ;
 
 	// 相対パス指定は無視する
@@ -811,12 +849,11 @@ HRESULT	__stdcall Graphics_D3D11_ShaderCompilerIncludeClass::Open( D_D3D_INCLUDE
 	}
 
 	// シェーダーソースファイルを取得する
-	if( DXA_GetFileInfo( &ShaderCode->Base.ShaderTxtDxa, DX_CHARCODEFORMAT_ASCII, UseP, &Addr, &Size ) != 0 )
-	{
-		return S_FALSE ;
-	}
+	auto& code = ShaderCode->Base.ShaderTxt[UseP];
+	if (code.len == 0) return S_FALSE;
+	Size = code.len;
 
-	*ppData = ( void * )( ( BYTE * )DXA_GetFileImage( &ShaderCode->Base.ShaderTxtDxa ) + Addr ) ;
+	*ppData = code.data;
 	*pBytes = ( size_t )Size ;
 
 	return S_OK ;
@@ -1734,30 +1771,22 @@ extern int Graphics_D3D11_ShaderCode_Base_Initialize( void )
 	// シェーダーコンパイラのインクルード処理用クラスを作成
 	SCBASE->ShaderCompilerIncludeClass = new Graphics_D3D11_ShaderCompilerIncludeClass ;
 
-	SCBASE->ShaderTxtDxaImage = NULL ;
-
 	// 基本シェーダーオブジェクトファイルＤＸＡを圧縮したデータを解凍する
 	{
-		if( DxShaderCodeTxt_D3D11Convert == 0 )
-		{
-			DxShaderCodeTxt_D3D11Convert = 1 ;
-			Base64ToBin( DxShaderCodeTxt_D3D11, DxShaderCodeTxt_D3D11 ) ;
-		}
-		Size = DXA_Decode( DxShaderCodeTxt_D3D11, NULL ) ;
-		SCBASE->ShaderTxtDxaImage = DXALLOC( ( size_t )Size ) ;
-		if( SCBASE->ShaderTxtDxaImage == NULL )
-		{
-			goto ERR ;
-		}
-
-		DXA_Decode( DxShaderCodeTxt_D3D11, SCBASE->ShaderTxtDxaImage ) ;
-
-		// ＤＸＡファイルをオープンする
-		DXA_Initialize( &SCBASE->ShaderTxtDxa ) ;
-		if( DXA_OpenArchiveFromMem( &SCBASE->ShaderTxtDxa, SCBASE->ShaderTxtDxaImage, Size, FALSE, FALSE ) != 0 )
-		{
-			goto ERR ;
-		}
+		SCBASE->ShaderTxt["Base_PS.hlsl"] = { ShaderTxt_Base_PS_D3D11, ShaderTxt_Base_PS_D3D11_len };
+		SCBASE->ShaderTxt["Base_2D_VS.hlsl"] = { ShaderTxt_Base_2D_VS_D3D11, ShaderTxt_Base_2D_VS_D3D11_len };
+		SCBASE->ShaderTxt["Base_3D_Simple_VS.hlsl"] = { ShaderTxt_Base_3D_Simple_VS_D3D11, ShaderTxt_Base_3D_Simple_VS_D3D11_len };
+		SCBASE->ShaderTxt["Base_3D_PixelLighting_PS.hlsl"] = { ShaderTxt_Base_3D_PixelLighting_PS_D3D11, ShaderTxt_Base_3D_PixelLighting_PS_D3D11_len };
+		SCBASE->ShaderTxt["Base_3D_PixelLighting_VS.hlsl"] = { ShaderTxt_Base_3D_PixelLighting_VS_D3D11, ShaderTxt_Base_3D_PixelLighting_VS_D3D11_len };
+		SCBASE->ShaderTxt["Base_3D_VertexLighting_PS.hlsl"] = { ShaderTxt_Base_3D_VertexLighting_PS_D3D11, ShaderTxt_Base_3D_VertexLighting_PS_D3D11_len };
+		SCBASE->ShaderTxt["Base_3D_VertexLighting_VS.hlsl"] = { ShaderTxt_Base_3D_VertexLighting_VS_D3D11, ShaderTxt_Base_3D_VertexLighting_VS_D3D11_len };
+		SCBASE->ShaderTxt["DataType.h"] = { ShaderTxt_DataTypeInclude_D3D11, ShaderTxt_DataTypeInclude_D3D11_len };
+		SCBASE->ShaderTxt["PixelShader.h"] = { ShaderTxt_PixelShaderInclude_D3D11, ShaderTxt_PixelShaderInclude_D3D11_len };
+		SCBASE->ShaderTxt["VertexShader.h"] = { ShaderTxt_VertexShaderInclude_D3D11, ShaderTxt_VertexShaderInclude_D3D11_len };
+		SCBASE->ShaderTxt["DxShader_Common_D3D11.h"] = { ShaderTxt_CommonInclude_D3D11, ShaderTxt_CommonInclude_D3D11_len };
+		SCBASE->ShaderTxt["DxShader_DataType_D3D11.h"] = { ShaderTxt_DataTypeSubInclude_D3D11, ShaderTxt_DataTypeSubInclude_D3D11_len };
+		SCBASE->ShaderTxt["DxShader_PS_D3D11.h"] = { ShaderTxt_PSInclude_D3D11, ShaderTxt_PSInclude_D3D11_len };
+		SCBASE->ShaderTxt["DxShader_VS_D3D11.h"] = { ShaderTxt_VSInclude_D3D11, ShaderTxt_VSInclude_D3D11_len };
 	}
 
 #endif // DX_NON_SHADERCODE_BINARY
@@ -1835,11 +1864,7 @@ ERR :
 		SCBASE->ShaderCompilerIncludeClass = NULL ;
 	}
 
-	if( SCBASE->ShaderTxtDxaImage != NULL )
-	{
-		DXFREE( SCBASE->ShaderTxtDxaImage ) ;
-		SCBASE->ShaderTxtDxaImage = NULL ;
-	}
+	SCBASE->ShaderTxt.clear();
 #endif // DX_NON_SHADERCODE_BINARY
 
 #ifndef DX_NON_FILTER
@@ -1885,14 +1910,7 @@ extern int Graphics_D3D11_ShaderCode_Base_Terminate( void )
 		SCBASE->ShaderCompilerIncludeClass = NULL ;
 	}
 
-	// シェーダーコード用ＤＸＡの後始末
-	DXA_Terminate( &SCBASE->ShaderTxtDxa ) ;
-
-	if( SCBASE->ShaderTxtDxaImage != NULL )
-	{
-		DXFREE( SCBASE->ShaderTxtDxaImage ) ;
-		SCBASE->ShaderTxtDxaImage = NULL ;
-	}
+	SCBASE->ShaderTxt.clear();
 #endif // DX_NON_SHADERCODE_BINARY
 
 #ifndef DX_NON_FILTER
@@ -2172,7 +2190,6 @@ extern	int		Graphics_D3D11_ShaderCode_Model_Terminate( void )
 extern int Graphics_D3D11_CompileShader( const char *FileName, const char *EntryPoint, const char *Profile, const D_D3DXMACRO *MacroTable, D_ID3DBlob **ppShader )
 {
 	GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE *ShaderCode = &GraphicsHardDataDirect3D11.ShaderCode ;
-	int Addr ;
 	int Size ;
 	void *DataImage ;
 	void *Code ;
@@ -2181,11 +2198,10 @@ extern int Graphics_D3D11_CompileShader( const char *FileName, const char *Entry
 	D_ID3DBlob *ErrorD3D11 = NULL ;
 
 	// シェーダーソースファイルを取得する
-	if( DXA_GetFileInfo( &ShaderCode->Base.ShaderTxtDxa, DX_CHARCODEFORMAT_ASCII, FileName, &Addr, &Size ) != 0 )
-	{
-		return -1 ;
-	}
-	DataImage = ( BYTE * )DXA_GetFileImage( &ShaderCode->Base.ShaderTxtDxa ) + Addr ;
+	auto& code = ShaderCode->Base.ShaderTxt[FileName];
+	if (code.len == 0) return -1;
+	Size = code.len;
+	DataImage = code.data;
 
 	// シェーダーをコンパイル
 	if( WinAPIData.Win32Func.D3DCompileFunc != NULL )

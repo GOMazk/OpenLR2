@@ -21,6 +21,9 @@
 #include "../DxArchive_.h"
 #include "DxGraphicsAPIWin.h"
 
+#include <unordered_map>
+#include <string>
+
 #ifndef DX_NON_NAMESPACE
 
 namespace DxLib
@@ -869,8 +872,11 @@ struct GRAPHICS_HARDWARE_DIRECT3D9_SHADERCODE_BASE
 #ifdef DX_NON_SHADERCODE_BINARY
 	Graphics_D3D9_ShaderCompilerIncludeClass *ShaderCompilerIncludeClass ;	// シェーダーコンパイラのインクルード処理用クラス
 
-	DXARC					ShaderTxtDxa ;							// シェーダーコードファイルＤＸＡ構造体
-	void					*ShaderTxtDxaImage ;					// シェーダーコードファイルＤＸＡのバイナリイメージ
+	struct ShaderCode {
+		unsigned char* data = nullptr;
+		unsigned int len = 0;
+	};
+	std::unordered_map<std::string, ShaderCode> ShaderTxt;
 #endif // DX_NON_SHADERCODE_BINARY
 
 #ifndef DX_NON_FILTER

@@ -24,6 +24,9 @@
 #include "DxShader_PS_D3D11.h"
 #include "DxShader_VS_D3D11.h"
 
+#include <unordered_map>
+#include <string>
+
 #ifndef DX_NON_NAMESPACE
 
 namespace DxLib
@@ -878,8 +881,11 @@ struct GRAPHICS_HARDWARE_DIRECT3D11_SHADERCODE_BASE
 
 	Graphics_D3D11_ShaderCompilerIncludeClass *ShaderCompilerIncludeClass ;	// シェーダーコンパイラのインクルード処理用クラス
 
-	DXARC					ShaderTxtDxa ;							// シェーダーコードファイルＤＸＡ構造体
-	void					*ShaderTxtDxaImage ;					// シェーダーコードファイルＤＸＡのバイナリイメージ
+	struct ShaderCode {
+		unsigned char* data = nullptr;
+		unsigned int len = 0;
+	};
+	std::unordered_map<std::string, ShaderCode> ShaderTxt;
 
 #endif // DX_NON_SHADERCODE_BINARY
 

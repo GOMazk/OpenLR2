@@ -706,8 +706,41 @@ extern BYTE DxShaderCodeBin_Base3D_D3D9[] ;
 
 #else // DX_NON_SHADERCODE_BINARY
 
-extern int  DxShaderCodeTxt_D3D9Convert ;
-extern BYTE DxShaderCodeTxt_D3D9[] ;
+extern unsigned char ShaderTxt_Base_D3D9[];
+extern unsigned int ShaderTxt_Base_D3D9_len;
+
+extern unsigned char ShaderTxt_BaseVertexShader_D3D9[];
+extern unsigned int ShaderTxt_BaseVertexShader_D3D9_len;
+
+extern unsigned char ShaderTxt_Base_3D_PixelLighting_PS_D3D9[];
+extern unsigned int ShaderTxt_Base_3D_PixelLighting_PS_D3D9_len;
+
+extern unsigned char ShaderTxt_Base_3D_PixelLighting_VS_D3D9[];
+extern unsigned int ShaderTxt_Base_3D_PixelLighting_VS_D3D9_len;
+
+extern unsigned char ShaderTxt_Base_3D_VertexLighting_PS_D3D9[];
+extern unsigned int ShaderTxt_Base_3D_VertexLighting_PS_D3D9_len;
+
+extern unsigned char ShaderTxt_Base_3D_VertexLighting_VS_D3D9[];
+extern unsigned int ShaderTxt_Base_3D_VertexLighting_VS_D3D9_len;
+
+extern unsigned char ShaderTxt_PixelLighting_PSInclude_D3D9[];
+extern unsigned int ShaderTxt_PixelLighting_PSInclude_D3D9_len;
+
+extern unsigned char ShaderTxt_PixelLighting_VSInclude_D3D9[];
+extern unsigned int ShaderTxt_PixelLighting_VSInclude_D3D9_len;
+
+extern unsigned char ShaderTxt_VertexLighting_PSInclude_D3D9[];
+extern unsigned int ShaderTxt_VertexLighting_PSInclude_D3D9_len;
+
+extern unsigned char ShaderTxt_VertexLighting_VSInclude_D3D9[];
+extern unsigned int ShaderTxt_VertexLighting_VSInclude_D3D9_len;
+
+extern unsigned char ShaderTxt_PSInclude_D3D9[];
+extern unsigned int ShaderTxt_PSInclude_D3D9_len;
+
+extern unsigned char ShaderTxt_VSInclude_D3D9[];
+extern unsigned int ShaderTxt_VSInclude_D3D9_len;
 
 #endif // DX_NON_SHADERCODE_BINARY
 
@@ -842,12 +875,11 @@ HRESULT	__stdcall Graphics_D3D9_ShaderCompilerIncludeClass::Open( D_D3D_INCLUDE_
 	}
 
 	// シェーダーソースファイルを取得する
-	if( DXA_GetFileInfo( &ShaderCode->Base.ShaderTxtDxa, DX_CHARCODEFORMAT_ASCII, UseP, &Addr, &Size ) != 0 )
-	{
-		return S_FALSE ;
-	}
+	auto& code = ShaderCode->Base.ShaderTxt[UseP];
+	if (code.len == 0) return S_FALSE;
+	Size = code.len;
 
-	*ppData = ( void * )( ( BYTE * )DXA_GetFileImage( &ShaderCode->Base.ShaderTxtDxa ) + Addr ) ;
+	*ppData = code.data;
 	*pBytes = ( size_t )Size ;
 
 	return S_OK ;
@@ -1791,30 +1823,20 @@ extern int Graphics_D3D9_ShaderCode_Base_Initialize( void )
 	// シェーダーコンパイラのインクルード処理用クラスを作成
 	SCBASE->ShaderCompilerIncludeClass = new Graphics_D3D9_ShaderCompilerIncludeClass ;
 
-	SCBASE->ShaderTxtDxaImage = NULL ;
-
 	// 基本シェーダーオブジェクトファイルＤＸＡを圧縮したデータを解凍する
 	{
-		if( DxShaderCodeTxt_D3D9Convert == 0 )
-		{
-			DxShaderCodeTxt_D3D9Convert = 1 ;
-			Base64ToBin( DxShaderCodeTxt_D3D9, DxShaderCodeTxt_D3D9 ) ;
-		}
-		Size = DXA_Decode( DxShaderCodeTxt_D3D9, NULL ) ;
-		SCBASE->ShaderTxtDxaImage = DXALLOC( ( size_t )Size ) ;
-		if( SCBASE->ShaderTxtDxaImage == NULL )
-		{
-			goto ERR ;
-		}
-
-		DXA_Decode( DxShaderCodeTxt_D3D9, SCBASE->ShaderTxtDxaImage ) ;
-
-		// ＤＸＡファイルをオープンする
-		DXA_Initialize( &SCBASE->ShaderTxtDxa ) ;
-		if( DXA_OpenArchiveFromMem( &SCBASE->ShaderTxtDxa, SCBASE->ShaderTxtDxaImage, Size, FALSE, FALSE ) != 0 )
-		{
-			goto ERR ;
-		}
+		SCBASE->ShaderTxt["Base.fx"] = { ShaderTxt_Base_D3D9, ShaderTxt_Base_D3D9_len };
+		SCBASE->ShaderTxt["BaseVertexShader.fx"] = { ShaderTxt_BaseVertexShader_D3D9, ShaderTxt_BaseVertexShader_D3D9_len };
+		SCBASE->ShaderTxt["Base_3D_PixelLighting_PS.fx"] = { ShaderTxt_Base_3D_PixelLighting_PS_D3D9, ShaderTxt_Base_3D_PixelLighting_PS_D3D9_len };
+		SCBASE->ShaderTxt["Base_3D_PixelLighting_VS.fx"] = { ShaderTxt_Base_3D_PixelLighting_VS_D3D9, ShaderTxt_Base_3D_PixelLighting_VS_D3D9_len };
+		SCBASE->ShaderTxt["Base_3D_VertexLighting_PS.fx"] = { ShaderTxt_Base_3D_VertexLighting_PS_D3D9, ShaderTxt_Base_3D_VertexLighting_PS_D3D9_len };
+		SCBASE->ShaderTxt["Base_3D_VertexLighting_VS.fx"] = { ShaderTxt_Base_3D_VertexLighting_VS_D3D9, ShaderTxt_Base_3D_VertexLighting_VS_D3D9_len };
+		SCBASE->ShaderTxt["DxShader_PS_D3D9.h"] = { ShaderTxt_PSInclude_D3D9, ShaderTxt_PSInclude_D3D9_len };
+		SCBASE->ShaderTxt["DxShader_VS_D3D9.h"] = { ShaderTxt_VSInclude_D3D9, ShaderTxt_VSInclude_D3D9_len };
+		SCBASE->ShaderTxt["PixelLighting_PS.h"] = { ShaderTxt_PixelLighting_PSInclude_D3D9, ShaderTxt_PixelLighting_PSInclude_D3D9_len };
+		SCBASE->ShaderTxt["PixelLighting_VS.h"] = { ShaderTxt_PixelLighting_VSInclude_D3D9, ShaderTxt_PixelLighting_VSInclude_D3D9_len };
+		SCBASE->ShaderTxt["VertexLighting_PS.h"] = { ShaderTxt_VertexLighting_PSInclude_D3D9, ShaderTxt_VertexLighting_PSInclude_D3D9_len };
+		SCBASE->ShaderTxt["VertexLighting_VS.h"] = { ShaderTxt_VertexLighting_VSInclude_D3D9, ShaderTxt_VertexLighting_VSInclude_D3D9_len };
 	}
 
 #endif // DX_NON_SHADERCODE_BINARY
@@ -1905,11 +1927,7 @@ ERR:
 		SCBASE->ShaderCompilerIncludeClass = NULL ;
 	}
 
-	if( SCBASE->ShaderTxtDxaImage != NULL )
-	{
-		DXFREE( SCBASE->ShaderTxtDxaImage ) ;
-		SCBASE->ShaderTxtDxaImage = NULL ;
-	}
+	SCBASE->ShaderTxt.clear();
 #endif // DX_NON_SHADERCODE_BINARY
 #endif // DX_NON_NORMAL_DRAW_SHADER
 
@@ -1960,15 +1978,7 @@ extern int Graphics_D3D9_ShaderCode_Base_Terminate( void )
 		SCBASE->ShaderCompilerIncludeClass = NULL ;
 	}
 
-	// シェーダーコード用ＤＸＡの後始末
-	DXA_Terminate( &SCBASE->ShaderTxtDxa ) ;
-
-	// 解凍したシェーダーコードを格納していたメモリの解放
-	if( SCBASE->ShaderTxtDxaImage != NULL )
-	{
-		DXFREE( SCBASE->ShaderTxtDxaImage ) ;
-		SCBASE->ShaderTxtDxaImage = NULL ;
-	}
+	SCBASE->ShaderTxt.clear();
 #endif // DX_NON_SHADERCODE_BINARY
 #endif // DX_NON_NORMAL_DRAW_SHADER
 
@@ -2264,11 +2274,10 @@ extern int Graphics_D3D9_CompileShader( const char *FileName, const char *EntryP
 	D_ID3DBlob *ErrorD3D11 = NULL ;
 
 	// シェーダーソースファイルを取得する
-	if( DXA_GetFileInfo( &ShaderCode->Base.ShaderTxtDxa, DX_CHARCODEFORMAT_ASCII, FileName, &Addr, &Size ) != 0 )
-	{
-		return -1 ;
-	}
-	DataImage = ( BYTE * )DXA_GetFileImage( &ShaderCode->Base.ShaderTxtDxa ) + Addr ;
+	auto& code = ShaderCode->Base.ShaderTxt[FileName];
+	if (code.len == 0) return -1;
+	Size = code.len;
+	DataImage = code.data;
 
 	// D3DX9 の DLL があるかどうかで処理を分岐
 	if( WinAPIData.Win32Func.D3DXCompileShaderFunc != NULL )

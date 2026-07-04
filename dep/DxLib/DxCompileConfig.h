@@ -84,7 +84,7 @@
 //#define DX_NON_FILTER
 
 // 通常描画にプログラマブルシェーダーを使用しない方は次のコメントを外してください
-#define DX_NON_NORMAL_DRAW_SHADER
+//#define DX_NON_NORMAL_DRAW_SHADER
 
 // グラフィックス処理がいらない方は次のコメントを外してください
 //#define DX_NON_GRAPHICS
@@ -197,7 +197,7 @@
 //#define DX_LIB_LITEVER
 
 // コンパイル済みのシェーダーバイナリを使用せず、シェーダーコードの実行時コンパイルを利用する場合は次のコメントを外してください
-//#define DX_NON_SHADERCODE_BINARY
+#define DX_NON_SHADERCODE_BINARY
 
 // Live2D Cubism 4 関連の機能を使用しない場合は次のコメントを外してください
 #define DX_NON_LIVE2D_CUBISM4
