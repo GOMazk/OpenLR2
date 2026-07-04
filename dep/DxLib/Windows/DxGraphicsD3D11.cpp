@@ -6703,10 +6703,15 @@ extern int		Graphics_D3D11_StretchRect(
 		DestRectF.right  =     ( float )DestRect->right  / DestDesc.Width  * 2.0f - 1.0f   ;
 		DestRectF.bottom = - ( ( float )DestRect->bottom / DestDesc.Height * 2.0f - 1.0f ) ;
 
-		SrcRectF.left    = ( float )SrcRect->left    / SrcDesc.Width ;
-		SrcRectF.top     = ( float )SrcRect->top     / SrcDesc.Height ;
-		SrcRectF.right   = ( float )SrcRect->right   / SrcDesc.Width ;
-		SrcRectF.bottom  = ( float )SrcRect->bottom  / SrcDesc.Height ;
+		// FIXME:
+		// This is likely not a real solution.
+		// Seemingly, SRC texture has first and last column of pixels swapped.
+		// This hack might be truncating the faulty columns, instead filling them according to the filter.
+		int src_offset_hack = SrcRect->right - SrcRect->left == DestRect->right - DestRect->left ? 0 : 1;
+		SrcRectF.left    = ( float )(SrcRect->left + src_offset_hack)    / SrcDesc.Width ;
+		SrcRectF.top     = ( float )SrcRect->top						 / SrcDesc.Height ;
+		SrcRectF.right   = ( float )(SrcRect->right - src_offset_hack)   / SrcDesc.Width ;
+		SrcRectF.bottom  = ( float )SrcRect->bottom						 / SrcDesc.Height ;
 
 		if( BlendTexture != NULL )
 		{
