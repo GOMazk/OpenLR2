@@ -4564,6 +4564,272 @@ ERR:
 	return ErrorRet ;
 }
 
+extern int Direct3DDevice9_Reset(void)
+{
+	D_D3DCAPS9              DevCaps;
+	D_D3DPRESENT_PARAMETERS param;
+	HRESULT                 hr;
+	int                     ModeCount;
+	D_D3DDISPLAYMODE        DisplayMode;
+	D_D3DDISPLAYMODEEX      DisplayModeEx;
+	int                     ErrorRet = -1;
+
+	SETUP_WIN_API
+
+	// パラメータのセット
+	_MEMSET(&param, 0, sizeof(D_D3DPRESENT_PARAMETERS));
+	if (NS_GetWindowModeFlag() == TRUE || NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW)
+	{
+		// ウインドウモード
+		Direct3D9_GetAdapterDisplayMode(0, &DisplayMode);
+		param.BackBufferFormat = DisplayMode.Format;
+		param.BackBufferCount = 1;
+		param.Windowed = TRUE;
+		param.SwapEffect = (D_D3DMULTISAMPLE_TYPE)GSYS.Setting.FSAAMultiSampleCount == D_D3DMULTISAMPLE_NONE ? D_D3DSWAPEFFECT_COPY : D_D3DSWAPEFFECT_DISCARD;
+
+		if (NS_GetWindowModeFlag() == FALSE && NS_GetUseFullScreenResolutionMode() == DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW)
+		{
+			Graphics_Screen_SetupFullScreenModeInfo();
+			param.BackBufferWidth = (UINT)GSYS.Screen.FullScreenUseDispModeData.Width;
+			param.BackBufferHeight = (UINT)GSYS.Screen.FullScreenUseDispModeData.Height;
+		}
+		else
+		{
+			param.BackBufferWidth = (UINT)GSYS.Screen.MainScreenSizeX;
+			param.BackBufferHeight = (UINT)GSYS.Screen.MainScreenSizeY;
+		}
+
+		switch (DisplayMode.Format)
+		{
+		case D_D3DFMT_X8R8G8B8:
+			GSYS.Screen.MainScreenColorBitDepth = 32;
+			SetMemImgDefaultColorType(1);
+			break;
+
+		case D_D3DFMT_X1R5G5B5:
+		case D_D3DFMT_A1R5G5B5:
+		case D_D3DFMT_R5G6B5:
+			GSYS.Screen.MainScreenColorBitDepth = 16;
+			SetMemImgDefaultColorType(0);
+			break;
+		}
+
+		// Aero の有効・無効を設定する
+		SetEnableAero(GRAWIN.Setting.DisableAeroFlag == 2 ? FALSE : TRUE);
+	}
+	else
+	{
+		// フルスクリーンモード
+		Graphics_Screen_SetupFullScreenModeInfo();
+		switch (GSYS.Screen.FullScreenUseDispModeData.ColorBitDepth)
+		{
+		case 16:
+			ModeCount = (int)Direct3D9_GetAdapterModeCount((DWORD)(GSYS.Screen.ValidUseDisplayIndex ? GSYS.Screen.UseDisplayIndex : D_D3DADAPTER_DEFAULT), D_D3DFMT_R5G6B5);
+			param.BackBufferFormat = ModeCount != 0 ? D_D3DFMT_R5G6B5 : D_D3DFMT_X1R5G5B5;
+			break;
+
+		case 32:
+			param.BackBufferFormat = D_D3DFMT_X8R8G8B8;
+			break;
+
+		default:
+			DXST_LOGFILE_ADDUTF16LE("\x5e\x97\xfe\x5b\xdc\x5f\x6e\x30\xd0\x30\xc3\x30\xaf\x30\xd0\x30\xc3\x30\xd5\x30\xa1\x30\xfc\x30\xd3\x30\xc3\x30\xc8\x30\xf1\x6d\xa6\x5e\x4c\x30\x07\x63\x9a\x5b\x55\x30\x8c\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"非対応のバックバッファービット深度が指定されました\n" @*/);
+			goto ERR;
+		}
+		param.BackBufferCount = 1;
+		param.Windowed = FALSE;
+		param.FullScreen_RefreshRateInHz = (UINT)GSYS.Screen.FullScreenUseDispModeData.RefreshRate /* GSYS.Screen.MainScreenRefreshRate */;
+		//		param.SwapEffect                 = GSYS.Screen.Emulation320x240Flag ? D_D3DSWAPEFFECT_COPY : D_D3DSWAPEFFECT_DISCARD ;
+		//		param.SwapEffect                 = ( D_D3DMULTISAMPLE_TYPE )GSYS.Setting.FSAAMultiSampleCount == D_D3DMULTISAMPLE_NONE ? D_D3DSWAPEFFECT_COPY : D_D3DSWAPEFFECT_DISCARD ;
+		param.SwapEffect = D_D3DSWAPEFFECT_DISCARD;
+
+		// ディスプレイモードの設定
+		{
+			DisplayModeEx.Size = sizeof(DisplayModeEx);
+			DisplayModeEx.Format = param.BackBufferFormat;
+			DisplayModeEx.RefreshRate = param.FullScreen_RefreshRateInHz;
+			DisplayModeEx.ScanLineOrdering = D_D3DSCANLINEORDERING_PROGRESSIVE;
+
+			// バックバッファとディスプレイモードの解像度をセット
+			param.BackBufferWidth = (UINT)GSYS.Screen.FullScreenUseDispModeData.Width;
+			param.BackBufferHeight = (UINT)GSYS.Screen.FullScreenUseDispModeData.Height;
+			DisplayModeEx.Width = param.BackBufferWidth;
+			DisplayModeEx.Height = param.BackBufferHeight;
+		}
+
+		DXST_LOGFILEFMT_ADDUTF16LE(("\x3b\x75\x62\x97\xe3\x89\xcf\x50\xa6\x5e\x92\x30\x20\x00\x25\x00\x75\x00\x20\x00\x78\x00\x20\x00\x25\x00\x75\x00\x20\x00\x20\x00\xea\x30\xd5\x30\xec\x30\xc3\x30\xb7\x30\xe5\x30\xec\x30\xfc\x30\xc8\x30\x92\x30\x20\x00\x25\x00\x64\x00\x48\x00\x7a\x00\x20\x00\x6b\x30\x09\x59\xf4\x66\x57\x30\x7e\x30\x59\x30\x00"/*@ L"画面解像度を %u x %u  リフレッシュレートを %dHz に変更します" @*/,
+			GSYS.Screen.FullScreenUseDispModeData.Width,
+			GSYS.Screen.FullScreenUseDispModeData.Height,
+			GSYS.Screen.FullScreenUseDispModeData.RefreshRate));
+
+		// フルスクリーンの場合で明示的に Aero のＯＮを設定していない場合は必ず DWM を無効にする
+		if (GRAWIN.Setting.DisableAeroFlag != 1)
+		{
+			SetEnableAero(FALSE);
+		}
+		if (WinAPIData.DF_DwmEnableComposition)
+		{
+			DXST_LOGFILE_ADDUTF16LE("\x44\x00\x65\x00\x73\x00\x6b\x00\x74\x00\x6f\x00\x70\x00\x20\x00\x57\x00\x69\x00\x6e\x00\x64\x00\x6f\x00\x77\x00\x20\x00\x4d\x00\x61\x00\x6e\x00\x61\x00\x67\x00\x65\x00\x72\x00\x20\x00\x92\x30\x21\x71\xb9\x52\x6b\x30\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Desktop Window Manager を無効にしました\n" @*/);
+		}
+	}
+	param.MultiSampleType = (D_D3DMULTISAMPLE_TYPE)GSYS.Setting.FSAAMultiSampleCount;
+	param.MultiSampleQuality = (DWORD)GSYS.Setting.FSAAMultiSampleQuality;
+	param.hDeviceWindow = GetDisplayWindowHandle();
+
+	//	param.PresentationInterval   = GSYS.Screen.PreSetWaitVSyncFlag ? D_D3DPRESENT_INTERVAL_ONE       : D_D3DPRESENT_INTERVAL_IMMEDIATE ;
+	param.PresentationInterval = GSYS.Screen.NotWaitVSyncFlag ? D_D3DPRESENT_INTERVAL_IMMEDIATE : D_D3DPRESENT_INTERVAL_ONE;
+	param.EnableAutoDepthStencil = FALSE;
+	param.Flags = (DWORD)((D_D3DMULTISAMPLE_TYPE)GSYS.Setting.FSAAMultiSampleCount == D_D3DMULTISAMPLE_NONE ? D_D3DPRESENTFLAG_LOCKABLE_BACKBUFFER/* D_D3DPRESENTFLAG_DEVICECLIP */ : 0);
+
+	// FSAAの設定値を調べる
+	if (GSYS.Setting.FSAAMultiSampleCount != 0)
+	{
+		param.MultiSampleType = (D_D3DMULTISAMPLE_TYPE)GSYS.Setting.FSAAMultiSampleCount;
+		param.MultiSampleQuality = (DWORD)GSYS.Setting.FSAAMultiSampleQuality;
+		Direct3D9_CheckMultiSampleParam(param.BackBufferFormat, &param.MultiSampleType, &param.MultiSampleQuality, FALSE);
+		GSYS.Setting.FSAAMultiSampleCount = param.MultiSampleType;
+		GSYS.Setting.FSAAMultiSampleQuality = (int)param.MultiSampleQuality;
+	}
+	else
+	{
+		GSYS.Setting.FSAAMultiSampleQuality = 0;
+		param.MultiSampleQuality = 0;
+	}
+
+	if (GD3D9.Setting.NonUseVertexHardwareProcess == TRUE)
+	{
+		if (GAPIWin.Direct3D9ExObject)
+		{
+			goto NOTUSEHARDWARE_VERTEXPROCESSINGEX;
+		}
+		else
+		{
+			goto NOTUSEHARDWARE_VERTEXPROCESSING;
+		}
+	}
+
+	// シェーダーバージョン２．０を使用できない場合は
+	// 頂点処理はすべてソフトウエアで行う
+	Direct3D9_GetDeviceCaps((DWORD)(GSYS.Screen.ValidUseDisplayIndex ? GSYS.Screen.UseDisplayIndex : D_D3DADAPTER_DEFAULT), D_D3DDEVTYPE_HAL, &DevCaps);
+	if ((DevCaps.VertexShaderVersion & 0xffff) < 0x200 ||
+		(DevCaps.PixelShaderVersion & 0xffff) < 0x200)
+	{
+		GD3D9.Device.Caps.VertexHardwareProcess = FALSE;
+	}
+	else
+	{
+		GD3D9.Device.Caps.VertexHardwareProcess = TRUE;
+	}
+	GD3D9.Device.Shader.NativeVertexShaderVersion = DevCaps.VertexShaderVersion;
+	if (GAPIWin.Direct3D9ExObject)
+	{
+		DXST_LOGFILE_ADDUTF16LE("\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x45\x00\x78\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDirect3DDevice9Ex オブジェクトを取得します.... " @*/);
+
+		hr = GAPIWin.Direct3DDevice9ExObject->ResetEx(
+			&param,
+			param.Windowed ? NULL : &DisplayModeEx
+		);
+		if (FAILED(hr))
+		{
+		NOTUSEHARDWARE_VERTEXPROCESSINGEX:
+			GD3D9.Device.Caps.VertexHardwareProcess = FALSE;
+
+			// だめだった場合はソフトウエアプロセッシング
+			hr = GAPIWin.Direct3DDevice9ExObject->ResetEx(
+				&param,
+				param.Windowed ? NULL : &DisplayModeEx
+			);
+			if (FAILED(hr))
+			{
+				GD3D9.Setting.NotUseDirect3D9Ex = TRUE;
+
+				DXST_LOGFILE_ADDUTF16LE("\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x45\x00\x78\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Direct3DDevice9Ex の作成に失敗しました\n" @*/);
+				ErrorRet = -2;
+				goto ERR;
+			}
+			else
+			{
+				DXST_LOGFILE_ADDUTF16LE("\xbd\x30\xd5\x30\xc8\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ソフトウエア頂点演算を使用します\n" @*/);
+			}
+		}
+		else
+		{
+			DXST_LOGFILE_ADDUTF16LE("\xcf\x30\xfc\x30\xc9\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ハードウエア頂点演算を使用します\n" @*/);
+		}
+		GAPIWin.Direct3DDevice9Object = GAPIWin.Direct3DDevice9ExObject;
+
+		// レンダリング保持できるフレーム数を最小にする
+		GAPIWin.Direct3DDevice9ExObject->SetMaximumFrameLatency(1);
+	}
+	else
+	{
+		DXST_LOGFILE_ADDUTF16LE("\x49\x00\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\xaa\x30\xd6\x30\xb8\x30\xa7\x30\xaf\x30\xc8\x30\x92\x30\xd6\x53\x97\x5f\x57\x30\x7e\x30\x59\x30\x2e\x00\x2e\x00\x2e\x00\x2e\x00\x20\x00\x00"/*@ L"IDirect3DDevice9 オブジェクトを取得します.... " @*/);
+
+		hr = GAPIWin.Direct3DDevice9Object->Reset(
+			&param
+		);
+		if (FAILED(hr))
+		{
+		NOTUSEHARDWARE_VERTEXPROCESSING:
+			GD3D9.Device.Caps.VertexHardwareProcess = FALSE;
+
+			// だめだった場合はソフトウエアプロセッシング
+			hr = GAPIWin.Direct3DDevice9Object->Reset(
+				&param
+			);
+			if (FAILED(hr))
+			{
+				DXST_LOGFILE_ADDUTF16LE("\x44\x00\x69\x00\x72\x00\x65\x00\x63\x00\x74\x00\x33\x00\x44\x00\x44\x00\x65\x00\x76\x00\x69\x00\x63\x00\x65\x00\x39\x00\x20\x00\x6e\x30\x5c\x4f\x10\x62\x6b\x30\x31\x59\x57\x65\x57\x30\x7e\x30\x57\x30\x5f\x30\x0a\x00\x00"/*@ L"Direct3DDevice9 の作成に失敗しました\n" @*/);
+				goto ERR;
+			}
+			else
+			{
+				DXST_LOGFILE_ADDUTF16LE("\xbd\x30\xd5\x30\xc8\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ソフトウエア頂点演算を使用します\n" @*/);
+			}
+		}
+		else
+		{
+			DXST_LOGFILE_ADDUTF16LE("\xcf\x30\xfc\x30\xc9\x30\xa6\x30\xa8\x30\xa2\x30\x02\x98\xb9\x70\x14\x6f\x97\x7b\x92\x30\x7f\x4f\x28\x75\x57\x30\x7e\x30\x59\x30\x0a\x00\x00"/*@ L"ハードウエア頂点演算を使用します\n" @*/);
+		}
+	}
+
+	// バックバッファの初期化
+	{
+		DWORD ClearColor;
+
+		// フルスクリーンモード且つフルスクリーン解像度モードが DX_FSRESOLUTIONMODE_NATIVE 以外の場合は必ず真っ黒で初期化する
+		if (NS_GetWindowModeFlag() == FALSE && GSYS.Screen.FullScreenResolutionModeAct != DX_FSRESOLUTIONMODE_NATIVE)
+		{
+			ClearColor = 0;
+		}
+		else
+		{
+			ClearColor = ((DWORD)GSYS.Screen.BackgroundAlpha << 24) | ((DWORD)GSYS.Screen.BackgroundRed << 16) | ((DWORD)GSYS.Screen.BackgroundGreen << 8) | (DWORD)GSYS.Screen.BackgroundBlue;
+		}
+
+		Direct3DDevice9_SetRenderState(D_D3DRS_ZENABLE, D_D3DZB_TRUE);
+		Direct3DDevice9_Clear(0, NULL, D_D3DCLEAR_TARGET, ClearColor, 1.0f, 0);
+		hr = GAPIWin.Direct3DDevice9Object->Present(NULL, NULL, GetDisplayWindowHandle(), NULL);
+		Direct3DDevice9_Clear(0, NULL, D_D3DCLEAR_TARGET, ClearColor, 1.0f, 0);
+		hr = GAPIWin.Direct3DDevice9Object->Present(NULL, NULL, GetDisplayWindowHandle(), NULL);
+		Direct3DDevice9_Clear(0, NULL, D_D3DCLEAR_TARGET, ClearColor, 1.0f, 0);
+		hr = GAPIWin.Direct3DDevice9Object->Present(NULL, NULL, GetDisplayWindowHandle(), NULL);
+		Direct3DDevice9_Clear(0, NULL, D_D3DCLEAR_TARGET, ClearColor, 1.0f, 0);
+	}
+
+	// スワップチェインのアドレスを取得
+	GAPIWin.Direct3DDevice9Object->GetSwapChain(0, &GAPIWin.Direct3DSwapChain9Object);
+
+	CL_strcpy(WCHAR_T_CHARCODEFORMAT, (char*)WinData.PcInfo.DirectXString, (char*)L"DirectX 9");
+
+	// 正常終了
+	return 0;
+
+	// エラー処理
+ERR:
+	return ErrorRet;
+}
+
 // マルチサンプルレンダリングのサンプル数とクオリティをチェック
 extern int Direct3D9_CheckMultiSampleParam( D_D3DFORMAT Format, D_D3DMULTISAMPLE_TYPE *Samples, DWORD *Quality, int SamplesFailedBreak )
 {

@@ -2039,6 +2039,25 @@ extern	int		Graphics_Hardware_Initialize_PF( void )
 	}
 }
 
+extern int Graphics_Reset_PF(void)
+{
+	switch (GRAWIN.Setting.UseGraphicsAPI)
+	{
+#ifndef DX_NON_DIRECT3D11
+	case GRAPHICS_API_DIRECT3D11_WIN32:
+		return Graphics_D3D11_Reset_PF();
+#endif // DX_NON_DIRECT3D11
+
+#ifndef DX_NON_DIRECT3D9
+	case GRAPHICS_API_DIRECT3D9_WIN32:
+		return Graphics_D3D9_Reset_PF();
+#endif // DX_NON_DIRECT3D9
+
+	default:
+		return 0;
+	}
+}
+
 // 描画処理の環境依存部分の後始末を行う関数
 extern	int		Graphics_Terminate_PF( void )
 {

@@ -27667,6 +27667,50 @@ ERR:
 	return -1;
 }
 
+extern int Graphics_Reset(void)
+{
+	// 画面の設定を初期化
+	if (GSYS.Screen.MainScreenSizeX == 0 || GSYS.Screen.MainScreenSizeY == 0)
+	{
+		Graphics_Screen_SetMainScreenSize(DEFAULT_SCREEN_SIZE_X, DEFAULT_SCREEN_SIZE_Y);
+	}
+
+	// SetUserScreenImage が使用されている場合はカラービット深度も合わせる
+	if (GSYS.Screen.UserScreenImage != NULL)
+	{
+		if (GSYS.Screen.UserScreenImagePixelFormat == DX_USER_SCREEN_PIXEL_FORMAT_R5G6B5 ||
+			GSYS.Screen.UserScreenImagePixelFormat == DX_USER_SCREEN_PIXEL_FORMAT_R5G5B5X1 ||
+			GSYS.Screen.UserScreenImagePixelFormat == DX_USER_SCREEN_PIXEL_FORMAT_X1R5G5B5)
+		{
+			GSYS.Screen.MainScreenColorBitDepth = 16;
+		}
+		else
+		{
+			GSYS.Screen.MainScreenColorBitDepth = 32;
+		}
+	}
+
+	// カラービット深度が設定されていなかったらデフォルト値を設定する
+	if (GSYS.Screen.MainScreenColorBitDepth == 0)
+	{
+		GSYS.Screen.MainScreenColorBitDepth = DEFAULT_COLOR_BITDEPTH;
+		SetMemImgDefaultColorType(0);
+	}
+
+	// 描画処理の環境依存部分の初期化その１
+	if (Graphics_Reset_PF() < 0)
+	{
+		goto ERR;
+	}
+
+	// 終了
+	return 0;
+ERR:
+	Graphics_Terminate();
+
+	return -1;
+}
+
 // グラフィックシステムの後始末
 extern int Graphics_Terminate( void )
 {
@@ -28562,11 +28606,7 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 	{
 		// リセットする場合
 
-		// グラフィクスシステムの終了
-		if( GSYS.InitializeFlag )
-		{
-			Graphics_Terminate() ;
-		}
+		bool use_reset = GSYS.InitializeFlag == TRUE;
 
 		// 画面モードのセット
 		Graphics_Screen_SetMainScreenSize( ScreenSizeX, ScreenSizeY ) ;
@@ -28585,7 +28625,7 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 #endif // DX_NON_FONT
 
 		// グラフィックシステムの再初期化
-		Result = Graphics_Initialize() ;
+		Result = use_reset ? Graphics_Reset() : Graphics_Initialize();
 
 		// 失敗した場合の処理
 		if( Result == -1 )
@@ -28596,7 +28636,7 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 			{
 				Graphics_Screen_SetMainScreenSize( 640, 480 ) ;
 				NS_SetEmulation320x240( TRUE ) ;
-				Result = Graphics_Initialize() ;
+				Result = use_reset ? Graphics_Reset() : Graphics_Initialize();
 			}
 
 			// エラーが発生した場合は元の画面モードに戻す
@@ -28606,21 +28646,21 @@ extern int Graphics_Screen_ChangeMode( int ScreenSizeX, int ScreenSizeY, int Col
 				GSYS.Screen.MainScreenColorBitDepth = BackScColorBitDepth ;
 				GSYS.Screen.MainScreenRefreshRate   = BackRefreshRate ;
 				SetMemImgDefaultColorType( BackScColorBitDepth == 32 ? 1 : 0 ) ;
-				if( Graphics_Initialize() == -1 )
+				if(use_reset ? Graphics_Reset() == -1 : Graphics_Initialize() == -1 )
 				{
 					// それでも駄目だった場合はＤＸライブラリのデフォルトの画面モードに変更
 					Graphics_Screen_SetMainScreenSize( DEFAULT_SCREEN_SIZE_X, DEFAULT_SCREEN_SIZE_Y ) ;
 					GSYS.Screen.MainScreenColorBitDepth = DEFAULT_COLOR_BITDEPTH ;
 					GSYS.Screen.MainScreenRefreshRate   = 0 ;
 					SetMemImgDefaultColorType( 0 ) ;
-					if( Graphics_Initialize() == -1 )
+					if(use_reset ? Graphics_Reset() == -1 : Graphics_Initialize() == -1 )
 					{
 						// それでも駄目だった場合は640x480 32bit を試す
 						Graphics_Screen_SetMainScreenSize( DEFAULT_SCREEN_SIZE_X, DEFAULT_SCREEN_SIZE_Y ) ;
 						GSYS.Screen.MainScreenColorBitDepth = 32 ;
 						GSYS.Screen.MainScreenRefreshRate   = 0 ;
 						SetMemImgDefaultColorType( 0 ) ;
-						if( Graphics_Initialize() == -1 )
+						if(use_reset ? Graphics_Reset() == -1 : Graphics_Initialize() == -1 )
 						{
 							Ret = -1 ;
 							DXST_LOGFILE_ADDUTF16LE( "\x88\x4e\x1f\x67\x5b\x30\x6c\x30\x3b\x75\x62\x97\xe2\x30\xfc\x30\xc9\x30\x09\x59\xf4\x66\x0d\x4e\xfd\x80\xfe\x73\x61\x8c\x4c\x30\x77\x8d\x4d\x30\x7e\x30\x57\x30\x5f\x30\x32\x00\x0a\x00\x00"/*@ L"予期せぬ画面モード変更不能現象が起きました2\n" @*/ ) ;

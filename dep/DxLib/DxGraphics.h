@@ -1250,6 +1250,7 @@ extern GRAPHICSSYSTEMDATA GraphicsSysData ;
 
 // グラフィック関連の初期化と後始末
 extern	int		Graphics_Initialize( void ) ;					// グラフィックスシステムの初期化
+extern	int		Graphics_Reset(void);
 extern	int		Graphics_Terminate( void ) ;					// グラフィックシステムの後始末
 extern	int		Graphics_RestoreOrChangeSetupGraphSystem( int Change, int ScreenSizeX = -1, int ScreenSizeY = -1, int ColorBitDepth = -1, int RefreshRate = -1 ) ;		// グラフィックスシステムの復帰、又は変更付きの再セットアップを行う
 
@@ -1590,6 +1591,7 @@ extern	int		Graphics_Other_TerminateCommonBuffer( void ) ;									// 共有メ�
 extern	int		Graphics_Initialize_Timing0_PF( void ) ;										// 描画処理の環境依存部分の初期化を行う関数( 実行箇所区別０ )
 extern	int		Graphics_Initialize_Timing1_PF( void ) ;										// 描画処理の環境依存部分の初期化を行う関数( 実行箇所区別２ )
 extern	int		Graphics_Hardware_Initialize_PF( void ) ;										// ハードウエアアクセラレータを使用する場合の環境依存の初期化処理を行う
+extern	int		Graphics_Reset_PF(void);
 extern	int		Graphics_Terminate_PF( void ) ;													// 描画処理の環境依存部分の後始末を行う関数
 extern	int		Graphics_RestoreOrChangeSetupGraphSystem_PF( int Change, int ScreenSizeX = -1, int ScreenSizeY = -1, int ColorBitDepth = -1, int RefreshRate = -1 ) ;		// グラフィックスシステムの復帰、又は変更付きの再セットアップを行う
 extern	int		Graphics_Hardware_CheckValid_PF( void ) ;										// 描画用デバイスが有効かどうかを取得する( 戻り値  TRUE:有効  FALSE:無効 )

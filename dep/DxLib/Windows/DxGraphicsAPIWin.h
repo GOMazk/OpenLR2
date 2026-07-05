@@ -386,6 +386,7 @@ extern	int		Direct3DDevice9_IsValid					( void ) ;
 extern	void *	Direct3DDevice9_GetObject				( void ) ;
 extern	int		Direct3DDevice9_IsLost					( void ) ;
 extern	int		Direct3DDevice9_SetupTimerPresent		( int EnableFlag ) ;
+extern	int		Direct3DDevice9_Reset(void);
 
 
 extern	long	Direct3DTexture9_GetSurfaceLevel		( D_IDirect3DTexture9 *pTexture, UINT Level, D_IDirect3DSurface9 ** ppSurfaceLevel) ;

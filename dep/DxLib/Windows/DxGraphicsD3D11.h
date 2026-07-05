@@ -1201,6 +1201,7 @@ extern GRAPHICS_HARDDATA_DIRECT3D11 GraphicsHardDataDirect3D11 ;
 
 // Direct3D11 の初期化関係
 extern	int		Graphics_D3D11_Initialize( void ) ;								// Direct3D11 を使用したグラフィックス処理の初期化を行う( 0:成功 -1:失敗 )
+extern	int		Graphics_D3D11_Reset(void);
 extern	int		Graphics_D3D11_Terminate( void ) ;								// Direct3D11 を使用したグラフィックス処理の後始末を行う
 
 extern	int		Graphics_D3D11_ReleaseObjectAll( void ) ;						// すべての Direct3D11 系オブジェクトを解放する
@@ -1649,6 +1650,7 @@ extern	int		Graphics_D3D11_DrawPrimitiveIndexed3DToShader_UseVertexBuffer2( int 
 extern	int		Graphics_D3D11_Initialize_Timing0_PF( void ) ;											// 描画処理の環境依存部分の初期化を行う関数( 実行箇所区別０ )
 extern	int		Graphics_D3D11_Initialize_Timing1_PF( void ) ;											// 描画処理の環境依存部分の初期化を行う関数( 実行箇所区別２ )
 extern	int		Graphics_D3D11_Hardware_Initialize_PF( void ) ;											// ハードウエアアクセラレータを使用する場合の環境依存の初期化処理を行う
+extern	int		Graphics_D3D11_Reset_PF(void);
 extern	int		Graphics_D3D11_Terminate_PF( void ) ;													// 描画処理の環境依存部分の後始末を行う関数
 extern	int		Graphics_D3D11_RestoreOrChangeSetupGraphSystem_PF( int Change, int ScreenSizeX = -1, int ScreenSizeY = -1, int ColorBitDepth = -1, int RefreshRate = -1 ) ;		// グラフィックスシステムの復帰、又は変更付きの再セットアップを行う
 extern	int		Graphics_D3D11_Hardware_CheckValid_PF( void ) ;											// 描画用デバイスが有効かどうかを取得する( 戻り値  TRUE:有効  FALSE:無効 )

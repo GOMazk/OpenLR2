@@ -1240,6 +1240,66 @@ ERR :
 	return -1 ;
 }
 
+extern int Graphics_D3D11_Reset(void)
+{
+	GD3D11.Device.DrawInfo.BeginSceneFlag = FALSE;
+
+	if( GD3D11.Device.Setting.DeviceLostCallbackFunction )
+	{
+		GD3D11.Device.Setting.DeviceLostCallbackFunction( GD3D11.Device.Setting.DeviceLostCallbackData ) ;
+	}
+
+	int IsUseSubBackBuffer = FALSE;
+
+	// サブバックバッファを使用していたかどうかを保存しておく
+	IsUseSubBackBuffer = GD3D11.Device.Screen.SubBackBufferTexture2D != NULL ? TRUE : FALSE;
+
+	// 画面モード変更時はサブバックバッファを一旦削除する
+	Graphics_D3D11_TerminateSubBackBuffer();
+
+	// 深度バッファの作成を試みる
+	if (Graphics_D3D11_CreateDepthBuffer() != 0)
+	{
+		goto ERR;
+	}
+
+	// バッファのサイズを変更する
+	Graphics_D3D11_OutputWindow_ResizeBuffer(
+		GD3D11.Device.Screen.TargetOutputWindow,
+		GSYS.Screen.MainScreenSizeX,
+		GSYS.Screen.MainScreenSizeY
+	);
+
+	// 描画範囲を再設定する
+	NS_SetDrawArea(0, 0, GSYS.Screen.MainScreenSizeX, GSYS.Screen.MainScreenSizeY);
+
+	// 描画先設定
+	Graphics_D3D11_DeviceState_SetRenderTarget(
+		GD3D11.Device.Screen.OutputWindowInfo[0].BufferTexture2D,
+		GD3D11.Device.Screen.OutputWindowInfo[0].BufferRTV
+	);
+
+	// フルスクリーンモードか、既にサブバックバッファを使用していた場合はサブバックバッファのセットアップを行う
+	if ((GetWindowModeFlag() == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW) || IsUseSubBackBuffer)
+	{
+		if (Graphics_D3D11_SetupSubBackBuffer() != 0)
+		{
+			goto ERR;
+		}
+	}
+
+	// 終了
+	return 0;
+
+	// エラー終了
+ERR:
+
+	// 後始末を行う
+	Graphics_D3D11_Terminate();
+
+	return -1;
+}
+
 // Direct3D11 を使用したグラフィックス処理の後始末を行う
 extern int Graphics_D3D11_Terminate( void )
 {
@@ -24079,6 +24139,11 @@ extern	int		Graphics_D3D11_Initialize_Timing1_PF( void )
 extern	int		Graphics_D3D11_Hardware_Initialize_PF( void )
 {
 	return Graphics_D3D11_Device_Initialize() ;
+}
+
+extern int Graphics_D3D11_Reset_PF(void)
+{
+	return Graphics_D3D11_Reset();
 }
 
 // 描画処理の環境依存部分の後始末を行う関数

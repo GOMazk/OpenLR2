@@ -1250,6 +1250,110 @@ ERR :
 	return -1 ;
 }
 
+extern int Graphics_D3D9_Reset(void)
+{
+	// Partial terminate
+
+	SETUP_WIN_API
+
+	// Zバッファ の解放
+	if (GD3D9.Device.Screen.ZBufferSurface)
+	{
+		Direct3D9_ObjectRelease(GD3D9.Device.Screen.ZBufferSurface);
+		GD3D9.Device.Screen.ZBufferSurface = NULL;
+	}
+
+	// サブバックバッファの解放
+	if (GD3D9.Device.Screen.SubBackBufferSurface)
+	{
+		Direct3D9_ObjectRelease(GD3D9.Device.Screen.SubBackBufferSurface);
+		GD3D9.Device.Screen.SubBackBufferSurface = NULL;
+	}
+	if (GD3D9.Device.Screen.SubBackBufferTexture)
+	{
+		Direct3D9_ObjectRelease(GD3D9.Device.Screen.SubBackBufferTexture);
+		GD3D9.Device.Screen.SubBackBufferTexture = NULL;
+	}
+
+	// バックバッファの解放
+	if (GD3D9.Device.Screen.BackBufferSurface)
+	{
+		Direct3D9_ObjectRelease(GD3D9.Device.Screen.BackBufferSurface);
+		GD3D9.Device.Screen.BackBufferSurface = NULL;
+	}
+
+	GD3D9.Device.DrawInfo.BeginSceneFlag = FALSE;
+
+	// Reset
+
+	int Ret;
+
+	GSYS.Setting.ValidHardware = FALSE;
+
+	Ret = Direct3DDevice9_Reset();
+	if (Ret == -2)
+	{
+		goto ERR;
+	}
+	else
+	{
+		if (Ret != 0)
+		{
+			goto ERR;
+		}
+		else
+		{
+			Direct3DDevice9_GetBackBuffer(0, 0, D_D3DBACKBUFFER_TYPE_MONO, &GD3D9.Device.Screen.BackBufferSurface);
+		}
+	}
+
+	// Zバッファ の作成を試みる
+	if (Graphics_D3D9_CreateZBuffer() != 0)
+	{
+		goto ERR;
+	}
+
+	// シェーダーが使用できる場合とできない場合で処理を分岐
+	if (GSYS.HardInfo.UseShader)
+	{
+		// フルスクリーンモードの場合はサブバックバッファのセットアップを行う
+		if (GetWindowModeFlag() == FALSE && NS_GetUseFullScreenResolutionMode() != DX_FSRESOLUTIONMODE_BORDERLESS_WINDOW)
+		{
+			Graphics_D3D9_SetupSubBackBuffer();
+		}
+	}
+
+	GSYS.Setting.ValidHardware = TRUE;
+
+	Graphics_D3D9_Device_ReInitialize();
+
+	// 終了
+	return 0;
+
+ERR:
+	// Zバッファ の解放
+	if (GD3D9.Device.Screen.ZBufferSurface)
+	{
+		Direct3D9_ObjectRelease(GD3D9.Device.Screen.ZBufferSurface);
+		GD3D9.Device.Screen.ZBufferSurface = NULL;
+	}
+
+	// Direct3DDevice9 の解放
+	Direct3DDevice9_Release();
+	GD3D9.Device.DrawInfo.BeginSceneFlag = FALSE;
+
+	// Direct3D9 の解放
+	Direct3D9_Release();
+
+	// Direct3D9.DLL の解放
+	Direct3D9_FreeDLL();
+
+	// DirectDraw7 の解放
+	DirectDraw7_Release();
+
+	return -1;
+}
+
 // Direct3D9 を使用したグラフィックス処理の後始末を行う
 extern	int		Graphics_D3D9_Terminate( void )
 {
@@ -25649,6 +25753,11 @@ extern	int		Graphics_D3D9_Initialize_Timing1_PF( void )
 extern	int		Graphics_D3D9_Hardware_Initialize_PF( void )
 {
 	return Graphics_D3D9_Device_Initialize() ;
+}
+
+extern int Graphics_D3D9_Reset_PF(void)
+{
+	return Graphics_D3D9_Reset();
 }
 
 // 描画処理の環境依存部分の後始末を行う関数
