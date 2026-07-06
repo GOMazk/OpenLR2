@@ -19797,8 +19797,8 @@ void LRDrawTextInput(int* hFont, DSTdraw *dstd, int* hInput, ImageFont *imgfont)
 			}
 			else {
 				for (int i = 0; pIME != 0 && i < pIME->ClauseNum; i++) {
-					int pos1 = pIME->ClauseData[grLen].Position;
-					int pos2 = pIME->ClauseData[grLen].Length + pos1;
+					int pos1 = pIME->ClauseData[i].Position;
+					int pos2 = pIME->ClauseData[i].Length + pos1;
 					
 					if (pos2 <= pos1) break;
 					if (pos1) {
@@ -19808,7 +19808,7 @@ void LRDrawTextInput(int* hFont, DSTdraw *dstd, int* hInput, ImageFont *imgfont)
 					len1 = pos1;
 					CSTR tCstr(buf.left(pos2));
 					len2 = GetTextGraphLength(&tCstr, imgfont);
-					DrawBox(dstd->x + len1 + 1.0, dstd->y, dstd->x + len2 - 1.0, dstd->h + dstd->y, (grLen == pIME->SelectClause) ? GetColor(255, 0, 0) : GetColor(64, 64, 64),1);
+					DrawBox(dstd->x + len1 + 1.0, dstd->y, dstd->x + len2 - 1.0, dstd->h + dstd->y, (i == pIME->SelectClause) ? GetColor(255, 0, 0) : GetColor(64, 64, 64),1);
 				}
 				LRDrawText(hFont, dstd, &buf, imgfont);
 			}
