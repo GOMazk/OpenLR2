@@ -13,3 +13,6 @@ project/*.user
 /Debug
 /OpenLR2_vs22
 /x64
+/out
+/vcpkg_installed
+/vcxproj
