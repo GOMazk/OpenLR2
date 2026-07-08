@@ -16,3 +16,5 @@ project/*.user
 /out
 /vcpkg_installed
 /vcxproj
+/build
+/lib
