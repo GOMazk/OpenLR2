@@ -1347,6 +1347,7 @@ public:
 struct JudgeData {
 	size_t column = 0;
 	double offset = 0.0;
+	size_t judge = 0;
 };
 
 struct HITERRORDATA {

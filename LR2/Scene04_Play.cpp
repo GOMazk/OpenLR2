@@ -787,6 +787,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
+			g->gameplay.player[player].hiterror.notes.push({ (size_t)lane, (double)offset, 5 });
+			g->gameplay.player[player].hiterror.ema.add((double)offset);
 			return 1;
 		}
 		if (gap <= g->gameplay.player[player].judgetime[4] && g->gameplay.player[player].note_current < g->gameplay.player[player].totalnotes) {
@@ -810,6 +812,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
+			g->gameplay.player[player].hiterror.notes.push({ (size_t)lane, (double)offset, 4 });
+			g->gameplay.player[player].hiterror.ema.add((double)offset);
 			return 1;
 		}
 		if (gap <= g->gameplay.player[player].judgetime[3] && g->gameplay.player[player].note_current < g->gameplay.player[player].totalnotes) {
@@ -832,6 +836,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
+			g->gameplay.player[player].hiterror.notes.push({ (size_t)lane, (double)offset, 3 });
+			g->gameplay.player[player].hiterror.ema.add((double)offset);
 			return 1;
 		}
 
@@ -857,6 +863,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
+			g->gameplay.player[player].hiterror.notes.push({ (size_t)lane, (double)offset, 2 });
+			g->gameplay.player[player].hiterror.ema.add((double)offset);
 
 			if (g->gameplay.bmsobj_note[lane].note_count < g->gameplay.bmsobj_note[lane].size && abs(timing - (int)g->gameplay.bmsobj_note[lane].notes[g->gameplay.bmsobj_note[lane].note_count].realTiming) <= g->gameplay.player[player].judgetime[2]) {
 				ProcSinglenote(g, lane, 1, timing, player);
