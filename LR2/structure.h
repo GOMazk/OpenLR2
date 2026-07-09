@@ -1019,6 +1019,22 @@ struct skstruct {
 	int event_FADEOUT[10]{};
 	struct DSTstruct dst_EVENT_LOADINGBG[5]{};
 	int horizontal{};
+	struct SRCstruct src_HITERROR {};
+	struct DSTstruct dst_HITERROR {};
+	struct SRCstruct src_HITERROR_CENTER {};
+	struct DSTstruct dst_HITERROR_CENTER {};
+	struct SRCstruct src_HITERROR_PGREAT {};
+	struct DSTstruct dst_HITERROR_PGREAT {};
+	struct SRCstruct src_HITERROR_GREAT {};
+	struct DSTstruct dst_HITERROR_GREAT {};
+	struct SRCstruct src_HITERROR_GOOD {};
+	struct DSTstruct dst_HITERROR_GOOD {};
+	struct SRCstruct src_HITERROR_BAD {};
+	struct DSTstruct dst_HITERROR_BAD {};
+	struct SRCstruct src_HITERROR_POOR {};
+	struct DSTstruct dst_HITERROR_POOR {};
+	struct SRCstruct src_HITERROR_EMA {};
+	struct DSTstruct dst_HITERROR_EMA {};
 };
 
 struct MYRANKING {

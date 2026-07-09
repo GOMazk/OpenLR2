@@ -404,6 +404,23 @@ int InitSkin(skstruct *sk, int /*unused*/, char font) {
 	for (int i = 0; i < 5; i++) {
 		InitDST(&sk->dst_EVENT_LOADINGBG[i]);
 	}
+
+	InitSRC(&sk->src_HITERROR);
+	InitDST(&sk->dst_HITERROR);
+	InitSRC(&sk->src_HITERROR_CENTER);
+	InitDST(&sk->dst_HITERROR_CENTER);
+	InitSRC(&sk->src_HITERROR_PGREAT);
+	InitDST(&sk->dst_HITERROR_PGREAT);
+	InitSRC(&sk->src_HITERROR_GREAT);
+	InitDST(&sk->dst_HITERROR_GREAT);
+	InitSRC(&sk->src_HITERROR_GOOD);
+	InitDST(&sk->dst_HITERROR_GOOD);
+	InitSRC(&sk->src_HITERROR_BAD);
+	InitDST(&sk->dst_HITERROR_BAD);
+	InitSRC(&sk->src_HITERROR_POOR);
+	InitDST(&sk->dst_HITERROR_POOR);
+	InitSRC(&sk->src_HITERROR_EMA);
+	InitDST(&sk->dst_HITERROR_EMA);
 	return 1;
 }
 
@@ -1813,12 +1830,92 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 						sk->horizontal = 1;
 						break;
 					}
+					case "#SRC_HITERROR"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadSRC(&sk->src_HITERROR, &csv, sk);
+						break;
+					}
+					case "#DST_HITERROR"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadDST(&sk->dst_HITERROR, &csv, tSkin_num);
+						break;
+					}
+					case "#SRC_HITERROR_CENTER"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadSRC(&sk->src_HITERROR_CENTER, &csv, sk);
+						break;
+					}
+					case "#DST_HITERROR_CENTER"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadDST(&sk->dst_HITERROR_CENTER, &csv, tSkin_num);
+						break;
+					}
+					case "#SRC_HITERROR_PGREAT"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadSRC(&sk->src_HITERROR_PGREAT, &csv, sk);
+						break;
+					}
+					case "#DST_HITERROR_PGREAT"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadDST(&sk->dst_HITERROR_PGREAT, &csv, tSkin_num);
+						break;
+					}
+					case "#SRC_HITERROR_GREAT"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadSRC(&sk->src_HITERROR_GREAT, &csv, sk);
+						break;
+					}
+					case "#DST_HITERROR_GREAT"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadDST(&sk->dst_HITERROR_GREAT, &csv, tSkin_num);
+						break;
+					}
+					case "#SRC_HITERROR_GOOD"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadSRC(&sk->src_HITERROR_GOOD, &csv, sk);
+						break;
+					}
+					case "#DST_HITERROR_GOOD"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadDST(&sk->dst_HITERROR_GOOD, &csv, tSkin_num);
+						break;
+					}
+					case "#SRC_HITERROR_BAD"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadSRC(&sk->src_HITERROR_BAD, &csv, sk);
+						break;
+					}
+					case "#DST_HITERROR_BAD"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadDST(&sk->dst_HITERROR_BAD, &csv, tSkin_num);
+						break;
+					}
+					case "#SRC_HITERROR_POOR"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadSRC(&sk->src_HITERROR_POOR, &csv, sk);
+						break;
+					}
+					case "#DST_HITERROR_POOR"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadDST(&sk->dst_HITERROR_POOR, &csv, tSkin_num);
+						break;
+					}
+					case "#SRC_HITERROR_EMA"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadSRC(&sk->src_HITERROR_EMA, &csv, sk);
+						break;
+					}
+					case "#DST_HITERROR_EMA"_hash:{
+						SplitCSV(fBuf, &csv, ",");
+						ReadDST(&sk->dst_HITERROR_EMA, &csv, tSkin_num);
+						break;
 					}
 				}
 				tSkin_num++;
 			}
 		}
 		*fBuf.atPos(0) = '\0';
+	}
 	}
 	fclose(pFile);
 	if (skin_num == 0) {
