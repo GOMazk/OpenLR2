@@ -1304,6 +1304,56 @@ struct EXTENDEDPLAYERSTATS {
 	int lastFastSlow = 0;
 };
 
+struct EMA {
+	double value = 0.0;
+	static constexpr double alpha = 0.07;
+	void add(double x) { value = alpha * x + (1.0 - alpha) * value; }
+	void reset() { value = 0.0; }
+};
+
+template<typename T>
+class CircularBuffer {
+	std::vector<T> buf;
+	size_t head = 0;
+
+public:
+	CircularBuffer() = default;
+	explicit CircularBuffer(size_t capacity) : buf(capacity) {}
+
+	void push(const T& val) {
+		if (buf.empty()) return;
+		buf[head] = val;
+		head = (head + 1) % buf.size();
+	}
+
+	void push(T&& val) {
+		if (buf.empty()) return;
+		buf[head] = std::move(val);
+		head = (head + 1) % buf.size();
+	}
+
+	struct Iterator {
+		const CircularBuffer* cb;
+		size_t pos;
+		const T& operator*() const { return cb->buf[(cb->head + pos) % cb->buf.size()]; }
+		Iterator& operator++() { ++pos; return *this; }
+		bool operator!=(const Iterator& other) const { return pos != other.pos; }
+	};
+
+	Iterator begin() const { return {this, 0}; }
+	Iterator end() const { return {this, buf.size()}; }
+};
+
+struct JudgeData {
+	size_t column = 0;
+	double offset = 0.0;
+};
+
+struct HITERRORDATA {
+	EMA ema;
+	CircularBuffer<JudgeData> notes;
+};
+
 struct PLAYERSTATUS {
 	int flag_active = 0;
 	int judgecount[6] = {}; /* 0unknown 1poor 2bad 3good 4great 5pgreat */
@@ -1345,6 +1395,7 @@ struct PLAYERSTATUS {
 	EXTENDEDPLAYERSTATS extendedStatsCourse = {};
 	std::array<EXTENDEDPLAYERSTATS, 20> extendedColumnStatsCourse = {};
 	int lastJudgedColumnIdx = 0;
+	HITERRORDATA hiterror;
 };
 
 struct PLAYSCORE {
