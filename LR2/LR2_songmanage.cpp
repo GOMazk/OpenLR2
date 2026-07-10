@@ -951,17 +951,13 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 			if (slist[i].myIRbest.has_value())
 			{
 				const STATUS& myIRbest = *(slist[i].myIRbest);
-				if (myIRbest.clear != song->mybest.clear && myIRbest.clear <= song->mybest.clear)
-					song->mybest.clear = myIRbest.clear;
-				if (myIRbest.clear_db != song->mybest.clear_db && myIRbest.clear_db <= song->mybest.clear_db)
-					song->mybest.clear_db = myIRbest.clear_db;
+				song->mybest.clear = min(song->mybest.clear, myIRbest.clear);
+				song->mybest.clear_db = min(song->mybest.clear_db, myIRbest.clear_db);
 			}
 			else
 			{
-				if (slist[i].mybest.clear != song->mybest.clear && slist[i].mybest.clear <= song->mybest.clear)
-					song->mybest.clear = slist[i].mybest.clear;
-				if (slist[i].mybest.clear_db != song->mybest.clear_db && slist[i].mybest.clear_db <= song->mybest.clear_db)
-					song->mybest.clear_db = slist[i].mybest.clear_db;
+				song->mybest.clear = min(slist[i].mybest.clear, song->mybest.clear);
+				song->mybest.clear_db = min(slist[i].mybest.clear_db, song->mybest.clear_db);
 			}
 		}
 	}
