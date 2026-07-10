@@ -16952,7 +16952,7 @@ int UpdateSongDataTag(SONGDATA *song, sqlite3 *sql){
 			song->hash, song->title, song->subtitle, song->genre, song->artist, song->subartist, song->tag, song->level, song->difficulty, song->keymode, song->exlevel);
 		if (SQL_Run(query, sql) != 0) {
 			sqlite3_snprintf(0x400, query, "UPDATE tag SET title=\'%q\',subtitle=\'%q\',genre=\'%q\',artist=\'%q\',subartist=\'%q\',tag=\'%q\',level=%d,difficulty=%d,mode=%d WHERE hash = \'%q\'",
-				song->title, song->subtitle, song->genre, song->artist, song->subartist, song->tag, song->level, song->filepath, song->keymode, song->hash);
+				song->title, song->subtitle, song->genre, song->artist, song->subartist, song->tag, song->level, song->difficulty, song->keymode, song->hash);
 			SQL_Run(query, sql);
 		}
 	}
@@ -21947,7 +21947,7 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 							ErrorLogFmtAdd("スキン読み込みエラー %d行目\n%s\n画像の登録に失敗しました。\n", line, fBuf);
 						}
 						if (sk->otherObject[3].srcSize > 0 && (sk->otherObject[3].dst[sk->otherObject[3].srcSize - 1].dstCount < 1 || sk->otherObject[3].dst[sk->otherObject[3].srcSize - 1].dataSize < 1)) {
-							ErrorLogFmtAdd("スキン読み込みエラー %d行目\n%s\n(この行のエラーではありません)ひとつ前の#SRC_BGAに対応した#DST_BGAが存在しないか、登録に失敗したようです\n", line, fBuf);
+							ErrorLogFmtAdd("スキン読み込みエラー %d行目\n%s\n(この行のエラーではありません)ひとつ前の#SRC_ONMOUSEに対応した#DST_ONMOUSEが存在しないか、登録に失敗したようです\n", line, fBuf);
 						}
 						sk->otherObject[3].srcSize++;
 					}
