@@ -951,13 +951,13 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 			if (slist[i].myIRbest.has_value())
 			{
 				const STATUS& myIRbest = *(slist[i].myIRbest);
-				song->mybest.clear = min(song->mybest.clear, myIRbest.clear);
-				song->mybest.clear_db = min(song->mybest.clear_db, myIRbest.clear_db);
+				song->mybest.clear = std::min(song->mybest.clear, myIRbest.clear);
+				song->mybest.clear_db = std::min(song->mybest.clear_db, myIRbest.clear_db);
 			}
 			else
 			{
-				song->mybest.clear = min(slist[i].mybest.clear, song->mybest.clear);
-				song->mybest.clear_db = min(slist[i].mybest.clear_db, song->mybest.clear_db);
+				song->mybest.clear = std::min(slist[i].mybest.clear, song->mybest.clear);
+				song->mybest.clear_db = std::min(slist[i].mybest.clear_db, song->mybest.clear_db);
 			}
 		}
 	}
