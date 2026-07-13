@@ -1035,6 +1035,7 @@ struct skstruct {
 	struct DSTstruct dst_HITERROR_POOR {};
 	struct SRCstruct src_HITERROR_EMA {};
 	struct DSTstruct dst_HITERROR_EMA {};
+	struct std::vector<DSTstruct> HiterrorDSTPool {};
 };
 
 struct MYRANKING {
@@ -1332,21 +1333,15 @@ public:
 		head = (head + 1) % buf.size();
 	}
 
-	struct Iterator {
-		const CircularBuffer* cb;
-		size_t pos;
-		const T& operator*() const { return cb->buf[(cb->head + pos) % cb->buf.size()]; }
-		Iterator& operator++() { ++pos; return *this; }
-		bool operator!=(const Iterator& other) const { return pos != other.pos; }
-	};
+	size_t size() const { return buf.size(); }
 
-	Iterator begin() const { return {this, 0}; }
-	Iterator end() const { return {this, buf.size()}; }
+	const T& operator[](size_t i) const { return buf[i]; }
 };
 
 struct JudgeData {
 	size_t column = 0;
 	double offset = 0.0;
+	double timeHit = 0.0;
 	size_t judge = 0;
 };
 
