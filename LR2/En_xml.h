@@ -14,4 +14,5 @@ int ReadXml_Str(const char *level1, const char *level2, const char *level3, cons
 int ReadXml_Int_Multi(const char * level1, const char * level2, const char * level3, int * oBuf, TiXmlDocument * xmlData);
 
 void WriteXML_Tab2Int(FILE * hFile, const char * tag, int value);
+void WriteXML_Tab2BoolAsInt(FILE* hFile, const char* tag, bool value);
 void WriteXML_Tab2Str(FILE * hFile, const char * tag, CSTR str);

@@ -52,6 +52,35 @@ int RunMP3Encoder(ConfigStruct *cfg, CSTR wavPath, CSTR mp3Path, char deleteWav,
 #endif // _WIN32
 }
 
+static void CallRecordSound(game &g) {
+	for (int i = 0; i < g.gameplay.bmsobj.count; i++) {
+		double len = 0;
+		if (g.gameplay.bmsobj.notes[i].op == CHANNEL_BGM || (CHANNEL_1P_NOTE_SC <= g.gameplay.bmsobj.notes[i].op  && g.gameplay.bmsobj.notes[i].op <= CHANNEL_2P_NOTE_END)) {
+			if (i + 1 < g.gameplay.bmsobj.count) {
+				double endtime = g.gameplay.keysound[(int)g.gameplay.bmsobj.notes[i].val].length;
+				if ((int)endtime < 0) {
+					endtime += 4294967296.0;
+				}
+				endtime += g.gameplay.bmsobj.notes[i].realTiming;
+
+				for (int j = i + 1; j < g.gameplay.bmsobj.count; j++) {
+					if (endtime <= g.gameplay.bmsobj.notes[j].realTiming) break;
+
+					if (g.gameplay.bmsobj.notes[j].op == CHANNEL_BGM || (CHANNEL_1P_NOTE_SC <= g.gameplay.bmsobj.notes[i].op  && g.gameplay.bmsobj.notes[i].op <= CHANNEL_2P_NOTE_END)) {
+
+						if ((int)g.gameplay.bmsobj.notes[i].val == (int)g.gameplay.bmsobj.notes[j].val) {
+							len = g.gameplay.bmsobj.notes[j].realTiming - g.gameplay.bmsobj.notes[i].realTiming;
+							if (len == 0) len = -1.0;
+							break;
+						}
+					}
+				}
+			}
+			RecordSound(&g.audio, &g.gameplay.keysound[(int)g.gameplay.bmsobj.notes[i].val], g.gameplay.bmsobj.notes[i].realTiming, len);
+		}
+	}
+}
+
 int Proc_Auto2avi(game *g, CSTR /*directory*/, CSTR filename) {
 	printfDx("BMSを読み込み中です。しばらくお待ち下さい。");
 	ScreenFlip();
@@ -75,33 +104,7 @@ int Proc_Auto2avi(game *g, CSTR /*directory*/, CSTR filename) {
 	ProcessMessage();
 	GetSoundBuffer(&g->audio, g->gameplay.song_runtime, g->config.tools.mp3_volume);
 
-
-	for (int i = 0; i < g->gameplay.bmsobj.count; i++) {
-		double len = 0;
-		if (g->gameplay.bmsobj.notes[i].op == CHANNEL_BGM || (CHANNEL_1P_NOTE_SC <= g->gameplay.bmsobj.notes[i].op  && g->gameplay.bmsobj.notes[i].op <= CHANNEL_2P_NOTE_END)) {
-			if (i + 1 < g->gameplay.bmsobj.count) {
-				double endtime = g->gameplay.keysound[(int)g->gameplay.bmsobj.notes[i].val].length;
-				if ((int)endtime < 0) {
-					endtime += 4294967296.0;
-				}
-				endtime += g->gameplay.bmsobj.notes[i].realTiming;
-
-				for (int j = i + 1; j < g->gameplay.bmsobj.count; j++) {
-					if (endtime <= g->gameplay.bmsobj.notes[j].realTiming) break;
-					
-					if (g->gameplay.bmsobj.notes[j].op == CHANNEL_BGM || (CHANNEL_1P_NOTE_SC <= g->gameplay.bmsobj.notes[i].op  && g->gameplay.bmsobj.notes[i].op <= CHANNEL_2P_NOTE_END)) {
-
-						if ((int)g->gameplay.bmsobj.notes[i].val == (int)g->gameplay.bmsobj.notes[j].val) {
-							len = g->gameplay.bmsobj.notes[j].realTiming - g->gameplay.bmsobj.notes[i].realTiming;
-							if (len == 0) len = -1.0;
-							break;
-						}
-					}
-				}
-			}
-			RecordSound(&g->audio, &g->gameplay.keysound[(int)g->gameplay.bmsobj.notes[i].val], g->gameplay.bmsobj.notes[i].realTiming, len);
-		}
-	}
+	CallRecordSound(*g);
 
 	CSTR ext = filename.right(3).lower();
 	if(ext.isSame("mp3")) {
@@ -128,33 +131,7 @@ int RecordBmsSound(game *g, CSTR oPath) {
 	if (g->rec.recMode != 2) {
 		g->gameplay.song_runtime += startTime;
 		GetSoundBuffer(&g->audio, g->gameplay.song_runtime, g->config.tools.mp3_volume);
-
-		for (int i = 0; i < g->gameplay.bmsobj.count; i++) {
-			double len = 0;
-			if (g->gameplay.bmsobj.notes[i].op == CHANNEL_BGM || (CHANNEL_1P_NOTE_SC <= g->gameplay.bmsobj.notes[i].op && g->gameplay.bmsobj.notes[i].op <= CHANNEL_2P_NOTE_END)) {
-				if (i + 1 < g->gameplay.bmsobj.count) {
-					double endtime = g->gameplay.keysound[(int)g->gameplay.bmsobj.notes[i].val].length;
-					if ((int)endtime < 0) {
-						endtime += 4294967296.0;
-					}
-					endtime += g->gameplay.bmsobj.notes[i].realTiming;
-
-					for (int j = i + 1; j < g->gameplay.bmsobj.count; j++) {
-						if (endtime <= g->gameplay.bmsobj.notes[j].realTiming) break;
-
-						if (g->gameplay.bmsobj.notes[j].op == CHANNEL_BGM || (CHANNEL_1P_NOTE_SC <= g->gameplay.bmsobj.notes[i].op  && g->gameplay.bmsobj.notes[i].op <= CHANNEL_2P_NOTE_END)) {
-
-							if ((int)g->gameplay.bmsobj.notes[i].val == (int)g->gameplay.bmsobj.notes[j].val) {
-								len = g->gameplay.bmsobj.notes[j].realTiming - g->gameplay.bmsobj.notes[i].realTiming;
-								if (len == 0) len = -1.0;
-								break;
-							}
-						}
-					}
-				}
-				RecordSound(&g->audio, &g->gameplay.keysound[(int)g->gameplay.bmsobj.notes[i].val], g->gameplay.bmsobj.notes[i].realTiming, len);
-			}
-		}
+		CallRecordSound(*g);
 	}
 
 	CSTR wavPath;

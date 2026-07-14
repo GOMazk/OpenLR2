@@ -7,7 +7,8 @@
 #include <optional>
 
 int ProcS_Result(game *g, sqlite3 *sql) {
-	g->net.customIR.BeginResultIr(*g, sql, 0, g->gameplay.p1Score.EncodeGhostData().body);
+	if(g->gameplay.replay.status != 2)
+		g->net.customIR.BeginResultIr(*g, sql, 0, g->gameplay.p1Score.EncodeGhostData().body);
 
 	LoadSceneG(g, &g->skstruct, SKINTYPE_RESULT);
 	
@@ -18,7 +19,7 @@ int ProcS_Result(game *g, sqlite3 *sql) {
 		g->audio.bitRate = 264600;
 	}
 
-	if (g->gameplay.player[0].clearType < 2) {
+	if (g->gameplay.player[PLAYER_1].clearType < 2) {
 		PlaySound(&g->audio, &g->audio.sysSound.fail, g->audio.chnBgm, -1);
 	}
 	else {
@@ -29,51 +30,51 @@ int ProcS_Result(game *g, sqlite3 *sql) {
 
 int Proc_Result(game *g, skstruct *sk, Timer *T) {
 
-	if (GetTimeLapse(0, T) > sk->src_GAUGECHART_1P[0].op3 && GetTimeLapse(150, T) < 0.0) {
+	if (GetTimeLapse(0, T) > sk->src_GAUGECHART[PLAYER_1][0].op3 && GetTimeLapse(150, T) < 0.0) {
 		SetTimeLapse(150, T);
 	}
-	if (GetTimeLapse(0, T) > sk->src_GAUGECHART_1P[0].op4 && GetTimeLapse(151, T) < 0.0) {
+	if (GetTimeLapse(0, T) > sk->src_GAUGECHART[PLAYER_1][0].op4 && GetTimeLapse(151, T) < 0.0) {
 		SetTimeLapse(151, T);
 	}
 
 	if (g->config.play.battle == OPTION_BATTLE_BATTLE || sk->flag_flip == 0 || g->gameplay.ghostBattle) {
 		
-		if (sk->src_GAUGECHART_1P[0].op1 <= 0) return 0;
+		if (sk->src_GAUGECHART[PLAYER_1][0].op1 <= 0) return 0;
 
-		int gauge = g->gameplay.player[0].gaugeType;
-		int val = g->gameplay.statgraph[0].hp[gauge][0];
-		int length = ChangeValueByTime(0.0, sk->src_GAUGECHART_1P[0].op1, sk->src_GAUGECHART_1P[0].op3, sk->src_GAUGECHART_1P[0].op4, GetTimeLapse(0, T), 0);
-		for (int i = 0; i < length; i += sk->dst_GAUGECHART_1P[0].draw->w) {
-			int axis = i * 1000 / sk->src_GAUGECHART_1P[0].op1;
+		int gauge = g->gameplay.player[PLAYER_1].gaugeType;
+		int val = g->gameplay.statgraph[PLAYER_1].hp[gauge][0];
+		int length = ChangeValueByTime(0.0, sk->src_GAUGECHART[PLAYER_1][0].op1, sk->src_GAUGECHART[PLAYER_1][0].op3, sk->src_GAUGECHART[PLAYER_1][0].op4, GetTimeLapse(0, T), 0);
+		for (int i = 0; i < length; i += sk->dst_GAUGECHART[PLAYER_1][0].draw->w) {
+			int axis = i * 1000 / sk->src_GAUGECHART[PLAYER_1][0].op1;
 
 			int last = 0;
-			while (val != g->gameplay.statgraph[0].hp[gauge][axis]) {
+			while (val != g->gameplay.statgraph[PLAYER_1].hp[gauge][axis]) {
 				
 				if (g->gameplay.isCourse == 0 && gauge != 1 && gauge != 2 && gauge != 5 && gauge != 4 && val < 80) {
 					
-					int targetval = sk->src_GAUGECHART_1P[0].op2 * val / (-100);
+					int targetval = sk->src_GAUGECHART[PLAYER_1][0].op2 * val / (-100);
 					if (last != targetval) {
-						AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART_1P[0], &sk->dst_GAUGECHART_1P[0], T, i, targetval);
+						AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART[PLAYER_1][0], &sk->dst_GAUGECHART[PLAYER_1][0], T, i, targetval);
 						last = targetval;
 					}
 				}
 				else {
-					int targetval = sk->src_GAUGECHART_1P[1].op2 * val / (-100);
+					int targetval = sk->src_GAUGECHART[PLAYER_1][1].op2 * val / (-100);
 					if (last != targetval) {
-						AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART_1P[1], &sk->dst_GAUGECHART_1P[1], T, i, targetval);
+						AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART[PLAYER_1][1], &sk->dst_GAUGECHART[PLAYER_1][1], T, i, targetval);
 						last = targetval;
 					}
 				}
 
-				if (val < g->gameplay.statgraph[0].hp[gauge][axis]) val++;
-				if (val > g->gameplay.statgraph[0].hp[gauge][axis]) val--;
+				if (val < g->gameplay.statgraph[PLAYER_1].hp[gauge][axis]) val++;
+				if (val > g->gameplay.statgraph[PLAYER_1].hp[gauge][axis]) val--;
 			}
 
-			if (g->gameplay.isCourse == 0 && gauge != 1 && gauge != 2 && gauge != 5 && gauge != 4 && g->gameplay.statgraph[0].hp[gauge][axis] < 80) {
-				AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART_1P[0], &sk->dst_GAUGECHART_1P[0], T, i, sk->src_GAUGECHART_1P[0].op2 * g->gameplay.statgraph[0].hp[gauge][axis] / (-100));
+			if (g->gameplay.isCourse == 0 && gauge != 1 && gauge != 2 && gauge != 5 && gauge != 4 && g->gameplay.statgraph[PLAYER_1].hp[gauge][axis] < 80) {
+				AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART[PLAYER_1][0], &sk->dst_GAUGECHART[PLAYER_1][0], T, i, sk->src_GAUGECHART[PLAYER_1][0].op2 * g->gameplay.statgraph[PLAYER_1].hp[gauge][axis] / (-100));
 			}
 			else {
-				AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART_1P[1], &sk->dst_GAUGECHART_1P[1], T, i, sk->src_GAUGECHART_1P[1].op2 * g->gameplay.statgraph[0].hp[gauge][axis] / (-100));
+				AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART[PLAYER_1][1], &sk->dst_GAUGECHART[PLAYER_1][1], T, i, sk->src_GAUGECHART[PLAYER_1][1].op2 * g->gameplay.statgraph[PLAYER_1].hp[gauge][axis] / (-100));
 			}
 		}
 	}
@@ -82,71 +83,71 @@ int Proc_Result(game *g, skstruct *sk, Timer *T) {
 		int p = 1;
 		if (g->config.play.battle != OPTION_BATTLE_BATTLE && sk->flag_flip != 0) p = 0;
 
-		if (sk->src_GAUGECHART_2P[0].op1 <= 0) return 0;
+		if (sk->src_GAUGECHART[PLAYER_2][0].op1 <= 0) return 0;
 
-		int gauge = g->gameplay.player[1].gaugeType;
-		int val = g->gameplay.statgraph[1].hp[gauge][0];
-		int length = ChangeValueByTime(0.0, sk->src_GAUGECHART_2P[0].op1, sk->src_GAUGECHART_2P[0].op3, sk->src_GAUGECHART_2P[0].op4, GetTimeLapse(0, T), 0);
-		for (int i = 0; i < length; i += sk->dst_GAUGECHART_2P[0].draw->w) {
-			int axis = i * 1000 / sk->src_GAUGECHART_2P[0].op1;
+		int gauge = g->gameplay.player[PLAYER_2].gaugeType;
+		int val = g->gameplay.statgraph[PLAYER_2].hp[gauge][0];
+		int length = ChangeValueByTime(0.0, sk->src_GAUGECHART[PLAYER_2][0].op1, sk->src_GAUGECHART[PLAYER_2][0].op3, sk->src_GAUGECHART[PLAYER_2][0].op4, GetTimeLapse(0, T), 0);
+		for (int i = 0; i < length; i += sk->dst_GAUGECHART[PLAYER_2][0].draw->w) {
+			int axis = i * 1000 / sk->src_GAUGECHART[PLAYER_2][0].op1;
 
 			int last = 0;
-			while (val != g->gameplay.statgraph[1].hp[gauge][axis]) {
+			while (val != g->gameplay.statgraph[PLAYER_2].hp[gauge][axis]) {
 
 				if (g->gameplay.isCourse == 0 && gauge != 1 && gauge != 2 && val < 80) {
 
-					int targetval = sk->src_GAUGECHART_2P[0].op2 * val / (-100);
+					int targetval = sk->src_GAUGECHART[PLAYER_2][0].op2 * val / (-100);
 					if (last != targetval) {
-						AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART_2P[0], &sk->dst_GAUGECHART_2P[0], T, i, targetval);
+						AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART[PLAYER_2][0], &sk->dst_GAUGECHART[PLAYER_2][0], T, i, targetval);
 						last = targetval;
 					}
 				}
 				else {
-					int targetval = sk->src_GAUGECHART_2P[1].op2 * val / (-100);
+					int targetval = sk->src_GAUGECHART[PLAYER_2][1].op2 * val / (-100);
 					if (last != targetval) {
-						AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART_2P[1], &sk->dst_GAUGECHART_2P[1], T, i, targetval);
+						AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART[PLAYER_2][1], &sk->dst_GAUGECHART[PLAYER_2][1], T, i, targetval);
 						last = targetval;
 					}
 				}
 
-				if (val < g->gameplay.statgraph[1].hp[gauge][axis]) val++;
-				if (val > g->gameplay.statgraph[1].hp[gauge][axis]) val--;
+				if (val < g->gameplay.statgraph[PLAYER_2].hp[gauge][axis]) val++;
+				if (val > g->gameplay.statgraph[PLAYER_2].hp[gauge][axis]) val--;
 			}
 
-			if (g->gameplay.isCourse == 0 && gauge != 1 && gauge != 2 && g->gameplay.statgraph[1].hp[gauge][axis] < 80) {
-				AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART_2P[0], &sk->dst_GAUGECHART_2P[0], T, i, sk->src_GAUGECHART_2P[0].op2 * g->gameplay.statgraph[1].hp[gauge][axis] / (-100));
+			if (g->gameplay.isCourse == 0 && gauge != 1 && gauge != 2 && g->gameplay.statgraph[PLAYER_2].hp[gauge][axis] < 80) {
+				AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART[PLAYER_2][0], &sk->dst_GAUGECHART[PLAYER_2][0], T, i, sk->src_GAUGECHART[PLAYER_2][0].op2 * g->gameplay.statgraph[PLAYER_2].hp[gauge][axis] / (-100));
 			}
 			else {
-				AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART_2P[1], &sk->dst_GAUGECHART_2P[1], T, i, sk->src_GAUGECHART_2P[1].op2 * g->gameplay.statgraph[1].hp[gauge][axis] / (-100));
+				AddDrawingBuffer_Object(&sk->drBuf, &sk->src_GAUGECHART[PLAYER_2][1], &sk->dst_GAUGECHART[PLAYER_2][1], T, i, sk->src_GAUGECHART[PLAYER_2][1].op2 * g->gameplay.statgraph[PLAYER_2].hp[gauge][axis] / (-100));
 			}
 		}
 	}
 
 
-	if (sk->src_SCORECHART[0].graphcount >= 1 && g->gameplay.player[0].totalnotes > 0) {
+	if (sk->src_SCORECHART[0].graphcount >= 1 && g->gameplay.player[PLAYER_1].totalnotes > 0) {
 		if (sk->src_SCORECHART[0].op1 <= 0) return 0;
 
-		int val = g->gameplay.statgraph[0].exscore[0];
+		int val = g->gameplay.statgraph[PLAYER_1].exscore[0];
 		int length = ChangeValueByTime(0.0, sk->src_SCORECHART[0].op1, sk->src_SCORECHART[0].op3, sk->src_SCORECHART[0].op4, GetTimeLapse(0, T), 0);
 		for (int i = 0; i < length; i += sk->dst_SCORECHART[0].draw->w) {
 			int axis = i * 1000 / sk->src_SCORECHART[0].op1;
 
 			int last = 0;
-			while (val != g->gameplay.statgraph[0].exscore[axis]) {
+			while (val != g->gameplay.statgraph[PLAYER_1].exscore[axis]) {
 
-				if (last != sk->src_SCORECHART[0].op2 * val / (g->gameplay.player[0].totalnotes * -2)) {
-					AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[0], &sk->dst_SCORECHART[0], T, i, sk->src_SCORECHART[0].op2 * val / (g->gameplay.player[0].totalnotes * -2));
-					last = sk->src_SCORECHART[0].op2 * val / (g->gameplay.player[0].totalnotes * -2);
+				if (last != sk->src_SCORECHART[0].op2 * val / (g->gameplay.player[PLAYER_1].totalnotes * -2)) {
+					AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[0], &sk->dst_SCORECHART[0], T, i, sk->src_SCORECHART[0].op2 * val / (g->gameplay.player[PLAYER_1].totalnotes * -2));
+					last = sk->src_SCORECHART[0].op2 * val / (g->gameplay.player[PLAYER_1].totalnotes * -2);
 				}
-				if (val < g->gameplay.statgraph[0].exscore[axis]) val++;
-				if (val > g->gameplay.statgraph[0].exscore[axis]) val--;
+				if (val < g->gameplay.statgraph[PLAYER_1].exscore[axis]) val++;
+				if (val > g->gameplay.statgraph[PLAYER_1].exscore[axis]) val--;
 			}
 
-			AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[0], &sk->dst_SCORECHART[0], T, i, g->gameplay.statgraph[0].exscore[axis] * sk->src_SCORECHART[0].op2 / (g->gameplay.player[0].totalnotes * -2));
+			AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[0], &sk->dst_SCORECHART[0], T, i, g->gameplay.statgraph[PLAYER_1].exscore[axis] * sk->src_SCORECHART[0].op2 / (g->gameplay.player[PLAYER_1].totalnotes * -2));
 		}
 	}
 
-	if (sk->src_SCORECHART[1].graphcount >= 1 && g->gameplay.player[0].totalnotes > 0) {
+	if (sk->src_SCORECHART[1].graphcount >= 1 && g->gameplay.player[PLAYER_1].totalnotes > 0) {
 		if (sk->src_SCORECHART[1].op1 <= 0) return 0;
 
 		int val = g->gameplay.rategraph[0].val[0];
@@ -157,19 +158,19 @@ int Proc_Result(game *g, skstruct *sk, Timer *T) {
 			int last = 0;
 			while (val != g->gameplay.rategraph[0].val[axis]) {
 
-				if (last != sk->src_SCORECHART[1].op2 * val / (g->gameplay.player[0].totalnotes * -2)) {
-					AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[1], &sk->dst_SCORECHART[1], T, i, sk->src_SCORECHART[1].op2 * val / (g->gameplay.player[0].totalnotes * -2));
-					last = sk->src_SCORECHART[1].op2 * val / (g->gameplay.player[0].totalnotes * -2);
+				if (last != sk->src_SCORECHART[1].op2 * val / (g->gameplay.player[PLAYER_1].totalnotes * -2)) {
+					AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[1], &sk->dst_SCORECHART[1], T, i, sk->src_SCORECHART[1].op2 * val / (g->gameplay.player[PLAYER_1].totalnotes * -2));
+					last = sk->src_SCORECHART[1].op2 * val / (g->gameplay.player[PLAYER_1].totalnotes * -2);
 				}
 				if (val < g->gameplay.rategraph[0].val[axis]) val++;
 				if (val > g->gameplay.rategraph[0].val[axis]) val--;
 			}
 
-			AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[1], &sk->dst_SCORECHART[1], T, i, g->gameplay.rategraph[0].val[axis] * sk->src_SCORECHART[1].op2 / (g->gameplay.player[0].totalnotes * -2));
+			AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[1], &sk->dst_SCORECHART[1], T, i, g->gameplay.rategraph[0].val[axis] * sk->src_SCORECHART[1].op2 / (g->gameplay.player[PLAYER_1].totalnotes * -2));
 		}
 	}
 
-	if (sk->src_SCORECHART[2].graphcount >= 1 && g->gameplay.player[0].totalnotes > 0) {
+	if (sk->src_SCORECHART[2].graphcount >= 1 && g->gameplay.player[PLAYER_1].totalnotes > 0) {
 		if (sk->src_SCORECHART[2].op1 <= 0) return 0;
 
 		int val = g->gameplay.rategraph[1].val[0];
@@ -180,15 +181,15 @@ int Proc_Result(game *g, skstruct *sk, Timer *T) {
 			int last = 0;
 			while (val != g->gameplay.rategraph[1].val[axis]) {
 				
-				if (last != sk->src_SCORECHART[2].op2 * val / (g->gameplay.player[0].totalnotes * -2)) {
-					AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[2], &sk->dst_SCORECHART[2], T, i, sk->src_SCORECHART[2].op2 * val / (g->gameplay.player[0].totalnotes * -2));
-					last = sk->src_SCORECHART[2].op2 * val / (g->gameplay.player[0].totalnotes * -2);
+				if (last != sk->src_SCORECHART[2].op2 * val / (g->gameplay.player[PLAYER_1].totalnotes * -2)) {
+					AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[2], &sk->dst_SCORECHART[2], T, i, sk->src_SCORECHART[2].op2 * val / (g->gameplay.player[PLAYER_1].totalnotes * -2));
+					last = sk->src_SCORECHART[2].op2 * val / (g->gameplay.player[PLAYER_1].totalnotes * -2);
 				}
 				if (val < g->gameplay.rategraph[1].val[axis]) val++;
 				if (val > g->gameplay.rategraph[1].val[axis]) val--;
 			}
 
-			AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[2], &sk->dst_SCORECHART[2], T, i, g->gameplay.rategraph[1].val[axis] * sk->src_SCORECHART[2].op2 / (g->gameplay.player[0].totalnotes * -2));
+			AddDrawingBuffer_Object(&sk->drBuf, &sk->src_SCORECHART[2], &sk->dst_SCORECHART[2], T, i, g->gameplay.rategraph[1].val[axis] * sk->src_SCORECHART[2].op2 / (g->gameplay.player[PLAYER_1].totalnotes * -2));
 		}
 	}
 
@@ -225,36 +226,36 @@ static bool fWaitHiScoreUpdateInput = false;
 int ProcI_Result(game *g) {
 
 	auto switch_gauge_display = [](gameplay& gameplay, int buttonVal, PLAYERSTATUS& player) {
-		if (buttonVal == 1 && player.gaugeType != 5) {
+		if (buttonVal == 1 && player.gaugeType != OPTION_GAUGE_PATTACK) {
 			int& gauge = player.gaugeType;
 			if (gameplay.courseType != 2) [[likely]] {
 				switch (gauge) {
-				case 0: gauge = 1; break;
-				case 1: gauge = 2; break;
-				case 2: gauge = 4; break;
-				case 3: gauge = 0; break;
-				case 4: gauge = 3; break;
+				case OPTION_GAUGE_EASY: gauge = OPTION_GAUGE_GROOVE; break;
+				case OPTION_GAUGE_GROOVE: gauge = OPTION_GAUGE_HARD; break;
+				case OPTION_GAUGE_HARD: gauge = OPTION_GAUGE_DEATH; break;
+				case OPTION_GAUGE_DEATH: gauge = OPTION_GAUGE_PATTACK; break;
+				case OPTION_GAUGE_PATTACK: gauge = OPTION_GAUGE_EASY; break;
 				default: break;
 				}
 			}
 			else {
 				switch (gauge) {
-				case 0: gauge = 1; break;
-				case 1: gauge = 2; break;
-				case 2: gauge = 4; break;
-				case 4: gauge = 0; break;
+				case OPTION_GAUGE_GROOVE: gauge = OPTION_GAUGE_HARD; break;
+				case OPTION_GAUGE_HARD: gauge = OPTION_GAUGE_DEATH; break;
+				case OPTION_GAUGE_DEATH: gauge = OPTION_GAUGE_PATTACK; break;
+				case OPTION_GAUGE_PATTACK: gauge = OPTION_GAUGE_GROOVE; break;
 				default: break;
 				}
 			}
 		}
 	};
 	if (g->config.play.m_gas && g->procSelecter != 13 && g->gameplay.replay.status != 2) {
-		switch_gauge_display(g->gameplay, g->KeyInput.p1_buttonInput[13], g->gameplay.player[0]);
+		switch_gauge_display(g->gameplay, g->KeyInput.p1_buttonInput[13], g->gameplay.player[PLAYER_1]);
 		if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
-			switch_gauge_display(g->gameplay, g->KeyInput.p2_buttonInput[13], g->gameplay.player[1]);
+			switch_gauge_display(g->gameplay, g->KeyInput.p2_buttonInput[13], g->gameplay.player[PLAYER_2]);
 		}
 		else {
-			switch_gauge_display(g->gameplay, g->KeyInput.p2_buttonInput[13], g->gameplay.player[0]);
+			switch_gauge_display(g->gameplay, g->KeyInput.p2_buttonInput[13], g->gameplay.player[PLAYER_1]);
 		}
 	}
 
@@ -266,8 +267,8 @@ int ProcI_Result(game *g) {
 
 		if (GetTimeLapse(151, &g->timer1) == -1.0) {
 			SetTimeLapse(151, &g->timer1);
-			g->skstruct.src_GAUGECHART_1P[0].op4 = GetTimeLapse(0, &g->timer1);
-			g->skstruct.src_GAUGECHART_2P[0].op4 = GetTimeLapse(0, &g->timer1);
+			g->skstruct.src_GAUGECHART[PLAYER_1][0].op4 = GetTimeLapse(0, &g->timer1);
+			g->skstruct.src_GAUGECHART[PLAYER_2][0].op4 = GetTimeLapse(0, &g->timer1);
 			g->skstruct.src_SCORECHART[0].op4 = GetTimeLapse(0, &g->timer1);
 			g->skstruct.src_SCORECHART[1].op4 = GetTimeLapse(0, &g->timer1);
 			g->skstruct.src_SCORECHART[2].op4 = GetTimeLapse(0, &g->timer1);
@@ -314,7 +315,7 @@ int ProcI_Result(game *g) {
 				g->KeyInput.p2_buttonInput[1] == 2 || g->KeyInput.p2_buttonInput[3] == 2 || g->KeyInput.p2_buttonInput[5] == 2 || g->KeyInput.p2_buttonInput[7] == 2) 
 				&& (g->KeyInput.p1_buttonInput[2] == 2 || g->KeyInput.p1_buttonInput[4] == 2 || g->KeyInput.p1_buttonInput[6] == 2 ||
 					g->KeyInput.p2_buttonInput[2] == 2 || g->KeyInput.p2_buttonInput[4] == 2 || g->KeyInput.p2_buttonInput[6] == 2) 
-				&& g->gameplay.replay.status != 2 && g->config.play.m_lunaris == 0) {
+				&& g->gameplay.replay.status != 2 && !g->config.play.m_isLunaris) {
 
 				if (g->KeyInput.p1_buttonInput[2] == 2 || g->KeyInput.p2_buttonInput[2] == 2) QuickRestart(*g, true);
 				else QuickRestart(*g, false);
@@ -324,15 +325,15 @@ int ProcI_Result(game *g) {
 					PLAYERSTATUS tmp;
 					GRAPHDATA tmp2;
 
-					memcpy(&tmp, &g->gameplay.player[0], sizeof(PLAYERSTATUS));
-					memcpy(&g->gameplay.player[0], &g->gameplay.player[1], sizeof(PLAYERSTATUS));
-					memcpy(&g->gameplay.player[1], &tmp, sizeof(PLAYERSTATUS));
+					memcpy(&tmp, &g->gameplay.player[PLAYER_1], sizeof(PLAYERSTATUS));
+					memcpy(&g->gameplay.player[PLAYER_1], &g->gameplay.player[PLAYER_2], sizeof(PLAYERSTATUS));
+					memcpy(&g->gameplay.player[PLAYER_2], &tmp, sizeof(PLAYERSTATUS));
 
-					memcpy(&tmp2, &g->gameplay.statgraph[0], sizeof(GRAPHDATA));
-					memcpy(&g->gameplay.statgraph[0], &g->gameplay.statgraph[1], sizeof(GRAPHDATA));
-					memcpy(&g->gameplay.statgraph[1], &tmp2, sizeof(GRAPHDATA));
+					memcpy(&tmp2, &g->gameplay.statgraph[PLAYER_1], sizeof(GRAPHDATA));
+					memcpy(&g->gameplay.statgraph[PLAYER_1], &g->gameplay.statgraph[PLAYER_2], sizeof(GRAPHDATA));
+					memcpy(&g->gameplay.statgraph[PLAYER_2], &tmp2, sizeof(GRAPHDATA));
 
-					g->gameplay.player[0].clearType = g->gameplay.player[1].clearType;
+					g->gameplay.player[PLAYER_1].clearType = g->gameplay.player[PLAYER_2].clearType;
 				}
 			}
 			else {

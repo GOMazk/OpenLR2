@@ -10,7 +10,7 @@
       },
       "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
       "cacheVariables": {
-        "CMAKE_CXX_FLAGS_INIT": "/MP /W4 /wo4244 /permissive-",
+        "CMAKE_CXX_FLAGS_INIT": "/MP /W4 /we4840 /wo4244 /permissive-",
         "VCPKG_TARGET_TRIPLET": "x64-windows-static-release"
       },
       "condition": {
@@ -23,7 +23,7 @@
       "name": "windows-vs-x64-asan",
       "inherits": "windows-vs-x64",
       "cacheVariables": {
-        "CMAKE_CXX_FLAGS_INIT": "/MP /W4 /wo4244 /permissive- /fsanitize=address"
+        "CMAKE_CXX_FLAGS_INIT": "/MP /W4 /we4840 /wo4244 /permissive- /fsanitize=address"
       }
     },
     {
@@ -35,7 +35,7 @@
       },
       "toolchainFile": "$env{VCPKG_ROOT}/scripts/buildsystems/vcpkg.cmake",
       "cacheVariables": {
-        "CMAKE_CXX_FLAGS_INIT": "/MP /arch:IA32 /W4 /wo4244 /permissive-",
+        "CMAKE_CXX_FLAGS_INIT": "/MP /arch:IA32 /W4 /we4840 /wo4244 /permissive-",
         "VCPKG_TARGET_TRIPLET": "x86-windows-static"
       },
       "condition": {
@@ -48,7 +48,7 @@
       "name": "windows-vs-x86-asan",
       "inherits": "windows-vs-x86",
       "cacheVariables": {
-        "CMAKE_CXX_FLAGS_INIT": "/MP /arch:IA32 /W4 /wo4244 /permissive- /fsanitize=address"
+        "CMAKE_CXX_FLAGS_INIT": "/MP /arch:IA32 /W4 /we4840 /wo4244 /permissive- /fsanitize=address"
       }
     }
   ],

@@ -325,14 +325,14 @@ struct IRScoreInternal {
 		int courseType{};
 	} song{};
 	struct SETTINGS {
-		int gaugeOption{};
-		std::array<int, 2> random{};
-		int autokey{};
-		std::array<int, 2> assist{};
-		int dpflip{};
+		int gaugeType{};
+		std::array<int, PLAYER_MAX> random{};
+		bool autokey{};
+		std::array<bool, PLAYER_MAX> assist{};
+		bool dpFlip{};
 		int hsfix{};
-		std::array<int, 2> randSC{};
-		std::array<int, 2> randFix{};
+		std::array<int, PLAYER_MAX> randSC{};
+		std::array<int, PLAYER_MAX> randFix{};
 		int m_softlanding{};
 		int m_addmine{};
 		int m_addlong{};
@@ -350,12 +350,12 @@ struct IRScoreInternal {
 		int m_wave{};
 		int m_spiral{};
 		int m_sidejump{};
-		int is_extra{};
+		bool m_isExtra{};
 		int m_extra{};
-		char m_lunaris{};
+		bool m_isLunaris{};
 		bool m_gas{};
 		int gomiscore{};
-		int disablecurspeedchange{};
+		bool disableCurSpeedChange{};
 	} settings{};
 	struct STATE {
 		int player{};
@@ -424,14 +424,18 @@ void IRScoreInternal::MakeScoreV1(IRScoreV1& scoreOut) const {
 	scoreOut.song.courseStageCount = song.courseStageCount;
 	scoreOut.song.courseType = song.courseType;
 
-	scoreOut.settings.gaugeOption = settings.gaugeOption;
-	scoreOut.settings.random = settings.random;
-	scoreOut.settings.autokey = settings.autokey;
-	scoreOut.settings.assist = settings.assist;
-	scoreOut.settings.dpflip = settings.dpflip;
+	scoreOut.settings.gaugeOption = settings.gaugeType;
+	for (int p : { PLAYER_1, PLAYER_2})
+		scoreOut.settings.random[p] = settings.random[p];
+	scoreOut.settings.autokey = (int)settings.autokey;
+	for (int p : { PLAYER_1, PLAYER_2})
+		scoreOut.settings.assist[p] = settings.assist[p];
+	scoreOut.settings.dpflip = settings.dpFlip;
 	scoreOut.settings.hsfix = settings.hsfix;
-	scoreOut.settings.randSC = settings.randSC;
-	scoreOut.settings.randFix = settings.randFix;
+	for (int p : { PLAYER_1, PLAYER_2}) {
+		scoreOut.settings.randSC[p] = settings.randSC[p];
+		scoreOut.settings.randFix[p] = settings.randFix[p];
+	}
 	scoreOut.settings.m_softlanding = settings.m_softlanding;
 	scoreOut.settings.m_addmine = settings.m_addmine;
 	scoreOut.settings.m_addlong = settings.m_addlong;
@@ -449,12 +453,12 @@ void IRScoreInternal::MakeScoreV1(IRScoreV1& scoreOut) const {
 	scoreOut.settings.m_wave = settings.m_wave;
 	scoreOut.settings.m_spiral = settings.m_spiral;
 	scoreOut.settings.m_sidejump = settings.m_sidejump;
-	scoreOut.settings.is_extra = settings.is_extra;
+	scoreOut.settings.is_extra = (int)settings.m_isExtra;
 	scoreOut.settings.m_extra = settings.m_extra;
-	scoreOut.settings.m_lunaris = settings.m_lunaris;
+	scoreOut.settings.m_lunaris = (char)settings.m_isLunaris;
 	scoreOut.settings.m_gas = settings.m_gas;
 	scoreOut.settings.gomiscore = settings.gomiscore;
-	scoreOut.settings.disablecurspeedchange = settings.disablecurspeedchange;
+	scoreOut.settings.disablecurspeedchange = (int)settings.disableCurSpeedChange;
 
 	scoreOut.state.player = state.player;
 	scoreOut.state.keymode = state.keymode;
@@ -542,18 +546,18 @@ IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player, std::str
 		songPlayLevel = curSong.level;
 	}
 	CONFIG_PLAY& cfg = game.config.play;
-	settings.gaugeOption = cfg.gaugeOption[_player];
-	settings.random[0] = cfg.random[0];
-	settings.random[1] = cfg.random[1];
+	settings.gaugeType = cfg.gaugeType[_player];
+	settings.random[PLAYER_1] = cfg.random[PLAYER_1];
+	settings.random[PLAYER_2] = cfg.random[PLAYER_2];
 	settings.autokey = cfg.autokey;
-	settings.assist[0] = cfg.p1_assist;
-	settings.assist[1] = cfg.p2_assist;
-	settings.dpflip = cfg.dpflip;
+	settings.assist[PLAYER_1] = cfg.assist[PLAYER_1];
+	settings.assist[PLAYER_2] = cfg.assist[PLAYER_2];
+	settings.dpFlip = cfg.dpFlip;
 	settings.hsfix = cfg.hsfix;
-	settings.randSC[0] = cfg.randSC[0];
-	settings.randSC[1] = cfg.randSC[1];
-	settings.randFix[0] = cfg.randFix[0];
-	settings.randFix[1] = cfg.randFix[1];
+	settings.randSC[PLAYER_1] = cfg.randSC[PLAYER_1];
+	settings.randSC[PLAYER_2] = cfg.randSC[PLAYER_2];
+	settings.randFix[PLAYER_1] = cfg.randFix[PLAYER_1];
+	settings.randFix[PLAYER_2] = cfg.randFix[PLAYER_2];
 	settings.m_softlanding = cfg.m_softlanding;
 	settings.m_addmine = cfg.m_addmine;
 	settings.m_addlong = cfg.m_addlong;
@@ -571,12 +575,12 @@ IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player, std::str
 	settings.m_wave = cfg.m_wave;
 	settings.m_spiral = cfg.m_spiral;
 	settings.m_sidejump = cfg.m_sidejump;
-	settings.is_extra = cfg.is_extra;
+	settings.m_isExtra = cfg.m_isExtra;
 	settings.m_extra = cfg.m_extra;
-	settings.m_lunaris = cfg.m_lunaris;
+	settings.m_isLunaris = cfg.m_isLunaris;
 	settings.m_gas = cfg.m_gas;
 	settings.gomiscore = cfg.gomiscore;
-	settings.disablecurspeedchange = cfg.disablecurspeedchange;
+	settings.disableCurSpeedChange = cfg.disableCurSpeedChange;
 
 	gameplay& gameplay = game.gameplay;
 	state.player = _player;

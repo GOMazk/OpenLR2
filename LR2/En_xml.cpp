@@ -139,6 +139,10 @@ void WriteXML_Tab2Int(FILE *hFile, const char *tag, int value){
 	fputs(buf, hFile);
 }
 
+void WriteXML_Tab2BoolAsInt(FILE* hFile, const char* tag, bool value) {
+	WriteXML_Tab2Int(hFile, tag, value ? 1 : 0);
+}
+
 void WriteXML_Tab2Str(FILE *hFile, const char *tag, CSTR str){
 	char buf[256];
 

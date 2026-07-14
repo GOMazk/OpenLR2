@@ -67,7 +67,7 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 			}
 			else if (g->po4_23da8 != 0) {
 				if (GetTimeLapse(411, &g->timer1) >= g->skstruct.event_STARTINPUT[5]) {
-					if (g->gameplay.isAutoplay == 0 && g->config.play.autojudge == 0 && g->gameplay.player[0].exscore > 0) {
+					if (g->gameplay.isAutoplay == 0 && g->config.play.autojudge == 0 && g->gameplay.player[PLAYER_1].exscore > 0) {
 						SaveResult(g, sql);
 						g->po4flagSceneEnd = 0;
 					}
@@ -119,8 +119,8 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 			else if (g->KeyInput.mousewheel < 0) g->sSelect.scrollDirection = 2;
 		}
 		
-		if ((((g->KeyInput.p1_buttonInput[1] == 1 || g->KeyInput.p2_buttonInput[1] == 1) && g->config.select.buttonselect == 1 && g->config.select.control == 0)
-			|| (g->KeyInput.p1_buttonInput[4] == 1 && g->config.select.control == 1)
+		if ((((g->KeyInput.p1_buttonInput[1] == 1 || g->KeyInput.p2_buttonInput[1] == 1) && g->config.select.buttonselect && !g->config.select.control)
+			|| (g->KeyInput.p1_buttonInput[4] == 1 && g->config.select.control)
 			|| g->KeyInput.p1_buttonInput[10] == 1 || g->KeyInput.p2_buttonInput[10] == 1 || g->KeyInput.inputID[KEY_INPUT_UP] == 1 || g->KeyInput.inputID[KEY_INPUT_LEFT] == 1)
 			&& GetTimeWrap() > g->sSelect.barMoveEndTime) {
 
@@ -130,8 +130,8 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 			g->sSelect.scrollDirection = 1;
 			g->sSelect.barMoveEndTime = GetTimeWrap() + g->config.select.speedfirst;
 		}
-		else if ((((g->KeyInput.p1_buttonInput[3] == 1 || g->KeyInput.p2_buttonInput[3] == 1) && g->config.select.buttonselect == 1 && g->config.select.control == 0)
-			|| (g->KeyInput.p1_buttonInput[6] == 1 && g->config.select.control == 1)
+		else if ((((g->KeyInput.p1_buttonInput[3] == 1 || g->KeyInput.p2_buttonInput[3] == 1) && g->config.select.buttonselect && !g->config.select.control)
+			|| (g->KeyInput.p1_buttonInput[6] == 1 && g->config.select.control)
 			|| g->KeyInput.p1_buttonInput[11] == 1 || g->KeyInput.p2_buttonInput[11] == 1 || g->KeyInput.inputID[KEY_INPUT_DOWN] == 1 || g->KeyInput.inputID[KEY_INPUT_RIGHT] == 1)
 			&& GetTimeWrap() > g->sSelect.barMoveEndTime) {
 
@@ -141,8 +141,8 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 			g->sSelect.scrollDirection = 2;
 			g->sSelect.barMoveEndTime = GetTimeWrap() + g->config.select.speedfirst;
 		}
-		else if ((((g->KeyInput.p1_buttonInput[1] == 2 || g->KeyInput.p2_buttonInput[1] == 2) && g->config.select.buttonselect == 1 && g->config.select.control == 0)
-			|| (g->KeyInput.p1_buttonInput[4] == 2 && g->config.select.control == 1)
+		else if ((((g->KeyInput.p1_buttonInput[1] == 2 || g->KeyInput.p2_buttonInput[1] == 2) && g->config.select.buttonselect && !g->config.select.control)
+			|| (g->KeyInput.p1_buttonInput[4] == 2 && g->config.select.control)
 			|| g->KeyInput.p1_buttonInput[10] == 2 || g->KeyInput.p2_buttonInput[10] == 2 || g->KeyInput.inputID[KEY_INPUT_UP] == 2 || g->KeyInput.inputID[KEY_INPUT_LEFT] == 2)
 			&& GetTimeWrap() > g->sSelect.barMoveEndTime - 20) {
 
@@ -152,8 +152,8 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 			g->sSelect.scrollDirection = 1;
 			g->sSelect.barMoveEndTime = GetTimeWrap() + 150;
 		}
-		else if ((((g->KeyInput.p1_buttonInput[3] == 2 || g->KeyInput.p2_buttonInput[3] == 2) && g->config.select.buttonselect == 1 && g->config.select.control == 0)
-			|| (g->KeyInput.p1_buttonInput[6] == 2 && g->config.select.control == 1)
+		else if ((((g->KeyInput.p1_buttonInput[3] == 2 || g->KeyInput.p2_buttonInput[3] == 2) && g->config.select.buttonselect && !g->config.select.control)
+			|| (g->KeyInput.p1_buttonInput[6] == 2 && g->config.select.control)
 			|| g->KeyInput.p1_buttonInput[11] == 2 || g->KeyInput.p2_buttonInput[11] == 2 || g->KeyInput.inputID[KEY_INPUT_DOWN] == 2 || g->KeyInput.inputID[KEY_INPUT_RIGHT] == 2)
 			&& GetTimeWrap() > g->sSelect.barMoveEndTime - 20) {
 
@@ -259,17 +259,17 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 					for (int i = 0; i < g->sSelect.bmsListCount; i++) {
 						SetTransColor(0, 255, 0);
 						CSTR dir = g->sSelect.bmsList[i].filepath.getDirectory();
-						if (g->sSelect.bmsList[i].isStagefile == 0) {
+						if (!g->sSelect.bmsList[i].isStagefile) {
 							g->sSelect.bmsList[i].stagefile = "_title.png";
 						}
 						CSTR alt;
 						if (FindAltImage(g->sSelect.bmsList[i].stagefile, dir, &alt) != 1) {
-							g->sSelect.bmsList[i].isStagefile = 0;
+							g->sSelect.bmsList[i].isStagefile = false;
 						}
 
 						g->sSelect.bmsList[i].grHandle = LoadGraph(alt, 0);
 						if (g->sSelect.bmsList[i].grHandle == -1) {
-							g->sSelect.bmsList[i].isStagefile = 0;
+							g->sSelect.bmsList[i].isStagefile = false;
 						}
 					}
 
@@ -439,32 +439,32 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 			}
 			break;
 		case 11:
-			g->skstruct.dst_GROOVEGAUGE[0].timer = 410;
+			g->skstruct.dst_GROOVEGAUGE[PLAYER_1].timer = 410;
 			DrawHPgauge(g);
 			SoundGetCurrentTime(&g->audio, &g->gameplay.muon);
-			if (GetTimeLapse(41, &g->timer1) > 0.0 && g->config.play.m_lunaris == 0) {
+			if (GetTimeLapse(41, &g->timer1) > 0.0 && !g->config.play.m_isLunaris) {
 				DrawNotes(g, &g->skstruct, &g->timer1, &g->config.play);
 				DrawJudgeCombo(g, &g->skstruct, &g->timer1, &g->config.play);
 			}
-			else if (GetTimeLapse(41, &g->timer1) > 0.0 && g->config.play.m_lunaris != 0) {
+			else if (GetTimeLapse(41, &g->timer1) > 0.0 && g->config.play.m_isLunaris) {
 				DrawLunaris(g);
 				DrawJudgeCombo(g, &g->skstruct, &g->timer1, &g->config.play);
 			}
 
 			if (g->skstruct.dst_JUDGELINE[0].dstCount > 0) {
-				AddDrawingBuffer_PlayArea(&g->skstruct.drBuf, &g->skstruct.src_JUDGELINE[0], &g->skstruct.dst_JUDGELINE[0], &g->timer1, g->skstruct.adjust.note_1p_x + g->gameplay.nabeatsu_x, g->skstruct.adjust.note_1p_y + g->gameplay.nabeatsu_y, -1, g->skstruct.adjust.size_x, g->skstruct.adjust.size_y, 0);
+				AddDrawingBuffer_PlayArea(&g->skstruct.drBuf, &g->skstruct.src_JUDGELINE[PLAYER_1], &g->skstruct.dst_JUDGELINE[0], &g->timer1, g->skstruct.adjust.note_x[PLAYER_1] + g->gameplay.nabeatsu_x, g->skstruct.adjust.note_y[PLAYER_1] + g->gameplay.nabeatsu_y, -1, g->skstruct.adjust.size_x, g->skstruct.adjust.size_y, 0);
 			}
 			if (g->skstruct.dst_JUDGELINE[1].dstCount > 0) {
-				AddDrawingBuffer_PlayArea(&g->skstruct.drBuf, &g->skstruct.src_JUDGELINE[1], &g->skstruct.dst_JUDGELINE[1], &g->timer1, g->skstruct.adjust.note_2p_x + g->gameplay.nabeatsu_x, g->skstruct.adjust.note_2p_y + g->gameplay.nabeatsu_y, -1, g->skstruct.adjust.size_x, g->skstruct.adjust.size_y, 0);
+				AddDrawingBuffer_PlayArea(&g->skstruct.drBuf, &g->skstruct.src_JUDGELINE[PLAYER_2], &g->skstruct.dst_JUDGELINE[1], &g->timer1, g->skstruct.adjust.note_x[PLAYER_2] + g->gameplay.nabeatsu_x, g->skstruct.adjust.note_y[PLAYER_2] + g->gameplay.nabeatsu_y, -1, g->skstruct.adjust.size_x, g->skstruct.adjust.size_y, 0);
 			}
 
 			if (g->KeyInput.inputID[KEY_INPUT_UP] == 1) {
-				g->config.play.hiSpeed[0] += 10;
-				if (g->config.play.hiSpeed[0] >= 400) g->config.play.hiSpeed[0] = 400;
+				g->config.play.hiSpeed[PLAYER_1] += 10;
+				if (g->config.play.hiSpeed[PLAYER_1] >= 400) g->config.play.hiSpeed[PLAYER_1] = 400;
 			}
 			else if (g->KeyInput.inputID[KEY_INPUT_DOWN] == 1) {
-				g->config.play.hiSpeed[0] -= 10;
-				if (g->config.play.hiSpeed[0] <= 50) g->config.play.hiSpeed[0] = 50;
+				g->config.play.hiSpeed[PLAYER_1] -= 10;
+				if (g->config.play.hiSpeed[PLAYER_1] <= 50) g->config.play.hiSpeed[PLAYER_1] = 50;
 			}
 
 			if (GetTimeLapse(412, &g->timer1) < 0.0) {
@@ -487,10 +487,10 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 					else if (GetTimeLapse(410, &g->timer1) >= g->skstruct.playstart) {
 						SetTimeLapse(41, &g->timer1);
 						SetTimeLapse(142, &g->timer1);
-						if (g->config.play.gaugeOption[0] == OPTION_GAUGE_HARD || g->config.play.gaugeOption[0] == OPTION_GAUGE_DEATH || g->config.play.gaugeOption[0] == OPTION_GAUGE_PATTCK || g->config.play.gaugeOption[0] == OPTION_GAUGE_GATTACK) {
+						if (g->config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_HARD || g->config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_DEATH || g->config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_PATTACK || g->config.play.gaugeType[PLAYER_1] == OPTION_GAUGE_GATTACK) {
 							SetTimeLapse(44, &g->timer1);
 						}
-						if (g->config.play.gaugeOption[1] == OPTION_GAUGE_HARD || g->config.play.gaugeOption[1] == OPTION_GAUGE_DEATH || g->config.play.gaugeOption[1] == OPTION_GAUGE_PATTCK || g->config.play.gaugeOption[1] == OPTION_GAUGE_GATTACK) {
+						if (g->config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_HARD || g->config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_DEATH || g->config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_PATTACK || g->config.play.gaugeType[PLAYER_2] == OPTION_GAUGE_GATTACK) {
 							SetTimeLapse(45, &g->timer1);
 						}
 						g->gameplay.flag_gameinput = 1;

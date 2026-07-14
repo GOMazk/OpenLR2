@@ -127,61 +127,61 @@ int FxByMIDI(game *g) {
 					break;
 
 				case 10:
-					g->audio.param.fxParam[0][0] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
+					g->audio.param.fxParam[0][PLAYER_1] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
 					change = 1;
 					if (GetTimeLapse(41, &g->timer1) > 0 && g->gameplay.replay.status == 1) {
 						change = 1;
-						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 62, (short)g->audio.param.fxParam[0][0]);
+						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 62, (short)g->audio.param.fxParam[0][PLAYER_1]);
 						g->gameplay.fxChangeInRecording = 1;
 					}
 					break;
 
 				case 11:
-					g->audio.param.fxParam[0][1] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
+					g->audio.param.fxParam[0][PLAYER_2] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
 					change = 1;
 					if (GetTimeLapse(41, &g->timer1) > 0 && g->gameplay.replay.status == 1) {
 						change = 1;
-						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 63, (short)g->audio.param.fxParam[0][1]);
+						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 63, (short)g->audio.param.fxParam[0][PLAYER_2]);
 						g->gameplay.fxChangeInRecording = 1;
 					}
 					break;
 
 				case 12:
-					g->audio.param.fxParam[1][0] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
+					g->audio.param.fxParam[1][PLAYER_1] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
 					change = 1;
 					if (GetTimeLapse(41, &g->timer1) > 0 && g->gameplay.replay.status == 1) {
 						change = 1;
-						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 72, (short)g->audio.param.fxParam[1][0]);
+						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 72, (short)g->audio.param.fxParam[1][PLAYER_1]);
 						g->gameplay.fxChangeInRecording = 1;
 					}
 					break;
 
 				case 13:
-					g->audio.param.fxParam[1][1] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
+					g->audio.param.fxParam[1][PLAYER_2] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
 					change = 1;
 					if (GetTimeLapse(41, &g->timer1) > 0 && g->gameplay.replay.status == 1) {
 						change = 1;
-						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 73, (short)g->audio.param.fxParam[1][1]);
+						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 73, (short)g->audio.param.fxParam[1][PLAYER_2]);
 						g->gameplay.fxChangeInRecording = 1;
 					}
 					break;
 
 				case 14:
-					g->audio.param.fxParam[2][0] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
+					g->audio.param.fxParam[2][PLAYER_1] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
 					change = 1;
 					if (GetTimeLapse(41, &g->timer1) > 0 && g->gameplay.replay.status == 1) {
 						change = 1;
-						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 82, (short)g->audio.param.fxParam[2][0]);
+						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 82, (short)g->audio.param.fxParam[2][PLAYER_1]);
 						g->gameplay.fxChangeInRecording = 1;
 					}
 					break;
 
 				case 15:
-					g->audio.param.fxParam[2][1] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
+					g->audio.param.fxParam[2][PLAYER_2] = ChangeValueByTime(0.0, 100.0, 0.0, 127.0, g->KeyInput.midi_v, 0);
 					change = 1;
 					if (GetTimeLapse(41, &g->timer1) > 0 && g->gameplay.replay.status == 1) {
 						change = 1;
-						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 83, (short)g->audio.param.fxParam[2][1]);
+						AddReplayData(&g->gameplay.replay, GetTimeLapse(41, &g->timer1), 83, (short)g->audio.param.fxParam[2][PLAYER_2]);
 						g->gameplay.fxChangeInRecording = 1;
 					}
 					break;
@@ -199,7 +199,7 @@ int FxByMIDI(game *g) {
 		}
 	}
 
-	if (change) ApplySoundFX(&g->audio, 0, g->config.sound.disabledsp);
+	if (change) ApplySoundFX(&g->audio, 0, g->config.sound.disableDSP);
 	g->KeyInput.midi_n = 0;
 	g->KeyInput.midi_v = 0;
 	return 1;
@@ -212,7 +212,7 @@ int UpdateSoundFX(game *g, int *value, int objectID, int min, int max){
 	tmp = *value;
 	SliderByTime(&g->skstruct.drBuf, &g->skstruct.otherObject[2].src[objectID], &g->skstruct.otherObject[2].dst[objectID], &g->timer1, min, max, value, &g->KeyInput, objectID);
 	if (tmp != *value) {
-		ApplySoundFX(&g->audio, 0, (char)g->config.sound.disabledsp);
+		ApplySoundFX(&g->audio, 0, (char)g->config.sound.disableDSP);
 		return 1;
 	}
 	return 0;
@@ -221,14 +221,14 @@ int UpdateSoundFX(game *g, int *value, int objectID, int min, int max){
 int InitFxParam(game *g, int fxNum){
 
 	if (g->audio.param.fxType[fxNum] == 8 || g->audio.param.fxType[fxNum] != 3) {
-		g->audio.param.fxParam[fxNum][1] = 0;
-		g->audio.param.fxParam[fxNum][0] = 0;
+		g->audio.param.fxParam[fxNum][PLAYER_2] = 0;
+		g->audio.param.fxParam[fxNum][PLAYER_1] = 0;
 	}
 	else {
-		g->audio.param.fxParam[fxNum][0] = 100;
-		g->audio.param.fxParam[fxNum][1] = 0;
+		g->audio.param.fxParam[fxNum][PLAYER_1] = 100;
+		g->audio.param.fxParam[fxNum][PLAYER_2] = 0;
 	}
-	ApplySoundFX(&g->audio, 1, g->config.sound.disabledsp);
+	ApplySoundFX(&g->audio, 1, g->config.sound.disableDSP);
 	return 1;
 }
 
@@ -328,7 +328,7 @@ int ReadLR2SoundSet(game *g, CSTR filepath, char reFlag) {
 	char load_coursefail = 0;
 
 	if (reFlag == 0) ReleaseSysSound(g);
-	if (g->audio.is_fmod_disabled == 0) FMOD_System_Update(g->audio.fmodSys);
+	if (!g->audio.disableFmod) FMOD_System_Update(g->audio.fmodSys);
 
 	CSTR path;
 	cstrSprintf(&path, fs::make_preferred("LR2files/SkinCustomize/%s.xml").data(), MD5str(filepath));
@@ -352,6 +352,7 @@ int ReadLR2SoundSet(game *g, CSTR filepath, char reFlag) {
 	pFbuf = fBuf.outstr();
 	for (pFbuf = fgets(pFbuf, 256, hFile); pFbuf; pFbuf = fgets(pFbuf, 256, hFile)) {
 		fBuf = ansi2utf(pFbuf, 932).c_str();
+		pFbuf = fBuf.outstr();
 		if (*fBuf.atPos(0) == '#') {
 			fBuf.trimWhiteSpace();
 			DealWhiteSpace(&fBuf);
@@ -425,75 +426,75 @@ int ReadLR2SoundSet(game *g, CSTR filepath, char reFlag) {
 
 			adjust_input_filepath(csv.str[1]); // TODO: move up?
 			if (fBuf.left(7).isSame("#SELECT") && !load_select) {
-				LoadSound(&g->audio, &g->audio.sysSound.select, GetRandomFileNoError(csv.str[1], dir), 1, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.select, GetRandomFileNoError(csv.str[1], dir), true, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.select.load) load_select = true;
 			}
 			else if (fBuf.left(12).isSame("#FOLDER_OPEN") && !load_folder_open) {
-				LoadSound(&g->audio, &g->audio.sysSound.folder_open, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.folder_open, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.folder_open.load) load_folder_open = true;
 			}
 			else if (fBuf.left(13).isSame("#FOLDER_CLOSE") && !load_folder_close) {
-				LoadSound(&g->audio, &g->audio.sysSound.folder_close, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.folder_close, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.folder_close.load) load_folder_close = true;
 			}
 			else if (fBuf.left(11).isSame("#PANEL_OPEN") && !load_panel_open) {
-				LoadSound(&g->audio, &g->audio.sysSound.panel_open, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.panel_open, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.panel_open.load) load_panel_open = true;
 			}
 			else if (fBuf.left(12).isSame("#PANEL_CLOSE") && !load_panel_close) {
-				LoadSound(&g->audio, &g->audio.sysSound.panel_close, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.panel_close, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.panel_close.load) load_panel_close = true;
 			}
 			else if (fBuf.left(11).isSame("#SCREENSHOT") && !load_screenshot) {
-				LoadSound(&g->audio, &g->audio.sysSound.screenshot, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.screenshot, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.screenshot.load) load_screenshot = true;
 			}
 			else if (fBuf.left(14).isSame("#OPTION_CHANGE") && !load_option_change) {
-				LoadSound(&g->audio, &g->audio.sysSound.option_change, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.option_change, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.option_change.load) load_option_change = true;
 			}
 			else if (fBuf.left(7).isSame("#DECIDE") && !load_decide) {
-				LoadSound(&g->audio, &g->audio.sysSound.decide, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.decide, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.decide.load) load_decide = true;
 			}
 			else if (fBuf.left(6).isSame("#CLEAR") && !load_clear) {
-				LoadSound(&g->audio, &g->audio.sysSound.clear, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.clear, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.clear.load) load_clear = true;
 			}
 			else if (fBuf.left(5).isSame("#FAIL") && !load_fail) {
-				LoadSound(&g->audio, &g->audio.sysSound.fail, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.fail, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.fail.load) load_fail = true;
 			}
 			else if (fBuf.left(5).isSame("#STOP") && !load_stop) {
-				LoadSound(&g->audio, &g->audio.sysSound.stop, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.stop, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.stop.load) load_stop = true;
 			}
 			else if (fBuf.left(11).isSame("#DIFFICULTY") && !load_difficulty) {
-				LoadSound(&g->audio, &g->audio.sysSound.difficulty, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.difficulty, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.difficulty.load) load_difficulty = true;
 			}
 			else if (fBuf.left(5).isSame("#MINE") && !load_mine) {
-				LoadSound(&g->audio, &g->audio.sysSound.mine, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.mine, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.mine.load) load_mine = true;
 			}
 			else if (fBuf.left(8).isSame("#SCRATCH") && !load_scratch) {
-				LoadSound(&g->audio, &g->audio.sysSound.scratch, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.scratch, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.scratch.load) load_scratch = true;
 			}
 			else if (fBuf.left(9).isSame("#EXSELECT") && !load_exselect) {
-				LoadSound(&g->audio, &g->audio.sysSound.exselect, GetRandomFileNoError(csv.str[1], dir), 1, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.exselect, GetRandomFileNoError(csv.str[1], dir), true, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.exselect.load) load_exselect = true;
 			}
 			else if (fBuf.left(9).isSame("#EXDECIDE") && !load_exdecide) {
-				LoadSound(&g->audio, &g->audio.sysSound.exdecide, GetRandomFileNoError(csv.str[1], dir), 0, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.exdecide, GetRandomFileNoError(csv.str[1], dir), false, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.exdecide.load) load_exdecide = true;
 			}
 			else if (fBuf.left(12).isSame("#COURSECLEAR") && !load_courseclear) {
-				LoadSound(&g->audio, &g->audio.sysSound.courseclear, GetRandomFileNoError(csv.str[1], dir), 1, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.courseclear, GetRandomFileNoError(csv.str[1], dir), true, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.courseclear.load) load_courseclear = true;
 			}
 			else if (fBuf.left(11).isSame("#COURSEFAIL") && !load_coursefail) {
-				LoadSound(&g->audio, &g->audio.sysSound.coursefail, GetRandomFileNoError(csv.str[1], dir), 1, g->config.sound.disabledsp, 0);
+				LoadSound(&g->audio, &g->audio.sysSound.coursefail, GetRandomFileNoError(csv.str[1], dir), true, g->config.sound.disableDSP, false);
 				if (g->audio.sysSound.coursefail.load) load_coursefail = true;
 			}
 			else if (fBuf.left(8).isSame("#INCLUDE")) {

@@ -21,7 +21,7 @@ int skinSizeX, skinSizeY;
 void GetConfigResolution(int counter, int* outX, int* outY) {
 	switch (counter) {
 		case 1:  *outX = 1280; *outY = 720;  break;  // HD
-		case 2:  *outX = 1920; *outY = 1080; break;  // UHD (experimental)
+		case 2:  *outX = 1920; *outY = 1080; break;  // FHD (experimental)
 		default: *outX = 640;  *outY = 480;  break;  // SD
 	}
 }

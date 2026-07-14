@@ -164,3 +164,7 @@
 
 198 AllCourseOptionDefaultConnection
 199 AllCourseOptionDefaultGauge
+
+
+300 scalingFilter
+301 stretch

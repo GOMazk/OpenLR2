@@ -231,6 +231,7 @@ int ParseLR2SkinCustom(SkinManage *skm, CSTR filepath) {
 		buffer.trimWhiteSpace();
 		DealWhiteSpace(&buffer);
 		buffer = ansi2utf(pBuffer, 932).c_str();
+		pBuffer = buffer.outstr();
 		if (buffer.left(12).isSame("#INFORMATION")) {
 			SplitCSV(buffer, &csvBuf, ",");
 			if (csvBuf.val[1] < 0) {

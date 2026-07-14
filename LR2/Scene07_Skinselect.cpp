@@ -18,7 +18,7 @@ int SkinSelect_SoundSet(game *g, CSTR filepath) {
 	ReleaseSound(&g->audio, &g->audio.sysSound.mine);
 	ReleaseSound(&g->audio, &g->audio.sysSound.exdecide);
 	ReleaseSound(&g->audio, &g->audio.sysSound.exselect);
-	if (g->audio.is_fmod_disabled == 0) FMOD_System_Update(g->audio.fmodSys);
+	if (!g->audio.disableFmod) FMOD_System_Update(g->audio.fmodSys);
 	
 	FILE* pFile = fopen(filepath.body, "r");
 	if (pFile == 0) return 0;
@@ -34,6 +34,7 @@ int SkinSelect_SoundSet(game *g, CSTR filepath) {
 		fBuf.trimWhiteSpace();
 		DealWhiteSpace(&fBuf);
 		fBuf = ansi2utf(pFbuf, 932).c_str();
+		pFbuf = fBuf.outstr();
 		if (isdigit(*fBuf.atPos(1)) && isdigit(*fBuf.atPos(2))) {
 
 			int type = atol(fBuf.getSliced(1, 2));
@@ -114,16 +115,16 @@ int ProcI_SkinSelect(game *g) {
 		if (GetTimeLapse(41, &g->timer2) < 0 && GetTimeLapse(40, &g->timer2) > g->skstruct2.playstart)
 			SetTimeLapse(41, &g->timer2);
 
-		if (GetTimeLapse(48, &g->timer2) < 0 && (g->gameplay.player[0].totalnotes == g->gameplay.player[0].note_current))
+		if (GetTimeLapse(48, &g->timer2) < 0 && (g->gameplay.player[PLAYER_1].totalnotes == g->gameplay.player[PLAYER_1].note_current))
 			SetTimeLapse(48, &g->timer2);
-		if (GetTimeLapse(49, &g->timer2) < 0 && (g->gameplay.player[1].totalnotes == g->gameplay.player[1].note_current))
+		if (GetTimeLapse(49, &g->timer2) < 0 && (g->gameplay.player[PLAYER_2].totalnotes == g->gameplay.player[PLAYER_2].note_current))
 			SetTimeLapse(49, &g->timer2);
 	}
 	if (g->skinData.select == 7) {
 		if (GetTimeLapse(0, &g->timer2) > g->skstruct2.startinput_rank && GetTimeLapse(151, &g->timer2) == -1.0) {
 			SetTimeLapse(151, &g->timer2);
-			g->skstruct2.src_GAUGECHART_1P[0].op4 = GetTimeLapse(0, &g->timer2);
-			g->skstruct2.src_GAUGECHART_2P[0].op4 = GetTimeLapse(0, &g->timer2);
+			g->skstruct2.src_GAUGECHART[PLAYER_1][0].op4 = GetTimeLapse(0, &g->timer2);
+			g->skstruct2.src_GAUGECHART[PLAYER_2][0].op4 = GetTimeLapse(0, &g->timer2);
 			g->skstruct2.src_SCORECHART[0].op4 = GetTimeLapse(0, &g->timer2);
 			g->skstruct2.src_SCORECHART[1].op4 = GetTimeLapse(0, &g->timer2);
 			g->skstruct2.src_SCORECHART[2].op4 = GetTimeLapse(0, &g->timer2);
@@ -165,21 +166,21 @@ int ProcI_SkinSelect(game *g) {
 	}
 
 	if (g->skinData.select <= 4 || g->skinData.select == 12 || g->skinData.select == 13) {
-		for (int i = 0; i < 2; i++) {
-			if (g->gameplay.isCourse == 0 && (g->config.play.gaugeOption[i] == OPTION_GAUGE_GROOVE || g->config.play.gaugeOption[i] == OPTION_GAUGE_EASY)) 
-				AddDrawingBuffer_Gauge(&g->skstruct2.drBuf, &g->skstruct2.src_GROOVEGAUGE[i], &g->skstruct2.dst_GROOVEGAUGE[i], &g->timer2, (int)g->gameplay.player[i].HP_print / 2, 0);
+		for (int p : { PLAYER_1, PLAYER_2 }) {
+			if (g->gameplay.isCourse == 0 && (g->config.play.gaugeType[p] == OPTION_GAUGE_GROOVE || g->config.play.gaugeType[p] == OPTION_GAUGE_EASY))
+				AddDrawingBuffer_Gauge(&g->skstruct2.drBuf, &g->skstruct2.src_GROOVEGAUGE[p], &g->skstruct2.dst_GROOVEGAUGE[p], &g->timer2, (int)g->gameplay.player[p].HP_print / 2, 0);
 			else
-				AddDrawingBuffer_Gauge(&g->skstruct2.drBuf, &g->skstruct2.src_GROOVEGAUGE[i], &g->skstruct2.dst_GROOVEGAUGE[i], &g->timer2, (int)g->gameplay.player[i].HP_print / 2, 1);
+				AddDrawingBuffer_Gauge(&g->skstruct2.drBuf, &g->skstruct2.src_GROOVEGAUGE[p], &g->skstruct2.dst_GROOVEGAUGE[p], &g->timer2, (int)g->gameplay.player[p].HP_print / 2, 1);
 		}
 		if (GetTimeLapse(41, &g->timer2) > 0.0) {
 			DrawNotes(g, &g->skstruct2, &g->timer2, &g->config.play);
 			DrawJudgeCombo(g, &g->skstruct2, &g->timer2, &g->config.play);
 		}
 		if (g->skstruct2.dst_JUDGELINE[0].dstCount > 0) {
-			AddDrawingBuffer_PlayArea(&g->skstruct2.drBuf, &g->skstruct2.src_JUDGELINE[0], &g->skstruct2.dst_JUDGELINE[0], &g->timer2, g->skstruct2.adjust.note_1p_x + g->gameplay.nabeatsu_x, g->skstruct2.adjust.note_1p_y + g->gameplay.nabeatsu_y, -1, g->skstruct2.adjust.size_x, g->skstruct2.adjust.size_y, 1);
+			AddDrawingBuffer_PlayArea(&g->skstruct2.drBuf, &g->skstruct2.src_JUDGELINE[PLAYER_1], &g->skstruct2.dst_JUDGELINE[0], &g->timer2, g->skstruct2.adjust.note_x[PLAYER_1] + g->gameplay.nabeatsu_x, g->skstruct2.adjust.note_y[PLAYER_1] + g->gameplay.nabeatsu_y, -1, g->skstruct2.adjust.size_x, g->skstruct2.adjust.size_y, 1);
 		}
 		if (g->skstruct2.dst_JUDGELINE[1].dstCount > 0) {
-			AddDrawingBuffer_PlayArea(&g->skstruct2.drBuf, &g->skstruct2.src_JUDGELINE[1], &g->skstruct2.dst_JUDGELINE[1], &g->timer2, g->skstruct2.adjust.note_2p_x + g->gameplay.nabeatsu_x, g->skstruct2.adjust.note_2p_y + g->gameplay.nabeatsu_y, -1, g->skstruct2.adjust.size_x, g->skstruct2.adjust.size_y, 1);
+			AddDrawingBuffer_PlayArea(&g->skstruct2.drBuf, &g->skstruct2.src_JUDGELINE[PLAYER_2], &g->skstruct2.dst_JUDGELINE[1], &g->timer2, g->skstruct2.adjust.note_x[PLAYER_2] + g->gameplay.nabeatsu_x, g->skstruct2.adjust.note_y[PLAYER_2] + g->gameplay.nabeatsu_y, -1, g->skstruct2.adjust.size_x, g->skstruct2.adjust.size_y, 1);
 		}
 		if (GetTimeLapse(41, &g->timer2) >= 0.0 && g->config.play.bga) {
 			for (int i = 0; i < g->skstruct2.otherObject[4].srcSize; i++) {
@@ -241,7 +242,7 @@ int ProcI_SkinSelect(game *g) {
 					else if (g->config.play.battle == OPTION_BATTLE_SP2DP) {
 						AddDrawingBuffer_Object(&g->skstruct2.drBuf, &g->skstruct2.src_BAR_LAMP[g->sSelect.bmsList[sBar].mybest.clear_sd], &g->skstruct2.dst_BAR_LAMP[g->sSelect.bmsList[sBar].mybest.clear_sd], &g->timer2, dstd3.x, dstd3.y);
 					}
-					else if (g->config.play.is_extra == 1) {
+					else if (g->config.play.m_isExtra) {
 						AddDrawingBuffer_Object(&g->skstruct2.drBuf, &g->skstruct2.src_BAR_LAMP[g->sSelect.bmsList[sBar].mybest.clear_ex], &g->skstruct2.dst_BAR_LAMP[g->sSelect.bmsList[sBar].mybest.clear_ex], &g->timer2, dstd3.x, dstd3.y);
 					}
 					else {
@@ -404,9 +405,9 @@ int PlayPreviewSample(game *g) {
 
 	g->gameplay.bgaLayer1 = 1;
 	if (g->skinData.select == 7) {
-		g->gameplay.player[0].clearType = (GetRand(1) == 0) ? 5 : 1;
-		g->gameplay.player[1].clearType = g->gameplay.player[0].clearType;
-		for (int p = 0; p < 2; p++) {
+		g->gameplay.player[PLAYER_1].clearType = (GetRand(1) == 0) ? 5 : 1;
+		g->gameplay.player[PLAYER_2].clearType = g->gameplay.player[PLAYER_1].clearType;
+		for (int p : { PLAYER_1, PLAYER_2 }) {
 			g->gameplay.player[p].rate = 100.0;
 			g->gameplay.player[p].totalnotes = 1000;
 			g->gameplay.player[p].max_combo = 1000;
@@ -421,8 +422,8 @@ int PlayPreviewSample(game *g) {
 					g->gameplay.statgraph[p].hp[gauge][i] = (100 * i) / 1000;
 				}
 				if (p == 0) {
-					g->gameplay.rategraph[0].val[i] = g->gameplay.statgraph[0].exscore[0] * 7 / 8;
-					g->gameplay.rategraph[1].val[i] = g->gameplay.statgraph[0].exscore[0] * 6 / 8;
+					g->gameplay.rategraph[0].val[i] = g->gameplay.statgraph[PLAYER_1].exscore[0] * 7 / 8;
+					g->gameplay.rategraph[1].val[i] = g->gameplay.statgraph[PLAYER_1].exscore[0] * 6 / 8;
 				}
 			}
 

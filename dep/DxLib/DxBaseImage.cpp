@@ -2937,6 +2937,7 @@ static int LoadBmpImage( STREAMDATA *Stream, BASEIMAGE *BaseImage, int GetFormat
 	if( sstr->Read( &BmpFileHeader, sizeof( BmpFileHeader ), 1, sp ) <= 0 ) goto ERR ;		// ファイルヘッダー部分を読みこむ
 	if( _MEMCMP( &BmpFileHeader.bfType, "BM", 2 ) ) goto ERR ;								// ＩＤ検査
 	if( sstr->Read( &BmpInfoT, sizeof( BITMAPINFO ), 1, sp ) <= 0 ) goto ERR ;				// BITMAPINFOを読みこむ
+	if (BmpInfoT.bmiHeader.biSize < sizeof(BITMAPINFO) - sizeof(BmpInfoT.bmiHeader.biSize)) goto ERR; // DxLib does not support other bitmap formats, like one using BITMAPCOREINFO.
 
 	// カラービット数が８以下の時はパレットを読む
 	if( BmpInfoT.bmiHeader.biBitCount <= 8 )

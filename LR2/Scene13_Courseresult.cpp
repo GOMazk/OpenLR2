@@ -13,25 +13,25 @@ int ProcS_subCourseResult(game *g, sqlite3 *sql) {
 	memcpy(&g->sSelect.old, &g->sSelect.bmsList[g->sSelect.cur_song].mybest, sizeof(STATUS));
 	
 	g->gameplay.playerstat.playcount++;
-	if (g->gameplay.player[0].clearType >= 2) g->gameplay.playerstat.clear++;
+	if (g->gameplay.player[PLAYER_1].clearType >= 2) g->gameplay.playerstat.clear++;
 	else g->gameplay.playerstat.fail++;
 
 	g->gameplay.playerstat.playtime += GetTimeLapse(41, &g->timer1);
 
 	if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes == 0) {
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes = g->gameplay.player[0].totalnotes;
-		if (g->gameplay.player[0].totalnotes > 0) {
-			g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = g->gameplay.player[0].exscore * 9 / (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes * 2);
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes = g->gameplay.player[PLAYER_1].totalnotes;
+		if (g->gameplay.player[PLAYER_1].totalnotes > 0) {
+			g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = g->gameplay.player[PLAYER_1].exscore * 9 / (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes * 2);
 
 			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank > 8) g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = 8;
-			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank < 1 && g->gameplay.player[0].exscore > 0) g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = 1;
+			if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank < 1 && g->gameplay.player[PLAYER_1].exscore > 0) g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = 1;
 		}
 	}
 
-	if (g->gameplay.player[0].totalnotes <= g->gameplay.player[0].note_current) g->sSelect.bmsList[g->sSelect.cur_song].mybest.complete = 1;
+	if (g->gameplay.player[PLAYER_1].totalnotes <= g->gameplay.player[PLAYER_1].note_current) g->sSelect.bmsList[g->sSelect.cur_song].mybest.complete = 1;
 
-	if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear < g->gameplay.player[0].clearType) {
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear = g->gameplay.player[0].clearType;
+	if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear < g->gameplay.player[PLAYER_1].clearType) {
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear = g->gameplay.player[PLAYER_1].clearType;
 		int diff = g->sSelect.bmsList[g->sSelect.cur_song].difficulty;
 		if (0 < diff && diff <= 5) {
 			g->sSelect.bmsList[g->sSelect.cur_song].difficultyLevelBarLamp[diff-1] = g->sSelect.bmsList[g->sSelect.cur_song].mybest.clear;
@@ -39,17 +39,17 @@ int ProcS_subCourseResult(game *g, sqlite3 *sql) {
 		
 	}
 	
-	if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great + g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat * 2 < g->gameplay.player[0].exscore) {
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes = g->gameplay.player[0].totalnotes;
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat = g->gameplay.player[0].judgecount[5];
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great = g->gameplay.player[0].judgecount[4];
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_good = g->gameplay.player[0].judgecount[3];
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_bad = g->gameplay.player[0].judgecount[2];
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_poor = g->gameplay.player[0].judgecount[1];
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_score = g->gameplay.player[0].score;
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore = g->gameplay.player[0].exscore;
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.rate = (g->gameplay.player[0].exscore * 100) / (g->gameplay.player[0].totalnotes * 2);
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = (g->gameplay.player[0].exscore * 9) / (g->gameplay.player[0].totalnotes * 2);
+	if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great + g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat * 2 < g->gameplay.player[PLAYER_1].exscore) {
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes = g->gameplay.player[PLAYER_1].totalnotes;
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_pgreat = g->gameplay.player[PLAYER_1].judgecount[5];
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_great = g->gameplay.player[PLAYER_1].judgecount[4];
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_good = g->gameplay.player[PLAYER_1].judgecount[3];
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_bad = g->gameplay.player[PLAYER_1].judgecount[2];
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_poor = g->gameplay.player[PLAYER_1].judgecount[1];
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_score = g->gameplay.player[PLAYER_1].score;
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_exscore = g->gameplay.player[PLAYER_1].exscore;
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.rate = (g->gameplay.player[PLAYER_1].exscore * 100) / (g->gameplay.player[PLAYER_1].totalnotes * 2);
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank = (g->gameplay.player[PLAYER_1].exscore * 9) / (g->gameplay.player[PLAYER_1].totalnotes * 2);
 
 
 		if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.rank > 8)
@@ -60,29 +60,29 @@ int ProcS_subCourseResult(game *g, sqlite3 *sql) {
 		g->sSelect.bmsList[g->sSelect.cur_song].mybest.rseed = g->gameplay.randomseed;
 
 		if (g->sSelect.bmsList[g->sSelect.cur_song].keymode < 10) {
-			g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best = g->gameplay.player[0].gaugeType + g->config.play.random[0] * 10;
+			g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best = g->gameplay.player[PLAYER_1].gaugeType + g->config.play.random[PLAYER_1] * 10;
 		}
 		else {
-			g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best = g->gameplay.player[0].gaugeType + g->config.play.random[0] * 10 + g->config.play.random[1] * 100 + g->config.play.dpflip * 1000;
+			g->sSelect.bmsList[g->sSelect.cur_song].mybest.op_best = g->gameplay.player[PLAYER_1].gaugeType + g->config.play.random[PLAYER_1] * 10 + g->config.play.random[PLAYER_2] * 100 + (int)g->config.play.dpFlip * 1000;
 		}
 	}
 
-	if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo < g->gameplay.player[0].max_combo)
-		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo = g->gameplay.player[0].max_combo;
+	if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo < g->gameplay.player[PLAYER_1].max_combo)
+		g->sSelect.bmsList[g->sSelect.cur_song].mybest.stat_maxcombo = g->gameplay.player[PLAYER_1].max_combo;
 
-	if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes == g->gameplay.player[0].note_current) {
-		if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp == -1 || g->gameplay.player[0].judgecount[2] + g->gameplay.player[0].judgecount[1] < g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp) {
-			g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp = g->gameplay.player[0].judgecount[2] + g->gameplay.player[0].judgecount[1];
+	if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes == g->gameplay.player[PLAYER_1].note_current) {
+		if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp == -1 || g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1] < g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp) {
+			g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp = g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1];
 		}
 	}
 	else {
-		if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp == -1 || g->gameplay.player[0].judgecount[2] + g->gameplay.player[0].judgecount[1] + (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes - g->gameplay.player[0].note_current) < g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp) {
-			g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp = g->gameplay.player[0].judgecount[2] + g->gameplay.player[0].judgecount[1] + (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes - g->gameplay.player[0].note_current);
+		if (g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp == -1 || g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1] + (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes - g->gameplay.player[PLAYER_1].note_current) < g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp) {
+			g->sSelect.bmsList[g->sSelect.cur_song].mybest.minbp = g->gameplay.player[PLAYER_1].judgecount[2] + g->gameplay.player[PLAYER_1].judgecount[1] + (g->sSelect.bmsList[g->sSelect.cur_song].mybest.total_notes - g->gameplay.player[PLAYER_1].note_current);
 		}
 	}
 
 	g->sSelect.bmsList[g->sSelect.cur_song].mybest.playcount++;
-	if (g->gameplay.player[0].clearType >= 2)
+	if (g->gameplay.player[PLAYER_1].clearType >= 2)
 		g->sSelect.bmsList[g->sSelect.cur_song].mybest.clearcount++;
 	else
 		g->sSelect.bmsList[g->sSelect.cur_song].mybest.failcount++;
@@ -170,14 +170,15 @@ int ProcS_CourseResult(game *g, sqlite3 *sql) {
 	PlayerCheckAndSwap(&g->gameplay);
 	CheckCourseClear(g);
 	ProcS_subCourseResult(g, sql);
-	g->net.customIR.BeginResultIr(*g, sql, 0, /*ghost=*/"");
+	if(g->gameplay.replay.status != 2)
+		g->net.customIR.BeginResultIr(*g, sql, 0, /*ghost=*/"");
 	LoadSceneG(g, &g->skstruct, SKINTYPE_COURSERESULT);
 	
 	if (g->skstruct.flag_flip) {
 		FlipScore(g);
 	}
 
-	if ((g->gameplay).player[0].clearType > 1) 
+	if ((g->gameplay).player[PLAYER_1].clearType > 1) 
 		PlaySound(&g->audio, &g->audio.sysSound.courseclear, g->audio.chnBgm, -1); 
 	else 
 		PlaySound(&g->audio, &g->audio.sysSound.coursefail, g->audio.chnBgm, -1);

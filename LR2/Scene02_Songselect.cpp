@@ -108,7 +108,7 @@ int Print_ManiacOptions(game *g) {
 		switch (pg_cursor) {
 			case 0:
 				printfDx("HIDDEN/SUDDEN(1P)   ");
-				pOpVal = &g->config.play.m_HIDSUD1;
+				pOpVal = &g->config.play.m_HIDSUD[PLAYER_1];
 				if (*pOpVal == 0) printfDx("OFF");
 				if (*pOpVal == 1) printfDx("HIDDEN");
 				if (*pOpVal == 2) printfDx("SUDDEN");
@@ -122,7 +122,7 @@ int Print_ManiacOptions(game *g) {
 
 			case 1:
 				printfDx("HIDDEN/SUDDEN(2P)   ");
-				pOpVal = &g->config.play.m_HIDSUD2;
+				pOpVal = &g->config.play.m_HIDSUD[PLAYER_2];
 				if (*pOpVal == 0) printfDx("OFF");
 				if (*pOpVal == 1) printfDx("HIDDEN");
 				if (*pOpVal == 2) printfDx("SUDDEN");
@@ -401,22 +401,23 @@ int Print_ManiacOptions(game *g) {
 				break;
 			case 20:
 				printfDx("LUNARIS             ");
-				if (g->config.play.m_lunaris == 0) printfDx("OFF");
-				if (g->config.play.m_lunaris == 1) printfDx("ON");
+				if (g->config.play.m_isLunaris) printfDx("ON");
+				else							printfDx("OFF");
 
 				if (g->sSelect.maniac_cursor == 20) {
-					if (g->KeyInput.inputID[KEY_INPUT_LEFT] == 1) g->config.play.m_lunaris = g->config.play.m_lunaris == 0;
-					if (g->KeyInput.inputID[KEY_INPUT_RIGHT] == 1) g->config.play.m_lunaris = g->config.play.m_lunaris == 0;
+					if (g->KeyInput.inputID[KEY_INPUT_LEFT] == 1) g->config.play.m_isLunaris = !g->config.play.m_isLunaris;
+					if (g->KeyInput.inputID[KEY_INPUT_RIGHT] == 1) g->config.play.m_isLunaris = !g->config.play.m_isLunaris;
 				}
 				break;
 			case 21:
 				printfDx("GAUGE AUTO SHIFT    ");
-				if (g->config.play.m_gas == 0) printfDx("OFF");
-				if (g->config.play.m_gas == 1) printfDx("ON");
+				if (g->config.play.m_gas) printfDx("ON");
+				else					  printfDx("OFF");
+				
 
 				if (g->sSelect.maniac_cursor == 21) {
-					if (g->KeyInput.inputID[KEY_INPUT_LEFT] == 1) g->config.play.m_gas = g->config.play.m_gas == 0;
-					if (g->KeyInput.inputID[KEY_INPUT_RIGHT] == 1) g->config.play.m_gas = g->config.play.m_gas == 0;
+					if (g->KeyInput.inputID[KEY_INPUT_LEFT] == 1) g->config.play.m_gas = !g->config.play.m_gas;
+					if (g->KeyInput.inputID[KEY_INPUT_RIGHT] == 1) g->config.play.m_gas = !g->config.play.m_gas;
 				}
 				break;
 			default:
@@ -431,15 +432,15 @@ int Print_ManiacOptions(game *g) {
 	switch (g->sSelect.maniac_cursor) {
 	case 0:
 		printfDx("譜面の一部を隠すオプションです。旧バージョンの名残で左右別に設定できます。\n");
-		if(g->config.play.m_HIDSUD1 == 1) printfDx("譜面の下半分が見えなくなります。\n");
-		else if (g->config.play.m_HIDSUD1 == 2) printfDx("譜面の上半分が見えなくなります。\n");
-		else if (g->config.play.m_HIDSUD1 == 3) printfDx("譜面は一瞬しか見えなくなります。\n");
+		if(g->config.play.m_HIDSUD[PLAYER_1] == 1) printfDx("譜面の下半分が見えなくなります。\n");
+		else if (g->config.play.m_HIDSUD[PLAYER_1] == 2) printfDx("譜面の上半分が見えなくなります。\n");
+		else if (g->config.play.m_HIDSUD[PLAYER_1] == 3) printfDx("譜面は一瞬しか見えなくなります。\n");
 		break;
 	case 1:
 		printfDx("譜面の一部を隠すオプションです。こちらは2P側。\n");
-		if (g->config.play.m_HIDSUD2 == 1) printfDx("譜面の下半分が見えなくなります。\n");
-		else if (g->config.play.m_HIDSUD2 == 2) printfDx("譜面の上半分が見えなくなります。\n");
-		else if (g->config.play.m_HIDSUD2 == 3) printfDx("譜面は一瞬しか見えなくなります。\n");
+		if (g->config.play.m_HIDSUD[PLAYER_2] == 1) printfDx("譜面の下半分が見えなくなります。\n");
+		else if (g->config.play.m_HIDSUD[PLAYER_2] == 2) printfDx("譜面の上半分が見えなくなります。\n");
+		else if (g->config.play.m_HIDSUD[PLAYER_2] == 3) printfDx("譜面は一瞬しか見えなくなります。\n");
 		break;
 	case 2:
 		printfDx("EXTRA MODEの難度を上昇させることができます。\n");
@@ -651,6 +652,7 @@ int ShowReadmes(game *g) {
 		char* pFbuf = fBuf.outstr();
 		for (pFbuf = fgets(pFbuf, 2048, pFile); pFbuf; pFbuf = fgets(pFbuf, 2048, pFile)) {
 			fBuf = ansi2utf(fBuf.body, 932).c_str();
+			pFbuf = fBuf.outstr();
 			DealWhiteSpace(&fBuf);
 			g->txtStruct.readme.body[g->txtStruct.readme.lines] = fBuf;
 			g->txtStruct.readme.lines++;
@@ -697,6 +699,7 @@ int ShowReadme(game *g, CSTR path) {
 		pFbuf = fBuf.outstr();
 		for (pFbuf = fgets(pFbuf, 0x3FC, pFile); pFbuf; pFbuf = fgets(pFbuf, 0x3FC, pFile)) {
 			fBuf = ansi2utf(pFbuf, 932).c_str();
+			pFbuf = fBuf.outstr();
 			g->txtStruct.readme.body[g->txtStruct.readme.lines] = fBuf;
 			g->txtStruct.readme.lines++;
 			int len = GetTextGraphLength(&fBuf, &g->skstruct.ImageFonts[g->skstruct.src_README[0].cycle]);
@@ -966,14 +969,14 @@ int SetObjectStrings_SongSelect(game *g) {
 	SetObjectString(60, g->txtStruct.option_str[0].str[g->config.select.key], g->txtStruct.objectStr);
 	SetObjectString(61, g->txtStruct.option_str[1].str[g->config.select.key], g->txtStruct.objectStr);
 	SetObjectString(62, g->txtStruct.option_str[2].str[g->config.select.difficulty], g->txtStruct.objectStr);
-	SetObjectString(63, g->txtStruct.option_str[4].str[g->config.play.random[0]], g->txtStruct.objectStr);
-	SetObjectString(64, g->txtStruct.option_str[4].str[g->config.play.random[1]], g->txtStruct.objectStr);
-	SetObjectString(65, g->txtStruct.option_str[3].str[g->config.play.gaugeOption[0]], g->txtStruct.objectStr);
-	SetObjectString(66, g->txtStruct.option_str[3].str[g->config.play.gaugeOption[1]], g->txtStruct.objectStr);
-	SetObjectString(67, g->txtStruct.option_str[19].str[g->config.play.p1_assist], g->txtStruct.objectStr);
-	SetObjectString(68, g->txtStruct.option_str[19].str[g->config.play.p2_assist], g->txtStruct.objectStr);
-	SetObjectString(84, g->txtStruct.option_str[5].str[g->config.play.m_HIDSUD1], g->txtStruct.objectStr);
-	SetObjectString(85, g->txtStruct.option_str[5].str[g->config.play.m_HIDSUD2], g->txtStruct.objectStr);
+	SetObjectString(63, g->txtStruct.option_str[4].str[g->config.play.random[PLAYER_1]], g->txtStruct.objectStr);
+	SetObjectString(64, g->txtStruct.option_str[4].str[g->config.play.random[PLAYER_2]], g->txtStruct.objectStr);
+	SetObjectString(65, g->txtStruct.option_str[3].str[g->config.play.gaugeType[PLAYER_1]], g->txtStruct.objectStr);
+	SetObjectString(66, g->txtStruct.option_str[3].str[g->config.play.gaugeType[PLAYER_2]], g->txtStruct.objectStr);
+	SetObjectString(67, g->txtStruct.option_str[19].str[g->config.play.assist[PLAYER_1]], g->txtStruct.objectStr);
+	SetObjectString(68, g->txtStruct.option_str[19].str[g->config.play.assist[PLAYER_2]], g->txtStruct.objectStr);
+	SetObjectString(84, g->txtStruct.option_str[5].str[g->config.play.m_HIDSUD[PLAYER_1]], g->txtStruct.objectStr);
+	SetObjectString(85, g->txtStruct.option_str[5].str[g->config.play.m_HIDSUD[PLAYER_2]], g->txtStruct.objectStr);
 
 	if (g->config.play.battle == OPTION_BATTLE_OFF) {
 		SetObjectString(69, g->txtStruct.option_str[7].str[0], g->txtStruct.objectStr);
@@ -1011,12 +1014,11 @@ int SetObjectStrings_SongSelect(game *g) {
 			SetObjectString(69, g->txtStruct.option_str[7].str[4], g->txtStruct.objectStr);
 	}
 
-	SetObjectString(70, g->txtStruct.option_str[6].str[g->config.play.dpflip], g->txtStruct.objectStr);
-	SetObjectString(71, g->txtStruct.option_str[16].str[g->config.play.scoregraph], g->txtStruct.objectStr);
+	SetObjectString(70, g->txtStruct.option_str[6].str[(int)g->config.play.dpFlip], g->txtStruct.objectStr);
+	SetObjectString(71, g->txtStruct.option_str[16].str[(int)g->config.play.scoreGraph], g->txtStruct.objectStr);
 	SetObjectString(72, g->txtStruct.option_str[14].str[g->config.play.play_ghost], g->txtStruct.objectStr);
-	SetObjectString(73, g->txtStruct.option_str[15].str[g->config.play.p1_lanecover], g->txtStruct.objectStr);
-	if (g->txtStruct.option_str[10].count <= g->config.play.hsfix) SetObjectString(74, HSFIXSTRINGS[g->config.play.hsfix], g->txtStruct.objectStr);
-	else SetObjectString(74, g->txtStruct.option_str[10].str[g->config.play.hsfix], g->txtStruct.objectStr);
+	SetObjectString(73, g->txtStruct.option_str[15].str[g->config.play.lanecover[PLAYER_1]], g->txtStruct.objectStr);
+	SetObjectString(74, g->txtStruct.option_str[10].str[g->config.play.hsfix], g->txtStruct.objectStr);
 	SetObjectString(76, g->txtStruct.option_str[9].str[g->config.play.bga], g->txtStruct.objectStr);
 	SetObjectString(75, g->txtStruct.option_str[8].str[g->config.play.bgasize], g->txtStruct.objectStr);
 	SetObjectString(77, g->txtStruct.option_str[13].str[g->config.system.highcolor], g->txtStruct.objectStr);
@@ -1096,6 +1098,9 @@ int SetObjectStrings_SongSelect(game *g) {
 	}
 
 	SetObjectString(199, g->txtStruct.option_str[22].str[g->config.course.defaultgauge], g->txtStruct.objectStr);
+
+	SetObjectString(300, g->txtStruct.option_fullscreenfilter[g->config.system.fullscreenfilter].c_str(), g->txtStruct.objectStr);
+	SetObjectString(301, g->txtStruct.option_fullscreenfitstretch[g->config.system.fullscreenfitstretch ? 1 : 0].c_str(), g->txtStruct.objectStr);
 
 	return 1;
 }
@@ -1323,12 +1328,12 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 	if (g->sSelect.fExtraCmdDone == 0 && (g->KeyInput.p1_buttonInput[2] == 2 || g->KeyInput.p2_buttonInput[2] == 2)) {
 		if (GetTimeLapse(102, &g->timer1) >= 1000 || GetTimeLapse(112, &g->timer1) >= 1000) {
 
-			LoopInRange(0, 1, 1, &g->config.play.is_extra);
+			g->config.play.m_isExtra = !g->config.play.m_isExtra;
 			PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 			g->sSelect.fExtraCmdDone = 1;
 
 			if (g->audio.sysSound.exselect.load) {
-				if (g->config.play.is_extra) {
+				if (g->config.play.m_isExtra) {
 					StopSound(&g->audio, &g->audio.sysSound.select);
 					PlaySound(&g->audio, &g->audio.sysSound.exselect, g->audio.chnBgm, -1);
 				}
@@ -1349,14 +1354,14 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 		int k = g->config.select.key;
 		if (k == 4 || k == 5 || k == 6 || (g->config.play.battle && k != OPTION_BATTLE_GBATTLE)) {
 			if (g->KeyInput.p1_buttonInput[2] == 1) {
-				LoopInRange(OPTION_RANDOM_OFF, OPTION_RANDOM_END, 1, &g->config.play.random[0]);
+				LoopInRange(OPTION_RANDOM_OFF, OPTION_RANDOM_END, 1, &g->config.play.random[PLAYER_1]);
 			}
 			else if (g->KeyInput.p2_buttonInput[2] == 1) {
-				LoopInRange(OPTION_RANDOM_OFF, OPTION_RANDOM_END, 1, &g->config.play.random[1]);
+				LoopInRange(OPTION_RANDOM_OFF, OPTION_RANDOM_END, 1, &g->config.play.random[PLAYER_2]);
 			}
 		}
 		else {
-			LoopInRange(OPTION_RANDOM_OFF, OPTION_RANDOM_END, 1, &g->config.play.random[0]);
+			LoopInRange(OPTION_RANDOM_OFF, OPTION_RANDOM_END, 1, &g->config.play.random[PLAYER_1]);
 		}
 		SetObjectStrings_SongSelect(g);
 	}
@@ -1364,7 +1369,7 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 		int k = g->config.select.key;
 		if (k == 4 || k == 5 || k == 6) {
-			LoopInRange(0, 1, 1, &g->config.play.dpflip);
+			g->config.play.dpFlip = !g->config.play.dpFlip;
 		}
 		else {
 			LoopInRange(0, 4, 1, &g->config.play.battle);
@@ -1374,10 +1379,10 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 	if (g->KeyInput.p1_buttonInput[4] == 1 || g->KeyInput.p2_buttonInput[4] == 1) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 		if (g->config.play.battle == OPTION_BATTLE_BATTLE && g->KeyInput.p1_buttonInput[4] != 1) {
-			LoopInRange(OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, 1, &g->config.play.gaugeOption[1]);
+			LoopInRange(OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, 1, &g->config.play.gaugeType[PLAYER_2]);
 		}
 		else {
-			LoopInRange(OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, 1, &g->config.play.gaugeOption[0]);
+			LoopInRange(OPTION_GAUGE_GROOVE, OPTION_GAUGE_END, 1, &g->config.play.gaugeType[PLAYER_1]);
 		}
 		SetObjectStrings_SongSelect(g);
 	}
@@ -1386,66 +1391,66 @@ int SetPlayOption(game *g, sqlite3 *sql) {
 		int k = g->config.select.key;
 		if (k == 4 || k == 5 || k == 6 || (g->config.play.battle && k != 4)) {
 			if (g->KeyInput.p1_buttonInput[6] == 1) {
-				LoopInRange(0, 1, 1, &g->config.play.p1_assist);
+				LoopInRange(0, 1, 1, &g->config.play.assist[PLAYER_1]);
 			}
 			else if (g->KeyInput.p2_buttonInput[6] == 1) {
-				LoopInRange(0, 1, 1, &g->config.play.p2_assist);
+				LoopInRange(0, 1, 1, &g->config.play.assist[PLAYER_2]);
 			}
 		}
 		else {
-			LoopInRange(0, 1, 1, &g->config.play.p1_assist);
-			g->config.play.p2_assist = g->config.play.p1_assist;
+			LoopInRange(0, 1, 1, &g->config.play.assist[PLAYER_1]);
+			g->config.play.assist[PLAYER_2] = g->config.play.assist[PLAYER_1];
 		}
 		SetObjectStrings_SongSelect(g);
 
 	}
 	if ((g->KeyInput.p1_buttonInput[6] == 1 && g->KeyInput.p1_buttonInput[7] == 2) || (g->KeyInput.p1_buttonInput[7] == 1 && g->KeyInput.p1_buttonInput[6] == 2)) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
-		LoopInRange(0, 3, -1, &g->config.play.m_HIDSUD1);
+		LoopInRange(0, 3, -1, &g->config.play.m_HIDSUD[PLAYER_1]);
 		SetObjectStrings_SongSelect(g);
-		g->config.play.m_HIDSUD2 = g->config.play.m_HIDSUD1;
+		g->config.play.m_HIDSUD[PLAYER_2] = g->config.play.m_HIDSUD[PLAYER_1];
 
 	}
 	if ((g->KeyInput.p2_buttonInput[6] == 1 && g->KeyInput.p2_buttonInput[7] == 2) || (g->KeyInput.p2_buttonInput[7] == 1 && g->KeyInput.p2_buttonInput[6] == 2)) {
 		if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 			PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
-			LoopInRange(0, 3, 1, &g->config.play.m_HIDSUD2);
+			LoopInRange(0, 3, 1, &g->config.play.m_HIDSUD[PLAYER_2]);
 			SetObjectStrings_SongSelect(g);
 		}
 		else {
 			PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
-			LoopInRange(0, 3, 1, &g->config.play.m_HIDSUD1);
+			LoopInRange(0, 3, 1, &g->config.play.m_HIDSUD[PLAYER_1]);
 			SetObjectStrings_SongSelect(g);
-			g->config.play.m_HIDSUD2 = g->config.play.m_HIDSUD1;
+			g->config.play.m_HIDSUD[PLAYER_2] = g->config.play.m_HIDSUD[PLAYER_1];
 		}
 	}
 	if (g->KeyInput.p1_buttonInput[5] == 1 && g->KeyInput.p1_buttonInput[7] == 0 && g->KeyInput.p1_buttonInput[6] == 0) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
-		LoopInRange(g->config.play.hsmin, g->config.play.hsmax, -g->config.play.hsmargin, &g->config.play.hiSpeed[0]);
+		LoopInRange(g->config.play.hsmin, g->config.play.hsmax, -g->config.play.hsmargin, &g->config.play.hiSpeed[PLAYER_1]);
 		SetObjectStrings_SongSelect(g);
 	}
 	if (g->KeyInput.p1_buttonInput[7] == 1 && g->KeyInput.p1_buttonInput[5] == 0 && g->KeyInput.p1_buttonInput[6] == 0) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
-		LoopInRange(g->config.play.hsmin, g->config.play.hsmax, g->config.play.hsmargin, &g->config.play.hiSpeed[0]);
+		LoopInRange(g->config.play.hsmin, g->config.play.hsmax, g->config.play.hsmargin, &g->config.play.hiSpeed[PLAYER_1]);
 		SetObjectStrings_SongSelect(g);
 	}
 	if (g->KeyInput.p2_buttonInput[5] == 1 && g->KeyInput.p2_buttonInput[7] == 0 && g->KeyInput.p2_buttonInput[6] == 0) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 		if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
-			LoopInRange(g->config.play.hsmin, g->config.play.hsmax, -g->config.play.hsmargin, &g->config.play.hiSpeed[1]);
+			LoopInRange(g->config.play.hsmin, g->config.play.hsmax, -g->config.play.hsmargin, &g->config.play.hiSpeed[PLAYER_2]);
 		}
 		else {
-			LoopInRange(g->config.play.hsmin, g->config.play.hsmax, -g->config.play.hsmargin, &g->config.play.hiSpeed[0]);
+			LoopInRange(g->config.play.hsmin, g->config.play.hsmax, -g->config.play.hsmargin, &g->config.play.hiSpeed[PLAYER_1]);
 		}
 		SetObjectStrings_SongSelect(g);
 	}
 	if (g->KeyInput.p2_buttonInput[7] == 1 && g->KeyInput.p2_buttonInput[5] == 0 && g->KeyInput.p2_buttonInput[6] == 0) {
 		PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
 		if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
-			LoopInRange(g->config.play.hsmin, g->config.play.hsmax, g->config.play.hsmargin, &g->config.play.hiSpeed[1]);
+			LoopInRange(g->config.play.hsmin, g->config.play.hsmax, g->config.play.hsmargin, &g->config.play.hiSpeed[PLAYER_2]);
 		}
 		else {
-			LoopInRange(g->config.play.hsmin, g->config.play.hsmax, g->config.play.hsmargin, &g->config.play.hiSpeed[0]);
+			LoopInRange(g->config.play.hsmin, g->config.play.hsmax, g->config.play.hsmargin, &g->config.play.hiSpeed[PLAYER_1]);
 		}
 		SetObjectStrings_SongSelect(g);
 	}
@@ -1546,7 +1551,7 @@ void CheckNewSong(glb_dbgame *glb) {
 	}
 	if (i >= glb->pGame->sSelect.queryCount) glb->pGame->sSelect.isFolder = -1;
 
-	if (glb->pGame->sSelect.isFolder != -1 && glb->pGame->config.skin.disableimagefont == 0) {
+	if (glb->pGame->sSelect.isFolder != -1 && !glb->pGame->config.skin.disableImageFont) {
 		LoadFontForSongs(glb->pGame, 1);
 	}
 	glb->pGame->sSelect.searchFocused = 4;
@@ -1590,7 +1595,7 @@ static void ThreadProc_RankingAutoUpdate(game* g) {
 			SetObjectStrings_SongSelect(g);
 		}
 
-		if (GetNowUnixtime() - GetFileUnixtime(path) < 86400 || g->config.network.autoupdate == 0) { //86400 is 24hours
+		if (GetNowUnixtime() - GetFileUnixtime(path) < 86400 || !g->config.network.isAutoUpdate) { //86400 is 24hours
 			return;
 		}
 	}
@@ -1601,7 +1606,7 @@ static void ThreadProc_RankingAutoUpdate(game* g) {
 		return;
 	}
 
-	if (!g->config.network.autoupdate) {
+	if (!g->config.network.isAutoUpdate) {
 		if (!isIR2) g->net.IRstatus = 0;
 		return;
 	}
@@ -2013,8 +2018,8 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 			else if (g->KeyInput.mousewheel < 0) g->sSelect.scrollDirection = 2;
 		}
 
-		if ((((g->KeyInput.p1_buttonInput[1] == 1 || g->KeyInput.p2_buttonInput[1] == 1) && g->config.select.buttonselect == 1 && g->config.select.control == 0)
-			|| (g->KeyInput.p1_buttonInput[4] == 1 && g->config.select.control == 1)
+		if ((((g->KeyInput.p1_buttonInput[1] == 1 || g->KeyInput.p2_buttonInput[1] == 1) && g->config.select.buttonselect && !g->config.select.control)
+			|| (g->KeyInput.p1_buttonInput[4] == 1 && g->config.select.control)
 			|| g->KeyInput.p1_buttonInput[10] == 1 || g->KeyInput.p2_buttonInput[10] == 1 || g->KeyInput.inputID[KEY_INPUT_UP] == 1)
 			&& GetTimeWrap() > g->sSelect.barMoveEndTime) {
 
@@ -2024,8 +2029,8 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 			g->sSelect.scrollDirection = 1;
 			g->sSelect.barMoveEndTime = GetTimeWrap() + g->config.select.speedfirst;
 		}
-		else if ((((g->KeyInput.p1_buttonInput[3] == 1 || g->KeyInput.p2_buttonInput[3] == 1) && g->config.select.buttonselect == 1 && g->config.select.control == 0)
-			|| (g->KeyInput.p1_buttonInput[6] == 1 && g->config.select.control == 1)
+		else if ((((g->KeyInput.p1_buttonInput[3] == 1 || g->KeyInput.p2_buttonInput[3] == 1) && g->config.select.buttonselect && !g->config.select.control)
+			|| (g->KeyInput.p1_buttonInput[6] == 1 && g->config.select.control)
 			|| g->KeyInput.p1_buttonInput[11] == 1 || g->KeyInput.p2_buttonInput[11] == 1 || g->KeyInput.inputID[KEY_INPUT_DOWN] == 1)
 			&& GetTimeWrap() > g->sSelect.barMoveEndTime) {
 
@@ -2035,8 +2040,8 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 			g->sSelect.scrollDirection = 2;
 			g->sSelect.barMoveEndTime = GetTimeWrap() + g->config.select.speedfirst;
 		}
-		else if ((((g->KeyInput.p1_buttonInput[1] == 2 || g->KeyInput.p2_buttonInput[1] == 2) && g->config.select.buttonselect == 1 && g->config.select.control == 0)
-			|| (g->KeyInput.p1_buttonInput[4] == 2 && g->config.select.control == 1)
+		else if ((((g->KeyInput.p1_buttonInput[1] == 2 || g->KeyInput.p2_buttonInput[1] == 2) && g->config.select.buttonselect && !g->config.select.control)
+			|| (g->KeyInput.p1_buttonInput[4] == 2 && g->config.select.control)
 			|| g->KeyInput.p1_buttonInput[10] == 2 || g->KeyInput.p2_buttonInput[10] == 2 || g->KeyInput.inputID[KEY_INPUT_UP] == 2)
 			&& GetTimeWrap() > g->sSelect.barMoveEndTime - 20) {
 
@@ -2046,8 +2051,8 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 			g->sSelect.scrollDirection = 1;
 			g->sSelect.barMoveEndTime = GetTimeWrap() + g->config.select.speednext;
 		}
-		else if ((((g->KeyInput.p1_buttonInput[3] == 2 || g->KeyInput.p2_buttonInput[3] == 2) && g->config.select.buttonselect == 1 && g->config.select.control == 0)
-			|| (g->KeyInput.p1_buttonInput[6] == 2 && g->config.select.control == 1)
+		else if ((((g->KeyInput.p1_buttonInput[3] == 2 || g->KeyInput.p2_buttonInput[3] == 2) && g->config.select.buttonselect && !g->config.select.control)
+			|| (g->KeyInput.p1_buttonInput[6] == 2 && g->config.select.control)
 			|| g->KeyInput.p1_buttonInput[11] == 2 || g->KeyInput.p2_buttonInput[11] == 2 || g->KeyInput.inputID[KEY_INPUT_DOWN] == 2)
 			&& GetTimeWrap() > g->sSelect.barMoveEndTime - 20) {
 
@@ -2095,8 +2100,8 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 					return;
 				}
 			}
-			else if ((((g->KeyInput.p1_buttonInput[6] == 1 || g->KeyInput.p2_buttonInput[6] == 1) && g->config.select.control == 0)
-				|| (g->KeyInput.p1_buttonInput[1] == 1 && g->config.select.control == 1))
+			else if ((((g->KeyInput.p1_buttonInput[6] == 1 || g->KeyInput.p2_buttonInput[6] == 1) && !g->config.select.control)
+				|| (g->KeyInput.p1_buttonInput[1] == 1 && g->config.select.control))
 				&& g->sSelect.panel != 1) {
 				if (g->sSelect.bmsList[g->sSelect.cur_song].courseStageCount < 1 || g->sSelect.bmsList[g->sSelect.cur_song].coursePlayable) {
 					if (g->sSelect.bmsList[g->sSelect.cur_song].folderType == 9) {
@@ -2141,13 +2146,13 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 					}
 				}
 			}
-			else if (g->config.select.disabledifficultyfilter == 0 && g->sSelect.panel != 1
-				&& ((g->KeyInput.inputID[KEY_INPUT_RIGHT] == 1 || g->KeyInput.p1_buttonInput[13] == 1 || g->KeyInput.p2_buttonInput[13] == 1) && g->config.select.control == 0)
+			else if (!g->config.select.disableDifficultyFilter && g->sSelect.panel != 1
+				&& ((g->KeyInput.inputID[KEY_INPUT_RIGHT] == 1 || g->KeyInput.p1_buttonInput[13] == 1 || g->KeyInput.p2_buttonInput[13] == 1) && !g->config.select.control)
 				&& g->sSelect.bmsList[g->sSelect.cur_song].keymode >= 5) {
 
 				int flgA = 0, flgB = 0;
 				int diff = 0;
-				if (g->config.select.difficultychangetype == 0) {
+				if (!g->config.select.difficultyChangeType) {
 					g->sSelect.unk5004_difficultycount = 0;
 					g->sSelect.isDifficultyFilterOn = 0;
 					if (0 < g->sSelect.bmsList[g->sSelect.cur_song].difficulty && g->sSelect.bmsList[g->sSelect.cur_song].difficulty < 6
@@ -2182,7 +2187,7 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 					else if (flgB) {
 						g->config.select.difficulty = diff;
 					}
-					else if (g->config.select.ignoredifficultyall == 1) {
+					else if (g->config.select.ignoreDifficultyAll) {
 						g->config.select.difficulty = minDifficulty;
 					}
 					else {
@@ -2199,8 +2204,8 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 					SetObjectStrings_SongSelect(g);
 				}
 			}
-			else if (g->config.select.disabledifficultyfilter == 1 && g->sSelect.panel != 1
-				&& ((g->KeyInput.inputID[KEY_INPUT_RIGHT] == 1 || g->KeyInput.p1_buttonInput[13] == 1 || g->KeyInput.p2_buttonInput[13] == 1) && g->config.select.control == 0)
+			else if (g->config.select.disableDifficultyFilter && g->sSelect.panel != 1
+				&& ((g->KeyInput.inputID[KEY_INPUT_RIGHT] == 1 || g->KeyInput.p1_buttonInput[13] == 1 || g->KeyInput.p2_buttonInput[13] == 1) && !g->config.select.control)
 				&& g->sSelect.bmsList[g->sSelect.cur_song].keymode >= 5) {
 
 				g->sSelect.filter_clicked = 2;
@@ -2209,12 +2214,12 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 				g->sSelect.is_clicked_filter = 1;
 			}
 			else if (g->sSelect.panel != 1
-				&& ((g->KeyInput.p1_buttonInput[2] == 1 || g->KeyInput.p1_buttonInput[8] == 1) && g->config.select.control == 1)
+				&& ((g->KeyInput.p1_buttonInput[2] == 1 || g->KeyInput.p1_buttonInput[8] == 1) && g->config.select.control)
 				&& g->sSelect.bmsList[g->sSelect.cur_song].keymode >= 5) {
 
 				int flgA = 0, flgB = 0;
 				int diff = 0;
-				if (g->config.select.difficultychangetype == 0) {
+				if (!g->config.select.difficultyChangeType) {
 					g->sSelect.unk5004_difficultycount = 0;
 					g->sSelect.isDifficultyFilterOn = 0;
 					if (g->sSelect.bmsList[g->sSelect.cur_song].difficulty > 0 && g->sSelect.bmsList[g->sSelect.cur_song].difficulty < 6
@@ -2245,7 +2250,7 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 					else if (flgB) {
 						g->config.select.difficulty = diff;
 					}
-					else if (g->config.select.ignoredifficultyall == 1) {
+					else if (g->config.select.ignoreDifficultyAll) {
 						g->config.select.difficulty = minDifficulty;
 					}
 					else {
@@ -2266,10 +2271,10 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 				((MouseOnDSTD(&dstd, &g->KeyInput.mouse_oldX, &g->KeyInput.mouse_oldY) == 0 || g->KeyInput.mouse_buttonL != 1) && g->KeyInput.inputID[KEY_INPUT_RIGHT] != 1)
 				&& (g->KeyInput.inputID[KEY_INPUT_RETURN] != 1 || g->txtStruct.st_text_num != -1 || (GetTimeLapse(4, &g->timer1) != -1.0 && GetTimeLapse(4, &g->timer1) < 200.0)) 
 				&& (g->sSelect.panel == 1
-					|| ((g->config.select.control != 0
-						|| (((g->config.select.buttonselect != 0 || (g->KeyInput.p1_buttonInput[1] != 1 && g->KeyInput.p1_buttonInput[3] != 1 && g->KeyInput.p1_buttonInput[5] != 1 && g->KeyInput.p1_buttonInput[7] != 1 && g->KeyInput.p2_buttonInput[1] != 1 && g->KeyInput.p2_buttonInput[3] != 1 && g->KeyInput.p2_buttonInput[5] != 1 && g->KeyInput.p2_buttonInput[7] != 1)))
-							&& (g->config.select.buttonselect != 1 || (g->KeyInput.p1_buttonInput[5] != 1 && g->KeyInput.p1_buttonInput[7] != 1 && g->KeyInput.p2_buttonInput[5] != 1 && g->KeyInput.p2_buttonInput[7] != 1))))
-						&& (g->config.select.control != 1 || (g->KeyInput.p1_buttonInput[5] != 1 && g->KeyInput.p1_buttonInput[7] != 1))))) {
+					|| ((g->config.select.control
+						|| (((g->config.select.buttonselect || (g->KeyInput.p1_buttonInput[1] != 1 && g->KeyInput.p1_buttonInput[3] != 1 && g->KeyInput.p1_buttonInput[5] != 1 && g->KeyInput.p1_buttonInput[7] != 1 && g->KeyInput.p2_buttonInput[1] != 1 && g->KeyInput.p2_buttonInput[3] != 1 && g->KeyInput.p2_buttonInput[5] != 1 && g->KeyInput.p2_buttonInput[7] != 1)))
+							&& (!g->config.select.buttonselect || (g->KeyInput.p1_buttonInput[5] != 1 && g->KeyInput.p1_buttonInput[7] != 1 && g->KeyInput.p2_buttonInput[5] != 1 && g->KeyInput.p2_buttonInput[7] != 1))))
+						&& (!g->config.select.control || (g->KeyInput.p1_buttonInput[5] != 1 && g->KeyInput.p1_buttonInput[7] != 1))))) {
 
 				for (int i = 0; i < 30; i++) {
 					if (g->skstruct.dst_BAR_BODY_OFF[i].dstCount) {
@@ -2457,8 +2462,8 @@ void SubProcI_Select(game *g, sqlite3 *sql) {
 
 		if (g->sSelect.panel != 1
 			&& (g->KeyInput.inputID[KEY_INPUT_LEFT] == 1
-				|| ((g->KeyInput.p1_buttonInput[2] == 1 || g->KeyInput.p2_buttonInput[2] == 1) && g->config.select.control == 0)
-				|| (g->KeyInput.p1_buttonInput[3] == 1 && g->config.select.control == 1))
+				|| ((g->KeyInput.p1_buttonInput[2] == 1 || g->KeyInput.p2_buttonInput[2] == 1) && !g->config.select.control)
+				|| (g->KeyInput.p1_buttonInput[3] == 1 && g->config.select.control))
 			&& g->sSelect.cur > 0) {
 
 			g->sSelect.searchType = 2;
@@ -2612,7 +2617,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 						if (g->net.rankingData.showRanking == 1) 
 							AddDrawingBuffer_Numbers(&g->skstruct.drBuf, &g->skstruct.src_BAR_LEVEL[6], &g->skstruct.dst_BAR_LEVEL[6], &g->timer1, g->sSelect.bmsList[bar].level, dstd3.x, dstd3.y);
 						
-						else if (g->config.select.disabledifficultyfilter == 1 && g->net.rankingData.showRanking == 0) {
+						else if (g->config.select.disableDifficultyFilter && g->net.rankingData.showRanking == 0) {
 							if (g->sSelect.bmsList[bar].exlevel > 0 && (g->config.jukebox.customfolder & 0x80) != 0) 
 								AddDrawingBuffer_Numbers(&g->skstruct.drBuf, &g->skstruct.src_BAR_LEVEL[5], &g->skstruct.dst_BAR_LEVEL[5], &g->timer1, g->sSelect.bmsList[bar].exlevel, dstd3.x, dstd3.y);
 							
@@ -2622,7 +2627,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 						else if (g->sSelect.isExLevel != 0 && g->net.rankingData.showRanking == 0) 
 							AddDrawingBuffer_Numbers(&g->skstruct.drBuf, &g->skstruct.src_BAR_LEVEL[5], &g->skstruct.dst_BAR_LEVEL[5], &g->timer1, g->sSelect.bmsList[bar].exlevel, dstd3.x, dstd3.y);
 
-						else if (g->sSelect.bmsList[bar].difficulty >= 0 && g->sSelect.bmsList[bar].folderType <= 5 && g->config.select.disabledifficultyfilter == 0) 
+						else if (g->sSelect.bmsList[bar].difficulty >= 0 && g->sSelect.bmsList[bar].folderType <= 5 && !g->config.select.disableDifficultyFilter) 
 							AddDrawingBuffer_Numbers(&g->skstruct.drBuf, &g->skstruct.src_BAR_LEVEL[g->sSelect.bmsList[bar].difficulty], &g->skstruct.dst_BAR_LEVEL[g->sSelect.bmsList[bar].difficulty], &g->timer1, g->sSelect.bmsList[bar].level, dstd3.x, dstd3.y);
 
 						else 
@@ -2644,7 +2649,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 						else if (g->config.play.battle == OPTION_BATTLE_DBATTLE) {
 							t = mybest.clear_db;
 						}
-						else if (g->config.play.is_extra == 1) {
+						else if (g->config.play.m_isExtra) {
 							t = mybest.clear_ex;
 						}
 						else {
@@ -2662,7 +2667,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 					else if (g->config.play.battle == OPTION_BATTLE_DBATTLE) {
 						t = mybest.clear_db;
 					}
-					else if (g->config.play.is_extra == 1) {
+					else if (g->config.play.m_isExtra) {
 						t = mybest.clear_ex;
 					}
 					else {
@@ -2699,7 +2704,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 		}
 	}
 
-	if(g->config.select.preview == 1){
+	if(g->config.select.isPreview){
 		if (GetTimeLapse(11, &g->timer1) >= 500.0 && g->gameplay.previewStatus == 0 &&
 				g->sSelect.bmsList[g->sSelect.cur_song].keymode >= 5 &&
 				g->sSelect.bmsList[g->sSelect.cur_song].courseStageCount == 0 &&
@@ -2744,11 +2749,11 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 		}
 		if (sihandle == -1)
 		{
-			g->sSelect.bmsList[g->sSelect.cur_song].isBanner = 0;
+			g->sSelect.bmsList[g->sSelect.cur_song].isBanner = false;
 			continue;
 		}
 		if (ReCreateGraphFromSoftImage(sihandle, g->skstruct.GrHandle[GRHTYPE_BANNER]) == -1)
-			g->sSelect.bmsList[g->sSelect.cur_song].isBanner = 0;
+			g->sSelect.bmsList[g->sSelect.cur_song].isBanner = false;
 		DeleteSoftImage(sihandle);
 	}
 	std::erase_if(g->hThreadBanner, std::not_fn(&std::future<std::pair<std::pair<std::string, std::string>, int>>::valid));
@@ -2851,7 +2856,7 @@ int InitSelectBySearchResult(game *g, sqlite3 *sql) {
 		if (g->sSelect.searchType == 0) {
 			if (g->sSelect.filter_clicked == 0) {
 				LoopInRange(0, 5, 1, &g->sSelect.filterDifficulty);
-				if (g->config.select.ignoredifficultyall == 1 && g->sSelect.filterDifficulty == 0) g->sSelect.filterDifficulty = 1;
+				if (g->config.select.ignoreDifficultyAll && g->sSelect.filterDifficulty == 0) g->sSelect.filterDifficulty = 1;
 			}
 			else if (g->sSelect.filter_clicked == 1) {
 				LoopInRange(0, 4, 1, &g->sSelect.filterSort);
@@ -2862,7 +2867,7 @@ int InitSelectBySearchResult(game *g, sqlite3 *sql) {
 			}
 		}
 
-		if (g->config.select.disabledifficultyfilter == 1) {
+		if (g->config.select.disableDifficultyFilter) {
 			g->sSelect.filterDifficulty = 0;
 			g->config.select.difficulty = 0;
 		}
@@ -2976,7 +2981,7 @@ int InitSelectBySearchResult(game *g, sqlite3 *sql) {
 				SetTimeLapse(11, &g->timer1);
 				ProcS_Select(g);
 				if (g->sSelect.is_coursemaking_done == 0) {
-					if (g->sSelect.is_clicked_filter == 0 || g->audio.sysSound.difficulty.load == 0) {
+					if (g->sSelect.is_clicked_filter == 0 || !g->audio.sysSound.difficulty.load) {
 						PlaySound(&g->audio, &g->audio.sysSound.folder_open, g->audio.chnKey, -1);
 					}
 					else {
