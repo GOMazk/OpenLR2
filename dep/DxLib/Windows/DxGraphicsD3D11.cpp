@@ -1288,15 +1288,16 @@ extern int Graphics_D3D11_Reset(void)
 		}
 	}
 
+	if (GD3D11.Device.Setting.DeviceRestoreCallbackFunction)
+	{
+		GD3D11.Device.Setting.DeviceRestoreCallbackFunction(GD3D11.Device.Setting.DeviceRestoreCallbackData);
+	}
+
 	// 終了
 	return 0;
 
 	// エラー終了
 ERR:
-
-	// 後始末を行う
-	Graphics_D3D11_Terminate();
-
 	return -1;
 }
 

@@ -3068,7 +3068,7 @@ extern	int			SetDraw3DScale(						float Scale ) ;													// ３Ｄ描画の
 
 extern	int			SetRestoreShredPoint(				void (* ShredPoint )( void ) ) ;								// SetRestoreGraphCallback の旧名
 extern	int			SetRestoreGraphCallback(			void (* Callback )( void ) ) ;									// グラフィックハンドル復元関数を登録する
-extern	int			RunRestoreShred(					void ) ;														// グラフィック復元関数を実行する
+extern	int			RunRestoreShred(					bool unamangedOnly = false ) ;														// グラフィック復元関数を実行する
 extern	int			SetGraphicsDeviceRestoreCallbackFunction( void (* Callback )( void *Data ), void *CallbackData ) ;	// グラフィックスデバイスがロストから復帰した際に呼ばれるコールバック関数を設定する
 extern	int			SetGraphicsDeviceLostCallbackFunction(    void (* Callback )( void *Data ), void *CallbackData ) ;	// グラフィックスデバイスがロストから復帰する前に呼ばれるコールバック関数を設定する
 

@@ -9538,11 +9538,11 @@ extern int SetRestoreGraphCallback( void ( *Callback )( void ))
 	DXFUNC_END
 	return Result ;
 }
-extern int RunRestoreShred( void )
+extern int RunRestoreShred( bool onlyUnmanaged = false )
 {
 	int Result ;
 	DXFUNC_BEGIN
-	Result = NS_RunRestoreShred(  ) ;
+	Result = NS_RunRestoreShred(onlyUnmanaged) ;
 	DXFUNC_END
 	return Result ;
 }

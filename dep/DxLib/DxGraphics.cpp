@@ -366,7 +366,7 @@ GRAPHICSSYSTEMDATA GraphicsSysData ;
 
 // 画像関係関数
 __inline static int		Graphics_Image_CheckBlendGraphSize( IMAGEDATA *GraphData ) ;		// ブレンド画像との大きさチェック
-		 static void	Graphics_Image_DefaultRestoreGraphFunction( void ) ;				// デフォルトのグラフィック復旧関数
+		 static void	Graphics_Image_DefaultRestoreGraphFunction( bool unmanagedOnly = false ) ;				// デフォルトのグラフィック復旧関数
 		 static void	Graphics_Image_CreateGraph_LoadBaseImage(      LOADGRAPH_PARAM *Param, CREATEGRAPH_LOADBASEIMAGE_PARAM *LParam ) ;		// CreateGraph と CreateDivGraph の共通する BASEIMAGE 構築部分を関数化したもの
 		 static void	Graphics_Image_CreateGraph_TerminateBaseImage( LOADGRAPH_PARAM *Param, CREATEGRAPH_LOADBASEIMAGE_PARAM *LParam ) ;		// CreateGraph と CreateDivGraph の共通する BASEIMAGE 後始末部分を関数化したもの
 
@@ -473,7 +473,7 @@ __inline static int Graphics_Image_CheckBlendGraphSize( IMAGEDATA *GraphData )
 }
 
 // デフォルトのグラフィック復旧関数
-static void Graphics_Image_DefaultRestoreGraphFunction( void )
+static void Graphics_Image_DefaultRestoreGraphFunction( bool onlyUnmanaged )
 {
 	IMAGEDATA *Image ;
 	IMAGEDATA *FileBackImage ;
@@ -513,8 +513,10 @@ static void Graphics_Image_DefaultRestoreGraphFunction( void )
 		{
 			Image = ( IMAGEDATA * )HandleManageArray[ DX_HANDLETYPE_GRAPH ].Handle[ i ] ;
 			if( Image == NULL || Image->Orig == NULL ) continue ;
-
-			Image->Orig->RestoreFlag = FALSE ;
+			if (onlyUnmanaged && Image->Orig->FormatDesc.UseManagedTextureFlag )
+				Image->Orig->RestoreFlag = TRUE;
+			else
+				Image->Orig->RestoreFlag = FALSE ;
 		}
 
 		for( i = HandleManageArray[ DX_HANDLETYPE_GRAPH ].AreaMin ; i <= ImageDataArea ; i ++ )
@@ -18243,7 +18245,7 @@ extern	int NS_SetRestoreGraphCallback( void (* Callback )( void ) )
 	// グラフィック復元スレッドアドレスの登録
 	if( Callback == NULL )
 	{
-		GSYS.Setting.GraphRestoreShred = Graphics_Image_DefaultRestoreGraphFunction ;
+		GSYS.Setting.GraphRestoreShred = NULL ;
 	}
 	else
 	{
@@ -18255,7 +18257,7 @@ extern	int NS_SetRestoreGraphCallback( void (* Callback )( void ) )
 }
 
 // グラフィック復元関数の実行
-extern	int NS_RunRestoreShred( void )
+extern	int NS_RunRestoreShred( bool onlyUnmanaged )
 {
 #ifndef DX_NON_ASYNCLOAD
 	// 非同期読み込みは一時的に無効にする
@@ -18266,7 +18268,7 @@ extern	int NS_RunRestoreShred( void )
 	// グラフィック復元スレッドの実行
 	if( GSYS.Setting.GraphRestoreShred == NULL )
 	{
-		Graphics_Image_DefaultRestoreGraphFunction() ;
+		Graphics_Image_DefaultRestoreGraphFunction(onlyUnmanaged) ;
 	}
 	else
 	{
@@ -27516,6 +27518,9 @@ ERR:
 
 extern int Graphics_Reset(void)
 {
+	// 既に後始末済みの場合は何もしない
+	if (GSYS.InitializeFlag == FALSE) return 0;
+
 	// 画面の設定を初期化
 	if (GSYS.Screen.MainScreenSizeX == 0 || GSYS.Screen.MainScreenSizeY == 0)
 	{
@@ -27553,8 +27558,6 @@ extern int Graphics_Reset(void)
 	// 終了
 	return 0;
 ERR:
-	Graphics_Terminate();
-
 	return -1;
 }
 
