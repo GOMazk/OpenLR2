@@ -1256,6 +1256,13 @@ extern int Graphics_D3D9_Reset(void)
 
 	SETUP_WIN_API
 
+	GD3D9.Device.DrawInfo.BeginSceneFlag = FALSE;
+
+	if (GD3D9.Device.Setting.DeviceLostCallbackFunction)
+	{
+		GD3D9.Device.Setting.DeviceLostCallbackFunction(GD3D9.Device.Setting.DeviceLostCallbackData);
+	}
+
 	// Zバッファ の解放
 	if (GD3D9.Device.Screen.ZBufferSurface)
 	{
@@ -1281,8 +1288,11 @@ extern int Graphics_D3D9_Reset(void)
 		Direct3D9_ObjectRelease(GD3D9.Device.Screen.BackBufferSurface);
 		GD3D9.Device.Screen.BackBufferSurface = NULL;
 	}
-
-	GD3D9.Device.DrawInfo.BeginSceneFlag = FALSE;
+#ifndef DX_NON_MASK
+	// マスクサーフェスを一時削除
+	Mask_ReleaseSurface();
+#endif
+	Graphics_D3D9_ReleaseObjectAll(true);
 
 	// Reset
 
@@ -1307,6 +1317,11 @@ extern int Graphics_D3D9_Reset(void)
 		}
 	}
 
+	Graphics_D3D9_CreateObjectAll(true);
+#ifndef DX_NON_MASK
+	// マスクサーフェスの再作成
+	Mask_ReCreateSurface();
+#endif
 	// Zバッファ の作成を試みる
 	if (Graphics_D3D9_CreateZBuffer() != 0)
 	{
@@ -1327,33 +1342,22 @@ extern int Graphics_D3D9_Reset(void)
 
 	Graphics_D3D9_Device_ReInitialize();
 
+
 	// 描画範囲を再設定する
 	NS_SetDrawArea(0, 0, GSYS.Screen.MainScreenSizeX, GSYS.Screen.MainScreenSizeY);
+
+	if (GD3D9.Device.Setting.DeviceRestoreCallbackFunction)
+	{
+		GD3D9.Device.Setting.DeviceRestoreCallbackFunction(GD3D9.Device.Setting.DeviceRestoreCallbackData);
+	}
+
+	NS_RunRestoreShred(true);
+
 
 	// 終了
 	return 0;
 
 ERR:
-	// Zバッファ の解放
-	if (GD3D9.Device.Screen.ZBufferSurface)
-	{
-		Direct3D9_ObjectRelease(GD3D9.Device.Screen.ZBufferSurface);
-		GD3D9.Device.Screen.ZBufferSurface = NULL;
-	}
-
-	// Direct3DDevice9 の解放
-	Direct3DDevice9_Release();
-	GD3D9.Device.DrawInfo.BeginSceneFlag = FALSE;
-
-	// Direct3D9 の解放
-	Direct3D9_Release();
-
-	// Direct3D9.DLL の解放
-	Direct3D9_FreeDLL();
-
-	// DirectDraw7 の解放
-	DirectDraw7_Release();
-
 	return -1;
 }
 
@@ -1445,7 +1449,7 @@ extern	int		Graphics_D3D9_Terminate( void )
 
 
 // すべての Direct3D9 系オブジェクトを解放する
-extern	int		Graphics_D3D9_ReleaseObjectAll( void )
+extern	int		Graphics_D3D9_ReleaseObjectAll( bool onlyUnmanaged )
 {
 	int i ;
 	SHADERHANDLEDATA                          *Shader ;
@@ -1468,6 +1472,7 @@ extern	int		Graphics_D3D9_ReleaseObjectAll( void )
 #endif
 
 			if( Image->Orig == NULL ) continue ;
+			if (onlyUnmanaged && Image->Orig->FormatDesc.UseManagedTextureFlag) continue;
 			Graphics_Hardware_ReleaseOrigTexture_PF( Image->Orig ) ;
 
 #ifndef DX_NON_MOVIE
@@ -1590,7 +1595,7 @@ extern	int		Graphics_D3D9_ReleaseObjectAll( void )
 
 
 // すべての Direct3D9 系オブジェクトを作成する
-extern	int		Graphics_D3D9_CreateObjectAll( void )
+extern	int		Graphics_D3D9_CreateObjectAll( bool onlyUnmanaged )
 {
 	int                                       i ;
 	SHADERHANDLEDATA                          *Shader ;
@@ -1631,6 +1636,7 @@ extern	int		Graphics_D3D9_CreateObjectAll( void )
 
 			if( Image == NULL ) continue ;
 			if( Image->Orig == NULL ) continue ;
+			if (onlyUnmanaged && Image->Orig->FormatDesc.UseManagedTextureFlag) continue;
 			Graphics_Hardware_CreateOrigTexture_PF( Image->Orig ) ;
 		}
 	}
