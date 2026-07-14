@@ -405,10 +405,13 @@ int InitSkin(skstruct *sk, int /*unused*/, char font) {
 		InitDST(&sk->dst_EVENT_LOADINGBG[i]);
 	}
 
-	InitSRC(&sk->src_HITERROR);
-	InitDST(&sk->dst_HITERROR);
+	for (int i = 0; i < 2; i++) {
+		InitSRC(&sk->src_HITERROR[i]);
+		InitDST(&sk->dst_HITERROR[i]);
+	}
 	InitSRC(&sk->src_HITERROR_CENTER);
-	InitDST(&sk->dst_HITERROR_CENTER);
+	InitDST(&sk->dst_HITERROR_CENTER[0]);
+	InitDST(&sk->dst_HITERROR_CENTER[1]);
 	InitSRC(&sk->src_HITERROR_PGREAT);
 	InitDST(&sk->dst_HITERROR_PGREAT);
 	InitSRC(&sk->src_HITERROR_GREAT);
@@ -417,11 +420,8 @@ int InitSkin(skstruct *sk, int /*unused*/, char font) {
 	InitDST(&sk->dst_HITERROR_GOOD);
 	InitSRC(&sk->src_HITERROR_BAD);
 	InitDST(&sk->dst_HITERROR_BAD);
-	InitSRC(&sk->src_HITERROR_POOR);
-	InitDST(&sk->dst_HITERROR_POOR);
 	InitSRC(&sk->src_HITERROR_EMA);
 	InitDST(&sk->dst_HITERROR_EMA);
-	sk->HiterrorDSTPool.clear();
 	return 1;
 }
 
@@ -1833,26 +1833,20 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 					}
 					case "#SRC_HITERROR"_hash:{
 						SplitCSV(fBuf, &csv, ",");
-						ReadSRC(&sk->src_HITERROR, &csv, sk);
-						for (int i = 0; i < sk->src_HITERROR.graphcount; i++)
-							sk->src_HITERROR.grHandles[i] = sk->GrHandle[GRHTYPE_WHITE];
-						sk->HiterrorDSTPool.resize(sk->src_HITERROR.graphcount);
-						for (auto &entry : sk->HiterrorDSTPool) {
-							if (entry.draw == nullptr) {
-								entry.dataSize = 1;
-								entry.dstCount = 1;
-								entry.draw = (DSTdraw*)malloc(sizeof(DSTdraw));
-							}
-							entry.draw[0] = {};
-							entry.draw[0].acc = 1;
-							entry.draw[0].blend = 1;
-							entry.draw[0].sortID = ++tSkin_num;
+						if (CheckIndexRange(csv.val[1], 0, 1, line, pFbuf)) {
+							int player = csv.val[1];
+							ReadSRC(&sk->src_HITERROR[player], &csv, sk);
+							for (int i = 0; i < sk->src_HITERROR[player].graphcount; i++)
+								sk->src_HITERROR[player].grHandles[i] = sk->GrHandle[GRHTYPE_WHITE];
+
 						}
 						break;
 					}
 					case "#DST_HITERROR"_hash:{
 						SplitCSV(fBuf, &csv, ",");
-						ReadDST(&sk->dst_HITERROR, &csv, tSkin_num);
+						if (CheckIndexRange(csv.val[1], 0, 1, line, pFbuf)) {
+							ReadDST(&sk->dst_HITERROR[csv.val[1]], &csv, tSkin_num);
+						}
 						break;
 					}
 					case "#SRC_HITERROR_CENTER"_hash:{
@@ -1864,7 +1858,8 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 					}
 					case "#DST_HITERROR_CENTER"_hash:{
 						SplitCSV(fBuf, &csv, ",");
-						ReadDST(&sk->dst_HITERROR_CENTER, &csv, tSkin_num);
+						ReadDST(&sk->dst_HITERROR_CENTER[0], &csv, tSkin_num);
+						sk->dst_HITERROR_CENTER[1] = sk->dst_HITERROR_CENTER[0];
 						break;
 					}
 					case "#SRC_HITERROR_PGREAT"_hash:{
@@ -1913,18 +1908,6 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 					case "#DST_HITERROR_BAD"_hash:{
 						SplitCSV(fBuf, &csv, ",");
 						ReadDST(&sk->dst_HITERROR_BAD, &csv, tSkin_num);
-						break;
-					}
-					case "#SRC_HITERROR_POOR"_hash:{
-						SplitCSV(fBuf, &csv, ",");
-						ReadSRC(&sk->src_HITERROR_POOR, &csv, sk);
-						for (int i = 0; i < sk->src_HITERROR_POOR.graphcount; i++)
-							sk->src_HITERROR_POOR.grHandles[i] = sk->GrHandle[GRHTYPE_WHITE];
-						break;
-					}
-					case "#DST_HITERROR_POOR"_hash:{
-						SplitCSV(fBuf, &csv, ",");
-						ReadDST(&sk->dst_HITERROR_POOR, &csv, tSkin_num);
 						break;
 					}
 					case "#SRC_HITERROR_EMA"_hash:{

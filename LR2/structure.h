@@ -718,6 +718,24 @@ struct DSTstruct { /* 44bytes.4*0x0b */
 	int dstCount;
 };
 
+inline DSTstruct CloneDSTstruct(const DSTstruct* src) {
+	DSTstruct clone = *src;
+	if (src->dstCount > 0 && src->draw) {
+		clone.draw = (DSTdraw*)malloc(src->dstCount * sizeof(DSTdraw));
+		memcpy(clone.draw, src->draw, src->dstCount * sizeof(DSTdraw));
+	} else {
+		clone.draw = nullptr;
+	}
+	return clone;
+}
+
+inline void FreeDSTstructClone(DSTstruct* clone) {
+	if (clone && clone->draw) {
+		free(clone->draw);
+		clone->draw = nullptr;
+	}
+}
+
 struct FontChar {
 	int srcX{};
 	int srcY{};
@@ -1019,10 +1037,10 @@ struct skstruct {
 	int event_FADEOUT[10]{};
 	struct DSTstruct dst_EVENT_LOADINGBG[5]{};
 	int horizontal{};
-	struct SRCstruct src_HITERROR {};
-	struct DSTstruct dst_HITERROR {};
+	struct SRCstruct src_HITERROR[2] {};
+	struct DSTstruct dst_HITERROR[2] {};
 	struct SRCstruct src_HITERROR_CENTER {};
-	struct DSTstruct dst_HITERROR_CENTER {};
+	struct DSTstruct dst_HITERROR_CENTER[2] {};
 	struct SRCstruct src_HITERROR_PGREAT {};
 	struct DSTstruct dst_HITERROR_PGREAT {};
 	struct SRCstruct src_HITERROR_GREAT {};
@@ -1031,11 +1049,8 @@ struct skstruct {
 	struct DSTstruct dst_HITERROR_GOOD {};
 	struct SRCstruct src_HITERROR_BAD {};
 	struct DSTstruct dst_HITERROR_BAD {};
-	struct SRCstruct src_HITERROR_POOR {};
-	struct DSTstruct dst_HITERROR_POOR {};
 	struct SRCstruct src_HITERROR_EMA {};
 	struct DSTstruct dst_HITERROR_EMA {};
-	struct std::vector<DSTstruct> HiterrorDSTPool {};
 };
 
 struct MYRANKING {

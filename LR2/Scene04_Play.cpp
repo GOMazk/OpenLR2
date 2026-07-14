@@ -1129,71 +1129,84 @@ static void QuickRestart(game& game, bool newRandom) {
 
 int DrawHitError(game *g, skstruct *sk, Timer *T) {
 	for (int p = 0; p < 2; p++) {
-		PLAYERSTATUS& ps = g->gameplay.player[p];
-		if (!ps.flag_active) continue;
+		if (sk->src_HITERROR[p].graphcount <= 0) continue;
 
-		sk->dst_HITERROR_CENTER.draw[0].x = sk->dst_HITERROR.draw[0].x + (sk->dst_HITERROR.draw[0].w / 2) + (sk->dst_HITERROR_CENTER.draw[0].w / 2);
-		sk->dst_HITERROR_CENTER.draw[0].y = sk->dst_HITERROR.draw[0].y;
-		AddDrawingBuffer_Image(&sk->drBuf, &sk->src_HITERROR_CENTER, &sk->dst_HITERROR_CENTER, T);
-		
-		AddDrawingBuffer_Image(&sk->drBuf, &sk->src_HITERROR, &sk->dst_HITERROR, T);
+		auto hiterrorByTime = SetDSTdrawByTime(sk->dst_HITERROR[p], GetTimeLapse(sk->dst_HITERROR[p].timer, T));
 
-		auto applyJudge = [&](DSTstruct* dst, DSTstruct& dstRef) {
-			dst->draw[0].r = dstRef.draw[0].r;
-			dst->draw[0].g = dstRef.draw[0].g;
-			dst->draw[0].b = dstRef.draw[0].b;
-			dst->draw[0].a = dstRef.draw[0].a;
-			dst->draw[0].w = dstRef.draw[0].w;
-			dst->draw[0].h = dstRef.draw[0].h;
+		auto center = [&](DSTstruct *dst) -> void {
+			for (int i = 0; i < dst->dstCount; ++i) {
+				dst->draw[i].x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (dst->draw[i].w / 2);
+				dst->draw[i].y = hiterrorByTime.y;
+			}
 		};
 
-		for (int i = 0; i < ps.hiterror.notes.size(); i++) {
-			const JudgeData& jd = ps.hiterror.notes[i];
-			int judgeOffset = (int) (jd.offset * sk->dst_HITERROR.draw[0].w / 256.0);
-			SRCstruct *src = nullptr;
-			DSTstruct* dst = &sk->HiterrorDSTPool[i];
+		auto offset = [&](double timing) -> int {
+			return timing * hiterrorByTime.w / 400.0; /* bad range is 200ms on easy guage, so this should catch that */
+		};
 
-			dst->draw[0].x = sk->dst_HITERROR.draw[0].x + (sk->dst_HITERROR.draw[0].w / 2) + (dst->draw[0].w / 2);
-			dst->draw[0].y = sk->dst_HITERROR.draw[0].y;
+		constexpr auto fadeAlpha = [](int originalAlpha, int time, int fadeTime) -> int {
+			return originalAlpha - (time * originalAlpha / fadeTime);
+		};
+
+		double noteTimer = GetTimeLapse(142, &g->timer1);
+
+		HITERRORDATA &hiterrorData = g->gameplay.player[p].hiterror;
+
+		AddDrawingBuffer_Image(&sk->drBuf, &sk->src_HITERROR[p], &sk->dst_HITERROR[p], T);
+
+		if (sk->src_HITERROR_CENTER.graphcount > 0) {
+			center(&sk->dst_HITERROR_CENTER[p]);
+			AddDrawingBuffer_Image(&sk->drBuf, &sk->src_HITERROR_CENTER, &sk->dst_HITERROR_CENTER[p], T);
+		}
+		
+		double fadeTime = 0.75 * 1000;
+		if (hiterrorData.notes.size() > 50) fadeTime = hiterrorData.notes.size() / 50 * 1000;
+
+		for (int i = 0; i < hiterrorData.notes.size(); i++) {
+			const JudgeData& jd = hiterrorData.notes[i];
+			SRCstruct *parentSRC = nullptr;
+			DSTstruct *parentDST = nullptr;
+
+			DSTstruct childDST = DSTstruct{};
 
 			switch (jd.judge) {
 				case 5: 
-					applyJudge(dst, sk->dst_HITERROR_PGREAT);
-					src = &sk->src_HITERROR_PGREAT;
+					parentDST = &sk->dst_HITERROR_PGREAT;
+					parentSRC = &sk->src_HITERROR_PGREAT;
 					break;
 				case 4: 
-					applyJudge(dst, sk->dst_HITERROR_GREAT);
-					src = &sk->src_HITERROR_GREAT;
+					parentDST = &sk->dst_HITERROR_GREAT;
+					parentSRC = &sk->src_HITERROR_GREAT;
 					break;
 				case 3: 
-					applyJudge(dst, sk->dst_HITERROR_GOOD);
-					src = &sk->src_HITERROR_GOOD;
+					parentDST = &sk->dst_HITERROR_GOOD;
+					parentSRC = &sk->src_HITERROR_GOOD;
 					break;
 				case 2: 
-					applyJudge(dst, sk->dst_HITERROR_BAD);
-					src = &sk->src_HITERROR_BAD;
+					parentDST = &sk->dst_HITERROR_BAD;
+					parentSRC = &sk->src_HITERROR_BAD;
 					break;
 				default: 
-					applyJudge(dst, sk->dst_HITERROR_POOR);
-					src = &sk->src_HITERROR_POOR;
-					break;
+					continue;
 			}
+
+			if (!parentSRC || parentSRC->graphcount <= 0) continue;
+
+			childDST = CloneDSTstruct(parentDST);
 			
-			double t142 = GetTimeLapse(142, &g->timer1);
+			for (size_t j = 0; j < childDST.dstCount; ++j) {
+				childDST.draw[j].a = fadeAlpha(parentDST->draw[j].a, noteTimer - jd.timeHit, fadeTime);
+			}
 
-			auto fadeAlpha = [](int value, int fadeTime) -> int {
-				return 255 - (value * 255 / fadeTime);
-			};
-
-			dst->draw[0].a = fadeAlpha(t142 - jd.timeHit, 500);
-
-			AddDrawingBuffer_Object(&sk->drBuf, src, dst, T, judgeOffset, 0);
+			center(&childDST);
+			AddDrawingBuffer_Object(&sk->drBuf, parentSRC, &childDST, T, offset(jd.offset), 0);
+			FreeDSTstructClone(&childDST);
 		}
 
-		//int emaOffset = (int)(ps.hiterror.ema.value * sk->dst_HITERROR.draw[0].w / 256.0);
-		//sk->dst_HITERROR_EMA.draw[0].x = sk->dst_HITERROR.draw[0].x + (sk->dst_HITERROR.draw[0].w / 2) + (sk->dst_HITERROR_EMA.draw[0].w / 2);
-		//sk->dst_HITERROR_EMA.draw[0].y = sk->dst_HITERROR.draw[0].y;
-		//AddDrawingBuffer_Object(&sk->drBuf, &sk->src_HITERROR_EMA, &sk->dst_HITERROR_EMA, T, emaOffset, 0);
+		if (sk->src_HITERROR_EMA.graphcount > 0) {
+			center(&sk->dst_HITERROR_EMA);
+			AddDrawingBuffer_Object(&sk->drBuf, &sk->src_HITERROR_EMA, &sk->dst_HITERROR_EMA, T, offset(hiterrorData.ema.value), 0);
+		}
 	}
 	return 1;
 }
@@ -2098,8 +2111,9 @@ int ProcS_Play(game *g, sqlite3* sql) {
 
 	for(size_t i = 0; i < 2; ++i) {
 		g->gameplay.player[i].hiterror.ema.reset();
-		g->gameplay.player[i].hiterror.notes = CircularBuffer<JudgeData>(g->skstruct.src_HITERROR.graphcount);
+		g->gameplay.player[i].hiterror.notes = CircularBuffer<JudgeData>(g->skstruct.src_HITERROR[i].graphcount);
 	}
+
 	SetObjectString(1, g->gameplay.targetScore.name, g->txtStruct.objectStr);
 	std::jthread(ProcGameThread, g).detach(); // removed SetThreadPriority(hG, -1);
 	return 1;
