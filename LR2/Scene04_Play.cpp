@@ -787,8 +787,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
-			g->gameplay.player[player].hiterror.notes.push({ (size_t)lane, (double)offset, (double)	timing, 5 });
-			g->gameplay.player[player].hiterror.ema.add((double)offset);
+			g->gameplay.player[player].hiterror.notes.push({ offset, timing, Judgement::PGREAT });
+			g->gameplay.player[player].hiterror.ema.add(static_cast<double>(offset));
 			return 1;
 		}
 		if (gap <= g->gameplay.player[player].judgetime[4] && g->gameplay.player[player].note_current < g->gameplay.player[player].totalnotes) {
@@ -812,8 +812,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
-			g->gameplay.player[player].hiterror.notes.push({ (size_t)lane, (double)offset, (double) timing, 4 });
-			g->gameplay.player[player].hiterror.ema.add((double)offset);
+			g->gameplay.player[player].hiterror.notes.push({ offset, timing, Judgement::GREAT });
+			g->gameplay.player[player].hiterror.ema.add(static_cast<double>(offset));
 			return 1;
 		}
 		if (gap <= g->gameplay.player[player].judgetime[3] && g->gameplay.player[player].note_current < g->gameplay.player[player].totalnotes) {
@@ -836,8 +836,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
-			g->gameplay.player[player].hiterror.notes.push({ (size_t)lane, (double)offset, (double) timing, 3 });
-			g->gameplay.player[player].hiterror.ema.add((double)offset);
+			g->gameplay.player[player].hiterror.notes.push({ offset, timing, Judgement::GOOD });
+			g->gameplay.player[player].hiterror.ema.add(static_cast<double>(offset));
 			return 1;
 		}
 
@@ -863,8 +863,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
-			g->gameplay.player[player].hiterror.notes.push({ (size_t)lane, (double)offset, (double)timing, 2 });
-			g->gameplay.player[player].hiterror.ema.add((double)offset);
+			g->gameplay.player[player].hiterror.notes.push({ offset, timing, Judgement::BAD });
+			g->gameplay.player[player].hiterror.ema.add(static_cast<double>(offset));
 
 			if (g->gameplay.bmsobj_note[lane].note_count < g->gameplay.bmsobj_note[lane].size && abs(timing - (int)g->gameplay.bmsobj_note[lane].notes[g->gameplay.bmsobj_note[lane].note_count].realTiming) <= g->gameplay.player[player].judgetime[2]) {
 				ProcSinglenote(g, lane, 1, timing, player);
@@ -1167,22 +1167,20 @@ int DrawHitError(game *g, skstruct *sk, Timer *T) {
 			SRCstruct *parentSRC = nullptr;
 			DSTstruct *parentDST = nullptr;
 
-			DSTstruct childDST = DSTstruct{};
-
 			switch (jd.judge) {
-				case 5: 
+				case Judgement::PGREAT: 
 					parentDST = &sk->dst_HITERROR_PGREAT;
 					parentSRC = &sk->src_HITERROR_PGREAT;
 					break;
-				case 4: 
+				case Judgement::GREAT: 
 					parentDST = &sk->dst_HITERROR_GREAT;
 					parentSRC = &sk->src_HITERROR_GREAT;
 					break;
-				case 3: 
+				case Judgement::GOOD: 
 					parentDST = &sk->dst_HITERROR_GOOD;
 					parentSRC = &sk->src_HITERROR_GOOD;
 					break;
-				case 2: 
+				case Judgement::BAD: 
 					parentDST = &sk->dst_HITERROR_BAD;
 					parentSRC = &sk->src_HITERROR_BAD;
 					break;
@@ -1192,8 +1190,8 @@ int DrawHitError(game *g, skstruct *sk, Timer *T) {
 
 			if (!parentSRC || parentSRC->graphcount <= 0) continue;
 
-			childDST = CloneDSTstruct(parentDST);
-			
+			DSTstruct childDST = CloneDSTstruct(parentDST);
+
 			for (size_t j = 0; j < childDST.dstCount; ++j) {
 				childDST.draw[j].a = fadeAlpha(parentDST->draw[j].a, noteTimer - jd.timeHit, fadeTime);
 			}

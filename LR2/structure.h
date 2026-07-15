@@ -1353,11 +1353,19 @@ public:
 	const T& operator[](size_t i) const { return buf[i]; }
 };
 
+enum class Judgement {
+	AIR_POOR,
+	MISS_POOR,
+	BAD,
+	GOOD,
+	GREAT,
+	PGREAT
+};
+
 struct JudgeData {
-	size_t column = 0;
-	double offset = 0.0;
-	double timeHit = 0.0;
-	size_t judge = 0;
+	int offset = 0.0;
+	int timeHit = 0.0;
+	Judgement judge;
 };
 
 struct HITERRORDATA {
