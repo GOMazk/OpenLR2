@@ -242,6 +242,8 @@ struct GRAPHICS_HARDWARE_DIRECT3D11_SHADER_BASE
 	D_ID3D11VertexShader					*StretchRect_VS ;
 	D_ID3D11VertexShader					*StretchRectTex8_VS ;
 	D_ID3D11PixelShader						*StretchRect_PS ;
+
+	D_ID3D11PixelShader* CrtGeomPixelShader;
 } ;
 
 // Direct3D11 の標準３Ｄ描画用のシェーダーを纏めた構造体

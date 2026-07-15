@@ -5395,6 +5395,10 @@ static int Direct3DDevice9_ScalingSubBackbuffer( const RECT *SubBackBufferSrcRec
 			Direct3DDevice9_SetSamplerState( 0, D_D3DSAMP_MAGFILTER, D_D3DTEXF_POINT ) ;
 			Direct3DDevice9_SetSamplerState( 0, D_D3DSAMP_MINFILTER, D_D3DTEXF_POINT ) ;
 			break ;
+		case DX_FSSCALINGMODE_CRT :
+			Direct3DDevice9_SetSamplerState(0, D_D3DSAMP_MAGFILTER, D_D3DTEXF_NONE);
+			Direct3DDevice9_SetSamplerState(0, D_D3DSAMP_MINFILTER, D_D3DTEXF_NONE);
+			break;
 		}
 
 		// Ｚバッファを使用しない設定にする
@@ -5444,6 +5448,16 @@ static int Direct3DDevice9_ScalingSubBackbuffer( const RECT *SubBackBufferSrcRec
 		BlendInfo.TextureStageInfo[ 1 ].AlphaOP           = D_D3DTOP_DISABLE ;
 
 		Graphics_D3D9_DeviceState_SetUserBlendInfo( &BlendInfo, FALSE, FALSE, FALSE ) ;
+
+		if (GSYS.Screen.FullScreenScalingMode == DX_FSSCALINGMODE_CRT && GD3D9.Device.Shader.Base.CrtGeomPixelShader) {
+			Direct3DDevice9_SetPixelShader(GD3D9.Device.Shader.Base.CrtGeomPixelShader);
+			Direct3DDevice9_SetTexture(0, GD3D9.Device.Screen.SubBackBufferTexture);
+			float inoutsize[4] = { GD3D9.Device.Screen.SubBackBufferTextureSizeX, GD3D9.Device.Screen.SubBackBufferTextureSizeY,
+				 GSYS.Screen.FullScreenUseDispModeData.Width, GSYS.Screen.FullScreenUseDispModeData.Height };
+			float scale[4] = { inoutsize[2] / inoutsize[0], inoutsize[3] / inoutsize[1], 0.f, 0.f };
+			Direct3DDevice9_SetPixelShaderConstantF(0, inoutsize, 1);
+			Direct3DDevice9_SetPixelShaderConstantF(1, scale, 1);
+		}
 
 		// 単純拡大転送
 

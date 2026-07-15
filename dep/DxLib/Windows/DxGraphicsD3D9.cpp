@@ -742,6 +742,9 @@ extern unsigned int ShaderTxt_PSInclude_D3D9_len;
 extern unsigned char ShaderTxt_VSInclude_D3D9[];
 extern unsigned int ShaderTxt_VSInclude_D3D9_len;
 
+extern unsigned char ShaderTxt_CRT_Geom_D3D9[];
+extern unsigned int ShaderTxt_CRT_Geom_D3D9_len;
+
 #endif // DX_NON_SHADERCODE_BINARY
 
 extern int  DxShaderCodeBin_FilterConvert ;
@@ -1950,6 +1953,7 @@ extern int Graphics_D3D9_ShaderCode_Base_Initialize( void )
 		SCBASE->ShaderTxt["PixelLighting_VS.h"] = { ShaderTxt_PixelLighting_VSInclude_D3D9, ShaderTxt_PixelLighting_VSInclude_D3D9_len };
 		SCBASE->ShaderTxt["VertexLighting_PS.h"] = { ShaderTxt_VertexLighting_PSInclude_D3D9, ShaderTxt_VertexLighting_PSInclude_D3D9_len };
 		SCBASE->ShaderTxt["VertexLighting_VS.h"] = { ShaderTxt_VertexLighting_VSInclude_D3D9, ShaderTxt_VertexLighting_VSInclude_D3D9_len };
+		SCBASE->ShaderTxt["CRT_Geom.hlsl"] = { ShaderTxt_CRT_Geom_D3D9 , ShaderTxt_CRT_Geom_D3D9_len };
 	}
 
 #endif // DX_NON_SHADERCODE_BINARY
@@ -4574,6 +4578,10 @@ extern int Graphics_D3D9_Shader_Initialize( void )
 					}
 				}
 			}
+			if (Graphics_D3D9_CompilePixelShader("CRT_Geom.hlsl", "Pass1", NULL, &Shader->Base.CrtGeomPixelShader) != 0)
+			{
+				DXST_LOGFILE_ADDA("Couldn't compile CRT_Geom pixel shader\n");
+			}
 		}
 #endif // DX_NON_SHADERCODE_BINARY
 #endif // DX_NON_NORMAL_DRAW_SHADER
@@ -4713,6 +4721,12 @@ extern int Graphics_D3D9_Shader_Terminate( void )
 	Graphics_D3D9_PixelShaderArray_Release(  ( D_IDirect3DPixelShader9  ** )Shader->Model.MV1_VertexLighting_Normal_PS,	sizeof( Shader->Model.MV1_VertexLighting_Normal_PS	) / sizeof( D_IDirect3DPixelShader9 *	) ) ;
 
 #endif // DX_NON_MODEL
+
+	if (Shader->Base.CrtGeomPixelShader)
+	{
+		Direct3D9_ObjectRelease(Shader->Base.CrtGeomPixelShader);
+		Shader->Base.CrtGeomPixelShader = NULL;
+	}
 
 	// 正常終了
 	return 0 ;

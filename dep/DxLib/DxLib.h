@@ -1121,6 +1121,7 @@
 // フルスクリーン拡大モード定義
 #define DX_FSSCALINGMODE_BILINEAR					(0)				// バイリニアモード( ピクセルが滲んでピクセルとピクセルの区切りがはっきりしない )
 #define DX_FSSCALINGMODE_NEAREST					(1)				// 最近点モード( ピクセルが四角くくっきり表示される )
+#define DX_FSSCALINGMODE_CRT						(2) // Uses CRT_Geom.hlsl pixel shader
 
 // SetGraphMode 戻り値定義
 #define DX_CHANGESCREEN_OK							(0)				// 画面変更は成功した

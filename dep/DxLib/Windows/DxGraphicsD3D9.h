@@ -349,6 +349,7 @@ struct GRAPHICS_HARDWARE_DIRECT3D9_SHADER_BASE
 	D_IDirect3DPixelShader9					*MaskEffect_UseGraphHandle_PixelShader[ 4 ] ;
 	D_IDirect3DPixelShader9					*MaskEffect_UseGraphHandle_ReverseEffect_PixelShader[ 4 ] ;
 #endif // DX_NON_NORMAL_DRAW_SHADER
+	D_IDirect3DPixelShader9* CrtGeomPixelShader;
 } ;
 
 // Direct3D9 の標準３Ｄ描画用のシェーダーを纏めた構造体
