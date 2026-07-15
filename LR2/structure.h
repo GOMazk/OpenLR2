@@ -1319,7 +1319,6 @@ struct EMA {
 	double value = 0.0;
 	static constexpr double alpha = 0.07;
 	void add(double x) { value = alpha * x + (1.0 - alpha) * value; }
-	void reset() { value = 0.0; }
 };
 
 template<typename T>

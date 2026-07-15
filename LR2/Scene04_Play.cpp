@@ -2112,7 +2112,7 @@ int ProcS_Play(game *g, sqlite3* sql) {
 	}
 
 	for(size_t i = 0; i < 2; ++i) {
-		g->gameplay.player[i].hiterror.ema.reset();
+		g->gameplay.player[i].hiterror.ema = {};
 		g->gameplay.player[i].hiterror.notes = CircularBuffer<JudgeData>(g->skstruct.src_HITERROR[i].graphcount);
 	}
 
