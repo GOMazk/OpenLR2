@@ -1327,6 +1327,9 @@ extern int Graphics_D3D9_Reset(void)
 
 	Graphics_D3D9_Device_ReInitialize();
 
+	// 描画範囲を再設定する
+	NS_SetDrawArea(0, 0, GSYS.Screen.MainScreenSizeX, GSYS.Screen.MainScreenSizeY);
+
 	// 終了
 	return 0;
 
