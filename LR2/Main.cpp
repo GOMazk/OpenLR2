@@ -250,6 +250,9 @@ int main(int argc, char** argv) {
 #endif // NDEBUG
 #endif // _WIN32
 
+	// Enable URI filenames so file:...?mode=ro opens/attaches fail on missing files instead of creating them.
+	sqlite3_config(SQLITE_CONFIG_URI, 1);
+
 	if constexpr (!is_linux()) {
 		if (!IsWindowsVersionAbove1903()) {
 			MessageBoxA(nullptr,
@@ -578,11 +581,47 @@ int main(int argc, char** argv) {
 		}
 	}
 
+	gs.net.getRival = gs.config.network.getRival;
+	if (gs.net.getRival && gs.net.customIR.IsDisplayIrOnline()) {
+		auto rivalSync = gs.net.customIR.SyncRivals();
+		if (rivalSync.supported) {
+			size_t i{};
+			while (!std::ranges::all_of(rivalSync.tasks, isFutureReady, &CUSTOMIR_MANAGER::RivalSyncTask::result)) {
+				// Soft skip only (legacy LR2IR): leave the wait loop; do not abort module HTTP.
+				if (GetMouseInput()) {
+					printfDx("Skipped CustomIR rival sync.\n");
+					ScreenFlip();
+					clsDx();
+					break;
+				}
+				if (loadingGrHandle > 0)
+					DrawExtendGraph(0, 0, resX, resY, loadingGrHandle, 0);
+				printfDx("Syncing CustomIR rivals");
+				if (!rivalSync.providerName.empty()) {
+					printfDx(" (%s)", rivalSync.providerName.c_str());
+				}
+				printfDx(":\n");
+				printfDx("Hold left click to skip.\n");
+				for (auto& task : rivalSync.tasks) {
+					printfDx("%s (%d)%s\n", task.name.c_str(), task.id, isFutureReady(task.result) ? " - done!" : ellipsis(i, 3, 20).c_str());
+				}
+				ScreenFlip();
+				clsDx();
+				std::this_thread::sleep_for(std::chrono::milliseconds(10));
+				++i;
+			}
+		}
+		if (gs.net.customIR.ApplyRivalSyncResults(rivalSync)) {
+			ErrorLogAdd("Using CustomIR rival folders\n");
+		} else {
+			ErrorLogAdd("CustomIR rival sync failed\n");
+		}
+	}
+
 	if (gs.is_starter == 0 && gs.cmd_nosave == 0) {
 		gs.net.IR_pass = gs.config.player.pass;
 		gs.net.IR_name = gs.config.player.id;
 		gs.net.IR_passMD5 = MD5str(gs.config.player.pass);
-		gs.net.getRival = gs.config.network.getRival;
 		gs.net.IR_ID = gs.gameplay.playerstat.irid;
 		gs.net.rankingData.myID = gs.net.IR_ID;
 		if (gs.config.network.lr2ir == 1) {
@@ -594,7 +633,10 @@ int main(int argc, char** argv) {
 		}
 	}
 
-	memcpy(gs.config.jukebox.rival, gs.net.rivals, 4 * 20);
+	// Prefer CustomIR-owned rival ids when present; otherwise legacy NETWORK::rivals (LR2IR).
+	if (!gs.net.customIR.CopyRivalIds(gs.config.jukebox.rival)) {
+		memcpy(gs.config.jukebox.rival, gs.net.rivals, sizeof(gs.config.jukebox.rival));
+	}
 	sqlite3* sql3;
 	sqlite3_open(gs.is_starter
 			? fs::make_preferred("LR2files/Database.db" ).data()

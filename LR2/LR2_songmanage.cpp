@@ -1,9 +1,11 @@
 ﻿#include "LR2_songmanage.h"
+#include "LR2_customir.h"
 #include "LR2_statlong.h"
 #include "filesystem.h"
 #include "filesystem.h"
 #include <algorithm>
 #include <cstring>
+#include <filesystem>
 #include <iterator>
 #include <ranges>
 #include <string>
@@ -2061,7 +2063,11 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 		isRival = 1;
 		SQL_Run("DETACH rivaldb", sql);
 		CSTR str;
-		cstrSprintf(&str, fs::make_preferred("ATTACH \'LR2files/Rival/%d.db\' AS rivaldb").data(), rivalID);
+		if (const auto rivalPath = CUSTOMIR_MANAGER::RivalPath(rivalID)) {
+			cstrSprintf(&str, "ATTACH \'file:%s?mode=ro\' AS rivaldb", std::filesystem::path{*rivalPath}.concat(".db").generic_string().c_str());
+		} else {
+			cstrSprintf(&str, fs::make_preferred("ATTACH \'LR2files/Rival/%d.db\' AS rivaldb").data(), rivalID);
+		}
 		SQL_Run(str, sql);
 		ss->rivalID = rivalID;
 		rivalID = 0;
@@ -2838,7 +2844,16 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 
 			for (int i = 0; i < 20; i++) {
 				if (jb->rival[i] < 1) break;
-				cstrSprintf(&jb->path[jb->numOfPath], fs::make_preferred("LR2files/Rival/%d.lr2folder").data(), jb->rival[i]);
+				if (const auto rivalPath = CUSTOMIR_MANAGER::RivalPath(jb->rival[i])) {
+					std::filesystem::path folderPath = *rivalPath;
+					folderPath += ".lr2folder";
+					char deleteQuery[1024];
+					sqlite3_snprintf(sizeof(deleteQuery), deleteQuery, "DELETE FROM folder WHERE path=\'%q\'", folderPath.string().c_str());
+					SQL_Run(deleteQuery, sql);
+					cstrSprintf(&jb->path[jb->numOfPath], "%s", folderPath.string().c_str());
+				} else {
+					cstrSprintf(&jb->path[jb->numOfPath], fs::make_preferred("LR2files/Rival/%d.lr2folder").data(), jb->rival[i]);
+				}
 				GetFolderDataFromPath(jb->path[jb->numOfPath], sql);
 				jb->numOfPath++;
 				folderAddCount++;

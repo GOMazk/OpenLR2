@@ -1585,7 +1585,7 @@ struct NETWORK {
 	void WaitForRankingHandle();
 	int GetRanking(CSTR hash, char flagInit);
 
-	int GetRivalInfo(int ID_rival);
+	int LR2IR_GetRivalInfo(int ID_rival);
 
 	int LR2IR_GetTargetInfo(int mode, CSTR songmd5, CSTR * oStr1, CSTR * oStr2, int * oDigit1, int * oDigit2, int * oDigit3, int * oDigit4, int * oUnk, int * oExscore);
 	bool GetTargetInfo(int mode, CSTR songmd5, CSTR * oStr1, CSTR * oStr2, int * oDigit1, int * oDigit2, int * oDigit3, int * oDigit4, int * oUnk, int * oExscore);

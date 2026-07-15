@@ -2,6 +2,8 @@
 
 #include "LR2_customir_api.h"
 #include "LR2_songmanage.h"
+#include "En_fileutil.h"
+#include "filesystem.h"
 #include "structure.h"
 
 #include <algorithm>
@@ -9,6 +11,8 @@
 #include <chrono>
 #include <cstring>
 #include <filesystem>
+#include <format>
+#include <fstream>
 #include <future>
 #include <optional>
 #include <ranges>
@@ -17,7 +21,7 @@
 #include <utility>
 #include <vector>
 
-#include <DxLib.h>
+#include <sqlite3.h>
 
 #ifdef _WIN32
 #include <libloaderapi.h>
@@ -71,6 +75,8 @@ public:
 	openlr2::GetStatus RestoreCachedRank(const char* songHash, openlr2::IRRankResult& out);
 	openlr2::GetStatus GetGhost(const char* songHash, openlr2::GhostMode mode, int targetPlayerId, openlr2::IRGhostResult& out);
 	[[nodiscard]] std::string GetWebRankingUrl(const char* songHash);
+	openlr2::GetStatus GetRivals(openlr2::IRRivalListResult& out);
+	openlr2::GetStatus SyncRivalScores(int rivalId, uint64_t lastUpdateHint, std::vector<openlr2::IRRivalScore>& out);
 	[[nodiscard]] const std::string& Name() const { return mName; };
 	[[nodiscard]] bool DidLoginSuccessfully() const { return mDidLoginSuccessfully; };
 private:
@@ -148,9 +154,196 @@ std::string CustomIR::GetWebRankingUrl(const char* songHash) {
 	return mMethods.GetWebRankingUrl(songHash);
 }
 
+openlr2::GetStatus CustomIR::GetRivals(openlr2::IRRivalListResult& out) {
+	if (mMethods.GetRivals == nullptr) return openlr2::GetStatus::Fail;
+	return mMethods.GetRivals(out);
+}
+
+openlr2::GetStatus CustomIR::SyncRivalScores(int rivalId, uint64_t lastUpdateHint, std::vector<openlr2::IRRivalScore>& out) {
+	if (mMethods.SyncRivalScores == nullptr) return openlr2::GetStatus::Fail;
+	return mMethods.SyncRivalScores(rivalId, lastUpdateHint, out);
+}
+
+static std::filesystem::path CustomIRRivalDirectory(const std::string& providerName) {
+	return std::filesystem::path(fs::make_preferred("LR2files/CustomIRRival").data()) / providerName;
+}
+
+static uint64_t CustomIRRivalLastUpdateHint(const std::filesystem::path& rivalDirectory, int rivalId) {
+	const auto dbPath = rivalDirectory / std::format("{}.db", rivalId);
+
+	sqlite3* db = nullptr;
+	std::string uri = "file:" + dbPath.generic_string() + "?mode=ro";
+	if (sqlite3_open(uri.c_str(), &db) != SQLITE_OK) {
+		return 0;
+	}
+
+	sqlite3_stmt* stmt = nullptr;
+	uint64_t lastUpdate = 0;
+	if (sqlite3_prepare_v2(db, "SELECT r_lastupdate FROM rival ORDER BY r_lastupdate DESC LIMIT 1", -1, &stmt, nullptr) == SQLITE_OK) {
+		if (sqlite3_step(stmt) == SQLITE_ROW) {
+			const sqlite3_int64 value = sqlite3_column_int64(stmt, 0);
+			if (value >= 0) {
+				lastUpdate = static_cast<uint64_t>(value);
+			}
+		}
+		sqlite3_finalize(stmt);
+	}
+	sqlite3_close(db);
+	return lastUpdate;
+}
+
+static bool RivalExecSql(sqlite3* db, const char* sql) {
+	char* err = nullptr;
+	const int rc = sqlite3_exec(db, sql, nullptr, nullptr, &err);
+	if (rc != SQLITE_OK) {
+		if (err) {
+			ErrorLogFmtAdd("CustomIR rival db sql error: %s\n", err);
+			sqlite3_free(err);
+		}
+		return false;
+	}
+	return true;
+}
+
+static bool WriteCustomIRRivalDb(const std::filesystem::path& dbPath, const std::vector<openlr2::IRRivalScore>& scores) {
+	std::error_code ec;
+	std::filesystem::create_directories(dbPath.parent_path(), ec);
+
+	sqlite3* db = nullptr;
+	if (sqlite3_open(dbPath.string().c_str(), &db) != SQLITE_OK) {
+		ErrorLogFmtAdd("CustomIR rival db open failed: %s\n", dbPath.string().c_str());
+		return false;
+	}
+
+	const bool okSchema = RivalExecSql(
+		db,
+		"CREATE TABLE IF NOT EXISTS rival("
+		"hash TEXT primary key,"
+		"r_clear INTEGER,"
+		"r_totalnotes INTEGER,"
+		"r_maxcombo INTEGER,"
+		"r_perfect INTEGER,"
+		"r_great INTEGER,"
+		"r_good INTEGER,"
+		"r_bad INTEGER,"
+		"r_poor INTEGER,"
+		"r_minbp INTEGER,"
+		"r_option INTEGER,"
+		"r_lastupdate INGEGER)"
+	);
+	if (!okSchema || !RivalExecSql(db, "DELETE FROM rival") || !RivalExecSql(db, "BEGIN")) {
+		sqlite3_close(db);
+		return false;
+	}
+
+	sqlite3_stmt* stmt = nullptr;
+	const char* insertSql =
+		"INSERT OR REPLACE INTO rival "
+		"(hash,r_clear,r_totalnotes,r_maxcombo,r_perfect,r_great,r_good,r_bad,r_poor,r_minbp,r_option,r_lastupdate) "
+		"VALUES(?,?,?,?,?,?,?,?,?,?,?,?)";
+	if (sqlite3_prepare_v2(db, insertSql, -1, &stmt, nullptr) != SQLITE_OK) {
+		ErrorLogFmtAdd("CustomIR rival db prepare failed: %s\n", sqlite3_errmsg(db));
+		sqlite3_close(db);
+		return false;
+	}
+
+	for (const auto& score : scores) {
+		if (score.hash.empty()) {
+			continue;
+		}
+		sqlite3_bind_text(stmt, 1, score.hash.c_str(), -1, SQLITE_TRANSIENT);
+		sqlite3_bind_int(stmt, 2, score.clear);
+		sqlite3_bind_int(stmt, 3, score.notes);
+		sqlite3_bind_int(stmt, 4, score.combo);
+		sqlite3_bind_int(stmt, 5, score.pg);
+		sqlite3_bind_int(stmt, 6, score.gr);
+		sqlite3_bind_int(stmt, 7, score.gd);
+		sqlite3_bind_int(stmt, 8, score.bd);
+		sqlite3_bind_int(stmt, 9, score.pr);
+		sqlite3_bind_int(stmt, 10, score.minbp);
+		sqlite3_bind_int(stmt, 11, score.option);
+		sqlite3_bind_int64(stmt, 12, static_cast<sqlite3_int64>(score.lastupdate));
+		if (sqlite3_step(stmt) != SQLITE_DONE) {
+			ErrorLogFmtAdd("CustomIR rival db insert failed: %s\n", sqlite3_errmsg(db));
+			sqlite3_finalize(stmt);
+			sqlite3_close(db);
+			return false;
+		}
+		sqlite3_reset(stmt);
+	}
+
+	sqlite3_finalize(stmt);
+	if (!RivalExecSql(db, "COMMIT")) {
+		sqlite3_close(db);
+		return false;
+	}
+	sqlite3_close(db);
+	return true;
+}
+
+static bool WriteCustomIRRivalLr2folder(const std::filesystem::path& folderPath, int rivalId, const std::string& name) {
+	std::error_code ec;
+	std::filesystem::create_directories(folderPath.parent_path(), ec);
+
+	const std::string content = std::format(
+		"#COMMAND __RIVAL__\n"
+		"#MAXTRACKS {}\n"
+		"#CATEGORY ライバルフォルダ\n"
+		"#TITLE {}\n"
+		"#INFORMATION_A {}のプレイした曲を表示します\n"
+		"#INFORMAION_B\n",
+		rivalId,
+		name,
+		name
+	);
+	const std::string encoded = utf2ansi(content, 932);
+
+	std::ofstream out(folderPath, std::ios::binary);
+	if (!out) {
+		return false;
+	}
+	out.write(encoded.data(), static_cast<std::streamsize>(encoded.size()));
+	return static_cast<bool>(out);
+}
+
+static bool WriteCustomIRRivalArtifacts(
+	const std::filesystem::path& rivalDirectory,
+	int rivalId,
+	const std::string& name,
+	const std::vector<openlr2::IRRivalScore>& scores
+) {
+	const auto dbPath = rivalDirectory / std::format("{}.db", rivalId);
+	const auto folderPath = rivalDirectory / std::format("{}.lr2folder", rivalId);
+	if (!WriteCustomIRRivalDb(dbPath, scores)) {
+		return false;
+	}
+	if (!WriteCustomIRRivalLr2folder(folderPath, rivalId, name)) {
+		return false;
+	}
+	return true;
+}
+
 // All held std::future are automatically awaited on.
 // Can hang for up to 15 minutes if score sending fails time and time again...
 CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() = default;
+
+std::vector<std::pair<int, std::filesystem::path>> CUSTOMIR_MANAGER::sRivalPaths;
+
+std::optional<std::filesystem::path> CUSTOMIR_MANAGER::RivalPath(int rivalId) {
+	const auto it = std::ranges::find(sRivalPaths, rivalId, &std::pair<int, std::filesystem::path>::first);
+	if (it == sRivalPaths.end()) return std::nullopt;
+	return it->second;
+}
+
+bool CUSTOMIR_MANAGER::CopyRivalIds(std::span<int> rivalsOut) {
+	std::ranges::fill(rivalsOut, 0);
+	if (sRivalPaths.empty() || rivalsOut.empty()) return false;
+	const std::size_t n = std::min(sRivalPaths.size(), rivalsOut.size());
+	for (std::size_t i = 0; i < n; ++i) {
+		rivalsOut[i] = sRivalPaths[i].first;
+	}
+	return true;
+}
 
 template<class T>
 static void cleanUpOldFutures(std::vector<T>& futures) {
@@ -247,6 +440,98 @@ bool CUSTOMIR_MANAGER::IsDisplayIrOnline() const {
 	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
 	if (irIt == mModules.end()) { return false; }
 	return (*irIt)->DidLoginSuccessfully();
+}
+
+CUSTOMIR_MANAGER::RivalSyncBatch CUSTOMIR_MANAGER::SyncRivals() {
+	RivalSyncBatch batch{};
+	sRivalPaths.clear();
+
+	if (!IsDisplayIrOnline()) {
+		ErrorLogAdd("CustomIR rival sync skipped: display IR offline\n");
+		return batch;
+	}
+	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
+	if (irIt == mModules.end()) return batch;
+	auto ir = *irIt;
+	batch.providerName = ir->Name();
+	const std::filesystem::path rivalDirectory = CustomIRRivalDirectory(batch.providerName);
+	std::error_code ec;
+	std::filesystem::create_directories(rivalDirectory, ec);
+
+	openlr2::IRRivalListResult list{};
+	switch (ir->GetRivals(list)) {
+	case openlr2::GetStatus::Ok:
+		break;
+	case openlr2::GetStatus::Retry:
+		OverlayNotification("'%s' GetRivals retry ignored\n", ir->Name().c_str());
+		return batch;
+	case openlr2::GetStatus::Fail:
+	default:
+		OverlayNotification("'%s' GetRivals failed - falling back to legacy rival\n", ir->Name().c_str());
+		return batch;
+	}
+
+	batch.supported = true;
+	batch.tasks.reserve(std::min(list.rivals.size(), openlr2::kMaxRivals));
+	for (const auto& entry : list.rivals) {
+		if (batch.tasks.size() >= openlr2::kMaxRivals) break;
+		if (entry.id < 1) continue;
+		const uint64_t lastUpdateHint = CustomIRRivalLastUpdateHint(rivalDirectory, entry.id);
+
+		batch.tasks.push_back(RivalSyncTask{
+			.id = entry.id,
+			.name = entry.name,
+			.result = std::async(std::launch::async, [ir, id = entry.id, lastUpdateHint]() -> std::optional<std::vector<openlr2::IRRivalScore>> {
+				std::vector<openlr2::IRRivalScore> scores;
+				const auto syncStatus = ir->SyncRivalScores(id, lastUpdateHint, scores);
+				if (syncStatus != openlr2::GetStatus::Ok) {
+					ErrorLogFmtAdd("SyncRivalScores %s for id=%d\n",
+						syncStatus == openlr2::GetStatus::Retry ? "retry ignored" : "failed",
+						id);
+					return std::nullopt;
+				}
+				return scores;
+			}),
+		});
+	}
+
+	return batch;
+}
+
+bool CUSTOMIR_MANAGER::ApplyRivalSyncResults(RivalSyncBatch& sync) {
+	sRivalPaths.clear();
+	if (!sync.supported) return false;
+
+	cleanUpOldFutures(mDiscardedRivalSyncFutures);
+
+	const std::filesystem::path rivalDirectory = CustomIRRivalDirectory(sync.providerName);
+	int count = 0;
+	for (auto& task : sync.tasks) {
+		if (count >= static_cast<int>(openlr2::kMaxRivals)) break;
+		if (!task.result.valid()) continue;
+
+		// Soft skip: do not block on unfinished downloads; park like discarded result-IR futures.
+		if (task.result.wait_for(std::chrono::milliseconds(0)) != std::future_status::ready) {
+			mDiscardedRivalSyncFutures.push_back(std::move(task.result));
+			continue;
+		}
+
+		std::optional<std::vector<openlr2::IRRivalScore>> scores = task.result.get();
+		if (!scores) continue;
+
+		if (!WriteCustomIRRivalArtifacts(rivalDirectory, task.id, task.name, *scores)) {
+			ErrorLogFmtAdd("CustomIR rival write failed for id=%d\n", task.id);
+			continue;
+		}
+
+		const std::filesystem::path rivalPath = rivalDirectory / std::to_string(task.id);
+		sRivalPaths.emplace_back(task.id, rivalPath);
+		++count;
+		ErrorLogFmtAdd("CustomIR rival ready: %d (%s, scores=%zu)\n", task.id, task.name.c_str(), scores->size());
+	}
+
+	ErrorLogFmtAdd("CustomIR rival source active (%d rivals)\n", count);
+	return true;
 }
 
 std::string CUSTOMIR_MANAGER::GetWebRankingUrl(const char* songHash) const {

@@ -6,7 +6,9 @@
 #include <future>
 #include <memory>
 #include <optional>
+#include <span>
 #include <string>
+#include <utility>
 #include <vector>
 
 struct RANKING;
@@ -44,10 +46,33 @@ public:
 	// \note Delegates to the display IR
 	// \retval nullopt - Fail
 	std::optional<openlr2::IRGhostResult> TryGetTargetInfo(const char* songmd5, int mode, int targetPlayerId);
+
+	struct RivalSyncTask {
+		int id{};
+		std::string name;
+		std::future<std::optional<std::vector<openlr2::IRRivalScore>>> result;
+	};
+	struct RivalSyncBatch {
+		std::string providerName;
+		bool supported{};
+		std::vector<RivalSyncTask> tasks;
+	};
+	// Caller: only when getRival. Returns async work; call ApplyRivalSyncResults after wait or soft skip.
+	RivalSyncBatch SyncRivals();
+	// Applies ready tasks only. Incomplete futures are parked (soft skip / no WinHTTP abort).
+	// Success writes LR2files/CustomIRRival/<provider>/ and records rival ids/paths on this manager
+	bool ApplyRivalSyncResults(RivalSyncBatch& sync);
+	// Set only after successful ApplyRivalSyncResults. Empty = not active for this rival; use legacy LR2files/Rival.
+	[[nodiscard]] static std::optional<std::filesystem::path> RivalPath(int rivalId);
+	// Copies CustomIR rival ids into rivalsOut (zero-filled first). Returns false if none active.
+	[[nodiscard]] static bool CopyRivalIds(std::span<int> rivalsOut);
+
 private:
+	static std::vector<std::pair<int, std::filesystem::path>> sRivalPaths;
 	std::vector<std::shared_ptr<CustomIR>> mModules;
 	std::vector<std::future<void>> mSendThreads;
 	std::vector<std::future<std::optional<openlr2::IRRankResult>>> mDiscardedResultIrFutures;
+	std::vector<std::future<std::optional<std::vector<openlr2::IRRivalScore>>>> mDiscardedRivalSyncFutures;
 	std::future<std::optional<openlr2::IRRankResult>> mResultIrFuture;
 	std::string mDisplayIr;
 };

@@ -113,6 +113,31 @@ static std::string OLR2_IR_API GetWebRankingUrl(const char* songHash) {
 	return std::format("https://example.com/{}", songHash);
 }
 
+static openlr2::GetStatus OLR2_IR_API GetRivals(openlr2::IRRivalListResult& out) {
+    std::println(std::cout, "GetRivals");
+    // A real module would fetch the rival list from its service (up to 20 rival ids/names).
+    // ExampleIR returns static in-memory data to show the API shape (no sqlite needed).
+    out = {};
+    out.fetched_at = 1;
+    out.rivals = {
+        { .id = 70100, .name = "ExampleRivalA" },
+        { .id = 70101, .name = "ExampleRivalB" },
+    };
+    return openlr2::GetStatus::Ok;
+}
+
+static openlr2::GetStatus OLR2_IR_API SyncRivalScores(int rivalId, uint64_t /*lastUpdateHint*/, std::vector<openlr2::IRRivalScore>& out) {
+    std::println(std::cout, "SyncRivalScores({})", rivalId);
+    // A real module would fetch this rival's complete score snapshot from its service.
+    // ExampleIR returns static in-memory data; OpenLR2 writes the .db and .lr2folder from it.
+    // Replace the hashes with real chart md5s to make the scores show up in-game.
+    out = {
+        { .hash = "e6f2a1c48b7d0359e1a2b3c4d5e6f708", .clear = 4, .notes = 1200, .combo = 1180, .pg = 1000, .gr = 180, .gd = 15, .bd = 3, .pr = 2, .minbp = 5, .option = 0, .lastupdate = 1262304000 },
+        { .hash = "1a2b3c4d5e6f70819aabbccddeeff0011", .clear = 5, .notes = 900, .combo = 900, .pg = 880, .gr = 20, .gd = 0, .bd = 0, .pr = 0, .minbp = 0, .option = 0, .lastupdate = 1262304000 },
+    };
+    return openlr2::GetStatus::Ok;
+}
+
 extern "C" OLR2_IR_EXPORT void OLR2_IR_API GetMethodTable(MethodTable& table) {
     // Fill out the pointers to methods you want to use. Leave them at nullptr if you don't want to use them.
     // As API gets updated, new methods may appear available at MethodTable, but old ones will never be removed or their
@@ -124,6 +149,8 @@ extern "C" OLR2_IR_EXPORT void OLR2_IR_API GetMethodTable(MethodTable& table) {
     table.RestoreCachedRank = &RestoreCachedRank;
     table.GetGhost = &GetGhost;
     table.GetWebRankingUrl = &GetWebRankingUrl;
+    table.GetRivals = &GetRivals;
+    table.SyncRivalScores = &SyncRivalScores;
 }
 
 #ifdef _WIN32
