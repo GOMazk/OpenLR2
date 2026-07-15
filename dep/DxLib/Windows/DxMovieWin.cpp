@@ -2258,7 +2258,8 @@ extern int UpdateMovie_PF( MOVIEGRAPH * Movie, int /*AlwaysFlag*/ )
 		if( Movie->PF.pMediaSeeking && Movie->PF.pMediaControl )
 		{
 			Movie->PF.pMediaSeeking->GetCurrentPosition( &Now ) ;
-			if( Now >= Movie->StopTime )
+			// Requires +1 because there is a 1 unit discrepancy between Now and StopTime on last frame.
+			if( Now + 1 >= Movie->StopTime )
 			{
 				if( Movie->PlayType & DX_PLAYTYPE_LOOPBIT )
 				{

@@ -29,6 +29,4 @@ int SetObjectStringInt(int at, int val, CSTR * arr);
 CSTR GetStringFromArray(int num, CSTR * strings);
 
 //panel constant text (options in songselect)
-int DefineOptionStrNum(OptionString * arrOpStr);
-int ReadOptionstr(OptionString * opStr, CSVbuf csv);
-int ReadOptionstrFile(OptionString * arrOpStr, CSTR filepath);
+int ReadOptionstrFile(TextStruct& txtStruct, CSTR filepath);

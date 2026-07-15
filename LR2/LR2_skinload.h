@@ -15,10 +15,6 @@ int LoadFontForText(ImageFont * imgfont, CSTR * str);
 int InitSRC(SRCstruct * src);
 int InitDST(DSTstruct * dst);
 
-int ReadSRC(SRCstruct * src, CSVbuf * csv, skstruct * sk);
-int ReadSRC_BAR_TITLE(SRCstruct * src, CSVbuf * csv, skstruct * sk);
-int ReadDST(DSTstruct * dst, CSVbuf * csv, int order);
-
 //skin / scene
 int InitSkin(skstruct * sk, int p5, char font);
 bool CheckIndexRange(int index, int min, int max, int line, char * str);

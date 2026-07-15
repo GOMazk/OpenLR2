@@ -91,7 +91,24 @@ Running notes
 * 251128
 Main BPM
 
+### `400` (div:`3`)
+* 260710
+scaling filter
+
+### `401` (div:`2`)
+* 260710
+stretch
+
+
 ## text_st
 ### type:`74`, div:`5`
 * 251128
 Main BPM
+
+### type:`300`, div:`3`
+* 260710
+scaling filter
+
+### type:`301`, div:`2`
+* 260710
+stretch

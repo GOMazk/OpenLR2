@@ -718,7 +718,7 @@ bool NETWORK::GetTargetInfo(int mode, CSTR songmd5, CSTR *oData, CSTR *oName, in
 		case openlr2::Gauge::Survival: *oDigit1 = OPTION_GAUGE_HARD; break;
 		case openlr2::Gauge::Death: *oDigit1 = OPTION_GAUGE_DEATH; break;
 		case openlr2::Gauge::Easy: *oDigit1 = OPTION_GAUGE_EASY; break;
-		case openlr2::Gauge::PAttack: *oDigit1 = OPTION_GAUGE_PATTCK; break;
+		case openlr2::Gauge::PAttack: *oDigit1 = OPTION_GAUGE_PATTACK; break;
 		case openlr2::Gauge::GAttack: *oDigit1 = OPTION_GAUGE_GATTACK; break;
 		default: *oDigit1 = 0; break;
 		}
@@ -740,7 +740,7 @@ bool NETWORK::GetTargetInfo(int mode, CSTR songmd5, CSTR *oData, CSTR *oName, in
 		case openlr2::Random::Converge: *oDigit3 = OPTION_RANDOM_CONVERGE; break;
 		default: *oDigit3 = 0; break;
 		}
-		*oDigit4 = result->dpflip ? 1 : 0;
+		*oDigit4 = (int)result->dpflip;
 		*oSeed = result->rseed >= 0 ? result->rseed : 0; //TOFIX: 0 is a valid seed
 		return true;
 	}
@@ -916,7 +916,7 @@ int NETWORK::LR2IR_Login(int isDirectPlay) {
 			for (int i = 0; i < 20; i++) this->rivals[i] = 0;
 			this->rivalcount = 0;
 
-			if (this->getrival == 1) {
+			if (this->getRival) {
 				for(int cur= 0 ; cur < 20; cur++) {
 					if (GetMouseInput()) {
 						printfDx("ライバルデータの取得をスキップしました。\n");
@@ -929,7 +929,7 @@ int NETWORK::LR2IR_Login(int isDirectPlay) {
 					this->rivals[cur] = csv.val[2+cur];
 					this->rivalcount++;
 					this->GetRivalInfo(this->rivals[cur]);
-					if (this->getrival != 1) break;
+					if (!this->getRival) break;
 				}
 			}
 		}

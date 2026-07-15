@@ -34,9 +34,11 @@ https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR
 - Quick restart – Lets you restart the chart without going to result screen. Press both Start and Select, then quickly release and press either Start for a new random, or Select for the same random you had before.
 - MainBPM Hi-Speed Fix – Hi-Speed anchor is set at the most prevalent BPM in the chart.
 - UTF-8 support – Essentially means you don't need to change the locale in Windows settings to play.
-- Base62 support – support more keysounds on some newer charts that require them.
 - Frame Limiter - Replace vSync, which has a problem with tickrate.
 - Unrandomizer - Input '/random 1357246' or any number you want into search bar. Input '/random 0' to reset the unrandomizer.
+- Mordern BMS command support ([Document](new_command(bms).md))
+  * Base62 support – support more keysounds on some newer charts that require them.
+- New skin command support  ([Document](new_command(skin).md))
 
 ## How do I use HD skins with OpenLR2?
 

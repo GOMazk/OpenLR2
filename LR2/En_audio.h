@@ -6,13 +6,13 @@
 const char * GetFMODerror(int errCode);
 
 //fmod init / end
-int InitSound(AUDIO *aud, uint bufferLength, int numBuffer, char fDisable, int outputType, int driver);
+int InitSound(AUDIO *aud, uint bufferLength, int numBuffer, bool disableDSP, int outputType, int driver);
 int EndSound(AUDIO * aud); 
 
 //load file
 int IsAltSoundExist(CSTR * filepath);
 int SOUND_normalize(AUDIO * aud, SOUNDDATA * sound);
-int LoadSound(AUDIO * aud, SOUNDDATA * sound, CSTR filepath, int loop, int disableDSP, int previewFlag);
+int LoadSound(AUDIO * aud, SOUNDDATA * sound, CSTR filepath, bool isLoop, bool disableDSP, bool previewFlag);
 
 //unload
 int ReleaseSound(AUDIO * aud, SOUNDDATA * sound);
@@ -27,7 +27,7 @@ int SetVolumeByFade(AUDIO * aud);
 
 int SOUND_FmodToDxlib(AUDIO * aud);
 int SOUND_dxlibFx(SOUNDDATA sound, int v_master, int v_chn, int pitch, double freq);
-int ApplySoundFX(AUDIO * aud, int flag, char disable);
+int ApplySoundFX(AUDIO * aud, int flag, bool disableDSP);
 
 //play
 int PlaySound(AUDIO * aud, SOUNDDATA * sound, FMOD_CHANNELGROUP *channelgroup, int stage);

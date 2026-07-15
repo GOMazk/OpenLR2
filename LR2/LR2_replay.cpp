@@ -186,28 +186,28 @@ int AddReplayData(REPLAY *rp, int timing, uchar op, short value){
 }
 
 int AddReplayDataHeader(CONFIG_PLAY *cfg, REPLAY *rp, AUDIO *snd, gameplay *gp){
-	AddReplayData(rp, 0, 0x64, static_cast<short>(cfg->hiSpeed[0]));
-	AddReplayData(rp, 0, 0x96, static_cast<short>(cfg->hiSpeed[1]));
-	AddReplayData(rp, 0, 0x67, static_cast<short>(cfg->random[0]));
-	AddReplayData(rp, 0, 0x99, static_cast<short>(cfg->random[1]));
-	AddReplayData(rp, 0, 0x68, static_cast<short>(cfg->m_HIDSUD1));
-	AddReplayData(rp, 0, 0x9a, static_cast<short>(cfg->m_HIDSUD2));
-	AddReplayData(rp, 0, 0x65, static_cast<short>(cfg->gaugeOption[0]));
-	AddReplayData(rp, 0, 0x97, static_cast<short>(cfg->gaugeOption[1]));
-	AddReplayData(rp, 0, 0x66, static_cast<short>(cfg->p1_lanecoverv));
-	AddReplayData(rp, 0, 0x98, static_cast<short>(cfg->p2_lanecoverv));
-	AddReplayData(rp, 0, 0x6b, static_cast<short>(cfg->p1_assist));
-	AddReplayData(rp, 0, 0x9d, static_cast<short>(cfg->p2_assist));
-	AddReplayData(rp, 0, 0x6a, static_cast<short>(cfg->randSC[0]));
-	AddReplayData(rp, 0, 0x9c, static_cast<short>(cfg->randSC[1]));
-	AddReplayData(rp, 0, 0x69, static_cast<short>(cfg->randFix[0]));
-	AddReplayData(rp, 0, 0x9b, static_cast<short>(cfg->randFix[1]));
+	AddReplayData(rp, 0, 0x64, static_cast<short>(cfg->hiSpeed[PLAYER_1]));
+	AddReplayData(rp, 0, 0x96, static_cast<short>(cfg->hiSpeed[PLAYER_2]));
+	AddReplayData(rp, 0, 0x67, static_cast<short>(cfg->random[PLAYER_1]));
+	AddReplayData(rp, 0, 0x99, static_cast<short>(cfg->random[PLAYER_2]));
+	AddReplayData(rp, 0, 0x68, static_cast<short>(cfg->m_HIDSUD[PLAYER_1]));
+	AddReplayData(rp, 0, 0x9a, static_cast<short>(cfg->m_HIDSUD[PLAYER_2]));
+	AddReplayData(rp, 0, 0x65, static_cast<short>(cfg->gaugeType[PLAYER_1]));
+	AddReplayData(rp, 0, 0x97, static_cast<short>(cfg->gaugeType[PLAYER_2]));
+	AddReplayData(rp, 0, 0x66, static_cast<short>(cfg->lanecoverv[PLAYER_1]));
+	AddReplayData(rp, 0, 0x98, static_cast<short>(cfg->lanecoverv[PLAYER_2]));
+	AddReplayData(rp, 0, 0x6b, static_cast<short>(cfg->assist[PLAYER_1]));
+	AddReplayData(rp, 0, 0x9d, static_cast<short>(cfg->assist[PLAYER_2]));
+	AddReplayData(rp, 0, 0x6a, static_cast<short>(cfg->randSC[PLAYER_1]));
+	AddReplayData(rp, 0, 0x9c, static_cast<short>(cfg->randSC[PLAYER_2]));
+	AddReplayData(rp, 0, 0x69, static_cast<short>(cfg->randFix[PLAYER_1]));
+	AddReplayData(rp, 0, 0x9b, static_cast<short>(cfg->randFix[PLAYER_2]));
 	AddReplayData(rp, 0, 0xc9, static_cast<short>(cfg->battle));
 	AddReplayData(rp, 0, 0xca, static_cast<short>(gp->isAutoplay));
 	AddReplayData(rp, 0, 0xcb, static_cast<short>(cfg->hsfix));
-	AddReplayData(rp, 0, 0xcc, static_cast<short>(cfg->is_extra));
+	AddReplayData(rp, 0, 0xcc, static_cast<short>(cfg->m_isExtra));
 	AddReplayData(rp, 0, 0xcd, static_cast<short>(cfg->m_extra));
-	AddReplayData(rp, 0, 0xce, static_cast<short>(cfg->dpflip));
+	AddReplayData(rp, 0, 0xce, static_cast<short>(cfg->dpFlip));
 	AddReplayData(rp, 0, 0x28, static_cast<short>(snd->param.fx_volume_on));
 	AddReplayData(rp, 0, 0x29, static_cast<short>(snd->param.volume_master));
 	AddReplayData(rp, 0, 0x2a, static_cast<short>(snd->param.volume_key));
@@ -222,18 +222,18 @@ int AddReplayDataHeader(CONFIG_PLAY *cfg, REPLAY *rp, AUDIO *snd, gameplay *gp){
 	AddReplayData(rp, 0, 0x39, static_cast<short>(snd->param.eq_gain[6]));
 	AddReplayData(rp, 0, 0x3c, static_cast<short>(snd->param.fx_on[0]));
 	AddReplayData(rp, 0, 0x3d, static_cast<short>(snd->param.fxType[0]));
-	AddReplayData(rp, 0, 0x3e, static_cast<short>(snd->param.fxParam[0][0]));
-	AddReplayData(rp, 0, 0x3f, static_cast<short>(snd->param.fxParam[0][1]));
+	AddReplayData(rp, 0, 0x3e, static_cast<short>(snd->param.fxParam[0][PLAYER_1]));
+	AddReplayData(rp, 0, 0x3f, static_cast<short>(snd->param.fxParam[0][PLAYER_2]));
 	AddReplayData(rp, 0, 0x40, static_cast<short>(snd->param.fxChannel[0]));
 	AddReplayData(rp, 0, 0x46, static_cast<short>(snd->param.fx_on[1]));
 	AddReplayData(rp, 0, 0x47, static_cast<short>(snd->param.fxType[1]));
-	AddReplayData(rp, 0, 0x48, static_cast<short>(snd->param.fxParam[1][0]));
-	AddReplayData(rp, 0, 0x49, static_cast<short>(snd->param.fxParam[1][1]));
+	AddReplayData(rp, 0, 0x48, static_cast<short>(snd->param.fxParam[1][PLAYER_1]));
+	AddReplayData(rp, 0, 0x49, static_cast<short>(snd->param.fxParam[1][PLAYER_2]));
 	AddReplayData(rp, 0, 0x4a, static_cast<short>(snd->param.fxChannel[1]));
 	AddReplayData(rp, 0, 0x50, static_cast<short>(snd->param.fx_on[2]));
 	AddReplayData(rp, 0, 0x51, static_cast<short>(snd->param.fxType[2]));
-	AddReplayData(rp, 0, 0x52, static_cast<short>(snd->param.fxParam[2][0]));
-	AddReplayData(rp, 0, 0x53, static_cast<short>(snd->param.fxParam[2][1]));
+	AddReplayData(rp, 0, 0x52, static_cast<short>(snd->param.fxParam[2][PLAYER_1]));
+	AddReplayData(rp, 0, 0x53, static_cast<short>(snd->param.fxParam[2][PLAYER_2]));
 	AddReplayData(rp, 0, 0x54, static_cast<short>(snd->param.fxChannel[2]));
 	AddReplayData(rp, 0, 0x5a, static_cast<short>(snd->param.pitch_on));
 	AddReplayData(rp, 0, 0x5b, static_cast<short>(snd->param.pitch_amount));
@@ -320,15 +320,15 @@ int REPLAY_ApplyJudgeNote(gameplay *gp, Timer *T, game *g, uint judge, int playe
 	if (judge > 5) return 0;
 	
 	if (judge >= 1) {
-		if (player == 0 && gp->ghostBattle == 0 && gp->isAutoplay == 0 && g->config.play.battle != OPTION_BATTLE_BATTLE) {
+		if (player == PLAYER_1 && gp->ghostBattle == 0 && gp->isAutoplay == 0 && g->config.play.battle != OPTION_BATTLE_BATTLE) {
 			while (gp->highScore.DealJudgeFromQueue() == 0) {}
 			while (gp->targetScore.DealJudgeFromQueue() == 0) {}
 
 			if (gp->targetType == 1) {
-				gp->highScore.SetScore(&gp->player[1], 0);
+				gp->highScore.SetScore(&gp->player[PLAYER_2], 0);
 			}
 			else if (gp->targetType == 2) {
-				gp->targetScore.SetScore(&gp->player[1], 0);
+				gp->targetScore.SetScore(&gp->player[PLAYER_2], 0);
 			}
 
 		}
@@ -419,24 +419,24 @@ int REPLAY_ApplyJudgeNote(gameplay *gp, Timer *T, game *g, uint judge, int playe
 
 	if (dp == 1) {
 		if (player == 0) {
-			gp->player[1].judge_draw = gp->player[0].recent_judge;
-			gp->player[1].combo_song_draw = gp->player[0].now_combo;
-			gp->player[1].combo_draw = gp->player[0].now_combo_course;
+			gp->player[PLAYER_2].judge_draw = gp->player[PLAYER_1].recent_judge;
+			gp->player[PLAYER_2].combo_song_draw = gp->player[PLAYER_1].now_combo;
+			gp->player[PLAYER_2].combo_draw = gp->player[PLAYER_1].now_combo_course;
 			SetTimeLapse(47, T);
 			return 1;
 		}
 	}
 	else if (player == 0) {
-		gp->player[0].judge_draw = gp->player[0].recent_judge;
-		gp->player[0].combo_song_draw = gp->player[0].now_combo;
-		gp->player[0].combo_draw = gp->player[0].now_combo_course;
+		gp->player[PLAYER_1].judge_draw = gp->player[PLAYER_1].recent_judge;
+		gp->player[PLAYER_1].combo_song_draw = gp->player[PLAYER_1].now_combo;
+		gp->player[PLAYER_1].combo_draw = gp->player[PLAYER_1].now_combo_course;
 		SetTimeLapse(46, T);
 		return 1;
 	}
 	if (player == 1 && dp == 1) {
-		gp->player[1].judge_draw = gp->player[1].recent_judge;
-		gp->player[1].combo_song_draw = gp->player[1].now_combo;
-		gp->player[1].combo_draw = gp->player[1].now_combo_course;
+		gp->player[PLAYER_2].judge_draw = gp->player[PLAYER_2].recent_judge;
+		gp->player[PLAYER_2].combo_song_draw = gp->player[PLAYER_2].now_combo;
+		gp->player[PLAYER_2].combo_draw = gp->player[PLAYER_2].now_combo_course;
 		SetTimeLapse(47, T);
 	}
 
@@ -465,19 +465,19 @@ int REPLAY_ApplyJudgeMine(gameplay *gp, Timer *T, game *g, int dmg, int player, 
 
 	if (dp == 1) {
 		if (player == 0) {
-			gp->player[1].judge_draw = gp->player[0].recent_judge;
-			gp->player[1].combo_song_draw = gp->player[0].now_combo;
+			gp->player[PLAYER_2].judge_draw = gp->player[PLAYER_1].recent_judge;
+			gp->player[PLAYER_2].combo_song_draw = gp->player[PLAYER_1].now_combo;
 		}
 		else if (player == 1) {
-			gp->player[1].judge_draw = gp->player[1].recent_judge;
-			gp->player[1].combo_song_draw = gp->player[1].now_combo;
+			gp->player[PLAYER_2].judge_draw = gp->player[PLAYER_2].recent_judge;
+			gp->player[PLAYER_2].combo_song_draw = gp->player[PLAYER_2].now_combo;
 		}
 
 		SetTimeLapse(47, &g->timer1);
 	}
 	else if (player == 0) {
-		gp->player[0].judge_draw = gp->player[0].recent_judge;
-		gp->player[0].combo_song_draw = gp->player[0].now_combo;
+		gp->player[PLAYER_1].judge_draw = gp->player[PLAYER_1].recent_judge;
+		gp->player[PLAYER_1].combo_song_draw = gp->player[PLAYER_1].now_combo;
 
 		SetTimeLapse(46, &g->timer1);
 	}
@@ -510,177 +510,177 @@ int ReplayDataToInput(ReplayData *data, game *g, AUDIO *aud, gameplay *gp, input
 	switch (data->op) {
 		case 0x28:
 			aud->param.fx_volume_on = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 		case 0x29:
 			aud->param.volume_master = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x2a:
 			aud->param.volume_key = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x2b:
 			aud->param.volume_BGM = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 
 		case 0x32:
 			aud->param.eq_on = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 		case 0x33:
 			aud->param.eq_gain[0] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x34:
 			aud->param.eq_gain[1] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x35:
 			aud->param.eq_gain[2] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x36:
 			aud->param.eq_gain[3] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x37:
 			aud->param.eq_gain[4] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x38:
 			aud->param.eq_gain[5] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x39:
 			aud->param.eq_gain[6] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 
 		case 0x3c:
 			aud->param.fx_on[0] = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 		case 0x3d:
 			aud->param.fxType[0] = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 		case 0x3e:
-			aud->param.fxParam[0][0] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			aud->param.fxParam[0][PLAYER_1] = data->value;
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x3f:
-			aud->param.fxParam[0][1] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			aud->param.fxParam[0][PLAYER_2] = data->value;
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x40:
 			aud->param.fxChannel[0] = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 
 		case 0x46:
 			aud->param.fx_on[1] = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 		case 0x47:
 			aud->param.fxType[1] = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 		case 0x48:
-			aud->param.fxParam[1][0] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			aud->param.fxParam[1][PLAYER_1] = data->value;
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x49:
-			aud->param.fxParam[1][1] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			aud->param.fxParam[1][PLAYER_2] = data->value;
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x4a:
 			aud->param.fxChannel[1] = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 
 		case 0x50:
 			aud->param.fx_on[2] = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 		case 0x51:
 			aud->param.fxType[2] = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 		case 0x52:
-			aud->param.fxParam[2][0] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			aud->param.fxParam[2][PLAYER_1] = data->value;
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x53:
-			aud->param.fxParam[2][1] = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			aud->param.fxParam[2][PLAYER_2] = data->value;
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x54:
 			aud->param.fxChannel[2] = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 
 		case 0x5a:
 			aud->param.pitch_on = data->value;
-			ApplySoundFX(aud, 1, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 1, g->config.sound.disableDSP);
 			return 1;
 		case 0x5b:
 			aud->param.pitch_amount = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 		case 0x5c:
 			aud->param.pitch_type = data->value;
-			ApplySoundFX(aud, 0, g->config.sound.disabledsp);
+			ApplySoundFX(aud, 0, g->config.sound.disableDSP);
 			return 1;
 
 		case 0x64:
-			g->config.play.hiSpeed[0] = data->value;
+			g->config.play.hiSpeed[PLAYER_1] = data->value;
 			break;
 		case 0x65:
-			g->config.play.gaugeOption[0] = data->value;
+			g->config.play.gaugeType[PLAYER_1] = data->value;
 			break;
 		case 0x66:
-			g->config.play.p1_lanecoverv = data->value;
+			g->config.play.lanecoverv[PLAYER_1] = data->value;
 			break;
 		case 0x67:
-			g->config.play.random[0] = data->value;
+			g->config.play.random[PLAYER_1] = data->value;
 			break;
 		case 0x68:
-			g->config.play.m_HIDSUD1 = data->value;
+			g->config.play.m_HIDSUD[PLAYER_1] = data->value;
 			break;
 		case 0x69:
-			g->config.play.randFix[0] = data->value;
+			g->config.play.randFix[PLAYER_1] = data->value;
 			break;
 		case 0x6a:
-			g->config.play.randSC[0] = data->value;
+			g->config.play.randSC[PLAYER_1] = data->value;
 			break;
 		case 0x6b:
-			g->config.play.p1_assist = data->value;
+			g->config.play.assist[PLAYER_1] = data->value;
 			break;
 		case 0x96:
-			g->config.play.hiSpeed[1] = data->value;
+			g->config.play.hiSpeed[PLAYER_2] = data->value;
 			break;
 		case 0x97:
-			g->config.play.gaugeOption[1] = data->value;
+			g->config.play.gaugeType[PLAYER_2] = data->value;
 			break;
 		case 0x98:
-			g->config.play.p2_lanecoverv = data->value;
+			g->config.play.lanecoverv[PLAYER_2] = data->value;
 			break;
 		case 0x99:
-			g->config.play.random[1] = data->value;
+			g->config.play.random[PLAYER_2] = data->value;
 			break;
 		case 0x9a:
-			g->config.play.m_HIDSUD2 = data->value;
+			g->config.play.m_HIDSUD[PLAYER_2] = data->value;
 			break;
 		case 0x9b:
-			g->config.play.randFix[1] = data->value;
+			g->config.play.randFix[PLAYER_2] = data->value;
 			break;
 		case 0x9c:
-			g->config.play.randSC[1] = data->value;
+			g->config.play.randSC[PLAYER_2] = data->value;
 			break;
 		case 0x9d:
-			g->config.play.p2_assist = data->value;
+			g->config.play.assist[PLAYER_2] = data->value;
 			break;
 		case 200:
 			gp->randomseed = data->value;
@@ -695,13 +695,13 @@ int ReplayDataToInput(ReplayData *data, game *g, AUDIO *aud, gameplay *gp, input
 			g->config.play.hsfix = data->value;
 			break;
 		case 0xcc:
-			g->config.play.is_extra = data->value;
+			g->config.play.m_isExtra = (data->value > 0);
 			break;
 		case 0xcd:
 			g->config.play.m_extra = data->value;
 			break;
 		case 0xce:
-			g->config.play.dpflip = data->value;
+			g->config.play.dpFlip = (data->value > 0);
 			break;
 		case 0xd2:
 			REPLAY_ApplyJudgeNote(gp, T, g, data->value, 0, 0);

@@ -28076,15 +28076,21 @@ extern	int		Graphics_Screen_SetupFullScreenScalingDestRect( void )
 			{
 				GSYS.Screen.MainScreenSizeY = DEFAULT_SCREEN_SIZE_Y ;
 			}
-			ScalingSizeX = DestSizeY * GSYS.Screen.MainScreenSizeX / GSYS.Screen.MainScreenSizeY ;
-			if( ScalingSizeX < DestSizeX )
-			{
-				ScalingSizeY = DestSizeY ;
+			if (GSYS.Screen.FullScreenFitScalingFlag) {
+				ScalingSizeX = DestSizeX;
+				ScalingSizeY = DestSizeY;
 			}
-			else
-			{
-				ScalingSizeX = DestSizeX ;
-				ScalingSizeY = DestSizeX * GSYS.Screen.MainScreenSizeY / GSYS.Screen.MainScreenSizeX ;
+			else {
+				ScalingSizeX = DestSizeY * GSYS.Screen.MainScreenSizeX / GSYS.Screen.MainScreenSizeY;
+				if (ScalingSizeX < DestSizeX)
+				{
+					ScalingSizeY = DestSizeY;
+				}
+				else
+				{
+					ScalingSizeX = DestSizeX;
+					ScalingSizeY = DestSizeX * GSYS.Screen.MainScreenSizeY / GSYS.Screen.MainScreenSizeX;
+				}
 			}
 
 			if( ScalingSizeXBackup != ScalingSizeX ||

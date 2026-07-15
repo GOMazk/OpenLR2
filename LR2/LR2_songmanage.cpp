@@ -403,9 +403,9 @@ int InitSongData(SONGDATA *song){
 	song->longnote = 0;
 	song->random = 0;
 	song->judge = 0;
-	song->isStagefile = 0;
-	song->isBanner = 0;
-	song->isBackBMP = 0;
+	song->isStagefile = false;
+	song->isBanner = false;
+	song->isBackBMP = false;
 	song->replayExist = 0;
 	song->favorite = 0;
 	song->adddate = 0;
@@ -621,7 +621,7 @@ int UpdateSongDataTag(SONGDATA *song, sqlite3 *sql){
 			song->hash.body, song->title.body, song->subtitle.body, song->genre.body, song->artist.body, song->subartist.body, song->tag.body, song->level, song->difficulty, song->keymode, song->exlevel);
 		if (SQL_Run(query, sql) != 0) {
 			sqlite3_snprintf(0x400, query, "UPDATE tag SET title=\'%q\',subtitle=\'%q\',genre=\'%q\',artist=\'%q\',subartist=\'%q\',tag=\'%q\',level=%d,difficulty=%d,mode=%d WHERE hash = \'%q\'",
-				song->title.body, song->subtitle.body, song->genre.body, song->artist.body, song->subartist.body, song->tag.body, song->level, song->filepath.body, song->keymode, song->hash.body);
+				song->title.body, song->subtitle.body, song->genre.body, song->artist.body, song->subartist.body, song->tag.body, song->level, song->difficulty, song->keymode, song->hash.body);
 			SQL_Run(query, sql);
 		}
 	}
@@ -659,7 +659,7 @@ int EditTag(SONGDATA *song, sqlite3 *sql) {
 		SQL_Run(query, sql);
 
 		sqlite3_snprintf(1024, query, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
-			meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, wtime, song->filepath.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body,meta.bannerpath.body,meta.backBMPpath.body, AssignCRC32(meta.parentfolderpath).body, meta.maxbpm,meta.minbpm, meta.random,meta.longnote,meta.judge,meta.keymode,meta.bga,meta.difficulty,meta.hasTxt,meta.notecount,temp,meta.exlevel);
+			meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, wtime, song->filepath.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body,meta.bannerpath.body,meta.backBMPpath.body, AssignCRC32(meta.parentfolderpath).body, meta.maxbpm,meta.minbpm, meta.random,meta.longnote,meta.judge,meta.keymode,meta.bga,meta.difficulty,(int)meta.hasTxt,meta.notecount,temp,meta.exlevel);
 		SQL_Run(query, sql);
 
 		if (meta.difficulty <= 0 || meta.difficulty > 5) {
@@ -730,7 +730,7 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 	int nowMode{}, nowDifficulty{};
 
 	key = openlr2::adjustFilterKey(*cfg_select, key);
-	if ((cfg_select->ignoredifficultyall == 1) && (difficulty == 0)) difficulty = 1;
+	if ((cfg_select->ignoreDifficultyAll) && (difficulty == 0)) difficulty = 1;
 
 	if (query.findStrPos("__NEWSONG__") > -1) {
 		cstrSprintf(&query,
@@ -792,8 +792,8 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 		if (maxCount != 0 && slistCount == maxCount) break;
 
 		int mode = sqlite3_column_int(stmt, 18);
-		if (cfg_select->ignoredp == 1 && mode >= 10) continue;
-		if (cfg_select->ignorepms == 1 && mode == 9) continue;
+		if (cfg_select->ignoreDP && mode >= 10) continue;
+		if (cfg_select->ignorePMS && mode == 9) continue;
 
 		sd.keymode = mode;
 
@@ -811,7 +811,7 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 
 		sd.difficulty = sqlite3_column_int(stmt, 15);
 		sd.favorite = sqlite3_column_int(stmt, 24);
-		if (cfg_select->ignore5key == 1) {
+		if (cfg_select->ignore5key) {
 			cstrSprintf(&sd.folder, "%s", sqlite3_column_text(stmt, 9));
 			if (nowFolder.isDiff(&sd.folder)) {
 				folderSongCount = 0;
@@ -1060,13 +1060,13 @@ int GetSongData(CSTR songMD5, SONGDATA *song, sqlite3 *sql, SONGSELECT *ss) {
 		
 		song->stagefile = SQL_GetColumn(10, stmt);
 		if (song->stagefile.isDiff("(null)") && song->stagefile.length() > 4)
-			song->isStagefile = 1;
+			song->isStagefile = true;
 		song->banner = SQL_GetColumn(11, stmt);
 		if (song->banner.isDiff("(null)") && song->banner.length() > 4)
-			song->isBanner = 1;
+			song->isBanner = true;
 		song->backBMP = SQL_GetColumn(12, stmt);
 		if (song->backBMP.isDiff("(null)") && song->backBMP.length() > 4)
-			song->isBackBMP = 1;
+			song->isBackBMP = true;
 
 		if(song->subtitle.isDiff("(null)"))
 			cstrSprintf(&song->fulltitle,"%s %s", song->title.body, song->subtitle.body);
@@ -1363,7 +1363,7 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 					ParseBMSMETA(&meta, searchPath, 1);
 					LoadBMSMETAFromDB(&meta, sql);
 					sqlite3_snprintf(2048, str, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
-						meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, filetime, searchPath.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body, AssignCRC32(meta.parentfolderpath).body, meta.maxbpm, meta.minbpm, meta.random, meta.longnote, meta.judge, meta.keymode, meta.bga, meta.difficulty, meta.hasTxt, meta.notecount, now, meta.exlevel);
+						meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, filetime, searchPath.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body, AssignCRC32(meta.parentfolderpath).body, meta.maxbpm, meta.minbpm, meta.random, meta.longnote, meta.judge, meta.keymode, meta.bga, meta.difficulty, (int)meta.hasTxt, meta.notecount, now, meta.exlevel);
 					SQL_Run(str, sql);
 					if (g_fullSongPass) g_processedSongPaths.insert(MakePathKey(searchPath));
 				}
@@ -1499,7 +1499,7 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb, ReloadProgr
 						ParseBMSMETA(&meta, str, 1);
 						LoadBMSMETAFromDB(&meta, sql);
 						SQL_Run(sqlite3_snprintf(1024, sBuf, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
-							meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, newTime, str.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body,AssignCRC32(meta.parentfolderpath).body,meta.maxbpm,meta.minbpm,meta.random,meta.longnote,meta.judge,meta.keymode,meta.bga,meta.difficulty,meta.hasTxt,meta.notecount,now,meta.exlevel), sql);
+							meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, newTime, str.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body,AssignCRC32(meta.parentfolderpath).body,meta.maxbpm,meta.minbpm,meta.random,meta.longnote,meta.judge,meta.keymode,meta.bga,meta.difficulty,(int)meta.hasTxt,meta.notecount,now,meta.exlevel), sql);
 						if (g_fullSongPass) g_processedSongPaths.insert(MakePathKey(str));
 					}
 					else if (is_lr2folder) {
@@ -1793,7 +1793,7 @@ int LoadBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *difficulty,
 	if (query.left(6).isDiff("SELECT")) return -1;
 
 	*key = openlr2::adjustFilterKey(ss->filter, *key);
-	if (ss->filter.ignoredifficultyall == 1 && *difficulty == 0) *difficulty = 1;
+	if (ss->filter.ignoreDifficultyAll && *difficulty == 0) *difficulty = 1;
 
 	SQL_prepare(query, sql, &stmt);
 	ErrorLogFmtAdd("結果…%s\n", sqlite3_errmsg(sql));
@@ -2042,7 +2042,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 	if (query.findStrPos("exlevel") >= 0) ss->isExLevel = 1;
 
 	*mode = openlr2::adjustFilterKey(ss->filter, *mode);
-	if (ss->filter.ignoredifficultyall == 1 && *diffFilter == 0 && flag == 0) *diffFilter = 1;
+	if (ss->filter.ignoreDifficultyAll && *diffFilter == 0 && flag == 0) *diffFilter = 1;
 	
 	bool isIgnore = 0, isRival = 0;
 	int now = GetNowUnixtime();
@@ -2159,7 +2159,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 
 	while (sqlite3_step(pStmt) == 100 && (rivalID == 0 || count != rivalID)) {
 		int t = sqlite3_column_int(pStmt, 18);
-		if ((ss->filter.ignoredp != 1 || t < 10) && (ss->filter.ignorepms != 1 || t != 9)) {
+		if ((!ss->filter.ignoreDP || t < 10) && (ss->filter.ignorePMS != 1 || t != 9)) {
 
 			if (count == ss->prevListSize - 1) {
 				ss->prevList = (SONGDATA*)realloc(ss->prevList, (ss->prevListSize + 1000) * sizeof(SONGDATA));
@@ -2173,7 +2173,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 			song.keymode = t;
 			song.difficulty = sqlite3_column_int(pStmt, 15);
 			song.favorite = sqlite3_column_int(pStmt, 24);
-			if (ss->filter.ignore5key == 1) {
+			if (ss->filter.ignore5key) {
 				
 				song.folder = SQL_GetColumn(9, pStmt);
 				if (nowFolder.isDiff(song.folder)) {
@@ -2255,11 +2255,11 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 					song.adddate = sqlite3_column_int(pStmt, 27);
 					song.exlevel = sqlite3_column_int(pStmt, 28);
 					song.stagefile = SQL_GetColumn(10, pStmt);
-					if (song.stagefile.isDiff("(null)") && song.stagefile.length() > 4) song.isStagefile = 1;
+					if (song.stagefile.isDiff("(null)") && song.stagefile.length() > 4) song.isStagefile = true;
 					song.banner = SQL_GetColumn(11, pStmt);
-					if (song.banner.isDiff("(null)") && song.banner.length() > 4) song.isBanner = 1;
+					if (song.banner.isDiff("(null)") && song.banner.length() > 4) song.isBanner = true;
 					song.backBMP = SQL_GetColumn(12, pStmt);
-					if (song.backBMP.isDiff("(null)") && song.backBMP.length() > 4) song.isBackBMP = 1;
+					if (song.backBMP.isDiff("(null)") && song.backBMP.length() > 4) song.isBackBMP = true;
 
 					if (song.subtitle.isDiff("(null)"))
 						cstrSprintf(&song.fulltitle, "%s %s", song.title.body, song.subtitle.body);
@@ -2555,7 +2555,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 				if (*diffFilter == 0) break;
 				*diffFilter += 1;
 				if (*diffFilter >= 6) *diffFilter = 0;
-				if (ss->filter.ignoredifficultyall && *diffFilter == 0) *diffFilter = 1;
+				if (ss->filter.ignoreDifficultyAll && *diffFilter == 0) *diffFilter = 1;
 			} while (diffcount[*diffFilter] == 0);
 
 			if (*diffFilter == diffCycle) {
@@ -2572,15 +2572,15 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 			ErrorLogAdd("適正な曲が見つかりません 0\n");
 			return -1;
 		}
-		else if (!k5count && !k7count && (k10count || k14count) && !k9count && ss->filter.ignoredp && !ss->filter.ignorepms) {
+		else if (!k5count && !k7count && (k10count || k14count) && !k9count && ss->filter.ignoreDP && !ss->filter.ignorePMS) {
 			ErrorLogAdd("適正な曲が見つかりません 1\n");
 			return -1;
 		}
-		else if (!k5count && !k7count && !k10count && !k14count && k9count && !ss->filter.ignoredp && ss->filter.ignorepms) {
+		else if (!k5count && !k7count && !k10count && !k14count && k9count && !ss->filter.ignoreDP && ss->filter.ignorePMS) {
 			ErrorLogAdd("適正な曲が見つかりません 2\n");
 			return -1;
 		}
-		else if (!k5count && !k7count && (k10count || k14count || k9count) && ss->filter.ignoredp && ss->filter.ignorepms) {
+		else if (!k5count && !k7count && (k10count || k14count || k9count) && ss->filter.ignoreDP && ss->filter.ignorePMS) {
 			ErrorLogAdd("適正な曲が見つかりません 3\n");
 			return -1;
 		}
@@ -2645,7 +2645,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 				qsort(ss->prevList, ss->prevListCount, sizeof(SONGDATA), CMP_SongDataByDirectory);
 				break;
 			case 1:
-				if ((EnabledInsane == 0 || ss->filter.disabledifficultyfilter == 0) && ss->isExLevel == 0) {
+				if ((EnabledInsane == 0 || !ss->filter.disableDifficultyFilter) && ss->isExLevel == 0) {
 					qsort(ss->prevList, count, sizeof(SONGDATA), CMP_SongDataByDifficulty);
 				}
 				else {
@@ -2896,7 +2896,7 @@ int InitBMSMETA(BMSMETA *meta_) {
 	meta.difficulty = -1;
 	meta.random = 0;
 	meta.bga = 0;
-	meta.hasTxt = 0;
+	meta.hasTxt = false;
 	return 1;
 }
 
@@ -3038,17 +3038,17 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	meta->filename = filepath.getFilename();
 	meta->folderpath = filepath.getDirectory();
 	dir.add("*.txt");
-	if (IsFileExist(dir)) meta->hasTxt = 1;
+	if (IsFileExist(dir)) meta->hasTxt = true;
 	meta->notecount = notes;
 	return 1;
 }
 
 int openlr2::adjustFilterKey(CONFIG_SELECT const& cfg_select, int key) {
-	if (cfg_select.ignorekeyall == 1 && key == 0) key = 1;
-	if (cfg_select.ignorekeysingle == 1 && key == 1) key = 2;
-	if (cfg_select.ignorekeydouble == 1 && key == 4) key = 5;
-	if (cfg_select.ignoredp == 1 && key >= 4 && key <= 6) key = 7;
-	if (cfg_select.ignorepms == 1 && key == 7) key = 0;
-	if (cfg_select.ignorekeyall == 1 && key == 0) key = 1;
+	if (cfg_select.ignoreKeyAll && key == 0) key = 1;
+	if (cfg_select.ignoreKeySingle && key == 1) key = 2;
+	if (cfg_select.ignoreKeyDouble && key == 4) key = 5;
+	if (cfg_select.ignoreDP && key >= 4 && key <= 6) key = 7;
+	if (cfg_select.ignorePMS && key == 7) key = 0;
+	if (cfg_select.ignoreKeyAll && key == 0) key = 1;
 	return key;
 }

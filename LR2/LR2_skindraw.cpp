@@ -1007,7 +1007,7 @@ int LRDraw(DrawingBuf *drBuf, TextStruct *txt, SONGSELECT *sSel, skstruct *sks, 
 	//if (draw.subHandle == -1) return 1; //DEBUG : this line is not in original
 	if (draw.fontHandle != -1) {
 		if (draw.subHandle >= 10000) {
-			if (sSel->filter.disablesubtitle == 1) {
+			if (sSel->filter.disableSubtitle) {
 				LRDrawText(&draw.fontHandle, &draw, &sSel->bmsList[draw.subHandle - 10000].title, &sks->ImageFonts[(int)draw.angle]);
 			}
 			else {

@@ -190,7 +190,7 @@ int WriteConfigXml(game *g, const char *filename){
 	fputs("\t</jukebox>\n", pFile);
 
 	fputs("\t<play>\n", pFile);
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "hs", (g->config).play.hiSpeed[0], "hs");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "hs", (g->config).play.hiSpeed[PLAYER_1], "hs");
 	fputs(buf, pFile);
 
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "hstype", (g->config).play.hsfix, "hstype");
@@ -205,25 +205,25 @@ int WriteConfigXml(game *g, const char *filename){
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "hsmargin", (g->config).play.hsmargin, "hsmargin");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "shutter", (g->config).play.p1_lanecoverv, "shutter");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "shutter", (g->config).play.lanecoverv[PLAYER_1], "shutter");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "shuttertype", (g->config).play.p1_lanecover, "shuttertype");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "shuttertype", (g->config).play.lanecover[PLAYER_1], "shuttertype");
 	fputs(buf, pFile);
 
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "shuttermargin", (g->config).play.shuttermargin, "shuttermargin");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "gauge", (g->config).play.gaugeOption[0], "gauge");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "gauge", (g->config).play.gaugeType[PLAYER_1], "gauge");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "random", (g->config).play.random[0], "random");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "random", (g->config).play.random[PLAYER_1], "random");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "effect", (g->config).play.m_HIDSUD1, "effect");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "effect", (g->config).play.m_HIDSUD[PLAYER_1], "effect");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "autoscratch", (g->config).play.p1_assist, "autoscratch");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "autoscratch", (g->config).play.assist[PLAYER_1], "autoscratch");
 	fputs(buf, pFile);
 
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "autokey", (g->config).play.autokey, "autokey");
@@ -247,7 +247,7 @@ int WriteConfigXml(game *g, const char *filename){
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "ghost", (g->config).play.play_ghost, "ghost");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "scoregraph", (g->config).play.scoregraph, "scoregraph");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "scoregraph", (int)(g->config).play.scoreGraph, "scoregraph");
 	fputs(buf, pFile);
 
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "target", (g->config).play.p1_target, "target");
@@ -265,10 +265,10 @@ int WriteConfigXml(game *g, const char *filename){
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "gomiscore", (g->config).play.gomiscore, "gomiscore");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "disableleftclickexit", (g->config).play.disableleftclickexit, "disableleftclickexit");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disableleftclickexit", (int)(g->config).play.disableLeftClickExit, "disableleftclickexit");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "disablecurspeedchange", (g->config).play.disablecurspeedchange, "disablecurspeedchange");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disablecurspeedchange", (int)(g->config).play.disableCurSpeedChange, "disablecurspeedchange");
 	fputs(buf, pFile);
 	fputs("\t</play>\n", pFile);
 
@@ -279,7 +279,7 @@ int WriteConfigXml(game *g, const char *filename){
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "numbuffers", (g->config).sound.numbuffers, "numbuffers");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "disabledsp", (g->config).sound.disabledsp, "disabledsp");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disabledsp", (int)(g->config).sound.disableDSP, "disabledsp");
 	fputs(buf, pFile);
 
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "output", (g->config).sound.output, "output");
@@ -288,7 +288,7 @@ int WriteConfigXml(game *g, const char *filename){
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "driver", (g->config).sound.driver, "driver");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "disablefmod", (g->config).sound.disablefmod, "disablefmod");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disablefmod", (int)(g->config).sound.disableFmod, "disablefmod");
 	fputs(buf, pFile);
 
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "volumeflag", (g->config).sound.volumeflag, "volumeflag");
@@ -412,7 +412,7 @@ int WriteConfigXml(game *g, const char *filename){
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "speednext", (g->config).select.speednext, "speednext");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "control", (g->config).select.control, "control");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "control", (int)(g->config).select.control, "control");
 	fputs(buf, pFile);
 
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "buttonselect", (g->config).select.buttonselect, "buttonselect");
@@ -421,28 +421,28 @@ int WriteConfigXml(game *g, const char *filename){
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "folderlamp", (g->config).select.folderlamp, "folderlamp");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "difficultychangetype", (g->config).select.difficultychangetype, "difficultychangetype");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "difficultychangetype", (int)(g->config).select.difficultyChangeType, "difficultychangetype");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorekeyall", (g->config).select.ignorekeyall, "ignorekeyall");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorekeyall", (int)(g->config).select.ignoreKeyAll, "ignorekeyall");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorekeysingle", (g->config).select.ignorekeysingle, "ignorekeysingle");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorekeysingle", (int)(g->config).select.ignoreKeySingle, "ignorekeysingle");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorekeydouble", (g->config).select.ignorekeydouble, "ignorekeydouble");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorekeydouble", (int)(g->config).select.ignoreKeyDouble, "ignorekeydouble");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignoredp", (g->config).select.ignoredp, "ignoredp");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignoredp", (int)(g->config).select.ignoreDP, "ignoredp");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorepms", (g->config).select.ignorepms, "ignorepms");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignorepms", (int)(g->config).select.ignorePMS, "ignorepms");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignoredifficultyall", (g->config).select.ignoredifficultyall, "ignoredifficultyall");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignoredifficultyall", (int)(g->config).select.ignoreDifficultyAll, "ignoredifficultyall");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignore5key", (g->config).select.ignore5key, "ignore5key");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "ignore5key", (int)(g->config).select.ignore5key, "ignore5key");
 	fputs(buf, pFile);
 
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "levelbarflash_7", (g->config).select.levelbarflash_7, "levelbarflash_7");
@@ -454,13 +454,13 @@ int WriteConfigXml(game *g, const char *filename){
 	sprintf(buf, "\t\t<%s>%d</%s>\n", "levelbarflash_9", (g->config).select.levelbarflash_9, "levelbarflash_9");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "disabledifficultyfilter", (g->config).select.disabledifficultyfilter, "disabledifficultyfilter");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disabledifficultyfilter", (int)(g->config).select.disableDifficultyFilter, "disabledifficultyfilter");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "preview", (g->config).select.preview, "preview");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "preview", (int)(g->config).select.isPreview, "preview");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "disablesubtitle", (g->config).select.disablesubtitle, "disablesubtitle");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disablesubtitle", (int)(g->config).select.disableSubtitle, "disablesubtitle");
 	fputs(buf, pFile);
 	fputs("\t</select>\n", pFile);
 	
@@ -481,7 +481,7 @@ int WriteConfigXml(game *g, const char *filename){
 	WriteXML_Tab2Str(pFile, "play_5_b", (g->config).skin.skinFilePath[13]);
 	WriteXML_Tab2Str(pFile, "play_9_b", (g->config).skin.skinFilePath[14]);
 	WriteXML_Tab2Str(pFile, "fontname", (g->config).skin.fontname);
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "disableimagefont", (g->config).skin.disableimagefont, "disableimagefont");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "disableimagefont", (int)(g->config).skin.disableImageFont, "disableimagefont");
 	fputs(buf, pFile);
 	fputs("\t</skin>\n", pFile);
 
@@ -495,10 +495,10 @@ int WriteConfigXml(game *g, const char *filename){
 	fputs(buf, pFile);
 
 	WriteXML_Tab2Str(pFile, "mail", (g->config).network.mail);
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "autoupdate", (g->config).network.autoupdate, "autoupdate");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "autoupdate", (g->config).network.isAutoUpdate, "autoupdate");
 	fputs(buf, pFile);
 
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "getrival", (g->config).network.getrival, "getrival");
+	sprintf(buf, "\t\t<%s>%d</%s>\n", "getrival", (g->config).network.getRival, "getrival");
 	fputs(buf, pFile);
 	fputs("\t</network>\n", pFile);
 
@@ -573,11 +573,12 @@ int WriteOpenLr2ConfigXml(game *g, const char *filename){
 
 	fputs("\t<system>\n", pFile);
 	WriteXML_Tab2Int(pFile, "resolution", (g->config).system.resolution);
+	WriteXML_Tab2Int(pFile, "fullscreenfilter", (g->config).system.fullscreenfilter);
+	WriteXML_Tab2BoolAsInt(pFile, "fullscreenfitstretch", (g->config).system.fullscreenfitstretch);
 	fputs("\t</system>\n", pFile);
 
 	fputs("\t<play>\n", pFile);
-	sprintf(buf, "\t\t<%s>%d</%s>\n", "gaugeautoshift", (g->config).play.m_gas, "gaugeautoshift");
-	fputs(buf, pFile);
+	WriteXML_Tab2BoolAsInt(pFile, "gaugeautoshift", (g->config).play.m_gas);
 	fputs("\t</play>\n", pFile);
 
 	fputs("\t<skin>\n", pFile);
@@ -746,32 +747,13 @@ int ReadSkinCustomize(SkinUser *sku, char *FilePath) {
 	(sku->adjust).dark_type = 0;
 	(sku->adjust).judge_x = 0;
 	(sku->adjust).judge_y = 0;
-	(sku->adjust).note_1p_x = 0;
-	(sku->adjust).note_1p_y = 0;
-	(sku->adjust).note_2p_x = 0;
-	(sku->adjust).note_2p_y = 0;
+	(sku->adjust).note_x[PLAYER_1] = 0;
+	(sku->adjust).note_y[PLAYER_1] = 0;
+	(sku->adjust).note_x[PLAYER_2] = 0;
+	(sku->adjust).note_y[PLAYER_2] = 0;
 	(sku->adjust).size_x = 0;
 	(sku->adjust).size_y = 0;
-	sku->customize_value[0] = 0;
-	sku->customize_value[1] = 0;
-	sku->customize_value[2] = 0;
-	sku->customize_value[3] = 0;
-	sku->customize_value[4] = 0;
-	sku->customize_value[5] = 0;
-	sku->customize_value[6] = 0;
-	sku->customize_value[7] = 0;
-	sku->customize_value[8] = 0;
-	sku->customize_value[9] = 0;
-	sku->customize_value[10] = 0;
-	sku->customize_value[0xb] = 0;
-	sku->customize_value[0xc] = 0;
-	sku->customize_value[0xd] = 0;
-	sku->customize_value[0xe] = 0;
-	sku->customize_value[0xf] = 0;
-	sku->customize_value[0x10] = 0;
-	sku->customize_value[0x11] = 0;
-	sku->customize_value[0x12] = 0;
-	sku->customize_value[0x13] = 0;
+	std::ranges::fill(sku->customize_value, 0);
 	(sku->adjust).shift_x = 0;
 	(sku->adjust).shift_y = 0;
 	(sku->adjust).rate_x = 100;
@@ -792,32 +774,21 @@ int ReadSkinCustomize(SkinUser *sku, char *FilePath) {
 	ReadXml_Int("skincustomize", "size", "x", 0, &(sku->adjust).size_x, hXml);
 	ReadXml_Int("skincustomize", "size", "y", 0, &(sku->adjust).size_y, hXml);
 	ReadXml_Int("skincustomize", "dark", "type", 0, &(sku->adjust).dark_type, hXml);
-	ReadXml_Int("skincustomize", "note_1p", "x", 0, &(sku->adjust).note_1p_x, hXml);
-	ReadXml_Int("skincustomize", "note_1p", "y", 0, &(sku->adjust).note_1p_y, hXml);
-	ReadXml_Int("skincustomize", "note_2p", "x", 0, &(sku->adjust).note_2p_x, hXml);
-	ReadXml_Int("skincustomize", "note_2p", "y", 0, &(sku->adjust).note_2p_y, hXml);
+	ReadXml_Int("skincustomize", "note_1p", "x", 0, &(sku->adjust).note_x[PLAYER_1], hXml);
+	ReadXml_Int("skincustomize", "note_1p", "y", 0, &(sku->adjust).note_y[PLAYER_1], hXml);
+	ReadXml_Int("skincustomize", "note_2p", "x", 0, &(sku->adjust).note_x[PLAYER_2], hXml);
+	ReadXml_Int("skincustomize", "note_2p", "y", 0, &(sku->adjust).note_y[PLAYER_2], hXml);
 
-	//it's doubled code, so changed a little
 	for (int i = 0; i < 40; i++) {
 		CSTR tmp;
 
-		cstrSprintf(&tmp, "config_%d", i); //cstrSprintf(&tmp, "confit_%d", i);
+		cstrSprintf(&tmp, "config_%d", i);
 		if( hXml && (xmlCur = hXml->FirstChildElement("skincustomize")) && (xmlCur = xmlCur->FirstChildElement("skinconfig")) && (xmlCur = xmlCur->FirstChildElement(tmp)) )
 			sku->customize_value[i] = atol(xmlCur->ToElement()->GetText());
-		else
-			sku->customize_value[i] = 0;
 
 		cstrSprintf(&tmp, "filename_%d", i);
 		ReadXml_Str("skincustomize", "customfile", tmp, CSTR(""), &sku->customize_filename[i], hXml);
 	}
-
-	////0~39 repeat
-	//if (hXml && (xmlCur = hXml->FirstChildElement("skincustomize")) && (xmlCur = xmlCur->FirstChildElement("skinconfig")) && (xmlCur->FirstChildElement("config_0")))
-	//	sku->customize_value[0] = atol(xmlCur->ToElement()->GetText());
-	//else
-	//	sku->customize_value[0] = 0;
-	////0~39 repeat
-	//ReadXml_Str("skincustomize", "customfile", "filename_0", CSTR(""), &sku->customize_filename[0], hXml);
 
 	delete(hXml);
 
@@ -858,13 +829,13 @@ int WriteSkinCustomizeXml(SkinUser *sku, char *filepath) {
 	fputs("\t</dark>\n", pFile);
 	
 	fputs("\t<note_1p>\n", pFile);
-	WriteXML_Tab2Int(pFile, "x", (sku->adjust).note_1p_x);
-	WriteXML_Tab2Int(pFile, "y", (sku->adjust).note_1p_y);
+	WriteXML_Tab2Int(pFile, "x", (sku->adjust).note_x[PLAYER_1]);
+	WriteXML_Tab2Int(pFile, "y", (sku->adjust).note_y[PLAYER_1]);
 	fputs("\t</note_1p>\n", pFile);
 	
 	fputs("\t<note_2p>\n", pFile);
-	WriteXML_Tab2Int(pFile, "x", (sku->adjust).note_2p_x);
-	WriteXML_Tab2Int(pFile, "y", (sku->adjust).note_2p_y);
+	WriteXML_Tab2Int(pFile, "x", (sku->adjust).note_x[PLAYER_2]);
+	WriteXML_Tab2Int(pFile, "y", (sku->adjust).note_y[PLAYER_2]);
 	fputs("\t</note_2p>\n", pFile);
 	
 	fputs("\t<skinconfig>\n", pFile);
@@ -963,10 +934,10 @@ int ReadConfig(game* g, const char* filepath) {
 	TiXmlDocument* hXml;
 
 	g->config.play = {};
-	g->config.play.hiSpeed[0] = 200;
-	g->config.play.hiSpeed[1] = 200;
-	g->config.play.p1_lanecoverv = 0;
-	g->config.play.p2_lanecoverv = 0;
+	g->config.play.hiSpeed[PLAYER_1] = 200;
+	g->config.play.hiSpeed[PLAYER_2] = 200;
+	g->config.play.lanecoverv[PLAYER_1] = 0;
+	g->config.play.lanecoverv[PLAYER_2] = 0;
 
 	hXml = new TiXmlDocument(filepath);
 
@@ -1016,30 +987,30 @@ int ReadConfig(game* g, const char* filepath) {
 	ReadXml_Int("config", "select", "speednext", 70, &g->config.select.speednext, hXml);
 	if (g->config.select.speednext <= 0) g->config.select.speednext = 70;
 
-	ReadXml_Int("config", "select", "control", 0, &g->config.select.control, hXml);
-	ReadXml_Int("config", "select", "buttonselect", 0, &g->config.select.buttonselect, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "control", false, &g->config.select.control, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "buttonselect", false, &g->config.select.buttonselect, hXml);
 	ReadXml_Int("config", "select", "randomclose", 0, &g->config.select.randomclose, hXml);
-	ReadXml_Int("config", "select", "ignorekeyall", 0, &g->config.select.ignorekeyall, hXml);
-	ReadXml_Int("config", "select", "ignorekeysingle", 0, &g->config.select.ignorekeysingle, hXml);
-	ReadXml_Int("config", "select", "ignorekeydouble", 0, &g->config.select.ignorekeydouble, hXml);
-	ReadXml_Int("config", "select", "ignoredp", 0, &g->config.select.ignoredp, hXml);
-	ReadXml_Int("config", "select", "ignorepms", 0, &g->config.select.ignorepms, hXml);
-	ReadXml_Int("config", "select", "ignoredifficultyall", 0, &g->config.select.ignoredifficultyall, hXml);
-	ReadXml_Int("config", "select", "ignore5key", 0, &g->config.select.ignore5key, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "ignorekeyall", false, &g->config.select.ignoreKeyAll, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "ignorekeysingle", false, &g->config.select.ignoreKeySingle, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "ignorekeydouble", false, &g->config.select.ignoreKeyDouble, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "ignoredp", false, &g->config.select.ignoreDP, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "ignorepms", false, &g->config.select.ignorePMS, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "ignoredifficultyall", false, &g->config.select.ignoreDifficultyAll, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "ignore5key", false, &g->config.select.ignore5key, hXml);
 	ReadXml_Int("config", "select", "levelbarflash_7", 12, &g->config.select.levelbarflash_7, hXml);
 	ReadXml_Int("config", "select", "levelbarflash_5", 9, &g->config.select.levelbarflash_5, hXml);
 	ReadXml_Int("config", "select", "levelbarflash_9", 42, &g->config.select.levelbarflash_9, hXml);
-	ReadXml_Int("config", "select", "preview", 1, &g->config.select.preview, hXml);
-	ReadXml_Int("config", "select", "disablesubtitle", 0, &g->config.select.disablesubtitle, hXml);
-	ReadXml_Int("config", "select", "difficultychangetype", 0, &g->config.select.difficultychangetype, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "preview", true, &g->config.select.isPreview, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "disablesubtitle", false, &g->config.select.disableSubtitle, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "difficultychangetype", false, &g->config.select.difficultyChangeType, hXml);
 	ReadXml_Int("config", "select", "folderlamp", 0, &g->config.select.folderlamp, hXml);
-	ReadXml_Int("config", "select", "disabledifficultyfilter", 0, &g->config.select.disabledifficultyfilter, hXml);
+	ReadXml_PositiveIntAsBool("config", "select", "disabledifficultyfilter", false, &g->config.select.disableDifficultyFilter, hXml);
 	ReadXml_Int("config", "system", "thread", 0, &g->config.system.thread, hXml);
 	ReadXml_Int("config", "sound", "bufferlength", 384, &g->config.sound.bufferlength, hXml);
 	ReadXml_Int("config", "sound", "numbuffers", 4, &g->config.sound.numbuffers, hXml);
 	ReadXml_Int("config", "sound", "output", 0, &g->config.sound.output, hXml);
 	ReadXml_Int("config", "sound", "driver", 0, &g->config.sound.driver, hXml);
-	ReadXml_Int("config", "sound", "disablefmod", 0, &g->config.sound.disablefmod, hXml);
+	ReadXml_PositiveIntAsBool("config", "sound", "disablefmod", false, &g->config.sound.disableFmod, hXml);
 	ReadXml_Int("config", "sound", "volumeflag", 1, &g->config.sound.volumeflag, hXml);
 	ReadXml_Int("config", "sound", "volumekey", 100, &g->config.sound.volumekey, hXml);
 	ReadXml_Int("config", "sound", "volumebgm", 100, &g->config.sound.volumebgm, hXml);
@@ -1071,41 +1042,41 @@ int ReadConfig(game* g, const char* filepath) {
 	ReadXml_Int("config", "sound", "fxtarget_2", 0, &g->config.sound.fxtarget_2, hXml);
 	ReadXml_Int("config", "sound", "fxtype_2", 0, &g->config.sound.fxtype_2, hXml);
 
-	g->config.sound.disabledsp = (uint)(g->config.sound.output != 2);
+	g->config.sound.disableDSP = (g->config.sound.output != 2);
 	if (g->config.sound.bufferlength == 0) g->config.sound.bufferlength = 256;
 	if (g->config.sound.bufferlength < 16) g->config.sound.bufferlength = 16;
 	if (g->config.sound.numbuffers <= 0) g->config.sound.numbuffers = 1;
 
-	ReadXml_Int("config", "play", "hs", 100, &g->config.play.hiSpeed[0], hXml);
-	g->config.play.hiSpeed[1] = g->config.play.hiSpeed[0];
-	ReadXml_Int("config", "play", "gauge", OPTION_GAUGE_GROOVE, g->config.play.gaugeOption, hXml);
-	ReadXml_Int("config", "play", "random", OPTION_RANDOM_OFF, &g->config.play.random[0], hXml);
-	ReadXml_Int("config", "play", "effect", 0, &g->config.play.m_HIDSUD1, hXml);
+	ReadXml_Int("config", "play", "hs", 100, &g->config.play.hiSpeed[PLAYER_1], hXml);
+	g->config.play.hiSpeed[PLAYER_2] = g->config.play.hiSpeed[PLAYER_1];
+	ReadXml_Int("config", "play", "gauge", OPTION_GAUGE_GROOVE, g->config.play.gaugeType, hXml);
+	ReadXml_Int("config", "play", "random", OPTION_RANDOM_OFF, &g->config.play.random[PLAYER_1], hXml);
+	ReadXml_Int("config", "play", "effect", 0, &g->config.play.m_HIDSUD[PLAYER_1], hXml);
 	ReadXml_Int("config", "play", "hstype", OPTION_HSFIX_OFF, &g->config.play.hsfix, hXml);
 	ReadXml_Int("config", "play", "hsmin", 10, &g->config.play.hsmin, hXml);
 	ReadXml_Int("config", "play", "hsmax", 900, &g->config.play.hsmax, hXml);
 	ReadXml_Int("config", "play", "hsmargin", 10, &g->config.play.hsmargin, hXml);
-	ReadXml_Int("config", "play", "shuttertype", 0, &g->config.play.p1_lanecover, hXml);
-	g->config.play.p2_lanecover = g->config.play.p1_lanecover;
+	ReadXml_Int("config", "play", "shuttertype", 0, &g->config.play.lanecover[PLAYER_1], hXml);
+	g->config.play.lanecover[PLAYER_2] = g->config.play.lanecover[PLAYER_1];
 	ReadXml_Int("config", "play", "shuttermargin", 10, &g->config.play.shuttermargin, hXml);
 	ReadXml_Int("config", "play", "replaysave", 0, &g->config.play.replay, hXml);
-	ReadXml_Int("config", "play", "autoscratch", 0, &g->config.play.p1_assist, hXml);
-	ReadXml_Int("config", "play", "autokey", 0, &g->config.play.autokey, hXml);
-	ReadXml_Int("config", "play", "shutter", 0, &g->config.play.p1_lanecoverv, hXml);
-	g->config.play.p2_lanecoverv = g->config.play.p1_lanecoverv;
+	ReadXml_Int("config", "play", "autoscratch", 0, &g->config.play.assist[PLAYER_1], hXml);//TOFIX: no assist[PLAYER_2]?
+	ReadXml_PositiveIntAsBool("config", "play", "autokey", false, &g->config.play.autokey, hXml);
+	ReadXml_Int("config", "play", "shutter", 0, &g->config.play.lanecoverv[PLAYER_1], hXml);
+	g->config.play.lanecoverv[PLAYER_2] = g->config.play.lanecoverv[PLAYER_1];
 	ReadXml_Int("config", "play", "autojudgeadjust", 0, &g->config.play.autojudge, hXml);
 	ReadXml_Int("config", "play", "judgetime", 0, &g->config.play.judgetiming, hXml);
 	ReadXml_Int("config", "play", "bga", 1, &g->config.play.bga, hXml);
 	ReadXml_Int("config", "play", "poorbga", 500, &g->config.play.poorbga, hXml);
 	ReadXml_Int("config", "play", "bgasize", 0, &g->config.play.bgasize, hXml);
 	ReadXml_Int("config", "play", "ghost", 0, &g->config.play.play_ghost, hXml);
-	ReadXml_Int("config", "play", "scoregraph", 0, &g->config.play.scoregraph, hXml);
+	ReadXml_PositiveIntAsBool("config", "play", "scoregraph", false, &g->config.play.scoreGraph, hXml);
 	ReadXml_Int("config", "play", "defaulttarget", 90, &g->config.play.target_percent, hXml);
 	ReadXml_Int("config", "play", "target", 0, &g->config.play.p1_target, hXml);
 	ReadXml_Int("config", "play", "basespeed", 100, &g->config.play.basespeed, hXml);
 	ReadXml_Int("config", "play", "gomiscore", 0, &g->config.play.gomiscore, hXml);
-	ReadXml_Int("config", "play", "disableleftclickexit", 0, &g->config.play.disableleftclickexit, hXml);
-	ReadXml_Int("config", "play", "disablecurspeedchange", 0, &g->config.play.disablecurspeedchange, hXml);
+	ReadXml_PositiveIntAsBool("config", "play", "disableleftclickexit", false, &g->config.play.disableLeftClickExit, hXml);
+	ReadXml_PositiveIntAsBool("config", "play", "disablecurspeedchange", false, &g->config.play.disableCurSpeedChange, hXml);
 	ReadXml_Str("config", "skin", "play_7", "", &g->config.skin.skinFilePath[0], hXml);
 	ReadXml_Str("config", "skin", "play_5", "", &g->config.skin.skinFilePath[1], hXml);
 	ReadXml_Str("config", "skin", "play_14", "", &g->config.skin.skinFilePath[2], hXml);
@@ -1122,7 +1093,7 @@ int ReadConfig(game* g, const char* filepath) {
 	ReadXml_Str("config", "skin", "play_5_b", "", &g->config.skin.skinFilePath[13], hXml);
 	ReadXml_Str("config", "skin", "play_9_b", "", &g->config.skin.skinFilePath[14], hXml);
 	ReadXml_Str("config", "skin", "fontname", "Ariel", &g->config.skin.fontname, hXml);
-	ReadXml_Int("config", "skin", "disableimagefont", 0, &g->config.skin.disableimagefont, hXml);
+	ReadXml_PositiveIntAsBool("config", "skin", "disableimagefont", false, &g->config.skin.disableImageFont, hXml);
 	ReadXml_Str("config", "player", "id", "", &g->config.player.id, hXml);
 	ReadXml_Str("config", "player", "pass", "", &g->config.player.pass, hXml);
 	g->config.player.passMD5 = MD5str(g->config.player.pass) ;
@@ -1132,8 +1103,8 @@ int ReadConfig(game* g, const char* filepath) {
 	ReadXml_Str("config", "player", "irpass", "", &g->config.player.irpass, hXml);
 	ReadXml_Str("config", "network", "lr1id", "", &g->config.network.lr1id, hXml);
 	ReadXml_Str("config", "network", "lr1pass", "", &g->config.network.lr1pass, hXml);
-	ReadXml_Int("config", "network", "autoupdate", 0, &g->config.network.autoupdate, hXml);
-	ReadXml_Int("config", "network", "getrival", 0, &g->config.network.getrival, hXml);
+	ReadXml_PositiveIntAsBool("config", "network", "autoupdate", false, &g->config.network.isAutoUpdate, hXml);
+	ReadXml_PositiveIntAsBool("config", "network", "getrival", false, &g->config.network.getRival, hXml);
 	ReadXml_Int("config", "network", "lr1ir", 0, &g->config.network.lr1ir, hXml);
 	ReadXml_Int("config", "network", "lr2ir", 0, &g->config.network.lr2ir, hXml);
 	ReadXml_Str("config", "network", "mail", "", &g->config.network.mail, hXml);
@@ -1179,6 +1150,8 @@ int ReadOpenLr2Config(game* g, const char* filepath) {
 		return 0;
 	}
 	ReadXml_Int("config", "system", "resolution", 0, &g->config.system.resolution, hXml);
+	ReadXml_Int("config", "system", "fullscreenfilter", 0, &g->config.system.fullscreenfilter, hXml);
+	ReadXml_PositiveIntAsBool("config", "system", "fullscreenfitstretch", false, &g->config.system.fullscreenfitstretch, hXml);
 	ReadXml_PositiveIntAsBool("config", "play", "gaugeautoshift", false, &g->config.play.m_gas, hXml);
 	ReadXml_Str("config", "skin", "courseresult", "", &g->config.skin.skinFilePath[15], hXml);
 	ReadXml_Str("config", "network", "display_ir", "", &g->config.network.displayIr, hXml);

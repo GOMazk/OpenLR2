@@ -309,16 +309,16 @@ int DrawLunaris(game *g) {
 	for (int i = 0; i < 10; i++) {
 		dstd = SetDSTdrawByTime(g->skstruct.dst_NOTE[i], GetTimeLapse(g->skstruct.dst_NOTE[i].timer, &g->timer1));
 
-		g->skstruct.drBuf.isHidSud[i] = g->config.play.m_HIDSUD1;
-		if (g->config.play.m_HIDSUD1 == 1) {
+		g->skstruct.drBuf.isHidSud[i] = g->config.play.m_HIDSUD[PLAYER_1];
+		if (g->config.play.m_HIDSUD[PLAYER_1] == 1) {
 			g->skstruct.drBuf.top[i] = 0;
 			g->skstruct.drBuf.bottom[i] = dstd.sortID * 0.6;
 		}
-		else if (g->config.play.m_HIDSUD1 == 2) {
+		else if (g->config.play.m_HIDSUD[PLAYER_1] == 2) {
 			g->skstruct.drBuf.top[i] = dstd.sortID * 0.6;
 			g->skstruct.drBuf.bottom[i] = 480;
 		}
-		else if (g->config.play.m_HIDSUD1 == 3) {
+		else if (g->config.play.m_HIDSUD[PLAYER_1] == 3) {
 			g->skstruct.drBuf.top[i] = dstd.sortID * 0.55;
 			g->skstruct.drBuf.bottom[i] = dstd.sortID * 0.65;
 		}
@@ -331,18 +331,18 @@ int DrawLunaris(game *g) {
 	for (int i = 10; i < 20; i++) {
 		dstd = SetDSTdrawByTime(g->skstruct.dst_NOTE[i], GetTimeLapse(g->skstruct.dst_NOTE[i].timer, &g->timer1));
 
-		g->skstruct.drBuf.isHidSud[i] = g->config.play.m_HIDSUD2;
-		if (g->config.play.m_HIDSUD2 == 1) {
+		g->skstruct.drBuf.isHidSud[i] = g->config.play.m_HIDSUD[PLAYER_2];
+		if (g->config.play.m_HIDSUD[PLAYER_2] == 1) {
 			g->skstruct.drBuf.top[i] = 0;
-			g->skstruct.drBuf.bottom[i] = (100 - g->config.play.p1_lanecoverv) * dstd.sortID / 200 + g->config.play.p1_lanecoverv * dstd.sortID / 100;
+			g->skstruct.drBuf.bottom[i] = (100 - g->config.play.lanecoverv[PLAYER_1]) * dstd.sortID / 200 + g->config.play.lanecoverv[PLAYER_1] * dstd.sortID / 100;
 		}
-		else if (g->config.play.m_HIDSUD2 == 2) {
-			g->skstruct.drBuf.top[i] = (100 - g->config.play.p1_lanecoverv) * dstd.sortID / 200 + g->config.play.p1_lanecoverv * dstd.sortID / 100;
+		else if (g->config.play.m_HIDSUD[PLAYER_2] == 2) {
+			g->skstruct.drBuf.top[i] = (100 - g->config.play.lanecoverv[PLAYER_1]) * dstd.sortID / 200 + g->config.play.lanecoverv[PLAYER_1] * dstd.sortID / 100;
 			g->skstruct.drBuf.bottom[i] = 480;
 		}
-		else if (g->config.play.m_HIDSUD2 == 3) {
-			g->skstruct.drBuf.top[i] = (100 - g->config.play.p1_lanecoverv) * dstd.sortID / 100 * 4 / 10 + g->config.play.p1_lanecoverv * dstd.sortID / 100;
-			g->skstruct.drBuf.bottom[i] = (100 - g->config.play.p1_lanecoverv) * dstd.sortID / 100 * 6 / 10 + g->config.play.p1_lanecoverv * dstd.sortID / 100;
+		else if (g->config.play.m_HIDSUD[PLAYER_2] == 3) {
+			g->skstruct.drBuf.top[i] = (100 - g->config.play.lanecoverv[PLAYER_1]) * dstd.sortID / 100 * 4 / 10 + g->config.play.lanecoverv[PLAYER_1] * dstd.sortID / 100;
+			g->skstruct.drBuf.bottom[i] = (100 - g->config.play.lanecoverv[PLAYER_1]) * dstd.sortID / 100 * 6 / 10 + g->config.play.lanecoverv[PLAYER_1] * dstd.sortID / 100;
 		}
 		else {
 			g->skstruct.drBuf.top[i] = 0;
@@ -502,37 +502,37 @@ int LUNARIS_JUDGE(game *g) {
 		LUNARIS_LAND();
 		int lineclear = LUNARIS_CHECKLINE();
 		int up = LUNARIS_GETBLOCKUP();
-		int gauge = g->config.play.gaugeOption[0];
+		int gauge = g->config.play.gaugeType[PLAYER_1];
 
-		g->gameplay.player[0].judgecount[1]++;
+		g->gameplay.player[PLAYER_1].judgecount[1]++;
 
 		if (gauge == 0) {
-			g->gameplay.player[0].HP[gauge] -= 1.5;
-			g->gameplay.player[0].HP_print -= 1.5;
-			g->gameplay.player[0].HP_old -= 1.5;
-			if (g->gameplay.player[0].HP[gauge] < 2.0) {
-				g->gameplay.player[0].HP[gauge] = 2.0;
-				g->gameplay.player[0].HP_print = 2.0;
-				g->gameplay.player[0].HP_old = 2.0;
+			g->gameplay.player[PLAYER_1].HP[gauge] -= 1.5;
+			g->gameplay.player[PLAYER_1].HP_print -= 1.5;
+			g->gameplay.player[PLAYER_1].HP_old -= 1.5;
+			if (g->gameplay.player[PLAYER_1].HP[gauge] < 2.0) {
+				g->gameplay.player[PLAYER_1].HP[gauge] = 2.0;
+				g->gameplay.player[PLAYER_1].HP_print = 2.0;
+				g->gameplay.player[PLAYER_1].HP_old = 2.0;
 			}
 		}
 		else if (gauge == 3) {
-			g->gameplay.player[0].HP[gauge] -= 1.0;
-			g->gameplay.player[0].HP_print -= 1.0;
-			g->gameplay.player[0].HP_old -= 1.0;
-			if (g->gameplay.player[0].HP[gauge] < 2.0) {
-				g->gameplay.player[0].HP[gauge] = 2.0;
-				g->gameplay.player[0].HP_print = 2.0;
-				g->gameplay.player[0].HP_old = 2.0;
+			g->gameplay.player[PLAYER_1].HP[gauge] -= 1.0;
+			g->gameplay.player[PLAYER_1].HP_print -= 1.0;
+			g->gameplay.player[PLAYER_1].HP_old -= 1.0;
+			if (g->gameplay.player[PLAYER_1].HP[gauge] < 2.0) {
+				g->gameplay.player[PLAYER_1].HP[gauge] = 2.0;
+				g->gameplay.player[PLAYER_1].HP_print = 2.0;
+				g->gameplay.player[PLAYER_1].HP_old = 2.0;
 			}
 		}
 		else {
-			g->gameplay.player[0].HP[gauge] -= 5.0;
-			g->gameplay.player[0].HP_print -= 5.0;
-			g->gameplay.player[0].HP_old -= 5.0;
+			g->gameplay.player[PLAYER_1].HP[gauge] -= 5.0;
+			g->gameplay.player[PLAYER_1].HP_print -= 5.0;
+			g->gameplay.player[PLAYER_1].HP_old -= 5.0;
 		}
 
-		if (lun_field[7][1] || lun_y + up - 1 + lineclear < 0 || g->gameplay.player[0].HP[gauge] < 0.0) {
+		if (lun_field[7][1] || lun_y + up - 1 + lineclear < 0 || g->gameplay.player[PLAYER_1].HP[gauge] < 0.0) {
 			SetTimeLapse(3, &g->timer1);
 			g->procPhase = 3;
 			StopAllKeysound(g);
@@ -542,70 +542,70 @@ int LUNARIS_JUDGE(game *g) {
 		LUNARIS_NEXT();
 
 		if (lineclear == 1) {
-			g->gameplay.player[0].combo_song_draw++;
-			g->gameplay.player[0].now_combo++;
-			g->gameplay.player[0].judgecount[2]++;
-			g->gameplay.player[0].judge_draw = 2;
-			g->gameplay.player[0].recent_judge = 2;
+			g->gameplay.player[PLAYER_1].combo_song_draw++;
+			g->gameplay.player[PLAYER_1].now_combo++;
+			g->gameplay.player[PLAYER_1].judgecount[2]++;
+			g->gameplay.player[PLAYER_1].judge_draw = 2;
+			g->gameplay.player[PLAYER_1].recent_judge = 2;
 			SetTimeLapse(46, &g->timer1);
 
-			g->gameplay.player[0].HP[gauge] += 4.0;
+			g->gameplay.player[PLAYER_1].HP[gauge] += 4.0;
 			if (gauge == 2 || gauge == 4) {
-				g->gameplay.player[0].HP[gauge] = 0.0;
+				g->gameplay.player[PLAYER_1].HP[gauge] = 0.0;
 
 				SetTimeLapse(3, &g->timer1);
 				g->procPhase = 3;
 				StopAllKeysound(g);
 				PlaySound(&g->audio, &g->audio.sysSound.stop, g->audio.chnBgm, -1);
 			}
-			g->gameplay.player[0].score += 400;
+			g->gameplay.player[PLAYER_1].score += 400;
 		}
 		else if (lineclear == 2) {
-			g->gameplay.player[0].combo_song_draw += 2;
-			g->gameplay.player[0].now_combo += 2;
-			g->gameplay.player[0].exscore += 1;
-			g->gameplay.player[0].judgecount[3]++;
-			g->gameplay.player[0].judge_draw = 3;
-			g->gameplay.player[0].recent_judge = 3;
+			g->gameplay.player[PLAYER_1].combo_song_draw += 2;
+			g->gameplay.player[PLAYER_1].now_combo += 2;
+			g->gameplay.player[PLAYER_1].exscore += 1;
+			g->gameplay.player[PLAYER_1].judgecount[3]++;
+			g->gameplay.player[PLAYER_1].judge_draw = 3;
+			g->gameplay.player[PLAYER_1].recent_judge = 3;
 			SetTimeLapse(46, &g->timer1);
 
-			g->gameplay.player[0].HP[gauge] += 16.0;
+			g->gameplay.player[PLAYER_1].HP[gauge] += 16.0;
 			if (gauge == 4) {
-				g->gameplay.player[0].HP[gauge] = 0.0;
+				g->gameplay.player[PLAYER_1].HP[gauge] = 0.0;
 
 				SetTimeLapse(3, &g->timer1);
 				g->procPhase = 3;
 				StopAllKeysound(g);
 				PlaySound(&g->audio, &g->audio.sysSound.stop, g->audio.chnBgm, -1);
 			}
-			g->gameplay.player[0].score += 1000;
+			g->gameplay.player[PLAYER_1].score += 1000;
 		}
 		else if (lineclear == 3) {
-			g->gameplay.player[0].combo_song_draw += 3;
-			g->gameplay.player[0].now_combo += 3;
-			g->gameplay.player[0].exscore += 2;
-			g->gameplay.player[0].judgecount[4]++;
-			g->gameplay.player[0].judge_draw = 4;
-			g->gameplay.player[0].recent_judge = 4;
+			g->gameplay.player[PLAYER_1].combo_song_draw += 3;
+			g->gameplay.player[PLAYER_1].now_combo += 3;
+			g->gameplay.player[PLAYER_1].exscore += 2;
+			g->gameplay.player[PLAYER_1].judgecount[4]++;
+			g->gameplay.player[PLAYER_1].judge_draw = 4;
+			g->gameplay.player[PLAYER_1].recent_judge = 4;
 			SetTimeLapse(46, &g->timer1);
 
-			g->gameplay.player[0].HP[gauge] += 30.0;
-			g->gameplay.player[0].score += 3000;
+			g->gameplay.player[PLAYER_1].HP[gauge] += 30.0;
+			g->gameplay.player[PLAYER_1].score += 3000;
 		}
 		else if (lineclear == 4) {
-			g->gameplay.player[0].combo_song_draw += 4;
-			g->gameplay.player[0].now_combo += 4;
-			g->gameplay.player[0].exscore += 2;
-			g->gameplay.player[0].judgecount[5]++;
-			g->gameplay.player[0].judge_draw = 5;
-			g->gameplay.player[0].recent_judge = 5;
+			g->gameplay.player[PLAYER_1].combo_song_draw += 4;
+			g->gameplay.player[PLAYER_1].now_combo += 4;
+			g->gameplay.player[PLAYER_1].exscore += 2;
+			g->gameplay.player[PLAYER_1].judgecount[5]++;
+			g->gameplay.player[PLAYER_1].judge_draw = 5;
+			g->gameplay.player[PLAYER_1].recent_judge = 5;
 			SetTimeLapse(46, &g->timer1);
 
-			g->gameplay.player[0].HP[gauge] += 40.0;
-			g->gameplay.player[0].score += 12000;
+			g->gameplay.player[PLAYER_1].HP[gauge] += 40.0;
+			g->gameplay.player[PLAYER_1].score += 12000;
 		}
 
-		if (g->gameplay.player[0].HP[gauge] > 100.0) g->gameplay.player[0].HP[gauge] = 100.0;
+		if (g->gameplay.player[PLAYER_1].HP[gauge] > 100.0) g->gameplay.player[PLAYER_1].HP[gauge] = 100.0;
 	}
 	lun_judgetime = GetTimeWrap();
 	return 1;
@@ -618,9 +618,9 @@ int ProcI_Lunaris(game *g) {
 
 	if (GetTimeLapse(41, &g->timer1) <= 0.0) return 1;
 
-	if (g->config.play.hiSpeed[0] < 200) interval = 1000;
-	else if (g->config.play.hiSpeed[0] < 300) interval = 500;
-	else if (g->config.play.hiSpeed[0] < 400) interval = 250;
+	if (g->config.play.hiSpeed[PLAYER_1] < 200) interval = 1000;
+	else if (g->config.play.hiSpeed[PLAYER_1] < 300) interval = 500;
+	else if (g->config.play.hiSpeed[PLAYER_1] < 400) interval = 250;
 	else interval = 167;
 
 	int rTimer = GetTimeLapse(140, &g->timer1); //in rTimer, 1000 is 1 beat
