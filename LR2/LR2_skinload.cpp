@@ -149,7 +149,7 @@ static int ReadSRC(SRCstruct *src, CSVbuf *csv, skstruct *sk){
 				src->grHandles[i + csv->val[7]*j] = DerivationGraph(blockX*i + csv->val[3], blockY*j + csv->val[4], blockX, blockY, sk->GrHandle[csv->val[2]]);
 			}
 			else {
-				src->grHandles[i + csv->val[7]*j] =	sk->GrHandle[csv->val[2]];
+				src->grHandles[i + csv->val[7]*j] =	sk->GrHandle[csv->val[2]]; // TOFIX: Handle sharing GG.
 			}
 		}
 	}
@@ -419,6 +419,9 @@ int InitSkin(skstruct *sk, int /*unused*/, char font) {
 	for (int i = 0; i < 5; i++) {
 		InitDST(&sk->dst_EVENT_LOADINGBG[i]);
 	}
+
+	sk->panelMan = {};
+
 	return 1;
 }
 
@@ -1827,6 +1830,31 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 					}
 					case "#HORIZONTAL"_hash:{
 						sk->horizontal = 1;
+						break;
+					}
+					case "#SRC_PANEL"_hash: {
+						SplitCSV(fBuf, &csv, ",");
+						SRCstruct src{};
+						InitSRC(&src);
+						ReadSRC(&src, &csv, sk);
+						if (!sk->panelMan.AddPanel(src)) {
+							for (int i = 0; i < src.graphcount; i++) {
+								DeleteGraph(src.grHandles[i]);
+							}
+							free(src.grHandles);
+							ErrorLogFmtAdd("#SRC_PANEL at line %d ignored: Tried to exceed 50 panels or to use invalid 'panel' param.\n", line);
+						}
+						break;
+					}
+					case "#DST_PANEL"_hash: {
+						SplitCSV(fBuf, &csv, ",");
+						DSTstruct* dst = sk->panelMan.GetLastDST();
+						if (!dst) {
+							ErrorLogFmtAdd("#DST_PANEL at line %d ignored: Has no bound #SRC_PANEL.\n", line);
+							break;
+						}
+						if (dst->dstCount == 0) InitDST(dst);
+						ReadDST(dst, &csv, tSkin_num, line);
 						break;
 					}
 					}
