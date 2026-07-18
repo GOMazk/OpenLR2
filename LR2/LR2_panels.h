@@ -4,6 +4,9 @@
 
 constexpr size_t CUSTOM_PANELS_MAX = 50;
 
+struct inputStructure;
+struct DrawingBuf;
+
 struct DSTdraw { /* 80bytes,4*0x14 */
 	float x{ 0 };
 	float y{ 0 };
@@ -67,11 +70,14 @@ private:
 	public:
 		const Panel* mMaster = nullptr;
 		std::vector<const Panel*> mSlaves;
-		std::vector<const DSTstruct*> mButtonSlaves;
+		std::vector<const SRCstruct*> mBoundButtons;
 		SRCstruct mSRC{};
 		DSTstruct mDST{};
-		double mTimer = 0.;
+		double mTimer = -1.;
 		bool mIsActive = false;
+
+		void Open();
+		void Close();
 
 		Panel() = default;
 		Panel(const Panel&) = delete;
@@ -80,7 +86,7 @@ private:
 		Panel(Panel&&) noexcept;
 		~Panel();
 	};
-	size_t GetIdx(Panel* ptr);
+	size_t GetIdx(const Panel* ptr);
 	std::vector<Panel> mPanels;
 	Panel* mCurrentMaster = nullptr;
 	Panel* mCurrentPanel = nullptr;
@@ -98,11 +104,12 @@ public:
 	bool Open();
 	bool Close();
 
-	bool IsPanelOpen(size_t id); // 'panel' param in 10-59 range
+	bool IsPanelActive(size_t id); // 'panel' param in 10-59 range
 	double GetTimer(size_t id); // 'timer' param in 500-549 range
 
 	bool AddPanel(const SRCstruct& src);
+	bool BindButton(SRCstruct* src);
 	DSTstruct* GetLastDST();
-	void Draw();
-	void ProcessInput();
+	void Draw(DrawingBuf* drb);
+	int CheckInput(const SRCstruct* src, const inputStructure* input);
 };

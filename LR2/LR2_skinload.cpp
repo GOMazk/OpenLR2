@@ -1085,6 +1085,11 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 						if (sk->otherObject[1].srcSize > 0 && (sk->otherObject[1].dst[sk->otherObject[1].srcSize - 1].dstCount < 1 || sk->otherObject[1].dst[sk->otherObject[1].srcSize - 1].dataSize < 1)) {
 							ErrorLogFmtAdd("スキン読み込みエラー %d行目\n%s\n(この行のエラーではありません)ひとつ前の#SRC_BUTTONに対応した#DST_BUTTONが存在しないか、登録に失敗したようです\n", line, fBuf.body);
 						}
+						if (csv.val[13] > 9) {
+							if (!sk->panelMan.BindButton(&sk->otherObject[1].src[sk->otherObject[1].srcSize])) {
+								ErrorLogFmtAdd("#SRC_BUTTON at line %d has invalid 'panel' param.\n", line);
+							}
+						}
 						sk->otherObject[1].srcSize++;
 						break;
 					}
