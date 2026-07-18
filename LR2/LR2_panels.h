@@ -112,6 +112,6 @@ public:
 	bool BindButton(SRCstruct* src);
 	DSTstruct* GetLastDST();
 	void Draw(DrawingBuf* drb);
-	int CheckInput(const SRCstruct* src, const inputStructure* input);
+	int CheckButton(const SRCstruct* src, const inputStructure* input);
 	bool RunSelectorInput(const inputStructure* input, AUDIO* audio);
 };

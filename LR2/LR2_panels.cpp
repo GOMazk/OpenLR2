@@ -222,7 +222,7 @@ void PanelManager::Draw(DrawingBuf* drb) {
 	}
 }
 
-int PanelManager::CheckInput(const SRCstruct* src, const inputStructure* input) {
+int PanelManager::CheckButton(const SRCstruct* src, const inputStructure* input) {
 	if (mCurrentPanel == nullptr) return 0; 
 	if (!mCurrentPanel->mIsActive) return 0;
 	auto it = std::ranges::find(mCurrentPanel->mBoundButtons, src);

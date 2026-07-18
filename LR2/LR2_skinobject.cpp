@@ -4199,7 +4199,7 @@ int ButtonByInput(skstruct* sk, SRCstruct *src, DSTstruct *dst, Timer *T, inputS
 	if (GetTimeLapse(dst->timer, T) == -1.0) return 0;
 
 	ret = 0;
-	int customPanelInput = sk->panelMan.CheckInput(src, input);
+	int customPanelInput = sk->panelMan.CheckButton(src, input);
 	if (customPanelInput) {
 		if (src->op2 != 1 || customPanelInput != 1) ret = 1;
 		else if (min < max) {
