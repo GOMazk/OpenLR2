@@ -1,6 +1,7 @@
 #include "LR2_panels.h"
 #include "LR2_skindraw.h"
 #include "En_timer.h"
+#include "En_audio.h"
 #include <DxLib.h>
 #include <ranges>
 #include <optional>
@@ -226,7 +227,33 @@ int PanelManager::CheckInput(const SRCstruct* src, const inputStructure* input) 
 	if (!mCurrentPanel->mIsActive) return 0;
 	auto it = std::ranges::find(mCurrentPanel->mBoundButtons, src);
 	if (it == mCurrentPanel->mBoundButtons.end()) return 0;
-	auto idx = std::distance(mCurrentPanel->mBoundButtons.begin(), it);
+	auto idx = std::distance(mCurrentPanel->mBoundButtons.begin(), it) + 1;
 	if (idx > 7) return 0;
 	return input->p1_buttonInput[idx] | input->p2_buttonInput[idx];
+}
+
+bool PanelManager::RunSelectorInput(const inputStructure* input, AUDIO* audio) {
+	auto button = [&](size_t idx) {
+		return input->p1_buttonInput[idx] | input->p2_buttonInput[idx];
+	};
+	auto play = [&](SOUNDDATA* sound) {
+		PlaySound(audio, sound, audio->chnKey, -1);
+	};
+	if (!mIsActive) {
+		if ((button(12) == 1 || button(12) == 2) && button(13) == 1) {
+			if (Open()) {
+				play(&audio->sysSound.panel_open);
+				return true;
+			}
+		}
+	}
+	else {
+		if (button(13) == 0 && button(12) == 1 && Close()) play(&audio->sysSound.panel_close);
+		if (button(12) == 0 && button(13) == 1 && NextPanel()) play(&audio->sysSound.difficulty);
+		if (button(13) == 2 && button(12) == 1 && PrevPanel()) play(&audio->sysSound.difficulty);
+		if (button(10) == 1 && PrevSubPanel()) play(&audio->sysSound.scratch);
+		if (button(11) == 1 && NextSubPanel()) play(&audio->sysSound.scratch);
+		return true;
+	}
+	return false;
 }

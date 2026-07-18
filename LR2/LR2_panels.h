@@ -6,6 +6,7 @@ constexpr size_t CUSTOM_PANELS_MAX = 50;
 
 struct inputStructure;
 struct DrawingBuf;
+struct AUDIO;
 
 struct DSTdraw { /* 80bytes,4*0x14 */
 	float x{ 0 };
@@ -112,4 +113,5 @@ public:
 	DSTstruct* GetLastDST();
 	void Draw(DrawingBuf* drb);
 	int CheckInput(const SRCstruct* src, const inputStructure* input);
+	bool RunSelectorInput(const inputStructure* input, AUDIO* audio);
 };
