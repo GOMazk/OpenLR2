@@ -2007,7 +2007,6 @@ int main(int argc, char** argv) {
 				}
 			}
 		}
-		gs.skstruct.panelMan.Draw(&gs.skstruct.drBuf);
 		for (int i = 0; i < gs.skstruct.drBuf.count; i++) {
 			int quake_x = 0, quake_y = 0;
 			if (((gs.procPhase == 1) && (gs.procSelecter == 4)) && (0 < gs.config.play.m_earthquake)) {

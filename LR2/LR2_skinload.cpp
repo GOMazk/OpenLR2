@@ -1837,29 +1837,11 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 						sk->horizontal = 1;
 						break;
 					}
-					case "#SRC_PANEL"_hash: {
+					case "#PANEL"_hash: {
 						SplitCSV(fBuf, &csv, ",");
-						SRCstruct src{};
-						InitSRC(&src);
-						ReadSRC(&src, &csv, sk);
-						if (!sk->panelMan.AddPanel(src)) {
-							for (int i = 0; i < src.graphcount; i++) {
-								DeleteGraph(src.grHandles[i]);
-							}
-							free(src.grHandles);
-							ErrorLogFmtAdd("#SRC_PANEL at line %d ignored: Tried to exceed 50 panels or to use invalid 'panel' param.\n", line);
+						if (!sk->panelMan.AddPanel(csv)) {
+							ErrorLogFmtAdd("#PANEL at line %d ignored: Tried to exceed 50 panels or to use invalid 'panel' param.\n", line);
 						}
-						break;
-					}
-					case "#DST_PANEL"_hash: {
-						SplitCSV(fBuf, &csv, ",");
-						DSTstruct* dst = sk->panelMan.GetLastDST();
-						if (!dst) {
-							ErrorLogFmtAdd("#DST_PANEL at line %d ignored: Has no bound #SRC_PANEL.\n", line);
-							break;
-						}
-						if (dst->dstCount == 0) InitDST(dst);
-						ReadDST(dst, &csv, tSkin_num, line);
 						break;
 					}
 					}

@@ -143,26 +143,21 @@ bool PanelManager::IsPanelActive(size_t id) {
 	return mPanels[id].mIsActive;
 }
 
-bool PanelManager::AddPanel(const SRCstruct& src) {
-	auto fail = [&]() {
-		mIsIgnoreDST = true;
-		return false;
-	};
-	if (mPanels.size() == CUSTOM_PANELS_MAX) return fail();
+bool PanelManager::AddPanel(const CSVbuf& csv) {
+	if (mPanels.size() == CUSTOM_PANELS_MAX) return false;
 	auto masterIdx = [&]() {
 		std::optional<size_t> ret = {};
-		if (src.op1) {
-			size_t masterIdx = src.op1 - 10;
+		if (csv.val[1]) {
+			size_t masterIdx = csv.val[1] - 10;
 			if (!is_idx_legit(masterIdx, mPanels)) return ret;
 			if (mPanels[masterIdx].mMaster) return ret;
 			return ret = masterIdx;
 		}
 		return ret;
 	}();
-	if (src.op1 && !masterIdx) return fail();
+	if (csv.val[1] && !masterIdx) return false;
 	size_t panelIdx = mPanels.size();
 	auto& panel = mPanels.emplace_back();
-	panel.mSRC = src;
 	panel.mTimerOpen = &mTimers->clock[500 + panelIdx];
 	panel.mTimerClose = &mTimers->clock[500 + CUSTOM_PANELS_MAX + panelIdx];
 	if (masterIdx) {
@@ -170,11 +165,11 @@ bool PanelManager::AddPanel(const SRCstruct& src) {
 		panel.mMaster = &master;
 		master.mSlaves.push_back(&panel);
 	}
+	panel.mIsSelectable = csv.val[2] > 0;
 	if (mPanels.size() == 1) {
 		mCurrentMaster = &panel;
 		mCurrentPanel = &panel;
 	}
-	mIsIgnoreDST = false;
 	return true;
 }
 
@@ -185,45 +180,6 @@ bool PanelManager::BindButton(SRCstruct* src) {
 	if (panel.mMaster) src->op3 = GetIdx(panel.mMaster) + 10;
 	mPanels[idx].mBoundButtons.push_back(src);
 	return true;
-}
-
-PanelManager::Panel::Panel(Panel&& other) noexcept {
-	std::swap(mMaster, other.mMaster);
-	std::swap(mSlaves, other.mSlaves);
-	std::swap(mBoundButtons, other.mBoundButtons);
-	std::swap(mSRC, other.mSRC);
-	std::swap(mDST, other.mDST);
-	std::swap(mTimerOpen, other.mTimerOpen);
-	std::swap(mTimerClose, other.mTimerClose);
-	std::swap(mIsActive, other.mIsActive);
-}
-
-PanelManager::Panel::~Panel() {
-	for (int i = 0; i < mSRC.graphcount; i++) {
-		DeleteGraph(mSRC.grHandles[i]);
-	}
-	free(mSRC.grHandles);
-	free(mDST.draw);
-}
-
-DSTstruct* PanelManager::GetLastDST() {
-	if (mIsIgnoreDST) return nullptr;
-	return &mPanels.back().mDST;
-}
-
-void PanelManager::Draw(DrawingBuf* drb) {
-	auto AddDrawingBuffer_Panel = [&](const SRCstruct& src, const DSTstruct& dst, double timer) {
-		if (dst.dstCount <= 0 || dst.dataSize <= 0) return;
-		double timeLapse = timer >= 0. ? GetTimeWrap() - timer : -1.;
-		DSTdraw tDstd = SetDSTdrawByTime(dst, timeLapse);
-
-		if (tDstd.time != -1 && src.inArray < src.graphcount && src.inArray > -1) {
-			AddDrawingBuffer(drb, src.grHandles[src.inArray], &tDstd);
-		}
-	};
-	for (const auto& panel : mPanels) {
-		AddDrawingBuffer_Panel(panel.mSRC, panel.mDST, panel.mMaster ? *panel.mMaster->mTimerOpen : *panel.mTimerOpen);
-	}
 }
 
 int PanelManager::CheckButton(const SRCstruct* src, const inputStructure* input) {
