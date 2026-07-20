@@ -180,7 +180,7 @@ static int ReadSRC_BAR_TITLE(SRCstruct *src, CSVbuf *csv, skstruct *sk){
 
 
 // InitSkin
-int InitSkin(skstruct *sk, int /*unused*/, char font) {
+int InitSkin(skstruct *sk, int /*unused*/, char font, Timer* timers) {
 	SetTransColor(0, 255, 0);
 	sk->startinput_start = 0;
 	sk->startinput_rank = 0;
@@ -420,7 +420,7 @@ int InitSkin(skstruct *sk, int /*unused*/, char font) {
 		InitDST(&sk->dst_EVENT_LOADINGBG[i]);
 	}
 
-	sk->panelMan = {};
+	sk->panelMan = { timers ? timers : sk->panelMan.GetTimersPtr() }; // Forgive me Father, for I have sinned.
 
 	return 1;
 }

@@ -27,6 +27,7 @@
 #define SINGLESLOTS 3844
 #define SLOTS SINGLESLOTS*10
 //36*36*5(6480) -> 62*62*10(38440)
+constexpr size_t TIMER_MAX = 600;
 
 
 struct sqlite3;
@@ -1465,7 +1466,7 @@ struct SkinCustom {
 };
 
 struct Timer {
-	double clock[500];
+	double clock[TIMER_MAX];
 	double scratch; /* //for graphic */
 	double gameTick; /* //game tick */
 	double vSyncTick; /* //VSync */

@@ -21,17 +21,23 @@ static auto is_idx_legit = []<typename T>(size_t idx, const std::vector<T>&arr) 
 
 void PanelManager::Panel::Open() {
 	mIsActive = true;
-	mTimer = GetTimeWrap();
+	*mTimerOpen = GetTimeWrap();
+	*mTimerClose = -1.;
 }
 
 void PanelManager::Panel::Close() {
 	mIsActive = false;
-	mTimer = -1.;
+	*mTimerOpen = -1.;
+	*mTimerClose = GetTimeWrap();
 }
 
 size_t PanelManager::GetIdx(const Panel* ptr) {
 	if (is_ptr_legit(ptr, mPanels)) return ptr - mPanels.data();
 	return 0;
+}
+
+Timer* PanelManager::GetTimersPtr() {
+	return mTimers;
 }
 
 bool PanelManager::IterateMaster(bool plus) {
@@ -137,12 +143,6 @@ bool PanelManager::IsPanelActive(size_t id) {
 	return mPanels[id].mIsActive;
 }
 
-double PanelManager::GetTimer(size_t id) {
-	id -= 10;
-	if (!is_idx_legit(id, mPanels)) return -1.;
-	return mPanels[id].mTimer;
-}
-
 bool PanelManager::AddPanel(const SRCstruct& src) {
 	auto fail = [&]() {
 		mIsIgnoreDST = true;
@@ -160,8 +160,11 @@ bool PanelManager::AddPanel(const SRCstruct& src) {
 		return ret;
 	}();
 	if (src.op1 && !masterIdx) return fail();
+	size_t panelIdx = mPanels.size();
 	auto& panel = mPanels.emplace_back();
 	panel.mSRC = src;
+	panel.mTimerOpen = &mTimers->clock[500 + panelIdx];
+	panel.mTimerClose = &mTimers->clock[500 + CUSTOM_PANELS_MAX + panelIdx];
 	if (masterIdx) {
 		auto& master = mPanels[*masterIdx];
 		panel.mMaster = &master;
@@ -190,7 +193,8 @@ PanelManager::Panel::Panel(Panel&& other) noexcept {
 	std::swap(mBoundButtons, other.mBoundButtons);
 	std::swap(mSRC, other.mSRC);
 	std::swap(mDST, other.mDST);
-	std::swap(mTimer, other.mTimer);
+	std::swap(mTimerOpen, other.mTimerOpen);
+	std::swap(mTimerClose, other.mTimerClose);
 	std::swap(mIsActive, other.mIsActive);
 }
 
@@ -218,7 +222,7 @@ void PanelManager::Draw(DrawingBuf* drb) {
 		}
 	};
 	for (const auto& panel : mPanels) {
-		AddDrawingBuffer_Panel(panel.mSRC, panel.mDST, panel.mMaster ? panel.mMaster->mTimer : panel.mTimer);
+		AddDrawingBuffer_Panel(panel.mSRC, panel.mDST, panel.mMaster ? *panel.mMaster->mTimerOpen : *panel.mTimerOpen);
 	}
 }
 

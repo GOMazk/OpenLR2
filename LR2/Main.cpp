@@ -697,7 +697,7 @@ int main(int argc, char** argv) {
 	gs.gameplay.courseStageNow = 0;
 	gs.gameplay.timetick = GetTimeWrap();
 	gs.gameplay.flag_threadDoingProcGame = 0;
-	InitSkin(&gs.skstruct, 0, 0);
+	InitSkin(&gs.skstruct, 0, 0, &gs.timer1);
 	gs.skstruct.fontname.assign(&gs.config.skin.fontname);
 	for (int i = 0; i < SLOTS; i++) gs.gameplay.keysound->load = 0;
 	for (int i = 0; i < 200; i++) gs.skstruct2.caption[i].fillzero();
@@ -721,7 +721,7 @@ int main(int argc, char** argv) {
 		return -1;
 	}
 	gs.skstruct2.drBuf.disableImageFont = gs.config.skin.disableImageFont;
-	InitSkin(&gs.skstruct2, 0, 0);
+	InitSkin(&gs.skstruct2, 0, 0, &gs.timer2);
 	gs.skstruct2.fontname.assign(&gs.config.skin.fontname);
 
 	gs.sSelect.toRoot = 1;

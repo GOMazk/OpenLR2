@@ -7,6 +7,7 @@ constexpr size_t CUSTOM_PANELS_MAX = 50;
 struct inputStructure;
 struct DrawingBuf;
 struct AUDIO;
+struct Timer;
 
 struct DSTdraw { /* 80bytes,4*0x14 */
 	float x{ 0 };
@@ -74,7 +75,8 @@ private:
 		std::vector<const SRCstruct*> mBoundButtons;
 		SRCstruct mSRC{};
 		DSTstruct mDST{};
-		double mTimer = -1.;
+		double* mTimerOpen = nullptr;
+		double* mTimerClose = nullptr;
 		bool mIsActive = false;
 
 		void Open();
@@ -89,6 +91,7 @@ private:
 	};
 	size_t GetIdx(const Panel* ptr);
 	std::vector<Panel> mPanels;
+	Timer* mTimers = nullptr;
 	Panel* mCurrentMaster = nullptr;
 	Panel* mCurrentPanel = nullptr;
 	bool mIsActive = false;
@@ -106,7 +109,11 @@ public:
 	bool Close();
 
 	bool IsPanelActive(size_t id); // 'panel' param in 10-59 range
-	double GetTimer(size_t id); // 'timer' param in 500-549 range
+	// PanelManager controls the timers its panels use internally,
+	// but uses global timer struct to hold them, so they can be
+	// accessed from the rest of the code normally.
+	// Range 500-549 for open timers, 550-599 for close timers.
+	Timer* GetTimersPtr();
 
 	bool AddPanel(const SRCstruct& src);
 	bool BindButton(SRCstruct* src);
@@ -114,4 +121,7 @@ public:
 	void Draw(DrawingBuf* drb);
 	int CheckButton(const SRCstruct* src, const inputStructure* input);
 	bool RunSelectorInput(const inputStructure* input, AUDIO* audio);
+
+	PanelManager() = default;
+	PanelManager(Timer* timers) : mTimers(timers) {};
 };

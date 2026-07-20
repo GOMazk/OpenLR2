@@ -4199,8 +4199,7 @@ int ButtonByInput(skstruct* sk, SRCstruct *src, DSTstruct *dst, Timer *T, inputS
 	if (GetTimeLapse(dst->timer, T) == -1.0) return 0;
 
 	ret = 0;
-	int customPanelInput = sk->panelMan.CheckButton(src, input);
-	if (customPanelInput) {
+	if (int customPanelInput = sk->panelMan.CheckButton(src, input)) {
 		if (src->op2 != 1 || customPanelInput != 1) ret = 1;
 		else if (min < max) {
 			src->op4 == 2 ? (*target)-- : (*target)++;
@@ -4208,10 +4207,14 @@ int ButtonByInput(skstruct* sk, SRCstruct *src, DSTstruct *dst, Timer *T, inputS
 		}
 	}
 	else {
+		bool isPanelActive = src->op3 == 0 ? true :
+			src->op3 < 10 ?
+			src->op3 == panel :
+			sk->panelMan.IsPanelActive(src->op3);
 		dstd = SetDSTdrawByTime(*dst, GetTimeLapse(dst->timer, T));
 		mouse = MouseOnDSTD(&dstd, &input->mouse_oldX, &input->mouse_oldY);
 		if ( (mouse == 1 && src->op4 == 0) || (mouse != 0 && src->op4 == 1) ) { // right side or plusonly
-			if (src->op2 != 1 || input->mouse_buttonL != 1 || (src->op3 != panel && src->op3 != 0)) {
+			if (src->op2 != 1 || input->mouse_buttonL != 1 || !isPanelActive) {
 				ret = 1;
 			}
 			else {
@@ -4220,7 +4223,7 @@ int ButtonByInput(skstruct* sk, SRCstruct *src, DSTstruct *dst, Timer *T, inputS
 			}
 		}
 		else if ( (mouse == 2 && src->op4 == 0) || (mouse != 0 && src->op4 == 2) ) { // left side or plusonly(-)
-			if (src->op2 != 1 || input->mouse_buttonL != 1 || (src->op3 != panel && src->op3 != 0)) {
+			if (src->op2 != 1 || input->mouse_buttonL != 1 || !isPanelActive) {
 				ret = 1;
 			}
 			else {
