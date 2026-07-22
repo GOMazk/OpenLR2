@@ -173,7 +173,7 @@ int ApplyJudgeNote(int judge, game *g, int _player, int lane, Timer *T, char isR
 	}
 
 	if (player.totalnotes > 0) {
-		player.score = (player.judgecount[3] + (player.judgecount[4] + player.judgecount[5] * 2) * 2) * 50000 / player.totalnotes;
+		player.score = (player.judgecount[3] + (player.judgecount[4] + player.judgecount[5] * 2) * 2) * 50000ULL / player.totalnotes;
 	}
 	player.exscore = player.judgecount[4] + player.judgecount[5] * 2;
 
