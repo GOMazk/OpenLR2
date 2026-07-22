@@ -1229,6 +1229,7 @@ struct SONGSELECT {
 	int rivalID;
 	struct COURSESELECT course;
 	int isExLevel;
+    struct SOUNDDATA previewSound;
 };
 
 struct ReplayData {

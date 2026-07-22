@@ -1670,8 +1670,39 @@ static void ThreadProc_RankingAutoUpdate(game* g) {
 	SetObjectStrings_SongSelect(g);
 }
 
+static void LoadPreviewFile(game *g, CSTR *previewpath) {
+    g->gameplay.flag_closingPhase = 0;
+    StopSound(&g->audio, &g->sSelect.previewSound);
+
+    if (!g->sSelect.previewSound.load || previewpath->isDiff(&g->sSelect.previewSound.filename)) {
+        ReleaseSound(&g->audio, &g->sSelect.previewSound);
+        if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == 2 && g->gameplay.previewStatus == 1) {
+            LoadSound(&g->audio, &g->sSelect.previewSound, *previewpath, true, false, true);
+        }
+    }
+
+    if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == 2 && g->gameplay.previewStatus == 1) {
+        SetFadePreview(&g->audio, 500, 1);
+        PlaySound(&g->audio, &g->sSelect.previewSound, g->audio.chnKey, -1);
+        g->gameplay.previewStatus = 2;
+    } else {
+        g->gameplay.previewStatus = 0;
+        g->gameplay.isPreviewLoad = 0;
+    }
+}
+
 static void ThreadProc_LoadPreview(game *g) {
 	BMSMETA meta;
+
+    SONGDATA *song = &g->sSelect.bmsList[g->sSelect.cur_song];
+    if (song->isPreviewfile) {
+        CSTR previewpath;
+        previewpath.assign(song->folder).add(song->previewfile);
+        if (IsFileExist(previewpath)) {
+            LoadPreviewFile(g, &previewpath);
+            return;
+        }
+    }
 
 	if (!IsFileExist(g->gameplay.previewBMSfilepath)) {
 		g->gameplay.isPreviewLoad = 0;
@@ -2726,12 +2757,16 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 				for (int i = 0; i < SLOTS; i++) {
 					StopSound(&g->audio, &g->gameplay.keysound[i]);
 				}
+                StopSound(&g->audio, &g->sSelect.previewSound);
 				g->gameplay.previewStatus = 0;
 				SetFadePreview(&g->audio, 1000, 0);
 				g->gameplay.previewBMShash = g->sSelect.bmsList[g->sSelect.cur_song].hash;
 				ErrorLogFmtAdd("プレビュー終了\n");
 			}
 		}
+        if (g->procSelecter != 2) { // stop playing preview on scene transition
+            StopSound(&g->audio, &g->sSelect.previewSound);
+        }
 	}
 	g->sSelect.is_mouseOnTextInput = 0;
 
