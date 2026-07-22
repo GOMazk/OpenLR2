@@ -299,6 +299,7 @@ struct BMSMETA {
 	CSTR backBMPpath;
 	CSTR parentfolderpath;
 	CSTR folderpath;
+    CSTR previewpath;
 	CSTR tag;
 	int notecount;
 	int maxbpm;
@@ -609,9 +610,11 @@ struct SONGDATA { /* 712bytes */
 	CSTR stagefile;
 	CSTR banner;
 	CSTR backBMP;
+    CSTR previewfile;
 	bool isStagefile{};
 	bool isBanner{};
 	int isBackBMP{};
+    bool isPreviewfile{};
 	uint difficulty{};
 	int level{};
 	int exlevel{};
