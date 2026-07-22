@@ -2929,6 +2929,7 @@ int InitBMSMETA(BMSMETA *meta_) {
 
 static void tryFindPreviewFile(BMSMETA *meta) {
     if (!std::filesystem::exists(meta->folderpath.body)) {
+        meta->previewpath.fillzero();
         return;
     }
 
@@ -3088,7 +3089,9 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	if (IsFileExist(dir)) meta->hasTxt = true;
 	meta->notecount = notes;
 
-    if (meta->previewpath.length() == 0) {
+    CSTR previewFullPath;
+    previewFullPath.assign(meta->folderpath).add(meta->previewpath);
+    if (meta->previewpath.length() == 0 || !IsFileExist(previewFullPath)) {
         tryFindPreviewFile(meta);
     }
 
