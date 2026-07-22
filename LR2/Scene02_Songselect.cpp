@@ -1694,13 +1694,15 @@ static void LoadPreviewFile(game *g, CSTR *previewpath) {
 static void ThreadProc_LoadPreview(game *g) {
 	BMSMETA meta;
 
-    SONGDATA *song = &g->sSelect.bmsList[g->sSelect.cur_song];
-    if (song->isPreviewfile) {
-        CSTR previewpath;
-        previewpath.assign(song->folder).add(song->previewfile);
-        if (IsFileExist(previewpath)) {
-            LoadPreviewFile(g, &previewpath);
-            return;
+    if (!g->config.select.ignorePreviewFiles) {
+        SONGDATA *song = &g->sSelect.bmsList[g->sSelect.cur_song];
+        if (song->isPreviewfile) {
+            CSTR previewpath;
+            previewpath.assign(song->folder).add(song->previewfile);
+            if (IsFileExist(previewpath)) {
+                LoadPreviewFile(g, &previewpath);
+                return;
+            }
         }
     }
 
@@ -2736,7 +2738,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 	}
 
 	if(g->config.select.isPreview){
-		if (GetTimeLapse(11, &g->timer1) >= 500.0 && g->gameplay.previewStatus == 0 &&
+		if (GetTimeLapse(11, &g->timer1) >= g->config.select.previewDelay && g->gameplay.previewStatus == 0 &&
 				g->sSelect.bmsList[g->sSelect.cur_song].keymode >= 5 &&
 				g->sSelect.bmsList[g->sSelect.cur_song].courseStageCount == 0 &&
 				(!g->gameplay.hThreadPreview.valid() ||

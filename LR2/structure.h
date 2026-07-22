@@ -456,6 +456,8 @@ struct CONFIG_SELECT {
 	bool disableDifficultyFilter{};
 	bool isPreview{};
 	bool disableSubtitle{};
+    bool ignorePreviewFiles{};
+    int previewDelay{};
 };
 
 struct CONFIG_SKIN {

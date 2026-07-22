@@ -577,6 +577,11 @@ int WriteOpenLr2ConfigXml(game *g, const char *filename){
 	WriteXML_Tab2Int(pFile, "screenmode", (g->config).system.screenmode);
 	fputs("\t</system>\n", pFile);
 
+    fputs("\t<select>\n", pFile);
+    WriteXML_Tab2BoolAsInt(pFile, "ignorepreviewfiles", (g->config).select.ignorePreviewFiles);
+    WriteXML_Tab2Int(pFile, "previewdelay", (g->config).select.previewDelay);
+    fputs("\t</select>\n", pFile);
+
 	fputs("\t<play>\n", pFile);
 	WriteXML_Tab2BoolAsInt(pFile, "gaugeautoshift", (g->config).play.m_gas);
 	fputs("\t</play>\n", pFile);
@@ -1158,6 +1163,9 @@ int ReadOpenLr2Config(game* g, const char* filepath) {
 	ReadXml_Int("config", "system", "screenmode", 0, &g->config.system.screenmode, hXml);
 	if (g->config.system.screenmode < 0 || g->config.system.screenmode > 2)
 		g->config.system.screenmode = 0; // out-of-range
+
+    ReadXml_PositiveIntAsBool("config", "select", "ignorepreviewfiles", false, &g->config.select.ignorePreviewFiles, hXml);
+    ReadXml_Int("config", "select", "previewdelay", 500, &g->config.select.previewDelay, hXml);
 
 	ReadXml_PositiveIntAsBool("config", "play", "gaugeautoshift", false, &g->config.play.m_gas, hXml);
 
