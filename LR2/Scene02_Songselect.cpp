@@ -1670,14 +1670,15 @@ static void ThreadProc_RankingAutoUpdate(game* g) {
 	SetObjectStrings_SongSelect(g);
 }
 
-static void LoadPreviewFile(game *g, CSTR *previewpath) {
+static void LoadPreviewFile(game *g, const std::string &previewpath) {
 	g->gameplay.flag_closingPhase = 0;
 	StopSound(&g->audio, &g->sSelect.previewSound);
 
-	if (!g->sSelect.previewSound.load || previewpath->isDiff(&g->sSelect.previewSound.filename)) {
+	const auto prevFile = g->sSelect.previewSound.filename.body;
+	if (!g->sSelect.previewSound.load || prevFile == nullptr || previewpath != prevFile) {
 		ReleaseSound(&g->audio, &g->sSelect.previewSound);
 		if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == 2 && g->gameplay.previewStatus == 1) {
-			LoadSound(&g->audio, &g->sSelect.previewSound, *previewpath, true, false, true);
+			LoadSound(&g->audio, &g->sSelect.previewSound, previewpath.c_str(), true, false, true);
 		}
 	}
 
@@ -1696,11 +1697,10 @@ static void ThreadProc_LoadPreview(game *g) {
 
 	if (!g->config.select.ignorePreviewFiles) {
 		SONGDATA &song = g->sSelect.bmsList[g->sSelect.cur_song];
-		if (song.isPreviewfile) {
-			CSTR previewpath;
-			previewpath.assign(song.folder).add(song.previewfile);
-			if (IsFileExist(previewpath)) {
-				LoadPreviewFile(g, &previewpath);
+		if (song.previewfile) {
+			const auto previewpath = std::filesystem::path(song.folder.body) / song.previewfile.value();
+			if (std::filesystem::exists(previewpath)) {
+				LoadPreviewFile(g, previewpath.string());
 				return;
 			}
 		}
