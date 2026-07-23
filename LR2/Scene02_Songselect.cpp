@@ -1683,7 +1683,7 @@ static void LoadPreviewFile(game *g, const std::string &previewpath) {
 	}
 
 	if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == 2 && g->gameplay.previewStatus == 1) {
-		SetFadePreview(&g->audio, 500, 1);
+		SetFadePreview(&g->audio, 200, 1);
 		PlaySound(&g->audio, &g->sSelect.previewSound, g->audio.chnKey, -1);
 		g->gameplay.previewStatus = 2;
 	} else {
@@ -1698,7 +1698,7 @@ static void ThreadProc_LoadPreview(game *g) {
 	if (!g->config.select.ignorePreviewFiles) {
 		SONGDATA &song = g->sSelect.bmsList[g->sSelect.cur_song];
 		if (song.previewfile) {
-			const auto previewpath = std::filesystem::path(song.folder.body) / song.previewfile.value();
+			const auto previewpath = std::filesystem::path(song.filepath.getDirectory().body) / song.previewfile.value();
 			if (std::filesystem::exists(previewpath)) {
 				LoadPreviewFile(g, previewpath.string());
 				return;
