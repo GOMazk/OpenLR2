@@ -669,7 +669,7 @@ int EditTag(SONGDATA *song, sqlite3 *sql) {
 		SQL_Run(query, sql);
 		sqlite3_snprintf(1024, query, "INSERT INTO openlr2_preview (hash,previewpath) VALUES(\'%q\',\'%q\') ON CONFLICT(hash) DO UPDATE SET previewpath=excluded.previewpath",
 			meta.hash.body, meta.previewpath.body);
-		SQL_Run(query, sql);
+		sqlite3_exec(sql, query, nullptr, nullptr, nullptr);
 
 		if (meta.difficulty <= 0 || meta.difficulty > 5) {
 			SetUndefinedDifficulty(sql);
@@ -1377,7 +1377,7 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 					SQL_Run(str, sql);
 					sqlite3_snprintf(2048, str, "INSERT INTO openlr2_preview (hash,previewpath) VALUES(\'%q\',\'%q\') ON CONFLICT(hash) DO UPDATE SET previewpath=excluded.previewpath",
 						meta.hash.body, meta.previewpath.body);
-					SQL_Run(str, sql);
+					sqlite3_exec(sql, str, nullptr, nullptr, nullptr);
 					if (g_fullSongPass) g_processedSongPaths.insert(MakePathKey(searchPath));
 				}
 				count++;
@@ -1513,8 +1513,9 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb, ReloadProgr
 						LoadBMSMETAFromDB(&meta, sql);
 						SQL_Run(sqlite3_snprintf(1024, sBuf, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
 							meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, newTime, str.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body,AssignCRC32(meta.parentfolderpath).body,meta.maxbpm,meta.minbpm,meta.random,meta.longnote,meta.judge,meta.keymode,meta.bga,meta.difficulty,(int)meta.hasTxt,meta.notecount,now,meta.exlevel), sql);
-						SQL_Run(sqlite3_snprintf(1024, sBuf, "INSERT INTO openlr2_preview (hash,previewpath) VALUES(\'%q\',\'%q\') ON CONFLICT(hash) DO UPDATE SET previewpath=excluded.previewpath",
-							meta.hash.body, meta.previewpath.body), sql);
+						sqlite3_snprintf(1024, sBuf, "INSERT INTO openlr2_preview (hash,previewpath) VALUES(\'%q\',\'%q\') ON CONFLICT(hash) DO UPDATE SET previewpath=excluded.previewpath",
+							meta.hash.body, meta.previewpath.body);
+						sqlite3_exec(sql, sBuf, nullptr, nullptr, nullptr);
 						if (g_fullSongPass) g_processedSongPaths.insert(MakePathKey(str));
 					}
 					else if (is_lr2folder) {
@@ -2291,8 +2292,8 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 					sqlite3_stmt *pStmtPreview;
 					char previewQuery[512];
 					sqlite3_snprintf(512, previewQuery, "SELECT previewpath FROM openlr2_preview WHERE hash=\'%q\'", song.hash.body);
-					SQL_prepare(previewQuery, sql, &pStmtPreview);
-					if (sqlite3_step(pStmtPreview) == 100) {
+					sqlite3_prepare(sql, previewQuery, -1, &pStmtPreview, nullptr);
+					if (sqlite3_step(pStmtPreview) == SQLITE_ROW) {
 						song.previewfile = SQL_GetColumn(0, pStmtPreview);
 						if (song.previewfile.isDiff("(null)") && song.previewfile.length() > 4) song.isPreviewfile = true;
 					}
@@ -2779,7 +2780,7 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 		SQL_Run("CREATE TABLE song(hash TEXT ,title TEXT ,subtitle TEXT ,genre TEXT,artist TEXT,subartist TEXT,tag TEXT ,path TEXT primary key ,type INTEGER,folder TEXT,stagefile TEXT,banner TEXT,backbmp TEXT,parent TEXT,level INTEGER,difficulty INTEGER,maxbpm INTEGER,minbpm INTEGER,mode INTEGER,judge INTEGER,longnote INTEGER,bga INTEGER,random INTEGER,date INTEGER,favorite INTEGER,txt INTEGER,karinotes INTEGER,adddate INTEGER,exlevel INTEGER)", sql);
 		SQL_Run("CREATE INDEX hashidx ON song (hash)", sql);
 		SQL_Run("CREATE INDEX parentidx ON song (parent)", sql);
-		SQL_Run("CREATE TABLE openlr2_preview(hash TEXT primary key, previewpath TEXT)", sql);
+		sqlite3_exec(sql, "CREATE TABLE openlr2_preview(hash TEXT primary key, previewpath TEXT)", nullptr, nullptr, nullptr);
 		SQL_Run("DROP TABLE course", sql);
 		SQL_Run("CREATE TABLE nonstop(id INTEGER primary key,title TEXT,line INTEGER,hash TEXT,ir INTEGER)", sql);
 		SQL_Run("CREATE TABLE expert(id INTEGER primary key,title TEXT,line INTEGER,hash TEXT,ir INTEGER)", sql);

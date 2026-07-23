@@ -1695,10 +1695,10 @@ static void ThreadProc_LoadPreview(game *g) {
 	BMSMETA meta;
 
 	if (!g->config.select.ignorePreviewFiles) {
-		SONGDATA *song = &g->sSelect.bmsList[g->sSelect.cur_song];
-		if (song->isPreviewfile) {
+		SONGDATA &song = g->sSelect.bmsList[g->sSelect.cur_song];
+		if (song.isPreviewfile) {
 			CSTR previewpath;
-			previewpath.assign(song->folder).add(song->previewfile);
+			previewpath.assign(song.folder).add(song.previewfile);
 			if (IsFileExist(previewpath)) {
 				LoadPreviewFile(g, &previewpath);
 				return;
