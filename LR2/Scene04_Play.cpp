@@ -1209,7 +1209,7 @@ int DrawHitError(game *g, skstruct *sk, Timer *T) {
 
 			if (!parentSRC || parentSRC->graphcount <= 0) continue;
 
-			DSTstruct childDST = CloneDSTstruct(parentDST);
+			DSTstruct childDST = CloneDSTstruct(*parentDST);
 
 			for (size_t j = 0; j < childDST.dstCount; ++j) {
 				childDST.draw[j].a = fadeAlpha(parentDST->draw[j].a, noteTimer - jd.timeHit, fadeTime);
