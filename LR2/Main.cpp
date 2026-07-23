@@ -813,7 +813,7 @@ int main(int argc, char** argv) {
 		gs.sSelect.listSelectedBarFromScreenTop = 0;
 		gs.sSelect.flag_folderlamp = 0;
 		gs.sSelect.cur_song = 0;
-        gs.sSelect.previewSound.load = 0;
+		gs.sSelect.previewSound.load = 0;
 		ProcS_Select(&gs);
 		gs.gameplay.replay.status = 0;
 		gs.gameplay.isAutoplay = (gs.cmd_auto != 0);

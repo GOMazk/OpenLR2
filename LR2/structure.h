@@ -299,7 +299,7 @@ struct BMSMETA {
 	CSTR backBMPpath;
 	CSTR parentfolderpath;
 	CSTR folderpath;
-    CSTR previewpath;
+	CSTR previewpath;
 	CSTR tag;
 	int notecount;
 	int maxbpm;
@@ -456,8 +456,8 @@ struct CONFIG_SELECT {
 	bool disableDifficultyFilter{};
 	bool isPreview{};
 	bool disableSubtitle{};
-    bool ignorePreviewFiles{};
-    int previewDelay{};
+	bool ignorePreviewFiles{};
+	int previewDelay{};
 };
 
 struct CONFIG_SKIN {
@@ -612,11 +612,11 @@ struct SONGDATA { /* 712bytes */
 	CSTR stagefile;
 	CSTR banner;
 	CSTR backBMP;
-    CSTR previewfile;
+	CSTR previewfile;
 	bool isStagefile{};
 	bool isBanner{};
 	int isBackBMP{};
-    bool isPreviewfile{};
+	bool isPreviewfile{};
 	uint difficulty{};
 	int level{};
 	int exlevel{};
@@ -1231,7 +1231,7 @@ struct SONGSELECT {
 	int rivalID;
 	struct COURSESELECT course;
 	int isExLevel;
-    struct SOUNDDATA previewSound;
+	struct SOUNDDATA previewSound;
 };
 
 struct ReplayData {
