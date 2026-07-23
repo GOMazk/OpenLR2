@@ -1328,7 +1328,6 @@ class CircularBuffer {
 
 public:
 	CircularBuffer() = default;
-	explicit CircularBuffer(size_t capacity) : buf(capacity) {}
 
 	void push(const T& val) {
 		if (buf.empty()) return;
@@ -1343,6 +1342,7 @@ public:
 	}
 
 	size_t size() const { return buf.size(); }
+	void reset(size_t capacity) { buf.clear(); buf.resize(capacity); }
 
 	const T& operator[](size_t i) const { return buf[i]; }
 };
