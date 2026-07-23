@@ -720,24 +720,6 @@ struct DSTstruct { /* 44bytes.4*0x0b */
 	int dstCount;
 };
 
-inline DSTstruct CloneDSTstruct(const DSTstruct* src) {
-	DSTstruct clone = *src;
-	if (src->dstCount > 0 && src->draw) {
-		clone.draw = (DSTdraw*)malloc(src->dstCount * sizeof(DSTdraw));
-		memcpy(clone.draw, src->draw, src->dstCount * sizeof(DSTdraw));
-	} else {
-		clone.draw = nullptr;
-	}
-	return clone;
-}
-
-inline void FreeDSTstructClone(DSTstruct* clone) {
-	if (clone && clone->draw) {
-		free(clone->draw);
-		clone->draw = nullptr;
-	}
-}
-
 struct FontChar {
 	int srcX{};
 	int srcY{};

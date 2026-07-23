@@ -1127,6 +1127,25 @@ static void QuickRestart(game& game, bool newRandom) {
 	StopAllKeysound(&game);
 }
 
+static inline DSTstruct CloneDSTstruct(const DSTstruct src) {
+	DSTstruct clone = src;
+	if (src.dstCount > 0 && src.draw) {
+		clone.draw = (DSTdraw *) malloc(src.dstCount * sizeof(DSTdraw));
+		memcpy(clone.draw, src.draw, src.dstCount * sizeof(DSTdraw));
+	}
+	else {
+		clone.draw = nullptr;
+	}
+	return clone;
+}
+
+static inline void FreeDSTstructClone(DSTstruct *clone) {
+	if (clone && clone->draw) {
+		free(clone->draw);
+		clone->draw = nullptr;
+	}
+}
+
 int DrawHitError(game *g, skstruct *sk, Timer *T) {
 	for (int p = 0; p < 2; p++) {
 		if (sk->src_HITERROR[p].graphcount <= 0) continue;
