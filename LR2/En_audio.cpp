@@ -1105,10 +1105,16 @@ int InitSound(AUDIO *aud, uint bufferLength, int numBuffer, bool disableDSP, int
 		if (driver + 1 > numDrivers) {
 			driver = 0;
 		}
-		if (FMOD_System_GetDriverInfo(aud->fmodSys, driver, driverName, sizeof(driverName), nullptr, nullptr, nullptr, nullptr) == FMOD_OK) {
+		int sampleRate = 48000;
+		FMOD_SPEAKERMODE speakerMode = FMOD_SPEAKERMODE_STEREO;
+		int speakerChannels = 2;
+		if (FMOD_System_GetDriverInfo(aud->fmodSys, driver, driverName, sizeof(driverName), nullptr, &sampleRate, &speakerMode, &speakerChannels) == FMOD_OK) {
 			ErrorLogFmtAdd("PLAYBACK DRIVER:%s\n", driverName);
 		} else {
 			ErrorLogFmtAdd("FMOD_System_GetDriverInfo failed\n");
+		}
+		if (FMOD_System_SetSoftwareFormat(aud->fmodSys, sampleRate, speakerMode, speakerChannels) != FMOD_OK) {
+			ErrorLogFmtAdd("FMOD_System_SetSoftwareFormat failed\n");
 		}
 		FMOD_System_SetDriver(aud->fmodSys, driver);
 		if (FMOD_System_Init(aud->fmodSys, 0x100, FMOD_INIT_NORMAL, NULL) != FMOD_OK) {
