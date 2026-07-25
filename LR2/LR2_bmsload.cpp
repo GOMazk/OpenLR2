@@ -722,7 +722,10 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 	}
 	
 #ifdef _WIN32
-	if (cfg->system.isablebmsthread == 0) CoInitialize(NULL);
+	if (cfg->system.isablebmsthread == 0) {
+		CoInitialize(NULL);
+		SetUseASyncLoadFlag(TRUE);
+	}
 #endif // _WIN32
 	GetTransColor(&Rtmp,&Gtmp,&Btmp);
 	SetTransColor(0,0,0);
@@ -730,26 +733,60 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 		if (gp->BMP_filename[i].length() > 0) {
 			if (gp->BMP_filename[i].right(3).isSame("mpg") || gp->BMP_filename[i].right(3).isSame("avi")) {
 				SetTransColor(0, 255, 0);
-				gp->bgaHandle[i] = LoadGraph(gp->BMP_filename[i]);
+				gp->bgaHandle[i] = LoadGraph(gp->BMP_filename[i]);	// Note: When using SetUseASyncLoadFlag, LoadGraph returns the handle immediately. Further check is required
 				SetTransColor(0, 0, 0);
 			}
 			else {
-				gp->bgaHandle[i] = LoadGraph(gp->BMP_filename[i]);
+				gp->bgaHandle[i] = LoadGraph(gp->BMP_filename[i]);	// Note: When using SetUseASyncLoadFlag, LoadGraph returns the handle immediately. Further check is required
 			}
 			gp->loadObject_loaded++;
 		}
 
 		if (gp->flag_closingPhase) {
 #ifdef _WIN32
-			if (cfg->system.isablebmsthread == 0) CoUninitialize();
+			if (cfg->system.isablebmsthread == 0) {
+				SetUseASyncLoadFlag(FALSE);
+				CoUninitialize();
+			}
 #endif // _WIN32
 			return 1;
 		}
 	}
 
+	// Check and wait until the handles finished loading
+	if (cfg->system.isablebmsthread == 0) {
+		bool finishedLoading = false;
+		while (!finishedLoading) {
+			finishedLoading = true;
+			for (int i = 0; i < SLOTS; i++) {
+				if (gp->bgaHandle[i] != -1) {
+					int loadResult = CheckHandleASyncLoad(gp->bgaHandle[i]);
+					if (loadResult == FALSE) {
+						// FALSE: finished
+					} else if (loadResult == TRUE) {
+						// TRUE: still loading
+						finishedLoading = false;
+						break;
+					} else {
+						// -1: error
+						// Release the handle and do not care about it anymore
+						DeleteGraph(gp->bgaHandle[i]);
+						gp->bgaHandle[i] = -1;
+					}
+				}
+			}
+			if (!finishedLoading) {
+				std::this_thread::sleep_for(std::chrono::milliseconds(100));
+			}
+		}
+	}
+
 	SetTransColor(Rtmp, Gtmp, Btmp);
 #ifdef _WIN32
-	if (cfg->system.isablebmsthread == 0) CoUninitialize();
+	if (cfg->system.isablebmsthread == 0) {
+		SetUseASyncLoadFlag(FALSE);
+		CoUninitialize();
+	}
 #endif // _WIN32
 	if (gp->bgaHandle[0] != -1) gp->missLayer = 0;
 
