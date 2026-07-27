@@ -1127,25 +1127,6 @@ static void QuickRestart(game& game, bool newRandom) {
 	StopAllKeysound(&game);
 }
 
-static inline DSTstruct CloneDSTstruct(const DSTstruct src) {
-	DSTstruct clone = src;
-	if (src.dstCount > 0 && src.draw) {
-		clone.draw = (DSTdraw *) malloc(src.dstCount * sizeof(DSTdraw));
-		memcpy(clone.draw, src.draw, src.dstCount * sizeof(DSTdraw));
-	}
-	else {
-		clone.draw = nullptr;
-	}
-	return clone;
-}
-
-static inline void FreeDSTstructClone(DSTstruct *clone) {
-	if (clone && clone->draw) {
-		free(clone->draw);
-		clone->draw = nullptr;
-	}
-}
-
 int DrawHitError(game *g, skstruct *sk, Timer *T) {
 	for (int p = 0; p < 2; p++) {
 		if (sk->src_HITERROR[p].graphcount <= 0) continue;
@@ -1157,6 +1138,11 @@ int DrawHitError(game *g, skstruct *sk, Timer *T) {
 				dst->draw[i].x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (dst->draw[i].w / 2);
 				dst->draw[i].y = hiterrorByTime.y;
 			}
+		};
+
+		auto centerDraw = [&](DSTdraw &draw) -> void {
+			draw.x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (draw.w / 2);
+			draw.y = hiterrorByTime.y;
 		};
 
 		auto offset = [&](double timing) -> int {
@@ -1209,15 +1195,17 @@ int DrawHitError(game *g, skstruct *sk, Timer *T) {
 
 			if (!parentSRC || parentSRC->graphcount <= 0) continue;
 
-			DSTstruct childDST = CloneDSTstruct(*parentDST);
+			DSTdraw parentDSTByTime = SetDSTdrawByTime(*parentDST, GetTimeLapse(parentDST->timer, T));
+			parentDSTByTime.a = fadeAlpha(parentDSTByTime.a, noteTimer - jd.timeHit, fadeTime);
+			centerDraw(parentDSTByTime);
 
-			for (size_t j = 0; j < childDST.dstCount; ++j) {
-				childDST.draw[j].a = fadeAlpha(parentDST->draw[j].a, noteTimer - jd.timeHit, fadeTime);
-			}
+			int grh = parentSRC->timer == parentDST->timer ?
+				parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, T) - parentDST->draw->time)] : 
+				grh = parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, T))];
 
-			center(&childDST);
-			AddDrawingBuffer_Object(&sk->drBuf, parentSRC, &childDST, T, offset(jd.offset), 0);
-			FreeDSTstructClone(&childDST);
+			parentDSTByTime.x += offset(jd.offset);
+
+			AddDrawingBuffer(&sk->drBuf, grh, &parentDSTByTime);		
 		}
 
 		if (sk->src_HITERROR_EMA.graphcount > 0) {
