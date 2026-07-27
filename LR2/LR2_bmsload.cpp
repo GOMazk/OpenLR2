@@ -721,6 +721,9 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 		return 1;
 	}
 	
+	// Add async load functions from DxLib: SetUseASyncLoadFlag, CheckHandleASyncLoad
+	// We are on a detached thread here (see ProcGameThread), but DirectX requires resouces to be loaded from the main thread. 
+	// The async calls will make DxLib do it itself on the main thread. This fixes crashes in DX11
 #ifdef _WIN32
 	if (cfg->system.isablebmsthread == 0) {
 		CoInitialize(NULL);
