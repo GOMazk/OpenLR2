@@ -101,11 +101,11 @@ static consteval bool is_linux()
 }
 
 static bool run_tests() {
-	if (CSTR fp = "C:\\a\\b\\c\\d.bms"; fp.getDirectory().body != std::string_view{"C:\\a\\b\\c\\"}) {
+	if (CSTR fp = fs::make_preferred("C:\\a\\b\\c\\d.bms").data(); fp.getDirectory().body != std::string_view{fs::make_preferred("C:\\a\\b\\c\\").data()}) {
 		ErrorLogFmtAdd("1: %s\n", fp.getDirectory().body);
 		return false;
 	}
-	if (CSTR fp = "C:\\a\\b\\c\\d.bms"; fp.getParentDirectory().body != std::string_view{"C:\\a\\b\\"}) {
+	if (CSTR fp = fs::make_preferred("C:\\a\\b\\c\\d.bms").data(); fp.getParentDirectory().body != std::string_view{fs::make_preferred("C:\\a\\b\\").data()}) {
 		ErrorLogFmtAdd("2: %s\n", fp.getParentDirectory().body);
 		return false;
 	}
