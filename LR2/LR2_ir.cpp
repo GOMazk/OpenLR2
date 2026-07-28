@@ -1,6 +1,7 @@
 ﻿// LR2IR integration is deprecated. Please help us improve CustomIR instead.
 
 #include <string>
+#include <thread>
 #include "En_dbio.h"
 #include "En_fileutil.h"
 #include "En_timer.h"
@@ -17,6 +18,10 @@
 #pragma comment(lib, "ws2_32.lib")
 
 #include <shellapi.h>
+#else
+#include <spawn.h>
+#include <sys/wait.h>
+#include <unistd.h>
 #endif // _WIN32
 
 void MYRANKING::InitRanking() {
@@ -52,7 +57,7 @@ void MYRANKING::InitRanking() {
 }
 
 static int CMP_PlayerByExscore(const void *p1, const void *p2) {
-	
+
 	RANKINGPLAYER* s1 = (RANKINGPLAYER*)p1;
 	RANKINGPLAYER* s2 = (RANKINGPLAYER*)p2;
 
@@ -60,7 +65,7 @@ static int CMP_PlayerByExscore(const void *p1, const void *p2) {
 }
 
 void RANKING::ExpandRankingBuffer(int add) {
-	
+
 	this->ranking = (RANKINGPLAYER*)realloc(this->ranking, (this->rankingMax + add) * sizeof(RANKINGPLAYER));
 	assert(this->ranking != nullptr);
 
@@ -195,7 +200,7 @@ int RANKING::ParseXML(const char* path) {
 
 	delete(hXml);
 	ErrorLogFmtAdd("ランキングデータのパースに成功しました。 合計プレイヤー %d\n", rankingCount);
-	
+
 	qsort(ranking, rankingCount, sizeof(RANKINGPLAYER), CMP_PlayerByExscore);
 
 	for (int i = 0; i < rankingCount; i++) {
@@ -222,7 +227,7 @@ int CheckRivaldataNew(int rivalID) {
 	CSTR path;
 	int ret = 0;
 	cstrSprintf(&path, fs::make_preferred("LR2files/Rival/%d.db").data(), rivalID);
-	
+
 	if (!IsFileExist(path)) return 0;
 
 	sqlite3_open(path, &pDb);
@@ -246,7 +251,7 @@ static int ParseRivalData(int ID) {
 	cstrSprintf(&path, fs::make_preferred("LR2files/Rival/%d.db").data(), ID);
 	sqlite3_open(path, &pRivalDB);
 	SQL_Run("CREATE TABLE rival(hash TEXT primary key,r_clear INTEGER,r_totalnotes INTEGER,r_maxcombo INTEGER,r_perfect INTEGER,r_great INTEGER,r_good INTEGER,r_bad INTEGER,r_poor INTEGER,r_minbp INTEGER,r_option INTEGER,r_lastupdate INGEGER)", pRivalDB);
-	
+
 	cstrSprintf(&path, fs::make_preferred("LR2files/Rival/%d.xml").data(), ID);
 	hXml = new TiXmlDocument(path);
 	parse_cp932_xml(hXml, path.body);
@@ -638,7 +643,7 @@ void NETWORK::WaitForRankingHandle() {
 int NETWORK::GetRanking(CSTR hash, char flagInit) {
 
 	CSTR path;
-	
+
 	ErrorLogAdd("IRxmlをダウンロードします\n");
 	if (hash.length() <= 50) {
 		cstrSprintf(&path, fs::make_preferred("LR2files/Ir/%s.xml").data(), hash.body);
@@ -690,9 +695,24 @@ int OpenUrl(const char* url) {
 	ShellExecuteA(NULL, "open", url, NULL, NULL, 1);
 	return 1;
 #else
-	CSTR cmd;
-	cstrSprintf(&cmd, "xdg-open \"%s\" &", url);
-	return system(cmd.body) == 0 ? 1 : 0;
+	if (url == nullptr || *url == '\0') return 0;
+
+	pid_t pid;
+	char command[] = "xdg-open";
+	std::string urlArgument{url};
+	char* const argv[] = {
+		command,
+		urlArgument.data(),
+		nullptr,
+	};
+
+	// use spawnp instead of system
+	if (posix_spawnp(&pid, command, nullptr, nullptr, argv, environ) != 0) return 0;
+
+	// ensure the process doesn't become a zombie
+	std::thread([pid] { (void)waitpid(pid, nullptr, 0); }).detach();
+
+	return 1;
 #endif
 }
 
@@ -925,7 +945,7 @@ int NETWORK::LR2IR_Login(int isDirectPlay) {
 					if (cur == 20 || csv.val[2 + cur] < 1) break;
 					if (cur == 0) printfDx("ライバルデータの取得は左クリック押しっぱなしでスキップできます。\n");
 
-					ErrorLogFmtAdd("ライバル登録されています:%d\n", this->rivals[cur]); //TOFIX: 
+					ErrorLogFmtAdd("ライバル登録されています:%d\n", this->rivals[cur]); //TOFIX:
 					this->rivals[cur] = csv.val[2+cur];
 					this->rivalcount++;
 					this->GetRivalInfo(this->rivals[cur]);
