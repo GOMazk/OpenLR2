@@ -768,33 +768,26 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 				bgaHandleLoaded[i] = false;
 			}
 		}
-		bool finishedLoading = false;
-		while (!finishedLoading) {
-			finishedLoading = true;
+		while (true) {
+			bool anyLoading = false;
 			for (auto& [i, loaded] : bgaHandleLoaded) {
-				if (!loaded && gp->bgaHandle[i] != -1) {
-					int loadResult = CheckHandleASyncLoad(gp->bgaHandle[i]);
-					if (loadResult == FALSE) {
-						// FALSE: finished
-						loaded = true;
-						gp->loadObject_loaded++;
-					} else if (loadResult == TRUE) {
-						// TRUE: still loading
-						finishedLoading = false;
-						break;
-					} else {
-						// -1: error
-						// Release the handle and do not care about it anymore
-						DeleteGraph(gp->bgaHandle[i]);
-						gp->bgaHandle[i] = -1;
-					}
+				if (loaded) continue;
+				int loadResult = CheckHandleASyncLoad(gp->bgaHandle[i]);
+				if (loadResult == TRUE/*still loading*/) {
+					anyLoading = true;
+					continue;
 				}
+				if (loadResult != FALSE/*finished*/) {
+					// Error
+					DeleteGraph(gp->bgaHandle[i]);
+					gp->bgaHandle[i] = -1;
+				}
+				loaded = true;
+				gp->loadObject_loaded++;
 			}
-			if (!finishedLoading) {
-				std::this_thread::sleep_for(std::chrono::milliseconds(10));
-			}
+			if (!anyLoading) break;
+			std::this_thread::sleep_for(std::chrono::milliseconds(10));
 		}
-	}
 
 	SetTransColor(Rtmp, Gtmp, Btmp);
 #ifdef _WIN32
