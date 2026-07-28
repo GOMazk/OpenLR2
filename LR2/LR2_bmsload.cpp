@@ -742,7 +742,11 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 			else {
 				gp->bgaHandle[i] = LoadGraph(gp->BMP_filename[i]);	// Note: When using SetUseASyncLoadFlag, LoadGraph returns the handle immediately. Further check is required
 			}
-			gp->loadObject_loaded++;
+
+			// Count only after load finish. Only add if using synchronous load here
+			if (cfg->system.isablebmsthread != 0) {
+				gp->loadObject_loaded++;
+			}
 		}
 
 		if (gp->flag_closingPhase) {
@@ -758,14 +762,22 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 
 	// Check and wait until the handles finished loading
 	if (cfg->system.isablebmsthread == 0) {
+		std::unordered_map<int, bool> bgaHandleLoaded;	// to prevent count repeateadly
+		for (int i = 0; i < SLOTS; i++) {
+			if (gp->bgaHandle[i] != -1) {
+				bgaHandleLoaded[i] = false;
+			}
+		}
 		bool finishedLoading = false;
 		while (!finishedLoading) {
 			finishedLoading = true;
-			for (int i = 0; i < SLOTS; i++) {
-				if (gp->bgaHandle[i] != -1) {
+			for (auto& [i, loaded] : bgaHandleLoaded) {
+				if (!loaded && gp->bgaHandle[i] != -1) {
 					int loadResult = CheckHandleASyncLoad(gp->bgaHandle[i]);
 					if (loadResult == FALSE) {
 						// FALSE: finished
+						loaded = true;
+						gp->loadObject_loaded++;
 					} else if (loadResult == TRUE) {
 						// TRUE: still loading
 						finishedLoading = false;
