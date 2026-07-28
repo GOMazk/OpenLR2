@@ -2,6 +2,7 @@
 
 #include <string>
 #include <thread>
+#include <utility>
 #include "En_dbio.h"
 #include "En_fileutil.h"
 #include "En_timer.h"
@@ -690,13 +691,46 @@ int NETWORK::GetRivalInfo(int rivalID) {
 	return 1;
 }
 
-int OpenUrl(const char* url) {
+std::optional<Url> Url::parse(std::string value) {
+	if(!value.starts_with("http://") && !value.starts_with("https://"))
+		return std::nullopt;
+	for(char c : value)
+	{
+		// clang-format off
+		switch(c)
+		{
+		// 2.1. Percent-Encoding
+		case '%':
+		// 2.2. Reserved Characters gen-delims
+		case ':': case '/': case '?': case '#': case '[': case ']': case '@':
+		// 2.2. Reserved Characters sub-delims
+		case '!': case '$': case '&': case '\'': case '(': case ')': case '*': case '+': case ',': case ';':
+		case '=':
+		// 2.3. Unreserved Characters
+		case 'a': case 'b': case 'c': case 'd': case 'e': case 'f': case 'g': case 'h': case 'i': case 'j': case 'k':
+		case 'l': case 'm': case 'n': case 'o': case 'p': case 'q': case 'r': case 's': case 't': case 'u': case 'v':
+		case 'w': case 'x': case 'y': case 'z':
+		case 'A': case 'B': case 'C': case 'D': case 'E': case 'F': case 'G': case 'H': case 'I': case 'J': case 'K':
+		case 'L': case 'M': case 'N': case 'O': case 'P': case 'Q': case 'R': case 'S': case 'T': case 'U': case 'V':
+		case 'W': case 'X': case 'Y': case 'Z':
+		case '0': case '1': case '2': case '3': case '4': case '5': case '6': case '7': case '8': case '9':
+		case '-': case '.': case '_': case '~':
+			break;
+		default:
+			return std::nullopt;
+		}
+		// clang-format on
+	}
+	return {{.value = std::move(value)}};
+}
+
+int OpenUrl(const Url& url) {
 #ifdef _WIN32
 	// > It can be cast only to an INT_PTR and compared to either 32 or the following error codes below.
-	return reinterpret_cast<INT_PTR>(ShellExecuteA(nullptr, "open", url.c_str(), nullptr, nullptr, 1)) > 32 ? 1 : 0;
+	return reinterpret_cast<INT_PTR>(ShellExecuteA(nullptr, "open", url.value.c_str(), nullptr, nullptr, 1)) > 32 ? 1 : 0;
 #else
 	char argv0[] = "xdg-open";
-	std::string argv1 = url;
+	std::string argv1 = url.value;
 	char* argvp[]{argv0, argv1.data(), nullptr};
 	pid_t pid{};
 	// retval is just whether the spawn succeeded, not the result of the actual spawned process.
