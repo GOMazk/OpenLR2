@@ -788,6 +788,7 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 			if (!anyLoading) break;
 			std::this_thread::sleep_for(std::chrono::milliseconds(10));
 		}
+	}
 
 	SetTransColor(Rtmp, Gtmp, Btmp);
 #ifdef _WIN32
