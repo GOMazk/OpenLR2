@@ -826,9 +826,9 @@ extern int NS_ProcessMessage( void )
 #endif // DX_NON_SOUND
 
 #ifndef DX_NON_INPUT
-	// WM_DEVICECHANGE ではジョイパッドを自動再セットアップしない。
-	// (DBT_DEVNODES_CHANGED はパッド以外のデバイスでも飛ぶため、プレイ中のフリーズの原因になる)
-	// OpenLR2 側で Scene02(選曲) 進入時に ReSetupJoypad() を明示呼び出しする。
+	// Do not auto-resync joypads on WM_DEVICECHANGE.
+	// (DBT_DEVNODES_CHANGED also fires for non-pad devices and can freeze mid-play.)
+	// OpenLR2 calls ReSetupJoypad() explicitly on Scene02 (song select) enter.
 	if( WinData.RecvWM_DEVICECHANGEFlag )
 	{
 		WinData.RecvWM_DEVICECHANGEFlag = FALSE ;
