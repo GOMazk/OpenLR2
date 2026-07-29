@@ -243,10 +243,6 @@ int UpdateScoreDB(CSTR hash, STATUS *stat, sqlite3 *sql, CSTR *passMD5) {
 		SQL_Run(query, sql);
 	}
 
-	// delete imported score from IR
-	CSTR delQuery;
-	cstrSprintf(&delQuery, "DELETE FROM imported_score WHERE hash = \'%s\'", hash.body);
-	SQL_Run(delQuery, sql);
 	sqlite3_exec(sql, "COMMIT", 0, 0, 0);
 	return 1;
 }
