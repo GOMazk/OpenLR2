@@ -127,6 +127,7 @@ struct WINDATA
 
 #ifndef DX_NON_INPUT
 	int						RecvWM_DEVICECHANGEFlag ;			// WM_DEVICECHANGE メッセージが来たかどうかのフラグ
+	int						PendingJoypadDeviceChangeResyncFlag ;	// DEVICECHANGE arrived while joypad device-change resync was disabled; flush when re-enabled
 #endif // DX_NON_INPUT
 
 	wchar_t					InputSysChara ;						// 入力されたシステム文字コード

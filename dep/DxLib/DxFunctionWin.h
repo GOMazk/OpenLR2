@@ -274,6 +274,7 @@ extern	int			SetKeyboardNotDirectInputFlag(			int Flag ) ;															// キ�
 extern	int			SetUseDirectInputFlag(					int UseFlag ) ;															// 入力処理に DirectInput を使用するかどうかを設定する( TRUE:DirectInput を使用する　　FALSE:DirectInput を使わず、Windows標準機能を使用する )
 extern	int			SetDirectInputMouseMode(				int Mode ) ;															// マウスの入力処理に DirectInput を使用する場合の動作モードを設定する( 0:ウィンドウがアクティブな場合のみ DirectInput を使用する  1:ウィンドウのアクティブ状態に関係なく DirectInput を使用する )
 extern	int			SetUseXInputFlag(						int Flag ) ;															// Xbox360コントローラの入力処理に XInput を使用するかどうかを設定する( TRUE:XInput を使用する( デフォルト )　　FALSE:XInput を使用しない )
+extern	int			SetUseJoypadDeviceChangeResyncFlag(		int Flag ) ;															// Whether to resync joypads on WM_DEVICECHANGE ( TRUE: do it (default)  FALSE: skip ). DEVICECHANGE while FALSE is pending and flushed when set back to TRUE
 extern	int			SetUseXboxControllerDirectInputFlag(	int Flag ) ;															// Xbox360コントローラや Xbox Oneコントローラを DirectInputコントローラとしても検出するかどうかを設定する( TRUE:DirectInputコントローラとしても検出する  FALSE:DirectInputコントローラとしては検出しない(デフォルト) )、DxLib_Init の呼び出し前でのみ実行可能
 extern	int			GetJoypadGUID(							int PadIndex, GUID *GuidInstanceBuffer, GUID *GuidProductBuffer DEFAULTPARAM( = NULL ) ) ;	// ジョイパッドのＧＵIＤを得る
 extern	int			GetJoypadName(							int InputType, TCHAR *InstanceNameBuffer, TCHAR *ProductNameBuffer ) ;	// ジョイパッドのデバイス登録名と製品登録名を取得する( InstanceNameBuffer, ProductNameBuffer 共に 260 以上のバッファサイズが必要 )
