@@ -1004,6 +1004,8 @@ int main(int argc, char** argv) {
 
 			switch (gs.procSelecter) {
 				case SCENE_SELECT:
+					// Hotplug resync only on song select enter (never during play).
+					ReSetupJoypad();
 					gs.gameplay.ghostBattle = 0;
 					ReadKeyConfig(&gs, (!gs.config.select.control)
 							? fs::make_preferred("LR2files/Config/keyconfig.xml" ).data()

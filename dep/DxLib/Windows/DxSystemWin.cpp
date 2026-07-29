@@ -826,14 +826,12 @@ extern int NS_ProcessMessage( void )
 #endif // DX_NON_SOUND
 
 #ifndef DX_NON_INPUT
-	// WM_DEVICECHANGE メッセージが来ていたらパッドの再セットアップを行う
+	// WM_DEVICECHANGE ではジョイパッドを自動再セットアップしない。
+	// (DBT_DEVNODES_CHANGED はパッド以外のデバイスでも飛ぶため、プレイ中のフリーズの原因になる)
+	// OpenLR2 側で Scene02(選曲) 進入時に ReSetupJoypad() を明示呼び出しする。
 	if( WinData.RecvWM_DEVICECHANGEFlag )
 	{
 		WinData.RecvWM_DEVICECHANGEFlag = FALSE ;
-		if( WinData.QuitMessageFlag == FALSE )
-		{
-			NS_ReSetupJoypad() ;
-		}
 	}
 
 	// キーボードの周期的処理を行う
