@@ -578,19 +578,20 @@ int main(int argc, char** argv) {
 		}
 	}
 
-	if (gs.config.network.lr2ir == 1 && gs.is_starter == 0 && gs.cmd_nosave == 0) {
+	if (gs.is_starter == 0 && gs.cmd_nosave == 0) {
 		gs.net.IR_pass = gs.config.player.pass;
 		gs.net.IR_name = gs.config.player.id;
 		gs.net.IR_passMD5 = MD5str(gs.config.player.pass);
 		gs.net.getRival = gs.config.network.getRival;
 		gs.net.IR_ID = gs.gameplay.playerstat.irid;
-		if (gs.net.LR2IR_Login(gs.cmd_directplay) == 1) {
-			SaveIRID(gs.net.rankingData.myID, gs.config.player.id);
-		} else {
-			gs.net.rankingData.myID = gs.net.IR_ID;
+		gs.net.rankingData.myID = gs.net.IR_ID;
+		if (gs.config.network.lr2ir == 1) {
+			if (gs.net.LR2IR_Login(gs.cmd_directplay) == 1) {
+				SaveIRID(gs.net.rankingData.myID, gs.config.player.id);
+			}
+			printfDx(gs.net.request_result);
+			ErrorLogAdd(gs.net.request_result);
 		}
-		printfDx(gs.net.request_result);
-		ErrorLogAdd(gs.net.request_result);
 	}
 
 	memcpy(gs.config.jukebox.rival, gs.net.rivals, 4 * 20);
