@@ -985,7 +985,7 @@ int main(int argc, char** argv) {
 			std::ofstream("nowstate.json") << get_scene_status_string(gs);
 
 			// Disable DEVICECHANGE joypad resync only while playing (avoids mid-chart hitch).
-			//SetUseJoypadDeviceChangeResyncFlag(gs.procSelecter != SCENE_PLAY); //TEST 3.25a
+			SetUseJoypadDeviceChangeResyncFlag(gs.procSelecter != SCENE_PLAY);
 
 			InitFade(&gs.audio);
 			gs.gameplay.flag_closingPhase = 1;
@@ -1008,8 +1008,6 @@ int main(int argc, char** argv) {
 
 			switch (gs.procSelecter) {
 				case SCENE_SELECT:
-					// Hotplug resync only on song select enter (never during play).
-					ReSetupJoypad();
 					gs.gameplay.ghostBattle = 0;
 					ReadKeyConfig(&gs, (!gs.config.select.control)
 							? fs::make_preferred("LR2files/Config/keyconfig.xml" ).data()

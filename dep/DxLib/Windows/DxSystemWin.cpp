@@ -826,12 +826,21 @@ extern int NS_ProcessMessage( void )
 #endif // DX_NON_SOUND
 
 #ifndef DX_NON_INPUT
-	// Do not auto-resync joypads on WM_DEVICECHANGE.
-	// (DBT_DEVNODES_CHANGED also fires for non-pad devices and can freeze mid-play.)
-	// OpenLR2 calls ReSetupJoypad() explicitly on Scene02 (song select) enter.
+	// WM_DEVICECHANGE: optionally resync joypads (can hitch; gate with SetUseJoypadDeviceChangeResyncFlag).
 	if( WinData.RecvWM_DEVICECHANGEFlag )
 	{
 		WinData.RecvWM_DEVICECHANGEFlag = FALSE ;
+		if( WinData.QuitMessageFlag == FALSE )
+		{
+			if( InputSysData.NoUseDeviceChangeJoypadResyncFlag == FALSE )
+			{
+				NS_ReSetupJoypad() ;
+			}
+			else
+			{
+				WinData.PendingJoypadDeviceChangeResyncFlag = TRUE ;
+			}
+		}
 	}
 
 	// キーボードの周期的処理を行う

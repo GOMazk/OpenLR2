@@ -4741,6 +4741,15 @@ extern int SetUseXInputFlag( int Flag )
 	return Result ;
 }
 
+extern int SetUseJoypadDeviceChangeResyncFlag( int Flag )
+{
+	int Result ;
+	DXFUNC_BEGIN
+	Result = NS_SetUseJoypadDeviceChangeResyncFlag( Flag ) ;
+	DXFUNC_END
+	return Result ;
+}
+
 extern int SetUseXboxControllerDirectInputFlag( int Flag )
 {
 	int Result ;
