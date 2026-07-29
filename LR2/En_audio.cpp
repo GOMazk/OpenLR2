@@ -9,11 +9,7 @@
 #include "filesystem.h"
 using std::uintptr_t;
 
-#ifdef _WIN32
-
-#include <codecvt>
-
-#else
+#ifndef _WIN32
 
 #include <chrono>
 
