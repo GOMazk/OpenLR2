@@ -134,6 +134,7 @@ struct INPUTSYSTEMDATA
 	volatile int			InitializeFlag ;					// 初期化完了フラグ
 
 	int						NoUseVibrationFlag ;				// ＤｉｒｅｃｔＩｎｐｕｔの振動機能を使用しないかどうかのフラグ
+	int						NoUseDeviceChangeJoypadResyncFlag ;	// If TRUE, skip joypad resync on WM_DEVICECHANGE (FALSE: resync, default)
 	int						KeyInputGetTime ;					// 一つ前に状態を取得した時間
 	unsigned char			KeyInputBuf[ 256 ] ;				// キーボードの入力状態
 

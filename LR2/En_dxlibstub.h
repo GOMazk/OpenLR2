@@ -166,4 +166,9 @@ inline int GetUseDirect3DVersion() { return 0; }
 inline int GetWindowActiveFlag() { return 1; }
 // we are windowed
 inline int GetWindowModeFlag(void) { return 1; }
+
+inline int SetUseJoypadDeviceChangeResyncFlag(int Flag) {
+  ErrorLogFmtAdd("STUB!!! SetUseJoypadDeviceChangeResyncFlag(Flag=%d)", Flag);
+  return -1;
+}
 #endif // _WIN32

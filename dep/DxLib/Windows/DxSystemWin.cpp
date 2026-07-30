@@ -826,13 +826,20 @@ extern int NS_ProcessMessage( void )
 #endif // DX_NON_SOUND
 
 #ifndef DX_NON_INPUT
-	// WM_DEVICECHANGE メッセージが来ていたらパッドの再セットアップを行う
+	// WM_DEVICECHANGE: optionally resync joypads (can hitch; gate with SetUseJoypadDeviceChangeResyncFlag).
 	if( WinData.RecvWM_DEVICECHANGEFlag )
 	{
 		WinData.RecvWM_DEVICECHANGEFlag = FALSE ;
 		if( WinData.QuitMessageFlag == FALSE )
 		{
-			NS_ReSetupJoypad() ;
+			if( InputSysData.NoUseDeviceChangeJoypadResyncFlag == FALSE )
+			{
+				NS_ReSetupJoypad() ;
+			}
+			else
+			{
+				WinData.PendingJoypadDeviceChangeResyncFlag = TRUE ;
+			}
 		}
 	}
 
