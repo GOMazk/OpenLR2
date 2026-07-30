@@ -1127,92 +1127,95 @@ static void QuickRestart(game& game, bool newRandom) {
 	StopAllKeysound(&game);
 }
 
-int DrawHitError(game *g, skstruct *sk, Timer *T) {
-	for (int p = 0; p < 2; p++) {
-		if (sk->src_HITERROR[p].graphcount <= 0) continue;
+int DrawHitErrorForPlayer(game *g, skstruct *sk, Timer *T, int player) {
+	if (sk->src_HITERROR[player].graphcount <= 0) return;
 
-		auto hiterrorByTime = SetDSTdrawByTime(sk->dst_HITERROR[p], GetTimeLapse(sk->dst_HITERROR[p].timer, T));
+	auto hiterrorByTime = SetDSTdrawByTime(sk->dst_HITERROR[player], GetTimeLapse(sk->dst_HITERROR[player].timer, T));
 
-		auto center = [&](DSTstruct *dst) -> void {
-			for (int i = 0; i < dst->dstCount; ++i) {
-				dst->draw[i].x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (dst->draw[i].w / 2);
-				dst->draw[i].y = hiterrorByTime.y;
-			}
-		};
-
-		auto centerDraw = [&](DSTdraw &draw) -> void {
-			draw.x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (draw.w / 2);
-			draw.y = hiterrorByTime.y;
-		};
-
-		auto offset = [&](double timing) -> int {
-			return timing * hiterrorByTime.w / 400.0; /* bad range is 200ms on easy guage, so this should catch that */
-		};
-
-		constexpr auto fadeAlpha = [](int originalAlpha, int time, int fadeTime) -> int {
-			return originalAlpha - (time * originalAlpha / fadeTime);
-		};
-
-		double noteTimer = GetTimeLapse(142, &g->timer1);
-
-		HITERRORDATA &hiterrorData = g->gameplay.player[p].hiterror;
-
-		AddDrawingBuffer_Image(&sk->drBuf, &sk->src_HITERROR[p], &sk->dst_HITERROR[p], T);
-
-		if (sk->src_HITERROR_CENTER.graphcount > 0) {
-			center(&sk->dst_HITERROR_CENTER);
-			AddDrawingBuffer_Image(&sk->drBuf, &sk->src_HITERROR_CENTER, &sk->dst_HITERROR_CENTER, T);
+	auto center = [&](DSTstruct *dst) -> void {
+		for (int i = 0; i < dst->dstCount; ++i) {
+			dst->draw[i].x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (dst->draw[i].w / 2);
+			dst->draw[i].y = hiterrorByTime.y;
 		}
-		
-		double fadeTime = 0.75 * 1000;
-		if (hiterrorData.notes.size() > 50) fadeTime = hiterrorData.notes.size() / 50.0 * 1000;
+		};
 
-		for (int i = 0; i < hiterrorData.notes.size(); i++) {
-			const JudgeData& jd = hiterrorData.notes[i];
-			SRCstruct *parentSRC = nullptr;
-			DSTstruct *parentDST = nullptr;
+	auto centerDraw = [&](DSTdraw &draw) -> void {
+		draw.x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (draw.w / 2);
+		draw.y = hiterrorByTime.y;
+		};
 
-			switch (jd.judge) {
-				case Judgement::PGREAT: 
-					parentDST = &sk->dst_HITERROR_PGREAT;
-					parentSRC = &sk->src_HITERROR_PGREAT;
-					break;
-				case Judgement::GREAT: 
-					parentDST = &sk->dst_HITERROR_GREAT;
-					parentSRC = &sk->src_HITERROR_GREAT;
-					break;
-				case Judgement::GOOD: 
-					parentDST = &sk->dst_HITERROR_GOOD;
-					parentSRC = &sk->src_HITERROR_GOOD;
-					break;
-				case Judgement::BAD: 
-					parentDST = &sk->dst_HITERROR_BAD;
-					parentSRC = &sk->src_HITERROR_BAD;
-					break;
-				default: 
-					continue;
-			}
+	auto offset = [&](double timing) -> int {
+		return timing * hiterrorByTime.w / 400.0; /* bad range is 200ms on easy guage, so this should catch that */
+		};
 
-			if (!parentSRC || parentSRC->graphcount <= 0) continue;
+	constexpr auto fadeAlpha = [](int originalAlpha, int time, int fadeTime) -> int {
+		return originalAlpha - (time * originalAlpha / fadeTime);
+		};
 
-			DSTdraw parentDSTByTime = SetDSTdrawByTime(*parentDST, GetTimeLapse(parentDST->timer, T));
-			parentDSTByTime.a = fadeAlpha(parentDSTByTime.a, noteTimer - jd.timeHit, fadeTime);
-			centerDraw(parentDSTByTime);
+	double noteTimer = GetTimeLapse(142, &g->timer1);
 
-			int grh = parentSRC->timer == parentDST->timer ?
-				parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, T) - parentDST->draw->time)] : 
-				grh = parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, T))];
+	HITERRORDATA &hiterrorData = g->gameplay.player[player].hiterror;
 
-			parentDSTByTime.x += offset(jd.offset);
+	AddDrawingBuffer_Image(&sk->drBuf, &sk->src_HITERROR[player], &sk->dst_HITERROR[player], T);
 
-			AddDrawingBuffer(&sk->drBuf, grh, &parentDSTByTime);		
-		}
-
-		if (sk->src_HITERROR_EMA.graphcount > 0) {
-			center(&sk->dst_HITERROR_EMA);
-			AddDrawingBuffer_Object(&sk->drBuf, &sk->src_HITERROR_EMA, &sk->dst_HITERROR_EMA, T, offset(hiterrorData.ema.value), 0);
-		}
+	if (sk->src_HITERROR_CENTER.graphcount > 0) {
+		center(&sk->dst_HITERROR_CENTER);
+		AddDrawingBuffer_Image(&sk->drBuf, &sk->src_HITERROR_CENTER, &sk->dst_HITERROR_CENTER, T);
 	}
+
+	double fadeTime = 0.75 * 1000;
+	if (hiterrorData.notes.size() > 50) fadeTime = hiterrorData.notes.size() / 50.0 * 1000;
+
+	for (int i = 0; i < hiterrorData.notes.size(); i++) {
+		const JudgeData &jd = hiterrorData.notes[i];
+		SRCstruct *parentSRC = nullptr;
+		DSTstruct *parentDST = nullptr;
+
+		switch (jd.judge) {
+		case Judgement::PGREAT:
+			parentDST = &sk->dst_HITERROR_PGREAT;
+			parentSRC = &sk->src_HITERROR_PGREAT;
+			break;
+		case Judgement::GREAT:
+			parentDST = &sk->dst_HITERROR_GREAT;
+			parentSRC = &sk->src_HITERROR_GREAT;
+			break;
+		case Judgement::GOOD:
+			parentDST = &sk->dst_HITERROR_GOOD;
+			parentSRC = &sk->src_HITERROR_GOOD;
+			break;
+		case Judgement::BAD:
+			parentDST = &sk->dst_HITERROR_BAD;
+			parentSRC = &sk->src_HITERROR_BAD;
+			break;
+		default:
+			continue;
+		}
+
+		if (!parentSRC || parentSRC->graphcount <= 0) continue;
+
+		DSTdraw parentDSTByTime = SetDSTdrawByTime(*parentDST, GetTimeLapse(parentDST->timer, T));
+		parentDSTByTime.a = fadeAlpha(parentDSTByTime.a, noteTimer - jd.timeHit, fadeTime);
+		centerDraw(parentDSTByTime);
+
+		int grh = parentSRC->timer == parentDST->timer ?
+			parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, T) - parentDST->draw->time)] :
+			grh = parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, T))];
+
+		parentDSTByTime.x += offset(jd.offset);
+
+		AddDrawingBuffer(&sk->drBuf, grh, &parentDSTByTime);
+	}
+
+	if (sk->src_HITERROR_EMA.graphcount > 0) {
+		center(&sk->dst_HITERROR_EMA);
+		AddDrawingBuffer_Object(&sk->drBuf, &sk->src_HITERROR_EMA, &sk->dst_HITERROR_EMA, T, offset(hiterrorData.ema.value), 0);
+	}
+}
+
+int DrawHitError(game *g, skstruct *sk, Timer *T) {
+	DrawHitErrorForPlayer(g, sk, T, PLAYER_1);
+	DrawHitErrorForPlayer(g, sk, T, PLAYER_2);
 	return 1;
 }
 
