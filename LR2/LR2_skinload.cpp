@@ -425,8 +425,7 @@ int InitSkin(skstruct *sk, int /*unused*/, char font) {
 		InitDST(&sk->dst_HITERROR[i]);
 	}
 	InitSRC(&sk->src_HITERROR_CENTER);
-	InitDST(&sk->dst_HITERROR_CENTER[0]);
-	InitDST(&sk->dst_HITERROR_CENTER[1]);
+	InitDST(&sk->dst_HITERROR_CENTER);
 	InitSRC(&sk->src_HITERROR_PGREAT);
 	InitDST(&sk->dst_HITERROR_PGREAT);
 	InitSRC(&sk->src_HITERROR_GREAT);
@@ -1868,8 +1867,7 @@ int ReadSkin(skstruct *sk,CSTR FilePath, int unused, int skin_num, SkinUser* sku
 					}
 					case "#DST_HITERROR_CENTER"_hash: {
 						SplitCSV(fBuf, &csv, ",");
-						ReadDST(&sk->dst_HITERROR_CENTER[0], &csv, tSkin_num, line);
-						sk->dst_HITERROR_CENTER[1] = sk->dst_HITERROR_CENTER[0];
+						ReadDST(&sk->dst_HITERROR_CENTER, &csv, tSkin_num, line);
 						break;
 					}
 					case "#SRC_HITERROR_PGREAT"_hash: {

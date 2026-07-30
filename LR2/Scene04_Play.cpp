@@ -1160,12 +1160,12 @@ int DrawHitError(game *g, skstruct *sk, Timer *T) {
 		AddDrawingBuffer_Image(&sk->drBuf, &sk->src_HITERROR[p], &sk->dst_HITERROR[p], T);
 
 		if (sk->src_HITERROR_CENTER.graphcount > 0) {
-			center(&sk->dst_HITERROR_CENTER[p]);
-			AddDrawingBuffer_Image(&sk->drBuf, &sk->src_HITERROR_CENTER, &sk->dst_HITERROR_CENTER[p], T);
+			center(&sk->dst_HITERROR_CENTER);
+			AddDrawingBuffer_Image(&sk->drBuf, &sk->src_HITERROR_CENTER, &sk->dst_HITERROR_CENTER, T);
 		}
 		
 		double fadeTime = 0.75 * 1000;
-		if (hiterrorData.notes.size() > 50) fadeTime = hiterrorData.notes.size() / 50 * 1000;
+		if (hiterrorData.notes.size() > 50) fadeTime = hiterrorData.notes.size() / 50.0 * 1000;
 
 		for (int i = 0; i < hiterrorData.notes.size(); i++) {
 			const JudgeData& jd = hiterrorData.notes[i];

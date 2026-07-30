@@ -1015,7 +1015,7 @@ struct skstruct {
 	struct SRCstruct src_HITERROR[2] {};
 	struct DSTstruct dst_HITERROR[2] {};
 	struct SRCstruct src_HITERROR_CENTER {};
-	struct DSTstruct dst_HITERROR_CENTER[2] {};
+	struct DSTstruct dst_HITERROR_CENTER {};
 	struct SRCstruct src_HITERROR_PGREAT {};
 	struct DSTstruct dst_HITERROR_PGREAT {};
 	struct SRCstruct src_HITERROR_GREAT {};
