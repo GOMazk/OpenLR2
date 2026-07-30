@@ -1112,16 +1112,12 @@ int CmdSearch(game *g, CSTR *cmd, sqlite3 *sql) {
 
 	if (cmd->isSame("/hash")) {
 		*cmd = g->sSelect.bmsList[g->sSelect.cur_song].hash;
-#ifdef _WIN32
 		SetClipboardText(g->sSelect.bmsList[g->sSelect.cur_song].hash);
-#endif // _WIN32
 		return 1;
 	}
 	else if (cmd->isSame("/path")) {
 		*cmd = g->sSelect.bmsList[g->sSelect.cur_song].filepath;
-#ifdef _WIN32
 		SetClipboardText(g->sSelect.bmsList[g->sSelect.cur_song].filepath);
-#endif // _WIN32
 		return 1;
 	}
 	else if (cmd->isSame("/avi")) {
@@ -1584,7 +1580,7 @@ static void ThreadProc_RankingAutoUpdate(game* g) {
 			g->net.ParseRankingXml(path);
 		}
 
-		if (g->net.rankingData.rankingCount > 0) {
+		if (g->net.rankingData.rankingCount > 0 && hash.isSame(g->sSelect.bmsList[g->sSelect.cur_song].hash)) {
 			g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRranking = g->net.rankingData.myRanking;
 			g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRplayercount = g->net.rankingData.rankingCount;
 			g->sSelect.bmsList[g->sSelect.cur_song].mybest.IRclearRate = (g->net.rankingData.clearPlayers[2] + g->net.rankingData.clearPlayers[3] + g->net.rankingData.clearPlayers[4] + g->net.rankingData.clearPlayers[5]) * 100 / g->net.rankingData.rankingCount;

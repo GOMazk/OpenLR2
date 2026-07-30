@@ -722,14 +722,16 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 	}
 	
 	// Add async load functions from DxLib: SetUseASyncLoadFlag, CheckHandleASyncLoad
-	// We are on a detached thread here (see ProcGameThread), but DirectX requires resouces to be loaded from the main thread. 
-	// The async calls will make DxLib do it itself on the main thread. This fixes crashes in DX11
-#ifdef _WIN32
+	// We are on a non-main thread here, but graphics APIs, DirectX normally and OpenGL with dxlib-for-linux, require
+	// resources to be loaded from the main thread. 
+	// The async calls will make DxLib do it itself on the main thread.
+	// This fixes crashes in DX11 and fixes BGAs not displaying with dxlib-for-linux.
 	if (cfg->system.isablebmsthread == 0) {
+#ifdef _WIN32
 		CoInitialize(NULL);
+#endif // _WIN32
 		SetUseASyncLoadFlag(TRUE);
 	}
-#endif // _WIN32
 	GetTransColor(&Rtmp,&Gtmp,&Btmp);
 	SetTransColor(0,0,0);
 	for (int i = 0; i < SLOTS; i++) {
@@ -750,12 +752,12 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 		}
 
 		if (gp->flag_closingPhase) {
-#ifdef _WIN32
 			if (cfg->system.isablebmsthread == 0) {
 				SetUseASyncLoadFlag(FALSE);
+#ifdef _WIN32
 				CoUninitialize();
-			}
 #endif // _WIN32
+			}
 			return 1;
 		}
 	}
@@ -791,12 +793,12 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 	}
 
 	SetTransColor(Rtmp, Gtmp, Btmp);
-#ifdef _WIN32
 	if (cfg->system.isablebmsthread == 0) {
 		SetUseASyncLoadFlag(FALSE);
+#ifdef _WIN32
 		CoUninitialize();
-	}
 #endif // _WIN32
+	}
 	if (gp->bgaHandle[0] != -1) gp->missLayer = 0;
 
 	if (gp->isAutoplay == 1) {
