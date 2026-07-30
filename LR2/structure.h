@@ -1319,7 +1319,7 @@ public:
 
 	void push(T&& val) {
 		if (buf.empty()) return;
-		buf[head] = std::move(val);
+		buf[head] = std::forward<T>(val);
 		head = (head + 1) % buf.size();
 	}
 
