@@ -350,7 +350,7 @@ int PlayPreviewSample(game *g) {
 			g->sSelect.metaSelected.keymode = 7;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_7.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
-			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_7.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0);
+			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_7.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0, true);
 			break;
 
 		case 1:
@@ -361,7 +361,7 @@ int PlayPreviewSample(game *g) {
 			g->sSelect.metaSelected.keymode = 5;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_5.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
-			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_5.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0);
+			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_5.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0, true);
 			break;
 
 		case 2:
@@ -369,7 +369,7 @@ int PlayPreviewSample(game *g) {
 			g->sSelect.metaSelected.keymode = 14;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_14.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
-			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_14.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0);
+			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_14.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0, true);
 			break;
 
 		case 3:
@@ -380,7 +380,7 @@ int PlayPreviewSample(game *g) {
 			g->sSelect.metaSelected.keymode = 10;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_10.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
-			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_10.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0);
+			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_10.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0, true);
 			break;
 
 		case 4:
@@ -388,7 +388,7 @@ int PlayPreviewSample(game *g) {
 			g->sSelect.metaSelected.keymode = 9;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_9.pms").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
-			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_9.pms").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0);
+			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_9.pms").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0, true);
 			break;
 
 		case 13:
@@ -399,7 +399,7 @@ int PlayPreviewSample(game *g) {
 			g->sSelect.metaSelected.keymode = 5;
 			InitGameplay(&g->gameplay, &tCfg.play);
 			ParseBmsFile(&g->gameplay, fs::make_preferred("LR2files/Config/sample_5.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide);
-			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_5.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0);
+			LoadBmsResource(&g->gameplay, fs::make_preferred("LR2files/Config/sample_5.bme").data(), &g->audio, &tCfg, &g->sSelect.metaSelected, 1, scratchSide, 0, true);
 			break;
 	}
 
