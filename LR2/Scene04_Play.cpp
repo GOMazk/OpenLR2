@@ -1679,7 +1679,7 @@ void ProcGameThread(game *g) {
 	g->gameplay.flag_threadExist = 1;
 	g->gameplay.flag_closingPhase = 0;
 	
-	while (g->procPhase == 0 || GetTimeLapse(0,&g->timer1) < g->skstruct.loadstart) {
+	while (g->procPhase == 0) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(16));
 		if (g->gameplay.flag_closingPhase) {
 			g->gameplay.flag_threadExist = 0;
