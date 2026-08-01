@@ -674,9 +674,7 @@ int EditTag(SONGDATA *song, sqlite3 *sql) {
 		sqlite3_snprintf(1024, query, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
 			meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, wtime, song->filepath.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body,meta.bannerpath.body,meta.backBMPpath.body, AssignCRC32(meta.parentfolderpath).body, meta.maxbpm,meta.minbpm, meta.random,meta.longnote,meta.judge,meta.keymode,meta.bga,meta.difficulty,(int)meta.hasTxt,meta.notecount,temp,meta.exlevel);
 		SQL_Run(query, sql);
-		sqlite3_snprintf(1024, query, "INSERT INTO openlr2_preview (hash,previewpath) VALUES(\'%q\',\'%q\') ON CONFLICT(hash) DO UPDATE SET previewpath=excluded.previewpath",
-			meta.hash.body, meta.previewpath.c_str());
-		sqlite3_exec(sql, query, nullptr, nullptr, nullptr);
+		openlr2::updateSongPreview(meta.hash.body, meta.previewpath.c_str(), sql);
 
 		if (meta.difficulty <= 0 || meta.difficulty > 5) {
 			SetUndefinedDifficulty(sql);
@@ -1378,9 +1376,7 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 					sqlite3_snprintf(2048, str, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
 						meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, filetime, searchPath.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body, AssignCRC32(meta.parentfolderpath).body, meta.maxbpm, meta.minbpm, meta.random, meta.longnote, meta.judge, meta.keymode, meta.bga, meta.difficulty, (int)meta.hasTxt, meta.notecount, now, meta.exlevel);
 					SQL_Run(str, sql);
-					sqlite3_snprintf(2048, str, "INSERT INTO openlr2_preview (hash,previewpath) VALUES(\'%q\',\'%q\') ON CONFLICT(hash) DO UPDATE SET previewpath=excluded.previewpath",
-						meta.hash.body, meta.previewpath.c_str());
-					sqlite3_exec(sql, str, nullptr, nullptr, nullptr);
+					openlr2::updateSongPreview(meta.hash.body, meta.previewpath.c_str(), sql);
 					if (g_fullSongPass) g_processedSongPaths.insert(MakePathKey(searchPath));
 				}
 				count++;
@@ -1516,9 +1512,7 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb, ReloadProgr
 						LoadBMSMETAFromDB(&meta, sql);
 						SQL_Run(sqlite3_snprintf(1024, sBuf, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
 							meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, newTime, str.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body,AssignCRC32(meta.parentfolderpath).body,meta.maxbpm,meta.minbpm,meta.random,meta.longnote,meta.judge,meta.keymode,meta.bga,meta.difficulty,(int)meta.hasTxt,meta.notecount,now,meta.exlevel), sql);
-						sqlite3_snprintf(1024, sBuf, "INSERT INTO openlr2_preview (hash,previewpath) VALUES(\'%q\',\'%q\') ON CONFLICT(hash) DO UPDATE SET previewpath=excluded.previewpath",
-							meta.hash.body, meta.previewpath.c_str());
-						sqlite3_exec(sql, sBuf, nullptr, nullptr, nullptr);
+						openlr2::updateSongPreview(meta.hash.body, meta.previewpath.c_str(), sql);
 						if (g_fullSongPass) g_processedSongPaths.insert(MakePathKey(str));
 					}
 					else if (is_lr2folder) {
@@ -2930,18 +2924,6 @@ int InitBMSMETA(BMSMETA *meta_) {
 	return 1;
 }
 
-static std::string TryFindPreviewFile(const std::string &folderpath) {
-	std::error_code ec{};
-	for (const auto& entry : std::filesystem::directory_iterator{folderpath, ec}) {
-		std::string filename = entry.path().filename().string();
-		if (entry.is_regular_file() && StartsWithICaseAscii(filename, "preview") && IsSndFile(filename.c_str())) {
-			return filename;
-		}
-	}
-
-	return {};
-}
-
 int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	FILE *pFile;
 	float notes;
@@ -3086,7 +3068,7 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	CSTR previewFullPath;
 	previewFullPath.assign(meta->folderpath).add(meta->previewpath.c_str());
 	if (meta->previewpath.length() == 0 || !IsFileExist(previewFullPath)) {
-		meta->previewpath = TryFindPreviewFile(meta->folderpath.body);
+		meta->previewpath = openlr2::tryFindPreviewFile(meta->folderpath.body).value_or({});
 	}
 
 	return 1;
@@ -3100,4 +3082,23 @@ int openlr2::adjustFilterKey(CONFIG_SELECT const& cfg_select, int key) {
 	if (cfg_select.ignorePMS && key == 7) key = 0;
 	if (cfg_select.ignoreKeyAll && key == 0) key = 1;
 	return key;
+}
+
+std::optional<std::string> openlr2::tryFindPreviewFile(const std::filesystem::path& folderpath) {
+	std::error_code ec{};
+	for (const auto& entry : std::filesystem::directory_iterator{folderpath, ec}) {
+		std::string filename = entry.path().filename().string();
+		if (entry.is_regular_file() && StartsWithICaseAscii(filename, "preview") && IsSndFile(filename.c_str())) {
+			return filename;
+		}
+	}
+	return {};
+}
+
+void openlr2::updateSongPreview(const std::string& hash, const std::string& previewpath, sqlite3* sql) {
+	char query[512];
+
+	sqlite3_snprintf(512, query, "INSERT INTO openlr2_preview (hash,previewpath) VALUES(\'%q\',\'%q\') ON CONFLICT(hash) DO UPDATE SET previewpath=excluded.previewpath",
+		hash.c_str(), previewpath.c_str());
+	sqlite3_exec(sql, query, nullptr, nullptr, nullptr);
 }

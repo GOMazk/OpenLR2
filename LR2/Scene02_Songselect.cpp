@@ -1694,13 +1694,23 @@ static void LoadPreviewFile(game *g, const std::filesystem::path &previewpath) {
 	}
 }
 
-static void ThreadProc_LoadPreview(game *g) {
+static void ThreadProc_LoadPreview(game *g, sqlite3 *sql) {
 	BMSMETA meta;
 
 	if (!g->config.select.ignorePreviewFiles) {
 		SONGDATA &song = g->sSelect.bmsList[g->sSelect.cur_song];
+		std::filesystem::path folderpath = song.filepath.getDirectory().body;
+
+		if (!song.previewfile) {
+			auto foundFile = openlr2::tryFindPreviewFile(folderpath);
+			if (foundFile) {
+				song.previewfile = foundFile.value();
+				openlr2::updateSongPreview(song.hash.body, song.previewfile.value(), sql);
+			}
+		}
+
 		if (song.previewfile) {
-			const auto previewpath = std::filesystem::path(song.filepath.getDirectory().body) / song.previewfile.value();
+			const auto previewpath = folderpath / song.previewfile.value();
 			if (std::filesystem::exists(previewpath)) {
 				LoadPreviewFile(g, previewpath.string());
 				return;
@@ -2751,7 +2761,7 @@ int ProcI_Select(game *g, sqlite3 *sql) {
 			g->gameplay.previewStatus = 1;
 			g->gameplay.previewBMShash = g->sSelect.bmsList[g->sSelect.cur_song].hash;
 			g->gameplay.previewBMSfilepath = g->sSelect.bmsList[g->sSelect.cur_song].filepath;
-			g->gameplay.hThreadPreview = std::async(std::launch::async, ThreadProc_LoadPreview, g);
+			g->gameplay.hThreadPreview = std::async(std::launch::async, ThreadProc_LoadPreview, g, sql);
 		}
 		else if (g->gameplay.previewStatus) {
 			if (g->gameplay.previewBMShash.isDiff(g->sSelect.bmsList[g->sSelect.cur_song].hash)) {
