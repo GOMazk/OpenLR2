@@ -262,7 +262,7 @@ void LoadIRDerivedRecord(sqlite3* sql, SONGDATA& sd) {
 			int rseed = sqlite3_column_int(stmt, 15);
 			int complete = sqlite3_column_int(stmt, 16);
 
-			int stat_score = (good + great * 2 + perfect * 4) * 50000 / totalnotes;
+			int stat_score = (good + great * 2 + perfect * 4) * 50000ULL / totalnotes;
 			int stat_exscore = perfect * 2 + great;
 			if (!minbp) {
 				minbp = bad + poor;
@@ -962,17 +962,13 @@ int LoadFolderDataFromDB(CSTR query, SONGDATA *song, sqlite3 *sql, int difficult
 			if (slist[i].myIRbest.has_value())
 			{
 				const STATUS& myIRbest = *(slist[i].myIRbest);
-				if (myIRbest.clear != song->mybest.clear && myIRbest.clear <= song->mybest.clear)
-					song->mybest.clear = myIRbest.clear;
-				if (myIRbest.clear_db != song->mybest.clear_db && myIRbest.clear_db <= song->mybest.clear_db)
-					song->mybest.clear_db = myIRbest.clear_db;
+				song->mybest.clear = std::min(song->mybest.clear, myIRbest.clear);
+				song->mybest.clear_db = std::min(song->mybest.clear_db, myIRbest.clear_db);
 			}
 			else
 			{
-				if (slist[i].mybest.clear != song->mybest.clear && slist[i].mybest.clear <= song->mybest.clear)
-					song->mybest.clear = slist[i].mybest.clear;
-				if (slist[i].mybest.clear_db != song->mybest.clear_db && slist[i].mybest.clear_db <= song->mybest.clear_db)
-					song->mybest.clear_db = slist[i].mybest.clear_db;
+				song->mybest.clear = std::min(slist[i].mybest.clear, song->mybest.clear);
+				song->mybest.clear_db = std::min(slist[i].mybest.clear_db, song->mybest.clear_db);
 			}
 		}
 	}
@@ -1121,7 +1117,7 @@ int GetSongData(CSTR songMD5, SONGDATA *song, sqlite3 *sql, SONGSELECT *ss) {
 					song->mybest.total_notes = sqlite3_column_int(stmt, 26);
 
 				if (song->mybest.total_notes > 0)
-					song->mybest.stat_score = (song->mybest.stat_good + song->mybest.stat_great * 2 + song->mybest.stat_pgreat * 4) * 50000 / song->mybest.total_notes;
+					song->mybest.stat_score = (song->mybest.stat_good + song->mybest.stat_great * 2 + song->mybest.stat_pgreat * 4) * 50000ULL / song->mybest.total_notes;
 
 				if (song->mybest.minbp == 0 && song->mybest.clear != 5)
 					song->mybest.minbp = -1;
@@ -1764,7 +1760,7 @@ int SearchCourseFromDB(sqlite3 *sql, SONGSELECT *ss, int keys, int multistagemod
 		if (isSameScoreHash(&song.mybest, &ss->playerPassMD5, &song.hash, &str)) {
 			song.mybest.stat_exscore = song.mybest.stat_great + song.mybest.stat_pgreat * 2;
 			if (song.mybest.total_notes > 0) {
-				song.mybest.stat_score = (song.mybest.stat_good + song.mybest.stat_exscore) * 2 * 50000 / song.mybest.total_notes;
+				song.mybest.stat_score = (song.mybest.stat_good + song.mybest.stat_exscore) * 2 * 50000ULL / song.mybest.total_notes;
 			}
 			if (song.mybest.minbp == 0 && song.mybest.clear != 5) song.mybest.minbp = -1;
 		}
@@ -2349,7 +2345,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 							song.rivalRecord.op_best = sqlite3_column_int(pStmt, 63);
 							song.rivalRecord.stat_exscore = song.rivalRecord.stat_great + song.rivalRecord.stat_pgreat * 2;
 							if (0 < song.rivalRecord.total_notes) {
-								song.rivalRecord.stat_score = ((song.rivalRecord.stat_good + song.rivalRecord.stat_exscore * 2) * 50000) / song.rivalRecord.total_notes;
+								song.rivalRecord.stat_score = ((song.rivalRecord.stat_good + song.rivalRecord.stat_exscore * 2) * 50000ULL) / song.rivalRecord.total_notes;
 								song.rivalRecord.rate = (song.rivalRecord.stat_exscore * 50) / song.rivalRecord.total_notes;
 								song.rivalRecord.rank = (song.rivalRecord.stat_exscore * 9) / (song.rivalRecord.total_notes * 2);
 								if (song.rivalRecord.rank < 9) {
@@ -2367,7 +2363,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 						if (isSameScoreHash(&song.mybest, &ss->playerPassMD5, &song.hash, &bestHash)) {
 							song.mybest.stat_exscore = song.mybest.stat_great + song.mybest.stat_pgreat * 2;
 							if (song.mybest.total_notes > 0) {
-								song.mybest.stat_score = ((song.mybest.stat_good + song.mybest.stat_exscore * 2) * 50000) /	song.mybest.total_notes;
+								song.mybest.stat_score = ((song.mybest.stat_good + song.mybest.stat_exscore * 2) * 50000ULL) /	song.mybest.total_notes;
 							}
 							if ((song.mybest.minbp == 0) && (song.mybest.clear != 5)) {
 								song.mybest.minbp = -1;

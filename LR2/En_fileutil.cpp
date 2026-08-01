@@ -165,18 +165,8 @@ int makeFileHash(LPCSTR filepath, LPCSTR oBuf) {
 //TODO : posix 2038y problem
 // Seconds since the Unix Epoch
 time_t GetNowUnixtime() {
-#ifdef _WIN32
-	SYSTEMTIME systime;
-	GetSystemTime((LPSYSTEMTIME)&systime);
-
-	_FILETIME filetime;
-	SystemTimeToFileTime(&systime, &filetime);
-
-	return GetUnixtimeFromFiletime(filetime);
-#else
 	return std::chrono::duration_cast<std::chrono::seconds>(std::chrono::system_clock::now().time_since_epoch())
 		.count();
-#endif // _WIN32
 }
 
 // Seconds since the Unix Epoch

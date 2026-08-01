@@ -393,7 +393,7 @@ int REPLAY_ApplyJudgeNote(gameplay *gp, Timer *T, game *g, uint judge, int playe
 	}
 
 	if (gp->player[player].totalnotes > 0) {
-		gp->player[player].score = (gp->player[player].judgecount[3] + (gp->player[player].judgecount[4] + gp->player[player].judgecount[5] * 2) * 2) * 50000 / gp->player[player].totalnotes;
+		gp->player[player].score = (gp->player[player].judgecount[3] + (gp->player[player].judgecount[4] + gp->player[player].judgecount[5] * 2) * 2) * 50000ULL / gp->player[player].totalnotes;
 	}
 	gp->player[player].exscore = gp->player[player].judgecount[4] + gp->player[player].judgecount[5] * 2;
 

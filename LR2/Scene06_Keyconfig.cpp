@@ -42,6 +42,14 @@ int isBannedInput(int key) {
 	return 0;
 }
 int ProcI_Keyconfig(game *g) {
+	enum { PHASE_NORMAL = 1, PHASE_FADEOUT = 2 };
+	if (g->procPhase == PHASE_FADEOUT) {
+		if ( g->skstruct.fadeout < GetTimeLapse(2, &g->timer1) || g->skstruct.fadeout == 0 ) {
+			g->procSelecter = 2;
+		}
+		return 1;
+	}
+
 	int fndkey;
 	if (g->KeyInput.config_key >= 0 && g->KeyInput.config_button_inMap > 0) {
 		fndkey = FindPressedKey(&g->KeyInput);
@@ -83,15 +91,10 @@ int ProcI_Keyconfig(game *g) {
 		for (auto& a : g->config.input.buttonMap) for (auto& v : a) v = 0;
 		ProcS_Keyconfig(g);
 	}
-	if (((g->KeyInput.inputID[KEY_INPUT_ESCAPE] == 1) || (g->KeyInput.mouse_buttonR == 1)) && (g->procPhase == 1)) {
+	if (((g->KeyInput.inputID[KEY_INPUT_ESCAPE] == 1) || (g->KeyInput.mouse_buttonR == 1)) && (g->procPhase == PHASE_NORMAL)) {
 		SetTimeLapse(2, &g->timer1);
-		g->procPhase = 2;
+		g->procPhase = PHASE_FADEOUT;
 		return 1;
-	}
-	if (g->procPhase == 2) {
-		if ( g->skstruct.fadeout < GetTimeLapse(2, &g->timer1) || g->skstruct.fadeout == 0 ) {
-			g->procSelecter = 2;
-		}
 	}
 	return 1;
 }

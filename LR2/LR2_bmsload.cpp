@@ -721,36 +721,84 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 		return 1;
 	}
 	
+	// Add async load functions from DxLib: SetUseASyncLoadFlag, CheckHandleASyncLoad
+	// We are on a non-main thread here, but graphics APIs, DirectX normally and OpenGL with dxlib-for-linux, require
+	// resources to be loaded from the main thread. 
+	// The async calls will make DxLib do it itself on the main thread.
+	// This fixes crashes in DX11 and fixes BGAs not displaying with dxlib-for-linux.
+	if (cfg->system.isablebmsthread == 0) {
 #ifdef _WIN32
-	if (cfg->system.isablebmsthread == 0) CoInitialize(NULL);
+		CoInitialize(NULL);
 #endif // _WIN32
+		SetUseASyncLoadFlag(TRUE);
+	}
 	GetTransColor(&Rtmp,&Gtmp,&Btmp);
 	SetTransColor(0,0,0);
 	for (int i = 0; i < SLOTS; i++) {
 		if (gp->BMP_filename[i].length() > 0) {
 			if (gp->BMP_filename[i].right(3).isSame("mpg") || gp->BMP_filename[i].right(3).isSame("avi")) {
 				SetTransColor(0, 255, 0);
-				gp->bgaHandle[i] = LoadGraph(gp->BMP_filename[i]);
+				gp->bgaHandle[i] = LoadGraph(gp->BMP_filename[i]);	// Note: When using SetUseASyncLoadFlag, LoadGraph returns the handle immediately. Further check is required
 				SetTransColor(0, 0, 0);
 			}
 			else {
-				gp->bgaHandle[i] = LoadGraph(gp->BMP_filename[i]);
+				gp->bgaHandle[i] = LoadGraph(gp->BMP_filename[i]);	// Note: When using SetUseASyncLoadFlag, LoadGraph returns the handle immediately. Further check is required
 			}
-			gp->loadObject_loaded++;
+
+			// Count only after load finish. Only add if using synchronous load here
+			if (cfg->system.isablebmsthread != 0) {
+				gp->loadObject_loaded++;
+			}
 		}
 
 		if (gp->flag_closingPhase) {
+			if (cfg->system.isablebmsthread == 0) {
+				SetUseASyncLoadFlag(FALSE);
 #ifdef _WIN32
-			if (cfg->system.isablebmsthread == 0) CoUninitialize();
+				CoUninitialize();
 #endif // _WIN32
+			}
 			return 1;
 		}
 	}
 
+	// Check and wait until the handles finished loading
+	if (cfg->system.isablebmsthread == 0) {
+		std::unordered_map<int, bool> bgaHandleLoaded;	// to prevent count repeateadly
+		for (int i = 0; i < SLOTS; i++) {
+			if (gp->bgaHandle[i] != -1) {
+				bgaHandleLoaded[i] = false;
+			}
+		}
+		while (true) {
+			bool anyLoading = false;
+			for (auto& [i, loaded] : bgaHandleLoaded) {
+				if (loaded) continue;
+				int loadResult = CheckHandleASyncLoad(gp->bgaHandle[i]);
+				if (loadResult == TRUE/*still loading*/) {
+					anyLoading = true;
+					continue;
+				}
+				if (loadResult != FALSE/*finished*/) {
+					// Error
+					DeleteGraph(gp->bgaHandle[i]);
+					gp->bgaHandle[i] = -1;
+				}
+				loaded = true;
+				gp->loadObject_loaded++;
+			}
+			if (!anyLoading) break;
+			std::this_thread::sleep_for(std::chrono::milliseconds(10));
+		}
+	}
+
 	SetTransColor(Rtmp, Gtmp, Btmp);
+	if (cfg->system.isablebmsthread == 0) {
+		SetUseASyncLoadFlag(FALSE);
 #ifdef _WIN32
-	if (cfg->system.isablebmsthread == 0) CoUninitialize();
+		CoUninitialize();
 #endif // _WIN32
+	}
 	if (gp->bgaHandle[0] != -1) gp->missLayer = 0;
 
 	if (gp->isAutoplay == 1) {

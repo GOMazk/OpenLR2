@@ -1768,6 +1768,7 @@ extern int InitializeInputSystem_PF_Timing0( void )
 	int    KeyExclusiveCooperativeLevelFlag				= InputSysData.PF.KeyExclusiveCooperativeLevelFlag ;
 	int    KeyToJoypadInputInitializeFlag				= InputSysData.KeyToJoypadInputInitializeFlag ;
 	int    NoUseVibrationFlag							= InputSysData.NoUseVibrationFlag ;
+	int    NoUseDeviceChangeJoypadResyncFlag			= InputSysData.NoUseDeviceChangeJoypadResyncFlag ;
 	int    EnablePadDefaultDeadZone						= InputSysData.EnablePadDefaultDeadZone ;
 	DWORD  PadDefaultDeadZone							= InputSysData.PadDefaultDeadZone ;
 	double PadDefaultDeadZoneD							= InputSysData.PadDefaultDeadZoneD ;
@@ -1782,6 +1783,7 @@ extern int InitializeInputSystem_PF_Timing0( void )
 	InputSysData.PF.KeyExclusiveCooperativeLevelFlag	= KeyExclusiveCooperativeLevelFlag ;
 	InputSysData.KeyToJoypadInputInitializeFlag			= KeyToJoypadInputInitializeFlag ;
 	InputSysData.NoUseVibrationFlag						= NoUseVibrationFlag ;
+	InputSysData.NoUseDeviceChangeJoypadResyncFlag		= NoUseDeviceChangeJoypadResyncFlag ;
 	InputSysData.EnablePadDefaultDeadZone				= EnablePadDefaultDeadZone ;
 	InputSysData.PadDefaultDeadZone						= PadDefaultDeadZone ;
 	InputSysData.PadDefaultDeadZoneD					= PadDefaultDeadZoneD ;
@@ -3533,6 +3535,25 @@ extern int NS_SetUseXInputFlag(	int Flag )
 	InputSysData.PF.NoUseXInputFlag = !Flag ;
 
 	// 終了
+	return 0 ;
+}
+
+// Whether to resync joypads on WM_DEVICECHANGE ( TRUE: do it (default)  FALSE: skip )
+// DEVICECHANGE while FALSE is pending and flushed when set back to TRUE
+extern int NS_SetUseJoypadDeviceChangeResyncFlag( int Flag )
+{
+	InputSysData.NoUseDeviceChangeJoypadResyncFlag = !Flag ;
+
+	if( Flag && WinData.PendingJoypadDeviceChangeResyncFlag )
+	{
+		WinData.PendingJoypadDeviceChangeResyncFlag = FALSE ;
+		if( WinData.QuitMessageFlag == FALSE )
+		{
+			NS_ReSetupJoypad() ;
+		}
+	}
+
+	// Finished
 	return 0 ;
 }
 

@@ -26,27 +26,7 @@
 #include <dlfcn.h>
 #endif // _WIN32
 
-#if _WIN32
-
-#if _WIN64
-#ifndef NDEBUG
-constexpr auto&& ARCH = "_D.x64";
-#else
-constexpr auto&& ARCH = ".x64";
-#endif // NDEBUG
-#else
-#ifndef NDEBUG
-constexpr auto&& ARCH = "_D.x86";
-#else
-constexpr auto&& ARCH = ".x86";
-#endif // NDEBUG
-#endif // _WIN64
-
-constexpr auto&& DLL = ".dll";
-
-#else
-
-#if __x86_64__
+#if _WIN64 || __x86_64__
 #ifndef NDEBUG
 constexpr auto&& ARCH = "_D.x64";
 #else
@@ -60,8 +40,10 @@ constexpr auto&& ARCH = ".x86";
 #endif // NDEBUG
 #endif // __x86_64__
 
+#if _WIN32
+constexpr auto&& DLL = ".dll";
+#else
 constexpr auto&& DLL = ".so";
-
 using HMODULE = void*;
 static HMODULE LoadLibrary(const char* fp) {
 	HMODULE out = dlopen(fp, RTLD_NOW);
@@ -73,7 +55,6 @@ static HMODULE LoadLibrary(const char* fp) {
 }
 static void* GetProcAddress(HMODULE h, const char* name) { return dlsym(h, name); }
 static void FreeLibrary(HMODULE h) { dlclose(h);}
-
 #endif // _WIN32
 
 // TODO

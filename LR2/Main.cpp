@@ -13,6 +13,7 @@
 #include <fstream>
 #include <future>
 #include <iterator>
+#include <string>
 #include <string_view>
 #include <thread>
 #include <utility>
@@ -101,12 +102,28 @@ static consteval bool is_linux()
 }
 
 static bool run_tests() {
-	if (CSTR fp = "C:\\a\\b\\c\\d.bms"; fp.getDirectory().body != std::string_view{"C:\\a\\b\\c\\"}) {
+	if (CSTR fp = fs::make_preferred("C:\\a\\b\\c\\d.bms").data(); fp.getDirectory().body != std::string_view{fs::make_preferred("C:\\a\\b\\c\\").data()}) {
 		ErrorLogFmtAdd("1: %s\n", fp.getDirectory().body);
 		return false;
 	}
-	if (CSTR fp = "C:\\a\\b\\c\\d.bms"; fp.getParentDirectory().body != std::string_view{"C:\\a\\b\\"}) {
+	if (CSTR fp = fs::make_preferred("C:\\a\\b\\c\\d.bms").data(); fp.getParentDirectory().body != std::string_view{fs::make_preferred("C:\\a\\b\\").data()}) {
 		ErrorLogFmtAdd("2: %s\n", fp.getParentDirectory().body);
+		return false;
+	}
+	if (!Url::parse("https://").has_value()) {
+		ErrorLogAdd("3\n");
+		return false;
+	}
+	if (!Url::parse("https://ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789?a=b#c").has_value()) {
+		ErrorLogAdd("4\n");
+		return false;
+	}
+	if (Url::parse("https:// ").has_value()) {
+		ErrorLogAdd("5\n");
+		return false;
+	}
+	if (Url::parse("https://\"").has_value()) {
+		ErrorLogAdd("6\n");
 		return false;
 	}
 	return true;
@@ -561,19 +578,20 @@ int main(int argc, char** argv) {
 		}
 	}
 
-	if (gs.config.network.lr2ir == 1 && gs.is_starter == 0 && gs.cmd_nosave == 0) {
+	if (gs.is_starter == 0 && gs.cmd_nosave == 0) {
 		gs.net.IR_pass = gs.config.player.pass;
 		gs.net.IR_name = gs.config.player.id;
 		gs.net.IR_passMD5 = MD5str(gs.config.player.pass);
 		gs.net.getRival = gs.config.network.getRival;
 		gs.net.IR_ID = gs.gameplay.playerstat.irid;
-		if (gs.net.LR2IR_Login(gs.cmd_directplay) == 1) {
-			SaveIRID(gs.net.rankingData.myID, gs.config.player.id);
-		} else {
-			gs.net.rankingData.myID = gs.net.IR_ID;
+		gs.net.rankingData.myID = gs.net.IR_ID;
+		if (gs.config.network.lr2ir == 1) {
+			if (gs.net.LR2IR_Login(gs.cmd_directplay) == 1) {
+				SaveIRID(gs.net.rankingData.myID, gs.config.player.id);
+			}
+			printfDx(gs.net.request_result);
+			ErrorLogAdd(gs.net.request_result);
 		}
-		printfDx(gs.net.request_result);
-		ErrorLogAdd(gs.net.request_result);
 	}
 
 	memcpy(gs.config.jukebox.rival, gs.net.rivals, 4 * 20);
@@ -966,6 +984,9 @@ int main(int argc, char** argv) {
 				return ret;
 			};
 			std::ofstream("nowstate.json") << get_scene_status_string(gs);
+
+			// Disable DEVICECHANGE joypad resync only while playing (avoids mid-chart hitch).
+			SetUseJoypadDeviceChangeResyncFlag(gs.procSelecter != SCENE_PLAY);
 
 			InitFade(&gs.audio);
 			gs.gameplay.flag_closingPhase = 1;
@@ -2155,12 +2176,18 @@ int main(int argc, char** argv) {
 				{
 					ErrorLogAdd("IRを出します\n");
 					const CSTR& songHash = gs.sSelect.bmsList[gs.sSelect.cur_song].hash;
-					std::string url = gs.net.customIR.GetWebRankingUrl(songHash.body);
-					if (url.empty()) {
-						url = LR2IR_GetWebRankingUrl(songHash);
+					std::string rawUrl = gs.net.customIR.GetWebRankingUrl(songHash.body);
+					if(rawUrl.empty()) {
+						rawUrl = LR2IR_GetWebRankingUrl(songHash);
 					}
-					if (!url.empty()) {
-						OpenUrl(url.c_str());
+					if(!rawUrl.empty()) {
+						if(auto url = Url::parse(rawUrl)) {
+							if (!OpenUrl(*url)) {
+								ErrorLogFmtAdd("Failed to open URL: %s\n", url->value.c_str());
+							}
+						} else {
+							ErrorLogFmtAdd("CustomIR BUG: invalid GetWebRankingUrl return value: %s\n", rawUrl.c_str());
+						}
 					}
 				}
 

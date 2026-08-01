@@ -675,7 +675,7 @@ int PLAYSCORE::SetScore(PLAYERSTATUS *pstat, char flagExpect) {
 		pstat->judgecount[4] = this->judgeExpect[4];
 		pstat->judgecount[5] = this->judgeExpect[5];
 		pstat->exscore = this->exscore;
-		pstat->score = ((pstat->judgecount[3] + (pstat->judgecount[4] + pstat->judgecount[5] * 2) * 2) * 50000) / this->totalnotes;
+		pstat->score = ((pstat->judgecount[3] + (pstat->judgecount[4] + pstat->judgecount[5] * 2) * 2) * 50000ULL) / this->totalnotes;
 		pstat->now_combo = this->totalnotes;
 		pstat->rate = (double)((pstat->exscore * 100) / (double)(this->totalnotes * 2));
 		return 1;
@@ -687,7 +687,7 @@ int PLAYSCORE::SetScore(PLAYERSTATUS *pstat, char flagExpect) {
 	pstat->judgecount[4] = this->judge[4];
 	pstat->judgecount[5] = this->judge[5];
 	pstat->exscore = this->rate;
-	pstat->score = ((pstat->judgecount[3] + (pstat->judgecount[4] + pstat->judgecount[5] * 2) * 2) * 50000) / this->totalnotes;
+	pstat->score = ((pstat->judgecount[3] + (pstat->judgecount[4] + pstat->judgecount[5] * 2) * 2) * 50000ULL) / this->totalnotes;
 	pstat->now_combo = this->nownote;
 	pstat->rate = (double)((pstat->exscore * 100) / (double)(this->totalnotes * 2));
 	return 1;
