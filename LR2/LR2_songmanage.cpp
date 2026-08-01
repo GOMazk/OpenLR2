@@ -172,6 +172,14 @@ bool GetRawBodyInt(std::string_view line, std::string_view head, int& out) {
 	return true;
 }
 
+bool GetStringBodyStr(std::string_view str, std::string_view head, std::string& out) {
+	if (StartsWithICaseAscii(str, head) && str.size() > head.size()) {
+		out = str.substr(head.length() + 1);
+		return true;
+	}
+	return false;
+}
+
 void UpdateBpmRange(BMSMETA& meta, const int bpm) {
 	if (bpm <= 0) return;
 	if (meta.maxbpm == 0) {
@@ -222,10 +230,7 @@ bool ParseTextCommand(BMSMETA& meta, CSTR& line) {
 	if (GetStringBodyStr(&line, "#STAGEFILE", &meta.stagefilepath)) return true;
 	if (GetStringBodyStr(&line, "#BANNER", &meta.bannerpath)) return true;
 	if (GetStringBodyStr(&line, "#BACKBMP", &meta.backBMPpath)) return true;
-	if (GetStringBodyStr(&line, "#PREVIEW", &buf)) {
-		meta.previewpath = buf.body;
-		return true;
-	}
+	if (GetStringBodyStr(line.body, "#PREVIEW", meta.previewpath)) return true;
 	return false;
 }
 
@@ -2291,11 +2296,8 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 					char previewQuery[512];
 					sqlite3_snprintf(512, previewQuery, "SELECT previewpath FROM openlr2_preview WHERE hash=\'%q\'", song.hash.body);
 					sqlite3_prepare(sql, previewQuery, -1, &pStmtPreview, nullptr);
-					if (sqlite3_step(pStmtPreview) == SQLITE_ROW) {
-						song.previewfile = SQL_GetColumn(0, pStmtPreview);
-						if (song.previewfile.value() == "(null)" || song.previewfile.value().length() <= 4) {
-							song.previewfile = {};
-						}
+					if (sqlite3_step(pStmtPreview) == SQLITE_ROW && sqlite3_column_bytes(pStmtPreview, 0) > 0) {
+						song.previewfile = reinterpret_cast<const char *>(sqlite3_column_text(pStmtPreview, 0));
 					}
 					sqlite3_finalize(pStmtPreview);
 
@@ -2780,7 +2782,7 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 		SQL_Run("CREATE TABLE song(hash TEXT ,title TEXT ,subtitle TEXT ,genre TEXT,artist TEXT,subartist TEXT,tag TEXT ,path TEXT primary key ,type INTEGER,folder TEXT,stagefile TEXT,banner TEXT,backbmp TEXT,parent TEXT,level INTEGER,difficulty INTEGER,maxbpm INTEGER,minbpm INTEGER,mode INTEGER,judge INTEGER,longnote INTEGER,bga INTEGER,random INTEGER,date INTEGER,favorite INTEGER,txt INTEGER,karinotes INTEGER,adddate INTEGER,exlevel INTEGER)", sql);
 		SQL_Run("CREATE INDEX hashidx ON song (hash)", sql);
 		SQL_Run("CREATE INDEX parentidx ON song (parent)", sql);
-		sqlite3_exec(sql, "CREATE TABLE openlr2_preview(hash TEXT primary key, previewpath TEXT)", nullptr, nullptr, nullptr);
+		sqlite3_exec(sql, "CREATE TABLE openlr2_preview(hash TEXT PRIMARY KEY NOT NULL, previewpath TEXT NOT NULL)", nullptr, nullptr, nullptr);
 		SQL_Run("DROP TABLE course", sql);
 		SQL_Run("CREATE TABLE nonstop(id INTEGER primary key,title TEXT,line INTEGER,hash TEXT,ir INTEGER)", sql);
 		SQL_Run("CREATE TABLE expert(id INTEGER primary key,title TEXT,line INTEGER,hash TEXT,ir INTEGER)", sql);
@@ -2928,25 +2930,16 @@ int InitBMSMETA(BMSMETA *meta_) {
 	return 1;
 }
 
-static void tryFindPreviewFile(BMSMETA *meta) {
-	if (!std::filesystem::exists(meta->folderpath.body)) {
-		meta->previewpath.clear();
-		return;
-	}
-
-	for (const auto& entry : std::filesystem::directory_iterator{meta->folderpath.body}) {
+static std::string TryFindPreviewFile(const std::string &folderpath) {
+	std::error_code ec{};
+	for (const auto& entry : std::filesystem::directory_iterator{folderpath, ec}) {
 		std::string filename = entry.path().filename().string();
-		std::string lowerFilename = filename;
-		for(auto& c : filename) {
-			c = tolower(c);
-		}
-
-		if (entry.is_regular_file() && lowerFilename.starts_with("preview") && (lowerFilename.ends_with(".wav")
-			|| lowerFilename.ends_with(".ogg") || lowerFilename.ends_with(".mp3") || lowerFilename.ends_with(".flac"))) {
-			meta->previewpath = filename;
-			return;
+		if (entry.is_regular_file() && StartsWithICaseAscii(filename, "preview") && IsSndFile(filename.c_str())) {
+			return filename;
 		}
 	}
+
+	return {};
 }
 
 int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
@@ -3093,7 +3086,7 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	CSTR previewFullPath;
 	previewFullPath.assign(meta->folderpath).add(meta->previewpath.c_str());
 	if (meta->previewpath.length() == 0 || !IsFileExist(previewFullPath)) {
-		tryFindPreviewFile(meta);
+		meta->previewpath = TryFindPreviewFile(meta->folderpath.body);
 	}
 
 	return 1;

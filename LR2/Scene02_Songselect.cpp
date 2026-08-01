@@ -1672,15 +1672,15 @@ static void ThreadProc_RankingAutoUpdate(game* g) {
 	SetObjectStrings_SongSelect(g);
 }
 
-static void LoadPreviewFile(game *g, const std::string &previewpath) {
+static void LoadPreviewFile(game *g, const std::filesystem::path &previewpath) {
 	g->gameplay.flag_closingPhase = 0;
 	StopSound(&g->audio, &g->sSelect.previewSound);
 
 	const auto prevFile = g->sSelect.previewSound.filename.body;
-	if (!g->sSelect.previewSound.load || prevFile == nullptr || previewpath != prevFile) {
+	if (!g->sSelect.previewSound.load || prevFile == nullptr || previewpath.string() != prevFile) {
 		ReleaseSound(&g->audio, &g->sSelect.previewSound);
 		if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == 2 && g->gameplay.previewStatus == 1) {
-			LoadSound(&g->audio, &g->sSelect.previewSound, previewpath.c_str(), true, false, true);
+			LoadSound(&g->audio, &g->sSelect.previewSound, previewpath.string().c_str(), true, false, true);
 		}
 	}
 
