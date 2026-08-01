@@ -370,6 +370,8 @@ struct CONFIG_PLAY {
 	int random[PLAYER_MAX]{}; // 1:mirror 2:random 3:s-random 4:scatter 5:converge
 	int m_HIDSUD[PLAYER_MAX]{};
 	int lanecoverv[PLAYER_MAX]{};
+	int liftv[PLAYER_MAX]{}; /* 0-100: raise judge line / notes (visual only) */
+	int lift[PLAYER_MAX]{}; /* 0/1: lift on/off (song select); value kept in liftv */
 	int lanecover[PLAYER_MAX]{};
 	bool autokey{};
 	int assist[PLAYER_MAX]{};

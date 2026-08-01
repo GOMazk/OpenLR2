@@ -931,6 +931,9 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			if (gs->procSelecter == 4) {
 				if ((gs->KeyInput.p1_buttonInput[12] == 2 || gs->KeyInput.p1_buttonInput[13] == 2) && gs->config.play.lanecover[PLAYER_1] && gs->gameplay.lanecoverDisplayP1) return ret;
 				if ((gs->KeyInput.p2_buttonInput[12] == 2 || gs->KeyInput.p2_buttonInput[13] == 2) && gs->config.play.lanecover[PLAYER_1] && gs->gameplay.lanecoverDisplayP1 && gs->config.play.battle != OPTION_BATTLE_BATTLE && gs->config.play.battle != OPTION_BATTLE_GBATTLE) return ret;
+				if ((gs->KeyInput.p1_buttonInput[12] == 2 || gs->KeyInput.p1_buttonInput[13] == 2) && gs->config.play.lift[PLAYER_1]) return ret;
+				if ((gs->KeyInput.p2_buttonInput[12] == 2 || gs->KeyInput.p2_buttonInput[13] == 2) && gs->config.play.battle == OPTION_BATTLE_BATTLE && gs->config.play.lift[PLAYER_2]) return ret;
+				if ((gs->KeyInput.p2_buttonInput[12] == 2 || gs->KeyInput.p2_buttonInput[13] == 2) && gs->config.play.battle != OPTION_BATTLE_BATTLE && gs->config.play.battle != OPTION_BATTLE_GBATTLE && gs->config.play.lift[PLAYER_1]) return ret;
 			}
 			break;
 		case 271:
@@ -2222,6 +2225,8 @@ uint SetObjectValue_Num(game *g, int op) {
 			break;
 		case 295: return g->gameplay.randomLayoutForDisplay[PLAYER_1]; // Extension: LR2OOL SP and DP 1P random
 		case 418: return g->gameplay.randomLayoutForDisplay[PLAYER_2]; // Extension: LR2OOL DP 2P random
+		case 421: return g->config.play.liftv[PLAYER_1];
+		case 422: return g->config.play.liftv[PLAYER_2];
 	}
 	return 0;
 }
@@ -2692,6 +2697,14 @@ int SetObjectValue_Slider(game *g, skstruct *sk, Timer *T, char flag) {
 					AddReplayData(&g->gameplay.replay, GetTimeLapse(41, T), '[', g->audio.param.pitch_amount);
 					g->gameplay.fxChangeInRecording = 1;
 				}
+				break;
+			case 27:
+				if (g->config.play.lift[PLAYER_1] == 1)
+					SliderByTime(&sk->drBuf, &sk->otherObject[2].src[i], &sk->otherObject[2].dst[i], T, 0, 100, &g->config.play.liftv[PLAYER_1], &g->KeyInput, i);
+				break;
+			case 28:
+				if (g->config.play.lift[PLAYER_2] == 1)
+					SliderByTime(&sk->drBuf, &sk->otherObject[2].src[i], &sk->otherObject[2].dst[i], T, 0, 100, &g->config.play.liftv[PLAYER_2], &g->KeyInput, i);
 				break;
 		}
 	}
@@ -4047,6 +4060,14 @@ int SetObjectValue_Button(game *g, skstruct *sk, Timer *T, char flag) {
 				}
 				break;
 			}
+			case 402:
+				isClickSuccess = ButtonByInput(&sk->drBuf, &sk->otherObject[1].src[i], &sk->otherObject[1].dst[i], T, &g->KeyInput, &g->config.play.lift[PLAYER_1], 0, 1, g->sSelect.panel);
+				if (isClickSuccess == 2) {
+					PlaySound(&g->audio, &g->audio.sysSound.option_change, g->audio.chnKey, -1);
+					g->config.play.lift[PLAYER_2] = g->config.play.lift[PLAYER_1];
+					SetObjectStrings_SongSelect(g);
+				}
+				break;
 			default:
 				continue;
 		}
