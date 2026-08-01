@@ -1,4 +1,4 @@
-#include "LR2_configsave.h"
+﻿#include "LR2_configsave.h"
 #include "En_xml.h"
 #include <algorithm>
 #include <filesystem>
