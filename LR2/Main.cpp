@@ -1895,23 +1895,48 @@ int main(int argc, char** argv) {
 							objy = gs.skstruct.adjust.note_y[PLAYER_2] + (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_2);
 						}
 						else if ((100 <= t && t < 110) || (120 <= t && t < 130)) {
+							const float h0 = gs.skstruct.image.dst[i].draw[0].h;
+							const float hN = gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h;
+							const bool smallH = (-100.0 < hN && hN < 100.0 && -100.0 < h0 && h0 < 100.0);
 							objx = gs.skstruct.adjust.note_x[PLAYER_1];
-							objy = gs.skstruct.adjust.note_y[PLAYER_1] + (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_1);
-							if (-100.0 < gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h && gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h < 100.0
-								&& -100.0 < gs.skstruct.image.dst[i].draw[0].h && gs.skstruct.image.dst[i].draw[0].h < 100.0) {
-
+							objy = gs.skstruct.adjust.note_y[PLAYER_1];
+							// Short sprites: skip note_xy. Lift only if above judgeline (lane beam).
+							if (smallH) {
 								objx = 0;
 								objy = 0;
 							}
+							const int liftY = (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_1);
+							if (liftY != 0) {
+								bool belowJudgeline = false;
+								if (smallH && gs.skstruct.dst_JUDGELINE[0].dstCount > 0) {
+									const float jy = gs.skstruct.dst_JUDGELINE[0].draw[gs.skstruct.dst_JUDGELINE[0].dstCount - 1].y;
+									if (gs.skstruct.image.dst[i].draw[0].y >= jy) belowJudgeline = true;
+								}
+								if (!belowJudgeline) objy += liftY;
+							}
 						}
 						else if ((110 <= t && t < 120) || (130 <= t && t < 140)) {
+							const float h0 = gs.skstruct.image.dst[i].draw[0].h;
+							const float hN = gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h;
+							const bool smallH = (-100.0 < hN && hN < 100.0 && -100.0 < h0 && h0 < 100.0);
 							objx = gs.skstruct.adjust.note_x[PLAYER_2];
-							objy = gs.skstruct.adjust.note_y[PLAYER_2] + (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_2);
-							if (-100.0 < gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h && gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h < 100.0
-								&& -100.0 < gs.skstruct.image.dst[i].draw[0].h && gs.skstruct.image.dst[i].draw[0].h < 100.0) {
-
+							objy = gs.skstruct.adjust.note_y[PLAYER_2];
+							if (smallH) {
 								objx = 0;
 								objy = 0;
+							}
+							const int liftY = (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_2);
+							if (liftY != 0) {
+								bool belowJudgeline = false;
+								if (smallH && gs.skstruct.dst_JUDGELINE[1].dstCount > 0) {
+									const float jy = gs.skstruct.dst_JUDGELINE[1].draw[gs.skstruct.dst_JUDGELINE[1].dstCount - 1].y;
+									if (gs.skstruct.image.dst[i].draw[0].y >= jy) belowJudgeline = true;
+								}
+								else if (smallH && gs.skstruct.dst_JUDGELINE[0].dstCount > 0) {
+									const float jy = gs.skstruct.dst_JUDGELINE[0].draw[gs.skstruct.dst_JUDGELINE[0].dstCount - 1].y;
+									if (gs.skstruct.image.dst[i].draw[0].y >= jy) belowJudgeline = true;
+								}
+								if (!belowJudgeline) objy += liftY;
 							}
 						}
 						else {
