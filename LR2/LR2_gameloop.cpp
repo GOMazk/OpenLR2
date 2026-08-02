@@ -268,20 +268,7 @@ void ReactInput(game *g) {
 					&& (g->KeyInput.p1_buttonInput[7] == 1)) {
 					g->config.play.lanecoverv[PLAYER_1] += g->config.play.shuttermargin;
 				}
-			}
-			else {
-				if ((g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p1_buttonInput[13] == 2)
-					&& (g->KeyInput.p1_buttonInput[6] == 1)) {
-					g->config.play.hiSpeed[PLAYER_1] += g->config.play.hsmargin;
-				}
 
-				if ((g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p1_buttonInput[13] == 2)
-					&& (g->KeyInput.p1_buttonInput[7] == 1)) {
-					g->config.play.hiSpeed[PLAYER_1] -= g->config.play.hsmargin;
-				}
-			}
-
-			if (g->config.play.lanecover[PLAYER_1] && g->gameplay.lanecoverDisplayP1 == 1) {
 				if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
 					&& (g->KeyInput.p2_buttonInput[6] == 1) && g->config.play.battle != OPTION_BATTLE_BATTLE) {
 					g->config.play.lanecoverv[PLAYER_1] -= g->config.play.shuttermargin;
@@ -293,6 +280,16 @@ void ReactInput(game *g) {
 				}
 			}
 			else {
+				if ((g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p1_buttonInput[13] == 2)
+					&& (g->KeyInput.p1_buttonInput[6] == 1)) {
+					g->config.play.hiSpeed[PLAYER_1] += g->config.play.hsmargin;
+				}
+
+				if ((g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p1_buttonInput[13] == 2)
+					&& (g->KeyInput.p1_buttonInput[7] == 1)) {
+					g->config.play.hiSpeed[PLAYER_1] -= g->config.play.hsmargin;
+				}
+
 				if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
 					&& (g->KeyInput.p2_buttonInput[6] == 1) && g->config.play.battle != OPTION_BATTLE_BATTLE) {
 					g->config.play.hiSpeed[PLAYER_1] += g->config.play.hsmargin;
