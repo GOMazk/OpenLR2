@@ -1888,11 +1888,11 @@ int main(int argc, char** argv) {
 						//refactored
 						if ((50 <= t && t < 60) || (70 <= t && t < 80) || t == 48) {
 							objx = gs.skstruct.adjust.note_x[PLAYER_1];
-							objy = gs.skstruct.adjust.note_y[PLAYER_1] + (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_1);
+							objy = gs.skstruct.adjust.note_y[PLAYER_1] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_1);
 						}
 						else if((60 <= t && t < 70) || (80 <= t && t < 90) || t == 49) {
 							objx = gs.skstruct.adjust.note_x[PLAYER_2];
-							objy = gs.skstruct.adjust.note_y[PLAYER_2] + (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_2);
+							objy = gs.skstruct.adjust.note_y[PLAYER_2] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_2);
 						}
 						else if ((100 <= t && t < 110) || (120 <= t && t < 130)) {
 							const float h0 = gs.skstruct.image.dst[i].draw[0].h;
@@ -1905,7 +1905,7 @@ int main(int argc, char** argv) {
 								objx = 0;
 								objy = 0;
 							}
-							const int liftY = (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_1);
+							const int liftY = (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_1);
 							if (liftY != 0) {
 								bool belowJudgeline = false;
 								if (smallH && gs.skstruct.dst_JUDGELINE[0].dstCount > 0) {
@@ -1925,7 +1925,7 @@ int main(int argc, char** argv) {
 								objx = 0;
 								objy = 0;
 							}
-							const int liftY = (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_2);
+							const int liftY = (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_2);
 							if (liftY != 0) {
 								bool belowJudgeline = false;
 								if (smallH && gs.skstruct.dst_JUDGELINE[1].dstCount > 0) {
@@ -1948,7 +1948,7 @@ int main(int argc, char** argv) {
 									&& (gs.skstruct.dst_JUDGELINE[0].draw->y >= gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].y || gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h < 0.0)) {
 
 									objx = gs.skstruct.adjust.note_x[PLAYER_1];
-									objy = gs.skstruct.adjust.note_y[PLAYER_1] + (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_1);
+									objy = gs.skstruct.adjust.note_y[PLAYER_1] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_1);
 								}
 
 								else if (gs.skstruct.dst_JUDGELINE[1].dstCount > 0) {
@@ -1957,7 +1957,7 @@ int main(int argc, char** argv) {
 										&& (gs.skstruct.dst_JUDGELINE[1].draw->y >= gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].y || gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h < 0.0)) {
 
 										objx = gs.skstruct.adjust.note_x[PLAYER_2];
-										objy = gs.skstruct.adjust.note_y[PLAYER_2] + (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_2);
+										objy = gs.skstruct.adjust.note_y[PLAYER_2] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_2);
 									}
 								}
 							}
@@ -2056,11 +2056,11 @@ int main(int argc, char** argv) {
 					const int t = gs.skstruct.otherObject[6].dst[i].timer;
 					if (t == 46) {
 						numX = gs.skstruct.adjust.note_x[PLAYER_1];
-						numY = gs.skstruct.adjust.note_y[PLAYER_1] + (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_1);
+						numY = gs.skstruct.adjust.note_y[PLAYER_1] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_1);
 					}
 					else if (t == 47) {
 						numX = gs.skstruct.adjust.note_x[PLAYER_2];
-						numY = gs.skstruct.adjust.note_y[PLAYER_2] + (int)GetLiftOffsetY(&gs.skstruct, &gs.config.play, PLAYER_2);
+						numY = gs.skstruct.adjust.note_y[PLAYER_2] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_2);
 					}
 				}
 

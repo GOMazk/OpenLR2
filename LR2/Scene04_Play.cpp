@@ -20,23 +20,23 @@ static void MessageBoxA(const char*,const char* title,const char*desc,const char
 
 // Active only when song-select lift option is on. Lane height prefers skin LIFT slider
 // range (op2) so notes move 1:1 with the lift cover graphic; falls back to note DST y.
-float GetLiftOffsetY(const skstruct *sk, const CONFIG_PLAY *cfg, int player) {
-	if (!cfg->lift[player]) return 0.f;
-	int liftv = cfg->liftv[player];
+float GetLiftOffsetY(const skstruct &sk, const CONFIG_PLAY &cfg, int player) {
+	if (!cfg.lift[player]) return 0.f;
+	int liftv = cfg.liftv[player];
 	if (liftv <= 0) return 0.f;
 
 	const int liftType = (player == PLAYER_1) ? 27 : 28;
 	int laneH = 0;
-	for (int i = 0; i < sk->otherObject[2].srcSize; i++) {
-		if (sk->otherObject[2].src[i].op3 == liftType && sk->otherObject[2].src[i].op2 > 0) {
-			laneH = sk->otherObject[2].src[i].op2;
+	for (int i = 0; i < sk.otherObject[2].srcSize; i++) {
+		if (sk.otherObject[2].src[i].op3 == liftType && sk.otherObject[2].src[i].op2 > 0) {
+			laneH = sk.otherObject[2].src[i].op2;
 			break;
 		}
 	}
 	if (laneH <= 0) {
 		const int noteKey = (player == PLAYER_1) ? 1 : 11;
-		if (sk->dst_NOTE[noteKey].dstCount > 0 && sk->dst_NOTE[noteKey].draw != nullptr) {
-			laneH = (int)fabs(sk->dst_NOTE[noteKey].draw->y);
+		if (sk.dst_NOTE[noteKey].dstCount > 0 && sk.dst_NOTE[noteKey].draw != nullptr) {
+			laneH = (int)fabs(sk.dst_NOTE[noteKey].draw->y);
 		}
 	}
 	if (laneH <= 0) laneH = 480;
@@ -414,8 +414,8 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 		if ((sk->horizontal == 0 && sk->dst_LINE[PLAYER_1].draw->y + (songtimer_render - g->gameplay.bmsobj_line.notes[i].renderTiming)* speed * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0 > drawStartHeight)
 			|| (sk->horizontal == 1 && (g->gameplay.bmsobj_line.notes[i].renderTiming - songtimer_render)* speed * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 640.0 > drawStartHeight)) { 
 						
-			float p1_lift = GetLiftOffsetY(sk, cfg, PLAYER_1);
-			float p2_lift = GetLiftOffsetY(sk, cfg, PLAYER_2);
+			float p1_lift = GetLiftOffsetY(*sk, *cfg, PLAYER_1);
+			float p2_lift = GetLiftOffsetY(*sk, *cfg, PLAYER_2);
 			float p1_y = sk->adjust.note_y[PLAYER_1] + p1_lift + (songtimer_render - g->gameplay.bmsobj_line.notes[i].renderTiming)* cfg->hiSpeed[PLAYER_1] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
 			float p2_y = sk->adjust.note_y[PLAYER_2] + p2_lift + (songtimer_render - g->gameplay.bmsobj_line.notes[i].renderTiming)* cfg->hiSpeed[PLAYER_1] * g->gameplay.speedmultiplier * (cfg->basespeed / 100.0) / 600.0;
 			//NOTE: comment out these two lines cause measure_lines displayed under judge line. 
@@ -494,13 +494,13 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg) {
 				
 				if (key < 10) {
 					note_x = sk->adjust.note_x[PLAYER_1] + g->gameplay.nabeatsu_x + 0.0;
-					note_y = sk->adjust.note_y[PLAYER_1] + GetLiftOffsetY(sk, cfg, PLAYER_1) + g->gameplay.nabeatsu_y + note_y;
-					noteL_y = sk->adjust.note_y[PLAYER_1] + GetLiftOffsetY(sk, cfg, PLAYER_1) + g->gameplay.nabeatsu_y + noteL_y;
+					note_y = sk->adjust.note_y[PLAYER_1] + GetLiftOffsetY(*sk, *cfg, PLAYER_1) + g->gameplay.nabeatsu_y + note_y;
+					noteL_y = sk->adjust.note_y[PLAYER_1] + GetLiftOffsetY(*sk, *cfg, PLAYER_1) + g->gameplay.nabeatsu_y + noteL_y;
 				}
 				else {
 					note_x = sk->adjust.note_x[PLAYER_2] + g->gameplay.nabeatsu_x + 0.0;
-					note_y = sk->adjust.note_y[PLAYER_2] + GetLiftOffsetY(sk, cfg, PLAYER_2) + g->gameplay.nabeatsu_y + note_y;
-					noteL_y = sk->adjust.note_y[PLAYER_2] + GetLiftOffsetY(sk, cfg, PLAYER_2) + g->gameplay.nabeatsu_y + noteL_y;
+					note_y = sk->adjust.note_y[PLAYER_2] + GetLiftOffsetY(*sk, *cfg, PLAYER_2) + g->gameplay.nabeatsu_y + note_y;
+					noteL_y = sk->adjust.note_y[PLAYER_2] + GetLiftOffsetY(*sk, *cfg, PLAYER_2) + g->gameplay.nabeatsu_y + noteL_y;
 				}
 				notesize_x = sk->adjust.size_x + 0.0;
 				notesize_y = sk->adjust.size_y + 0.0;
@@ -705,10 +705,10 @@ int DrawJudgeCombo(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg){
 			}
 
 			if (p == 0) {
-				AddDrawingBuffer_JudgeCombo(&sk->drBuf, &sk->src_NOWJUDGE[PLAYER_1][judge], &sk->dst_NOWJUDGE[PLAYER_1][judge], &sk->src_NOWCOMBO[PLAYER_1][judge], &sk->dst_NOWCOMBO[PLAYER_1][judge], T, combo, sk->adjust.judge_x, sk->adjust.judge_y + (int)GetLiftOffsetY(sk, cfg, PLAYER_1));
+				AddDrawingBuffer_JudgeCombo(&sk->drBuf, &sk->src_NOWJUDGE[PLAYER_1][judge], &sk->dst_NOWJUDGE[PLAYER_1][judge], &sk->src_NOWCOMBO[PLAYER_1][judge], &sk->dst_NOWCOMBO[PLAYER_1][judge], T, combo, sk->adjust.judge_x, sk->adjust.judge_y + (int)GetLiftOffsetY(*sk, *cfg, PLAYER_1));
 			}
 			else {
-				AddDrawingBuffer_JudgeCombo(&sk->drBuf, &sk->src_NOWJUDGE[PLAYER_2][judge], &sk->dst_NOWJUDGE[PLAYER_2][judge], &sk->src_NOWCOMBO[PLAYER_2][judge], &sk->dst_NOWCOMBO[PLAYER_2][judge], T, combo, sk->adjust.judge_x, sk->adjust.judge_y + (int)GetLiftOffsetY(sk, cfg, PLAYER_2));
+				AddDrawingBuffer_JudgeCombo(&sk->drBuf, &sk->src_NOWJUDGE[PLAYER_2][judge], &sk->dst_NOWJUDGE[PLAYER_2][judge], &sk->src_NOWCOMBO[PLAYER_2][judge], &sk->dst_NOWCOMBO[PLAYER_2][judge], T, combo, sk->adjust.judge_x, sk->adjust.judge_y + (int)GetLiftOffsetY(*sk, *cfg, PLAYER_2));
 			}
 		}
 	}
@@ -1164,12 +1164,12 @@ int ProcI_Play(game *g) {
 	
 	if (g->skstruct.dst_JUDGELINE[0].dstCount > 0) {
 		AddDrawingBuffer_PlayArea(&g->skstruct.drBuf, &g->skstruct.src_JUDGELINE[PLAYER_1], &g->skstruct.dst_JUDGELINE[0], &g->timer1,
-			(float)g->skstruct.adjust.note_x[PLAYER_1] + g->gameplay.nabeatsu_x, (float)g->skstruct.adjust.note_y[PLAYER_1] + GetLiftOffsetY(&g->skstruct, &g->config.play, PLAYER_1) + g->gameplay.nabeatsu_y, -1,
+			(float)g->skstruct.adjust.note_x[PLAYER_1] + g->gameplay.nabeatsu_x, (float)g->skstruct.adjust.note_y[PLAYER_1] + GetLiftOffsetY(g->skstruct, g->config.play, PLAYER_1) + g->gameplay.nabeatsu_y, -1,
 			(float)g->skstruct.adjust.size_x, (float)g->skstruct.adjust.size_y, 0);
 	}
 	if (g->skstruct.dst_JUDGELINE[1].dstCount > 0) {
 		AddDrawingBuffer_PlayArea(&g->skstruct.drBuf, &g->skstruct.src_JUDGELINE[PLAYER_2], &g->skstruct.dst_JUDGELINE[1], &g->timer1,
-			(float)g->skstruct.adjust.note_x[PLAYER_2] + g->gameplay.nabeatsu_x, (float)g->skstruct.adjust.note_y[PLAYER_2] + GetLiftOffsetY(&g->skstruct, &g->config.play, PLAYER_2) + g->gameplay.nabeatsu_y, -1,
+			(float)g->skstruct.adjust.note_x[PLAYER_2] + g->gameplay.nabeatsu_x, (float)g->skstruct.adjust.note_y[PLAYER_2] + GetLiftOffsetY(g->skstruct, g->config.play, PLAYER_2) + g->gameplay.nabeatsu_y, -1,
 			(float)g->skstruct.adjust.size_x, (float)g->skstruct.adjust.size_y, 0);
 	}
 
