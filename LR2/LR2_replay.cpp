@@ -196,8 +196,8 @@ int AddReplayDataHeader(CONFIG_PLAY *cfg, REPLAY *rp, AUDIO *snd, gameplay *gp){
 	AddReplayData(rp, 0, 0x97, static_cast<short>(cfg->gaugeType[PLAYER_2]));
 	AddReplayData(rp, 0, 0x66, static_cast<short>(cfg->lanecoverv[PLAYER_1]));
 	AddReplayData(rp, 0, 0x98, static_cast<short>(cfg->lanecoverv[PLAYER_2]));
-	AddReplayData(rp, 0, 0x6c, static_cast<short>(cfg->liftv[PLAYER_1]));
-	AddReplayData(rp, 0, 0x9e, static_cast<short>(cfg->liftv[PLAYER_2]));
+	AddReplayData(rp, 0, 0x6c, static_cast<short>(cfg->liftv[PLAYER_1])); // Extension: OpenLR2 lift
+	AddReplayData(rp, 0, 0x9e, static_cast<short>(cfg->liftv[PLAYER_2])); // Extension: OpenLR2 lift
 	AddReplayData(rp, 0, 0x6b, static_cast<short>(cfg->assist[PLAYER_1]));
 	AddReplayData(rp, 0, 0x9d, static_cast<short>(cfg->assist[PLAYER_2]));
 	AddReplayData(rp, 0, 0x6a, static_cast<short>(cfg->randSC[PLAYER_1]));
@@ -645,7 +645,7 @@ int ReplayDataToInput(ReplayData *data, game *g, AUDIO *aud, gameplay *gp, input
 		case 0x66:
 			g->config.play.lanecoverv[PLAYER_1] = data->value;
 			break;
-		case 0x6c:
+		case 0x6c: // Extension: OpenLR2 lift
 			g->config.play.liftv[PLAYER_1] = data->value;
 			break;
 		case 0x67:
@@ -672,7 +672,7 @@ int ReplayDataToInput(ReplayData *data, game *g, AUDIO *aud, gameplay *gp, input
 		case 0x98:
 			g->config.play.lanecoverv[PLAYER_2] = data->value;
 			break;
-		case 0x9e:
+		case 0x9e: // Extension: OpenLR2 lift
 			g->config.play.liftv[PLAYER_2] = data->value;
 			break;
 		case 0x99:

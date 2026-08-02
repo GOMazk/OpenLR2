@@ -2035,8 +2035,8 @@ int main(int argc, char** argv) {
 				&& GetOptionFlag_dst(&gs, gs.skstruct.otherObject[2].dst[i].opt3) && gs.skstruct.adjust.dark_type != 2) {
 
 				const int sliderType = gs.skstruct.otherObject[2].src[i].op3;
-				if (sliderType == 27 && gs.config.play.lift[PLAYER_1] != 1) continue;
-				if (sliderType == 28 && gs.config.play.lift[PLAYER_2] != 1) continue;
+				if (sliderType == 27 && gs.config.play.lift[PLAYER_1] != 1) continue; // Extension: OpenLR2 lift
+				if (sliderType == 28 && gs.config.play.lift[PLAYER_2] != 1) continue; // Extension: OpenLR2 lift
 
 				AddDrawingBuffer_Slider(&gs.skstruct.drBuf, &gs.skstruct.otherObject[2].src[i], &gs.skstruct.otherObject[2].dst[i], &gs.timer1);
 
@@ -2047,8 +2047,8 @@ int main(int argc, char** argv) {
 				&& GetOptionFlag_dst(&gs, gs.skstruct.otherObject[6].dst[i].opt3) && gs.skstruct.adjust.dark_type != 2) {
 
 				const int numId = gs.skstruct.otherObject[6].src[i].op1;
-				if (numId == 421 && gs.config.play.lift[PLAYER_1] != 1) continue;
-				if (numId == 422 && gs.config.play.lift[PLAYER_2] != 1) continue;
+				if (numId == 421 && gs.config.play.lift[PLAYER_1] != 1) continue; // Extension: OpenLR2 lift
+				if (numId == 422 && gs.config.play.lift[PLAYER_2] != 1) continue; // Extension: OpenLR2 lift
 
 				// Type A ghost / Fast-Slow: DST timer 46/47 = JUDGETIMER (same as LUXURY Simple Skin).
 				int numX = 0, numY = 0;
