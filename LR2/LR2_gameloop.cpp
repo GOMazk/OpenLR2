@@ -180,20 +180,20 @@ void ReactInput(game *g) {
 			static double liftScratchTickP1 = 0.0;
 			static double liftScratchTickP2 = 0.0;
 			const double now = GetTimeWrap();
-			auto stepLiftFromScratch = [&](const unsigned char *btn, int *liftv, double *tick) {
+			auto stepLiftFromScratch = [&](const unsigned char *btn, int &liftv, double &tick) {
 				const bool down = (btn[10] == 1 || btn[10] == 2);
 				const bool up = (btn[11] == 1 || btn[11] == 2);
 				if (!down && !up) {
-					*tick = 0.0;
+					tick = 0.0;
 					return;
 				}
 				const bool edge = (btn[10] == 1 || btn[11] == 1);
-				if (edge || *tick == 0.0 || now - *tick >= 100.0) {
+				if (edge || tick == 0.0 || now - tick >= 100.0) {
 					if (down)
-						*liftv -= 1;
+						liftv -= 1;
 					else
-						*liftv += 1;
-					*tick = now;
+						liftv += 1;
+					tick = now;
 				}
 			};
 
@@ -207,14 +207,14 @@ void ReactInput(game *g) {
 				&& g->config.play.lift[PLAYER_1] && !coverActiveP1 && !coverActiveP2 && startOrSelectP2;
 
 			if (liftScratchP1)
-				stepLiftFromScratch(g->KeyInput.p1_buttonInput, &g->config.play.liftv[PLAYER_1], &liftScratchTickP1);
+				stepLiftFromScratch(g->KeyInput.p1_buttonInput, g->config.play.liftv[PLAYER_1], liftScratchTickP1);
 			else if (liftScratchP1FromP2)
-				stepLiftFromScratch(g->KeyInput.p2_buttonInput, &g->config.play.liftv[PLAYER_1], &liftScratchTickP1);
+				stepLiftFromScratch(g->KeyInput.p2_buttonInput, g->config.play.liftv[PLAYER_1], liftScratchTickP1);
 			else
 				liftScratchTickP1 = 0.0;
 
 			if (liftScratchP2Battle)
-				stepLiftFromScratch(g->KeyInput.p2_buttonInput, &g->config.play.liftv[PLAYER_2], &liftScratchTickP2);
+				stepLiftFromScratch(g->KeyInput.p2_buttonInput, g->config.play.liftv[PLAYER_2], liftScratchTickP2);
 			else
 				liftScratchTickP2 = 0.0;
 
