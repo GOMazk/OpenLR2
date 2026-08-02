@@ -918,6 +918,7 @@ struct skstruct {
 	int startinput_rank{};
 	int startinput_update{};
 	int scenetime{};
+	// In LR2 it used to actually delay loading resources, but in OpenLR2 it's only used for animations.
 	int loadstart{};
 	int loadend{};
 	int playstart{};

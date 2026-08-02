@@ -771,6 +771,19 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 			}
 		}
 		while (true) {
+			if (gp->flag_closingPhase) {
+				for (auto& [i, _loaded] : bgaHandleLoaded) {
+					// NOTE: SetASyncLoadFinishDeleteFlag is the same as DeleteGraph for already loaded images
+					SetASyncLoadFinishDeleteFlag(gp->bgaHandle[i]);
+					gp->bgaHandle[i] = -1;
+				}
+				SetUseASyncLoadFlag(FALSE);
+#ifdef _WIN32
+				CoUninitialize();
+#endif // _WIN32
+				return 1;
+			}
+
 			bool anyLoading = false;
 			for (auto& [i, loaded] : bgaHandleLoaded) {
 				if (loaded) continue;
