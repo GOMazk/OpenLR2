@@ -1137,20 +1137,20 @@ int DrawHitErrorForPlayer(game *g, skstruct *sk, Timer *T, int player) {
 			dst->draw[i].x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (dst->draw[i].w / 2);
 			dst->draw[i].y = hiterrorByTime.y;
 		}
-		};
+	};
 
 	auto centerDraw = [&](DSTdraw &draw) -> void {
 		draw.x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (draw.w / 2);
 		draw.y = hiterrorByTime.y;
-		};
+	};
 
 	auto offset = [&](double timing) -> int {
 		return timing * hiterrorByTime.w / 400.0; /* bad range is 200ms on easy guage, so this should catch that */
-		};
+	};
 
 	constexpr auto fadeAlpha = [](int originalAlpha, int time, int fadeTime) -> int {
 		return originalAlpha - (time * originalAlpha / fadeTime);
-		};
+	};
 
 	double noteTimer = GetTimeLapse(142, &g->timer1);
 
@@ -1188,7 +1188,8 @@ int DrawHitErrorForPlayer(game *g, skstruct *sk, Timer *T, int player) {
 			parentDST = &sk->dst_HITERROR_BAD;
 			parentSRC = &sk->src_HITERROR_BAD;
 			break;
-		default:
+		case Judgement::AIR_POOR:
+		case Judgement::MISS_POOR:
 			continue;
 		}
 
