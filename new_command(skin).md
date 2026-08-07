@@ -31,6 +31,11 @@ Used in SkinSelect
 
 Imported score displayed
 
+### `270` (OpenLR2 lift)
+* 260807
+
+Also active while Start/Select is held and lift is on (same timing as Sudden+ value display). Shows the lift value HUD when lift is enabled.
+
 ## bargraph_type
 ### `48` (from LR2 with Fast/Slow)
 * 260624
@@ -86,6 +91,27 @@ Running notes
 
 2P random pattern
 
+### `421` (OpenLR2 lift)
+* 260807
+
+1P lift value (0–100). Drawn only when lift is on.
+
+### `422` (OpenLR2 lift)
+* 260807
+
+2P lift value (0–100). Drawn only when lift is on.
+
+## slider_type
+### `27` (OpenLR2 lift)
+* 260807
+
+1P lift cover / range. `op2` is lane height used for note offset. Active only when lift is on.
+
+### `28` (OpenLR2 lift)
+* 260807
+
+2P lift cover / range. `op2` is lane height used for note offset. Active only when lift is on.
+
 ## button_type
 ### `55` (div:`5`)
 * 251128
@@ -98,6 +124,11 @@ scaling filter
 ### `401` (div:`2`)
 * 260710
 stretch
+
+### `331` (div:`2`)
+* 260807
+
+Lift ON/OFF (song select). Same 0/1 pattern as Sudden+ shutter (`46`).
 
 
 ## text_st
@@ -112,3 +143,8 @@ scaling filter
 ### type:`301`, div:`2`
 * 260710
 stretch
+
+### type:`302`
+* 260807
+
+Lift ON/OFF label text (song select).
