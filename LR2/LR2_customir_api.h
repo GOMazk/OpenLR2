@@ -1,7 +1,6 @@
 #pragma once
 
 #include <array>
-#include <cstddef>
 #include <cstdint>
 #include <string>
 #include <vector>
@@ -249,9 +248,6 @@ struct IRRivalInfo {
 	std::string name;
 };
 
-// Soft cap for GetRivals / SyncRivals. Raise this when callers (e.g. jukebox) support more.
-constexpr std::size_t kMaxRivals = 20;
-
 // One rival score row. Field names match legacy LR2IR XML / Stellaverse JSON.
 struct IRRivalScore {
 	std::string hash;
@@ -269,7 +265,6 @@ struct IRRivalScore {
 };
 
 struct IRRivalListResult {
-	// Capped by OpenLR2 at openlr2::kMaxRivals when syncing.
 	std::vector<IRRivalInfo> rivals;
 	uint64_t fetched_at{};
 };
@@ -305,6 +300,9 @@ struct MethodTable {
 	// This is called synchronously when F5 or the IR button is pressed in song-select.
 	// \retval "" - error or inapplicable.
 	std::string(OLR2_IR_API* GetWebRankingUrl)(char const* songHash) = nullptr;
+	// XXX: just some food for thought: should we introduce a `size_t MethodTableSize` here?
+	// '_trailing_field_to_increase_struct_size' is not cool, it's never too late to make things better.
+	//
 	// Called synchronously during startup rival sync (same window as legacy LR2IR_GetRivalInfo).
 	// nullptr = module does not support CustomIR rivals.
 	openlr2::GetStatus(OLR2_IR_API* GetRivals)(openlr2::IRRivalListResult& out) = nullptr;

@@ -47,15 +47,16 @@ public:
 	// \retval nullopt - Fail
 	std::optional<openlr2::IRGhostResult> TryGetTargetInfo(const char* songmd5, int mode, int targetPlayerId);
 
+	// XXX: we should support fetching several IRs at once.
 	struct RivalSyncTask {
-		int id{};
 		std::string name;
 		std::future<std::optional<std::vector<openlr2::IRRivalScore>>> result;
+		int id{};
 	};
 	struct RivalSyncBatch {
 		std::string providerName;
-		bool supported{};
 		std::vector<RivalSyncTask> tasks;
+		bool supported{};
 	};
 	// Caller: only when getRival. Returns async work; call ApplyRivalSyncResults after wait or soft skip.
 	RivalSyncBatch SyncRivals();
@@ -63,12 +64,12 @@ public:
 	// Success writes LR2files/CustomIRRival/<provider>/ and records rival ids/paths on this manager
 	bool ApplyRivalSyncResults(RivalSyncBatch& sync);
 	// Set only after successful ApplyRivalSyncResults. Empty = not active for this rival; use legacy LR2files/Rival.
-	[[nodiscard]] static std::optional<std::filesystem::path> RivalPath(int rivalId);
+	[[nodiscard]] static std::optional<std::filesystem::path> RivalPath(int rivalId); // XXX: must not be 'static'
 	// Copies CustomIR rival ids into rivalsOut (zero-filled first). Returns false if none active.
-	[[nodiscard]] static bool CopyRivalIds(std::span<int> rivalsOut);
+	[[nodiscard]] static bool CopyRivalIds(std::span<int> rivalsOut); // XXX: must not be 'static'
 
 private:
-	static std::vector<std::pair<int, std::filesystem::path>> sRivalPaths;
+	static std::vector<std::pair<int, std::filesystem::path>> sRivalPaths; // XXX: must not be 'static'
 	std::vector<std::shared_ptr<CustomIR>> mModules;
 	std::vector<std::future<void>> mSendThreads;
 	std::vector<std::future<std::optional<openlr2::IRRankResult>>> mDiscardedResultIrFutures;

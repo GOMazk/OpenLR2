@@ -172,23 +172,30 @@ static uint64_t CustomIRRivalLastUpdateHint(const std::filesystem::path& rivalDi
 	const auto dbPath = rivalDirectory / std::format("{}.db", rivalId);
 
 	sqlite3* db = nullptr;
-	std::string uri = "file:" + dbPath.generic_string() + "?mode=ro";
-	if (sqlite3_open(uri.c_str(), &db) != SQLITE_OK) {
+	if(sqlite3_open_v2(std::format("file:{}?mode=ro", dbPath.generic_string()).c_str(), &db,
+					   SQLITE_OPEN_READONLY | SQLITE_OPEN_URI, nullptr)
+	   != SQLITE_OK)
+	{
 		return 0;
 	}
 
 	sqlite3_stmt* stmt = nullptr;
-	uint64_t lastUpdate = 0;
-	if (sqlite3_prepare_v2(db, "SELECT r_lastupdate FROM rival ORDER BY r_lastupdate DESC LIMIT 1", -1, &stmt, nullptr) == SQLITE_OK) {
-		if (sqlite3_step(stmt) == SQLITE_ROW) {
-			const sqlite3_int64 value = sqlite3_column_int64(stmt, 0);
-			if (value >= 0) {
-				lastUpdate = static_cast<uint64_t>(value);
-			}
-		}
-		sqlite3_finalize(stmt);
+	if(sqlite3_prepare_v2(db, "SELECT r_lastupdate FROM rival ORDER BY r_lastupdate DESC LIMIT 1", -1, &stmt, nullptr)
+	   != SQLITE_OK)
+	{
+		sqlite3_close(db);
+		return 0;
 	}
+
+	uint64_t lastUpdate = 0;
+	if(sqlite3_step(stmt) == SQLITE_ROW)
+		if(sqlite3_int64 const value = sqlite3_column_int64(stmt, 0); value >= 0)
+			lastUpdate = static_cast<uint64_t>(value);
+
+	sqlite3_finalize(stmt);
+
 	sqlite3_close(db);
+
 	return lastUpdate;
 }
 
@@ -336,11 +343,9 @@ std::optional<std::filesystem::path> CUSTOMIR_MANAGER::RivalPath(int rivalId) {
 }
 
 bool CUSTOMIR_MANAGER::CopyRivalIds(std::span<int> rivalsOut) {
-	std::ranges::fill(rivalsOut, 0);
-	if (sRivalPaths.empty() || rivalsOut.empty()) return false;
-	const std::size_t n = std::min(sRivalPaths.size(), rivalsOut.size());
-	for (std::size_t i = 0; i < n; ++i) {
-		rivalsOut[i] = sRivalPaths[i].first;
+	std::ranges::fill(rivalsOut, 0); // Fill the remainder if rivalsOut.size() < sRivalPaths.size()
+	for (auto [to, from] : std::views::zip(rivalsOut, sRivalPaths)) {
+		to = from.first;
 	}
 	return true;
 }
@@ -472,14 +477,12 @@ CUSTOMIR_MANAGER::RivalSyncBatch CUSTOMIR_MANAGER::SyncRivals() {
 	}
 
 	batch.supported = true;
-	batch.tasks.reserve(std::min(list.rivals.size(), openlr2::kMaxRivals));
+	batch.tasks.reserve(list.rivals.size());
 	for (const auto& entry : list.rivals) {
-		if (batch.tasks.size() >= openlr2::kMaxRivals) break;
 		if (entry.id < 1) continue;
 		const uint64_t lastUpdateHint = CustomIRRivalLastUpdateHint(rivalDirectory, entry.id);
 
 		batch.tasks.push_back(RivalSyncTask{
-			.id = entry.id,
 			.name = entry.name,
 			.result = std::async(std::launch::async, [ir, id = entry.id, lastUpdateHint]() -> std::optional<std::vector<openlr2::IRRivalScore>> {
 				std::vector<openlr2::IRRivalScore> scores;
@@ -492,6 +495,7 @@ CUSTOMIR_MANAGER::RivalSyncBatch CUSTOMIR_MANAGER::SyncRivals() {
 				}
 				return scores;
 			}),
+			.id = entry.id,
 		});
 	}
 
@@ -507,7 +511,6 @@ bool CUSTOMIR_MANAGER::ApplyRivalSyncResults(RivalSyncBatch& sync) {
 	const std::filesystem::path rivalDirectory = CustomIRRivalDirectory(sync.providerName);
 	int count = 0;
 	for (auto& task : sync.tasks) {
-		if (count >= static_cast<int>(openlr2::kMaxRivals)) break;
 		if (!task.result.valid()) continue;
 
 		// Soft skip: do not block on unfinished downloads; park like discarded result-IR futures.

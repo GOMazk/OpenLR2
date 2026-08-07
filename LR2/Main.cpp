@@ -251,6 +251,7 @@ int main(int argc, char** argv) {
 #endif // _WIN32
 
 	// Enable URI filenames so file:...?mode=ro opens/attaches fail on missing files instead of creating them.
+	// XXX: just use SQLITE_OPEN_URI on the database we end up calling ATTACH on
 	sqlite3_config(SQLITE_CONFIG_URI, 1);
 
 	if constexpr (!is_linux()) {
@@ -582,12 +583,11 @@ int main(int argc, char** argv) {
 	}
 
 	gs.net.getRival = gs.config.network.getRival;
-	if (gs.net.getRival && gs.net.customIR.IsDisplayIrOnline()) {
+	if (gs.net.getRival) {
 		auto rivalSync = gs.net.customIR.SyncRivals();
 		if (rivalSync.supported) {
 			size_t i{};
 			while (!std::ranges::all_of(rivalSync.tasks, isFutureReady, &CUSTOMIR_MANAGER::RivalSyncTask::result)) {
-				// Soft skip only (legacy LR2IR): leave the wait loop; do not abort module HTTP.
 				if (GetMouseInput()) {
 					printfDx("Skipped CustomIR rival sync.\n");
 					ScreenFlip();
@@ -597,6 +597,8 @@ int main(int argc, char** argv) {
 				if (loadingGrHandle > 0)
 					DrawExtendGraph(0, 0, resX, resY, loadingGrHandle, 0);
 				printfDx("Syncing CustomIR rivals");
+				// XXX: this syncs only one CustomIR, but it should sync every single one.
+				// We need this to later effortlessly be able to switch between several display IRs.
 				if (!rivalSync.providerName.empty()) {
 					printfDx(" (%s)", rivalSync.providerName.c_str());
 				}
@@ -607,6 +609,7 @@ int main(int argc, char** argv) {
 				}
 				ScreenFlip();
 				clsDx();
+				ClsDrawScreen();
 				std::this_thread::sleep_for(std::chrono::milliseconds(10));
 				++i;
 			}

@@ -4,6 +4,7 @@
 #include "filesystem.h"
 #include "filesystem.h"
 #include <algorithm>
+#include <cassert>
 #include <cstring>
 #include <filesystem>
 #include <iterator>
@@ -2063,6 +2064,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 		isRival = 1;
 		SQL_Run("DETACH rivaldb", sql);
 		CSTR str;
+		// XXX: CUSTOMIR_MANAGER needs to be passed in as an argument
 		if (const auto rivalPath = CUSTOMIR_MANAGER::RivalPath(rivalID)) {
 			cstrSprintf(&str, "ATTACH \'file:%s?mode=ro\' AS rivaldb", std::filesystem::path{*rivalPath}.concat(".db").generic_string().c_str());
 		} else {
@@ -2844,6 +2846,7 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 
 			for (int i = 0; i < 20; i++) {
 				if (jb->rival[i] < 1) break;
+				// XXX: CUSTOMIR_MANAGER needs to be passed in as an argument
 				if (const auto rivalPath = CUSTOMIR_MANAGER::RivalPath(jb->rival[i])) {
 					std::filesystem::path folderPath = *rivalPath;
 					folderPath += ".lr2folder";
