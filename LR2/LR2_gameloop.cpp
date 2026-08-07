@@ -161,6 +161,19 @@ void ReactInput(game *g) {
 	}
 
 	if (g->procSelecter == 4) {
+		enum {
+			BUTTON_SCRATCH_DOWN = 10,
+			BUTTON_SCRATCH_UP = 11,
+			BUTTON_START = 12,
+			BUTTON_SELECT = 13,
+		};
+		enum {
+			INPUT_PRESS = 1,
+			INPUT_HOLD = 2,
+		};
+
+		auto& p1 = g->KeyInput.p1_buttonInput;
+		auto& p2 = g->KeyInput.p2_buttonInput;
 		const bool coverActiveP1 = (g->config.play.lanecover[PLAYER_1] && g->gameplay.lanecoverDisplayP1 == 1);
 
 		// Wheel: lift when cover inactive; otherwise cover ±1
@@ -173,21 +186,21 @@ void ReactInput(game *g) {
 
 		if (g->is_starter == 0) {
 			const bool coverActiveP2 = (g->config.play.lanecover[PLAYER_2] && g->gameplay.lanecoverDisplayP2 == 1);
-			const bool startOrSelectP1 = (g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p1_buttonInput[13] == 2);
-			const bool startOrSelectP2 = (g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2);
+			const bool startOrSelectP1 = (p1[BUTTON_START] == INPUT_HOLD || p1[BUTTON_SELECT] == INPUT_HOLD);
+			const bool startOrSelectP2 = (p2[BUTTON_START] == INPUT_HOLD || p2[BUTTON_SELECT] == INPUT_HOLD);
 
 			// Start/Select + scratch: lift ±1 (edge, then every 100ms)
 			static double liftScratchTickP1 = 0.0;
 			static double liftScratchTickP2 = 0.0;
 			const double now = GetTimeWrap();
 			auto stepLiftFromScratch = [&](const unsigned char *btn, int &liftv, double &tick) {
-				const bool down = (btn[10] == 1 || btn[10] == 2);
-				const bool up = (btn[11] == 1 || btn[11] == 2);
+				const bool down = (btn[BUTTON_SCRATCH_DOWN] == INPUT_PRESS || btn[BUTTON_SCRATCH_DOWN] == INPUT_HOLD);
+				const bool up = (btn[BUTTON_SCRATCH_UP] == INPUT_PRESS || btn[BUTTON_SCRATCH_UP] == INPUT_HOLD);
 				if (!down && !up) {
 					tick = 0.0;
 					return;
 				}
-				const bool edge = (btn[10] == 1 || btn[11] == 1);
+				const bool edge = (btn[BUTTON_SCRATCH_DOWN] == INPUT_PRESS || btn[BUTTON_SCRATCH_UP] == INPUT_PRESS);
 				if (edge || tick == 0.0 || now - tick >= 100.0) {
 					if (down)
 						liftv -= 1;
@@ -207,33 +220,33 @@ void ReactInput(game *g) {
 				&& g->config.play.lift[PLAYER_1] && !coverActiveP1 && !coverActiveP2 && startOrSelectP2;
 
 			if (liftScratchP1)
-				stepLiftFromScratch(g->KeyInput.p1_buttonInput, g->config.play.liftv[PLAYER_1], liftScratchTickP1);
+				stepLiftFromScratch(p1, g->config.play.liftv[PLAYER_1], liftScratchTickP1);
 			else if (liftScratchP1FromP2)
-				stepLiftFromScratch(g->KeyInput.p2_buttonInput, g->config.play.liftv[PLAYER_1], liftScratchTickP1);
+				stepLiftFromScratch(p2, g->config.play.liftv[PLAYER_1], liftScratchTickP1);
 			else
 				liftScratchTickP1 = 0.0;
 
 			if (liftScratchP2Battle)
-				stepLiftFromScratch(g->KeyInput.p2_buttonInput, g->config.play.liftv[PLAYER_2], liftScratchTickP2);
+				stepLiftFromScratch(p2, g->config.play.liftv[PLAYER_2], liftScratchTickP2);
 			else
 				liftScratchTickP2 = 0.0;
 
-			if ((g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p1_buttonInput[13] == 2)
-				&& (g->KeyInput.p1_buttonInput[1] == 1 || g->KeyInput.p1_buttonInput[3] == 1 || g->KeyInput.p1_buttonInput[5] == 1)) {
+			if (startOrSelectP1
+				&& (p1[1] == INPUT_PRESS || p1[3] == INPUT_PRESS || p1[5] == INPUT_PRESS)) {
 
 				g->config.play.hiSpeed[PLAYER_1] -= g->config.play.hsmargin;
 				g->gameplay.isSpeedChanged = true;
 			}
 
-			if ((g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p1_buttonInput[13] == 2)
-				&& (g->KeyInput.p1_buttonInput[2] == 1 || g->KeyInput.p1_buttonInput[4] == 1)) {
+			if (startOrSelectP1
+				&& (p1[2] == INPUT_PRESS || p1[4] == INPUT_PRESS)) {
 
 				g->config.play.hiSpeed[PLAYER_1] += g->config.play.hsmargin;
 				g->gameplay.isSpeedChanged = true;
 			}
 
-			if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
-				&& (g->KeyInput.p2_buttonInput[1] == 1 || g->KeyInput.p2_buttonInput[3] == 1 || g->KeyInput.p2_buttonInput[5] == 1)) {
+			if (startOrSelectP2
+				&& (p2[1] == INPUT_PRESS || p2[3] == INPUT_PRESS || p2[5] == INPUT_PRESS)) {
 
 				if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 					g->config.play.hiSpeed[PLAYER_2] -= g->config.play.hsmargin;
@@ -245,8 +258,8 @@ void ReactInput(game *g) {
 				}
 			}
 
-			if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
-				&& (g->KeyInput.p2_buttonInput[2] == 1 || g->KeyInput.p2_buttonInput[4] == 1)) {
+			if (startOrSelectP2
+				&& (p2[2] == INPUT_PRESS || p2[4] == INPUT_PRESS)) {
 
 				if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
 					g->config.play.hiSpeed[PLAYER_2] += g->config.play.hsmargin;
@@ -259,67 +272,55 @@ void ReactInput(game *g) {
 			}
 
 			if (g->config.play.lanecover[PLAYER_1] && g->gameplay.lanecoverDisplayP1 == 1) {
-				if ((g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p1_buttonInput[13] == 2)
-					&& (g->KeyInput.p1_buttonInput[6] == 1)) {
+				if (startOrSelectP1 && p1[6] == INPUT_PRESS) {
 					g->config.play.lanecoverv[PLAYER_1] -= g->config.play.shuttermargin;
 				}
 
-				if ((g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p1_buttonInput[13] == 2)
-					&& (g->KeyInput.p1_buttonInput[7] == 1)) {
+				if (startOrSelectP1 && p1[7] == INPUT_PRESS) {
 					g->config.play.lanecoverv[PLAYER_1] += g->config.play.shuttermargin;
 				}
 
-				if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
-					&& (g->KeyInput.p2_buttonInput[6] == 1) && g->config.play.battle != OPTION_BATTLE_BATTLE) {
+				if (startOrSelectP2 && p2[6] == INPUT_PRESS && g->config.play.battle != OPTION_BATTLE_BATTLE) {
 					g->config.play.lanecoverv[PLAYER_1] -= g->config.play.shuttermargin;
 				}
 
-				if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
-					&& (g->KeyInput.p2_buttonInput[7] == 1) && g->config.play.battle != OPTION_BATTLE_BATTLE) {
+				if (startOrSelectP2 && p2[7] == INPUT_PRESS && g->config.play.battle != OPTION_BATTLE_BATTLE) {
 					g->config.play.lanecoverv[PLAYER_1] += g->config.play.shuttermargin;
 				}
 			}
 			else {
-				if ((g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p1_buttonInput[13] == 2)
-					&& (g->KeyInput.p1_buttonInput[6] == 1)) {
+				if (startOrSelectP1 && p1[6] == INPUT_PRESS) {
 					g->config.play.hiSpeed[PLAYER_1] += g->config.play.hsmargin;
 				}
 
-				if ((g->KeyInput.p1_buttonInput[12] == 2 || g->KeyInput.p1_buttonInput[13] == 2)
-					&& (g->KeyInput.p1_buttonInput[7] == 1)) {
+				if (startOrSelectP1 && p1[7] == INPUT_PRESS) {
 					g->config.play.hiSpeed[PLAYER_1] -= g->config.play.hsmargin;
 				}
 
-				if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
-					&& (g->KeyInput.p2_buttonInput[6] == 1) && g->config.play.battle != OPTION_BATTLE_BATTLE) {
+				if (startOrSelectP2 && p2[6] == INPUT_PRESS && g->config.play.battle != OPTION_BATTLE_BATTLE) {
 					g->config.play.hiSpeed[PLAYER_1] += g->config.play.hsmargin;
 				}
 
-				if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
-					&& (g->KeyInput.p2_buttonInput[7] == 1) && g->config.play.battle != OPTION_BATTLE_BATTLE) {
+				if (startOrSelectP2 && p2[7] == INPUT_PRESS && g->config.play.battle != OPTION_BATTLE_BATTLE) {
 					g->config.play.hiSpeed[PLAYER_1] -= g->config.play.hsmargin;
 				}
 			}
 
 			if (g->config.play.lanecover[PLAYER_2] && g->gameplay.lanecoverDisplayP2 == 1) {
-				if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
-					&& (g->KeyInput.p2_buttonInput[6] == 1) && g->config.play.battle == OPTION_BATTLE_BATTLE) {
+				if (startOrSelectP2 && p2[6] == INPUT_PRESS && g->config.play.battle == OPTION_BATTLE_BATTLE) {
 					g->config.play.lanecoverv[PLAYER_2] -= g->config.play.shuttermargin;
 				}
 
-				if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
-					&& (g->KeyInput.p2_buttonInput[7] == 1) && g->config.play.battle == OPTION_BATTLE_BATTLE) {
+				if (startOrSelectP2 && p2[7] == INPUT_PRESS && g->config.play.battle == OPTION_BATTLE_BATTLE) {
 					g->config.play.lanecoverv[PLAYER_2] += g->config.play.shuttermargin;
 				}
 			}
 			else {
-				if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
-					&& (g->KeyInput.p2_buttonInput[6] == 1) && g->config.play.battle == OPTION_BATTLE_BATTLE) {
+				if (startOrSelectP2 && p2[6] == INPUT_PRESS && g->config.play.battle == OPTION_BATTLE_BATTLE) {
 					g->config.play.hiSpeed[PLAYER_2] += g->config.play.hsmargin;
 				}
 
-				if ((g->KeyInput.p2_buttonInput[12] == 2 || g->KeyInput.p2_buttonInput[13] == 2)
-					&& (g->KeyInput.p2_buttonInput[7] == 1) && g->config.play.battle == OPTION_BATTLE_BATTLE) {
+				if (startOrSelectP2 && p2[7] == INPUT_PRESS && g->config.play.battle == OPTION_BATTLE_BATTLE) {
 					g->config.play.hiSpeed[PLAYER_2] -= g->config.play.hsmargin;
 				}
 			}
@@ -369,22 +370,25 @@ void ReactInput(game *g) {
 	}
 
 	if(g->procSelecter==4){
-		// Cover display: Start or Select edge only (not both)
-		const bool p1StartEdge = (g->KeyInput.p1_buttonInput[12] == 1);
-		const bool p1SelectEdge = (g->KeyInput.p1_buttonInput[13] == 1);
-		const bool p1StartHeld = (g->KeyInput.p1_buttonInput[12] == 2);
-		const bool p1SelectHeld = (g->KeyInput.p1_buttonInput[13] == 2);
-		const bool p1SingleEdge =
-			(p1StartEdge && !p1SelectEdge && !p1SelectHeld) ||
-			(p1SelectEdge && !p1StartEdge && !p1StartHeld);
+		enum {
+			BUTTON_START = 12,
+			BUTTON_SELECT = 13,
+		};
+		enum {
+			INPUT_PRESS = 1,
+			INPUT_HOLD = 2,
+		};
 
-		const bool p2StartEdge = (g->KeyInput.p2_buttonInput[12] == 1);
-		const bool p2SelectEdge = (g->KeyInput.p2_buttonInput[13] == 1);
-		const bool p2StartHeld = (g->KeyInput.p2_buttonInput[12] == 2);
-		const bool p2SelectHeld = (g->KeyInput.p2_buttonInput[13] == 2);
+		auto& p1 = g->KeyInput.p1_buttonInput;
+		auto& p2 = g->KeyInput.p2_buttonInput;
+
+		// Cover display: Start or Select edge only (not both)
+		const bool p1SingleEdge =
+			(p1[BUTTON_START] == INPUT_PRESS && p1[BUTTON_SELECT] != INPUT_PRESS && p1[BUTTON_SELECT] != INPUT_HOLD) ||
+			(p1[BUTTON_SELECT] == INPUT_PRESS && p1[BUTTON_START] != INPUT_PRESS && p1[BUTTON_START] != INPUT_HOLD);
 		const bool p2SingleEdge =
-			(p2StartEdge && !p2SelectEdge && !p2SelectHeld) ||
-			(p2SelectEdge && !p2StartEdge && !p2StartHeld);
+			(p2[BUTTON_START] == INPUT_PRESS && p2[BUTTON_SELECT] != INPUT_PRESS && p2[BUTTON_SELECT] != INPUT_HOLD) ||
+			(p2[BUTTON_SELECT] == INPUT_PRESS && p2[BUTTON_START] != INPUT_PRESS && p2[BUTTON_START] != INPUT_HOLD);
 
 		if (p1SingleEdge || (p2SingleEdge && g->config.play.battle != OPTION_BATTLE_BATTLE)) {
 			if (g->gameplay.lanecoverDoubleclickTimeP1 == 0 || GetTimeWrap() - g->gameplay.lanecoverDoubleclickTimeP1 > 250.0) {
@@ -406,7 +410,7 @@ void ReactInput(game *g) {
 			}
 		}
 
-		if (g->KeyInput.mouse_buttonL == 1) {
+		if (g->KeyInput.mouse_buttonL == INPUT_PRESS) {
 			if (g->gameplay.lanecoverDoubleclickTimeP1 == 0 || GetTimeWrap() - g->gameplay.lanecoverDoubleclickTimeP1 > 250.0) {
 				g->gameplay.lanecoverDoubleclickTimeP1 = GetTimeWrap();
 			}
