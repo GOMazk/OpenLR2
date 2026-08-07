@@ -397,10 +397,10 @@ void ReactInput(game *g) {
 				LoopInRange(g->config.play.hsmin, g->config.play.hsmax, g->config.play.hsmargin, &g->config.play.hiSpeed[PLAYER_1]); //original code doesn't call function, but it's same...
 			}
 			if (g->KeyInput.inputID[KEY_INPUT_DOWN] == 1) LoopInRange(g->config.play.hsmin, g->config.play.hsmax, -g->config.play.hsmargin, &g->config.play.hiSpeed[PLAYER_1]);
-			if (g->KeyInput.inputID[KEY_INPUT_LEFT] == 1){
+			if (g->KeyInput.inputID[KEY_INPUT_RIGHT] == 1){
 				LoopInRange(-1000, 1000, g->config.play.shuttermargin, &g->config.play.lanecoverv[PLAYER_1]); //original code doesn't call function, but it's same...
 			}
-			if (g->KeyInput.inputID[KEY_INPUT_RIGHT] == 1) LoopInRange(-1000, 1000, -g->config.play.shuttermargin, &g->config.play.lanecoverv[PLAYER_1]);
+			if (g->KeyInput.inputID[KEY_INPUT_LEFT] == 1) LoopInRange(-1000, 1000, -g->config.play.shuttermargin, &g->config.play.lanecoverv[PLAYER_1]);
 
 			if (g->config.play.lanecoverv[PLAYER_1] > 100) g->config.play.lanecoverv[PLAYER_1] = 100;
 			if (g->config.play.lanecoverv[PLAYER_1] < 0) g->config.play.lanecoverv[PLAYER_1] = 0;
