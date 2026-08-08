@@ -250,10 +250,6 @@ int main(int argc, char** argv) {
 #endif // NDEBUG
 #endif // _WIN32
 
-	// Enable URI filenames so file:...?mode=ro opens/attaches fail on missing files instead of creating them.
-	// XXX: just use SQLITE_OPEN_URI on the database we end up calling ATTACH on
-	sqlite3_config(SQLITE_CONFIG_URI, 1);
-
 	if constexpr (!is_linux()) {
 		if (!IsWindowsVersionAbove1903()) {
 			MessageBoxA(nullptr,
@@ -641,9 +637,12 @@ int main(int argc, char** argv) {
 
 	memcpy(gs.config.jukebox.rival, gs.net.rivals, 4 * 20);
 	sqlite3* sql3;
-	sqlite3_open(gs.is_starter
+	sqlite3_open_v2(gs.is_starter
 			? fs::make_preferred("LR2files/Database.db" ).data()
-			: fs::make_preferred("LR2files/Database/song.db").data(), &sql3);
+			: fs::make_preferred("LR2files/Database/song.db").data(),
+			&sql3,
+			SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_URI,
+			nullptr);
 	LoadLR2CustomFolder(sql3, &gs.config.jukebox, pathScoreDB, gs.is_starter, gs.cmd_directplay, gs.net.customIR);
 	if (gs.cmd_directplay == false) {
 		if (loadingGrHandle > 0) {
