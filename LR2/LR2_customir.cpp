@@ -334,20 +334,14 @@ static bool WriteCustomIRRivalArtifacts(
 // Can hang for up to 15 minutes if score sending fails time and time again...
 CUSTOMIR_MANAGER::~CUSTOMIR_MANAGER() = default;
 
-std::vector<std::pair<int, std::filesystem::path>> CUSTOMIR_MANAGER::sRivalPaths;
-
-std::optional<std::filesystem::path> CUSTOMIR_MANAGER::RivalPath(int rivalId) {
-	const auto it = std::ranges::find(sRivalPaths, rivalId, &std::pair<int, std::filesystem::path>::first);
-	if (it == sRivalPaths.end()) return std::nullopt;
+std::optional<std::filesystem::path> CUSTOMIR_MANAGER::RivalPath(int rivalId) const {
+	const auto it = std::ranges::find(mRivalPaths, rivalId, &std::pair<int, std::filesystem::path>::first);
+	if (it == mRivalPaths.end()) return std::nullopt;
 	return it->second;
 }
 
-bool CUSTOMIR_MANAGER::CopyRivalIds(std::span<int> rivalsOut) {
-	std::ranges::fill(rivalsOut, 0); // Fill the remainder if rivalsOut.size() < sRivalPaths.size()
-	for (auto [to, from] : std::views::zip(rivalsOut, sRivalPaths)) {
-		to = from.first;
-	}
-	return true;
+std::span<const std::pair<int, std::filesystem::path>> CUSTOMIR_MANAGER::RivalEntries() const {
+	return mRivalPaths;
 }
 
 template<class T>
@@ -449,7 +443,7 @@ bool CUSTOMIR_MANAGER::IsDisplayIrOnline() const {
 
 CUSTOMIR_MANAGER::RivalSyncBatch CUSTOMIR_MANAGER::SyncRivals() {
 	RivalSyncBatch batch{};
-	sRivalPaths.clear();
+	mRivalPaths.clear();
 
 	if (!IsDisplayIrOnline()) {
 		ErrorLogAdd("CustomIR rival sync skipped: display IR offline\n");
@@ -503,7 +497,7 @@ CUSTOMIR_MANAGER::RivalSyncBatch CUSTOMIR_MANAGER::SyncRivals() {
 }
 
 bool CUSTOMIR_MANAGER::ApplyRivalSyncResults(RivalSyncBatch& sync) {
-	sRivalPaths.clear();
+	mRivalPaths.clear();
 	if (!sync.supported) return false;
 
 	cleanUpOldFutures(mDiscardedRivalSyncFutures);
@@ -528,7 +522,7 @@ bool CUSTOMIR_MANAGER::ApplyRivalSyncResults(RivalSyncBatch& sync) {
 		}
 
 		const std::filesystem::path rivalPath = rivalDirectory / std::to_string(task.id);
-		sRivalPaths.emplace_back(task.id, rivalPath);
+		mRivalPaths.emplace_back(task.id, rivalPath);
 		++count;
 		ErrorLogFmtAdd("CustomIR rival ready: %d (%s, scores=%zu)\n", task.id, task.name.c_str(), scores->size());
 	}

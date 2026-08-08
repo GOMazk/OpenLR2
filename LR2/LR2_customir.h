@@ -64,12 +64,12 @@ public:
 	// Success writes LR2files/CustomIRRival/<provider>/ and records rival ids/paths on this manager
 	bool ApplyRivalSyncResults(RivalSyncBatch& sync);
 	// Set only after successful ApplyRivalSyncResults. Empty = not active for this rival; use legacy LR2files/Rival.
-	[[nodiscard]] static std::optional<std::filesystem::path> RivalPath(int rivalId); // XXX: must not be 'static'
-	// Copies CustomIR rival ids into rivalsOut (zero-filled first). Returns false if none active.
-	[[nodiscard]] static bool CopyRivalIds(std::span<int> rivalsOut); // XXX: must not be 'static'
+	[[nodiscard]] std::optional<std::filesystem::path> RivalPath(int rivalId) const;
+	// Synced CustomIR rivals: (id, artifact stem under CustomIRRival/<provider>/). Empty if none active.
+	[[nodiscard]] std::span<const std::pair<int, std::filesystem::path>> RivalEntries() const;
 
 private:
-	static std::vector<std::pair<int, std::filesystem::path>> sRivalPaths; // XXX: must not be 'static'
+	std::vector<std::pair<int, std::filesystem::path>> mRivalPaths;
 	std::vector<std::shared_ptr<CustomIR>> mModules;
 	std::vector<std::future<void>> mSendThreads;
 	std::vector<std::future<std::optional<openlr2::IRRankResult>>> mDiscardedResultIrFutures;

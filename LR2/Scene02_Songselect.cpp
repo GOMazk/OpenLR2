@@ -1540,7 +1540,7 @@ void CheckNewSong(glb_dbgame *glb) {
 			flag = SearchCourseFromDB(glb->pSql, &glb->pGame->sSelect, glb->pGame->sSelect.filterKey, 2);
 		}
 		else if (glb->pGame->sSelect.curQuery[i].findStrPos("FROM song") > 0) {
-			flag = LoadFilteredBmsListFromDB(glb->pGame->sSelect.curQuery[i], glb->pSql, &glb->pGame->sSelect, &glb->pGame->sSelect.filterDifficulty, &glb->pGame->sSelect.filterKey, glb->pGame->sSelect.filterSort, glb->pGame->sSelect.searchMax, glb->pGame->sSelect.unk4fc4[i]);
+			flag = LoadFilteredBmsListFromDB(glb->pGame->sSelect.curQuery[i], glb->pSql, &glb->pGame->sSelect, &glb->pGame->sSelect.filterDifficulty, &glb->pGame->sSelect.filterKey, glb->pGame->sSelect.filterSort, glb->pGame->sSelect.searchMax, glb->pGame->sSelect.unk4fc4[i], glb->pGame->net.customIR);
 		}
 		else {
 			flag = LoadBmsListFromDB(glb->pGame->sSelect.curQuery[i], glb->pSql, &glb->pGame->sSelect, &glb->pGame->sSelect.filterDifficulty, &glb->pGame->sSelect.filterKey, glb->pGame->sSelect.filterSort, glb->pGame->sSelect.searchMax);

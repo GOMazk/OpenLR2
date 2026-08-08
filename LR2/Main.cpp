@@ -636,15 +636,12 @@ int main(int argc, char** argv) {
 		}
 	}
 
-	// Prefer CustomIR-owned rival ids when present; otherwise legacy NETWORK::rivals (LR2IR).
-	if (!gs.net.customIR.CopyRivalIds(gs.config.jukebox.rival)) {
-		memcpy(gs.config.jukebox.rival, gs.net.rivals, sizeof(gs.config.jukebox.rival));
-	}
+	memcpy(gs.config.jukebox.rival, gs.net.rivals, 4 * 20);
 	sqlite3* sql3;
 	sqlite3_open(gs.is_starter
 			? fs::make_preferred("LR2files/Database.db" ).data()
 			: fs::make_preferred("LR2files/Database/song.db").data(), &sql3);
-	LoadLR2CustomFolder(sql3, &gs.config.jukebox, pathScoreDB, gs.is_starter, gs.cmd_directplay);
+	LoadLR2CustomFolder(sql3, &gs.config.jukebox, pathScoreDB, gs.is_starter, gs.cmd_directplay, gs.net.customIR);
 	if (gs.cmd_directplay == false) {
 		if (loadingGrHandle > 0) {
 			DrawExtendGraph(0, 0, resX, resY, loadingGrHandle, 0);
@@ -1113,7 +1110,7 @@ int main(int argc, char** argv) {
 								gs.sSelect.stack_rivalID[gs.sSelect.cur] = 0;
 								gs.sSelect.stack_searchTitle[gs.sSelect.cur] = "検索語句を入力";
 								gs.sSelect.directory = "ROOT";
-								LoadFilteredBmsListFromDB(gs.sSelect.stack_query[gs.sSelect.cur], sql3, &gs.sSelect, &gs.config.select.difficulty, &gs.config.select.key, gs.config.select.sort, 0, 0);
+								LoadFilteredBmsListFromDB(gs.sSelect.stack_query[gs.sSelect.cur], sql3, &gs.sSelect, &gs.config.select.difficulty, &gs.config.select.key, gs.config.select.sort, 0, 0, gs.net.customIR);
 								SwapBmsList(&gs.sSelect);
 							}
 							if (gs.rec.recMode == 4) {

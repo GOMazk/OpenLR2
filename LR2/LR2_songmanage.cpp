@@ -2031,7 +2031,7 @@ int GetFolderDataFromPath(CSTR path, sqlite3 *sql) {
 }
 
 // TODO : rename variables
-int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *diffFilter, int *mode, uint sort, int rivalID, char flag) {
+int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *diffFilter, int *mode, uint sort, int rivalID, char flag, CUSTOMIR_MANAGER& customIR) {
 
 	sqlite3_stmt *pStmt;
 	int lastreadDiff{};
@@ -2064,8 +2064,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 		isRival = 1;
 		SQL_Run("DETACH rivaldb", sql);
 		CSTR str;
-		// XXX: CUSTOMIR_MANAGER needs to be passed in as an argument
-		if (const auto rivalPath = CUSTOMIR_MANAGER::RivalPath(rivalID)) {
+		if (const auto rivalPath = customIR.RivalPath(rivalID)) {
 			cstrSprintf(&str, "ATTACH \'file:%s?mode=ro\' AS rivaldb", std::filesystem::path{*rivalPath}.concat(".db").generic_string().c_str());
 		} else {
 			cstrSprintf(&str, fs::make_preferred("ATTACH \'LR2files/Rival/%d.db\' AS rivaldb").data(), rivalID);
@@ -2568,7 +2567,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 			}
 			ErrorLogFmtAdd("難度を変更します。　%d→%d\n", diffCycle, *diffFilter);
 			flag = 0;
-			return LoadFilteredBmsListFromDB(queryCpy, sql, ss, diffFilter, mode, sort, rivalID, flag);
+			return LoadFilteredBmsListFromDB(queryCpy, sql, ss, diffFilter, mode, sort, rivalID, flag, customIR);
 		}
 	}
 	else if (ss->unk5000 == 0) {
@@ -2633,7 +2632,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 				return -1;
 			}
 			ErrorLogFmtAdd("鍵盤数を変更します %d→%d\n", modeCycle, *mode);
-			return LoadFilteredBmsListFromDB(queryCpy, sql, ss, diffFilter, mode, sort, rivalID, flag);
+			return LoadFilteredBmsListFromDB(queryCpy, sql, ss, diffFilter, mode, sort, rivalID, flag, customIR);
 		}
 		return -1;
 	}
@@ -2681,7 +2680,7 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 }
 
 // LoadLR2CustomFolder
-int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char flag_starter, char flag_direct) {
+int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char flag_starter, char flag_direct, CUSTOMIR_MANAGER& customIR) {
 
 	sqlite3 *scoreDB, *tagDB;
 	char query[1024], query2[256];
@@ -2843,23 +2842,27 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 
 		if (flag_starter == 0) {
 			SQL_Run(fs::make_preferred("DELETE FROM folder WHERE path LIKE \'LR2files/Rival/%\'").data(), sql);
+			SQL_Run(fs::make_preferred("DELETE FROM folder WHERE path LIKE \'LR2files/CustomIRRival/%\'").data(), sql);
 
-			for (int i = 0; i < 20; i++) {
-				if (jb->rival[i] < 1) break;
-				// XXX: CUSTOMIR_MANAGER needs to be passed in as an argument
-				if (const auto rivalPath = CUSTOMIR_MANAGER::RivalPath(jb->rival[i])) {
-					std::filesystem::path folderPath = *rivalPath;
+			const auto customRivals = customIR.RivalEntries();
+			if (!customRivals.empty()) {
+				for (const auto& [rivalId, rivalStem] : customRivals) {
+					if (rivalId < 1) continue;
+					std::filesystem::path folderPath = rivalStem;
 					folderPath += ".lr2folder";
-					char deleteQuery[1024];
-					sqlite3_snprintf(sizeof(deleteQuery), deleteQuery, "DELETE FROM folder WHERE path=\'%q\'", folderPath.string().c_str());
-					SQL_Run(deleteQuery, sql);
 					cstrSprintf(&jb->path[jb->numOfPath], "%s", folderPath.string().c_str());
-				} else {
-					cstrSprintf(&jb->path[jb->numOfPath], fs::make_preferred("LR2files/Rival/%d.lr2folder").data(), jb->rival[i]);
+					GetFolderDataFromPath(jb->path[jb->numOfPath], sql);
+					jb->numOfPath++;
+					folderAddCount++;
 				}
-				GetFolderDataFromPath(jb->path[jb->numOfPath], sql);
-				jb->numOfPath++;
-				folderAddCount++;
+			} else {
+				for (int i = 0; i < 20; i++) {
+					if (jb->rival[i] < 1) break;
+					cstrSprintf(&jb->path[jb->numOfPath], fs::make_preferred("LR2files/Rival/%d.lr2folder").data(), jb->rival[i]);
+					GetFolderDataFromPath(jb->path[jb->numOfPath], sql);
+					jb->numOfPath++;
+					folderAddCount++;
+				}
 			}
 
 			SQL_Run(fs::make_preferred("DELETE FROM folder WHERE path=\'LR2files/CustomFolder/newsong.lr2folder\'").data(), sql);
