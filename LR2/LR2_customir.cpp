@@ -172,8 +172,7 @@ static uint64_t CustomIRRivalLastUpdateHint(const std::filesystem::path& rivalDi
 	const auto dbPath = rivalDirectory / std::format("{}.db", rivalId);
 
 	sqlite3* db = nullptr;
-	if(sqlite3_open_v2(std::format("file:{}?mode=ro", dbPath.generic_string()).c_str(), &db,
-					   SQLITE_OPEN_READONLY | SQLITE_OPEN_URI, nullptr)
+	if(sqlite3_open_v2(dbPath.generic_string().c_str(), &db, SQLITE_OPEN_READONLY, nullptr)
 	   != SQLITE_OK)
 	{
 		return 0;
