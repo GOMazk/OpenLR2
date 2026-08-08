@@ -47,21 +47,26 @@ public:
 	// \retval nullopt - Fail
 	std::optional<openlr2::IRGhostResult> TryGetTargetInfo(const char* songmd5, int mode, int targetPlayerId);
 
-	// XXX: we should support fetching several IRs at once.
 	struct RivalSyncTask {
 		std::string name;
 		std::future<std::optional<std::vector<openlr2::IRRivalScore>>> result;
 		int id{};
 	};
-	struct RivalSyncBatch {
+	struct RivalSyncProvider {
 		std::string providerName;
 		std::vector<RivalSyncTask> tasks;
-		bool supported{};
+		bool listOk{}; // GetRivals succeeded for this provider
 	};
-	// Caller: only when getRival. Returns async work; call ApplyRivalSyncResults after wait or soft skip.
+	struct RivalSyncBatch {
+		std::vector<RivalSyncProvider> providers;
+		[[nodiscard]] bool HasTasks() const;
+	};
+	// Caller: only when getRival. Syncs every logged-in CustomIR that supports rivals.
+	// Returns async work; call ApplyRivalSyncResults after wait or soft skip.
 	RivalSyncBatch SyncRivals();
 	// Applies ready tasks only. Incomplete futures are parked (soft skip / no WinHTTP abort).
-	// Success writes LR2files/CustomIRRival/<provider>/ and records rival ids/paths on this manager
+	// Writes LR2files/CustomIRRival/<provider>/ for every provider; mRivalPaths only for display IR.
+	// Returns true if the display IR GetRivals succeeded (active CustomIR rival folders).
 	bool ApplyRivalSyncResults(RivalSyncBatch& sync);
 	// Set only after successful ApplyRivalSyncResults. Empty = not active for this rival; use legacy LR2files/Rival.
 	[[nodiscard]] std::optional<std::filesystem::path> RivalPath(int rivalId) const;

@@ -585,9 +585,14 @@ int main(int argc, char** argv) {
 	gs.net.getRival = gs.config.network.getRival;
 	if (gs.net.getRival) {
 		auto rivalSync = gs.net.customIR.SyncRivals();
-		if (rivalSync.supported) {
+		if (rivalSync.HasTasks()) {
 			size_t i{};
-			while (!std::ranges::all_of(rivalSync.tasks, isFutureReady, &CUSTOMIR_MANAGER::RivalSyncTask::result)) {
+			const auto allTasksReady = [&] {
+				return std::ranges::all_of(rivalSync.providers, [&](const CUSTOMIR_MANAGER::RivalSyncProvider& provider) {
+					return std::ranges::all_of(provider.tasks, isFutureReady, &CUSTOMIR_MANAGER::RivalSyncTask::result);
+				});
+			};
+			while (!allTasksReady()) {
 				if (GetMouseInput()) {
 					printfDx("Skipped CustomIR rival sync.\n");
 					ScreenFlip();
@@ -596,16 +601,14 @@ int main(int argc, char** argv) {
 				}
 				if (loadingGrHandle > 0)
 					DrawExtendGraph(0, 0, resX, resY, loadingGrHandle, 0);
-				printfDx("Syncing CustomIR rivals");
-				// XXX: this syncs only one CustomIR, but it should sync every single one.
-				// We need this to later effortlessly be able to switch between several display IRs.
-				if (!rivalSync.providerName.empty()) {
-					printfDx(" (%s)", rivalSync.providerName.c_str());
-				}
-				printfDx(":\n");
+				printfDx("Syncing CustomIR rivals:\n");
 				printfDx("Hold left click to skip.\n");
-				for (auto& task : rivalSync.tasks) {
-					printfDx("%s (%d)%s\n", task.name.c_str(), task.id, isFutureReady(task.result) ? " - done!" : ellipsis(i, 3, 20).c_str());
+				for (const auto& provider : rivalSync.providers) {
+					if (provider.tasks.empty()) continue;
+					printfDx("[%s]\n", provider.providerName.c_str());
+					for (const auto& task : provider.tasks) {
+						printfDx("  %s (%d)%s\n", task.name.c_str(), task.id, isFutureReady(task.result) ? " - done!" : ellipsis(i, 3, 20).c_str());
+					}
 				}
 				ScreenFlip();
 				clsDx();

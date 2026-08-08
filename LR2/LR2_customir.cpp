@@ -440,94 +440,117 @@ bool CUSTOMIR_MANAGER::IsDisplayIrOnline() const {
 	return (*irIt)->DidLoginSuccessfully();
 }
 
+bool CUSTOMIR_MANAGER::RivalSyncBatch::HasTasks() const {
+	return std::ranges::any_of(providers, [](const RivalSyncProvider& p) { return !p.tasks.empty(); });
+}
+
 CUSTOMIR_MANAGER::RivalSyncBatch CUSTOMIR_MANAGER::SyncRivals() {
 	RivalSyncBatch batch{};
 	mRivalPaths.clear();
 
-	if (!IsDisplayIrOnline()) {
-		ErrorLogAdd("CustomIR rival sync skipped: display IR offline\n");
-		return batch;
+	for (const auto& ir : mModules) {
+		if (!ir->DidLoginSuccessfully()) continue;
+
+		openlr2::IRRivalListResult list{};
+		switch (ir->GetRivals(list)) {
+		case openlr2::GetStatus::Ok:
+			break;
+		case openlr2::GetStatus::Retry:
+			OverlayNotification("'%s' GetRivals retry ignored\n", ir->Name().c_str());
+			continue;
+		case openlr2::GetStatus::Fail:
+		default:
+			if (ir->Name() == mDisplayIr) {
+				OverlayNotification("'%s' GetRivals failed - falling back to legacy rival\n", ir->Name().c_str());
+			}
+			continue;
+		}
+
+		RivalSyncProvider provider{};
+		provider.providerName = ir->Name();
+		provider.listOk = true;
+		const std::filesystem::path rivalDirectory = CustomIRRivalDirectory(provider.providerName);
+		std::error_code ec;
+		std::filesystem::create_directories(rivalDirectory, ec);
+		provider.tasks.reserve(list.rivals.size());
+		for (const auto& entry : list.rivals) {
+			if (entry.id < 1) continue;
+			const uint64_t lastUpdateHint = CustomIRRivalLastUpdateHint(rivalDirectory, entry.id);
+
+			provider.tasks.push_back(RivalSyncTask{
+				.name = entry.name,
+				.result = std::async(std::launch::async, [ir, id = entry.id, lastUpdateHint]() -> std::optional<std::vector<openlr2::IRRivalScore>> {
+					std::vector<openlr2::IRRivalScore> scores;
+					const auto syncStatus = ir->SyncRivalScores(id, lastUpdateHint, scores);
+					if (syncStatus != openlr2::GetStatus::Ok) {
+						ErrorLogFmtAdd("SyncRivalScores %s for %s id=%d\n",
+							syncStatus == openlr2::GetStatus::Retry ? "retry ignored" : "failed",
+							ir->Name().c_str(),
+							id);
+						return std::nullopt;
+					}
+					return scores;
+				}),
+				.id = entry.id,
+			});
+		}
+		batch.providers.push_back(std::move(provider));
 	}
-	const auto irIt = std::ranges::find(mModules, mDisplayIr, &CustomIR::Name);
-	if (irIt == mModules.end()) return batch;
-	auto ir = *irIt;
-	batch.providerName = ir->Name();
-	const std::filesystem::path rivalDirectory = CustomIRRivalDirectory(batch.providerName);
-	std::error_code ec;
-	std::filesystem::create_directories(rivalDirectory, ec);
 
-	openlr2::IRRivalListResult list{};
-	switch (ir->GetRivals(list)) {
-	case openlr2::GetStatus::Ok:
-		break;
-	case openlr2::GetStatus::Retry:
-		OverlayNotification("'%s' GetRivals retry ignored\n", ir->Name().c_str());
-		return batch;
-	case openlr2::GetStatus::Fail:
-	default:
-		OverlayNotification("'%s' GetRivals failed - falling back to legacy rival\n", ir->Name().c_str());
-		return batch;
+	if (batch.providers.empty()) {
+		ErrorLogAdd("CustomIR rival sync skipped: no logged-in CustomIR with rivals\n");
 	}
-
-	batch.supported = true;
-	batch.tasks.reserve(list.rivals.size());
-	for (const auto& entry : list.rivals) {
-		if (entry.id < 1) continue;
-		const uint64_t lastUpdateHint = CustomIRRivalLastUpdateHint(rivalDirectory, entry.id);
-
-		batch.tasks.push_back(RivalSyncTask{
-			.name = entry.name,
-			.result = std::async(std::launch::async, [ir, id = entry.id, lastUpdateHint]() -> std::optional<std::vector<openlr2::IRRivalScore>> {
-				std::vector<openlr2::IRRivalScore> scores;
-				const auto syncStatus = ir->SyncRivalScores(id, lastUpdateHint, scores);
-				if (syncStatus != openlr2::GetStatus::Ok) {
-					ErrorLogFmtAdd("SyncRivalScores %s for id=%d\n",
-						syncStatus == openlr2::GetStatus::Retry ? "retry ignored" : "failed",
-						id);
-					return std::nullopt;
-				}
-				return scores;
-			}),
-			.id = entry.id,
-		});
-	}
-
 	return batch;
 }
 
 bool CUSTOMIR_MANAGER::ApplyRivalSyncResults(RivalSyncBatch& sync) {
 	mRivalPaths.clear();
-	if (!sync.supported) return false;
-
 	cleanUpOldFutures(mDiscardedRivalSyncFutures);
 
-	const std::filesystem::path rivalDirectory = CustomIRRivalDirectory(sync.providerName);
-	int count = 0;
-	for (auto& task : sync.tasks) {
-		if (!task.result.valid()) continue;
+	bool displayListOk = false;
+	int displayCount = 0;
+	for (auto& provider : sync.providers) {
+		if (!provider.listOk) continue;
 
-		// Soft skip: do not block on unfinished downloads; park like discarded result-IR futures.
-		if (task.result.wait_for(std::chrono::milliseconds(0)) != std::future_status::ready) {
-			mDiscardedRivalSyncFutures.push_back(std::move(task.result));
-			continue;
+		const bool isDisplay = provider.providerName == mDisplayIr;
+		if (isDisplay) displayListOk = true;
+
+		const std::filesystem::path rivalDirectory = CustomIRRivalDirectory(provider.providerName);
+		int providerCount = 0;
+		for (auto& task : provider.tasks) {
+			if (!task.result.valid()) continue;
+
+			// Soft skip: do not block on unfinished downloads; park like discarded result-IR futures.
+			if (task.result.wait_for(std::chrono::milliseconds(0)) != std::future_status::ready) {
+				mDiscardedRivalSyncFutures.push_back(std::move(task.result));
+				continue;
+			}
+
+			std::optional<std::vector<openlr2::IRRivalScore>> scores = task.result.get();
+			if (!scores) continue;
+
+			if (!WriteCustomIRRivalArtifacts(rivalDirectory, task.id, task.name, *scores)) {
+				ErrorLogFmtAdd("CustomIR rival write failed for %s id=%d\n", provider.providerName.c_str(), task.id);
+				continue;
+			}
+
+			const std::filesystem::path rivalPath = rivalDirectory / std::to_string(task.id);
+			if (isDisplay) {
+				mRivalPaths.emplace_back(task.id, rivalPath);
+				++displayCount;
+			}
+			++providerCount;
+			ErrorLogFmtAdd("CustomIR rival ready: %s %d (%s, scores=%zu)\n",
+				provider.providerName.c_str(), task.id, task.name.c_str(), scores->size());
 		}
-
-		std::optional<std::vector<openlr2::IRRivalScore>> scores = task.result.get();
-		if (!scores) continue;
-
-		if (!WriteCustomIRRivalArtifacts(rivalDirectory, task.id, task.name, *scores)) {
-			ErrorLogFmtAdd("CustomIR rival write failed for id=%d\n", task.id);
-			continue;
-		}
-
-		const std::filesystem::path rivalPath = rivalDirectory / std::to_string(task.id);
-		mRivalPaths.emplace_back(task.id, rivalPath);
-		++count;
-		ErrorLogFmtAdd("CustomIR rival ready: %d (%s, scores=%zu)\n", task.id, task.name.c_str(), scores->size());
+		ErrorLogFmtAdd("CustomIR rival sync wrote %d rivals for %s%s\n",
+			providerCount, provider.providerName.c_str(), isDisplay ? " (display)" : "");
 	}
 
-	ErrorLogFmtAdd("CustomIR rival source active (%d rivals)\n", count);
-	return true;
+	if (displayListOk) {
+		ErrorLogFmtAdd("CustomIR rival source active (%d rivals)\n", displayCount);
+	}
+	return displayListOk;
 }
 
 std::string CUSTOMIR_MANAGER::GetWebRankingUrl(const char* songHash) const {
