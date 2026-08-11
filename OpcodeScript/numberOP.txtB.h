@@ -220,3 +220,7 @@ case 291: return "rival_bpm_min";
 case 292: return "rival_IR_rank";
 case 293: return "rival_IR_totalplayer";
 case 294: return "rival_IR_clearrat";
+
+case 421: return "LIFT_1P";
+case 422: return "LIFT_2P";
+

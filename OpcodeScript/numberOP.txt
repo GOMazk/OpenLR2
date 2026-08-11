@@ -220,3 +220,7 @@
 292 rival_IR_rank
 293 rival_IR_totalplayer
 294 rival_IR_clearrate
+
+421 LIFT_1P
+422 LIFT_2P
+

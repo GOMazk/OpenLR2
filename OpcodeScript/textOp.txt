@@ -168,3 +168,5 @@
 
 300 scalingFilter
 301 stretch
+302 LIFT_ONOFF
+

@@ -264,7 +264,7 @@
 268 2P_POORBGA_TIME
 
 
-270 1P_SUD+Setting
+270 1P_SUD+Setting (also LIFT value: Start/Select held while lift on)
 271 2P_SUD+Setting
 
 

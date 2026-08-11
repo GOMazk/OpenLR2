@@ -1881,35 +1881,62 @@ int main(int argc, char** argv) {
 															|| gs.skstruct.image.dst[i].timer == 140))
 					) {
 					int objx = 0, objy = 0;
-					if ((gs.skstruct.adjust.note_x[PLAYER_1] || gs.skstruct.adjust.note_y[PLAYER_1] || gs.skstruct.adjust.note_x[PLAYER_2] || gs.skstruct.adjust.note_y[PLAYER_2]) && gs.procSelecter == 4) {
+					const bool hasLift = ((gs.config.play.lift[PLAYER_1] && gs.config.play.liftv[PLAYER_1])
+						|| (gs.config.play.lift[PLAYER_2] && gs.config.play.liftv[PLAYER_2]));
+					if ((gs.skstruct.adjust.note_x[PLAYER_1] || gs.skstruct.adjust.note_y[PLAYER_1] || gs.skstruct.adjust.note_x[PLAYER_2] || gs.skstruct.adjust.note_y[PLAYER_2] || hasLift) && gs.procSelecter == 4) {
 						int t = gs.skstruct.image.dst[i].timer;
 						//refactored
 						if ((50 <= t && t < 60) || (70 <= t && t < 80) || t == 48) {
 							objx = gs.skstruct.adjust.note_x[PLAYER_1];
-							objy = gs.skstruct.adjust.note_y[PLAYER_1];
+							objy = gs.skstruct.adjust.note_y[PLAYER_1] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_1);
 						}
 						else if((60 <= t && t < 70) || (80 <= t && t < 90) || t == 49) {
 							objx = gs.skstruct.adjust.note_x[PLAYER_2];
-							objy = gs.skstruct.adjust.note_y[PLAYER_2];
+							objy = gs.skstruct.adjust.note_y[PLAYER_2] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_2);
 						}
 						else if ((100 <= t && t < 110) || (120 <= t && t < 130)) {
+							const float h0 = gs.skstruct.image.dst[i].draw[0].h;
+							const float hN = gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h;
+							const bool smallH = (-100.0 < hN && hN < 100.0 && -100.0 < h0 && h0 < 100.0);
 							objx = gs.skstruct.adjust.note_x[PLAYER_1];
 							objy = gs.skstruct.adjust.note_y[PLAYER_1];
-							if (-100.0 < gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h && gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h < 100.0
-								&& -100.0 < gs.skstruct.image.dst[i].draw[0].h && gs.skstruct.image.dst[i].draw[0].h < 100.0) {
-
+							// Short sprites: skip note_xy. Lift only if above judgeline (lane beam).
+							if (smallH) {
 								objx = 0;
 								objy = 0;
 							}
+							const int liftY = (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_1);
+							if (liftY != 0) {
+								bool belowJudgeline = false;
+								if (smallH && gs.skstruct.dst_JUDGELINE[0].dstCount > 0) {
+									const float jy = gs.skstruct.dst_JUDGELINE[0].draw[gs.skstruct.dst_JUDGELINE[0].dstCount - 1].y;
+									if (gs.skstruct.image.dst[i].draw[0].y >= jy) belowJudgeline = true;
+								}
+								if (!belowJudgeline) objy += liftY;
+							}
 						}
 						else if ((110 <= t && t < 120) || (130 <= t && t < 140)) {
+							const float h0 = gs.skstruct.image.dst[i].draw[0].h;
+							const float hN = gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h;
+							const bool smallH = (-100.0 < hN && hN < 100.0 && -100.0 < h0 && h0 < 100.0);
 							objx = gs.skstruct.adjust.note_x[PLAYER_2];
 							objy = gs.skstruct.adjust.note_y[PLAYER_2];
-							if (-100.0 < gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h && gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h < 100.0
-								&& -100.0 < gs.skstruct.image.dst[i].draw[0].h && gs.skstruct.image.dst[i].draw[0].h < 100.0) {
-
+							if (smallH) {
 								objx = 0;
 								objy = 0;
+							}
+							const int liftY = (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_2);
+							if (liftY != 0) {
+								bool belowJudgeline = false;
+								if (smallH && gs.skstruct.dst_JUDGELINE[1].dstCount > 0) {
+									const float jy = gs.skstruct.dst_JUDGELINE[1].draw[gs.skstruct.dst_JUDGELINE[1].dstCount - 1].y;
+									if (gs.skstruct.image.dst[i].draw[0].y >= jy) belowJudgeline = true;
+								}
+								else if (smallH && gs.skstruct.dst_JUDGELINE[0].dstCount > 0) {
+									const float jy = gs.skstruct.dst_JUDGELINE[0].draw[gs.skstruct.dst_JUDGELINE[0].dstCount - 1].y;
+									if (gs.skstruct.image.dst[i].draw[0].y >= jy) belowJudgeline = true;
+								}
+								if (!belowJudgeline) objy += liftY;
 							}
 						}
 						else {
@@ -1921,7 +1948,7 @@ int main(int argc, char** argv) {
 									&& (gs.skstruct.dst_JUDGELINE[0].draw->y >= gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].y || gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h < 0.0)) {
 
 									objx = gs.skstruct.adjust.note_x[PLAYER_1];
-									objy = gs.skstruct.adjust.note_y[PLAYER_1];
+									objy = gs.skstruct.adjust.note_y[PLAYER_1] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_1);
 								}
 
 								else if (gs.skstruct.dst_JUDGELINE[1].dstCount > 0) {
@@ -1930,7 +1957,7 @@ int main(int argc, char** argv) {
 										&& (gs.skstruct.dst_JUDGELINE[1].draw->y >= gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].y || gs.skstruct.image.dst[i].draw[gs.skstruct.image.dst[i].dstCount - 1].h < 0.0)) {
 
 										objx = gs.skstruct.adjust.note_x[PLAYER_2];
-										objy = gs.skstruct.adjust.note_y[PLAYER_2];
+										objy = gs.skstruct.adjust.note_y[PLAYER_2] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_2);
 									}
 								}
 							}
@@ -2007,6 +2034,10 @@ int main(int argc, char** argv) {
 			if (GetOptionFlag_dst(&gs, gs.skstruct.otherObject[2].dst[i].opt1) && GetOptionFlag_dst(&gs, gs.skstruct.otherObject[2].dst[i].opt2)
 				&& GetOptionFlag_dst(&gs, gs.skstruct.otherObject[2].dst[i].opt3) && gs.skstruct.adjust.dark_type != 2) {
 
+				const int sliderType = gs.skstruct.otherObject[2].src[i].op3;
+				if (sliderType == 27 && gs.config.play.lift[PLAYER_1] != 1) continue; // Extension: OpenLR2 lift
+				if (sliderType == 28 && gs.config.play.lift[PLAYER_2] != 1) continue; // Extension: OpenLR2 lift
+
 				AddDrawingBuffer_Slider(&gs.skstruct.drBuf, &gs.skstruct.otherObject[2].src[i], &gs.skstruct.otherObject[2].dst[i], &gs.timer1);
 
 			}
@@ -2015,7 +2046,25 @@ int main(int argc, char** argv) {
 			if (GetOptionFlag_dst(&gs, gs.skstruct.otherObject[6].dst[i].opt1) && GetOptionFlag_dst(&gs, gs.skstruct.otherObject[6].dst[i].opt2)
 				&& GetOptionFlag_dst(&gs, gs.skstruct.otherObject[6].dst[i].opt3) && gs.skstruct.adjust.dark_type != 2) {
 
-				AddDrawingBuffer_Numbers(&gs.skstruct.drBuf, &gs.skstruct.otherObject[6].src[i], &gs.skstruct.otherObject[6].dst[i], &gs.timer1, SetObjectValue_Num(&gs, gs.skstruct.otherObject[6].src[i].op1), 0, 0);
+				const int numId = gs.skstruct.otherObject[6].src[i].op1;
+				if (numId == 421 && gs.config.play.lift[PLAYER_1] != 1) continue; // Extension: OpenLR2 lift
+				if (numId == 422 && gs.config.play.lift[PLAYER_2] != 1) continue; // Extension: OpenLR2 lift
+
+				// Type A ghost / Fast-Slow: DST timer 46/47 = JUDGETIMER (same as LUXURY Simple Skin).
+				int numX = 0, numY = 0;
+				if (gs.procSelecter == 4) {
+					const int t = gs.skstruct.otherObject[6].dst[i].timer;
+					if (t == 46) {
+						numX = gs.skstruct.adjust.note_x[PLAYER_1];
+						numY = gs.skstruct.adjust.note_y[PLAYER_1] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_1);
+					}
+					else if (t == 47) {
+						numX = gs.skstruct.adjust.note_x[PLAYER_2];
+						numY = gs.skstruct.adjust.note_y[PLAYER_2] + (int)GetLiftOffsetY(gs.skstruct, gs.config.play, PLAYER_2);
+					}
+				}
+
+				AddDrawingBuffer_Numbers(&gs.skstruct.drBuf, &gs.skstruct.otherObject[6].src[i], &gs.skstruct.otherObject[6].dst[i], &gs.timer1, SetObjectValue_Num(&gs, gs.skstruct.otherObject[6].src[i].op1), numX, numY);
 
 			}
 		}

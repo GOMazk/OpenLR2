@@ -4,6 +4,9 @@
 
 struct sqlite3;
 
+// Visual-only Y offset: raise judge/notes by liftv% of lane height (negative = up).
+float GetLiftOffsetY(const skstruct &sk, const CONFIG_PLAY &cfg, int player);
+
 int ApplyJudgeNote(int judge, game *g, int player, int lane, Timer *T, char isReplay);
 int ApplyJudgeMine(int judge, game *g, int player, int lane, int damage);
  
