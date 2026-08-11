@@ -253,7 +253,6 @@ int IsAltSoundExist(CSTR *filepath){
 int ReleaseSound(AUDIO *aud, SOUNDDATA *sound){
 	CSTR &filepath = sound->filename;
 
-	sound->streaming = false;
 	if (!sound->load) {
 		return -1;
 	}
@@ -582,7 +581,7 @@ int RecordFadeout(AUDIO *aud, double from, double length) {
 	return 1;
 }
 
-int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, bool isLoop, bool /*disableDSP*/, bool isPreview) {
+int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, bool isLoop) {
 
 	CSTR path;
 	path.assign(&filepath);
@@ -598,11 +597,9 @@ int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, bool isLoop, bool /*d
 	}
 
 	if (sound->load) {
-		if (filepath.isSame(&sound->filename) && isPreview == sound->streaming) return 1;
+		if (filepath.isSame(&sound->filename)) return 1;
 		ReleaseSound(aud, sound);
 	}
-
-	sound->streaming = isPreview;
 
 	if (!aud->disableFmod) {
 		FMOD_RESULT result;
@@ -613,9 +610,6 @@ int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, bool isLoop, bool /*d
 		}
 		else {
 			FMOD_MODE mode = !isLoop ? FMOD_LOOP_OFF : FMOD_LOOP_NORMAL;
-			if (isPreview) {
-				mode |= FMOD_CREATESTREAM;
-			}
 			result = FMOD_System_CreateSound(aud->fmodSys, filepath.body, mode, nullptr, &sound->fmod_sound);
 		}
 
@@ -636,9 +630,7 @@ int LoadSound(AUDIO *aud, SOUNDDATA *sound, CSTR filepath, bool isLoop, bool /*d
 		return 1;
 	}
 
-	if (isPreview) SetCreateSoundDataType(3);
 	sound->soundHandle = LoadSoundMem(filepath.body, 3, -1);
-	if (isPreview) SetCreateSoundDataType(0);
 	if (sound->soundHandle == -1) {
 		sound->filename.fillzero();
 		sound->load = true;

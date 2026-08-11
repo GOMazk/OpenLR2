@@ -12,7 +12,7 @@ int EndSound(AUDIO * aud);
 //load file
 int IsAltSoundExist(CSTR * filepath);
 int SOUND_normalize(AUDIO * aud, SOUNDDATA * sound);
-int LoadSound(AUDIO * aud, SOUNDDATA * sound, CSTR filepath, bool isLoop, bool disableDSP, bool previewFlag);
+int LoadSound(AUDIO * aud, SOUNDDATA * sound, CSTR filepath, bool isLoop);
 
 //unload
 int ReleaseSound(AUDIO * aud, SOUNDDATA * sound);
