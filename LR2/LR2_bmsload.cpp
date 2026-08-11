@@ -325,14 +325,6 @@ int ReleaseBGA(game *g){
 	return 1;
 }
 
-void ProcLoadBmsResource(game *g) {
-	g->gameplay.bmsResourceLoaded = 0;
-	g->gameplay.flag_closingPhase = 0;
-	LoadBmsResource(&g->gameplay, g->sSelect.metaSelected.filepath, &g->audio, &g->config, &g->sSelect.metaSelected, g->skstruct.flag_BGA, g->skstruct.flag_flip, 0, false);
-	g->gameplay.bmsResourceLoaded = 1;
-}
-
-
 bool isVisibleNote(int ch){
 	if (CHANNEL_1P_NOTE_SC <= ch && ch <= CHANNEL_2P_NOTE_END) {
 		return true;

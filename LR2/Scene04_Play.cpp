@@ -1688,13 +1688,13 @@ void ProcGameThread(game *g) {
 	}
 
 	if (g->gameplay.flag_retry == 0 && g->config.system.isablebmsthread == 0) {
-		std::jthread(ProcLoadBmsResource, g).detach();
+		g->gameplay.bmsResourceLoaded = 0;
+		g->gameplay.flag_closingPhase = 0;
+		LoadBmsResource(&g->gameplay, g->sSelect.metaSelected.filepath, &g->audio, &g->config, &g->sSelect.metaSelected, g->skstruct.flag_BGA, g->skstruct.flag_flip, 0, false);
 	}
-	else {
-		g->gameplay.bmsResourceLoaded = 1;
-	}
+	g->gameplay.bmsResourceLoaded = 1;
 
-	while (GetTimeLapse(0, &g->timer1) < g->skstruct.loadstart + g->skstruct.loadend || g->gameplay.bmsResourceLoaded == 0) {
+	while (GetTimeLapse(0, &g->timer1) < g->skstruct.loadstart + g->skstruct.loadend) {
 		std::this_thread::sleep_for(std::chrono::milliseconds(16));
 		if (g->gameplay.flag_closingPhase) {
 			g->gameplay.flag_threadExist = 0;

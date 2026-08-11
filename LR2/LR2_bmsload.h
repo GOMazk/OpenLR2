@@ -12,7 +12,6 @@ int InitGameplay_retry(gameplay *gp, AUDIO *snd, game *g);
 // \param isMainThread when true, BGA loads synchronously (required on main thread). when false, uses DxLib async BGA
 // load so the main thread can pump completion (#263).
 int LoadBmsResource(gameplay *gp, CSTR BMSfilepath, AUDIO *aud, ConfigStruct *cfg, BMSMETA *meta, char bga, char flip, char noVideo, bool isMainThread);
-void ProcLoadBmsResource(game *g);
 
 int StopAllKeysound(game *g);
 int InitKeysound(game *g);
