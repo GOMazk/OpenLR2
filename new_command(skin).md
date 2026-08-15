@@ -36,6 +36,16 @@ Imported score displayed
 
 Also active while Start/Select is held and lift is on (same timing as Sudden+ value display). Shows the lift value HUD when lift is enabled.
 
+### `274`
+* 260817
+
+is 1P lanecover enabled
+
+### `275`
+* 260817
+
+is 2P lanecover enabled
+
 ## bargraph_type
 ### `48` (from LR2 with Fast/Slow)
 * 260624

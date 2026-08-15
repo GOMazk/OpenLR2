@@ -943,6 +943,17 @@ bool GetOptionFlag_dst(game *gs, int option) {
 			}
 			break;
 
+		case 274: // Extension: is lanecoverP1 enabled
+			if (gs->procSelecter == 4) {
+				if (gs->gameplay.lanecoverDisplayP1) return ret;
+			}
+			break;
+		case 275: // Extension: is lanecoverP2 enabled
+			if (gs->procSelecter == 4) {
+				if (gs->gameplay.lanecoverDisplayP2) return ret;
+			}
+			break;
+
 		case 280:
 			if ((gs->gameplay.courseStageNow != gs->gameplay.courseStageCount - 1) && gs->gameplay.courseStageNow == 0 && gs->gameplay.courseStageCount > 0) return ret;
 			break;
