@@ -9,9 +9,9 @@ int PlayerCheckAndSwap(gameplay * gp);
 int InitGameplay(gameplay *gp, CONFIG_PLAY *cfg);
 int InitGameplay_retry(gameplay *gp, AUDIO *snd, game *g);
 
-//resource
-int LoadBmsResource(gameplay *gp, CSTR BMSfilepath, AUDIO *aud, ConfigStruct *cfg, BMSMETA *meta, char bga, char flip, char noVideo);
-void ProcLoadBmsResource(game *g);
+// \param isMainThread when true, BGA loads synchronously (required on main thread). when false, uses DxLib async BGA
+// load so the main thread can pump completion (#263).
+int LoadBmsResource(gameplay *gp, CSTR BMSfilepath, AUDIO *aud, ConfigStruct *cfg, BMSMETA *meta, char bga, char flip, char noVideo, bool isMainThread);
 
 int StopAllKeysound(game *g);
 int InitKeysound(game *g);

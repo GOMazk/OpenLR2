@@ -1698,7 +1698,7 @@ static void ThreadProc_LoadPreview(game *g) {
 	g->gameplay.isPreviewLoad = 1;
 	ParseBmsFile(&g->gameplay, g->gameplay.previewBMSfilepath, &g->audio, &g->config, &meta, 0, 0);
 	if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == 2 && g->gameplay.previewStatus == 1) {
-		LoadBmsResource(&g->gameplay, g->gameplay.previewBMSfilepath, &g->audio, &g->config, &meta, 0, g->skstruct.flag_flip, 1);
+		LoadBmsResource(&g->gameplay, g->gameplay.previewBMSfilepath, &g->audio, &g->config, &meta, 0, g->skstruct.flag_flip, 1, false);
 	}
 
 	if (g->gameplay.flag_closingPhase == 0 && g->procSelecter == 2 && g->gameplay.previewStatus == 1) {

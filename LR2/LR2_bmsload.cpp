@@ -325,14 +325,6 @@ int ReleaseBGA(game *g){
 	return 1;
 }
 
-void ProcLoadBmsResource(game *g) {
-	g->gameplay.bmsResourceLoaded = 0;
-	g->gameplay.flag_closingPhase = 0;
-	LoadBmsResource(&g->gameplay, g->sSelect.metaSelected.filepath, &g->audio, &g->config, &g->sSelect.metaSelected, g->skstruct.flag_BGA, g->skstruct.flag_flip, 0);
-	g->gameplay.bmsResourceLoaded = 1;
-}
-
-
 bool isVisibleNote(int ch){
 	if (CHANNEL_1P_NOTE_SC <= ch && ch <= CHANNEL_2P_NOTE_END) {
 		return true;
@@ -656,7 +648,7 @@ int InitGameplay(gameplay *gp, CONFIG_PLAY *cfg) {
 	return 1;
 }
 
-int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct *cfg, BMSMETA */*meta*/, char /*bga*/, char /*flip*/, char noVideo){
+int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct *cfg, BMSMETA */*meta*/, char /*bga*/, char /*flip*/, char noVideo, bool isMainThread){
 
 	int Rtmp, Gtmp, Btmp;
 
@@ -720,13 +712,14 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 		gp->loadObject_loaded = gp->loadObject_total;
 		return 1;
 	}
-	
-	// Add async load functions from DxLib: SetUseASyncLoadFlag, CheckHandleASyncLoad
-	// We are on a non-main thread here, but graphics APIs, DirectX normally and OpenGL with dxlib-for-linux, require
-	// resources to be loaded from the main thread. 
-	// The async calls will make DxLib do it itself on the main thread.
-	// This fixes crashes in DX11 and fixes BGAs not displaying with dxlib-for-linux.
-	if (cfg->system.isablebmsthread == 0) {
+
+	// Use DxLib's async load methods when not on the main thread.
+	// Needed because graphics APIs, DirectX normally and OpenGL with dxlib-for-linux, require resources to be
+	// loaded from the main thread.
+	// These async methods will make DxLib delay uploading resources to the GPU until we call ProcessMessage, which
+	// we do on the main thread.
+	// Fixes crashes in DX11 and fixes BGAs not displaying with dxlib-for-linux.
+	if (!isMainThread) {
 #ifdef _WIN32
 		CoInitialize(NULL);
 #endif // _WIN32
@@ -746,13 +739,13 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 			}
 
 			// Count only after load finish. Only add if using synchronous load here
-			if (cfg->system.isablebmsthread != 0) {
+			if (isMainThread) {
 				gp->loadObject_loaded++;
 			}
 		}
 
 		if (gp->flag_closingPhase) {
-			if (cfg->system.isablebmsthread == 0) {
+			if (!isMainThread) {
 				SetUseASyncLoadFlag(FALSE);
 #ifdef _WIN32
 				CoUninitialize();
@@ -763,7 +756,7 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 	}
 
 	// Check and wait until the handles finished loading
-	if (cfg->system.isablebmsthread == 0) {
+	if (!isMainThread) {
 		std::unordered_map<int, bool> bgaHandleLoaded;	// to prevent count repeateadly
 		for (int i = 0; i < SLOTS; i++) {
 			if (gp->bgaHandle[i] != -1) {
@@ -806,7 +799,7 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 	}
 
 	SetTransColor(Rtmp, Gtmp, Btmp);
-	if (cfg->system.isablebmsthread == 0) {
+	if (!isMainThread) {
 		SetUseASyncLoadFlag(FALSE);
 #ifdef _WIN32
 		CoUninitialize();
@@ -4108,7 +4101,7 @@ int ParseBmsFile(gameplay *gp, CSTR filename, AUDIO *aud, ConfigStruct* cfg, BMS
 		}
 	}
 	if (cfg->system.isablebmsthread == 1 && gp->isPreviewLoad == 0) {
-		LoadBmsResource(gp, filename, aud, cfg, meta, bgaFlag, scratchSide, 0);
+		LoadBmsResource(gp, filename, aud, cfg, meta, bgaFlag, scratchSide, 0, true);
 	}
 	for (int i = 0; i < 5; i++) {
 		if (gp->fadeinSOUNDstart[i] <= 0 || gp->fadeinSOUNDend[i] <= 0) {
