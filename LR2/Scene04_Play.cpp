@@ -1853,7 +1853,7 @@ int ProcS_Play(game *g, sqlite3* sql) {
 			g->config.play.gaugeType[PLAYER_2] = g->config.play.gaugeType[PLAYER_1];
 			g->config.play.random[PLAYER_2] = g->config.play.random[PLAYER_1];
 
-			if (g->config.play.m_gas && !g->gameplay.isAutoplay) {
+			if (!g->gameplay.isAutoplay) {
 				g->config.play.gaugeType[PLAYER_1] = origGauge;
 			}
 		}
