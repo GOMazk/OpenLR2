@@ -831,7 +831,6 @@ struct SOUNDDATA {
 	int soundHandle{};
 	bool load{};
 	bool loop{};
-	bool streaming = false;
 };
 
 struct inputStructure {

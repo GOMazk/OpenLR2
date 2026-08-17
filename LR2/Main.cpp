@@ -793,7 +793,7 @@ int main(int argc, char** argv) {
 	InitSound(&gs.audio,gs.config.sound.bufferlength,gs.config.sound.numbuffers,gs.config.sound.disableDSP,gs.config.sound.output,gs.config.sound.driver);
 	ReadLR2SoundSet(&gs, gs.config.skin.skinFilePath[10], 0);
 	if (gs.is_starter == false) {
-		if (LoadSound(&gs.audio, &gs.gameplay.muon, fs::make_preferred("LR2files/Config/muon.wav").data(), true, gs.config.sound.disableDSP, false) == -1) {
+		if (LoadSound(&gs.audio, &gs.gameplay.muon, fs::make_preferred("LR2files/Config/muon.wav").data(), true) == -1) {
 			ErrorLogAdd("muon.wavがありません\n");
 			gs.procSelecter = 0;
 		}
