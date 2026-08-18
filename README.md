@@ -48,6 +48,19 @@ https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR
 
 - You can also set default resolution in "LR2files/Config/openlr2-config.xml" (0:SD 1:HD 2:FHD)
 
+## Third party tools
+- Launcher (partial support OpenLR2)
+  
+  [lr2-launcher](https://github.com/SayakaIsBaka/lr2-launcher)
+
+  [LR2Nexus](https://github.com/Unengine/LR2Nexus)
+
+
+- Score importer
+  
+  [BokutachiToOpenLR2ScoreImporter](https://github.com/Unengine/BokutachiToOpenLR2ScoreImporter)
+
+
 ## Known issues
 
 - score save issue on NONSTOP MIX
