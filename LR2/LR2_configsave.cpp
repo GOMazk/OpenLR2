@@ -579,6 +579,7 @@ int WriteOpenLr2ConfigXml(game *g, const char *filename){
 
 	fputs("\t<play>\n", pFile);
 	WriteXML_Tab2BoolAsInt(pFile, "gaugeautoshift", (g->config).play.m_gas);
+	WriteXML_Tab2BoolAsInt(pFile, "enable_newrandomrestart", (g->config).play.enableNewRandomRestart);
 	WriteXML_Tab2Int(pFile, "lifttype", (g->config).play.lift[PLAYER_1]);
 	WriteXML_Tab2Int(pFile, "lift", (g->config).play.liftv[PLAYER_1]);
 	fputs("\t</play>\n", pFile);
@@ -1162,6 +1163,7 @@ int ReadOpenLr2Config(game* g, const char* filepath) {
 		g->config.system.screenmode = 0; // out-of-range
 
 	ReadXml_PositiveIntAsBool("config", "play", "gaugeautoshift", false, &g->config.play.m_gas, hXml);
+	ReadXml_PositiveIntAsBool("config", "play", "enable_newrandomrestart", true, &g->config.play.enableNewRandomRestart, hXml);
 	ReadXml_Int("config", "play", "lifttype", 0, &g->config.play.lift[PLAYER_1], hXml);
 	if (g->config.play.lift[PLAYER_1] != 0) g->config.play.lift[PLAYER_1] = 1;
 	g->config.play.lift[PLAYER_2] = g->config.play.lift[PLAYER_1];
