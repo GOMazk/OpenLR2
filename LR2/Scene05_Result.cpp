@@ -317,7 +317,7 @@ int ProcI_Result(game *g) {
 					g->KeyInput.p2_buttonInput[2] == 2 || g->KeyInput.p2_buttonInput[4] == 2 || g->KeyInput.p2_buttonInput[6] == 2) 
 				&& g->gameplay.replay.status != 2 && !g->config.play.m_isLunaris) {
 
-				const bool newRandom = g->config.play.enableNewRandomRestart && (g->KeyInput.p1_buttonInput[2] == 2 || g->KeyInput.p2_buttonInput[2] == 2);
+				const bool newRandom = g->config.play.newRandomRestart && (g->KeyInput.p1_buttonInput[2] == 2 || g->KeyInput.p2_buttonInput[2] == 2);
 				QuickRestart(*g, newRandom);
 
 				if (g->skstruct.flag_flip) {
