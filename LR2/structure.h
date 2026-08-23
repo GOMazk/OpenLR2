@@ -416,7 +416,7 @@ struct CONFIG_PLAY {
 	int m_extra{};
 	bool m_isLunaris{};
 	bool m_gas{};
-	bool enableNewRandomRestart{};
+	bool newRandomRestart{};
 	int gomiscore{};//unused
 	bool disableCurSpeedChange{};
 	bool disableLeftClickExit{};
