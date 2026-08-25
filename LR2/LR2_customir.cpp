@@ -526,7 +526,8 @@ IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player, std::str
 		song.courseType = curSong.courseType;
 		songPlayLevel = curSong.level;
 	}
-	CONFIG_PLAY& cfg = game.config.play;
+	gameplay& gameplay = game.gameplay;
+	const CONFIG_PLAY& cfg = gameplay.actualPlayConfigCopyForResultIr ? *gameplay.actualPlayConfigCopyForResultIr : game.config.play;
 	settings.gaugeType = cfg.gaugeType[_player];
 	settings.random[PLAYER_1] = cfg.random[PLAYER_1];
 	settings.random[PLAYER_2] = cfg.random[PLAYER_2];
@@ -563,7 +564,6 @@ IRScoreInternal::IRScoreInternal(game& game, sqlite3* sql, int _player, std::str
 	settings.gomiscore = cfg.gomiscore;
 	settings.disableCurSpeedChange = cfg.disableCurSpeedChange;
 
-	gameplay& gameplay = game.gameplay;
 	state.player = _player;
 	state.keymode = gameplay.keymode;
 	state.randomseed = gameplay.randomseed;
@@ -675,12 +675,14 @@ static std::optional<openlr2::IRRankResult> ResultIrAsync(std::shared_ptr<Custom
 }
 void CUSTOMIR_MANAGER::BeginResultIr(game& game, sqlite3* sql, int player, std::string ghost) {
 	if (mModules.empty()) {
+		game.gameplay.actualPlayConfigCopyForResultIr.reset();
 		return;
 	}
 
 	IRScoreInternal internal{ game, sql, player, std::move(ghost) };
 	IRScoreV1 scoreV1;
 	internal.MakeScoreV1(scoreV1);
+	game.gameplay.actualPlayConfigCopyForResultIr.reset();
 
 	SendScoreMultiplexed(
 			mSendThreads, scoreV1,

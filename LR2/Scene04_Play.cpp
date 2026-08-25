@@ -1841,7 +1841,6 @@ int ProcS_Play(game *g, sqlite3* sql) {
 		}
 		else {
 			int origGauge = g->config.play.gaugeType[PLAYER_1];
-			//TOFIX : seed is not putted into replaydata, when use ghostbattle. (retry puts seed) (see also ParseBmsFile())
 			if(g->sSelect.bmsList[g->sSelect.cur_song].keymode > 9) {
 				int iDpFlipTemp{};
 				// TODO: make GetTargetInfo take a bool for dp flip
@@ -1854,9 +1853,15 @@ int ProcS_Play(game *g, sqlite3* sql) {
 			g->config.play.gaugeType[PLAYER_2] = g->config.play.gaugeType[PLAYER_1];
 			g->config.play.random[PLAYER_2] = g->config.play.random[PLAYER_1];
 
-			if (g->config.play.m_gas && !g->gameplay.isAutoplay) {
+			if (!g->gameplay.isAutoplay) {
 				g->config.play.gaugeType[PLAYER_1] = origGauge;
 			}
+		}
+		 // if g-battle is on, target_id is valid and replay is "recording", save the options to player 1
+		if (g->gameplay.ghostBattle && g->gameplay.replay.status == 1) {
+			OverwriteReplayData(&g->gameplay.replay, 0, 0x65, static_cast<short>(g->config.play.gaugeType[PLAYER_1]));
+			OverwriteReplayData(&g->gameplay.replay, 0, 0x67, static_cast<short>(g->config.play.random[PLAYER_1]));
+			OverwriteReplayData(&g->gameplay.replay, 0, 0xc9, static_cast<short>(OPTION_BATTLE_OFF));
 		}
 	}
 

@@ -1478,6 +1478,8 @@ struct gameplay {
 	int bpmChangedBmstime; /* bpm change timing */
 	char ghostBattle;
 	std::optional<CONFIG_PLAY> playConfigBackupBeforeTargetSomething;
+	// Play config including temporary options such as those for g-battle
+	std::optional<CONFIG_PLAY> actualPlayConfigCopyForResultIr;
 	int delayDetectedCount;
 	int delayCheckCount;
 	char isCourse; 
