@@ -1503,6 +1503,8 @@ struct gameplay {
 	CSTR previewBMShash;
 	CSTR previewBMSfilepath;
 	std::mutex criticalSection;
+	std::array<int, PLAYER_MAX> lastFastSlowBySide = {};
+	std::array<int, PLAYER_MAX> lastHitOffsetBySide = {};
 };
 
 struct SkinManage {
