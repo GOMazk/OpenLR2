@@ -21,8 +21,9 @@ static void MessageBoxA(const char*,const char* title,const char*desc,const char
 // Active only when song-select lift option is on. Lane height prefers skin LIFT slider
 // range (op2) so notes move 1:1 with the lift cover graphic; falls back to note DST y.
 float GetLiftOffsetY(const skstruct &sk, const CONFIG_PLAY &cfg, int player) {
-	if (!cfg.lift[player]) return 0.f;
-	int liftv = cfg.liftv[player];
+	const int cfgPlayer = (cfg.battle == OPTION_BATTLE_BATTLE) ? player : PLAYER_1;
+	if (!cfg.lift[cfgPlayer]) return 0.f;
+	const int liftv = cfg.liftv[cfgPlayer];
 	if (liftv <= 0) return 0.f;
 
 	const int liftType = (player == PLAYER_1) ? 27 : 28;

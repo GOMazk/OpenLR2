@@ -2237,7 +2237,7 @@ uint SetObjectValue_Num(game *g, int op) {
 		case 295: return g->gameplay.randomLayoutForDisplay[PLAYER_1]; // Extension: LR2OOL SP and DP 1P random
 		case 418: return g->gameplay.randomLayoutForDisplay[PLAYER_2]; // Extension: LR2OOL DP 2P random
 		case 421: return g->config.play.liftv[PLAYER_1]; // Extension: OpenLR2 lift
-		case 422: return g->config.play.liftv[PLAYER_2]; // Extension: OpenLR2 lift
+		case 422: return (g->config.play.battle == OPTION_BATTLE_BATTLE) ? g->config.play.liftv[PLAYER_2] : g->config.play.liftv[PLAYER_1]; // Extension: OpenLR2 lift
 	}
 	return 0;
 }
@@ -2714,8 +2714,14 @@ int SetObjectValue_Slider(game *g, skstruct *sk, Timer *T, char flag) {
 					SliderByTime(&sk->drBuf, &sk->otherObject[2].src[i], &sk->otherObject[2].dst[i], T, 0, 100, &g->config.play.liftv[PLAYER_1], &g->KeyInput, i);
 				break;
 			case 28: // Extension: OpenLR2 lift
-				if (g->config.play.lift[PLAYER_2] == 1)
-					SliderByTime(&sk->drBuf, &sk->otherObject[2].src[i], &sk->otherObject[2].dst[i], T, 0, 100, &g->config.play.liftv[PLAYER_2], &g->KeyInput, i);
+				if (g->config.play.battle == OPTION_BATTLE_BATTLE) {
+					if (g->config.play.lift[PLAYER_2] == 1)
+						SliderByTime(&sk->drBuf, &sk->otherObject[2].src[i], &sk->otherObject[2].dst[i], T, 0, 100, &g->config.play.liftv[PLAYER_2], &g->KeyInput, i);
+				}
+				else {
+					if (g->config.play.lift[PLAYER_1] == 1)
+						SliderByTime(&sk->drBuf, &sk->otherObject[2].src[i], &sk->otherObject[2].dst[i], T, 0, 100, &g->config.play.liftv[PLAYER_1], &g->KeyInput, i);
+				}
 				break;
 		}
 	}
