@@ -267,6 +267,9 @@ case 268: return "2P_POORBGA_TIME";
 case 270: return "1P_SUD+Setting";
 case 271: return "2P_SUD+Setting";
 
+case 274: return "1pLanecover";
+case 275: return "2pLanecover";
+
 
 case 280: return "CourseStage1";
 case 281: return "CourseStage2";
@@ -434,6 +437,7 @@ case 598: return "CourseSelect_stage9";
 case 599: return "CourseSelect_stage10";
 
 
+case 626: return "ImporteedScoreDisplayed";
 
 case 700: return "stage1_difficultyNone";
 case 701: return "stage1_difficulty1";

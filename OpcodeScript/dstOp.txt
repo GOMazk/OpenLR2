@@ -267,6 +267,9 @@
 270 1P_SUD+Setting (also LIFT value: Start/Select held while lift on)
 271 2P_SUD+Setting
 
+274 1pLanecover
+275 2pLanecover
+
 
 280 CourseStage1
 281 CourseStage2
@@ -434,6 +437,7 @@
 599 CourseSelect_stage10
 
 
+626 ImporteedScoreDisplayed
 
 700 stage1_difficultyNone
 701 stage1_difficulty1

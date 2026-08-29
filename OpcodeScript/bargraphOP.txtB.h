@@ -42,4 +42,9 @@ case 43: return "HIGHSCORE_BD_totalnotes";
 case 44: return "HIGHSCORE_PR_totalnotes";
 case 45: return "HIGHSCORE_MAXCOMBO_totalnotes";
 case 46: return "HIGHSCORE_SCORE_200000";
-case 47: return "HIGHSCORE_EXSCORE_totalnotes__";
+case 47: return "HIGHSCORE_EXSCORE_totalnotes__2";
+
+case 48: return "1P_ratio_slow";
+case 49: return "1P_ratio_fast";
+case 58: return "2P_ratio_slow";
+case 59: return "2P_ratio_slow";

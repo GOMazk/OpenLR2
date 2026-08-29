@@ -170,17 +170,17 @@ case 184: return "old_ratepoint";
 
 
 case 200: return "IR_TOTALPLAYER";
-case 201: return "IR_TOTALPLAYCOUNT";
+case 201: return "IR_TOTALPLAYCOUNT/1pHitOffset";
 
-case 210: return "FAILED_PLAYER";
-case 211: return "FAILED_RATE";
-case 212: return "EASY_PLAYER";
-case 213: return "EASY_RATE";
-case 214: return "CLEAR_PLAYER";
+case 210: return "FAILED_PLAYER/1pFastSlow";
+case 211: return "FAILED_RATE/2pFastSlow";
+case 212: return "EASY_PLAYER/fastCount";
+case 213: return "EASY_RATE/2pHitOffset";
+case 214: return "CLEAR_PLAYER/slowCount";
 case 215: return "CLEAR_RATE";
-case 216: return "HARD_PLAYER";
-case 217: return "HARD_RATE";
-case 218: return "FULLCOMBO_PLAYER";
+case 216: return "HARD_PLAYER/comboBreaks";
+case 217: return "HARD_RATE/RemainNotes";
+case 218: return "FULLCOMBO_PLAYER/currentNote";
 case 219: return "FULLCOMBO_RATE";
 
 case 220: return "remainIRautoUpdateTime";
@@ -219,7 +219,11 @@ case 291: return "rival_bpm_min";
 
 case 292: return "rival_IR_rank";
 case 293: return "rival_IR_totalplayer";
-case 294: return "rival_IR_clearrat";
+case 294: return "rival_IR_clearrate";
+
+case 295: return "1pRandomPattern";
+
+case 418: return "2pRandomPattern";
 
 case 421: return "LIFT_1P";
 case 422: return "LIFT_2P";

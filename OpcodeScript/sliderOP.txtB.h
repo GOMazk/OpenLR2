@@ -31,7 +31,7 @@ case 23: return "KEY_FX_P2";
 case 24: return "BGM_FX_P1";
 case 25: return "BGM_FX_P2";
 
-case 26: return "PITC";
+case 26: return "PITCH";
 
 case 27: return "LIFT1P";
 case 28: return "LIFT2P";

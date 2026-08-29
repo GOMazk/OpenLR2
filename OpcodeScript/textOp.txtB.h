@@ -164,3 +164,9 @@ case 196: return "RandomCourseOptionStages";
 
 case 198: return "AllCourseOptionDefaultConnection";
 case 199: return "AllCourseOptionDefaultGauge";
+
+
+case 300: return "scalingFilter";
+case 301: return "stretch";
+case 302: return "LIFT_ONOFF";
+
