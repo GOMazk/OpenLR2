@@ -25,6 +25,7 @@ int ParseBMSMETA(BMSMETA * meta, CSTR filepath, char flag);
 
 int SearchSongsFromPath(CSTR root, sqlite3 * sql, CSTR path); //into DB
 int ReloadSongsByQuery(CSTR query, sqlite3 * sql, CONFIG_JUKEBOX * jb, ReloadProgress progress = ReloadProgress::None); //check reload condition and run
+bool ReloadSongFolder(CSTR path, bool isSong, sqlite3 * sql, CONFIG_JUKEBOX * jb);
 int GetFolderDataFromPath(CSTR path, sqlite3 * sql);
 int LoadLR2CustomFolder(sqlite3 * sql, CONFIG_JUKEBOX * jb, CSTR scoreDBpath, char flag_starter, char flag_direct); //not coustomfolder only, but init DB and manage it
 

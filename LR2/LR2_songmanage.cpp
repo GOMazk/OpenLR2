@@ -1553,6 +1553,27 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb, ReloadProgr
 	return 2;
 }
 
+bool ReloadSongFolder(CSTR path, bool isSong, sqlite3 *sql, CONFIG_JUKEBOX *jb) {
+	const CSTR folderPath = isSong ? path.getDirectory() : path;
+	std::error_code ec;
+	if (!folderPath.body || !folderPath.body[0] || !std::filesystem::is_directory(folderPath.body, ec)) return false;
+
+	char query[1024];
+	const CSTR folder = AssignCRC32(folderPath);
+	bool updated = false;
+
+	sqlite3_snprintf(static_cast<int>(sizeof(query)), query, "SELECT path,date FROM folder WHERE path=\'%q\'", folderPath.body);
+	updated = ReloadSongsByQuery(query, sql, jb, ReloadProgress::FolderPass) == 2;
+	sqlite3_snprintf(static_cast<int>(sizeof(query)), query, "SELECT path,date FROM song WHERE folder=\'%q\'", folder.body);
+	if (ReloadSongsByQuery(query, sql, jb, ReloadProgress::SongPass) == 2) updated = true;
+	if (!isSong) {
+		sqlite3_snprintf(static_cast<int>(sizeof(query)), query, "SELECT path,date FROM song WHERE parent=\'%q\'", folder.body);
+		if (ReloadSongsByQuery(query, sql, jb, ReloadProgress::SongPass) == 2) updated = true;
+		sqlite3_snprintf(static_cast<int>(sizeof(query)), query, "SELECT path,date FROM folder WHERE parent=\'%q\'", folder.body);
+		if (ReloadSongsByQuery(query, sql, jb, ReloadProgress::FolderPass) == 2) updated = true;
+	}
+	return updated;
+}
 int CMP_SongDataByDifficulty(const void *p1, const void *p2) {
 	SONGDATA* s1 = (SONGDATA*)p1;
 	SONGDATA* s2 = (SONGDATA*)p2;
