@@ -1132,16 +1132,15 @@ static int DrawHitErrorForPlayer(game &g, skstruct &sk, Timer &T, int player) {
 
 	auto hiterrorByTime = SetDSTdrawByTime(sk.dst_HITERROR[player], GetTimeLapse(sk.dst_HITERROR[player].timer, &T));
 	
-	auto center = [&](DSTstruct *dst) -> void {
-		for (int i = 0; i < dst->dstCount; ++i) {
-			dst->draw[i].x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (dst->draw[i].w / 2);
-			dst->draw[i].y = hiterrorByTime.y;
-		}
-	};
-
 	auto centerDraw = [&](DSTdraw &draw) -> void {
 		draw.x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (draw.w / 2);
 		draw.y = hiterrorByTime.y;
+	};
+
+	auto center = [&](DSTstruct *dst) -> void {
+		for (int i = 0; i < dst->dstCount; ++i) {
+			centerDraw(dst->draw[i]);
+		}
 	};
 
 	auto offset = [&](double timing) -> int {
@@ -1152,8 +1151,6 @@ static int DrawHitErrorForPlayer(game &g, skstruct &sk, Timer &T, int player) {
 		return originalAlpha - (time * originalAlpha / fadeTime);
 	};
 
-	double noteTimer = GetTimeLapse(142, &g.timer1);
-
 	HITERRORDATA &hiterrorData = g.gameplay.player[player].hiterror;
 
 	AddDrawingBuffer_Image(&sk.drBuf, &sk.src_HITERROR[player], &sk.dst_HITERROR[player], &T);
@@ -1163,49 +1160,53 @@ static int DrawHitErrorForPlayer(game &g, skstruct &sk, Timer &T, int player) {
 		AddDrawingBuffer_Image(&sk.drBuf, &sk.src_HITERROR_CENTER, &sk.dst_HITERROR_CENTER, &T);
 	}
 
-	double fadeTime = 0.75 * 1000;
-	if (hiterrorData.notes.size() > 50) fadeTime = hiterrorData.notes.size() / 50.0 * 1000;
+	/* Hiterror bars block */
+	{
+		double fadeTime = 0.75 * 1000;
+		if (hiterrorData.notes.size() > 50) fadeTime = hiterrorData.notes.size() / 50.0 * 1000;
 
-	for (int i = 0; i < hiterrorData.notes.size(); i++) {
-		const JudgeData &jd = hiterrorData.notes[i];
-		SRCstruct *parentSRC = nullptr;
-		DSTstruct *parentDST = nullptr;
+		double noteTimer = GetTimeLapse(142, &g.timer1);
+		for (int i = 0; i < hiterrorData.notes.size(); i++) {
+			const JudgeData &jd = hiterrorData.notes[i];
+			SRCstruct *parentSRC = nullptr;
+			DSTstruct *parentDST = nullptr;
 
-		switch (jd.judge) {
-		case Judgement::PGREAT:
-			parentDST = &sk.dst_HITERROR_PGREAT;
-			parentSRC = &sk.src_HITERROR_PGREAT;
-			break;
-		case Judgement::GREAT:
-			parentDST = &sk.dst_HITERROR_GREAT;
-			parentSRC = &sk.src_HITERROR_GREAT;
-			break;
-		case Judgement::GOOD:
-			parentDST = &sk.dst_HITERROR_GOOD;
-			parentSRC = &sk.src_HITERROR_GOOD;
-			break;
-		case Judgement::BAD:
-			parentDST = &sk.dst_HITERROR_BAD;
-			parentSRC = &sk.src_HITERROR_BAD;
-			break;
-		case Judgement::AIR_POOR:
-		case Judgement::MISS_POOR:
-			continue;
+			switch (jd.judge) {
+			case Judgement::PGREAT:
+				parentDST = &sk.dst_HITERROR_PGREAT;
+				parentSRC = &sk.src_HITERROR_PGREAT;
+				break;
+			case Judgement::GREAT:
+				parentDST = &sk.dst_HITERROR_GREAT;
+				parentSRC = &sk.src_HITERROR_GREAT;
+				break;
+			case Judgement::GOOD:
+				parentDST = &sk.dst_HITERROR_GOOD;
+				parentSRC = &sk.src_HITERROR_GOOD;
+				break;
+			case Judgement::BAD:
+				parentDST = &sk.dst_HITERROR_BAD;
+				parentSRC = &sk.src_HITERROR_BAD;
+				break;
+			case Judgement::AIR_POOR:
+			case Judgement::MISS_POOR:
+				continue;
+			}
+
+			if (!parentSRC || parentSRC->graphcount <= 0) continue;
+
+			DSTdraw parentDSTByTime = SetDSTdrawByTime(*parentDST, GetTimeLapse(parentDST->timer, &T));
+			parentDSTByTime.a = fadeAlpha(parentDSTByTime.a, noteTimer - jd.timeHit, fadeTime);
+			centerDraw(parentDSTByTime);
+
+			int grh = parentSRC->timer == parentDST->timer ?
+				parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, &T) - parentDST->draw->time)] :
+				grh = parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, &T))];
+
+			parentDSTByTime.x += offset(jd.offset);
+
+			AddDrawingBuffer(&sk.drBuf, grh, &parentDSTByTime);
 		}
-
-		if (!parentSRC || parentSRC->graphcount <= 0) continue;
-
-		DSTdraw parentDSTByTime = SetDSTdrawByTime(*parentDST, GetTimeLapse(parentDST->timer, &T));
-		parentDSTByTime.a = fadeAlpha(parentDSTByTime.a, noteTimer - jd.timeHit, fadeTime);
-		centerDraw(parentDSTByTime);
-
-		int grh = parentSRC->timer == parentDST->timer ?
-			parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, &T) - parentDST->draw->time)] :
-			grh = parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, &T))];
-
-		parentDSTByTime.x += offset(jd.offset);
-
-		AddDrawingBuffer(&sk.drBuf, grh, &parentDSTByTime);
 	}
 
 	if (sk.src_HITERROR_EMA.graphcount > 0) {
