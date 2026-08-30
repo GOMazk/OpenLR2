@@ -125,6 +125,46 @@ void ShowReloadSongPassProgress(const size_t processed, const size_t total, CSTR
 	ProcessMessage();
 }
 
+static bool RepairIncompleteSongMetadata(sqlite3 *sql, CSTR folder = "", bool includeChildren = false) {
+	std::vector<CSTR> pathList;
+	sqlite3_stmt *pStmt;
+	char query[1024];
+	if (folder.length() > 0) {
+		if (includeChildren) {
+			sqlite3_snprintf(static_cast<int>(sizeof(query)), query, "SELECT path FROM song WHERE (folder=\'%q\' OR parent=\'%q\') AND (minbpm IS NULL OR maxbpm IS NULL OR karinotes IS NULL OR adddate IS NULL)", folder.body, folder.body);
+		}
+		else {
+			sqlite3_snprintf(static_cast<int>(sizeof(query)), query, "SELECT path FROM song WHERE folder=\'%q\' AND (minbpm IS NULL OR maxbpm IS NULL OR karinotes IS NULL OR adddate IS NULL)", folder.body);
+		}
+	}
+	else {
+		sqlite3_snprintf(static_cast<int>(sizeof(query)), query, "SELECT path FROM song WHERE minbpm IS NULL OR maxbpm IS NULL OR karinotes IS NULL OR adddate IS NULL");
+	}
+	SQL_prepare(query, sql, &pStmt);
+	while (sqlite3_step(pStmt) == 100) {
+		pathList.push_back(SQL_GetColumn(0, pStmt));
+	}
+	sqlite3_finalize(pStmt);
+
+	if (pathList.empty()) return false;
+
+	ErrorLogFmtAdd("Repairing incomplete song metadata: %d\n", static_cast<int>(pathList.size()));
+	const int now = GetNowUnixtime();
+	char updateQuery[4096];
+	bool repaired = false;
+	for (const auto& path : pathList) {
+		const int filetime = GetFileUnixtime(path);
+		if (filetime < 0) continue;
+
+		BMSMETA meta;
+		if (ParseBMSMETA(&meta, path, 0) == 0) continue;
+		LoadBMSMETAFromDB(&meta, sql);
+
+		if (SQL_Run(sqlite3_snprintf(static_cast<int>(sizeof(updateQuery)), updateQuery, "UPDATE song SET title=\'%q\',subtitle=\'%q\',genre=\'%q\',artist=\'%q\',subartist=\'%q\',tag=\'%q\',type=0,folder=\'%q\',stagefile=\'%q\',banner=\'%q\',backbmp=\'%q\',parent=\'%q\',level=%d,difficulty=%d,maxbpm=%d,minbpm=%d,mode=%d,judge=%d,longnote=%d,bga=%d,random=%d,date=%d,txt=%d,karinotes=%d,adddate=%d,exlevel=%d WHERE path=\'%q\'",
+			meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.tag.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body, AssignCRC32(meta.parentfolderpath).body, meta.selLevel, meta.difficulty, meta.maxbpm, meta.minbpm, meta.keymode, meta.judge, meta.longnote, meta.bga, meta.random, filetime, static_cast<int>(meta.hasTxt), meta.notecount, now, meta.exlevel, path.body), sql) == 0) repaired = true;
+	}
+	return repaired;
+}
 // ---------------------------------------------------------------------------
 
 bool RefreshSongDateIfHashMatches(sqlite3* sql, CSTR path, const int newTime, char* queryBuffer, const size_t queryBufferSize) {
@@ -456,6 +496,7 @@ int LoadBMSMETAFromDB(BMSMETA *meta, sqlite3 *sql) {
 		meta->difficulty = sqlite3_column_int(pStmt, 8);
 		meta->keymode = sqlite3_column_int(pStmt, 9);
 		meta->exlevel = sqlite3_column_int(pStmt, 10);
+		sqlite3_finalize(pStmt);
 		return 1;
 	}
 	sqlite3_finalize(pStmt);
@@ -1572,7 +1613,8 @@ bool ReloadSongFolder(CSTR path, bool isSong, sqlite3 *sql, CONFIG_JUKEBOX *jb) 
 		sqlite3_snprintf(static_cast<int>(sizeof(query)), query, "SELECT path,date FROM folder WHERE parent=\'%q\'", folder.body);
 		if (ReloadSongsByQuery(query, sql, jb, ReloadProgress::FolderPass) == 2) updated = true;
 	}
-	return updated;
+	const bool repaired = RepairIncompleteSongMetadata(sql, folder, !isSong);
+	return repaired || updated;
 }
 int CMP_SongDataByDifficulty(const void *p1, const void *p2) {
 	SONGDATA* s1 = (SONGDATA*)p1;
@@ -2841,6 +2883,7 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 			ReloadSongsByQuery("SELECT path,date FROM song", sql, jb, ReloadProgress::SongPass);
 
 			EndSongReloadSnapshot();
+			RepairIncompleteSongMetadata(sql);
 		}
 		else {
 			ErrorLogAdd("フォルダ更新チェック(ルートのみ)を行います。 / Checking folder updates (root only).\n");
