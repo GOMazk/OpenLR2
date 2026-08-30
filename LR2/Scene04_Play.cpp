@@ -1127,21 +1127,15 @@ static void QuickRestart(game& game, bool newRandom) {
 	StopAllKeysound(&game);
 }
 
+void CenterDraw(DSTdraw &draw, const DSTdraw &hiterrorByTime) {
+	draw.x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (draw.w / 2);
+	draw.y = hiterrorByTime.y;
+}
+
 static int DrawHitErrorForPlayer(game &g, skstruct &sk, Timer &T, int player) {
 	if (sk.src_HITERROR[player].graphcount <= 0) return 0;
 
 	auto hiterrorByTime = SetDSTdrawByTime(sk.dst_HITERROR[player], GetTimeLapse(sk.dst_HITERROR[player].timer, &T));
-	
-	auto centerDraw = [&](DSTdraw &draw) -> void {
-		draw.x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (draw.w / 2);
-		draw.y = hiterrorByTime.y;
-	};
-
-	auto center = [&](DSTstruct *dst) -> void {
-		for (int i = 0; i < dst->dstCount; ++i) {
-			centerDraw(dst->draw[i]);
-		}
-	};
 
 	auto offset = [&](double timing) -> int {
 		return timing * hiterrorByTime.w / 400.0; /* bad range is 200ms on easy guage, so this should catch that */
@@ -1156,7 +1150,9 @@ static int DrawHitErrorForPlayer(game &g, skstruct &sk, Timer &T, int player) {
 	AddDrawingBuffer_Image(&sk.drBuf, &sk.src_HITERROR[player], &sk.dst_HITERROR[player], &T);
 
 	if (sk.src_HITERROR_CENTER.graphcount > 0) {
-		center(&sk.dst_HITERROR_CENTER);
+		for (int i = 0; i < sk.dst_HITERROR_CENTER.dstCount; ++i) {
+			CenterDraw(sk.dst_HITERROR_CENTER.draw[i], hiterrorByTime);
+		}
 		AddDrawingBuffer_Image(&sk.drBuf, &sk.src_HITERROR_CENTER, &sk.dst_HITERROR_CENTER, &T);
 	}
 
@@ -1197,7 +1193,7 @@ static int DrawHitErrorForPlayer(game &g, skstruct &sk, Timer &T, int player) {
 
 			DSTdraw parentDSTByTime = SetDSTdrawByTime(*parentDST, GetTimeLapse(parentDST->timer, &T));
 			parentDSTByTime.a = fadeAlpha(parentDSTByTime.a, noteTimer - jd.timeHit, fadeTime);
-			centerDraw(parentDSTByTime);
+			CenterDraw(parentDSTByTime, hiterrorByTime);
 
 			int grh = parentSRC->timer == parentDST->timer ?
 				parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, &T) - parentDST->draw->time)] :
@@ -1210,7 +1206,9 @@ static int DrawHitErrorForPlayer(game &g, skstruct &sk, Timer &T, int player) {
 	}
 
 	if (sk.src_HITERROR_EMA.graphcount > 0) {
-		center(&sk.dst_HITERROR_EMA);
+		for (int i = 0; i < sk.dst_HITERROR_EMA.dstCount; ++i) {
+			CenterDraw(sk.dst_HITERROR_EMA.draw[i], hiterrorByTime);
+		}
 		AddDrawingBuffer_Object(&sk.drBuf, &sk.src_HITERROR_EMA, &sk.dst_HITERROR_EMA, &T, offset(hiterrorData.ema.value), 0);
 	}
 	return 1;
