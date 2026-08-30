@@ -172,6 +172,14 @@ bool GetRawBodyInt(std::string_view line, std::string_view head, int& out) {
 	return true;
 }
 
+bool GetStringBodyStr(std::string_view str, std::string_view head, std::string& out) {
+	if (StartsWithICaseAscii(str, head) && str.size() > head.size()) {
+		out = str.substr(head.length() + 1);
+		return true;
+	}
+	return false;
+}
+
 void UpdateBpmRange(BMSMETA& meta, const int bpm) {
 	if (bpm <= 0) return;
 	if (meta.maxbpm == 0) {
@@ -199,10 +207,12 @@ bool IsTextCommand(std::string_view line) {
 		StartsWithICaseAscii(line, "#COMMAND") ||
 		StartsWithICaseAscii(line, "#STAGEFILE") ||
 		StartsWithICaseAscii(line, "#BANNER") ||
-		StartsWithICaseAscii(line, "#BACKBMP");
+		StartsWithICaseAscii(line, "#BACKBMP") ||
+		StartsWithICaseAscii(line, "#PREVIEW");
 }
 
 bool ParseTextCommand(BMSMETA& meta, CSTR& line) {
+	CSTR buf;
 	if (GetDifficulty(&line, "#TITLE", &meta.title, &meta.subtitle, &meta.difficulty)) return true;
 	if (GetStringBodyStr(&line, "#GENRE", &meta.genre)) {
 		CSTR none;
@@ -220,6 +230,7 @@ bool ParseTextCommand(BMSMETA& meta, CSTR& line) {
 	if (GetStringBodyStr(&line, "#STAGEFILE", &meta.stagefilepath)) return true;
 	if (GetStringBodyStr(&line, "#BANNER", &meta.bannerpath)) return true;
 	if (GetStringBodyStr(&line, "#BACKBMP", &meta.backBMPpath)) return true;
+	if (GetStringBodyStr(line.body, "#PREVIEW", meta.previewpath)) return true;
 	return false;
 }
 
@@ -335,6 +346,7 @@ void COPY_SONGDATA(SONGDATA *self, SONGDATA *other){
 	self->stagefile = other->stagefile;
 	self->banner = other->banner;
 	self->backBMP = other->backBMP;
+	self->previewfile = other->previewfile;
 	self->isStagefile = other->isStagefile;
 	self->isBanner = other->isBanner;
 	self->isBackBMP = other->isBackBMP;
@@ -392,6 +404,7 @@ int InitSongData(SONGDATA *song){
 	song->stagefile.fillzero();
 	song->banner.fillzero();
 	song->backBMP.fillzero();
+	song->previewfile = {};
 	song->folder.fillzero();
 	song->difficulty = 0;
 	song->folderType = 0;
@@ -661,6 +674,7 @@ int EditTag(SONGDATA *song, sqlite3 *sql) {
 		sqlite3_snprintf(1024, query, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
 			meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, wtime, song->filepath.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body,meta.bannerpath.body,meta.backBMPpath.body, AssignCRC32(meta.parentfolderpath).body, meta.maxbpm,meta.minbpm, meta.random,meta.longnote,meta.judge,meta.keymode,meta.bga,meta.difficulty,(int)meta.hasTxt,meta.notecount,temp,meta.exlevel);
 		SQL_Run(query, sql);
+		openlr2::updateSongPreview(meta.hash.body, meta.previewpath.c_str(), sql);
 
 		if (meta.difficulty <= 0 || meta.difficulty > 5) {
 			SetUndefinedDifficulty(sql);
@@ -1247,6 +1261,7 @@ int GetSongDataFromPath(CSTR filepath, SONGDATA *song, sqlite3 *sql, SONGSELECT 
 	song->artist = meta.artist;
 	song->backBMP = meta.backBMPpath;
 	song->stagefile = meta.stagefilepath;
+	song->previewfile = meta.previewpath;
 	song->banner = meta.bannerpath;
 	song->bga = meta.bga;
 	song->difficulty = meta.difficulty;
@@ -1361,6 +1376,7 @@ int SearchSongsFromPath(CSTR root, sqlite3 *sql, CSTR path) {
 					sqlite3_snprintf(2048, str, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
 						meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, filetime, searchPath.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body, AssignCRC32(meta.parentfolderpath).body, meta.maxbpm, meta.minbpm, meta.random, meta.longnote, meta.judge, meta.keymode, meta.bga, meta.difficulty, (int)meta.hasTxt, meta.notecount, now, meta.exlevel);
 					SQL_Run(str, sql);
+					openlr2::updateSongPreview(meta.hash.body, meta.previewpath.c_str(), sql);
 					if (g_fullSongPass) g_processedSongPaths.insert(MakePathKey(searchPath));
 				}
 				count++;
@@ -1496,6 +1512,7 @@ int ReloadSongsByQuery(CSTR query, sqlite3 *sql, CONFIG_JUKEBOX *jb, ReloadProgr
 						LoadBMSMETAFromDB(&meta, sql);
 						SQL_Run(sqlite3_snprintf(1024, sBuf, "INSERT INTO song (hash,title,subtitle,genre,artist,subartist,level,date,path,folder,stagefile,banner,backbmp,parent,maxbpm,minbpm,random,longnote,judge,mode,bga,difficulty,favorite,type,txt,karinotes,adddate,exlevel) VALUES(\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',\'%q\',%d,%d,%d,%d,%d,%d,%d,%d,0,0,%d,%d,%d,%d)",
 							meta.hash.body, meta.title.body, meta.subtitle.body, meta.genre.body, meta.artist.body, meta.subartist.body, meta.selLevel, newTime, str.body, AssignCRC32(meta.folderpath).body, meta.stagefilepath.body, meta.bannerpath.body, meta.backBMPpath.body,AssignCRC32(meta.parentfolderpath).body,meta.maxbpm,meta.minbpm,meta.random,meta.longnote,meta.judge,meta.keymode,meta.bga,meta.difficulty,(int)meta.hasTxt,meta.notecount,now,meta.exlevel), sql);
+						openlr2::updateSongPreview(meta.hash.body, meta.previewpath.c_str(), sql);
 						if (g_fullSongPass) g_processedSongPaths.insert(MakePathKey(str));
 					}
 					else if (is_lr2folder) {
@@ -2269,6 +2286,15 @@ int LoadFilteredBmsListFromDB(CSTR query, sqlite3 *sql, SONGSELECT *ss, int *dif
 					thisFolder = SQL_GetColumn(9, pStmt);
 					song.folder = thisFolder;
 
+					sqlite3_stmt *pStmtPreview;
+					char previewQuery[512];
+					sqlite3_snprintf(512, previewQuery, "SELECT previewpath FROM openlr2_preview WHERE hash=\'%q\'", song.hash.body);
+					sqlite3_prepare(sql, previewQuery, -1, &pStmtPreview, nullptr);
+					if (sqlite3_step(pStmtPreview) == SQLITE_ROW && sqlite3_column_bytes(pStmtPreview, 0) > 0) {
+						song.previewfile = reinterpret_cast<const char *>(sqlite3_column_text(pStmtPreview, 0));
+					}
+					sqlite3_finalize(pStmtPreview);
+
 					if (song.keymode > 0) {
 						song.mybest.clear = sqlite3_column_int(pStmt, 30);
 						song.mybest.stat_pgreat = sqlite3_column_int(pStmt, 31);
@@ -2750,6 +2776,7 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 		SQL_Run("CREATE TABLE song(hash TEXT ,title TEXT ,subtitle TEXT ,genre TEXT,artist TEXT,subartist TEXT,tag TEXT ,path TEXT primary key ,type INTEGER,folder TEXT,stagefile TEXT,banner TEXT,backbmp TEXT,parent TEXT,level INTEGER,difficulty INTEGER,maxbpm INTEGER,minbpm INTEGER,mode INTEGER,judge INTEGER,longnote INTEGER,bga INTEGER,random INTEGER,date INTEGER,favorite INTEGER,txt INTEGER,karinotes INTEGER,adddate INTEGER,exlevel INTEGER)", sql);
 		SQL_Run("CREATE INDEX hashidx ON song (hash)", sql);
 		SQL_Run("CREATE INDEX parentidx ON song (parent)", sql);
+		sqlite3_exec(sql, "CREATE TABLE openlr2_preview(hash TEXT PRIMARY KEY NOT NULL, previewpath TEXT NOT NULL)", nullptr, nullptr, nullptr);
 		SQL_Run("DROP TABLE course", sql);
 		SQL_Run("CREATE TABLE nonstop(id INTEGER primary key,title TEXT,line INTEGER,hash TEXT,ir INTEGER)", sql);
 		SQL_Run("CREATE TABLE expert(id INTEGER primary key,title TEXT,line INTEGER,hash TEXT,ir INTEGER)", sql);
@@ -2880,6 +2907,7 @@ int InitBMSMETA(BMSMETA *meta_) {
 	meta.backBMPpath.fillzero();
 	meta.parentfolderpath.fillzero();
 	meta.folderpath.fillzero();
+	meta.previewpath.clear();
 	meta.tag.fillzero();
 	meta.notecount = 0;
 	meta.maxbpm = 0;
@@ -3036,6 +3064,13 @@ int ParseBMSMETA(BMSMETA *meta, CSTR filepath, char flag) {
 	dir.add("*.txt");
 	if (IsFileExist(dir)) meta->hasTxt = true;
 	meta->notecount = notes;
+
+	CSTR previewFullPath;
+	previewFullPath.assign(meta->folderpath).add(meta->previewpath.c_str());
+	if (meta->previewpath.length() == 0 || !IsFileExist(previewFullPath)) {
+		meta->previewpath = openlr2::tryFindPreviewFile(meta->folderpath.body).value_or({});
+	}
+
 	return 1;
 }
 
@@ -3047,4 +3082,23 @@ int openlr2::adjustFilterKey(CONFIG_SELECT const& cfg_select, int key) {
 	if (cfg_select.ignorePMS && key == 7) key = 0;
 	if (cfg_select.ignoreKeyAll && key == 0) key = 1;
 	return key;
+}
+
+std::optional<std::string> openlr2::tryFindPreviewFile(const std::filesystem::path& folderpath) {
+	std::error_code ec{};
+	for (const auto& entry : std::filesystem::directory_iterator{folderpath, ec}) {
+		std::string filename = entry.path().filename().string();
+		if (entry.is_regular_file() && StartsWithICaseAscii(filename, "preview") && IsSndFile(filename.c_str())) {
+			return filename;
+		}
+	}
+	return {};
+}
+
+void openlr2::updateSongPreview(const std::string& hash, const std::string& previewpath, sqlite3* sql) {
+	char query[512];
+
+	sqlite3_snprintf(512, query, "INSERT INTO openlr2_preview (hash,previewpath) VALUES(\'%q\',\'%q\') ON CONFLICT(hash) DO UPDATE SET previewpath=excluded.previewpath",
+		hash.c_str(), previewpath.c_str());
+	sqlite3_exec(sql, query, nullptr, nullptr, nullptr);
 }
