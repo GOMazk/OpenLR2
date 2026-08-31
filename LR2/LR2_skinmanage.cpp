@@ -246,6 +246,7 @@ int ParseLR2SkinCustom(SkinManage *skm, CSTR filepath) {
 			skm->Data[skm->Count].informationP5 = csvBuf.val[5];
 			skm->Data[skm->Count].targetX = csvBuf.val[6] < 640 ? 640 : csvBuf.val[6];
 			skm->Data[skm->Count].targetY = csvBuf.val[7] < 480 ? 480 : csvBuf.val[7];
+			if(csvBuf.val[6] && csvBuf.val[7])skm->Data[skm->Count].hasResolutionTag = true;
 			skm->Count ++;
 			if (skm->Count == skm->Max) {
 				ExpandSkinMax(skm);
