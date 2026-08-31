@@ -454,6 +454,8 @@ int PlayerCheckAndSwap(gameplay *gp){
 int InitGameplay(gameplay *gp, CONFIG_PLAY *cfg) {
 
 	PlayerCheckAndSwap(gp);
+	gp->lastFastSlowBySide.fill(0);
+	gp->lastHitOffsetBySide.fill(0);
 	gp->bpmt_start = 1;
 	gp->isPreviewLoad = 0;
 	if (gp->bmsobj.count == 0) InitNoteBuffer(&gp->bmsobj, 1000);
@@ -852,6 +854,8 @@ int LoadBmsResource(gameplay *gp, CSTR /*BMSfilepath*/, AUDIO *aud, ConfigStruct
 int InitGameplay_retry(gameplay *gp, AUDIO *snd, game *g) {
 	
 	PlayerCheckAndSwap(gp);
+	gp->lastFastSlowBySide.fill(0);
+	gp->lastHitOffsetBySide.fill(0);
 	if (gp->replay.status != 2 && gp->replay.status == 1) {
 		AddReplayData(&gp->replay, 0, 200, gp->randomseed);
 	}

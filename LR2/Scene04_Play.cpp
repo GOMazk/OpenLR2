@@ -739,6 +739,19 @@ int JudgeToScore(int judge, game *g, int player, int lane, char isReplay) {
 	return ApplyJudgeNote(judge, g, player, lane, &g->timer1, isReplay);
 }
 
+
+static void UpdateLastFastSlowBySide(game* g, int player, int lane) {
+	// In DP, both sides belong to PLAYER_1, so use the lane to determine the display side.
+	const int side = (lane >= 10) ? PLAYER_2 : PLAYER_1;
+	g->gameplay.lastFastSlowBySide[side] = g->gameplay.player[player].extendedColumnStats[lane].lastFastSlow;
+}
+
+static void UpdateLastHitOffsetBySide(game* g, int player, int lane) {
+	// In DP, both sides belong to PLAYER_1, so use the lane to determine the display side.
+	const int side = (lane >= 10) ? PLAYER_2 : PLAYER_1;
+	g->gameplay.lastHitOffsetBySide[side] = g->gameplay.player[player].extendedColumnStats[lane].lastHitOffset;
+}
+
 int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 	NoteStruct &note = g->gameplay.bmsobj_note[lane].notes[g->gameplay.bmsobj_note[lane].note_count];
 	EXTENDEDPLAYERSTATS& extendedStats = g->gameplay.player[player].extendedStats;
@@ -787,6 +800,7 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedColumnStats);
 			increment_extended(extendedStatsCourse);
 			increment_extended(extendedColumnStatsCourse);
+			UpdateLastFastSlowBySide(g, player, lane);
 			return 0;
 		}
 		if (keypress != 1) return 0;
@@ -814,6 +828,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedColumnStats, isFast, offset);
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
+			UpdateLastFastSlowBySide(g, player, lane);
+			UpdateLastHitOffsetBySide(g, player, lane);
 			lastOffsetColumnIdx = lane;
 			return 1;
 		}
@@ -837,6 +853,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedColumnStats, isFast, offset);
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
+			UpdateLastFastSlowBySide(g, player, lane);
+			UpdateLastHitOffsetBySide(g, player, lane);
 			lastOffsetColumnIdx = lane;
 			return 1;
 		}
@@ -859,6 +877,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedColumnStats, isFast, offset);
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
+			UpdateLastFastSlowBySide(g, player, lane);
+			UpdateLastHitOffsetBySide(g, player, lane);
 			lastOffsetColumnIdx = lane;
 			return 1;
 		}
@@ -884,6 +904,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedColumnStats, isFast, offset);
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
+			UpdateLastFastSlowBySide(g, player, lane);
+			UpdateLastHitOffsetBySide(g, player, lane);
 			lastOffsetColumnIdx = lane;
 
 			if (g->gameplay.bmsobj_note[lane].note_count < g->gameplay.bmsobj_note[lane].size && abs(timing - (int)g->gameplay.bmsobj_note[lane].notes[g->gameplay.bmsobj_note[lane].note_count].realTiming) <= g->gameplay.player[player].judgetime[2]) {
@@ -904,6 +926,7 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedColumnStats);
 			increment_extended(extendedStatsCourse);
 			increment_extended(extendedColumnStatsCourse);
+			UpdateLastFastSlowBySide(g, player, lane);
 			return 1;
 		}
 
@@ -938,6 +961,7 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 		increment_extended(extendedColumnStats);
 		increment_extended(extendedStatsCourse);
 		increment_extended(extendedColumnStatsCourse);
+		UpdateLastFastSlowBySide(g, player, lane);
 		return 0;
 	}
 
@@ -959,6 +983,8 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedColumnStats, offset);
 			increment_extended(extendedStatsCourse, offset);
 			increment_extended(extendedColumnStatsCourse, offset);
+			UpdateLastFastSlowBySide(g, player, lane);
+			UpdateLastHitOffsetBySide(g, player, lane);
 			lastOffsetColumnIdx = lane;
 
 			SetTimeLapse(70 + lane, &g->timer1);
@@ -978,6 +1004,8 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedColumnStats, offset, isFast);
 			increment_extended(extendedStatsCourse, offset, isFast);
 			increment_extended(extendedColumnStatsCourse, offset, isFast);
+			UpdateLastFastSlowBySide(g, player, lane);
+			UpdateLastHitOffsetBySide(g, player, lane);
 			lastOffsetColumnIdx = lane;
 
 			SetTimeLapse(70 + lane, &g->timer1);
@@ -997,6 +1025,8 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedColumnStats, offset, isFast);
 			increment_extended(extendedStatsCourse, offset, isFast);
 			increment_extended(extendedColumnStatsCourse, offset, isFast);
+			UpdateLastFastSlowBySide(g, player, lane);
+			UpdateLastHitOffsetBySide(g, player, lane);
 			lastOffsetColumnIdx = lane;
 
 			SetTimeLapse(70 + lane, &g->timer1);
@@ -1016,6 +1046,8 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedColumnStats, offset, isFast);
 			increment_extended(extendedStatsCourse, offset, isFast);
 			increment_extended(extendedColumnStatsCourse, offset, isFast);
+			UpdateLastFastSlowBySide(g, player, lane);
+			UpdateLastHitOffsetBySide(g, player, lane);
 			lastOffsetColumnIdx = lane;
 			return 1;
 		}
@@ -1031,6 +1063,7 @@ int ProcLongnote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedColumnStats);
 			increment_extended(extendedStatsCourse);
 			increment_extended(extendedColumnStatsCourse);
+			UpdateLastFastSlowBySide(g, player, lane);
 			return 1;
 		}
 

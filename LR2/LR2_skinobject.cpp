@@ -2068,18 +2068,18 @@ uint SetObjectValue_Num(game *g, int op) {
 			return g->net.rankingData.rankingCount;
 		case 201:
 			if (g->procSelecter == 4) { // Extension: fast-slow
-				return g->gameplay.player[PLAYER_1].extendedStats.lastHitOffset;
+				return g->gameplay.lastHitOffsetBySide[PLAYER_1];
 			}
 			return g->net.rankingData.totalPlaycount;
 
 		case 210:
 			if (g->procSelecter == 4) { // Extension: fast-slow
-				return g->gameplay.player[PLAYER_1].extendedStats.lastFastSlow;
+				return g->gameplay.lastFastSlowBySide[PLAYER_1];
 			}
 			return g->net.rankingData.clearPlayers[1];
 		case 211:
 			if (g->procSelecter == 4) { // Extension: fast-slow
-				return g->gameplay.player[PLAYER_2].extendedStats.lastFastSlow;
+				return g->gameplay.lastFastSlowBySide[PLAYER_2];
 			}
 			if (g->net.rankingData.rankingCount != 0) {
 				return (g->net.rankingData.clearPlayers[1] * 100) / g->net.rankingData.rankingCount;
@@ -2095,7 +2095,7 @@ uint SetObjectValue_Num(game *g, int op) {
 			return g->net.rankingData.clearPlayers[2];
 		case 213:
 			if (g->procSelecter == 4) { // Extension: fast-slow
-				return g->gameplay.player[PLAYER_2].extendedStats.lastHitOffset;
+				return g->gameplay.lastHitOffsetBySide[PLAYER_2];
 			}
 			if (g->net.rankingData.rankingCount != 0) {
 				return (g->net.rankingData.clearPlayers[2] * 100) / g->net.rankingData.rankingCount;
