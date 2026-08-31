@@ -2757,6 +2757,7 @@ int LoadLR2CustomFolder(sqlite3 *sql, CONFIG_JUKEBOX *jb, CSTR scoreDBpath, char
 		SQL_Run("CREATE TABLE tag(hash TEXT primary key,title TEXT ,subtitle TEXT ,genre TEXT,artist TEXT,subartist TEXT,tag TEXT ,level INTEGER,difficulty INTEGER,mode INTEGER,exlevel INTEGER)", tagDB);
 		SQL_Run("CREATE TABLE score(hash TEXT primary key,clear INTEGER,perfect INTEGER,great INTEGER,good INTEGER,bad INTEGER,poor INTEGER,totalnotes INTEGER,maxcombo INTEGER,minbp INTEGER,playcount INTEGER,clearcount INTEGER,failcount INTEGER,rank INTEGER,rate INTEGER,clear_db INTEGER,op_history INTEGER,scorehash TEXT,ghost TEXT,clear_sd INTEGER,clear_ex INTEGER,op_best INTEGER, rseed INTEGER, complete INTEGER)", scoreDB);
 		SQL_Run("CREATE INDEX hashidx ON score (hash)", scoreDB);
+		SQL_Run("CREATE TABLE play_log (hash TEXT, clear INTEGER, perfect INTEGER, great INTEGER, good INTEGER, bad INTEGER, poor INTEGER, totalnotes INTEGER, maxcombo INTEGER,minbp INTEGER,playcount INTEGER,clearcount INTEGER,failcount INTEGER,rank INTEGER,rate INTEGER,clear_db INTEGER,op_history INTEGER,scorehash TEXT,ghost TEXT,clear_sd INTEGER,clear_ex INTEGER,op_best INTEGER, rseed INTEGER, complete INTEGER, timestamp INTEGER, wasBest INTEGER, mashpoor INTEGER, fast INTEGER, slow INTEGER, cb INTEGER, isMod INTEGER, ModName TEXT, ModHash TEXT)", scoreDB);
 		sqlite3_close(scoreDB);
 		sqlite3_close(tagDB);
 
