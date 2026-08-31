@@ -60,6 +60,9 @@ https://web.archive.org/web/20190802100906/http://www.dream-pro.info/~lavalse/LR
   
   [BokutachiToOpenLR2ScoreImporter](https://github.com/Unengine/BokutachiToOpenLR2ScoreImporter)
 
+- Skin Editor
+
+  [LR2SkinEditor](https://github.com/GOMazk/LR2SkinEditor) (AI slop)
 
 ## Known issues
 
