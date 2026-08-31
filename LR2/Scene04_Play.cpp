@@ -815,6 +815,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
+			g->gameplay.player[player].hiterror.notes.push({ offset, timing, Judgement::PGREAT });
+			g->gameplay.player[player].hiterror.ema.add(static_cast<double>(offset));
 			return 1;
 		}
 		if (gap <= g->gameplay.player[player].judgetime[4] && g->gameplay.player[player].note_current < g->gameplay.player[player].totalnotes) {
@@ -838,6 +840,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
+			g->gameplay.player[player].hiterror.notes.push({ offset, timing, Judgement::GREAT });
+			g->gameplay.player[player].hiterror.ema.add(static_cast<double>(offset));
 			return 1;
 		}
 		if (gap <= g->gameplay.player[player].judgetime[3] && g->gameplay.player[player].note_current < g->gameplay.player[player].totalnotes) {
@@ -860,6 +864,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
+			g->gameplay.player[player].hiterror.notes.push({ offset, timing, Judgement::GOOD });
+			g->gameplay.player[player].hiterror.ema.add(static_cast<double>(offset));
 			return 1;
 		}
 
@@ -885,6 +891,8 @@ int ProcSinglenote(game *g, int lane, int keypress, int timing, int player) {
 			increment_extended(extendedStatsCourse, isFast, offset);
 			increment_extended(extendedColumnStatsCourse, isFast, offset);
 			lastOffsetColumnIdx = lane;
+			g->gameplay.player[player].hiterror.notes.push({ offset, timing, Judgement::BAD });
+			g->gameplay.player[player].hiterror.ema.add(static_cast<double>(offset));
 
 			if (g->gameplay.bmsobj_note[lane].note_count < g->gameplay.bmsobj_note[lane].size && abs(timing - (int)g->gameplay.bmsobj_note[lane].notes[g->gameplay.bmsobj_note[lane].note_count].realTiming) <= g->gameplay.player[player].judgetime[2]) {
 				ProcSinglenote(g, lane, 1, timing, player);
@@ -1147,6 +1155,99 @@ static void QuickRestart(game& game, bool newRandom) {
 	StopAllKeysound(&game);
 }
 
+void CenterDraw(DSTdraw &draw, const DSTdraw &hiterrorByTime) {
+	draw.x = hiterrorByTime.x + (hiterrorByTime.w / 2) + (draw.w / 2);
+	draw.y = hiterrorByTime.y;
+}
+
+static int DrawHitErrorForPlayer(game &g, skstruct &sk, Timer &T, int player) {
+	if (sk.src_HITERROR[player].graphcount <= 0) return 0;
+
+	auto hiterrorByTime = SetDSTdrawByTime(sk.dst_HITERROR[player], GetTimeLapse(sk.dst_HITERROR[player].timer, &T));
+
+	auto offset = [&](double timing) -> int {
+		return timing * hiterrorByTime.w / 400.0; /* bad range is 200ms on easy guage, so this should catch that */
+	};
+
+	constexpr auto fadeAlpha = [](int originalAlpha, int time, int fadeTime) -> int {
+		return originalAlpha - (time * originalAlpha / fadeTime);
+	};
+
+	HITERRORDATA &hiterrorData = g.gameplay.player[player].hiterror;
+
+	AddDrawingBuffer_Image(&sk.drBuf, &sk.src_HITERROR[player], &sk.dst_HITERROR[player], &T);
+
+	if (sk.src_HITERROR_CENTER.graphcount > 0) {
+		for (int i = 0; i < sk.dst_HITERROR_CENTER.dstCount; ++i) {
+			CenterDraw(sk.dst_HITERROR_CENTER.draw[i], hiterrorByTime);
+		}
+		AddDrawingBuffer_Image(&sk.drBuf, &sk.src_HITERROR_CENTER, &sk.dst_HITERROR_CENTER, &T);
+	}
+
+	/* Hiterror bars block */
+	{
+		double fadeTime = 0.75 * 1000;
+		if (hiterrorData.notes.size() > 50) fadeTime = hiterrorData.notes.size() / 50.0 * 1000;
+
+		double noteTimer = GetTimeLapse(142, &g.timer1);
+		for (int i = 0; i < hiterrorData.notes.size(); i++) {
+			const JudgeData &jd = hiterrorData.notes[i];
+			SRCstruct *parentSRC = nullptr;
+			DSTstruct *parentDST = nullptr;
+
+			switch (jd.judge) {
+			case Judgement::PGREAT:
+				parentDST = &sk.dst_HITERROR_PGREAT;
+				parentSRC = &sk.src_HITERROR_PGREAT;
+				break;
+			case Judgement::GREAT:
+				parentDST = &sk.dst_HITERROR_GREAT;
+				parentSRC = &sk.src_HITERROR_GREAT;
+				break;
+			case Judgement::GOOD:
+				parentDST = &sk.dst_HITERROR_GOOD;
+				parentSRC = &sk.src_HITERROR_GOOD;
+				break;
+			case Judgement::BAD:
+				parentDST = &sk.dst_HITERROR_BAD;
+				parentSRC = &sk.src_HITERROR_BAD;
+				break;
+			case Judgement::AIR_POOR:
+			case Judgement::MISS_POOR:
+				continue;
+			}
+
+			if (!parentSRC || parentSRC->graphcount <= 0) continue;
+
+			DSTdraw parentDSTByTime = SetDSTdrawByTime(*parentDST, GetTimeLapse(parentDST->timer, &T));
+			parentDSTByTime.a = fadeAlpha(parentDSTByTime.a, noteTimer - jd.timeHit, fadeTime);
+			CenterDraw(parentDSTByTime, hiterrorByTime);
+
+			int grh = parentSRC->timer == parentDST->timer ?
+				parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, &T) - parentDST->draw->time)] :
+				grh = parentSRC->grHandles[GetSRCcycleNow(*parentSRC, GetTimeLapse(parentSRC->timer, &T))];
+
+			parentDSTByTime.x += offset(jd.offset);
+
+			AddDrawingBuffer(&sk.drBuf, grh, &parentDSTByTime);
+		}
+	}
+
+	if (sk.src_HITERROR_EMA.graphcount > 0) {
+		for (int i = 0; i < sk.dst_HITERROR_EMA.dstCount; ++i) {
+			CenterDraw(sk.dst_HITERROR_EMA.draw[i], hiterrorByTime);
+		}
+		AddDrawingBuffer_Object(&sk.drBuf, &sk.src_HITERROR_EMA, &sk.dst_HITERROR_EMA, &T, offset(hiterrorData.ema.value), 0);
+	}
+	return 1;
+}
+
+int DrawHitError(game *g, skstruct *sk, Timer *T) {
+	DrawHitErrorForPlayer(*g, *sk, *T, PLAYER_1);
+	DrawHitErrorForPlayer(*g, *sk, *T, PLAYER_2);
+	return 1;
+}
+
 int ProcI_Play(game *g) {
 	int timeLimit;
 	double gameTime;
@@ -1157,6 +1258,7 @@ int ProcI_Play(game *g) {
 	if (GetTimeLapse(41, &g->timer1) > 0.0 && !g->config.play.m_isLunaris) {
 		DrawNotes(g, &g->skstruct, &g->timer1, &g->config.play);
 		DrawJudgeCombo(g, &g->skstruct, &g->timer1, &g->config.play);
+		DrawHitError(g, &g->skstruct, &g->timer1);
 	}
 	else if (GetTimeLapse(41, &g->timer1) > 0.0 && g->config.play.m_isLunaris) {
 		DrawLunaris(g);
@@ -2051,6 +2153,11 @@ int ProcS_Play(game *g, sqlite3* sql) {
 				}
 				break;
 		}
+	}
+
+	for(size_t i = 0; i < 2; ++i) {
+		g->gameplay.player[i].hiterror.ema = {};
+		g->gameplay.player[i].hiterror.notes.reset(g->skstruct.src_HITERROR[i].op1);
 	}
 
 	SetObjectString(1, g->gameplay.targetScore.name, g->txtStruct.objectStr);

@@ -1019,6 +1019,20 @@ struct skstruct {
 	int event_FADEOUT[10]{};
 	struct DSTstruct dst_EVENT_LOADINGBG[5]{};
 	int horizontal{};
+	struct SRCstruct src_HITERROR[2] {};
+	struct DSTstruct dst_HITERROR[2] {};
+	struct SRCstruct src_HITERROR_CENTER {};
+	struct DSTstruct dst_HITERROR_CENTER {};
+	struct SRCstruct src_HITERROR_PGREAT {};
+	struct DSTstruct dst_HITERROR_PGREAT {};
+	struct SRCstruct src_HITERROR_GREAT {};
+	struct DSTstruct dst_HITERROR_GREAT {};
+	struct SRCstruct src_HITERROR_GOOD {};
+	struct DSTstruct dst_HITERROR_GOOD {};
+	struct SRCstruct src_HITERROR_BAD {};
+	struct DSTstruct dst_HITERROR_BAD {};
+	struct SRCstruct src_HITERROR_EMA {};
+	struct DSTstruct dst_HITERROR_EMA {};
 };
 
 struct MYRANKING {
@@ -1289,6 +1303,58 @@ struct EXTENDEDPLAYERSTATS {
 	int lastFastSlow = 0;
 };
 
+struct EMA {
+	double value = 0.0;
+	static constexpr double alpha = 0.07;
+	void add(double x) { value = alpha * x + (1.0 - alpha) * value; }
+};
+
+template<typename T>
+class CircularBuffer {
+	std::vector<T> buf;
+	size_t head = 0;
+
+public:
+	CircularBuffer() = default;
+
+	void push(const T& val) {
+		if (buf.empty()) return;
+		buf[head] = val;
+		head = (head + 1) % buf.size();
+	}
+
+	void push(T&& val) {
+		if (buf.empty()) return;
+		buf[head] = std::forward<T>(val);
+		head = (head + 1) % buf.size();
+	}
+
+	size_t size() const { return buf.size(); }
+	void reset(size_t capacity) { buf.clear(); buf.resize(capacity); }
+
+	const T& operator[](size_t i) const { return buf[i]; }
+};
+
+enum class Judgement {
+	AIR_POOR,
+	MISS_POOR,
+	BAD,
+	GOOD,
+	GREAT,
+	PGREAT
+};
+
+struct JudgeData {
+	int offset = 0.0;
+	int timeHit = 0.0;
+	Judgement judge;
+};
+
+struct HITERRORDATA {
+	EMA ema;
+	CircularBuffer<JudgeData> notes;
+};
+
 struct PLAYERSTATUS {
 	int flag_active = 0;
 	int judgecount[6] = {}; /* 0unknown 1poor 2bad 3good 4great 5pgreat */
@@ -1330,6 +1396,7 @@ struct PLAYERSTATUS {
 	EXTENDEDPLAYERSTATS extendedStatsCourse = {};
 	std::array<EXTENDEDPLAYERSTATS, 20> extendedColumnStatsCourse = {};
 	int lastJudgedColumnIdx = 0;
+	HITERRORDATA hiterror;
 };
 
 struct PLAYSCORE {

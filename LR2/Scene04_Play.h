@@ -14,6 +14,7 @@ int DrawNotes(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg);
 
  int DrawJudgeCombo(game *g, skstruct *sk, Timer *T, CONFIG_PLAY *cfg);
  int DrawHPgauge(game * g);
+int DrawHitError(game *g, skstruct *sk, Timer *T);
 
 int JudgeToScore(int judge, game *g, int player, int lane, char isReplay);
 int ProcSinglenote(game *g, int lane, int keypress, int timing, int player);
