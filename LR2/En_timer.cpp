@@ -82,10 +82,8 @@ double GetTimeWrap(void) {
 }
 
 int InitTimer(Timer *T) {
-	//GetTimeWrap() call seems replaced by compiler
-	T->clock[0] = -1.0;
-	for (int i = 0; i < 499; i++) {
-		T->clock[i + 1] = T->clock[i];
+	for (int i = 0; i < TIMER_MAX; i++) {
+		T->clock[i] = -1.;
 	}
 
 	T->scratch = GetTimeWrap();
@@ -112,7 +110,7 @@ int CalcFPS(Timer *t){
 }
 
 double GetTimeLapse(uint timerID, Timer *T) {
-	if (500 < timerID) return -1.0;
+	if (timerID >= TIMER_MAX) return -1.0;
 	if (timerID == 140) return T->Rhythm;
 
 	if (T->clock[timerID] == -1.0) return -1.0;

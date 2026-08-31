@@ -69,7 +69,7 @@ DSTdraw DSTDbyTime(DSTdraw *dstd1, DSTdraw *dstd2, double t1, double t2, double 
 	return ret;
 }
 
-DSTdraw SetDSTdrawByTime(DSTstruct dst, double time) {
+DSTdraw SetDSTdrawByTime(const DSTstruct& dst, double time) {
 	int tStart, tEnd;
 	int t = time, t2;
 	DSTdraw oBuf{};

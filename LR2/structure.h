@@ -11,6 +11,7 @@
 
 #include "strclass.h"
 #include "LR2_customir.h"
+#include "LR2_panels.h"
 
 #ifdef _WIN32
 #include <winsock2.h>
@@ -26,7 +27,7 @@
 #define SINGLESLOTS 3844
 #define SLOTS SINGLESLOTS*10
 //36*36*5(6480) -> 62*62*10(38440)
-
+constexpr size_t TIMER_MAX = 500 + CUSTOM_PANELS_MAX * 2;
 
 struct sqlite3;
 struct game;
@@ -1019,6 +1020,7 @@ struct skstruct {
 	int event_FADEOUT[10]{};
 	struct DSTstruct dst_EVENT_LOADINGBG[5]{};
 	int horizontal{};
+	PanelManager panelMan;
 };
 
 struct MYRANKING {
@@ -1527,7 +1529,7 @@ struct SkinCustom {
 };
 
 struct Timer {
-	double clock[500];
+	double clock[TIMER_MAX];
 	double scratch; /* //for graphic */
 	double gameTick; /* //game tick */
 	double vSyncTick; /* //VSync */
