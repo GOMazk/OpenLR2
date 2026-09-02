@@ -243,6 +243,32 @@ enum class GetStatus: int {
 	Fail,
 };
 
+struct IRRivalInfo {
+	int id{};
+	std::string name;
+};
+
+// One rival score row. Field names match legacy LR2IR XML / Stellaverse JSON.
+struct IRRivalScore {
+	std::string hash;
+	int clear{};
+	int notes{};
+	int combo{};
+	int pg{};
+	int gr{};
+	int gd{};
+	int bd{};
+	int pr{};
+	int minbp{};
+	int option{};
+	uint64_t lastupdate{};
+};
+
+struct IRRivalListResult {
+	std::vector<IRRivalInfo> rivals;
+	uint64_t fetched_at{};
+};
+
 } // namespace openlr2
 
 struct MethodTable {
@@ -274,6 +300,17 @@ struct MethodTable {
 	// This is called synchronously when F5 or the IR button is pressed in song-select.
 	// \retval "" - error or inapplicable.
 	std::string(OLR2_IR_API* GetWebRankingUrl)(char const* songHash) = nullptr;
+	// XXX: just some food for thought: should we introduce a `size_t MethodTableSize` here?
+	// '_trailing_field_to_increase_struct_size' is not cool, it's never too late to make things better.
+	//
+	// Called synchronously during startup rival sync (same window as legacy LR2IR_GetRivalInfo).
+	// nullptr = module does not support CustomIR rivals.
+	openlr2::GetStatus(OLR2_IR_API* GetRivals)(openlr2::IRRivalListResult& out) = nullptr;
+	// Called per rival after GetRivals.
+	// lastUpdateHint: optional; OpenLR2 passes max r_lastupdate from its rival DB when available.
+	// The module may use it only to skip HTTP / read its private cache.
+	// On Ok: out is a complete snapshot of that rival's scores. OpenLR2 writes .db and .lr2folder.
+	openlr2::GetStatus(OLR2_IR_API* SyncRivalScores)(int rivalId, uint64_t lastUpdateHint, std::vector<openlr2::IRRivalScore>& out) = nullptr;
 	// Forward compatibility.
 	// This field will always be moved to the end of the struct when new fields are added.
 	// Thanks to this CustomIR module designed for newer game version won't write out-of-bounds memory when assigning fields of older MethodTable.

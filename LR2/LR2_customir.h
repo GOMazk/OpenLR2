@@ -6,7 +6,9 @@
 #include <future>
 #include <memory>
 #include <optional>
+#include <span>
 #include <string>
+#include <utility>
 #include <vector>
 
 struct RANKING;
@@ -44,10 +46,39 @@ public:
 	// \note Delegates to the display IR
 	// \retval nullopt - Fail
 	std::optional<openlr2::IRGhostResult> TryGetTargetInfo(const char* songmd5, int mode, int targetPlayerId);
+
+	struct RivalSyncTask {
+		std::string name;
+		std::future<std::optional<std::vector<openlr2::IRRivalScore>>> result;
+		int id{};
+	};
+	struct RivalSyncProvider {
+		std::string providerName;
+		std::vector<RivalSyncTask> tasks;
+		bool listOk{}; // GetRivals succeeded for this provider
+	};
+	struct RivalSyncBatch {
+		std::vector<RivalSyncProvider> providers;
+		[[nodiscard]] bool HasTasks() const;
+	};
+	// Caller: only when getRival. Syncs every logged-in CustomIR that supports rivals.
+	// Returns async work; call ApplyRivalSyncResults after wait or soft skip.
+	RivalSyncBatch SyncRivals();
+	// Applies ready tasks only. Incomplete futures are parked (soft skip / no WinHTTP abort).
+	// Writes LR2files/CustomIRRival/<provider>/ for every provider; mRivalPaths only for display IR.
+	// Returns true if the display IR GetRivals succeeded (active CustomIR rival folders).
+	bool ApplyRivalSyncResults(RivalSyncBatch& sync);
+	// Set only after successful ApplyRivalSyncResults. Empty = not active for this rival; use legacy LR2files/Rival.
+	[[nodiscard]] std::optional<std::filesystem::path> RivalPath(int rivalId) const;
+	// Synced CustomIR rivals: (id, artifact stem under CustomIRRival/<provider>/). Empty if none active.
+	[[nodiscard]] std::span<const std::pair<int, std::filesystem::path>> RivalEntries() const;
+
 private:
+	std::vector<std::pair<int, std::filesystem::path>> mRivalPaths;
 	std::vector<std::shared_ptr<CustomIR>> mModules;
 	std::vector<std::future<void>> mSendThreads;
 	std::vector<std::future<std::optional<openlr2::IRRankResult>>> mDiscardedResultIrFutures;
+	std::vector<std::future<std::optional<std::vector<openlr2::IRRivalScore>>>> mDiscardedRivalSyncFutures;
 	std::future<std::optional<openlr2::IRRankResult>> mResultIrFuture;
 	std::string mDisplayIr;
 };

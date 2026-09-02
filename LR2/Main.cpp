@@ -578,11 +578,52 @@ int main(int argc, char** argv) {
 		}
 	}
 
+	gs.net.getRival = gs.config.network.getRival;
+	if (gs.net.getRival) {
+		auto rivalSync = gs.net.customIR.SyncRivals();
+		if (rivalSync.HasTasks()) {
+			size_t i{};
+			const auto allTasksReady = [&] {
+				return std::ranges::all_of(rivalSync.providers, [&](const CUSTOMIR_MANAGER::RivalSyncProvider& provider) {
+					return std::ranges::all_of(provider.tasks, isFutureReady, &CUSTOMIR_MANAGER::RivalSyncTask::result);
+				});
+			};
+			while (!allTasksReady()) {
+				if (GetMouseInput()) {
+					printfDx("Skipped CustomIR rival sync.\n");
+					ScreenFlip();
+					clsDx();
+					break;
+				}
+				if (loadingGrHandle > 0)
+					DrawExtendGraph(0, 0, resX, resY, loadingGrHandle, 0);
+				printfDx("Syncing CustomIR rivals:\n");
+				printfDx("Hold left click to skip.\n");
+				for (const auto& provider : rivalSync.providers) {
+					if (provider.tasks.empty()) continue;
+					printfDx("[%s]\n", provider.providerName.c_str());
+					for (const auto& task : provider.tasks) {
+						printfDx("  %s (%d)%s\n", task.name.c_str(), task.id, isFutureReady(task.result) ? " - done!" : ellipsis(i, 3, 20).c_str());
+					}
+				}
+				ScreenFlip();
+				clsDx();
+				ClsDrawScreen();
+				std::this_thread::sleep_for(std::chrono::milliseconds(10));
+				++i;
+			}
+		}
+		if (gs.net.customIR.ApplyRivalSyncResults(rivalSync)) {
+			ErrorLogAdd("Using CustomIR rival folders\n");
+		} else {
+			ErrorLogAdd("CustomIR rival sync failed\n");
+		}
+	}
+
 	if (gs.is_starter == 0 && gs.cmd_nosave == 0) {
 		gs.net.IR_pass = gs.config.player.pass;
 		gs.net.IR_name = gs.config.player.id;
 		gs.net.IR_passMD5 = MD5str(gs.config.player.pass);
-		gs.net.getRival = gs.config.network.getRival;
 		gs.net.IR_ID = gs.gameplay.playerstat.irid;
 		gs.net.rankingData.myID = gs.net.IR_ID;
 		if (gs.config.network.lr2ir == 1) {
@@ -596,10 +637,13 @@ int main(int argc, char** argv) {
 
 	memcpy(gs.config.jukebox.rival, gs.net.rivals, 4 * 20);
 	sqlite3* sql3;
-	sqlite3_open(gs.is_starter
+	sqlite3_open_v2(gs.is_starter
 			? fs::make_preferred("LR2files/Database.db" ).data()
-			: fs::make_preferred("LR2files/Database/song.db").data(), &sql3);
-	LoadLR2CustomFolder(sql3, &gs.config.jukebox, pathScoreDB, gs.is_starter, gs.cmd_directplay);
+			: fs::make_preferred("LR2files/Database/song.db").data(),
+			&sql3,
+			SQLITE_OPEN_READWRITE | SQLITE_OPEN_CREATE | SQLITE_OPEN_URI,
+			nullptr);
+	LoadLR2CustomFolder(sql3, &gs.config.jukebox, pathScoreDB, gs.is_starter, gs.cmd_directplay, gs.net.customIR);
 	if (gs.cmd_directplay == false) {
 		if (loadingGrHandle > 0) {
 			DrawExtendGraph(0, 0, resX, resY, loadingGrHandle, 0);
@@ -1068,7 +1112,7 @@ int main(int argc, char** argv) {
 								gs.sSelect.stack_rivalID[gs.sSelect.cur] = 0;
 								gs.sSelect.stack_searchTitle[gs.sSelect.cur] = "検索語句を入力";
 								gs.sSelect.directory = "ROOT";
-								LoadFilteredBmsListFromDB(gs.sSelect.stack_query[gs.sSelect.cur], sql3, &gs.sSelect, &gs.config.select.difficulty, &gs.config.select.key, gs.config.select.sort, 0, 0);
+								LoadFilteredBmsListFromDB(gs.sSelect.stack_query[gs.sSelect.cur], sql3, &gs.sSelect, &gs.config.select.difficulty, &gs.config.select.key, gs.config.select.sort, 0, 0, gs.net.customIR);
 								SwapBmsList(&gs.sSelect);
 							}
 							if (gs.rec.recMode == 4) {
