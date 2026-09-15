@@ -670,7 +670,7 @@ int NETWORK::GetRanking(CSTR hash, char flagInit) {
 	return 1;
 }
 
-int NETWORK::GetRivalInfo(int rivalID) {
+int NETWORK::LR2IR_GetRivalInfo(int rivalID) {
 	CSTR pathXML;
 	cstrSprintf(&pathXML, fs::make_preferred("LR2files/Rival/%d.xml").data(), rivalID);
 	CSTR pathDB;
@@ -973,7 +973,7 @@ int NETWORK::LR2IR_Login(int isDirectPlay) {
 					ErrorLogFmtAdd("ライバル登録されています:%d\n", this->rivals[cur]); //TOFIX: 
 					this->rivals[cur] = csv.val[2+cur];
 					this->rivalcount++;
-					this->GetRivalInfo(this->rivals[cur]);
+					this->LR2IR_GetRivalInfo(this->rivals[cur]);
 					if (!this->getRival) break;
 				}
 			}

@@ -252,7 +252,7 @@ int ProcI_PO4Select(game *g, sqlite3 *sql) { //not tested
 					g->sSelect.stack_searchTitle[g->sSelect.cur] = "検索語句を入力";
 					g->sSelect.directory = "ROOT";
 					int t = g->po4cur_song + 2;
-					LoadFilteredBmsListFromDB(g->sSelect.stack_query[g->sSelect.cur], sql, &g->sSelect, &t, &g->config.select.key, 1, 0, 0);
+					LoadFilteredBmsListFromDB(g->sSelect.stack_query[g->sSelect.cur], sql, &g->sSelect, &t, &g->config.select.key, 1, 0, 0, g->net.customIR);
 					SwapBmsList(&g->sSelect);
 					SetTransColor(0, 255, 0);
 
