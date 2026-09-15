@@ -239,7 +239,7 @@ static int GetBestClearedGauge(const gameplay& gameplay, int playerIdx, const CO
 
 int CheckCourseClear(game* g) {
 	if (g->gameplay.courseStageNow < g->gameplay.courseStageCount - 1) {
-		for (int i = g->gameplay.courseStageNow - 1; i < g->gameplay.courseStageCount; i++) {
+		for (int i = g->gameplay.courseStageNow + 1; i < g->gameplay.courseStageCount; i++) {
 			g->gameplay.player[PLAYER_1].total_note += g->sSelect.bmsList[g->sSelect.cur_song].courseTotalnote[i];
 			g->gameplay.player[PLAYER_2].total_note += g->sSelect.bmsList[g->sSelect.cur_song].courseTotalnote[i];
 		}

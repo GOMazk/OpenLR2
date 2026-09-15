@@ -1299,7 +1299,7 @@ struct PLAYERSTATUS {
 	int now_combo_course = 0;
 	int combo_draw = 0;
 	int judgecount2[6] = {}; /* 0unknown 1poor 2bad 3good 4great 5pgreat */
-	int total_note = 0;
+	int total_note = 0; /* running sum across loaded course stages */
 	int note_current2 = 0;
 	std::array<double, 6> HP = {};
 	double HP_unk = 0.;
@@ -1313,7 +1313,7 @@ struct PLAYERSTATUS {
 	int lastCourseGaugeType = OPTION_GAUGE_GROOVE;
 	std::array<std::array<double, 6>, 6> judge_damage = {}; 
 	int judgetime[6] = {}; /* 0unknown 1poor 2bad 3good 4great 5pgreat */
-	int totalnotes = 0;
+	int totalnotes = 0; /* current chart's note count */
 	int score = 0;
 	int exscore = 0;
 	double rate = 0.;

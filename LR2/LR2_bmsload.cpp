@@ -894,8 +894,9 @@ int InitGameplay_retry(gameplay *gp, AUDIO *snd, game *g) {
 	gp->delayCheckCount = 0;
 
 	for (int p : { PLAYER_1, PLAYER_2 }) {
-		int tempTime[6], tempCount;
+		int tempTime[6], tempCount, tempTotalNote;
 		tempCount = gp->player[p].totalnotes;
+		tempTotalNote = gp->player[p].total_note;
 		auto tempDmg = gp->player[p].judge_damage;
 		memcpy(tempTime, &gp->player[p].judgetime, sizeof(tempTime));
 		gp->player[p] = PLAYERSTATUS();
@@ -903,6 +904,7 @@ int InitGameplay_retry(gameplay *gp, AUDIO *snd, game *g) {
 		gp->player[p].judge_damage = tempDmg;
 		memcpy(&gp->player[p].judgetime, tempTime, sizeof(tempTime));
 		gp->player[p].totalnotes = tempCount;
+		gp->player[p].total_note = tempTotalNote;
 		gp->statgraph[p] = GRAPHDATA();
 	}
 	gp->player[PLAYER_1].flag_active = 1;
