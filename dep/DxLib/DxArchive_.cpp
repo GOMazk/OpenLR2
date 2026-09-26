@@ -2,13 +2,13 @@
 // 
 // 		ＤＸライブラリ		アーカイブ制御プログラム
 // 
-// 				Ver 3.25a
+// 				Ver 3.19f
 // 
 // -------------------------------------------------------------------------------
 
 
 // ＤＸライブラリ作成時用定義
-#define DX_MAKE
+#define __DX_MAKE
 
 // インクルード-------------------------------------------------------------------
 #include "DxArchive_.h"
@@ -40,11 +40,15 @@ namespace DxLib
 
 #define DXARC_ID_AND_VERSION_SIZE	(sizeof( WORD ) * 2)
 
-#define DXARC_HEAD_VER8_SIZE		(64)
+#define DXARC_HEAD_VER3_SIZE		(24)
+#define DXARC_HEAD_VER4_SIZE		(28)
+#define DXARC_HEAD_VER6_SIZE		(48)
 
-#define DXARC_FILEHEAD_VER8_SIZE	(72)			// Ver0x0008 の DXARC_FILEHEAD 構造体のサイズ
+#define DXARC_FILEHEAD_VER1_SIZE	(40)			// Ver0x0001 の DXARC_FILEHEAD 構造体のサイズ
+#define DXARC_FILEHEAD_VER2_SIZE	(44)			// Ver0x0002 の DXARC_FILEHEAD 構造体のサイズ
+#define DXARC_FILEHEAD_VER6_SIZE	(64)			// Ver0x0006 の DXARC_FILEHEAD 構造体のサイズ
 
-#ifdef USE_ULL
+#ifdef __USE_ULL__
 #define NONE_PAL		(0xffffffffffffffffULL)
 #else
 #define NONE_PAL		(0xffffffffffffffff)
@@ -65,44 +69,13 @@ struct DXA_FINDDATA
 {
 	DXARC						*Container;						// 検索対象のＤＸＡファイル
 	BYTE						SearchStr[ FILEPATH_MAX ] ;		// 検索文字列
-	DXARC_DIRECTORY				*Directory;						// 検索対象のディレクトリ
+	union
+	{
+		DXARC_DIRECTORY			*Directory;						// 検索対象のディレクトリ
+		DXARC_DIRECTORY_VER5	*DirectoryV5;					// 検索対象のディレクトリ(Ver5以前用)
+	};
 	DWORD						ObjectCount;					// 次に渡すディレクトリ内オブジェクトのインデックス
 } ;
-
-#endif // DX_NON_DXA
-
-// 数値ごとの出現数や算出されたエンコード後のビット列や、結合部分の情報等の構造体
-struct HUFFMAN_NODE
-{
-	ULONGLONG					Weight ;						// 出現数( 結合データでは出現数を足したモノ )
-	int							BitNum ;						// 圧縮後のビット列のビット数( 結合データでは使わない )
-	unsigned char				BitArray[ 32 ] ;				// 圧縮後のビット列( 結合データでは使わない )
-	int							Index ;							// 結合データに割り当てられた参照インデックス( 0 or 1 )
-	
-	int							ParentNode ;					// このデータを従えている結合データの要素配列のインデックス
-	int							ChildNode[ 2 ] ;				// このデータが結合させた２要素の要素配列インデックス( 結合データではない場合はどちらも -1 )
-} ;
-
-// ビット単位入出力用データ構造体
-struct BIT_STREAM
-{
-	BYTE						*Buffer ;
-	ULONGLONG					Bytes ;
-	DWORD						Bits ;
-} ;
-
-// ハフマン圧縮データのヘッダの構造
-//   6bit      圧縮前のデータのサイズのビット数(A) - 1( 0=1ビット 63=64ビット )
-//   (A)bit    圧縮前のデータのサイズ
-//   6bit      圧縮後のデータのサイズのビット数(B) - 1( ヘッダ部分含まない )( 0=1ビット 63=64ビット )
-//   (B)bit    圧縮後のデータのサイズ
-//
-//   3bit      数値ごとの出現頻度の差分値のビット数(C) / 2 - 1( 0=2ビット 7=16ビット )
-//   1bit      符号ビット( 0=プラス  1=マイナス )
-//   (C)bit    数値ごとの出現頻度の差分値
-//   ↑これが256個ある
-
-#ifndef DX_NON_DXA
 
 // 内部大域変数宣言 --------------------------------------------------------------
 
@@ -111,116 +84,128 @@ BYTE Ascii_DoubleDotStr[ 3 ] = { '.',  '.', 0 } ;
 BYTE Ascii_EnStr[ 2 ]        = { '\\',      0 } ;
 BYTE Ascii_SlashStr[ 2 ]     = { '/',       0 } ;
 
-// デフォルト鍵文字列
-static char DefaultKeyString[ 9 ] = { 0x44, 0x58, 0x42, 0x44, 0x58, 0x41, 0x52, 0x43, 0x00 } ; // "DXLIBARC"
-
 // アーカイブをディレクトリに見立てる為のデータ
 DXARC_DIR DX_ArchiveDirData ;
 
 // 関数プロトタイプ宣言-----------------------------------------------------------
 
+static DXARC_FILEHEAD_VER5 *DXA_GetFileHeaderV5(	DXARC *DXA, const BYTE *FilePath ) ;													// ファイルの情報を得る
 static DXARC_FILEHEAD      *DXA_GetFileHeader(		DXARC *DXA, const BYTE *FilePath, DXARC_DIRECTORY **DirectoryP ) ;						// ファイルの情報を得る
 static int		DXA_ConvSearchData(					DXARC *DXA, DXARC_SEARCHDATA *Dest, const BYTE *Src, int *Length ) ;					// 文字列を検索用のデータに変換( ヌル文字か \ があったら終了 )
 static int		DXA_ChangeCurrentDirectoryFast(		DXARC *DXA, DXARC_SEARCHDATA *SearchData ) ;											// アーカイブ内のディレクトリパスを変更する( 0:成功  -1:失敗 )
 static int		DXA_ChangeCurrentDirectoryBase(		DXARC *DXA, const BYTE *DirectoryPath, bool ErrorIsDirectoryReset, DXARC_SEARCHDATA *LastSearchData = NULL ) ;		// アーカイブ内のディレクトリパスを変更する( 0:成功  -1:失敗 )
-static size_t	DXA_CreateKeyFileString(			DXARC *DXA, DXARC_DIRECTORY *Directory, DXARC_FILEHEAD *FileHead, BYTE *FileString ) ;	// カレントディレクトリにある指定のファイルの鍵用の文字列を作成する、戻り値は文字列の長さ( 単位：Byte )( FileString は DXA_KEY_STRING_MAXLENGTH の長さが必要 )
+static size_t	DXA_CreateKeyV2FileString(			DXARC *DXA, DXARC_DIRECTORY *Directory, DXARC_FILEHEAD *FileHead, BYTE *FileString ) ;	// カレントディレクトリにある指定のファイルの鍵バージョン２用の文字列を作成する、戻り値は文字列の長さ( 単位：Byte )( FileString は DXA_KEYV2_STRING_MAXLENGTH の長さが必要 )
 //static int	DXA_Decode(							void *Src, void *Dest ) ;																// データを解凍する( 戻り値:解凍後のデータサイズ )
-static void		DXA_KeyCreate(						const char *Source, size_t SourceBytes, unsigned char *Key ) ;							// 鍵文字列を作成
+static void		DXA_KeyCreate(						const char *Source, unsigned char *Key ) ;												// 鍵文字列を作成
+static void		DXA_KeyV2Create(					const char *Source, unsigned char *Key, size_t KeyBytes = 0 ) ;							// 鍵バージョン２を作成
 static void		DXA_KeyConv(						void *Data, LONGLONG  SizeLL, LONGLONG  PositionLL,  unsigned char *Key ) ;				// 鍵文字列を使用して Xor 演算( Key は必ず DXA_KEYSTR_LENGTH の長さがなければならない )
 static void		DXA_KeyConvFileRead(				void *Data, ULONGLONG Size,   DWORD_PTR FilePointer, unsigned char *Key, LONGLONG Position = -1 ) ;	// ファイルから読み込んだデータを鍵文字列を使用して Xor 演算する関数( Key は必ず DXA_KEYSTR_LENGTH の長さがなければならない )
+static void		DXA_KeyV2Conv(						void *Data, LONGLONG  SizeLL, LONGLONG  PositionLL,  unsigned char *Key ) ;				// 鍵バージョン２文字列を使用して Xor 演算( Key は必ず DXA_KEYV2_LENGTH の長さがなければならない )
+static void		DXA_KeyV2ConvFileRead(				void *Data, ULONGLONG Size,   DWORD_PTR FilePointer, unsigned char *Key, LONGLONG Position ) ;		// ファイルから読み込んだデータを鍵文字列を使用して Xor 演算する関数( Key は必ず DXA_KEYV2_LENGTH の長さがなければならない )
 static int		DXA_FindProcess(					DXA_FINDDATA *FindData, FILEINFOW *FileInfo );											// 条件に適合するオブジェクトを検索する(検索対象は ObjectCount をインデックスとしたところから)(戻り値 -1:エラー 0:成功)
 
 static int		DXA_DIR_OpenArchive(				const wchar_t *FilePath, void *FileImage = NULL, int FileSize = -1, int FileImageCopyFlag = FALSE, int FileImageReadOnly = FALSE, int ArchiveIndex = -1, int OnMemory = FALSE, int ASyncThread = FALSE ) ;	// アーカイブファイルを開く
 static int		DXA_DIR_GetArchive(					const wchar_t *FilePath, void *FileImage = NULL ) ;										// 既に開かれているアーカイブのハンドルを取得する( 戻り値: -1=無かった 0以上:ハンドル )
 static int		DXA_DIR_CloseArchive(				int ArchiveHandle ) ;																	// アーカイブファイルを閉じる
-static void		DXA_DIR_CloseWaitArchive(			int AlwaysClose = FALSE ) ;																// 使用されるのを待っているアーカイブファイルを全て閉じる
+static void		DXA_DIR_CloseWaitArchive(			void ) ;																				// 使用されるのを待っているアーカイブファイルを全て閉じる
 static int		DXA_DIR_ConvertFullPath(			const wchar_t *Src, wchar_t *Dest, size_t BufferBytes, int CharUp = 1 ) ;				// 全ての英字小文字を大文字にしながら、フルパスに変換する
 static int		DXA_DIR_AnalysisFileNameAndDirPath( DXARC *DXA, const BYTE *Src, BYTE *FileName = 0, size_t FileNameBytes = 0, BYTE *DirPath = 0, size_t DirPathBytes = 0 ) ;					// ファイル名も一緒になっていると分かっているパス中からファイル名とディレクトリパスを分割する。フルパスである必要は無い、ファイル名だけでも良い、DirPath の終端に ￥ マークは付かない
 static int		DXA_DIR_FileNameCmp(				DXARC *DXA, const BYTE *Src, const BYTE *CmpStr );										// CmpStr の条件に Src が適合するかどうかを調べる( 0:適合する  -1:適合しない )
 static int		DXA_DIR_OpenTest(					const wchar_t *FilePath, int *ArchiveIndex, BYTE *ArchiveFilePath, size_t BufferBytes ) ;	// アーカイブファイルをフォルダに見立ててファイルを開く時の情報を得る( -1:アーカイブとしては存在しなかった  0:存在した )
 
-static int		DXA_DirectoryKeyConv(				DXARC *DXA, DXARC_DIRECTORY *Dir, char *KeyStringBuffer ) ;								// 指定のディレクトリデータの暗号化を解除する( 丸ごとメモリに読み込んだ場合用 )
+static int		DXA_DirectoryKeyConv(				DXARC *DXA, DXARC_DIRECTORY *Dir, char *KeyV2StringBuffer ) ;							// 指定のディレクトリデータの暗号化を解除する( 丸ごとメモリに読み込んだ場合用 )
+static int		DXA_DirectoryKeyConvV5(				DXARC *DXA, DXARC_DIRECTORY_VER5 *Dir ) ;												// 指定のディレクトリデータの暗号化を解除する( 丸ごとメモリに読み込んだ場合用 )
 
-#endif // DX_NON_DXA
 
-static void			BitStream_Init(  BIT_STREAM *BitStream, void *Buffer, bool IsRead ) ;			// ビット単位入出力の初期化
-static void			BitStream_Write( BIT_STREAM *BitStream, BYTE BitNum, ULONGLONG OutputData ) ;	// ビット単位の数値の書き込みを行う
-static ULONGLONG	BitStream_Read(  BIT_STREAM *BitStream, BYTE BitNum ) ;							// ビット単位の数値の読み込みを行う
-static BYTE			BitStream_GetBitNum( ULONGLONG Data ) ;											// 指定の数値のビット数を取得する
-static ULONGLONG	BitStream_GetBytes( BIT_STREAM *BitStream ) ;									// ビット単位の入出力データのサイズ( バイト数 )を取得する
 
 // プログラム --------------------------------------------------------------------
 
-// ビット単位入出力の初期化
-void BitStream_Init( BIT_STREAM *BitStream, void *Buffer, bool IsRead )
+// ファイルの情報を得る
+static DXARC_FILEHEAD_VER5 *DXA_GetFileHeaderV5( DXARC *DXA, const BYTE *FilePath )
 {
-	BitStream->Buffer = ( BYTE * )Buffer ;
-	BitStream->Bytes = 0 ;
-	BitStream->Bits = 0 ;
-	if( IsRead == false )
-	{
-		BitStream->Buffer[ 0 ] = 0 ;
-	}
-}
+	DXARC_DIRECTORY_VER5 *OldDir ;
+	DXARC_FILEHEAD_VER5 *FileH ;
+	DWORD FileHeadSize ;
+	BYTE *NameData ;
+	int i, j, k, Num ;
+	DXARC_SEARCHDATA SearchData ;
 
-// ビット単位の数値の書き込みを行う
-void BitStream_Write( BIT_STREAM *BitStream, BYTE BitNum, ULONGLONG OutputData )
-{
-	DWORD i ;
-	for( i = 0 ; i < BitNum ; i ++ )
+	// 元のディレクトリを保存しておく
+	OldDir = DXA->CurrentDirectoryV5 ;
+
+	// ファイルパスに \ or / が含まれている場合、ディレクトリ変更を行う
+	if( CL_strchr( DXA->CharCodeFormat, ( const char * )FilePath, '\\' ) != NULL ||
+		CL_strchr( DXA->CharCodeFormat, ( const char * )FilePath, '/'  ) != NULL )
 	{
-		BitStream->Buffer[ BitStream->Bytes ] |= ( ( OutputData >> ( BitNum - 1 - i ) ) & 1 ) << ( 7 - BitStream->Bits ) ;
-		BitStream->Bits ++ ;
-		if( BitStream->Bits == 8 )
+		// カレントディレクトリを目的のファイルがあるディレクトリに変更する
+		if( DXA_ChangeCurrentDirectoryBase( DXA, FilePath, false, &SearchData ) >= 0 )
 		{
-			BitStream->Bytes ++ ;
-			BitStream->Bits = 0 ;
-			BitStream->Buffer[ BitStream->Bytes ] = 0 ;
+			// エラーが起きなかった場合はファイル名もディレクトリだったことになるのでエラー
+			goto ERR ;
 		}
 	}
-}
-
-// ビット単位の数値の読み込みを行う
-ULONGLONG BitStream_Read( BIT_STREAM *BitStream, BYTE BitNum )
-{
-	ULONGLONG Result = 0 ;
-	DWORD i ;
-	for( i = 0 ; i < BitNum ; i ++ )
+	else
 	{
-		Result |= ( ( ULONGLONG )( ( BitStream->Buffer[ BitStream->Bytes ] >> ( 7 - BitStream->Bits ) ) & 1 ) ) << ( BitNum - 1 - i ) ;
-		BitStream->Bits ++ ;
-		if( BitStream->Bits == 8 )
+		// ファイル名を検索用データに変換する
+		DXA_ConvSearchData( DXA, &SearchData, FilePath, NULL ) ;
+	}
+
+	// 同名のファイルを探す
+	FileHeadSize = ( DWORD )( DXA->HeadV5.Version >= 0x0002 ? DXARC_FILEHEAD_VER2_SIZE : DXARC_FILEHEAD_VER1_SIZE ) ;
+	FileH        = ( DXARC_FILEHEAD_VER5 * )( DXA->Table.FileTable + DXA->CurrentDirectoryV5->FileHeadAddress ) ;
+	Num          = ( int )DXA->CurrentDirectoryV5->FileHeadNum ;
+	for( i = 0 ; i < Num ; i ++, FileH = (DXARC_FILEHEAD_VER5 *)( (BYTE *)FileH + FileHeadSize ) )
+	{
+		// ディレクトリチェック
+		if( ( FileH->Attributes & FILE_ATTRIBUTE_DIRECTORY ) != 0 )
 		{
-			BitStream->Bytes ++ ;
-			BitStream->Bits = 0 ;
+			continue ;
+		}
+
+		// 文字列数とパリティチェック
+		NameData = DXA->Table.NameTable + FileH->NameAddress ;
+		if( SearchData.PackNum != ( ( WORD * )NameData )[ 0 ] ||
+			SearchData.Parity  != ( ( WORD * )NameData )[ 1 ] )
+		{
+			continue ;
+		}
+
+		// 文字列チェック
+		NameData += 4 ;
+		for( j = 0, k = 0 ; j < SearchData.PackNum ; j ++, k += 4 )
+		{
+			if( *( ( DWORD * )&SearchData.FileName[ k ]) != *( ( DWORD * )&NameData[ k ] ) )
+			{
+				break ;
+			}
+		}
+
+		// 適合したファイルがあったらここで終了
+		if( SearchData.PackNum == j )
+		{
+			break ;
 		}
 	}
 
-	return Result ;
-}
-
-// 指定の数値のビット数を取得する
-BYTE BitStream_GetBitNum( ULONGLONG Data )
-{
-	DWORD i ;
-	for( i = 1 ; i < 64 ; i ++ )
+	// 無かったらエラー
+	if( i == Num )
 	{
-		if( Data < ( ULL_NUM( 1 ) << i ) )
-		{
-			return ( BYTE )i ;
-		}
+		goto ERR ;
 	}
 
-	return ( BYTE )i ;
+	// ディレクトリを元に戻す
+	DXA->CurrentDirectoryV5 = OldDir ;
+	
+	// 目的のファイルのアドレスを返す
+	return FileH ;
+	
+ERR :
+	// ディレクトリを元に戻す
+	DXA->CurrentDirectoryV5 = OldDir ;
+	
+	// エラー終了
+	return NULL ;
 }
-
-// ビット単位の入出力データのサイズ( バイト数 )を取得する
-ULONGLONG BitStream_GetBytes( BIT_STREAM *BitStream )
-{
-	return BitStream->Bytes + ( BitStream->Bits != 0 ? 1 : 0 ) ;
-}
-
-#ifndef DX_NON_DXA
 
 // ファイルの情報を得る
 static DXARC_FILEHEAD *DXA_GetFileHeader( DXARC *DXA, const BYTE *FilePath, DXARC_DIRECTORY **DirectoryP )
@@ -253,7 +238,7 @@ static DXARC_FILEHEAD *DXA_GetFileHeader( DXARC *DXA, const BYTE *FilePath, DXAR
 	}
 
 	// 同名のファイルを探す
-	FileHeadSize = DXARC_FILEHEAD_VER8_SIZE ;
+	FileHeadSize = DXARC_FILEHEAD_VER6_SIZE ;
 	FileH        = ( DXARC_FILEHEAD * )( DXA->Table.FileTable + DXA->CurrentDirectory->FileHeadAddress ) ;
 	Num          = ( int )DXA->CurrentDirectory->FileHeadNum ;
 	for( i = 0 ; i < Num ; i ++, FileH = (DXARC_FILEHEAD *)( (BYTE *)FileH + FileHeadSize ) )
@@ -420,85 +405,164 @@ static int DXA_ConvSearchData( DXARC *DXA, DXARC_SEARCHDATA *Dest, const BYTE *S
 
 
 
-
-// 鍵を作成
-static void DXA_KeyCreate( const char *Source, size_t SourceBytes, unsigned char *Key )
+// 鍵文字列を作成
+void DXA_KeyCreate( const char *Source, unsigned char *Key )
 {
-	char SourceTempBuffer[ 1024 ] ;
-	char WorkBuffer[ 1024 ] ;
-	char *UseWorkBuffer ;
-	DWORD i, j ;
-	DWORD CRC32_0 ;
-	DWORD CRC32_1 ;
+	size_t Len ;
 
-	if( SourceBytes == 0 )
+	if( Source == NULL )
 	{
-		SourceBytes = CL_strlen( DX_CHARCODEFORMAT_ASCII, Source ) ;
-	}
-
-	if( SourceBytes < 4 )
-	{
-		CL_strcpy( DX_CHARCODEFORMAT_ASCII, SourceTempBuffer, Source ) ;
-		CL_strcpy( DX_CHARCODEFORMAT_ASCII, &SourceTempBuffer[ SourceBytes ], DefaultKeyString ) ;
-		Source = SourceTempBuffer ;
-		SourceBytes = CL_strlen( DX_CHARCODEFORMAT_ASCII, Source ) ;
-	}
-
-	if( SourceBytes / 2 > sizeof( WorkBuffer ) )
-	{
-		UseWorkBuffer = ( char * )DXALLOC( SourceBytes / 2 ) ;
+		_MEMSET( Key, 0xaa, DXA_KEYSTR_LENGTH ) ;
 	}
 	else
 	{
-		UseWorkBuffer = WorkBuffer ;
+		Len = CL_strlen( DX_CHARCODEFORMAT_ASCII, Source ) ;
+		if( Len > DXA_KEYSTR_LENGTH )
+		{
+			_MEMCPY( Key, Source, DXA_KEYSTR_LENGTH ) ;
+		}
+		else
+		{
+			// 鍵文字列が DXA_KEYSTR_LENGTH より短かったらループする
+			size_t i ;
+
+			for( i = 0 ; i + Len <= DXA_KEYSTR_LENGTH ; i += Len )
+			{
+				_MEMCPY( Key + i, Source, Len ) ;
+			}
+
+			if( i < DXA_KEYSTR_LENGTH )
+			{
+				_MEMCPY( Key + i, Source, DXA_KEYSTR_LENGTH - i ) ;
+			}
+		}
 	}
 
-	j = 0 ;
-	for( i = 0 ; i < SourceBytes ; i += 2, j++ )
+	Key[ 0] = ( unsigned char )( ~Key[0] ) ;
+	Key[ 1] = ( unsigned char )( ( Key[1] >> 4 ) | ( Key[1] << 4 ) ) ;
+	Key[ 2] = ( unsigned char )( Key[2] ^ 0x8a ) ;
+	Key[ 3] = ( unsigned char )( ~( ( Key[3] >> 4 ) | ( Key[3] << 4 ) ) ) ;
+	Key[ 4] = ( unsigned char )( ~Key[4] ) ;
+	Key[ 5] = ( unsigned char )( Key[5] ^ 0xac ) ;
+	Key[ 6] = ( unsigned char )( ~Key[6] ) ;
+	Key[ 7] = ( unsigned char )( ~( ( Key[7] >> 3 ) | ( Key[7] << 5 ) ) ) ;
+	Key[ 8] = ( unsigned char )( ( Key[8] >> 5 ) | ( Key[8] << 3 ) ) ;
+	Key[ 9] = ( unsigned char )( Key[9] ^ 0x7f ) ;
+	Key[10] = ( unsigned char )( ( ( Key[10] >> 4 ) | ( Key[10] << 4 ) ) ^ 0xd6 ) ;
+	Key[11] = ( unsigned char )( Key[11] ^ 0xcc ) ;
+}
+
+// 鍵バージョン２を作成
+static void DXA_KeyV2Create( const char *Source, unsigned char *Key, size_t KeyBytes )
+{
+	if( Source == NULL )
 	{
-		UseWorkBuffer[ j ] = Source[ i ] ;
+		static BYTE DefaultKeyString[ 5 ] = { 0x44, 0x58, 0x41, 0x52, 0x43 }; // "DXARC"
+		HashSha256( DefaultKeyString, sizeof( DefaultKeyString ), Key ) ;
 	}
-	CRC32_0 = HashCRC32( UseWorkBuffer, j ) ;
-
-	j = 0 ;
-	for( i = 1 ; i < SourceBytes ; i += 2, j++ )
+	else
 	{
-		UseWorkBuffer[ j ] = Source[ i ] ;
-	}
-	CRC32_1 = HashCRC32( UseWorkBuffer, j ) ;
-
-	Key[ 0 ] = ( BYTE )( CRC32_0 >>  0 ) ;
-	Key[ 1 ] = ( BYTE )( CRC32_0 >>  8 ) ;
-	Key[ 2 ] = ( BYTE )( CRC32_0 >> 16 ) ;
-	Key[ 3 ] = ( BYTE )( CRC32_0 >> 24 ) ;
-	Key[ 4 ] = ( BYTE )( CRC32_1 >>  0 ) ;
-	Key[ 5 ] = ( BYTE )( CRC32_1 >>  8 ) ;
-	Key[ 6 ] = ( BYTE )( CRC32_1 >> 16 ) ;
-
-	if( SourceBytes > sizeof( WorkBuffer ) )
-	{
-		DXFREE( UseWorkBuffer ) ;
+		HashSha256( Source, KeyBytes == 0 ? CL_strlen( DX_CHARCODEFORMAT_ASCII, Source ) : KeyBytes, Key ) ;
 	}
 }
 
-// 鍵を使用して Xor 演算( Key は必ず DXA_KEY_BYTES の長さがなければならない )
-static void DXA_KeyConv( void *Data, LONGLONG  SizeLL, LONGLONG  PositionLL,  unsigned char *Key )
+// 鍵文字列を使用して Xor 演算( Key は必ず DXA_KEYSTR_LENGTH の長さがなければならない )
+void DXA_KeyConv( void *Data, LONGLONG SizeLL, LONGLONG PositionLL, unsigned char *Key )
 {
 	int Position ;
 
-	Position = ( int )( PositionLL % DXA_KEY_BYTES ) ;
+	Position = ( int )( PositionLL % DXA_KEYSTR_LENGTH ) ;
 
 	if( SizeLL <= 0xffffffff )
 	{
 		DWORD SizeT ;
 		SizeT = ( DWORD )SizeLL ;
 
+#ifndef DX_NON_INLINE_ASM
+		DWORD DataT ;
+		DataT = (DWORD)Data ;
+
+		__asm
+		{
+			MOV EDI, DataT
+			MOV ESI, Key
+
+			MOV EAX, SizeT
+			CMP EAX, DXA_KEYSTR_LENGTH
+			JB LABEL2
+
+
+			MOV EAX, Position
+			CMP EAX, 0
+			JE LABEL1
+
+
+			MOV EDX, SizeT
+	LOOP1:
+			MOV BL, [ESI+EAX]
+			XOR [EDI], BL
+			INC EAX
+			INC EDI
+			DEC EDX
+			CMP EAX, DXA_KEYSTR_LENGTH
+			JB LOOP1
+			XOR ECX, ECX
+			MOV Position, ECX
+
+			MOV SizeT, EDX
+			CMP EDX, DXA_KEYSTR_LENGTH
+			JB LABEL2
+
+
+	LABEL1:
+			MOV EAX, SizeT
+			XOR EDX, EDX
+			MOV ECX, DXA_KEYSTR_LENGTH
+			DIV ECX
+			MOV SizeT, EDX
+			MOV ECX, EAX
+
+			MOV EAX, [ESI]
+			MOV EBX, [ESI+4]
+			MOV EDX, [ESI+8]
+	LOOP2:
+			XOR [EDI],    EAX
+			XOR [EDI+4],  EBX
+			XOR [EDI+8],  EDX
+			ADD EDI, DXA_KEYSTR_LENGTH
+			DEC ECX
+			JNZ LOOP2
+
+
+	LABEL2:
+			MOV EDX, SizeT
+			CMP EDX, 0
+			JE LABEL3
+
+
+			MOV EAX, Position
+	LOOP3:
+			MOV BL, [ESI+EAX]
+			XOR [EDI], BL
+			INC EAX
+			CMP EAX, DXA_KEYSTR_LENGTH
+			JNE LABEL4
+			XOR EAX, EAX
+	LABEL4:
+			INC EDI
+			DEC EDX
+			JNZ LOOP3
+	LABEL3:
+		} ;
+
+#else // DX_NON_INLINE_ASM
+
 		BYTE *DataBP ;
 		BYTE *KeyBP ;
 
 		DataBP = ( BYTE * )Data ;
 		KeyBP = ( BYTE * )Key ;
-		if( SizeT >= DXA_KEY_BYTES )
+		if( SizeT >= DXA_KEYSTR_LENGTH )
 		{
 			if( Position != 0 )
 			{
@@ -508,29 +572,27 @@ static void DXA_KeyConv( void *Data, LONGLONG  SizeLL, LONGLONG  PositionLL,  un
 					Position ++ ;
 					DataBP ++ ;
 					SizeT -- ;
-				}while( Position < DXA_KEY_BYTES ) ;
+				}while( Position < DXA_KEYSTR_LENGTH ) ;
 				Position = 0 ;
 			}
 
-			if( SizeT >= DXA_KEY_BYTES )
+			if( SizeT >= DXA_KEYSTR_LENGTH )
 			{
 				DWORD SetNum ;
-				DWORD Key1 ;
-				WORD Key2 ;
-				BYTE Key3 ;
+				DWORD Key1, Key2, Key3 ;
 
-				SetNum = SizeT / DXA_KEY_BYTES ;
-				SizeT -= SetNum * DXA_KEY_BYTES ;
+				SetNum = SizeT / DXA_KEYSTR_LENGTH ;
+				SizeT -= SetNum * DXA_KEYSTR_LENGTH ;
 				Key1 = ( ( DWORD * )KeyBP )[ 0 ] ;
-				Key2 = ( (  WORD * )KeyBP )[ 2 ] ;
-				Key3 = ( (  BYTE * )KeyBP )[ 6 ] ;
+				Key2 = ( ( DWORD * )KeyBP )[ 1 ] ;
+				Key3 = ( ( DWORD * )KeyBP )[ 2 ] ;
 
 				do
 				{
 					( ( DWORD * )DataBP )[ 0 ] ^= Key1 ;
-					( (  WORD * )DataBP )[ 2 ] ^= Key2 ;
-					( (  BYTE * )DataBP )[ 6 ] ^= Key3 ;
-					DataBP += DXA_KEY_BYTES ;
+					( ( DWORD * )DataBP )[ 1 ] ^= Key2 ;
+					( ( DWORD * )DataBP )[ 2 ] ^= Key3 ;
+					DataBP += DXA_KEYSTR_LENGTH ;
 					SetNum -- ;
 				}while( SetNum > 0 ) ;
 			}
@@ -543,11 +605,12 @@ static void DXA_KeyConv( void *Data, LONGLONG  SizeLL, LONGLONG  PositionLL,  un
 				*DataBP ^= KeyBP[ Position ] ;
 				DataBP ++ ;
 				Position ++ ;
-				if( Position == DXA_KEY_BYTES )
+				if( Position == DXA_KEYSTR_LENGTH )
 					Position = 0 ;
 				SizeT -- ;
 			}while( SizeT > 0 ) ;
 		}
+#endif // DX_NON_INLINE_ASM
 	}
 	else
 	{
@@ -556,7 +619,7 @@ static void DXA_KeyConv( void *Data, LONGLONG  SizeLL, LONGLONG  PositionLL,  un
 
 		DataBP = ( BYTE * )Data ;
 		KeyBP = ( BYTE * )Key ;
-		if( SizeLL >= DXA_KEY_BYTES )
+		if( SizeLL >= DXA_KEYSTR_LENGTH )
 		{
 			if( Position != 0 )
 			{
@@ -566,29 +629,27 @@ static void DXA_KeyConv( void *Data, LONGLONG  SizeLL, LONGLONG  PositionLL,  un
 					Position ++ ;
 					DataBP ++ ;
 					SizeLL -- ;
-				}while( Position < DXA_KEY_BYTES ) ;
+				}while( Position < DXA_KEYSTR_LENGTH ) ;
 				Position = 0 ;
 			}
 
-			if( SizeLL >= DXA_KEY_BYTES )
+			if( SizeLL >= DXA_KEYSTR_LENGTH )
 			{
 				DWORD SetNum ;
-				DWORD Key1 ;
-				WORD  Key2 ;
-				BYTE  Key3 ;
+				DWORD Key1, Key2, Key3 ;
 
-				SetNum = ( DWORD )( SizeLL / DXA_KEY_BYTES ) ;
-				SizeLL -= SetNum * DXA_KEY_BYTES ;
+				SetNum = ( DWORD )( SizeLL / DXA_KEYSTR_LENGTH ) ;
+				SizeLL -= SetNum * DXA_KEYSTR_LENGTH ;
 				Key1 = ( ( DWORD * )KeyBP )[ 0 ] ;
-				Key2 = ( ( WORD  * )KeyBP )[ 2 ] ;
-				Key3 = ( ( BYTE  * )KeyBP )[ 6 ] ;
+				Key2 = ( ( DWORD * )KeyBP )[ 1 ] ;
+				Key3 = ( ( DWORD * )KeyBP )[ 2 ] ;
 
 				do
 				{
 					( ( DWORD * )DataBP )[ 0 ] ^= Key1 ;
-					( ( WORD  * )DataBP )[ 2 ] ^= Key2 ;
-					( ( BYTE  * )DataBP )[ 6 ] ^= Key3 ;
-					DataBP += DXA_KEY_BYTES ;
+					( ( DWORD * )DataBP )[ 1 ] ^= Key2 ;
+					( ( DWORD * )DataBP )[ 2 ] ^= Key3 ;
+					DataBP += DXA_KEYSTR_LENGTH ;
 					SetNum -- ;
 				}while( SetNum > 0 ) ;
 			}
@@ -601,7 +662,151 @@ static void DXA_KeyConv( void *Data, LONGLONG  SizeLL, LONGLONG  PositionLL,  un
 				*DataBP ^= KeyBP[ Position ] ;
 				DataBP ++ ;
 				Position ++ ;
-				if( Position == DXA_KEY_BYTES )
+				if( Position == DXA_KEYSTR_LENGTH )
+					Position = 0 ;
+				SizeLL -- ;
+			}while( SizeLL > 0 ) ;
+		}
+	}
+}
+
+// 鍵バージョン２文字列を使用して Xor 演算( Key は必ず DXA_KEYV2_LENGTH の長さがなければならない )
+static void DXA_KeyV2Conv( void *Data, LONGLONG  SizeLL, LONGLONG  PositionLL,  unsigned char *Key )
+{
+	int Position ;
+
+	Position = ( int )( PositionLL % DXA_KEYV2_LENGTH ) ;
+
+	if( SizeLL <= 0xffffffff )
+	{
+		DWORD SizeT ;
+		SizeT = ( DWORD )SizeLL ;
+
+		BYTE *DataBP ;
+		BYTE *KeyBP ;
+
+		DataBP = ( BYTE * )Data ;
+		KeyBP = ( BYTE * )Key ;
+		if( SizeT >= DXA_KEYV2_LENGTH )
+		{
+			if( Position != 0 )
+			{
+				do
+				{
+					*DataBP ^= KeyBP[ Position ] ;
+					Position ++ ;
+					DataBP ++ ;
+					SizeT -- ;
+				}while( Position < DXA_KEYV2_LENGTH ) ;
+				Position = 0 ;
+			}
+
+			if( SizeT >= DXA_KEYV2_LENGTH )
+			{
+				DWORD SetNum ;
+				DWORD Key1, Key2, Key3, Key4, Key5, Key6, Key7, Key8 ;
+
+				SetNum = SizeT / DXA_KEYV2_LENGTH ;
+				SizeT -= SetNum * DXA_KEYV2_LENGTH ;
+				Key1 = ( ( DWORD * )KeyBP )[ 0 ] ;
+				Key2 = ( ( DWORD * )KeyBP )[ 1 ] ;
+				Key3 = ( ( DWORD * )KeyBP )[ 2 ] ;
+				Key4 = ( ( DWORD * )KeyBP )[ 3 ] ;
+				Key5 = ( ( DWORD * )KeyBP )[ 4 ] ;
+				Key6 = ( ( DWORD * )KeyBP )[ 5 ] ;
+				Key7 = ( ( DWORD * )KeyBP )[ 6 ] ;
+				Key8 = ( ( DWORD * )KeyBP )[ 7 ] ;
+
+				do
+				{
+					( ( DWORD * )DataBP )[ 0 ] ^= Key1 ;
+					( ( DWORD * )DataBP )[ 1 ] ^= Key2 ;
+					( ( DWORD * )DataBP )[ 2 ] ^= Key3 ;
+					( ( DWORD * )DataBP )[ 3 ] ^= Key4 ;
+					( ( DWORD * )DataBP )[ 4 ] ^= Key5 ;
+					( ( DWORD * )DataBP )[ 5 ] ^= Key6 ;
+					( ( DWORD * )DataBP )[ 6 ] ^= Key7 ;
+					( ( DWORD * )DataBP )[ 7 ] ^= Key8 ;
+					DataBP += DXA_KEYV2_LENGTH ;
+					SetNum -- ;
+				}while( SetNum > 0 ) ;
+			}
+		}
+
+		if( SizeT > 0 )
+		{
+			do
+			{
+				*DataBP ^= KeyBP[ Position ] ;
+				DataBP ++ ;
+				Position ++ ;
+				if( Position == DXA_KEYV2_LENGTH )
+					Position = 0 ;
+				SizeT -- ;
+			}while( SizeT > 0 ) ;
+		}
+	}
+	else
+	{
+		BYTE *DataBP ;
+		BYTE *KeyBP ;
+
+		DataBP = ( BYTE * )Data ;
+		KeyBP = ( BYTE * )Key ;
+		if( SizeLL >= DXA_KEYV2_LENGTH )
+		{
+			if( Position != 0 )
+			{
+				do
+				{
+					*DataBP ^= KeyBP[ Position ] ;
+					Position ++ ;
+					DataBP ++ ;
+					SizeLL -- ;
+				}while( Position < DXA_KEYV2_LENGTH ) ;
+				Position = 0 ;
+			}
+
+			if( SizeLL >= DXA_KEYV2_LENGTH )
+			{
+				DWORD SetNum ;
+				DWORD Key1, Key2, Key3, Key4, Key5, Key6, Key7, Key8 ;
+
+				SetNum = ( DWORD )( SizeLL / DXA_KEYV2_LENGTH ) ;
+				SizeLL -= SetNum * DXA_KEYV2_LENGTH ;
+				Key1 = ( ( DWORD * )KeyBP )[ 0 ] ;
+				Key2 = ( ( DWORD * )KeyBP )[ 1 ] ;
+				Key3 = ( ( DWORD * )KeyBP )[ 2 ] ;
+				Key4 = ( ( DWORD * )KeyBP )[ 3 ] ;
+				Key5 = ( ( DWORD * )KeyBP )[ 4 ] ;
+				Key6 = ( ( DWORD * )KeyBP )[ 5 ] ;
+				Key7 = ( ( DWORD * )KeyBP )[ 6 ] ;
+				Key8 = ( ( DWORD * )KeyBP )[ 7 ] ;
+
+				do
+				{
+					( ( DWORD * )DataBP )[ 0 ] ^= Key1 ;
+					( ( DWORD * )DataBP )[ 1 ] ^= Key2 ;
+					( ( DWORD * )DataBP )[ 2 ] ^= Key3 ;
+					( ( DWORD * )DataBP )[ 3 ] ^= Key4 ;
+					( ( DWORD * )DataBP )[ 4 ] ^= Key5 ;
+					( ( DWORD * )DataBP )[ 5 ] ^= Key6 ;
+					( ( DWORD * )DataBP )[ 6 ] ^= Key7 ;
+					( ( DWORD * )DataBP )[ 7 ] ^= Key8 ;
+					DataBP += DXA_KEYV2_LENGTH ;
+					SetNum -- ;
+				}while( SetNum > 0 ) ;
+			}
+		}
+
+		if( SizeLL > 0 )
+		{
+			do
+			{
+				*DataBP ^= KeyBP[ Position ] ;
+				DataBP ++ ;
+				Position ++ ;
+				if( Position == DXA_KEYV2_LENGTH )
 					Position = 0 ;
 				SizeLL -- ;
 			}while( SizeLL > 0 ) ;
@@ -612,12 +817,16 @@ static void DXA_KeyConv( void *Data, LONGLONG  SizeLL, LONGLONG  PositionLL,  un
 // ファイルから読み込んだデータを鍵文字列を使用して Xor 演算する関数( Key は必ず DXA_KEYSTR_LENGTH の長さがなければならない )
 void DXA_KeyConvFileRead( void *Data, ULONGLONG  Size, DWORD_PTR FilePointer, unsigned char *Key, LONGLONG Position )
 {
-	LONGLONG pos = 0 ;
+	LONGLONG pos ;
 
-	if( Key != NULL )
+	// ファイルの位置を取得しておく
+	if( Position == -1 )
 	{
-		// ファイルの位置を取得しておく
-		pos = Position == -1 ? ReadOnlyFileAccessTell( FilePointer ) : Position ;
+		pos = ReadOnlyFileAccessTell( FilePointer ) ;
+	}
+	else
+	{
+		pos = Position ;
 	}
 
 	// 読み込む
@@ -627,11 +836,22 @@ void DXA_KeyConvFileRead( void *Data, ULONGLONG  Size, DWORD_PTR FilePointer, un
 		Thread_Sleep( 1 ) ;
 	}
 
-	if( Key != NULL )
+	// データを鍵文字列を使って Xor 演算
+	DXA_KeyConv( Data, ( LONGLONG )Size, pos, Key ) ;
+}
+
+// ファイルから読み込んだデータを鍵文字列を使用して Xor 演算する関数( Key は必ず DXA_KEYV2_LENGTH の長さがなければならない )
+static void DXA_KeyV2ConvFileRead( void *Data, ULONGLONG Size, DWORD_PTR FilePointer, unsigned char *Key, LONGLONG Position )
+{
+	// 読み込む
+	ReadOnlyFileAccessRead( Data, ( size_t )Size, 1, FilePointer ) ;
+	while( ReadOnlyFileAccessIdleCheck( FilePointer ) == FALSE )
 	{
-		// データを鍵文字列を使って Xor 演算
-		DXA_KeyConv( Data, ( LONGLONG )Size, pos, Key ) ;
+		Thread_Sleep( 1 ) ;
 	}
+
+	// データを鍵文字列を使って Xor 演算
+	DXA_KeyV2Conv( Data, ( LONGLONG )Size, Position, Key ) ;
 }
 
 // 条件に適合するオブジェクトを検索する(検索対象は ObjectCount をインデックスとしたところから)(戻り値 -1:エラー 0:成功)
@@ -653,6 +873,100 @@ static int DXA_FindProcess( DXA_FINDDATA *FindData, FILEINFOW *FileInfo )
 	ConvString( ( const char * )Ascii_DotStr,       -1, DX_CHARCODEFORMAT_ASCII, ( char * )DotStr,       sizeof( DotStr       ), DXA->CharCodeFormat ) ;
 	ConvString( ( const char * )Ascii_DoubleDotStr, -1, DX_CHARCODEFORMAT_ASCII, ( char * )DoubleDotStr, sizeof( DoubleDotStr ), DXA->CharCodeFormat ) ;
 
+	if( DXA->V5Flag )
+	{
+		int i, num, addnum ;
+
+		DXARC_DIRECTORY_VER5 *dir ;
+		DXARC_FILEHEAD_VER5  *file ;
+
+		dir          = FindData->DirectoryV5 ;
+		num          = ( int )dir->FileHeadNum ;
+		addnum       = dir->ParentDirectoryAddress == 0xffffffff ? 1 : 2 ;
+		fileHeadSize = ( DWORD )( DXA->HeadV5.Version >= 0x0002 ? DXARC_FILEHEAD_VER2_SIZE : DXARC_FILEHEAD_VER1_SIZE ) ;
+
+		if( FindData->ObjectCount == ( DWORD )( num + addnum ) )
+		{
+			return -1 ;
+		}
+
+		file = ( DXARC_FILEHEAD_VER5 * )( DXA->Table.FileTable + dir->FileHeadAddress + fileHeadSize * FindData->ObjectCount ) ;
+		for( i = ( int )FindData->ObjectCount; i < num + addnum; i ++ )
+		{
+			if( i >= num )
+			{
+				if( i - num == 0 )
+				{
+					if( DXA_DIR_FileNameCmp( DXA, DotStr, str ) == 0 )
+					{
+						break ;
+					}
+				}
+				else
+				if( i - num == 1 )
+				{
+					if( DXA_DIR_FileNameCmp( DXA, DoubleDotStr, str ) == 0 )
+					{
+						break ;
+					}
+				}
+			}
+			else
+			{
+				name = ( BYTE * )( nameTable + file->NameAddress + 4 ) ;
+				if( DXA_DIR_FileNameCmp( DXA, name, str ) == 0 )
+				{
+					break ;
+				}
+
+				file = (DXARC_FILEHEAD_VER5 *)( (BYTE *)file + fileHeadSize ) ;
+			}
+		}
+		FindData->ObjectCount = ( DWORD )i ;
+		if( i == num + addnum )
+		{
+			return -1 ;
+		}
+
+		if( FileInfo )
+		{
+			if( i >= num )
+			{
+				switch( i - num )
+				{
+				default :
+				case 0 :
+					CL_strcpy_s( DXA->CharCodeFormat, ( char * )TempName, sizeof( TempName ), ( const char * )DotStr  ) ;
+					break ;
+
+				case 1 :
+					CL_strcpy_s( DXA->CharCodeFormat, ( char * )TempName, sizeof( TempName ), ( const char * )DoubleDotStr ) ;
+					break ;
+				}
+				FileInfo->DirFlag = 1 ;
+				FileInfo->Size    = 0 ;
+				_MEMSET( &FileInfo->CreationTime,  0, sizeof( FileInfo->CreationTime  ) ) ;
+				_MEMSET( &FileInfo->LastWriteTime, 0, sizeof( FileInfo->LastWriteTime ) ) ;
+			}
+			else
+			{
+				name = ( BYTE * )( nameTable + file->NameAddress ) ;
+				CL_strcpy_s( DXA->CharCodeFormat, ( char * )TempName, sizeof( TempName ), ( const char * )( name + ( ( WORD * )name )[ 0 ] * 4 + 4 ) ) ;
+				FileInfo->DirFlag = ( file->Attributes & FILE_ATTRIBUTE_DIRECTORY ) != 0 ? TRUE : FALSE ;
+				FileInfo->Size    = ( LONGLONG )file->DataSize ;
+#ifdef __WINDOWS__
+				_FileTimeToLocalDateData( ( FILETIME * )&file->Time.Create,    &FileInfo->CreationTime  ) ;
+				_FileTimeToLocalDateData( ( FILETIME * )&file->Time.LastWrite, &FileInfo->LastWriteTime ) ;
+#else // __WINDOWS__
+				_MEMSET( &FileInfo->CreationTime,  0, sizeof( FileInfo->CreationTime  ) ) ;
+				_MEMSET( &FileInfo->LastWriteTime, 0, sizeof( FileInfo->LastWriteTime ) ) ;
+#endif // __WINDOWS__
+			}
+
+			ConvString( ( const char * )TempName, -1, DXA->CharCodeFormat, ( char * )FileInfo->Name, sizeof( FileInfo->Name ), WCHAR_T_CHARCODEFORMAT ) ;
+		}
+	}
+	else
 	{
 		ULONGLONG i, num, addnum ;
 		DXARC_DIRECTORY *dir ;
@@ -661,7 +975,7 @@ static int DXA_FindProcess( DXA_FINDDATA *FindData, FILEINFOW *FileInfo )
 		dir          = FindData->Directory ;
 		num          = dir->FileHeadNum ;
 		addnum       = ( ULONGLONG )( dir->ParentDirectoryAddress == NONE_PAL ? 1 : 2 ) ;
-		fileHeadSize = DXARC_FILEHEAD_VER8_SIZE ;
+		fileHeadSize = DXARC_FILEHEAD_VER6_SIZE ;
 
 		if( FindData->ObjectCount == ( DWORD )( num + addnum ) )
 		{
@@ -732,13 +1046,13 @@ static int DXA_FindProcess( DXA_FINDDATA *FindData, FILEINFOW *FileInfo )
 				CL_strcpy_s( DXA->CharCodeFormat, ( char * )TempName, sizeof( TempName ), ( const char * )( name + ( ( WORD * )name )[ 0 ] * 4 + 4 ) ) ;
 				FileInfo->DirFlag = ( file->Attributes & FILE_ATTRIBUTE_DIRECTORY ) != 0 ? TRUE : FALSE ;
 				FileInfo->Size    = ( LONGLONG)file->DataSize ;
-#ifdef WINDOWS_DESKTOP_OS
+#ifdef __WINDOWS__
 				_FileTimeToLocalDateData( ( FILETIME * )&file->Time.Create,    &FileInfo->CreationTime  ) ;
 				_FileTimeToLocalDateData( ( FILETIME * )&file->Time.LastWrite, &FileInfo->LastWriteTime ) ;
-#else // WINDOWS_DESKTOP_OS
+#else // __WINDOWS__
 				_MEMSET( &FileInfo->CreationTime,  0, sizeof( FileInfo->CreationTime  ) ) ;
 				_MEMSET( &FileInfo->LastWriteTime, 0, sizeof( FileInfo->LastWriteTime ) ) ;
-#endif // WINDOWS_DESKTOP_OS
+#endif // __WINDOWS__
 			}
 
 			ConvString( ( const char * )TempName, -1, DXA->CharCodeFormat, ( char * )FileInfo->Name, sizeof( FileInfo->Name ), WCHAR_T_CHARCODEFORMAT ) ;
@@ -771,25 +1085,25 @@ extern int DXA_Terminate( DXARC *DXA )
 }
 
 // 指定のディレクトリデータの暗号化を解除する( 丸ごとメモリに読み込んだ場合用 )
-static int DXA_DirectoryKeyConv( DXARC *DXA, DXARC_DIRECTORY *Dir, char *KeyStringBuffer )
+static int DXA_DirectoryKeyConv( DXARC *DXA, DXARC_DIRECTORY *Dir, char *KeyV2StringBuffer )
 {
 	// メモリイメージではない場合はエラー
 	if( DXA->MemoryOpenFlag == FALSE )
 		return -1 ;
 
-	// 鍵処理を行わない指定の場合は何もせずに終了
-	if( DXA->NoKey )
-		return -1 ;
+	// バージョン 0x0006 より前では何もしない
+	if( DXA->V5Flag )
+		return 0 ;
 
 	// 暗号化解除処理開始
 	{
 		DWORD i, FileHeadSize ;
 		DXARC_FILEHEAD *File ;
-		unsigned char Key[ DXA_KEY_BYTES ] ;
-		size_t KeyStringBytes ;
+		unsigned char KeyV2[DXA_KEYV2_LENGTH] ;
+		size_t KeyV2StringBytes ;
 
 		// 格納されているファイルの数だけ繰り返す
-		FileHeadSize = DXARC_FILEHEAD_VER8_SIZE ;
+		FileHeadSize = DXARC_FILEHEAD_VER6_SIZE ;
 		File = ( DXARC_FILEHEAD * )( DXA->Table.FileTable + Dir->FileHeadAddress ) ;
 		for( i = 0 ; i < Dir->FileHeadNum ; i ++, File = ( DXARC_FILEHEAD * )( ( BYTE * )File + FileHeadSize ) )
 		{
@@ -797,7 +1111,7 @@ static int DXA_DirectoryKeyConv( DXARC *DXA, DXARC_DIRECTORY *Dir, char *KeyStri
 			if( File->Attributes & FILE_ATTRIBUTE_DIRECTORY )
 			{
 				// ディレクトリの場合は再帰をかける
-				DXA_DirectoryKeyConv( DXA, ( DXARC_DIRECTORY * )( DXA->Table.DirectoryTable + File->DataAddress ), KeyStringBuffer ) ;
+				DXA_DirectoryKeyConv( DXA, ( DXARC_DIRECTORY * )( DXA->Table.DirectoryTable + File->DataAddress ), KeyV2StringBuffer ) ;
 			}
 			else
 			{
@@ -811,52 +1125,101 @@ static int DXA_DirectoryKeyConv( DXARC *DXA, DXARC_DIRECTORY *Dir, char *KeyStri
 					// データ位置をセットする
 					DataP = ( BYTE * )DXA->MemoryImage + DXA->Head.DataStartAddress + File->DataAddress ;
 
-					// ファイル個別の鍵を作成
-					KeyStringBytes = DXA_CreateKeyFileString( DXA, Dir, File, ( BYTE * )KeyStringBuffer ) ;
-					DXA_KeyCreate( KeyStringBuffer, KeyStringBytes, Key ) ;
-
-					// ハフマン圧縮されているかどうかで処理を分岐
-					if( File->HuffPressDataSize != NONE_PAL )
-					{
-						// ハフマン圧縮されている場合
-
-						// 通常のデータ圧縮もされているかどうかで処理を分岐
-						if( File->PressDataSize != NONE_PAL )
-						{
-							// ファイルの前後のみハフマン圧縮されているかどうかで鍵を適用するサイズを分岐
-							if( DXA->Head.HuffmanEncodeKB != 0xff && File->PressDataSize > DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-							{
-								DXA_KeyConv( DataP, ( LONGLONG )( File->HuffPressDataSize + File->PressDataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2 ), ( LONGLONG )File->DataSize, Key ) ;
-							}
-							else
-							{
-								DXA_KeyConv( DataP, ( LONGLONG )File->HuffPressDataSize, ( LONGLONG )File->DataSize, Key ) ;
-							}
-						}
-						else
-						{
-							// ファイルの前後のみハフマン圧縮されているかどうかで鍵を適用するサイズを分岐
-							if( DXA->Head.HuffmanEncodeKB != 0xff && File->DataSize > DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-							{
-								DXA_KeyConv( DataP, ( LONGLONG )( File->HuffPressDataSize + File->DataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2 ), ( LONGLONG )File->DataSize, Key ) ;
-							}
-							else
-							{
-								DXA_KeyConv( DataP, ( LONGLONG )File->HuffPressDataSize, ( LONGLONG )File->DataSize, Key ) ;
-							}
-						}
-					}
-					else
 					// データが圧縮されているかどうかで処理を分岐
 					if( File->PressDataSize != NONE_PAL )
 					{
 						// 圧縮されている場合
-						DXA_KeyConv( DataP, ( LONGLONG )File->PressDataSize, ( LONGLONG )File->DataSize, Key ) ;
+						if( DXA->Head.Version >= DXA_KEYV2_VER )
+						{
+							// ファイル個別の鍵を作成
+							KeyV2StringBytes = DXA_CreateKeyV2FileString( DXA, Dir, File, ( BYTE * )KeyV2StringBuffer ) ;
+							DXA_KeyV2Create( KeyV2StringBuffer, KeyV2 , KeyV2StringBytes ) ;
+
+							DXA_KeyV2Conv( DataP, ( LONGLONG )File->PressDataSize, ( LONGLONG )File->DataSize, KeyV2 ) ;
+						}
+						else
+						{
+							DXA_KeyConv( DataP, ( LONGLONG )File->PressDataSize, ( LONGLONG )File->DataSize, DXA->Key ) ;
+						}
 					}
 					else
 					{
 						// 圧縮されていない場合
-						DXA_KeyConv( DataP, ( LONGLONG )File->DataSize, ( LONGLONG )File->DataSize, Key ) ;
+						if( DXA->Head.Version >= DXA_KEYV2_VER )
+						{
+							// ファイル個別の鍵を作成
+							KeyV2StringBytes = DXA_CreateKeyV2FileString( DXA, Dir, File, ( BYTE * )KeyV2StringBuffer ) ;
+							DXA_KeyV2Create( KeyV2StringBuffer, KeyV2 , KeyV2StringBytes ) ;
+
+							DXA_KeyV2Conv( DataP, ( LONGLONG )File->DataSize, ( LONGLONG )File->DataSize, KeyV2 ) ;
+						}
+						else
+						{
+							DXA_KeyConv( DataP, ( LONGLONG )File->DataSize, ( LONGLONG )File->DataSize, DXA->Key ) ;
+						}
+					}
+				}
+			}
+		}
+	}
+
+	// 終了
+	return 0 ;
+}
+
+// 指定のディレクトリデータの暗号化を解除する( 丸ごとメモリに読み込んだ場合用 )
+static int DXA_DirectoryKeyConvV5( DXARC *DXA, DXARC_DIRECTORY_VER5 *Dir )
+{
+	// メモリイメージではない場合はエラー
+	if( DXA->MemoryOpenFlag == FALSE )
+	{
+		return -1 ;
+	}
+
+	// バージョン 0x0005 より前では何もしない
+	if( DXA->HeadV5.Version < 0x0005 )
+	{
+		return 0 ;
+	}
+	
+	// 暗号化解除処理開始
+	{
+		DWORD i, FileHeadSize ;
+		DXARC_FILEHEAD_VER5 *File ;
+
+		// 格納されているファイルの数だけ繰り返す
+		FileHeadSize = ( DWORD )( DXA->HeadV5.Version >= 0x0002 ? DXARC_FILEHEAD_VER2_SIZE : DXARC_FILEHEAD_VER1_SIZE ) ;
+		File = ( DXARC_FILEHEAD_VER5 * )( DXA->Table.FileTable + Dir->FileHeadAddress ) ;
+		for( i = 0 ; i < Dir->FileHeadNum ; i ++, File = ( DXARC_FILEHEAD_VER5 * )( ( BYTE * )File + FileHeadSize ) )
+		{
+			// ディレクトリかどうかで処理を分岐
+			if( File->Attributes & FILE_ATTRIBUTE_DIRECTORY )
+			{
+				// ディレクトリの場合は再帰をかける
+				DXA_DirectoryKeyConvV5( DXA, ( DXARC_DIRECTORY_VER5 * )( DXA->Table.DirectoryTable + File->DataAddress ) ) ;
+			}
+			else
+			{
+				BYTE *DataP ;
+
+				// ファイルの場合は暗号化を解除する
+				
+				// データがある場合のみ処理
+				if( File->DataSize != 0 )
+				{
+					// データ位置をセットする
+					DataP = ( BYTE * )DXA->MemoryImage + DXA->HeadV5.DataStartAddress + File->DataAddress ;
+
+					// データが圧縮されているかどうかで処理を分岐
+					if( DXA->HeadV5.Version >= 0x0002 && File->PressDataSize != 0xffffffff )
+					{
+						// 圧縮されている場合
+						DXA_KeyConv( DataP, File->PressDataSize, File->DataSize, DXA->Key ) ;
+					}
+					else
+					{
+						// 圧縮されていない場合
+						DXA_KeyConv( DataP, File->DataSize, File->DataSize, DXA->Key ) ;
 					}
 				}
 			}
@@ -870,6 +1233,8 @@ static int DXA_DirectoryKeyConv( DXARC *DXA, DXARC_DIRECTORY *Dir, char *KeyStri
 // メモリ上にあるアーカイブファイルイメージを開く( 0:成功  -1:失敗 )
 extern int DXA_OpenArchiveFromMem( DXARC *DXA, void *ArchiveImage, int ArchiveSize, int ArchiveImageCopyFlag, int ArchiveImageReadOnlyFlag, const char *KeyString, const wchar_t *EmulateArchivePath )
 {
+	BYTE *datp ;
+
 	// メモリイメージをコピーして使用する場合は読み取り専用にはしない
 	if( ArchiveImageCopyFlag )
 	{
@@ -877,26 +1242,27 @@ extern int DXA_OpenArchiveFromMem( DXARC *DXA, void *ArchiveImage, int ArchiveSi
 	}
 
 	// 既になんらかのアーカイブを開いていた場合はエラー
-	if( DXA->ReadAccessOnlyFilePointer != 0 || DXA->MemoryImage != NULL ) return -1 ;
+	if( DXA->WinFilePointer__ != 0 || DXA->MemoryImage != NULL ) return -1 ;
 
-	// 鍵文字列の保存と鍵の作成
+	// 鍵の作成
+	DXA_KeyCreate( KeyString, DXA->Key ) ;
+	DXA_KeyV2Create( KeyString, DXA->KeyV2 ) ;
+
+	// 鍵文字列の保存
+	if( KeyString == NULL )
 	{
-		// 指定が無い場合はデフォルトの鍵文字列を使用する
-		if( KeyString == NULL )
+		DXA->KeyV2String[ 0 ] = '\0' ;
+		DXA->KeyV2StringBytes = 0 ;
+	}
+	else
+	{
+		DXA->KeyV2StringBytes = CL_strlen( DX_CHARCODEFORMAT_ASCII, KeyString ) ;
+		if( DXA->KeyV2StringBytes > DXA_KEYV2STR_LENGTH )
 		{
-			KeyString = DefaultKeyString ;
+			DXA->KeyV2StringBytes = DXA_KEYV2STR_LENGTH ;
 		}
-
-		DXA->KeyStringBytes = CL_strlen( DX_CHARCODEFORMAT_ASCII, KeyString ) ;
-		if( DXA->KeyStringBytes > DXA_KEY_STRING_LENGTH )
-		{
-			DXA->KeyStringBytes = DXA_KEY_STRING_LENGTH ;
-		}
-		_MEMCPY( DXA->KeyString, KeyString, DXA->KeyStringBytes ) ;
-		DXA->KeyString[ DXA->KeyStringBytes ] = '\0' ;
-
-		// 鍵の作成
-		DXA_KeyCreate( DXA->KeyString, DXA->KeyStringBytes, DXA->Key ) ;
+		_MEMCPY( DXA->KeyV2String, KeyString, DXA->KeyV2StringBytes ) ;
+		DXA->KeyV2String[ DXA->KeyV2StringBytes ] = '\0' ;
 	}
 
 	// ファイルパスを保存
@@ -909,9 +1275,8 @@ extern int DXA_OpenArchiveFromMem( DXARC *DXA, void *ArchiveImage, int ArchiveSi
 		_MEMSET( DXA->FilePath, 0, sizeof( DXA->FilePath ) ) ;
 	}
 
-	DXA->Table.Top       = NULL ;
-	DXA->MemoryImage     = NULL ;
-	DXA->MemoryImageSize = ArchiveSize ;
+	DXA->Table.Top   = NULL ;
+	DXA->MemoryImage = NULL ;
 	if( ArchiveImageCopyFlag )
 	{
 		// イメージをコピーするフラグが立っている場合はコピー先のメモリ領域を確保
@@ -935,129 +1300,303 @@ extern int DXA_OpenArchiveFromMem( DXARC *DXA, void *ArchiveImage, int ArchiveSi
 		DXA->MemoryImageOriginal = NULL ;
 	}
 
-	// 最初にＩＤとバージョンをコピー
-	_MEMCPY( &DXA->Head, ArchiveImage, DXARC_ID_AND_VERSION_SIZE ) ;
+	DXA->V5Flag = FALSE ;
 
-	// ＩＤが違う場合はエラー
+	// 最初にヘッダの部分を反転する
+	_MEMCPY( &DXA->Head, ArchiveImage, DXARC_ID_AND_VERSION_SIZE ) ;
+	DXA_KeyV2Conv( &DXA->Head, DXARC_ID_AND_VERSION_SIZE, 0, DXA->KeyV2 ) ;
+
+	// ＩＤの検査
 	if( DXA->Head.Head != DXAHEAD )
 	{
-		goto ERR ;
-	}
+		// バージョン６以前か調べる
+		_MEMCPY( &DXA->Head, ArchiveImage, DXARC_ID_AND_VERSION_SIZE ) ;
+		DXA_KeyConv( &DXA->Head, DXARC_ID_AND_VERSION_SIZE, 0, DXA->Key ) ;
 
-	// 未対応バージョンの場合はエラー
-	if( DXA->Head.Version > DXAVER || DXA->Head.Version < DXAVER_MIN )
-	{
-		goto ERR ;
-	}
-
-	// ヘッダ部分をコピー
-	_MEMCPY( &DXA->Head, ArchiveImage, DXARC_HEAD_VER8_SIZE ) ;
-
-	DXA->Head.CharCodeFormat = 0 ;
-
-	// ヘッダを解析
-	{
-		// 鍵処理が行われていないかを取得する
-		DXA->NoKey = ( DXA->Head.Flags & DXA_FLAG_NO_KEY ) != 0 ;
-
-		// 文字コード形式をセット
-		switch( DXA->Head.CharCodeFormat )
+		// ＩＤの検査
+		if( DXA->Head.Head != DXAHEAD )
 		{
-		case DX_CHARCODEFORMAT_UHC :
-		case DX_CHARCODEFORMAT_BIG5 :
-		case DX_CHARCODEFORMAT_GB2312 :
-		case DX_CHARCODEFORMAT_SHIFTJIS :
-		case DX_CHARCODEFORMAT_UTF16LE :
-		case DX_CHARCODEFORMAT_UTF16BE :
-		case DX_CHARCODEFORMAT_WINDOWS_1252 :
-		case DX_CHARCODEFORMAT_ISO_IEC_8859_15 :
-		case DX_CHARCODEFORMAT_UTF8 :
-		case DX_CHARCODEFORMAT_UTF32LE :
-		case DX_CHARCODEFORMAT_UTF32BE :
-			DXA->CharCodeFormat = ( int )DXA->Head.CharCodeFormat ;
-			break ;
+			// バージョン２以前か調べる
+			_MEMSET( DXA->Key, 0xff, DXA_KEYSTR_LENGTH ) ;
 
-		default :
-			DXA->CharCodeFormat = DX_CHARCODEFORMAT_SHIFTJIS ;
-			break ;
+			_MEMCPY( &DXA->Head, ArchiveImage, DXARC_ID_AND_VERSION_SIZE ) ;
+			DXA_KeyConv( &DXA->Head, DXARC_ID_AND_VERSION_SIZE, 0, DXA->Key ) ;
+
+			// バージョン２以前でもない場合はエラー
+			if( DXA->Head.Head != DXAHEAD )
+			{
+				goto ERR ;
+			}
+		}
+	}
+
+	// バージョン6以降かどうかで処理を分岐
+	if( DXA->Head.Version >= 0x0006 )
+	{
+		DXA->V5Flag = FALSE ;
+
+		DXA->Head.CharCodeFormat = 0 ;
+
+		// ヘッダを解析する
+		{
+			if( DXA->Head.Version >= DXA_KEYV2_VER )
+			{
+				_MEMCPY( &DXA->Head, ArchiveImage, DXARC_HEAD_VER6_SIZE ) ;
+				DXA_KeyV2Conv( &DXA->Head, DXARC_HEAD_VER6_SIZE, 0, DXA->KeyV2 ) ;
+			}
+			else
+			{
+				_MEMCPY( &DXA->Head, ArchiveImage, DXARC_HEAD_VER6_SIZE ) ;
+				DXA_KeyConv( &DXA->Head, DXARC_HEAD_VER6_SIZE, 0, DXA->Key ) ;
+			}
+
+			// ＩＤの検査
+			if( DXA->Head.Head != DXAHEAD )
+			{
+				goto ERR ;
+			}
+			
+			// バージョン検査
+			if( DXA->Head.Version > DXAVER )
+			{
+				goto ERR ;
+			}
+
+			// 文字コード形式をセット
+			switch( DXA->Head.CharCodeFormat )
+			{
+			case DX_CHARCODEFORMAT_UHC :
+			case DX_CHARCODEFORMAT_BIG5 :
+			case DX_CHARCODEFORMAT_GB2312 :
+			case DX_CHARCODEFORMAT_SHIFTJIS :
+			case DX_CHARCODEFORMAT_UTF16LE :
+			case DX_CHARCODEFORMAT_UTF16BE :
+			case DX_CHARCODEFORMAT_WINDOWS_1252 :
+			case DX_CHARCODEFORMAT_ISO_IEC_8859_15 :
+			case DX_CHARCODEFORMAT_UTF8 :
+			case DX_CHARCODEFORMAT_UTF32LE :
+			case DX_CHARCODEFORMAT_UTF32BE :
+				DXA->CharCodeFormat = ( int )DXA->Head.CharCodeFormat ;
+				break ;
+
+			default :
+				DXA->CharCodeFormat = DX_CHARCODEFORMAT_SHIFTJIS ;
+				break ;
+			}
+
+			// 読み取り専用の場合は情報テーブルのサイズ分のメモリを確保する
+			if( ArchiveImageReadOnlyFlag )
+			{
+				DXA->Table.Top = ( BYTE * )DXALLOC( DXA->Head.HeadSize ) ;
+				if( DXA->Table.Top == NULL )
+				{
+					goto ERR ;
+				}
+
+				_MEMCPY( DXA->Table.Top,  (BYTE *)DXA->MemoryImage + DXA->Head.FileNameTableStartAddress, DXA->Head.HeadSize ) ;
+			}
+			else
+			{
+				// 情報テーブルのアドレスをセットする
+				DXA->Table.Top          = (BYTE *)DXA->MemoryImage + DXA->Head.FileNameTableStartAddress ;
+			}
+			if( DXA->Head.Version >= DXA_KEYV2_VER )
+			{
+				DXA_KeyV2Conv( DXA->Table.Top, DXA->Head.HeadSize, 0, DXA->KeyV2 ) ;
+			}
+			else
+			{
+				DXA_KeyConv( DXA->Table.Top, DXA->Head.HeadSize, 0, DXA->Key ) ;
+			}
+
+			DXA->Table.NameTable		= DXA->Table.Top ;
+			DXA->Table.FileTable		= DXA->Table.NameTable + DXA->Head.FileTableStartAddress ;
+			DXA->Table.DirectoryTable	= DXA->Table.NameTable + DXA->Head.DirectoryTableStartAddress ;
 		}
 
-		// 情報テーブルのサイズ分のメモリを確保する
-		DXA->Table.Top = ( BYTE * )DXALLOC( ( size_t )DXA->Head.HeadSize ) ;
-		if( DXA->Table.Top == NULL )
+		// カレントディレクトリのセット
+		DXA->CurrentDirectory = ( DXARC_DIRECTORY * )DXA->Table.DirectoryTable ;
+
+		DXA->MemoryOpenFlag					= TRUE ;						// メモリイメージから開いているフラグを立てる
+		DXA->UserMemoryImageFlag			= TRUE ;						// ユーザーのイメージから開いたフラグを立てる
+		DXA->MemoryImageSize				= ArchiveSize ;					// サイズも保存しておく
+		DXA->MemoryImageCopyFlag			= ArchiveImageCopyFlag ;		// メモリイメージをコピーして使用しているかどうかのフラグを保存
+		DXA->MemoryImageReadOnlyFlag        = ArchiveImageReadOnlyFlag ;	// メモリイメージを読み取り専用にするかどうかのフラグを保存
+
+		// 全てのファイルデータの暗号化を解除する
+		if( ArchiveImageReadOnlyFlag == FALSE )
+		{
+			char KeyV2String[ DXA_KEYV2_STRING_MAXLENGTH ] ;
+			DXA_DirectoryKeyConv( DXA, ( DXARC_DIRECTORY * )DXA->Table.DirectoryTable, KeyV2String ) ;
+		}
+	}
+	else
+	{
+		DXA->V5Flag = TRUE ;
+
+		// バージョン検査
+		if( DXA->HeadV5.Version > DXAVER_VER5 )
 		{
 			goto ERR ;
 		}
 
-		// ヘッダが圧縮されている場合は解凍する
-		if( ( DXA->Head.Flags & DXA_FLAG_NO_HEAD_PRESS ) != 0 )
+		// メモリを読み取り専用とするかどうかで処理を分岐
+		if( ArchiveImageReadOnlyFlag )
 		{
-			// 圧縮されていない場合は普通に読み込む
-			_MEMCPY( DXA->Table.Top, ( BYTE * )DXA->MemoryImage + DXA->Head.FileNameTableStartAddress, DXA->Head.HeadSize ) ;
-			if( DXA->NoKey == false ) DXA_KeyConv( DXA->Table.Top, DXA->Head.HeadSize, 0, DXA->Key ) ;
+			// バージョンが４以上かどうかで読み込む残りのヘッダサイズを変更
+			if( DXA->HeadV5.Version >= 0x0004 )
+			{
+				_MEMCPY( &DXA->HeadV5, ArchiveImage, DXARC_HEAD_VER4_SIZE ) ;
+				DXA_KeyConv( &DXA->HeadV5, DXARC_HEAD_VER4_SIZE, 0, DXA->Key ) ;
+				switch( DXA->HeadV5.CharCodeFormat )
+				{
+				case DX_CHARCODEFORMAT_UHC :
+				case DX_CHARCODEFORMAT_BIG5 :
+				case DX_CHARCODEFORMAT_GB2312 :
+				case DX_CHARCODEFORMAT_SHIFTJIS :
+				case DX_CHARCODEFORMAT_UTF16LE :
+				case DX_CHARCODEFORMAT_UTF16BE :
+				case DX_CHARCODEFORMAT_WINDOWS_1252 :
+				case DX_CHARCODEFORMAT_ISO_IEC_8859_15 :
+				case DX_CHARCODEFORMAT_UTF8 :
+				case DX_CHARCODEFORMAT_UTF32LE :
+				case DX_CHARCODEFORMAT_UTF32BE :
+					DXA->CharCodeFormat = ( int )DXA->HeadV5.CharCodeFormat ;
+					break ;
+
+				default :
+					DXA->CharCodeFormat = DX_CHARCODEFORMAT_SHIFTJIS ;
+					break ;
+				}
+			}
+			else
+			{
+				_MEMCPY( &DXA->HeadV5, ArchiveImage, DXARC_HEAD_VER3_SIZE ) ;
+				DXA_KeyConv( &DXA->HeadV5, DXARC_HEAD_VER3_SIZE, 0, DXA->Key ) ;
+
+				DXA->HeadV5.CharCodeFormat = DX_CHARCODEFORMAT_SHIFTJIS ;
+				DXA->CharCodeFormat        = DX_CHARCODEFORMAT_SHIFTJIS ;
+			}
+
+			// 情報テーブルのサイズ分のメモリを確保する
+			DXA->Table.Top = ( BYTE * )DXALLOC( DXA->HeadV5.HeadSize ) ;
+			if( DXA->Table.Top == NULL )
+			{
+				goto ERR ;
+			}
+			
+			// 情報テーブルをメモリに読み込む
+			_MEMCPY( DXA->Table.Top, ( BYTE * )DXA->MemoryImage + DXA->HeadV5.FileNameTableStartAddress, DXA->HeadV5.HeadSize ) ;
+			if( DXA->HeadV5.Version >= 0x0005 )
+			{
+				DXA_KeyConv( DXA->Table.Top, DXA->HeadV5.HeadSize,                                     0, DXA->Key ) ;
+			}
+			else
+			{
+				DXA_KeyConv( DXA->Table.Top, DXA->HeadV5.HeadSize, DXA->HeadV5.FileNameTableStartAddress, DXA->Key ) ;
+			}
 		}
 		else
 		{
-			void *HuffHeadBuffer ;
-			ULONGLONG HuffHeadSize ;
-			void *LzHeadBuffer ;
-			ULONGLONG LzHeadSize ;
-
-			// ハフマン圧縮されたヘッダの容量を取得する
-			HuffHeadSize = ( DWORD )( ( ULONGLONG )DXA->MemoryImageSize - DXA->Head.FileNameTableStartAddress ) ;
-
-			// ハフマン圧縮されたヘッダを読み込むメモリを確保する
-			HuffHeadBuffer = DXALLOC( ( size_t )HuffHeadSize ) ;
-			if( HuffHeadBuffer == NULL )
+			// すべてのデータを反転する
+			if( DXA->HeadV5.Version < 0x0005 )
 			{
-				goto ERR ;
+				DXA_KeyConv( ArchiveImage, ArchiveSize, 0, DXA->Key ) ;
 			}
 
-			// 圧縮されたヘッダをコピーと暗号化解除
-			_MEMCPY( HuffHeadBuffer, ( BYTE * )DXA->MemoryImage + DXA->Head.FileNameTableStartAddress, ( size_t )HuffHeadSize ) ;
-			if( DXA->NoKey == false ) DXA_KeyConv( HuffHeadBuffer, HuffHeadSize, 0, DXA->Key ) ;
+			datp = (BYTE *)ArchiveImage ;
 
-			// ハフマン圧縮されたヘッダの解凍後の容量を取得する
-			LzHeadSize = Huffman_Decode( HuffHeadBuffer, NULL ) ;
-
-			// ハフマン圧縮されたヘッダの解凍後のデータを格納するメモリ用域の確保
-			LzHeadBuffer = DXALLOC( ( size_t )LzHeadSize ) ;
-			if( LzHeadBuffer == NULL )
+			// ヘッダを解析する
 			{
-				DXFREE( HuffHeadBuffer ) ;
-				goto ERR ;
+				if( DXA->HeadV5.Version >= 0x0005 )
+				{
+					_MEMCPY( &DXA->HeadV5, datp, DXARC_HEAD_VER3_SIZE ) ;
+					DXA_KeyConv( &DXA->HeadV5, DXARC_HEAD_VER3_SIZE, 0, DXA->Key ) ;
+				}
+				else
+				{
+					_MEMCPY( &DXA->HeadV5, datp, DXARC_HEAD_VER3_SIZE ) ;
+				}
+				datp += DXARC_HEAD_VER3_SIZE ;
+
+				// ＩＤの検査
+				if( DXA->HeadV5.Head != DXAHEAD )
+				{
+					goto ERR ;
+				}
+				
+				// バージョン検査
+				if( DXA->HeadV5.Version > DXAVER_VER5 )
+				{
+					goto ERR ;
+				}
+
+				// バージョンが 4以上だったら文字コード形式を読み込む
+				if( DXA->HeadV5.Version >= 0x0004 )
+				{
+					DXA->HeadV5.CharCodeFormat = *( ( DWORD * )datp ) ;
+					if( DXA->HeadV5.Version >= 0x0005 )
+					{
+						DXA_KeyConv( &DXA->HeadV5.CharCodeFormat, 4, DXARC_HEAD_VER3_SIZE, DXA->Key ) ;
+					}
+					switch( DXA->HeadV5.CharCodeFormat )
+					{
+					case DX_CHARCODEFORMAT_UHC :
+					case DX_CHARCODEFORMAT_BIG5 :
+					case DX_CHARCODEFORMAT_GB2312 :
+					case DX_CHARCODEFORMAT_SHIFTJIS :
+					case DX_CHARCODEFORMAT_UTF16LE :
+					case DX_CHARCODEFORMAT_UTF16BE :
+					case DX_CHARCODEFORMAT_WINDOWS_1252 :
+					case DX_CHARCODEFORMAT_ISO_IEC_8859_15 :
+					case DX_CHARCODEFORMAT_UTF8 :
+					case DX_CHARCODEFORMAT_UTF32LE :
+					case DX_CHARCODEFORMAT_UTF32BE :
+						DXA->CharCodeFormat = ( int )DXA->HeadV5.CharCodeFormat ;
+						break ;
+
+					default :
+						DXA->CharCodeFormat = DX_CHARCODEFORMAT_SHIFTJIS ;
+						break ;
+					}
+				}
+				else
+				{
+					DXA->HeadV5.CharCodeFormat = DX_CHARCODEFORMAT_SHIFTJIS ;
+					DXA->CharCodeFormat        = DX_CHARCODEFORMAT_SHIFTJIS ;
+				}
+
+				// 情報テーブルのアドレスをセットする
+				DXA->Table.Top = (BYTE *)DXA->MemoryImage + DXA->HeadV5.FileNameTableStartAddress ;
+				if( DXA->HeadV5.Version >= 0x0005 )
+				{
+					DXA_KeyConv( DXA->Table.Top, DXA->HeadV5.HeadSize, 0, DXA->Key ) ;
+				}
 			}
-
-			// 圧縮されたヘッダを解凍する
-			Huffman_Decode( HuffHeadBuffer, LzHeadBuffer ) ;
-
-			// LZ圧縮されたヘッダを解凍する
-			DXA_Decode( LzHeadBuffer, DXA->Table.Top ) ;
-
-			// メモリの解放
-			DXFREE( HuffHeadBuffer ) ;
-			DXFREE( LzHeadBuffer ) ;
 		}
 
-		// 各情報テーブルのアドレスをセットする
+		// 情報テーブルのアドレスをセットする
 		DXA->Table.NameTable		= DXA->Table.Top ;
-		DXA->Table.FileTable		= DXA->Table.NameTable + DXA->Head.FileTableStartAddress ;
-		DXA->Table.DirectoryTable	= DXA->Table.NameTable + DXA->Head.DirectoryTableStartAddress ;
+		DXA->Table.FileTable		= DXA->Table.NameTable + DXA->HeadV5.FileTableStartAddress ;
+		DXA->Table.DirectoryTable	= DXA->Table.NameTable + DXA->HeadV5.DirectoryTableStartAddress ;
 
 		// カレントディレクトリのセット
-		DXA->CurrentDirectory = ( DXARC_DIRECTORY * )DXA->Table.DirectoryTable ;
-	}
+		DXA->CurrentDirectoryV5 = ( DXARC_DIRECTORY_VER5 * )DXA->Table.DirectoryTable ;
 
-	DXA->MemoryOpenFlag					= TRUE ;						// メモリイメージから開いているフラグを立てる
-	DXA->UserMemoryImageFlag			= TRUE ;						// ユーザーのイメージから開いたフラグを立てる
-	DXA->MemoryImageCopyFlag			= ArchiveImageCopyFlag ;		// メモリイメージをコピーして使用しているかどうかのフラグを保存
-	DXA->MemoryImageReadOnlyFlag        = ArchiveImageReadOnlyFlag ;	// メモリイメージを読み取り専用にするかどうかのフラグを保存
+		DXA->MemoryOpenFlag					= TRUE ;						// メモリイメージから開いているフラグを立てる
+		DXA->UserMemoryImageFlag			= TRUE ;						// ユーザーのイメージから開いたフラグを立てる
+		DXA->MemoryImageSize				= ArchiveSize ;					// サイズも保存しておく
+		DXA->MemoryImageCopyFlag			= ArchiveImageCopyFlag ;		// メモリイメージをコピーして使用しているかどうかのフラグを保存
+		DXA->MemoryImageReadOnlyFlag        = ArchiveImageReadOnlyFlag ;	// メモリイメージを読み取り専用にするかどうかのフラグを保存
 
-	// 全てのファイルデータの暗号化を解除する
-	if( DXA->NoKey == false && ArchiveImageReadOnlyFlag == FALSE )
-	{
-		char KeyStringBuffer[ DXA_KEY_STRING_MAXLENGTH ] ;
-		DXA_DirectoryKeyConv( DXA, ( DXARC_DIRECTORY * )DXA->Table.DirectoryTable, KeyStringBuffer ) ;
+		if( ArchiveImageReadOnlyFlag == FALSE )
+		{
+			// 全てのファイルデータの暗号化を解除する
+			if( DXA->HeadV5.Version >= 0x0005 )
+			{
+				DXA_DirectoryKeyConvV5( DXA, ( DXARC_DIRECTORY_VER5 * )DXA->Table.DirectoryTable ) ;
+			}
+		}
 	}
 
 	// 終了
@@ -1073,10 +1612,24 @@ ERR :
 		}
 	}
 	else
-	if( DXA->Table.Top != NULL )
+	if( ArchiveImageReadOnlyFlag )
 	{
-		DXFREE( DXA->Table.Top ) ;
-		DXA->Table.Top = NULL ;
+		if( DXA->Table.Top != NULL )
+		{
+			DXFREE( DXA->Table.Top ) ;
+			DXA->Table.Top = NULL ;
+		}
+	}
+	else
+	{
+		if( DXA->V5Flag )
+		{
+			// 反転したデータを元に戻す
+			if( DXA->HeadV5.Version < 0x0005 )
+			{
+				DXA_KeyConv( ArchiveImage, ArchiveSize, 0, DXA->Key ) ;
+			}
+		}
 	}
 	
 	// 終了
@@ -1103,10 +1656,21 @@ extern int DXA_CheckIdle( DXARC *DXA )
 	DXA->ASyncOpenFilePointer = 0;
 
 	// すべてのデータを反転する
-	if( DXA->NoKey == false )
+	if( DXA->V5Flag == FALSE )
 	{
-		char KeyStringBuffer[ DXA_KEY_STRING_MAXLENGTH ] ;
-		DXA_DirectoryKeyConv( DXA, ( DXARC_DIRECTORY * )DXA->Table.DirectoryTable, KeyStringBuffer ) ;
+		char KeyV2String[ DXA_KEYV2_STRING_MAXLENGTH ] ;
+		DXA_DirectoryKeyConv( DXA, ( DXARC_DIRECTORY * )DXA->Table.DirectoryTable, KeyV2String ) ;
+	}
+	else
+	{
+		if( DXA->HeadV5.Version >= 0x0005 )
+		{
+			DXA_DirectoryKeyConvV5( DXA, ( DXARC_DIRECTORY_VER5 * )DXA->Table.DirectoryTable ) ;
+		}
+		else
+		{
+			DXA_KeyConv( DXA->MemoryImage, DXA->MemoryImageSize, 0, DXA->Key ) ;
+		}
 	}
 
 	// 非同期オープン中フラグを倒す
@@ -1120,32 +1684,33 @@ extern int DXA_CheckIdle( DXARC *DXA )
 extern int DXA_OpenArchiveFromFileUseMem( DXARC *DXA, const wchar_t *ArchivePath, const char *KeyString , int ASyncThread )
 {
 	// 既になんらかのアーカイブを開いていた場合はエラー
-	if( DXA->ReadAccessOnlyFilePointer != 0 || DXA->MemoryImage )
+	if( DXA->WinFilePointer__ != 0 || DXA->MemoryImage )
 	{
 		return -1 ;
 	}
 
-	// 鍵文字列の保存と鍵の作成
+	// 鍵の作成
+	DXA_KeyCreate( KeyString, DXA->Key ) ;
+	DXA_KeyV2Create( KeyString, DXA->KeyV2 ) ;
+
+	// 鍵文字列の保存
+	if( KeyString == NULL )
 	{
-		// 指定が無い場合はデフォルトの鍵文字列を使用する
-		if( KeyString == NULL )
+		DXA->KeyV2String[ 0 ] = '\0' ;
+		DXA->KeyV2StringBytes = 0 ;
+	}
+	else
+	{
+		DXA->KeyV2StringBytes = CL_strlen( DX_CHARCODEFORMAT_ASCII, KeyString ) ;
+		if( DXA->KeyV2StringBytes > DXA_KEYV2STR_LENGTH )
 		{
-			KeyString = DefaultKeyString ;
+			DXA->KeyV2StringBytes = DXA_KEYV2STR_LENGTH ;
 		}
-
-		DXA->KeyStringBytes = CL_strlen( DX_CHARCODEFORMAT_ASCII, KeyString ) ;
-		if( DXA->KeyStringBytes > DXA_KEY_STRING_LENGTH )
-		{
-			DXA->KeyStringBytes = DXA_KEY_STRING_LENGTH ;
-		}
-		_MEMCPY( DXA->KeyString, KeyString, DXA->KeyStringBytes ) ;
-		DXA->KeyString[ DXA->KeyStringBytes ] = '\0' ;
-
-		// 鍵の作成
-		DXA_KeyCreate( DXA->KeyString, DXA->KeyStringBytes, DXA->Key ) ;
+		_MEMCPY( DXA->KeyV2String, KeyString, DXA->KeyV2StringBytes ) ;
+		DXA->KeyV2String[ DXA->KeyV2StringBytes ] = '\0' ;
 	}
 
-	// ファイルを開く
+	// ヘッダ部分だけ先に読み込む
 	DXA->ASyncOpenFilePointer = 0 ;
 	DXA->MemoryImage          = NULL ;
 	DXA->ASyncOpenFilePointer = ReadOnlyFileAccessOpen( ArchivePath, FALSE, TRUE, FALSE ) ;
@@ -1166,33 +1731,52 @@ extern int DXA_OpenArchiveFromFileUseMem( DXARC *DXA, const wchar_t *ArchivePath
 	DXA->MemoryImage = DXALLOC( ( size_t )DXA->MemoryImageSize ) ;
 
 	// ＩＤとバージョン番号部分だけを読み込み
-	ReadOnlyFileAccessRead( &DXA->Head, DXARC_ID_AND_VERSION_SIZE, 1, DXA->ASyncOpenFilePointer ) ;
+	DXA_KeyV2ConvFileRead( &DXA->Head, DXARC_ID_AND_VERSION_SIZE, DXA->ASyncOpenFilePointer, DXA->KeyV2, 0 ) ;
 
-	// ＩＤが違う場合はエラー
+	// ＩＤを検査
 	if( DXA->Head.Head != DXAHEAD )
 	{
-		goto ERR ;
+		// バージョン６以前か調べる
+		ReadOnlyFileAccessSeek( DXA->ASyncOpenFilePointer, 0L, SEEK_SET ) ;
+		DXA_KeyConvFileRead( &DXA->Head, DXARC_ID_AND_VERSION_SIZE, DXA->ASyncOpenFilePointer, DXA->Key, 0 ) ;
+
+		// ＩＤの検査
+		if( DXA->Head.Head != DXAHEAD )
+		{
+			// バージョン２以前か調べる
+			_MEMSET( DXA->Key, 0xff, DXA_KEYSTR_LENGTH ) ;
+
+			ReadOnlyFileAccessSeek( DXA->ASyncOpenFilePointer, 0L, SEEK_SET ) ;
+			DXA_KeyConvFileRead( &DXA->Head, DXARC_ID_AND_VERSION_SIZE, DXA->ASyncOpenFilePointer, DXA->Key, 0 ) ;
+
+			// バージョン２以前でもない場合はエラー
+			if( DXA->Head.Head != DXAHEAD )
+			{
+				goto ERR ;
+			}
+		}
 	}
 
-	// 未対応バージョンの場合はエラー
-	if( DXA->Head.Version > DXAVER || DXA->Head.Version < DXAVER_MIN )
+	// バージョン6以降かどうかで処理を分岐
+	if( DXA->Head.Version >= 0x0006 )
 	{
-		goto ERR ;
-	}
+		DXA->V5Flag = FALSE ;
 
-	// ファイルを丸ごと読み込む
-	ReadOnlyFileAccessSeek( DXA->ASyncOpenFilePointer, 0L, SEEK_SET ) ;
-	ReadOnlyFileAccessRead( DXA->MemoryImage, ( size_t )DXA->MemoryImageSize, 1, DXA->ASyncOpenFilePointer );
+		// バージョン検査
+		if( DXA->Head.Version > DXAVER )
+		{
+			goto ERR ;
+		}
 
-	// ヘッダ部分をコピー
-	_MEMCPY( &DXA->Head, DXA->MemoryImage, DXARC_HEAD_VER8_SIZE ) ;
-
-	// ヘッダを解析
-	{
-		// 鍵処理が行われていないかを取得する
-		DXA->NoKey = ( DXA->Head.Flags & DXA_FLAG_NO_KEY ) != 0 ;
-
-		// 文字コード形式をセット
+		// バージョンが４以上かどうかで読み込む残りのヘッダサイズを変更
+		if( DXA->Head.Version >= DXA_KEYV2_VER )
+		{
+			DXA_KeyV2ConvFileRead( ( BYTE * )&DXA->Head + DXARC_ID_AND_VERSION_SIZE, DXARC_HEAD_VER6_SIZE - DXARC_ID_AND_VERSION_SIZE, DXA->ASyncOpenFilePointer, DXA->KeyV2, DXARC_ID_AND_VERSION_SIZE ) ;
+		}
+		else
+		{
+			DXA_KeyConvFileRead( ( BYTE * )&DXA->Head + DXARC_ID_AND_VERSION_SIZE, DXARC_HEAD_VER6_SIZE - DXARC_ID_AND_VERSION_SIZE, DXA->ASyncOpenFilePointer, DXA->Key, DXARC_ID_AND_VERSION_SIZE ) ;
+		}
 		switch( DXA->Head.CharCodeFormat )
 		{
 		case DX_CHARCODEFORMAT_UHC :
@@ -1221,57 +1805,18 @@ extern int DXA_OpenArchiveFromFileUseMem( DXARC *DXA, const wchar_t *ArchivePath
 			goto ERR ;
 		}
 		
-		// ヘッダが圧縮されている場合は解凍する
-		if( ( DXA->Head.Flags & DXA_FLAG_NO_HEAD_PRESS ) != 0 )
+		// 情報テーブルをメモリに読み込む
+		ReadOnlyFileAccessSeek( DXA->ASyncOpenFilePointer, ( LONGLONG )DXA->Head.FileNameTableStartAddress, SEEK_SET ) ;
+		if( DXA->Head.Version >= DXA_KEYV2_VER )
 		{
-			// 圧縮されていない場合は普通に読み込む
-			_MEMCPY( DXA->Table.Top, ( BYTE * )DXA->MemoryImage + DXA->Head.FileNameTableStartAddress, DXA->Head.HeadSize ) ;
-			if( DXA->NoKey == false ) DXA_KeyConv( DXA->Table.Top, DXA->Head.HeadSize, 0, DXA->Key ) ;
+			DXA_KeyV2ConvFileRead( DXA->Table.Top, DXA->Head.HeadSize, DXA->ASyncOpenFilePointer, DXA->KeyV2, 0 ) ;
 		}
 		else
 		{
-			void *HuffHeadBuffer ;
-			ULONGLONG HuffHeadSize ;
-			void *LzHeadBuffer ;
-			ULONGLONG LzHeadSize ;
-
-			// ハフマン圧縮されたヘッダの容量を取得する
-			HuffHeadSize = ( DWORD )( ( ULONGLONG )DXA->MemoryImageSize - DXA->Head.FileNameTableStartAddress ) ;
-
-			// ハフマン圧縮されたヘッダを読み込むメモリを確保する
-			HuffHeadBuffer = DXALLOC( ( size_t )HuffHeadSize ) ;
-			if( HuffHeadBuffer == NULL )
-			{
-				goto ERR ;
-			}
-
-			// 圧縮されたヘッダをコピーと暗号化解除
-			_MEMCPY( HuffHeadBuffer, ( BYTE * )DXA->MemoryImage + DXA->Head.FileNameTableStartAddress, ( size_t )HuffHeadSize ) ;
-			if( DXA->NoKey == false ) DXA_KeyConv( HuffHeadBuffer, HuffHeadSize, 0, DXA->Key ) ;
-
-			// ハフマン圧縮されたヘッダの解凍後の容量を取得する
-			LzHeadSize = Huffman_Decode( HuffHeadBuffer, NULL ) ;
-
-			// ハフマン圧縮されたヘッダの解凍後のデータを格納するメモリ用域の確保
-			LzHeadBuffer = DXALLOC( ( size_t )LzHeadSize ) ;
-			if( LzHeadBuffer == NULL )
-			{
-				DXFREE( HuffHeadBuffer ) ;
-				goto ERR ;
-			}
-
-			// 圧縮されたヘッダを解凍する
-			Huffman_Decode( HuffHeadBuffer, LzHeadBuffer ) ;
-
-			// LZ圧縮されたヘッダを解凍する
-			DXA_Decode( LzHeadBuffer, DXA->Table.Top ) ;
-
-			// メモリの解放
-			DXFREE( HuffHeadBuffer ) ;
-			DXFREE( LzHeadBuffer ) ;
+			DXA_KeyConvFileRead( DXA->Table.Top, DXA->Head.HeadSize, DXA->ASyncOpenFilePointer, DXA->Key, 0 ) ;
 		}
 
-		// 各情報テーブルのアドレスをセットする
+		// 情報テーブルのアドレスをセットする
 		DXA->Table.NameTable		= DXA->Table.Top ;
 		DXA->Table.FileTable		= DXA->Table.NameTable + DXA->Head.FileTableStartAddress ;
 		DXA->Table.DirectoryTable	= DXA->Table.NameTable + DXA->Head.DirectoryTableStartAddress ;
@@ -1279,6 +1824,78 @@ extern int DXA_OpenArchiveFromFileUseMem( DXARC *DXA, const wchar_t *ArchivePath
 		// カレントディレクトリのセット
 		DXA->CurrentDirectory = ( DXARC_DIRECTORY * )DXA->Table.DirectoryTable ;
 	}
+	else
+	{
+		DXA->V5Flag = TRUE ;
+
+		// バージョン検査
+		if( DXA->HeadV5.Version > DXAVER_VER5 )
+		{
+			goto ERR ;
+		}
+
+		// バージョンが４以上かどうかで読み込む残りのヘッダサイズを変更
+		if( DXA->HeadV5.Version >= 0x0004 )
+		{
+			DXA_KeyConvFileRead( ( BYTE * )&DXA->HeadV5 + DXARC_ID_AND_VERSION_SIZE, DXARC_HEAD_VER4_SIZE - DXARC_ID_AND_VERSION_SIZE, DXA->ASyncOpenFilePointer, DXA->Key, DXARC_ID_AND_VERSION_SIZE ) ;
+			switch( DXA->HeadV5.CharCodeFormat )
+			{
+			case DX_CHARCODEFORMAT_UHC :
+			case DX_CHARCODEFORMAT_BIG5 :
+			case DX_CHARCODEFORMAT_GB2312 :
+			case DX_CHARCODEFORMAT_SHIFTJIS :
+			case DX_CHARCODEFORMAT_UTF16LE :
+			case DX_CHARCODEFORMAT_UTF16BE :
+			case DX_CHARCODEFORMAT_WINDOWS_1252 :
+			case DX_CHARCODEFORMAT_ISO_IEC_8859_15 :
+			case DX_CHARCODEFORMAT_UTF8 :
+			case DX_CHARCODEFORMAT_UTF32LE :
+			case DX_CHARCODEFORMAT_UTF32BE :
+				DXA->CharCodeFormat = ( int )DXA->HeadV5.CharCodeFormat ;
+				break ;
+
+			default :
+				DXA->CharCodeFormat = DX_CHARCODEFORMAT_SHIFTJIS ;
+				break ;
+			}
+		}
+		else
+		{
+			DXA_KeyConvFileRead( ( BYTE * )&DXA->HeadV5 + DXARC_ID_AND_VERSION_SIZE, DXARC_HEAD_VER3_SIZE - DXARC_ID_AND_VERSION_SIZE, DXA->ASyncOpenFilePointer, DXA->Key, DXARC_ID_AND_VERSION_SIZE ) ;
+			DXA->HeadV5.CharCodeFormat = DX_CHARCODEFORMAT_SHIFTJIS ;
+			DXA->CharCodeFormat        = DX_CHARCODEFORMAT_SHIFTJIS ;
+		}
+		
+		// 情報テーブルのサイズ分のメモリを確保する
+		DXA->Table.Top = ( BYTE * )DXALLOC( DXA->HeadV5.HeadSize ) ;
+		if( DXA->Table.Top == NULL )
+		{
+			goto ERR ;
+		}
+		
+		// 情報テーブルをメモリに読み込む
+		ReadOnlyFileAccessSeek( DXA->ASyncOpenFilePointer, DXA->HeadV5.FileNameTableStartAddress, SEEK_SET ) ;
+		if( DXA->HeadV5.Version >= 0x0005 )
+		{
+			DXA_KeyConvFileRead( DXA->Table.Top, DXA->HeadV5.HeadSize, DXA->ASyncOpenFilePointer, DXA->Key, 0 ) ;
+		}
+		else
+		{
+			DXA_KeyConvFileRead( DXA->Table.Top, DXA->HeadV5.HeadSize, DXA->ASyncOpenFilePointer, DXA->Key ) ;
+		}
+
+		// 情報テーブルのアドレスをセットする
+		DXA->Table.NameTable		= DXA->Table.Top ;
+		DXA->Table.FileTable		= DXA->Table.NameTable + DXA->HeadV5.FileTableStartAddress ;
+		DXA->Table.DirectoryTable	= DXA->Table.NameTable + DXA->HeadV5.DirectoryTableStartAddress ;
+
+		// カレントディレクトリのセット
+		DXA->CurrentDirectoryV5 = ( DXARC_DIRECTORY_VER5 * )DXA->Table.DirectoryTable ;
+	}
+
+	// 改めてファイルを丸ごと読み込む
+	ReadOnlyFileAccessSeek( DXA->ASyncOpenFilePointer, 0L, SEEK_SET ) ;
+	ReadOnlyFileAccessRead( DXA->MemoryImage, ( size_t )DXA->MemoryImageSize, 1, DXA->ASyncOpenFilePointer );
 
 	// ファイル非同期オープン中だということをセットしておく
 	DXA->ASyncOpenFlag = TRUE ;
@@ -1323,17 +1940,17 @@ ERR :
 extern int DXA_OpenArchiveFromFile( DXARC *DXA, const wchar_t *ArchivePath, const char *KeyString )
 {
 	// 既になんらかのアーカイブを開いていた場合はエラー
-	if( DXA->ReadAccessOnlyFilePointer != 0 || DXA->MemoryImage )
+	if( DXA->WinFilePointer__ != 0 || DXA->MemoryImage )
 	{
 		return -1 ;
 	}
 
 	// ヘッダの初期化
 	_MEMSET( &DXA->Head, 0, sizeof( DXA->Head ) ) ;
-	
+
 	// アーカイブファイルを開こうと試みる
-	DXA->ReadAccessOnlyFilePointer = ReadOnlyFileAccessOpen( ArchivePath, FALSE, TRUE, FALSE ) ;
-	if( DXA->ReadAccessOnlyFilePointer == 0 )
+	DXA->WinFilePointer__ = ReadOnlyFileAccessOpen( ArchivePath, FALSE, TRUE, FALSE ) ;
+	if( DXA->WinFilePointer__ == 0 )
 	{
 		return -1 ;
 	}
@@ -1341,50 +1958,73 @@ extern int DXA_OpenArchiveFromFile( DXARC *DXA, const wchar_t *ArchivePath, cons
 	// ファイルパスを保存
 	_WCSCPY_S( DXA->FilePath, sizeof( DXA->FilePath ), ArchivePath ) ;
 
-	// 鍵文字列の保存と鍵の作成
+	// 鍵の作成
+	DXA_KeyCreate( KeyString, DXA->Key ) ;
+	DXA_KeyV2Create( KeyString, DXA->KeyV2 ) ;
+
+	// 鍵文字列の保存
+	if( KeyString == NULL )
 	{
-		// 指定が無い場合はデフォルトの鍵文字列を使用する
-		if( KeyString == NULL )
+		DXA->KeyV2String[ 0 ] = '\0' ;
+		DXA->KeyV2StringBytes = 0 ;
+	}
+	else
+	{
+		DXA->KeyV2StringBytes = CL_strlen( DX_CHARCODEFORMAT_ASCII, KeyString ) ;
+		if( DXA->KeyV2StringBytes > DXA_KEYV2STR_LENGTH )
 		{
-			KeyString = DefaultKeyString ;
+			DXA->KeyV2StringBytes = DXA_KEYV2STR_LENGTH ;
 		}
-
-		DXA->KeyStringBytes = CL_strlen( DX_CHARCODEFORMAT_ASCII, KeyString ) ;
-		if( DXA->KeyStringBytes > DXA_KEY_STRING_LENGTH )
-		{
-			DXA->KeyStringBytes = DXA_KEY_STRING_LENGTH ;
-		}
-		_MEMCPY( DXA->KeyString, KeyString, DXA->KeyStringBytes ) ;
-		DXA->KeyString[ DXA->KeyStringBytes ] = '\0' ;
-
-		// 鍵の作成
-		DXA_KeyCreate( DXA->KeyString, DXA->KeyStringBytes, DXA->Key ) ;
+		_MEMCPY( DXA->KeyV2String, KeyString, DXA->KeyV2StringBytes ) ;
+		DXA->KeyV2String[ DXA->KeyV2StringBytes ] = '\0' ;
 	}
 
 	// ＩＤとバージョン番号部分だけを読み込み
-	ReadOnlyFileAccessRead( &DXA->Head, DXARC_ID_AND_VERSION_SIZE, 1, DXA->ReadAccessOnlyFilePointer ) ;
+	DXA_KeyV2ConvFileRead( &DXA->Head, DXARC_ID_AND_VERSION_SIZE, DXA->WinFilePointer__, DXA->KeyV2, 0 ) ;
 
-	// ＩＤが違う場合はエラー
+	// ＩＤの検査
 	if( DXA->Head.Head != DXAHEAD )
 	{
-		goto ERR ;
+		// バージョン６以前か調べる
+		ReadOnlyFileAccessSeek( DXA->WinFilePointer__, 0L, SEEK_SET ) ;
+		DXA_KeyConvFileRead( &DXA->Head, DXARC_ID_AND_VERSION_SIZE, DXA->WinFilePointer__, DXA->Key, 0 ) ;
+
+		// ＩＤの検査
+		if( DXA->Head.Head != DXAHEAD )
+		{
+			// バージョン２以前か調べる
+			_MEMSET( DXA->Key, 0xff, DXA_KEYSTR_LENGTH ) ;
+
+			ReadOnlyFileAccessSeek( DXA->WinFilePointer__, 0L, SEEK_SET ) ;
+			DXA_KeyConvFileRead( &DXA->Head, DXARC_ID_AND_VERSION_SIZE, DXA->WinFilePointer__, DXA->Key, 0 ) ;
+
+			// バージョン２以前でもない場合はエラー
+			if( DXA->Head.Head != DXAHEAD )
+			{
+				goto ERR ;
+			}
+		}
 	}
 
-	// 未対応バージョンの場合はエラー
-	if( DXA->Head.Version > DXAVER || DXA->Head.Version < DXAVER_MIN )
+	// バージョン6以降かどうかで処理を分岐
+	if( DXA->Head.Version >= 0x0006 )
 	{
-		goto ERR ;
-	}
+		DXA->V5Flag = FALSE ;
 
-	// ヘッダの残りの部分を読み込み
-	ReadOnlyFileAccessRead( ( BYTE * )&DXA->Head + DXARC_ID_AND_VERSION_SIZE, DXARC_HEAD_VER8_SIZE - DXARC_ID_AND_VERSION_SIZE, 1, DXA->ReadAccessOnlyFilePointer ) ;
+		// バージョン検査
+		if( DXA->Head.Version > DXAVER )
+		{
+			goto ERR ;
+		}
 
-	// ヘッダを解析
-	{
-		// 鍵処理が行われていないかを取得する
-		DXA->NoKey = ( DXA->Head.Flags & DXA_FLAG_NO_KEY ) != 0 ;
-
-		// 文字コード形式をセット
+		if( DXA->Head.Version >= DXA_KEYV2_VER )
+		{
+			DXA_KeyV2ConvFileRead( ( BYTE * )&DXA->Head + DXARC_ID_AND_VERSION_SIZE, DXARC_HEAD_VER6_SIZE - DXARC_ID_AND_VERSION_SIZE, DXA->WinFilePointer__, DXA->KeyV2, DXARC_ID_AND_VERSION_SIZE ) ;
+		}
+		else
+		{
+			DXA_KeyConvFileRead( ( BYTE * )&DXA->Head + DXARC_ID_AND_VERSION_SIZE, DXARC_HEAD_VER6_SIZE - DXARC_ID_AND_VERSION_SIZE, DXA->WinFilePointer__, DXA->Key, DXARC_ID_AND_VERSION_SIZE ) ;
+		}
 		switch( DXA->Head.CharCodeFormat )
 		{
 		case DX_CHARCODEFORMAT_UHC :
@@ -1413,66 +2053,92 @@ extern int DXA_OpenArchiveFromFile( DXARC *DXA, const wchar_t *ArchivePath, cons
 			goto ERR ;
 		}
 		
-		// ヘッダが圧縮されている場合は解凍する
-		if( ( DXA->Head.Flags & DXA_FLAG_NO_HEAD_PRESS ) != 0 )
+		// 情報テーブルをメモリに読み込む
+		ReadOnlyFileAccessSeek( DXA->WinFilePointer__, ( LONGLONG )DXA->Head.FileNameTableStartAddress, SEEK_SET ) ;
+		if( DXA->Head.Version >= DXA_KEYV2_VER )
 		{
-			// 圧縮されていない場合は普通に読み込む
-			ReadOnlyFileAccessSeek( DXA->ReadAccessOnlyFilePointer, DXA->Head.FileNameTableStartAddress, SEEK_SET ) ;
-			DXA_KeyConvFileRead( DXA->Table.Top, DXA->Head.HeadSize, DXA->ReadAccessOnlyFilePointer, DXA->NoKey ? NULL : DXA->Key, 0 ) ;
+			DXA_KeyV2ConvFileRead( DXA->Table.Top, DXA->Head.HeadSize, DXA->WinFilePointer__, DXA->KeyV2, 0 ) ;
 		}
 		else
 		{
-			void *HuffHeadBuffer ;
-			ULONGLONG HuffHeadSize ;
-			void *LzHeadBuffer ;
-			ULONGLONG LzHeadSize ;
-			LONGLONG FileSize ;
-
-			// 圧縮されたヘッダの容量を取得する
-			ReadOnlyFileAccessSeek( DXA->ReadAccessOnlyFilePointer, 0, SEEK_END ) ;
-			FileSize = ReadOnlyFileAccessTell( DXA->ReadAccessOnlyFilePointer ) ;
-			ReadOnlyFileAccessSeek( DXA->ReadAccessOnlyFilePointer, DXA->Head.FileNameTableStartAddress, SEEK_SET ) ;
-			HuffHeadSize = ( ULONGLONG )( FileSize - ReadOnlyFileAccessTell( DXA->ReadAccessOnlyFilePointer ) ) ;
-
-			// 圧縮されたヘッダを読み込むメモリを確保する
-			HuffHeadBuffer = DXALLOC( ( size_t )HuffHeadSize ) ;
-			if( HuffHeadBuffer == NULL )
-			{
-				goto ERR ;
-			}
-
-			// 圧縮されたヘッダをメモリに読み込む
-			DXA_KeyConvFileRead( HuffHeadBuffer, HuffHeadSize, DXA->ReadAccessOnlyFilePointer, DXA->NoKey ? NULL : DXA->Key, 0 ) ;
-
-			// ハフマン圧縮されたヘッダの解凍後の容量を取得する
-			LzHeadSize = Huffman_Decode( HuffHeadBuffer, NULL ) ;
-
-			// ハフマン圧縮されたヘッダの解凍後のデータを格納するメモリ用域の確保
-			LzHeadBuffer = DXALLOC( ( size_t )LzHeadSize ) ;
-			if( LzHeadBuffer == NULL )
-			{
-				DXFREE( HuffHeadBuffer ) ;
-				goto ERR ;
-			}
-
-			// 圧縮されたヘッダを解凍する
-			Huffman_Decode( HuffHeadBuffer, LzHeadBuffer ) ;
-
-			// LZ圧縮されたヘッダを解凍する
-			DXA_Decode( LzHeadBuffer, DXA->Table.Top ) ;
-
-			// メモリの解放
-			DXFREE( HuffHeadBuffer ) ;
-			DXFREE( LzHeadBuffer ) ;
+			DXA_KeyConvFileRead( DXA->Table.Top, DXA->Head.HeadSize, DXA->WinFilePointer__, DXA->Key, 0 ) ;
 		}
 
-		// 各情報テーブルのアドレスをセットする
+		// 情報テーブルのアドレスをセットする
 		DXA->Table.NameTable		= DXA->Table.Top ;
 		DXA->Table.FileTable		= DXA->Table.NameTable + DXA->Head.FileTableStartAddress ;
 		DXA->Table.DirectoryTable	= DXA->Table.NameTable + DXA->Head.DirectoryTableStartAddress ;
 
 		// カレントディレクトリのセット
 		DXA->CurrentDirectory = ( DXARC_DIRECTORY * )DXA->Table.DirectoryTable ;
+	}
+	else
+	{
+		DXA->V5Flag = TRUE ;
+
+		// バージョン検査
+		if( DXA->HeadV5.Version > DXAVER_VER5 )
+		{
+			goto ERR ;
+		}
+
+		// バージョンが４以上かどうかで読み込む残りのヘッダサイズを変更
+		if( DXA->HeadV5.Version >= 0x0004 )
+		{
+			DXA_KeyConvFileRead( ( BYTE * )&DXA->HeadV5 + DXARC_ID_AND_VERSION_SIZE, DXARC_HEAD_VER4_SIZE - DXARC_ID_AND_VERSION_SIZE, DXA->WinFilePointer__, DXA->Key, DXARC_ID_AND_VERSION_SIZE ) ;
+			switch( DXA->HeadV5.CharCodeFormat )
+			{
+			case DX_CHARCODEFORMAT_UHC :
+			case DX_CHARCODEFORMAT_BIG5 :
+			case DX_CHARCODEFORMAT_GB2312 :
+			case DX_CHARCODEFORMAT_SHIFTJIS :
+			case DX_CHARCODEFORMAT_UTF16LE :
+			case DX_CHARCODEFORMAT_UTF16BE :
+			case DX_CHARCODEFORMAT_WINDOWS_1252 :
+			case DX_CHARCODEFORMAT_ISO_IEC_8859_15 :
+			case DX_CHARCODEFORMAT_UTF8 :
+			case DX_CHARCODEFORMAT_UTF32LE :
+			case DX_CHARCODEFORMAT_UTF32BE :
+				DXA->CharCodeFormat = ( int )DXA->HeadV5.CharCodeFormat ;
+				break ;
+
+			default :
+				DXA->CharCodeFormat = DX_CHARCODEFORMAT_SHIFTJIS ;
+				break ;
+			}
+		}
+		else
+		{
+			DXA_KeyConvFileRead( ( BYTE * )&DXA->HeadV5 + DXARC_ID_AND_VERSION_SIZE, DXARC_HEAD_VER3_SIZE - DXARC_ID_AND_VERSION_SIZE, DXA->WinFilePointer__, DXA->Key, DXARC_ID_AND_VERSION_SIZE ) ;
+			DXA->HeadV5.CharCodeFormat = DX_CHARCODEFORMAT_SHIFTJIS ;
+			DXA->CharCodeFormat        = DX_CHARCODEFORMAT_SHIFTJIS ;
+		}
+
+		// 情報テーブルのサイズ分のメモリを確保する
+		DXA->Table.Top = ( BYTE * )DXALLOC( DXA->HeadV5.HeadSize ) ;
+		if( DXA->Table.Top == NULL )
+		{
+			goto ERR ;
+		}
+		
+		// 情報テーブルをメモリに読み込む
+		ReadOnlyFileAccessSeek( DXA->WinFilePointer__, DXA->HeadV5.FileNameTableStartAddress, SEEK_SET ) ;
+		if( DXA->HeadV5.Version >= 0x0005 )
+		{
+			DXA_KeyConvFileRead( DXA->Table.Top, DXA->HeadV5.HeadSize, DXA->WinFilePointer__, DXA->Key, 0 ) ;
+		}
+		else
+		{
+			DXA_KeyConvFileRead( DXA->Table.Top, DXA->HeadV5.HeadSize, DXA->WinFilePointer__, DXA->Key ) ;
+		}
+
+		// 情報テーブルのアドレスをセットする
+		DXA->Table.NameTable		= DXA->Table.Top ;
+		DXA->Table.FileTable		= DXA->Table.NameTable + DXA->HeadV5.FileTableStartAddress ;
+		DXA->Table.DirectoryTable	= DXA->Table.NameTable + DXA->HeadV5.DirectoryTableStartAddress ;
+
+		// カレントディレクトリのセット
+		DXA->CurrentDirectoryV5 = ( DXARC_DIRECTORY_VER5 * )DXA->Table.DirectoryTable ;
 	}
 
 	DXA->MemoryOpenFlag					= FALSE ;			// メモリイメージから開いているフラグを倒す
@@ -1484,10 +2150,10 @@ extern int DXA_OpenArchiveFromFile( DXARC *DXA, const wchar_t *ArchivePath, cons
 	return 0 ;
 
 ERR :
-	if( DXA->ReadAccessOnlyFilePointer != 0 )
+	if( DXA->WinFilePointer__ != 0 )
 	{
-		ReadOnlyFileAccessClose( DXA->ReadAccessOnlyFilePointer ) ;
-		DXA->ReadAccessOnlyFilePointer = 0 ;
+		ReadOnlyFileAccessClose( DXA->WinFilePointer__ ) ;
+		DXA->WinFilePointer__ = 0 ;
 	}
 
 	if( DXA->Table.Top != NULL )
@@ -1504,7 +2170,7 @@ ERR :
 extern int DXA_CloseArchive( DXARC *DXA )
 {
 	// 既に閉じていたら何もせず終了
-	if( DXA->ReadAccessOnlyFilePointer == 0 && DXA->MemoryImage == NULL )
+	if( DXA->WinFilePointer__ == 0 && DXA->MemoryImage == NULL )
 	{
 		return 0 ;
 	}
@@ -1516,13 +2182,6 @@ extern int DXA_CloseArchive( DXARC *DXA )
 		{
 			Thread_Sleep( 0 ) ;
 		}
-	}
-
-	// 情報テーブル用に確保していたメモリを解放
-	if( DXA->Table.Top != NULL )
-	{
-		DXFREE( DXA->Table.Top ) ;
-		DXA->Table.Top = NULL ;
 	}
 
 	// メモリから開いているかどうかで処理を分岐
@@ -1543,13 +2202,46 @@ extern int DXA_CloseArchive( DXARC *DXA )
 				}
 			}
 			else
-			// 渡されたメモリアドレス先の内容を直接使用していた場合は反転したデータを元に戻す
-			if( DXA->MemoryImageReadOnlyFlag == FALSE )
 			{
-				if( DXA->NoKey == false )
+				if( DXA->MemoryImageReadOnlyFlag )
 				{
-					char KeyStringBuffer[ DXA_KEY_STRING_MAXLENGTH ] ;
-					DXA_DirectoryKeyConv( DXA, ( DXARC_DIRECTORY * )DXA->Table.DirectoryTable, KeyStringBuffer ) ;
+					// 読み取り専用の場合は情報テーブル用に確保していたメモリを解放
+					if( DXA->Table.Top != NULL )
+					{
+						DXFREE( DXA->Table.Top ) ;
+						DXA->Table.Top = NULL ;
+					}
+				}
+				else
+				{
+					// 渡されたメモリアドレス先の内容を直接使用していた場合は
+					// 反転したデータを元に戻す
+					if( DXA->V5Flag == FALSE )
+					{
+						char KeyV2String[ DXA_KEYV2_STRING_MAXLENGTH ] ;
+						DXA_DirectoryKeyConv( DXA, ( DXARC_DIRECTORY * )DXA->Table.DirectoryTable, KeyV2String ) ;
+
+						if( DXA->Head.Version >= DXA_KEYV2_VER )
+						{
+							DXA_KeyV2Conv( DXA->Table.Top, DXA->Head.HeadSize, 0, DXA->KeyV2 ) ;
+						}
+						else
+						{
+							DXA_KeyConv( DXA->Table.Top, DXA->Head.HeadSize, 0, DXA->Key ) ;
+						}
+					}
+					else
+					{
+						if( DXA->HeadV5.Version >= 0x0005 )
+						{
+							DXA_DirectoryKeyConvV5( DXA, ( DXARC_DIRECTORY_VER5 * )DXA->Table.DirectoryTable ) ;
+							DXA_KeyConv( DXA->Table.Top, DXA->HeadV5.HeadSize, 0, DXA->Key ) ;
+						}
+						else
+						{
+							DXA_KeyConv( DXA->MemoryImage, DXA->MemoryImageSize, 0, DXA->Key ) ;
+						}
+					}
 				}
 			}
 		}
@@ -1558,13 +2250,17 @@ extern int DXA_CloseArchive( DXARC *DXA )
 			// アーカイブプログラムがメモリに読み込んだ場合
 
 			// 確保していたメモリを開放する
+			DXFREE( DXA->Table.Top ) ;
 			DXFREE( DXA->MemoryImage ) ;
 		}
 	}
 	else
 	{
 		// アーカイブファイルを閉じる
-		ReadOnlyFileAccessClose( DXA->ReadAccessOnlyFilePointer ) ;
+		ReadOnlyFileAccessClose( DXA->WinFilePointer__ ) ;
+
+		// 情報テーブルを格納していたメモリ領域も解放
+		DXFREE( DXA->Table.Top ) ;
 	}
 
 	// 初期化
@@ -1596,12 +2292,62 @@ static int DXA_ChangeCurrentDirectoryFast( DXARC *DXA, DXARC_SEARCHDATA *SearchD
 	PathData = SearchData->FileName ;
 
 	// カレントディレクトリから同名のディレクトリを探す
+	if( DXA->V5Flag )
+	{
+		DXARC_FILEHEAD_VER5 *FileH ;
+
+		FileH        = ( DXARC_FILEHEAD_VER5 * )( DXA->Table.FileTable + DXA->CurrentDirectoryV5->FileHeadAddress ) ;
+		Num          = ( int )DXA->CurrentDirectoryV5->FileHeadNum ;
+		FileHeadSize = ( DWORD )( DXA->HeadV5.Version >= 0x0002 ? DXARC_FILEHEAD_VER2_SIZE : DXARC_FILEHEAD_VER1_SIZE ) ;
+		for( i = 0 ; i < Num ; i ++, FileH = (DXARC_FILEHEAD_VER5 *)( (BYTE *)FileH + FileHeadSize ) )
+		{
+			// ディレクトリチェック
+			if( ( FileH->Attributes & FILE_ATTRIBUTE_DIRECTORY ) == 0 )
+			{
+				continue ;
+			}
+
+			// 文字列数とパリティチェック
+			NameData = DXA->Table.NameTable + FileH->NameAddress ;
+			if( PackNum != ( ( WORD * )NameData )[ 0 ] ||
+				Parity  != ( ( WORD * )NameData )[ 1 ] )
+			{
+				continue ;
+			}
+
+			// 文字列チェック
+			NameData += 4 ;
+			for( j = 0, k = 0 ; j < PackNum ; j ++, k += 4 )
+			{
+				if( *( ( DWORD * )&PathData[ k ] ) != *( ( DWORD * )&NameData[ k ] ) )
+				{
+					break ;
+				}
+			}
+
+			// 適合したディレクトリがあったらここで終了
+			if( PackNum == j )
+			{
+				break ;
+			}
+		}
+
+		// 無かったらエラー
+		if( i == Num )
+		{
+			return -1 ;
+		}
+
+		// 在ったらカレントディレクトリを変更
+		DXA->CurrentDirectoryV5 = ( DXARC_DIRECTORY_VER5 * )( DXA->Table.DirectoryTable + FileH->DataAddress ) ;
+	}
+	else
 	{
 		DXARC_FILEHEAD *FileH ;
 
 		FileH        = ( DXARC_FILEHEAD * )( DXA->Table.FileTable + DXA->CurrentDirectory->FileHeadAddress ) ;
 		Num          = ( int )DXA->CurrentDirectory->FileHeadNum ;
-		FileHeadSize = DXARC_FILEHEAD_VER8_SIZE ;
+		FileHeadSize = DXARC_FILEHEAD_VER6_SIZE ;
 		for( i = 0 ; i < Num ; i ++, FileH = (DXARC_FILEHEAD *)( (BYTE *)FileH + FileHeadSize ) )
 		{
 			// ディレクトリチェック
@@ -1694,18 +2440,36 @@ static int DXA_ChangeCurrentDirectoryBase( DXARC *DXA, const BYTE *DirectoryPath
 	if( CL_strcmp_str2_ascii( DXA->CharCodeFormat, ( const char * )DirectoryPath, ( const char * )Ascii_EnStr    ) == 0 ||
 		CL_strcmp_str2_ascii( DXA->CharCodeFormat, ( const char * )DirectoryPath, ( const char * )Ascii_SlashStr ) == 0 )
 	{
-		DXA->CurrentDirectory   = ( DXARC_DIRECTORY      * )DXA->Table.DirectoryTable ;
+		if( DXA->V5Flag )
+		{
+			DXA->CurrentDirectoryV5 = ( DXARC_DIRECTORY_VER5 * )DXA->Table.DirectoryTable ;
+		}
+		else
+		{
+			DXA->CurrentDirectory   = ( DXARC_DIRECTORY      * )DXA->Table.DirectoryTable ;
+		}
 		return 0 ;
 	}
 
 	// 下に一つ下がるパスだったら処理を分岐
 	if( CL_strcmp_str2_ascii( DXA->CharCodeFormat, ( const char * )DirectoryPath, ( const char * )Ascii_DoubleDotStr ) == 0 )
 	{
-		// ルートディレクトリに居たらエラー
-		if( DXA->CurrentDirectory->ParentDirectoryAddress == NONE_PAL ) return -1 ;
+		if( DXA->V5Flag )
+		{
+			// ルートディレクトリに居たらエラー
+			if( DXA->CurrentDirectoryV5->ParentDirectoryAddress == 0xffffffff ) return -1 ;
 			
-		// 親ディレクトリがあったらそちらに移る
-		DXA->CurrentDirectory   = ( DXARC_DIRECTORY      * )( DXA->Table.DirectoryTable + DXA->CurrentDirectory->ParentDirectoryAddress ) ;
+			// 親ディレクトリがあったらそちらに移る
+			DXA->CurrentDirectoryV5 = ( DXARC_DIRECTORY_VER5 * )( DXA->Table.DirectoryTable + DXA->CurrentDirectoryV5->ParentDirectoryAddress ) ;
+		}
+		else
+		{
+			// ルートディレクトリに居たらエラー
+			if( DXA->CurrentDirectory->ParentDirectoryAddress == NONE_PAL ) return -1 ;
+			
+			// 親ディレクトリがあったらそちらに移る
+			DXA->CurrentDirectory   = ( DXARC_DIRECTORY      * )( DXA->Table.DirectoryTable + DXA->CurrentDirectory->ParentDirectoryAddress ) ;
+		}
 		return 0 ;
 	}
 
@@ -1810,34 +2574,33 @@ ERR:
 	return -1 ;
 }
 
-// カレントディレクトリにある指定のファイルの鍵用の文字列を作成する、戻り値は文字列の長さ( 単位：Byte )( FileString は DXA_KEY_STRING_MAXLENGTH の長さが必要 )
-static size_t DXA_CreateKeyFileString( DXARC *DXA, DXARC_DIRECTORY *Directory, DXARC_FILEHEAD *FileHead, BYTE *FileString )
+// カレントディレクトリにある指定のファイルの鍵バージョン２用の文字列を作成する、戻り値は文字列の長さ( 単位：Byte )( FileString は DXA_KEYV2_STRING_MAXLENGTH の長さが必要 )
+static size_t DXA_CreateKeyV2FileString( DXARC *DXA, DXARC_DIRECTORY *Directory, DXARC_FILEHEAD *FileHead, BYTE *FileString )
 {
 	size_t StartAddr ;
 
 	// 最初にパスワードの文字列をセット
-	if( DXA->KeyStringBytes != 0 )
+	if( DXA->KeyV2StringBytes != 0 )
 	{
-		_MEMCPY( FileString, DXA->KeyString, DXA->KeyStringBytes ) ;
-		FileString[ DXA->KeyStringBytes ] = '\0' ;
-		StartAddr = DXA->KeyStringBytes ;
+		_MEMCPY( FileString, DXA->KeyV2String, DXA->KeyV2StringBytes ) ;
+		FileString[ DXA->KeyV2StringBytes ] = '\0' ;
+		StartAddr = DXA->KeyV2StringBytes ;
 	}
 	else
 	{
 		FileString[ 0 ] = '\0' ;
 		StartAddr = 0 ;
 	}
-	_MEMSET( &FileString[ DXA_KEY_STRING_MAXLENGTH - 8 ], 0, 8 ) ;
 
 	// 次にファイル名の文字列をセット
-	CL_strcat_s( DXA->CharCodeFormat, ( char * )&FileString[ StartAddr ], ( DXA_KEY_STRING_MAXLENGTH - 8 ) - StartAddr, ( char * )( DXA->Table.NameTable + FileHead->NameAddress + 4 ) ) ;
+	CL_strcat_s( DXA->CharCodeFormat, ( char * )&FileString[ StartAddr ], DXA_KEYV2_STRING_MAXLENGTH - StartAddr, ( char * )( DXA->Table.NameTable + FileHead->NameAddress + 4 ) ) ;
 
 	// その後にディレクトリの文字列をセット
 	if( Directory->ParentDirectoryAddress != NONE_PAL )
 	{
 		do
 		{
-			CL_strcat_s( DXA->CharCodeFormat, ( char * )&FileString[ StartAddr ], ( DXA_KEY_STRING_MAXLENGTH - 8 ) - StartAddr, ( char * )( DXA->Table.NameTable + ( ( DXARC_FILEHEAD * )( DXA->Table.FileTable + Directory->DirectoryAddress ) )->NameAddress + 4 ) ) ;
+			CL_strcat_s( DXA->CharCodeFormat, ( char * )&FileString[ StartAddr ], DXA_KEYV2_STRING_MAXLENGTH - StartAddr, ( char * )( DXA->Table.NameTable + ( ( DXARC_FILEHEAD * )( DXA->Table.FileTable + Directory->DirectoryAddress ) )->NameAddress + 4 ) ) ;
 			Directory = ( DXARC_DIRECTORY * )( DXA->Table.DirectoryTable + Directory->ParentDirectoryAddress ) ;
 		}while( Directory->ParentDirectoryAddress != NONE_PAL ) ;
 	}
@@ -1920,6 +2683,18 @@ static size_t DXA_CreateKeyFileString( DXARC *DXA, DXARC_DIRECTORY *Directory, D
 //	return 0 ;
 //}
 
+// 戻り値: -1=エラー  0=ＤＸアーカイブファイル内のファイルではない  1=ＤＸアーカイブファイル内のファイル
+extern int DXA_DIR_IsDXA(DWORD_PTR Handle)
+{
+	DXARC_DIR_FILE* file = DXARCD.File[Handle & 0x0FFFFFFF];
+	if (file == NULL)
+	{
+		return -1;
+	}
+
+	return file->UseArchiveFlag;
+}
+
 // アーカイブ内のオブジェクトを検索する( -1:エラー -1以外:DXA検索ハンドル )
 extern DWORD_PTR DXA_FindFirst( DXARC *DXA, const BYTE *FilePath, FILEINFOW *Buffer )
 {
@@ -2001,7 +2776,7 @@ extern int DXA_FindNext( DWORD_PTR DxaFindHandle, FILEINFOW *Buffer )
 	}
 	find->ObjectCount ++ ;
 
-	return 0 ;
+	return 0;
 }
 
 // アーカイブ内のオブジェクト検索を終了する
@@ -2014,6 +2789,244 @@ extern int DXA_FindClose( DWORD_PTR DxaFindHandle )
 
 	return 0 ;
 }
+
+// アーカイブファイル中の指定のファイルをメモリに読み込む( -1:エラー 0以上:ファイルサイズ )
+//extern int DXA_LoadFile( DXARC *DXA, const char *FilePath, void *Buffer, ULONGLONG BufferSize )
+//{
+//	// 非同期同期オープン中の場合はここで開き終わるのを待つ
+//	if( DXA->ASyncOpenFlag == TRUE )
+//	{
+//		while( DXA_CheckIdle( DXA ) == FALSE )
+//		{
+//			Thread_Sleep( 0 ) ;
+//		}
+//	}
+//
+//	if( DXA->V5Flag )
+//	{
+//		DXARC_FILEHEAD_VER5 *FileH ;
+//
+//		// 指定のファイルの情報を得る
+//		FileH = DXA_GetFileHeaderV5( DXA, FilePath ) ;
+//		if( FileH == NULL ) return -1 ;
+//
+//		// ファイルサイズが足りているか調べる、足りていないか、バッファ、又はサイズが０だったらサイズを返す
+//		if( BufferSize < FileH->DataSize || BufferSize == 0 || Buffer == NULL )
+//		{
+//			return ( int )FileH->DataSize ;
+//		}
+//		
+//		// 足りている場合はバッファーに読み込む
+//
+//		// ファイルが圧縮されているかどうかで処理を分岐
+//		if( DXA->HeadV5.Version >= 0x0002 && FileH->PressDataSize != 0xffffffff )
+//		{
+//			// 圧縮されている場合
+//
+//			// メモリ上に読み込んでいるかどうかで処理を分岐
+//			if( DXA->MemoryOpenFlag == TRUE )
+//			{
+//				if( DXA->MemoryImageReadOnlyFlag )
+//				{
+//					void *temp ;
+//
+//					// 圧縮データをメモリに読み込んでから解凍する
+//
+//					// 圧縮データが収まるメモリ領域の確保
+//					temp = DXALLOC( FileH->PressDataSize ) ;
+//
+//					// 圧縮データの転送
+//					_MEMCPY( temp, (BYTE *)DXA->MemoryImage + DXA->HeadV5.DataStartAddress + FileH->DataAddress, FileH->DataSize ) ;
+//					if( DXA->HeadV5.Version >= 0x0005 )
+//					{
+//						DXA_KeyConv( temp, FileH->PressDataSize,                                   FileH->DataSize, DXA->Key ) ;
+//					}
+//					else
+//					{
+//						DXA_KeyConv( temp, FileH->PressDataSize, DXA->HeadV5.DataStartAddress + FileH->DataAddress, DXA->Key ) ;
+//					}
+//					
+//					// 解凍
+//					DXA_Decode( temp, Buffer ) ;
+//					
+//					// メモリの解放
+//					DXFREE( temp ) ;
+//				}
+//				else
+//				{
+//					// メモリ上の圧縮データを解凍する
+//					DXA_Decode( (BYTE *)DXA->MemoryImage + DXA->HeadV5.DataStartAddress + FileH->DataAddress, Buffer ) ;
+//				}
+//			}
+//			else
+//			{
+//				void *temp ;
+//
+//				// 圧縮データをメモリに読み込んでから解凍する
+//
+//				// 圧縮データが収まるメモリ領域の確保
+//				temp = DXALLOC( FileH->PressDataSize ) ;
+//
+//				// 圧縮データの読み込み
+//				ReadOnlyFileAccessSeek( DXA->WinFilePointer__, DXA->HeadV5.DataStartAddress + FileH->DataAddress, SEEK_SET ) ;
+//				if( DXA->HeadV5.Version >= 0x0005 )
+//				{
+//					DXA_KeyConvFileRead( temp, FileH->PressDataSize, DXA->WinFilePointer__, DXA->Key, FileH->DataSize ) ;
+//				}
+//				else
+//				{
+//					DXA_KeyConvFileRead( temp, FileH->PressDataSize, DXA->WinFilePointer__, DXA->Key ) ;
+//				}
+//				
+//				// 解凍
+//				DXA_Decode( temp, Buffer ) ;
+//				
+//				// メモリの解放
+//				DXFREE( temp ) ;
+//			}
+//		}
+//		else
+//		{
+//			if( DXA->MemoryOpenFlag == TRUE )
+//			{
+//				if( DXA->MemoryImageReadOnlyFlag )
+//				{
+//					// ファイルポインタを移動
+//					_MEMCPY( Buffer, (BYTE *)DXA->MemoryImage + DXA->HeadV5.DataStartAddress + FileH->DataAddress, FileH->DataSize ) ;
+//
+//					// 読み込み
+//					if( DXA->HeadV5.Version >= 0x0005 )
+//					{
+//						DXA_KeyConv( Buffer, FileH->DataSize,                                   FileH->DataSize, DXA->Key ) ;
+//					}
+//					else
+//					{
+//						DXA_KeyConv( Buffer, FileH->DataSize, DXA->HeadV5.DataStartAddress + FileH->DataAddress, DXA->Key ) ;
+//					}
+//				}
+//				else
+//				{
+//					// コピー
+//					_MEMCPY( Buffer, (BYTE *)DXA->MemoryImage + DXA->HeadV5.DataStartAddress + FileH->DataAddress, FileH->DataSize ) ;
+//				}
+//			}
+//			else
+//			{
+//				// ファイルポインタを移動
+//				ReadOnlyFileAccessSeek( DXA->WinFilePointer__, DXA->HeadV5.DataStartAddress + FileH->DataAddress, SEEK_SET ) ;
+//
+//				// 読み込み
+//				if( DXA->HeadV5.Version >= 0x0005 )
+//				{
+//					DXA_KeyConvFileRead( Buffer, FileH->DataSize, DXA->WinFilePointer__, DXA->Key, FileH->DataSize ) ;
+//				}
+//				else
+//				{
+//					DXA_KeyConvFileRead( Buffer, FileH->DataSize, DXA->WinFilePointer__, DXA->Key ) ;
+//				}
+//			}
+//		}
+//	}
+//	else
+//	{
+//		DXARC_FILEHEAD *FileH ;
+//
+//		// 指定のファイルの情報を得る
+//		FileH = DXA_GetFileHeader( DXA, FilePath ) ;
+//		if( FileH == NULL ) return -1 ;
+//
+//		// ファイルサイズが足りているか調べる、足りていないか、バッファ、又はサイズが０だったらサイズを返す
+//		if( BufferSize < FileH->DataSize || BufferSize == 0 || Buffer == NULL )
+//		{
+//			return ( int )FileH->DataSize ;
+//		}
+//		
+//		// 足りている場合はバッファーに読み込む
+//
+//		// ファイルが圧縮されているかどうかで処理を分岐
+//		if( FileH->PressDataSize != NONE_PAL )
+//		{
+//			// 圧縮されている場合
+//
+//			// メモリ上に読み込んでいるかどうかで処理を分岐
+//			if( DXA->MemoryOpenFlag == TRUE )
+//			{
+//				if( DXA->MemoryImageReadOnlyFlag )
+//				{
+//					void *temp ;
+//
+//					// 圧縮データをメモリに読み込んでから解凍する
+//
+//					// 圧縮データが収まるメモリ領域の確保
+//					temp = DXALLOC( ( size_t )FileH->PressDataSize ) ;
+//
+//					// 圧縮データの読み込み
+//					_MEMCPY( temp, (BYTE *)DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, ( size_t )FileH->DataSize ) ;
+//					DXA_KeyConv( temp, ( LONGLONG )FileH->DataSize, ( LONGLONG )FileH->DataSize, DXA->Key ) ;
+//					
+//					// 解凍
+//					DXA_Decode( temp, Buffer ) ;
+//					
+//					// メモリの解放
+//					DXFREE( temp ) ;
+//				}
+//				else
+//				{
+//					// メモリ上の圧縮データを解凍する
+//					DXA_Decode( (BYTE *)DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, Buffer ) ;
+//				}
+//			}
+//			else
+//			{
+//				void *temp ;
+//
+//				// 圧縮データをメモリに読み込んでから解凍する
+//
+//				// 圧縮データが収まるメモリ領域の確保
+//				temp = DXALLOC( ( size_t )FileH->PressDataSize ) ;
+//
+//				// 圧縮データの読み込み
+//				ReadOnlyFileAccessSeek( DXA->WinFilePointer__, ( LONGLONG )( DXA->Head.DataStartAddress + FileH->DataAddress ), SEEK_SET ) ;
+//				DXA_KeyConvFileRead( temp, FileH->PressDataSize, DXA->WinFilePointer__, DXA->Key, ( LONGLONG )FileH->DataSize ) ;
+//				
+//				// 解凍
+//				DXA_Decode( temp, Buffer ) ;
+//				
+//				// メモリの解放
+//				DXFREE( temp ) ;
+//			}
+//		}
+//		else
+//		{
+//			if( DXA->MemoryOpenFlag == TRUE )
+//			{
+//				if( DXA->MemoryImageReadOnlyFlag )
+//				{
+//					// コピー
+//					_MEMCPY( Buffer, (BYTE *)DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, ( size_t )FileH->DataSize ) ;
+//
+//					DXA_KeyConv( Buffer, ( LONGLONG )FileH->DataSize, ( LONGLONG )FileH->DataSize, DXA->Key ) ;
+//				}
+//				else
+//				{
+//					// コピー
+//					_MEMCPY( Buffer, (BYTE *)DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, ( size_t )FileH->DataSize ) ;
+//				}
+//			}
+//			else
+//			{
+//				// ファイルポインタを移動
+//				ReadOnlyFileAccessSeek( DXA->WinFilePointer__, ( LONGLONG )( DXA->Head.DataStartAddress + FileH->DataAddress ), SEEK_SET ) ;
+//
+//				// 読み込み
+//				DXA_KeyConvFileRead( Buffer, FileH->DataSize, DXA->WinFilePointer__, DXA->Key, ( LONGLONG )FileH->DataSize ) ;
+//			}
+//		}
+//	}
+//	
+//	// 終了
+//	return 0 ;
+//}
 
 // アーカイブファイルをメモリに読み込んだ場合のファイルイメージが格納されている先頭アドレスを取得する( DXA_OpenArchiveFromFileUseMem 若しくは DXA_OpenArchiveFromMem で開いた場合に有効 )
 extern void *DXA_GetFileImage( DXARC *DXA )
@@ -2063,6 +3076,29 @@ extern int DXA_GetFileInfo( DXARC *DXA, int CharCodeFormat, const char *FilePath
 		}
 	}
 
+	if( DXA->V5Flag )
+	{
+		DXARC_FILEHEAD_VER5 *FileH ;
+
+		// 指定のファイルの情報を得る
+		FileH = DXA_GetFileHeaderV5( DXA, FilePathB ) ;
+		if( FileH == NULL )
+		{
+			return -1 ;
+		}
+
+		// ファイルのデータがある位置とファイルサイズを保存する
+		if( Position != NULL )
+		{
+			*Position = ( int )( DXA->HeadV5.DataStartAddress + FileH->DataAddress ) ;
+		}
+
+		if( Size     != NULL )
+		{
+			*Size     = ( int )FileH->DataSize ;
+		}
+	}
+	else
 	{
 		DXARC_FILEHEAD *FileH ;
 		DXARC_DIRECTORY *Directory ;
@@ -2113,6 +3149,111 @@ extern int DXA_STREAM_Initialize( DXARC_STREAM *DXAStream, DXARC *DXA, const BYT
 	DXAStream->UseASyncReadFlag = UseASyncReadFlag ;
 	DXAStream->ASyncState       = DXARC_STREAM_ASYNCSTATE_IDLE ;
 
+	// ファイルから開いている場合はアーカイブファイルのファイルポインタを作成
+	if( DXA->MemoryOpenFlag == FALSE )
+	{
+		DXAStream->WinFilePointer = ReadOnlyFileAccessOpen( DXA->FilePath, FALSE, TRUE, FALSE ) ;
+		if( DXAStream->WinFilePointer == 0 )
+		{
+			return -1 ;
+		}
+	}
+
+	if( DXA->V5Flag )
+	{
+		DXARC_FILEHEAD_VER5 *FileH ;
+
+		// 指定のファイルの情報を得る
+		FileH = DXA_GetFileHeaderV5( DXA, FilePath ) ;
+		if( FileH == NULL )
+		{
+			if( DXA->MemoryOpenFlag == FALSE )
+			{
+				ReadOnlyFileAccessClose( DXAStream->WinFilePointer ) ;
+				DXAStream->WinFilePointer = 0 ;
+			}
+			return -1 ;
+		}
+
+		// ファイル情報をセット
+		DXAStream->FileHeadV5 = FileH ;
+
+		// ファイルが圧縮されている場合はここで読み込んで解凍してしまう
+		if( DXA->HeadV5.Version >= 0x0002 && FileH->PressDataSize != 0xffffffff )
+		{
+			// 解凍データが収まるメモリ領域の確保
+			DXAStream->DecodeDataBuffer = DXALLOC( FileH->DataSize ) ;
+
+			// メモリ上に読み込まれているかどうかで処理を分岐
+			if( DXA->MemoryOpenFlag == TRUE )
+			{
+				if( DXA->MemoryImageReadOnlyFlag )
+				{
+					// 圧縮データが収まるメモリ領域の確保
+					DXAStream->DecodeTempBuffer = DXALLOC( FileH->PressDataSize ) ;
+
+					// 圧縮データの読み込み
+					_MEMCPY( DXAStream->DecodeTempBuffer, (BYTE *)DXA->MemoryImage + DXA->HeadV5.DataStartAddress + FileH->DataAddress, FileH->PressDataSize ) ;
+					if( DXA->HeadV5.Version >= 0x0005 )
+					{
+						DXA_KeyConv( DXAStream->DecodeTempBuffer, FileH->PressDataSize,                                   FileH->DataSize, DXA->Key ) ;
+					}
+					else
+					{
+						DXA_KeyConv( DXAStream->DecodeTempBuffer, FileH->PressDataSize, DXA->HeadV5.DataStartAddress + FileH->DataAddress, DXA->Key ) ;
+					}
+
+					// 解凍
+					DXA_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
+				
+					// メモリの解放
+					DXFREE( DXAStream->DecodeTempBuffer ) ;
+					DXAStream->DecodeTempBuffer = NULL ;
+				}
+				else
+				{
+					// 解凍
+					DXA_Decode( (BYTE *)DXA->MemoryImage + DXA->HeadV5.DataStartAddress + FileH->DataAddress, DXAStream->DecodeDataBuffer ) ;
+				}
+			}
+			else
+			{
+				// 圧縮データが収まるメモリ領域の確保
+				DXAStream->DecodeTempBuffer = DXALLOC( FileH->PressDataSize ) ;
+
+				// 圧縮データの読み込み
+				DXAStream->ASyncReadFileAddress = DXA->HeadV5.DataStartAddress + FileH->DataAddress ;
+				ReadOnlyFileAccessSeek( DXAStream->WinFilePointer, ( LONGLONG )DXAStream->ASyncReadFileAddress, SEEK_SET ) ;
+
+				// 非同期の場合は読み込みと鍵解除を別々に行う
+				if( DXAStream->UseASyncReadFlag == TRUE )
+				{
+					// ファイルから読み込み
+					ReadOnlyFileAccessRead( DXAStream->DecodeTempBuffer, FileH->PressDataSize, 1, DXAStream->WinFilePointer ) ;
+					DXAStream->ASyncState = DXARC_STREAM_ASYNCSTATE_PRESSREAD ;
+				}
+				else
+				{
+					if( DXA->HeadV5.Version >= 0x0005 )
+					{
+						DXA_KeyConvFileRead( DXAStream->DecodeTempBuffer, FileH->PressDataSize, DXAStream->WinFilePointer, DXA->Key, FileH->DataSize ) ;
+					}
+					else
+					{
+						DXA_KeyConvFileRead( DXAStream->DecodeTempBuffer, FileH->PressDataSize, DXAStream->WinFilePointer, DXA->Key ) ;
+					}
+
+					// 解凍
+					DXA_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
+				
+					// メモリの解放
+					DXFREE( DXAStream->DecodeTempBuffer ) ;
+					DXAStream->DecodeTempBuffer = NULL ;
+				}
+			}
+		}
+	}
+	else
 	{
 		DXARC_FILEHEAD *FileH ;
 		DXARC_DIRECTORY *Directory ;
@@ -2121,410 +3262,94 @@ extern int DXA_STREAM_Initialize( DXARC_STREAM *DXAStream, DXARC *DXA, const BYT
 		FileH = DXA_GetFileHeader( DXA, FilePath, &Directory ) ;
 		if( FileH == NULL )
 		{
-			return -1 ;
-		}
-
-		// ファイルから開いている場合はアーカイブファイルのファイルポインタを作成
-		if( DXA->MemoryOpenFlag == FALSE )
-		{
-			DXAStream->ReadOnlyFilePointer = ReadOnlyFileAccessOpen( DXA->FilePath, FALSE, TRUE, FALSE ) ;
-			if( DXAStream->ReadOnlyFilePointer == 0 )
+			if( DXA->MemoryOpenFlag == FALSE )
 			{
-				return -1 ;
+				ReadOnlyFileAccessClose( DXAStream->WinFilePointer ) ;
+				DXAStream->WinFilePointer = 0 ;
 			}
+			return -1 ;
 		}
 
 		// ファイル情報をセット
 		DXAStream->FileHead = FileH ;
 
-		// 鍵処理を行わないかどうかを保存
-		DXAStream->NoKey = DXA->NoKey ;
-
-		// 鍵を作成する
-		if( DXAStream->NoKey == false )
+		// 鍵バージョン２を使うバージョンの場合は鍵バージョン２を作成する
+		if( DXA->Head.Version >= DXA_KEYV2_VER )
 		{
-			char KeyString[ DXA_KEY_STRING_MAXLENGTH ] ;
-			size_t KeyStringBytes ;
-			KeyStringBytes = DXA_CreateKeyFileString( DXA, Directory, FileH, ( BYTE * )KeyString ) ;
-			DXA_KeyCreate( KeyString, KeyStringBytes, DXAStream->Key ) ;
+			char KeyV2String[ DXA_KEYV2_STRING_MAXLENGTH ] ;
+			size_t KeyV2StringBytes ;
+			KeyV2StringBytes = DXA_CreateKeyV2FileString( DXA, Directory, FileH, ( BYTE * )KeyV2String ) ;
+			DXA_KeyV2Create( KeyV2String, DXAStream->KeyV2 , KeyV2StringBytes ) ;
 		}
 
-		// ファイルが圧縮されている場合は解凍データが収まるメモリ領域の確保
-		if( FileH->PressDataSize != NONE_PAL || FileH->HuffPressDataSize != NONE_PAL )
-		{
-			DXAStream->DecodeDataBuffer = DXALLOC( ( size_t )FileH->DataSize ) ;
-			if( DXAStream->DecodeDataBuffer == NULL )
-			{
-				goto ERR ;
-			}
-		}
-
-		// ファイルが圧縮されているかどうかで処理を分岐
+		// ファイルが圧縮されている場合はここで読み込んで解凍してしまう
 		if( FileH->PressDataSize != NONE_PAL )
 		{
-			// ハフマン圧縮もされているかどうかで処理を分岐
-			if( FileH->HuffPressDataSize != NONE_PAL )
-			{
-				// メモリ上に読み込まれているかどうかで処理を分岐
-				if( DXA->MemoryOpenFlag == TRUE )
-				{
-					if( DXA->MemoryImageReadOnlyFlag )
-					{
-						// 圧縮データが収まるメモリ領域の確保
-						DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )( FileH->PressDataSize + FileH->HuffPressDataSize ) ) ;
-						if( DXAStream->DecodeTempBuffer == NULL )
-						{
-							goto ERR ;
-						}
+			// 解凍データが収まるメモリ領域の確保
+			DXAStream->DecodeDataBuffer = DXALLOC( ( size_t )FileH->DataSize ) ;
 
-						// 圧縮データのコピーと鍵解除
-						_MEMCPY( DXAStream->DecodeTempBuffer, ( BYTE * )DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, ( size_t )FileH->HuffPressDataSize ) ;
-						if( DXAStream->NoKey == false ) DXA_KeyConv( DXAStream->DecodeTempBuffer, ( LONGLONG )FileH->HuffPressDataSize, ( LONGLONG )FileH->DataSize, DXAStream->Key ) ;
-
-						// ハフマン圧縮データを解凍
-						Huffman_Decode( DXAStream->DecodeTempBuffer, ( BYTE * )DXAStream->DecodeTempBuffer + FileH->HuffPressDataSize ) ;
-
-						// ファイルの前後のみハフマン圧縮されていた場合は残りのLZ圧縮データをコピー
-						if( DXA->Head.HuffmanEncodeKB != 0xff && FileH->PressDataSize > DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-						{
-							// 解凍したデータの内、後ろ半分を移動する
-							_MEMMOVE( 
-								( BYTE * )DXAStream->DecodeTempBuffer + FileH->HuffPressDataSize + FileH->PressDataSize - DXA->Head.HuffmanEncodeKB * 1024,
-								( BYTE * )DXAStream->DecodeTempBuffer + FileH->HuffPressDataSize + DXA->Head.HuffmanEncodeKB * 1024,
-								DXA->Head.HuffmanEncodeKB * 1024
-							) ;
-
-							// 残りのLZ圧縮データを転送
-							_MEMCPY(
-								( BYTE * )DXAStream->DecodeTempBuffer + FileH->HuffPressDataSize + DXA->Head.HuffmanEncodeKB * 1024,
-								( BYTE * )DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress + FileH->HuffPressDataSize,
-								( size_t )( FileH->PressDataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-							) ;
-							if( DXAStream->NoKey == false ) DXA_KeyConv( ( BYTE * )DXAStream->DecodeTempBuffer + FileH->HuffPressDataSize + DXA->Head.HuffmanEncodeKB * 1024, ( LONGLONG )( FileH->PressDataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2 ), ( LONGLONG )( FileH->DataSize + FileH->HuffPressDataSize ), DXAStream->Key ) ;
-						}
-
-						// 解凍
-						DXA_Decode( ( BYTE * )DXAStream->DecodeTempBuffer + FileH->HuffPressDataSize, DXAStream->DecodeDataBuffer ) ;
-				
-						// 作業用メモリの解放
-						DXFREE( DXAStream->DecodeTempBuffer ) ;
-						DXAStream->DecodeTempBuffer = NULL ;
-					}
-					else
-					{
-						// 圧縮データが収まるメモリ領域の確保
-						DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )FileH->PressDataSize ) ;
-						if( DXAStream->DecodeTempBuffer == NULL )
-						{
-							goto ERR ;
-						}
-
-						// ハフマン圧縮データを解凍
-						Huffman_Decode( ( BYTE * )DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, DXAStream->DecodeTempBuffer ) ;
-
-						// ファイルの前後のみハフマン圧縮されていた場合は残りのLZ圧縮データをコピー
-						if( DXA->Head.HuffmanEncodeKB != 0xff && FileH->PressDataSize > DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-						{
-							// 解凍したデータの内、後ろ半分を移動する
-							_MEMMOVE( 
-								( BYTE * )DXAStream->DecodeTempBuffer + FileH->PressDataSize - DXA->Head.HuffmanEncodeKB * 1024,
-								( BYTE * )DXAStream->DecodeTempBuffer + DXA->Head.HuffmanEncodeKB * 1024,
-								DXA->Head.HuffmanEncodeKB * 1024
-							) ;
-
-							// 残りのLZ圧縮データを転送
-							_MEMCPY(
-								( BYTE * )DXAStream->DecodeTempBuffer + DXA->Head.HuffmanEncodeKB * 1024,
-								( BYTE * )DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress + FileH->HuffPressDataSize,
-								( size_t )( FileH->PressDataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-							) ;
-						}
-
-						// 解凍
-						DXA_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
-				
-						// 作業用メモリの解放
-						DXFREE( DXAStream->DecodeTempBuffer ) ;
-						DXAStream->DecodeTempBuffer = NULL ;
-					}
-				}
-				else
-				{
-					// 圧縮データの位置へファイルポインタを移動
-					DXAStream->ASyncReadFileAddress = DXA->Head.DataStartAddress + FileH->DataAddress ;
-					ReadOnlyFileAccessSeek( DXAStream->ReadOnlyFilePointer, ( LONGLONG )DXAStream->ASyncReadFileAddress, SEEK_SET ) ;
-
-					// 非同期の場合は読み込みと鍵解除を別々に行う
-					if( DXAStream->UseASyncReadFlag == TRUE )
-					{
-						// ファイルの前後のみハフマン圧縮されているかどうかで読み込む容量を分岐
-						if( DXA->Head.HuffmanEncodeKB != 0xff && FileH->PressDataSize > DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-						{
-							// 圧縮データが収まるメモリ領域の確保
-							DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )( FileH->PressDataSize + FileH->HuffPressDataSize + DXA->Head.HuffmanEncodeKB * 1024 * 3 ) ) ;
-							if( DXAStream->DecodeTempBuffer == NULL )
-							{
-								goto ERR ;
-							}
-
-							// 圧縮データの読み込み
-							ReadOnlyFileAccessRead( ( BYTE * )DXAStream->DecodeTempBuffer + DXA->Head.HuffmanEncodeKB * 1024 * 2, ( size_t )( FileH->HuffPressDataSize + FileH->PressDataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2 ), 1, DXAStream->ReadOnlyFilePointer ) ;
-						}
-						else
-						{
-							// 圧縮データが収まるメモリ領域の確保
-							DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )( FileH->PressDataSize + FileH->HuffPressDataSize ) ) ;
-							if( DXAStream->DecodeTempBuffer == NULL )
-							{
-								goto ERR ;
-							}
-
-							// 圧縮データの読み込み
-							ReadOnlyFileAccessRead( DXAStream->DecodeTempBuffer, ( size_t )FileH->HuffPressDataSize, 1, DXAStream->ReadOnlyFilePointer ) ;
-						}
-						DXAStream->ASyncState = DXARC_STREAM_ASYNCSTATE_PRESSREAD ;
-					}
-					else
-					{
-						// 圧縮データが収まるメモリ領域の確保
-						DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )( FileH->PressDataSize + FileH->HuffPressDataSize ) ) ;
-						if( DXAStream->DecodeTempBuffer == NULL )
-						{
-							goto ERR ;
-						}
-
-						// 圧縮データの読み込みと鍵解除
-						DXA_KeyConvFileRead( DXAStream->DecodeTempBuffer, FileH->HuffPressDataSize, DXAStream->ReadOnlyFilePointer, DXAStream->NoKey ? NULL : DXAStream->Key, ( LONGLONG )FileH->DataSize ) ;
-
-						// ハフマン圧縮データを解凍
-						Huffman_Decode( DXAStream->DecodeTempBuffer, ( BYTE * )DXAStream->DecodeTempBuffer + FileH->HuffPressDataSize ) ;
-
-						// ファイルの前後のみハフマン圧縮している場合は処理を分岐
-						if( DXA->Head.HuffmanEncodeKB != 0xff && FileH->PressDataSize > DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-						{
-							// 解凍したデータの内、後ろ半分を移動する
-							_MEMMOVE( 
-								( BYTE * )DXAStream->DecodeTempBuffer + FileH->HuffPressDataSize + FileH->PressDataSize - DXA->Head.HuffmanEncodeKB * 1024,
-								( BYTE * )DXAStream->DecodeTempBuffer + FileH->HuffPressDataSize + DXA->Head.HuffmanEncodeKB * 1024,
-								DXA->Head.HuffmanEncodeKB * 1024 ) ;
-
-							// 残りのデータを読み込む
-							DXA_KeyConvFileRead(
-								( BYTE * )DXAStream->DecodeTempBuffer + FileH->HuffPressDataSize + DXA->Head.HuffmanEncodeKB * 1024,
-								FileH->PressDataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2,
-								DXAStream->ReadOnlyFilePointer, DXAStream->NoKey ? NULL : DXAStream->Key, FileH->DataSize + FileH->HuffPressDataSize ) ;
-						}
-
-						// 解凍
-						DXA_Decode( ( BYTE * )DXAStream->DecodeTempBuffer + FileH->HuffPressDataSize, DXAStream->DecodeDataBuffer ) ;
-				
-						// メモリの解放
-						DXFREE( DXAStream->DecodeTempBuffer ) ;
-						DXAStream->DecodeTempBuffer = NULL ;
-					}
-				}
-			}
-			else
-			{
-				// メモリ上に読み込まれているかどうかで処理を分岐
-				if( DXA->MemoryOpenFlag == TRUE )
-				{
-					if( DXA->MemoryImageReadOnlyFlag )
-					{
-						// 圧縮データが収まるメモリ領域の確保
-						DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )FileH->PressDataSize ) ;
-						if( DXAStream->DecodeTempBuffer == NULL )
-						{
-							goto ERR ;
-						}
-
-						// 圧縮データの読み込み
-						_MEMCPY( DXAStream->DecodeTempBuffer, ( BYTE * )DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, ( size_t )FileH->PressDataSize ) ;
-						if( DXAStream->NoKey == false ) DXA_KeyConv( DXAStream->DecodeTempBuffer, ( LONGLONG )FileH->PressDataSize, ( LONGLONG )FileH->DataSize, DXAStream->Key ) ;
-
-						// 解凍
-						DXA_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
-				
-						// メモリの解放
-						DXFREE( DXAStream->DecodeTempBuffer ) ;
-						DXAStream->DecodeTempBuffer = NULL ;
-					}
-					else
-					{
-						// 解凍
-						DXA_Decode( (BYTE *)DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, DXAStream->DecodeDataBuffer ) ;
-					}
-				}
-				else
-				{
-					// 圧縮データが収まるメモリ領域の確保
-					DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )FileH->PressDataSize ) ;
-					if( DXAStream->DecodeTempBuffer == NULL )
-					{
-						goto ERR ;
-					}
-
-					// 圧縮データの位置へファイルポインタを移動
-					DXAStream->ASyncReadFileAddress = DXA->Head.DataStartAddress + FileH->DataAddress;
-					ReadOnlyFileAccessSeek( DXAStream->ReadOnlyFilePointer, ( LONGLONG )DXAStream->ASyncReadFileAddress, SEEK_SET ) ;
-
-					// 非同期の場合は読み込みと鍵解除を別々に行う
-					if( DXAStream->UseASyncReadFlag == TRUE )
-					{
-						// 圧縮データの読み込み
-						ReadOnlyFileAccessRead( DXAStream->DecodeTempBuffer, ( size_t )FileH->PressDataSize, 1, DXAStream->ReadOnlyFilePointer ) ;
-						DXAStream->ASyncState = DXARC_STREAM_ASYNCSTATE_PRESSREAD ;
-					}
-					else
-					{
-						// 圧縮データの読み込みと鍵解除
-						DXA_KeyConvFileRead( DXAStream->DecodeTempBuffer, FileH->PressDataSize, DXAStream->ReadOnlyFilePointer, DXAStream->NoKey ? NULL : DXAStream->Key, ( LONGLONG )FileH->DataSize ) ;
-
-						// 解凍
-						DXA_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
-				
-						// メモリの解放
-						DXFREE( DXAStream->DecodeTempBuffer ) ;
-						DXAStream->DecodeTempBuffer = NULL ;
-					}
-				}
-			}
-		}
-		else
-		// ハフマン圧縮だけされているかどうかで処理を分岐
-		if( FileH->HuffPressDataSize != NONE_PAL )
-		{
 			// メモリ上に読み込まれているかどうかで処理を分岐
 			if( DXA->MemoryOpenFlag == TRUE )
 			{
 				if( DXA->MemoryImageReadOnlyFlag )
 				{
 					// 圧縮データが収まるメモリ領域の確保
-					DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )FileH->HuffPressDataSize ) ;
-					if( DXAStream->DecodeTempBuffer == NULL )
+					DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )FileH->PressDataSize ) ;
+
+					// 圧縮データの読み込み
+					_MEMCPY( DXAStream->DecodeTempBuffer, (BYTE *)DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, ( size_t )FileH->PressDataSize ) ;
+					if( DXA->Head.Version >= DXA_KEYV2_VER )
 					{
-						goto ERR ;
+						DXA_KeyV2Conv( DXAStream->DecodeTempBuffer, ( LONGLONG )FileH->PressDataSize, ( LONGLONG )FileH->DataSize, DXAStream->KeyV2 ) ;
+					}
+					else
+					{
+						DXA_KeyConv( DXAStream->DecodeTempBuffer, ( LONGLONG )FileH->PressDataSize, ( LONGLONG )FileH->DataSize, DXA->Key ) ;
 					}
 
-					// 圧縮データのコピーと鍵解除
-					_MEMCPY( DXAStream->DecodeTempBuffer, ( BYTE * )DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, ( size_t )FileH->HuffPressDataSize ) ;
-					if( DXAStream->NoKey == false ) DXA_KeyConv( DXAStream->DecodeTempBuffer, ( LONGLONG )FileH->HuffPressDataSize, ( LONGLONG )FileH->DataSize, DXAStream->Key ) ;
-
-					// ハフマン圧縮データを解凍
-					Huffman_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
-
-					// ファイルの前後のみハフマン圧縮している場合は処理を分岐
-					if( DXA->Head.HuffmanEncodeKB != 0xff && FileH->DataSize > DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-					{
-						// 解凍したデータの内、後ろ半分を移動する
-						_MEMMOVE( 
-							( BYTE * )DXAStream->DecodeDataBuffer + FileH->DataSize - DXA->Head.HuffmanEncodeKB * 1024,
-							( BYTE * )DXAStream->DecodeDataBuffer + DXA->Head.HuffmanEncodeKB * 1024,
-							DXA->Head.HuffmanEncodeKB * 1024 ) ;
-
-						// 残りのデータをコピーする
-						_MEMCPY(
-							( BYTE * )DXAStream->DecodeDataBuffer + DXA->Head.HuffmanEncodeKB * 1024,
-							( BYTE * )DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress + FileH->HuffPressDataSize,
-							( size_t )( FileH->DataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-						) ;
-						if( DXAStream->NoKey == false ) DXA_KeyConv( ( BYTE * )DXAStream->DecodeDataBuffer + DXA->Head.HuffmanEncodeKB * 1024, ( LONGLONG )( FileH->DataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2 ), ( LONGLONG )( FileH->DataSize + FileH->HuffPressDataSize ), DXAStream->Key ) ;
-					}
+					// 解凍
+					DXA_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
 				
-					// 作業用メモリの解放
+					// メモリの解放
 					DXFREE( DXAStream->DecodeTempBuffer ) ;
 					DXAStream->DecodeTempBuffer = NULL ;
 				}
 				else
 				{
-					// ハフマン圧縮データを解凍
-					Huffman_Decode( ( BYTE * )DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, DXAStream->DecodeDataBuffer ) ;
-
-					// ファイルの前後のみハフマン圧縮している場合は処理を分岐
-					if( DXA->Head.HuffmanEncodeKB != 0xff && FileH->DataSize > DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-					{
-						// 解凍したデータの内、後ろ半分を移動する
-						_MEMMOVE( 
-							( BYTE * )DXAStream->DecodeDataBuffer + FileH->DataSize - DXA->Head.HuffmanEncodeKB * 1024,
-							( BYTE * )DXAStream->DecodeDataBuffer + DXA->Head.HuffmanEncodeKB * 1024,
-							DXA->Head.HuffmanEncodeKB * 1024 ) ;
-
-						// 残りのデータをコピーする
-						_MEMCPY(
-							( BYTE * )DXAStream->DecodeDataBuffer + DXA->Head.HuffmanEncodeKB * 1024,
-							( BYTE * )DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress + FileH->HuffPressDataSize,
-							( size_t )( FileH->DataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-						) ;
-					}
+					// 解凍
+					DXA_Decode( (BYTE *)DXA->MemoryImage + DXA->Head.DataStartAddress + FileH->DataAddress, DXAStream->DecodeDataBuffer ) ;
 				}
 			}
 			else
 			{
-				// 圧縮データの位置へファイルポインタを移動
-				DXAStream->ASyncReadFileAddress = DXA->Head.DataStartAddress + FileH->DataAddress ;
-				ReadOnlyFileAccessSeek( DXAStream->ReadOnlyFilePointer, ( LONGLONG )DXAStream->ASyncReadFileAddress, SEEK_SET ) ;
+				// 圧縮データが収まるメモリ領域の確保
+				DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )FileH->PressDataSize ) ;
+
+				// 圧縮データの読み込み
+				DXAStream->ASyncReadFileAddress = DXA->Head.DataStartAddress + FileH->DataAddress;
+				ReadOnlyFileAccessSeek( DXAStream->WinFilePointer, ( LONGLONG )DXAStream->ASyncReadFileAddress, SEEK_SET ) ;
 
 				// 非同期の場合は読み込みと鍵解除を別々に行う
 				if( DXAStream->UseASyncReadFlag == TRUE )
 				{
-					// ファイルの前後のみハフマン圧縮されているかどうかで読み込む容量を分岐
-					if( DXA->Head.HuffmanEncodeKB != 0xff && FileH->DataSize > DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-					{
-						// 圧縮データが収まるメモリ領域の確保
-						DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )( FileH->HuffPressDataSize + FileH->DataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2 ) ) ;
-						if( DXAStream->DecodeTempBuffer == NULL )
-						{
-							goto ERR ;
-						}
-
-						// 圧縮データの読み込み
-						ReadOnlyFileAccessRead( DXAStream->DecodeTempBuffer, ( size_t )( FileH->HuffPressDataSize + FileH->DataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2 ), 1, DXAStream->ReadOnlyFilePointer ) ;
-					}
-					else
-					{
-						// 圧縮データが収まるメモリ領域の確保
-						DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )FileH->HuffPressDataSize ) ;
-						if( DXAStream->DecodeTempBuffer == NULL )
-						{
-							goto ERR ;
-						}
-
-						// 圧縮データの読み込み
-						ReadOnlyFileAccessRead( DXAStream->DecodeTempBuffer, ( size_t )FileH->HuffPressDataSize, 1, DXAStream->ReadOnlyFilePointer ) ;
-					}
+					// ファイルから読み込み
+					ReadOnlyFileAccessRead( DXAStream->DecodeTempBuffer, ( size_t )FileH->PressDataSize, 1, DXAStream->WinFilePointer ) ;
 					DXAStream->ASyncState = DXARC_STREAM_ASYNCSTATE_PRESSREAD ;
 				}
 				else
 				{
-					// 圧縮データが収まるメモリ領域の確保
-					DXAStream->DecodeTempBuffer = DXALLOC( ( size_t )FileH->HuffPressDataSize ) ;
-					if( DXAStream->DecodeTempBuffer == NULL )
+					if( DXA->Head.Version >= DXA_KEYV2_VER )
 					{
-						goto ERR ;
+						DXA_KeyV2ConvFileRead( DXAStream->DecodeTempBuffer, FileH->PressDataSize, DXAStream->WinFilePointer, DXAStream->KeyV2, ( LONGLONG )FileH->DataSize ) ;
+					}
+					else
+					{
+						DXA_KeyConvFileRead( DXAStream->DecodeTempBuffer, FileH->PressDataSize, DXAStream->WinFilePointer, DXA->Key, ( LONGLONG )FileH->DataSize ) ;
 					}
 
-					// 圧縮データの読み込みと鍵解除
-					DXA_KeyConvFileRead( DXAStream->DecodeTempBuffer, FileH->HuffPressDataSize, DXAStream->ReadOnlyFilePointer, DXAStream->NoKey ? NULL : DXAStream->Key, ( LONGLONG )FileH->DataSize ) ;
-
-					// ハフマン圧縮データを解凍
-					Huffman_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
+					// 解凍
+					DXA_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
 				
-					// ファイルの前後のみハフマン圧縮している場合は処理を分岐
-					if( DXA->Head.HuffmanEncodeKB != 0xff && FileH->DataSize > DXA->Head.HuffmanEncodeKB * 1024 * 2 )
-					{
-						// 解凍したデータの内、後ろ半分を移動する
-						_MEMMOVE( 
-							( BYTE * )DXAStream->DecodeDataBuffer + FileH->DataSize - DXA->Head.HuffmanEncodeKB * 1024,
-							( BYTE * )DXAStream->DecodeDataBuffer + DXA->Head.HuffmanEncodeKB * 1024,
-							DXA->Head.HuffmanEncodeKB * 1024 ) ;
-						
-						// 残りのデータを読み込む
-						DXA_KeyConvFileRead(
-							( BYTE * )DXAStream->DecodeDataBuffer + DXA->Head.HuffmanEncodeKB * 1024,
-							FileH->DataSize - DXA->Head.HuffmanEncodeKB * 1024 * 2,
-							DXAStream->ReadOnlyFilePointer, DXAStream->NoKey ? NULL : DXAStream->Key, FileH->DataSize + FileH->HuffPressDataSize ) ;
-					}
-
 					// メモリの解放
 					DXFREE( DXAStream->DecodeTempBuffer ) ;
 					DXAStream->DecodeTempBuffer = NULL ;
@@ -2535,21 +3360,6 @@ extern int DXA_STREAM_Initialize( DXARC_STREAM *DXAStream, DXARC *DXA, const BYT
 
 	// 終了
 	return 0 ;
-
-ERR :
-	if( DXAStream->DecodeDataBuffer != NULL )
-	{
-		DXFREE( DXAStream->DecodeDataBuffer ) ;
-		DXAStream->DecodeDataBuffer = NULL ;
-	}
-	if( DXAStream->DecodeTempBuffer != NULL )
-	{
-		DXFREE( DXAStream->DecodeTempBuffer ) ;
-		DXAStream->DecodeTempBuffer = NULL ;
-	}
-
-	// エラー終了
-	return -1 ;
 }
 
 // アーカイブファイル内のファイルを閉じる
@@ -2580,8 +3390,8 @@ extern int DXA_STREAM_Terminate( DXARC_STREAM *DXAStream )
 	// ファイルを閉じる
 	if( DXAStream->Archive->MemoryOpenFlag == FALSE )
 	{
-		ReadOnlyFileAccessClose( DXAStream->ReadOnlyFilePointer ) ;
-		DXAStream->ReadOnlyFilePointer = 0 ;
+		ReadOnlyFileAccessClose( DXAStream->WinFilePointer ) ;
+		DXAStream->WinFilePointer = 0 ;
 	}
 
 	// ゼロ初期化
@@ -2608,6 +3418,13 @@ extern int DXA_STREAM_Read( DXARC_STREAM *DXAStream, void *Buffer, size_t ReadLe
 		}
 	}
 
+	if( DXAStream->Archive->V5Flag )
+	{
+		DataSize = DXAStream->FileHeadV5->DataSize ;
+		DataAddress = DXAStream->FileHeadV5->DataAddress ;
+		DataStartAddress = DXAStream->Archive->HeadV5.DataStartAddress ;
+	}
+	else
 	{
 		DataSize = DXAStream->FileHead->DataSize ;
 		DataAddress = DXAStream->FileHead->DataAddress ;
@@ -2648,7 +3465,28 @@ extern int DXA_STREAM_Read( DXARC_STREAM *DXAStream, void *Buffer, size_t ReadLe
 
 			if( DXAStream->Archive->MemoryImageReadOnlyFlag )
 			{
-				if( DXAStream->NoKey == false ) DXA_KeyConv( Buffer, ( LONGLONG )ReadSize, ( LONGLONG )( DataSize + DXAStream->FilePoint ), DXAStream->Key ) ;
+				if( DXAStream->Archive->V5Flag )
+				{
+					if( DXAStream->Archive->HeadV5.Version >= 0x0005 )
+					{
+						DXA_KeyConv( Buffer, ( LONGLONG )ReadSize,                       ( LONGLONG )( DataSize + DXAStream->FilePoint ), DXAStream->Archive->Key ) ;
+					}
+					else
+					{
+						DXA_KeyConv( Buffer, ( LONGLONG )ReadSize, ( LONGLONG )( DataStartAddress + DataAddress + DXAStream->FilePoint ), DXAStream->Archive->Key ) ;
+					}
+				}
+				else
+				{
+					if( DXAStream->Archive->Head.Version >= DXA_KEYV2_VER )
+					{
+						DXA_KeyV2Conv( Buffer, ( LONGLONG )ReadSize,                       ( LONGLONG )( DataSize + DXAStream->FilePoint ), DXAStream->KeyV2 ) ;
+					}
+					else
+					{
+						DXA_KeyConv(   Buffer, ( LONGLONG )ReadSize,                       ( LONGLONG )( DataSize + DXAStream->FilePoint ), DXAStream->Archive->Key ) ;
+					}
+				}
 			}
 		}
 		else
@@ -2658,16 +3496,16 @@ extern int DXA_STREAM_Read( DXARC_STREAM *DXAStream, void *Buffer, size_t ReadLe
 			// アーカイブファイルポインタと、仮想ファイルポインタが一致しているか調べる
 			// 一致していなかったらアーカイブファイルポインタを移動する
 			DXAStream->ASyncReadFileAddress = DataAddress + DataStartAddress + DXAStream->FilePoint ;
-			if( ( ULONGLONG )ReadOnlyFileAccessTell( DXAStream->ReadOnlyFilePointer ) != DXAStream->ASyncReadFileAddress )
+			if( ( ULONGLONG )ReadOnlyFileAccessTell( DXAStream->WinFilePointer ) != DXAStream->ASyncReadFileAddress )
 			{
-				ReadOnlyFileAccessSeek( DXAStream->ReadOnlyFilePointer, ( LONGLONG )DXAStream->ASyncReadFileAddress, SEEK_SET ) ;
+				ReadOnlyFileAccessSeek( DXAStream->WinFilePointer, ( LONGLONG )DXAStream->ASyncReadFileAddress, SEEK_SET ) ;
 			}
 
 			// 非同期読み込みの場合と同期読み込みの場合で処理を分岐
 			if( DXAStream->UseASyncReadFlag )
 			{
 				// ファイルから読み込み
-				ReadOnlyFileAccessRead( Buffer, ReadSize, 1, DXAStream->ReadOnlyFilePointer ) ;
+				ReadOnlyFileAccessRead( Buffer, ReadSize, 1, DXAStream->WinFilePointer ) ;
 				DXAStream->ReadBuffer = Buffer;
 				DXAStream->ReadSize = ( int )ReadSize;
 				DXAStream->ASyncState = DXARC_STREAM_ASYNCSTATE_READ ;
@@ -2675,7 +3513,28 @@ extern int DXA_STREAM_Read( DXARC_STREAM *DXAStream, void *Buffer, size_t ReadLe
 			else
 			{
 				// データを読み込む
-				DXA_KeyConvFileRead( Buffer, ReadSize, DXAStream->ReadOnlyFilePointer, DXAStream->NoKey ? NULL : DXAStream->Key, ( LONGLONG )( DataSize + DXAStream->FilePoint ) ) ;
+				if( DXAStream->Archive->V5Flag )
+				{
+					if( DXAStream->Archive->HeadV5.Version >= 0x0005 )
+					{
+						DXA_KeyConvFileRead( Buffer, ReadSize, DXAStream->WinFilePointer, DXAStream->Archive->Key, ( LONGLONG )( DataSize + DXAStream->FilePoint ) ) ;
+					}
+					else
+					{
+						DXA_KeyConvFileRead( Buffer, ReadSize, DXAStream->WinFilePointer, DXAStream->Archive->Key ) ;
+					}
+				}
+				else
+				{
+					if( DXAStream->Archive->Head.Version >= DXA_KEYV2_VER )
+					{
+						DXA_KeyV2ConvFileRead( Buffer, ReadSize, DXAStream->WinFilePointer, DXAStream->KeyV2,        ( LONGLONG )( DataSize + DXAStream->FilePoint ) ) ;
+					}
+					else
+					{
+						DXA_KeyConvFileRead(   Buffer, ReadSize, DXAStream->WinFilePointer, DXAStream->Archive->Key, ( LONGLONG )( DataSize + DXAStream->FilePoint ) ) ;
+					}
+				}
 			}
 		}
 	}
@@ -2704,6 +3563,11 @@ extern	int DXA_STREAM_Seek( DXARC_STREAM *DXAStream, LONGLONG SeekPoint, int See
 		}
 	}
 
+	if( DXAStream->Archive->V5Flag )
+	{
+		DataSize = DXAStream->FileHeadV5->DataSize ;
+	}
+	else
 	{
 		DataSize = DXAStream->FileHead->DataSize ;
 	}
@@ -2778,98 +3642,37 @@ extern	int	DXA_STREAM_IdleCheck( DXARC_STREAM *DXAStream )
 	case DXARC_STREAM_ASYNCSTATE_PRESSREAD:		// 圧縮データ読み込み待ち
 
 		// 読み込み終了待ち
-		if( ReadOnlyFileAccessIdleCheck( DXAStream->ReadOnlyFilePointer ) == FALSE )
+		if( ReadOnlyFileAccessIdleCheck( DXAStream->WinFilePointer ) == FALSE )
 		{
 			return FALSE;
 		}
 
-		// 圧縮されているかどうかで処理を分岐
-		if( DXAStream->FileHead->PressDataSize != NONE_PAL )
+		// 読み込み終わったらまず鍵を外す
+		if( DXAStream->Archive->V5Flag )
 		{
-			// ハフマン圧縮もされているかどうかで処理を分岐
-			if( DXAStream->FileHead->HuffPressDataSize != NONE_PAL )
+			if( DXAStream->Archive->HeadV5.Version >= 0x0005 )
 			{
-				// ファイルの前後のみハフマン圧縮されているかどうかで処理を分岐
-				if( DXAStream->Archive->Head.HuffmanEncodeKB != 0xff && DXAStream->FileHead->PressDataSize > DXAStream->Archive->Head.HuffmanEncodeKB * 1024 * 2 )
-				{
-					// 鍵を解除
-					if( DXAStream->NoKey == false ) DXA_KeyConv( ( BYTE * )DXAStream->DecodeTempBuffer + DXAStream->Archive->Head.HuffmanEncodeKB * 1024 * 2, ( LONGLONG )( DXAStream->FileHead->HuffPressDataSize + DXAStream->FileHead->PressDataSize - DXAStream->Archive->Head.HuffmanEncodeKB * 1024 * 2 ), ( LONGLONG )DXAStream->FileHead->DataSize, DXAStream->Key ) ;
-
-					// ハフマン圧縮データを解凍
-					Huffman_Decode( ( BYTE * )DXAStream->DecodeTempBuffer + DXAStream->Archive->Head.HuffmanEncodeKB * 1024 * 2, ( BYTE * )DXAStream->DecodeTempBuffer ) ;
-
-					// LZ圧縮データの前後に解凍したデータを転送
-					_MEMCPY(
-						( BYTE * )DXAStream->DecodeTempBuffer + DXAStream->Archive->Head.HuffmanEncodeKB * 1024 * 2 + DXAStream->FileHead->HuffPressDataSize + DXAStream->FileHead->PressDataSize - DXAStream->Archive->Head.HuffmanEncodeKB * 1024 * 2,
-						( BYTE * )DXAStream->DecodeTempBuffer + DXAStream->Archive->Head.HuffmanEncodeKB * 1024,
-						DXAStream->Archive->Head.HuffmanEncodeKB * 1024
-					) ;
-					_MEMCPY(
-						( BYTE * )DXAStream->DecodeTempBuffer + DXAStream->Archive->Head.HuffmanEncodeKB * 1024 * 2 + DXAStream->FileHead->HuffPressDataSize - DXAStream->Archive->Head.HuffmanEncodeKB * 1024,
-						( BYTE * )DXAStream->DecodeTempBuffer,
-						DXAStream->Archive->Head.HuffmanEncodeKB * 1024
-					) ;
-
-					// 解凍
-					DXA_Decode( ( BYTE * )DXAStream->DecodeTempBuffer + DXAStream->Archive->Head.HuffmanEncodeKB * 1024 * 2 + DXAStream->FileHead->HuffPressDataSize - DXAStream->Archive->Head.HuffmanEncodeKB * 1024, DXAStream->DecodeDataBuffer ) ;
-				}
-				else
-				{
-					// 鍵を解除
-					if( DXAStream->NoKey == false ) DXA_KeyConv( DXAStream->DecodeTempBuffer, ( LONGLONG )DXAStream->FileHead->HuffPressDataSize, ( LONGLONG )DXAStream->FileHead->DataSize, DXAStream->Key ) ;
-
-					// ハフマン圧縮データを解凍
-					Huffman_Decode( DXAStream->DecodeTempBuffer, ( BYTE * )DXAStream->DecodeTempBuffer + DXAStream->FileHead->HuffPressDataSize ) ;
-
-					// 解凍
-					DXA_Decode( ( BYTE * )DXAStream->DecodeTempBuffer + DXAStream->FileHead->HuffPressDataSize, DXAStream->DecodeDataBuffer ) ;
-				}
+				DXA_KeyConv( DXAStream->DecodeTempBuffer, ( LONGLONG )DXAStream->FileHeadV5->PressDataSize, ( LONGLONG )DXAStream->FileHeadV5->DataSize, DXAStream->Archive->Key ) ;
 			}
 			else
 			{
-				// 鍵を解除
-				if( DXAStream->NoKey == false ) DXA_KeyConv( DXAStream->DecodeTempBuffer, ( LONGLONG )DXAStream->FileHead->PressDataSize, ( LONGLONG )DXAStream->FileHead->DataSize, DXAStream->Key ) ;
-
-				// 解凍
-				DXA_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
+				DXA_KeyConv( DXAStream->DecodeTempBuffer, ( LONGLONG )DXAStream->FileHeadV5->PressDataSize, ( LONGLONG )DXAStream->ASyncReadFileAddress, DXAStream->Archive->Key ) ;
 			}
 		}
 		else
-		// ハフマン圧縮だけされているかどうかで処理を分岐
-		if( DXAStream->FileHead->HuffPressDataSize != NONE_PAL )
 		{
-			// ファイルの前後のみハフマン圧縮されているかどうかで処理を分岐
-			if( DXAStream->Archive->Head.HuffmanEncodeKB != 0xff && DXAStream->FileHead->DataSize > DXAStream->Archive->Head.HuffmanEncodeKB * 1024 * 2 )
+			if( DXAStream->Archive->Head.Version >= DXA_KEYV2_VER )
 			{
-				// 鍵を解除
-				if( DXAStream->NoKey == false ) DXA_KeyConv( DXAStream->DecodeTempBuffer, ( LONGLONG )( DXAStream->FileHead->HuffPressDataSize + DXAStream->FileHead->DataSize - DXAStream->Archive->Head.HuffmanEncodeKB * 1024 * 2 ), ( LONGLONG )DXAStream->FileHead->DataSize, DXAStream->Key ) ;
-
-				// ハフマン圧縮データを解凍
-				Huffman_Decode( DXAStream->DecodeTempBuffer, ( BYTE * )DXAStream->DecodeDataBuffer ) ;
-
-				// 解凍したデータを後半部分に移動
-				_MEMCPY(
-					( BYTE * )DXAStream->DecodeDataBuffer + DXAStream->FileHead->DataSize - DXAStream->Archive->Head.HuffmanEncodeKB * 1024,
-					( BYTE * )DXAStream->DecodeDataBuffer + DXAStream->Archive->Head.HuffmanEncodeKB * 1024,
-					DXAStream->Archive->Head.HuffmanEncodeKB * 1024
-				) ;
-
-				// 残りの部分をコピー
-				_MEMCPY(
-					( BYTE * )DXAStream->DecodeDataBuffer + DXAStream->Archive->Head.HuffmanEncodeKB * 1024,
-					( BYTE * )DXAStream->DecodeTempBuffer + DXAStream->FileHead->HuffPressDataSize,
-					( size_t )( DXAStream->FileHead->DataSize - DXAStream->Archive->Head.HuffmanEncodeKB * 1024 * 2 )
-				) ;
+				DXA_KeyV2Conv( DXAStream->DecodeTempBuffer, ( LONGLONG )DXAStream->FileHead->PressDataSize, ( LONGLONG )DXAStream->FileHead->DataSize, DXAStream->KeyV2 ) ;
 			}
 			else
 			{
-				// 鍵を解除
-				if( DXAStream->NoKey == false ) DXA_KeyConv( DXAStream->DecodeTempBuffer, ( LONGLONG )DXAStream->FileHead->HuffPressDataSize, ( LONGLONG )DXAStream->FileHead->DataSize, DXAStream->Key ) ;
-
-				// ハフマン圧縮データを解凍
-				Huffman_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
+				DXA_KeyConv( DXAStream->DecodeTempBuffer, ( LONGLONG )DXAStream->FileHead->PressDataSize, ( LONGLONG )DXAStream->FileHead->DataSize, DXAStream->Archive->Key ) ;
 			}
 		}
+
+		// 解凍
+		DXA_Decode( DXAStream->DecodeTempBuffer, DXAStream->DecodeDataBuffer ) ;
 	
 		// メモリの解放
 		DXFREE( DXAStream->DecodeTempBuffer ) ;
@@ -2882,13 +3685,34 @@ extern	int	DXA_STREAM_IdleCheck( DXARC_STREAM *DXAStream )
 	case DXARC_STREAM_ASYNCSTATE_READ:			// 読み込み待ち
 
 		// 読み込み終了待ち
-		if( ReadOnlyFileAccessIdleCheck( DXAStream->ReadOnlyFilePointer ) == FALSE )
+		if( ReadOnlyFileAccessIdleCheck( DXAStream->WinFilePointer ) == FALSE )
 		{
 			return FALSE;
 		}
 
-		// 読み込み終わったら鍵を解除
-		if( DXAStream->NoKey == false ) DXA_KeyConv( DXAStream->ReadBuffer, ( LONGLONG )DXAStream->ReadSize, ( LONGLONG )( DXAStream->FileHead->DataSize + ( DXAStream->ASyncReadFileAddress - ( DXAStream->FileHead->DataAddress + DXAStream->Archive->Head.DataStartAddress ) ) ), DXAStream->Key ) ;
+		// 読み込み終わったら鍵を外す
+		if( DXAStream->Archive->V5Flag )
+		{
+			if( DXAStream->Archive->HeadV5.Version >= 0x0005 )
+			{
+				DXA_KeyConv( DXAStream->ReadBuffer, ( LONGLONG )DXAStream->ReadSize, ( LONGLONG )( DXAStream->FileHeadV5->DataSize + ( DXAStream->ASyncReadFileAddress - ( DXAStream->FileHeadV5->DataAddress + DXAStream->Archive->HeadV5.DataStartAddress ) ) ), DXAStream->Archive->Key ) ;
+			}
+			else
+			{
+				DXA_KeyConv( DXAStream->ReadBuffer, ( LONGLONG )DXAStream->ReadSize, ( LONGLONG )DXAStream->ASyncReadFileAddress, DXAStream->Archive->Key ) ;
+			}
+		}
+		else
+		{
+			if( DXAStream->Archive->Head.Version >= DXA_KEYV2_VER )
+			{
+				DXA_KeyV2Conv( DXAStream->ReadBuffer, ( LONGLONG )DXAStream->ReadSize, ( LONGLONG )( DXAStream->FileHead->DataSize + ( DXAStream->ASyncReadFileAddress - ( DXAStream->FileHead->DataAddress + DXAStream->Archive->Head.DataStartAddress ) ) ), DXAStream->KeyV2 ) ;
+			}
+			else
+			{
+				DXA_KeyConv( DXAStream->ReadBuffer, ( LONGLONG )DXAStream->ReadSize, ( LONGLONG )( DXAStream->FileHead->DataSize + ( DXAStream->ASyncReadFileAddress - ( DXAStream->FileHead->DataAddress + DXAStream->Archive->Head.DataStartAddress ) ) ), DXAStream->Archive->Key ) ;
+			}
+		}
 
 		// 状態を待機状態にする
 		DXAStream->ASyncState = DXARC_STREAM_ASYNCSTATE_IDLE;
@@ -2901,7 +3725,14 @@ extern	int	DXA_STREAM_IdleCheck( DXARC_STREAM *DXAStream )
 // ファイルのサイズを取得する
 extern	LONGLONG DXA_STREAM_Size( DXARC_STREAM *DXAStream )
 {
-	return ( LONGLONG )DXAStream->FileHead->DataSize ;
+	if( DXAStream->Archive->V5Flag )
+	{
+		return DXAStream->FileHeadV5->DataSize ;
+	}
+	else
+	{
+		return ( LONGLONG )DXAStream->FileHead->DataSize ;
+	}
 }
 
 
@@ -3125,7 +3956,7 @@ static int DXA_DIR_AnalysisFileNameAndDirPath( DXARC *DXA, const BYTE *Src, BYTE
 {
 	int   i ;
 	int   Last ;
-	int   LastCharBytes = 0 ;
+	int   LastCharBytes ;
 	DWORD CharCode ;
 	int   CharBytes ;
 	
@@ -3297,11 +4128,8 @@ static int DXA_DIR_OpenTest( const wchar_t *FilePath, int *ArchiveIndex, BYTE *A
 	wchar_t dir[ FILEPATH_MAX ] ;
 	wchar_t *p ;
 	int   BackUseDirectoryPathCharValid ;
-	DWORD BackUseDirectoryPathCharCode = 0 ;
-	int   BackUseDirectoryPathCharBytes = 0 ;
-
-	// クリティカルセクションの取得
-	CRITICALSECTION_LOCK( &DXARCD.CriticalSection ) ;
+	DWORD BackUseDirectoryPathCharCode ;
+	int   BackUseDirectoryPathCharBytes ;
 
 	// フルパスを得る
 	if( DXARCD.NotArchivePathCharUp )
@@ -3329,9 +4157,6 @@ static int DXA_DIR_OpenTest( const wchar_t *FilePath, int *ArchiveIndex, BYTE *A
 		arcindex = DXA_DIR_OpenArchive( DXARCD.BackUseDirectory, NULL, -1, FALSE, FALSE, DXARCD.BackUseArchiveIndex ) ;
 		if( arcindex == -1 )
 		{
-			// クリティカルセクションの解放
-			CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
-
 			return -1 ;
 		}
 
@@ -3350,7 +4175,7 @@ static int DXA_DIR_OpenTest( const wchar_t *FilePath, int *ArchiveIndex, BYTE *A
 		DWORD CharCode1 ;
 		int   CharBytes1 ;
 		DWORD CharCode2 ;
-		int   CharBytes2 = 0 ;
+		int   CharBytes2 ;
 
 		// 前回とは違うパスの場合は一から調べる
 
@@ -3398,9 +4223,6 @@ static int DXA_DIR_OpenTest( const wchar_t *FilePath, int *ArchiveIndex, BYTE *A
 
 			if( CharCode1 == '\0' || i == 0 )
 			{
-				// クリティカルセクションの解放
-				CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
-
 				return -1 ;
 			}
 
@@ -3452,7 +4274,9 @@ static int DXA_DIR_OpenTest( const wchar_t *FilePath, int *ArchiveIndex, BYTE *A
 		_WCSCPY_S( DXARCD.BackUseDirectory, sizeof( DXARCD.BackUseDirectory ), temp ) ;
 //		if( DXARCD.ArchiveExtensionLength == 0 )
 //		{
-//			_MEMCPY( DXARCD.BackUseDirectory, temp, len + ( 1 /* . */ + 3 /* DXA */ + 1 /* '\0' */ ) * sizeof( wchar_t ) ) ;
+//			_MEMCPY( DXARCD.BackUseDirectory, temp, len + ( 1 
+// 
+// . */ + 3 /* DXA */ + 1 /* '\0' */ ) * sizeof( wchar_t ) ) ;
 //		}
 //		else
 //		{
@@ -3478,9 +4302,6 @@ static int DXA_DIR_OpenTest( const wchar_t *FilePath, int *ArchiveIndex, BYTE *A
 		ConvString( ( const char * )p, -1, WCHAR_T_CHARCODEFORMAT, ( char * )ArchiveFilePath, BufferBytes, DestCharCodeFormat ) ;
 	}
 
-	// クリティカルセクションの解放
-	CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
-
 	// 終了
 	return 0;
 }
@@ -3495,9 +4316,6 @@ static int DXA_DIR_OpenArchive( const wchar_t *FilePath, void *FileImage, int Fi
 	DXARC_DIR_ARCHIVE *	tarc ;
 	DXARC				temparc ;
 
-	// クリティカルセクションの取得
-	CRITICALSECTION_LOCK( &DXARCD.CriticalSection ) ;
-
 	// アーカイブの指定がある場合はそのまま使用する
 	if( ArchiveIndex != -1 )
 	{
@@ -3507,10 +4325,6 @@ static int DXA_DIR_OpenArchive( const wchar_t *FilePath, void *FileImage, int Fi
 			if(	_WCSCMP( FilePath, tarc->Path ) == 0 )
 			{
 				DXARCD.Archive[ ArchiveIndex ]->UseCounter ++ ;
-
-				// クリティカルセクションの解放
-				CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
-
 				return ArchiveIndex ;
 			}
 		}
@@ -3530,14 +4344,10 @@ static int DXA_DIR_OpenArchive( const wchar_t *FilePath, void *FileImage, int Fi
 		
 		i ++ ;
 
-		if( _WCSICMP( arc->Path, FilePath ) == 0 )
+		if( _WCSCMP( arc->Path, FilePath ) == 0 )
 		{
 			// 既に開かれていた場合はそのインデックスを返す
 			arc->UseCounter ++ ;
-
-			// クリティカルセクションの解放
-			CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
-
 			return index ;
 		}
 	}
@@ -3553,9 +4363,6 @@ static int DXA_DIR_OpenArchive( const wchar_t *FilePath, void *FileImage, int Fi
 		// それでも一杯である場合はエラー
 		if( DXARCD.ArchiveNum == DXA_DIR_MAXARCHIVENUM )
 		{
-			// クリティカルセクションの解放
-			CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
-
 			return -1 ;
 		}
 	} 
@@ -3570,32 +4377,20 @@ static int DXA_DIR_OpenArchive( const wchar_t *FilePath, void *FileImage, int Fi
 	{
 		// メモリ上に展開されたファイルイメージを使用する場合
 		if( DXA_OpenArchiveFromMem( &temparc, FileImage, FileSize, FileImageCopyFlag, FileImageReadOnly, DXARCD.ValidKeyString == TRUE ? DXARCD.KeyString : NULL, FilePath ) < 0 )
-		{
-			// クリティカルセクションの解放
-			CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
 			return -1 ;
-		}
 	}
 	else
 	if( OnMemory == TRUE )
 	{
 		// メモリに読み込む場合
 		if( DXA_OpenArchiveFromFileUseMem( &temparc, FilePath, DXARCD.ValidKeyString == TRUE ? DXARCD.KeyString : NULL, ASyncThread ) < 0 )
-		{
-			// クリティカルセクションの解放
-			CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
 			return -1 ;
-		}
 	}
 	else
 	{
 		// ファイルから読み込む場合
 		if( DXA_OpenArchiveFromFile( &temparc, FilePath, DXARCD.ValidKeyString == TRUE ? DXARCD.KeyString : NULL ) < 0 )
-		{
-			// クリティカルセクションの解放
-			CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
 			return -1 ;
-		}
 	}
 
 	// 新しいアーカイブデータ用のメモリを確保する
@@ -3604,10 +4399,6 @@ static int DXA_DIR_OpenArchive( const wchar_t *FilePath, void *FileImage, int Fi
 	{
 		DXA_CloseArchive( &temparc ) ;
 		DXA_Terminate( &temparc ) ;
-
-		// クリティカルセクションの解放
-		CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
-
 		return -1 ;
 	}
 
@@ -3618,9 +4409,6 @@ static int DXA_DIR_OpenArchive( const wchar_t *FilePath, void *FileImage, int Fi
 
 	// 使用中のアーカイブの数を増やす
 	DXARCD.ArchiveNum ++ ;
-
-	// クリティカルセクションの解放
-	CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
 
 	// インデックスを返す
 	return newindex ;
@@ -3677,37 +4465,25 @@ static int DXA_DIR_CloseArchive( int ArchiveHandle )
 {
 	DXARC_DIR_ARCHIVE *arc ;
 
-	// クリティカルセクションの取得
-	CRITICALSECTION_LOCK( &DXARCD.CriticalSection ) ;
-
 	// 使用されていなかったら何もせず終了
 	arc = DXARCD.Archive[ArchiveHandle] ;
 	if( arc == NULL || arc->UseCounter == 0 )
 	{
-		// クリティカルセクションの解放
-		CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
-
 		return -1 ;
 	}
 
 	// 参照カウンタを減らす
 	arc->UseCounter -- ;
 
-	// クリティカルセクションの解放
-	CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
-
 	// 終了
 	return 0 ;
 }
 
 // 使用されるのを待っているアーカイブファイルを全て閉じる
-static void DXA_DIR_CloseWaitArchive( int AlwaysClose )
+static void DXA_DIR_CloseWaitArchive( void )
 {
 	int i, Num, index ;
 	DXARC_DIR_ARCHIVE *arc ;
-
-	// クリティカルセクションの取得
-	CRITICALSECTION_LOCK( &DXARCD.CriticalSection ) ;
 	
 	Num = DXARCD.ArchiveNum ;
 	for( i = 0, index = 0 ; i < Num ; index ++ )
@@ -3721,7 +4497,7 @@ static void DXA_DIR_CloseWaitArchive( int AlwaysClose )
 		arc = DXARCD.Archive[index] ;
 
 		// 使われていたら解放しない
-		if( arc->UseCounter > 0 && AlwaysClose == FALSE )
+		if( arc->UseCounter > 0 )
 		{
 			continue ;
 		}
@@ -3735,9 +4511,6 @@ static void DXA_DIR_CloseWaitArchive( int AlwaysClose )
 		// アーカイブの数を減らす
 		DXARCD.ArchiveNum -- ;
 	}
-
-	// クリティカルセクションの解放
-	CriticalSection_Unlock( &DXARCD.CriticalSection ) ;
 }
 
 // アーカイブをディレクトリに見立てる処理の初期化
@@ -3776,7 +4549,7 @@ extern int DXA_DIR_Terminate( void )
 	}
 
 	// 使用されていないアーカイブファイルを解放する
-	DXA_DIR_CloseWaitArchive( TRUE ) ;
+	DXA_DIR_CloseWaitArchive() ;
 
 	// クリティカルセクションの後始末
 	CriticalSection_Delete( &DXARCD.CriticalSection ) ;
@@ -3838,10 +4611,10 @@ extern int DXA_DIR_SetKeyString( const char *KeyString )
 	else
 	{
 		DXARCD.ValidKeyString = TRUE ;
-		if( _STRLEN( KeyString ) > DXA_KEY_STRING_LENGTH )
+		if( _STRLEN( KeyString ) > DXA_KEYV2STR_LENGTH )
 		{
-			_MEMCPY( DXARCD.KeyString, KeyString, DXA_KEY_STRING_LENGTH ) ;
-			DXARCD.KeyString[ DXA_KEY_STRING_LENGTH ] = '\0' ;
+			_MEMCPY( DXARCD.KeyString, KeyString, DXA_KEYV2STR_LENGTH ) ;
+			DXARCD.KeyString[ DXA_KEYV2STR_LENGTH ] = '\0' ;
 		}
 		else
 		{
@@ -3881,7 +4654,7 @@ extern LONGLONG DXA_DIR_LoadFile( const wchar_t *FilePath, void *Buffer, int Buf
 }
 
 // DXA_DIR_Open の基本関数
-extern DWORD_PTR DXA_DIR_Open( const wchar_t *FilePath, int UseCacheFlag, int /*BlockReadFlag*/, int UseASyncReadFlag )
+extern DWORD_PTR DXA_DIR_Open( const wchar_t *FilePath, int UseCacheFlag, int BlockReadFlag, int UseASyncReadFlag )
 {
 	int index ;
 	DXARC_DIR_FILE *file ;
@@ -3955,8 +4728,8 @@ extern DWORD_PTR DXA_DIR_Open( const wchar_t *FilePath, int UseCacheFlag, int /*
 			file->UseArchiveFlag = 0 ;
 
 			// 普通のファイルが無いか調べる
-			file->ReadOnlyFilePointer = ReadOnlyFileAccessOpen( FilePath, UseCacheFlag, TRUE, UseASyncReadFlag ) ;
-			if( file->ReadOnlyFilePointer == 0 )
+			file->WinFilePointer_ = ReadOnlyFileAccessOpen( FilePath, UseCacheFlag, TRUE, UseASyncReadFlag ) ;
+			if( file->WinFilePointer_ == 0 )
 			{
 				goto ERR ;
 			}
@@ -3971,7 +4744,7 @@ extern DWORD_PTR DXA_DIR_Open( const wchar_t *FilePath, int UseCacheFlag, int /*
 		// 普通のファイルを優先する場合
 
 		// 普通のファイルが無いか調べる
-		if( ( file->ReadOnlyFilePointer = ReadOnlyFileAccessOpen( FilePath, UseCacheFlag, TRUE, UseASyncReadFlag ) ) != 0 )
+		if( ( file->WinFilePointer_ = ReadOnlyFileAccessOpen( FilePath, UseCacheFlag, TRUE, UseASyncReadFlag ) ) != 0 )
 		{
 			// 開いたら普通のファイルから読み込む設定を行う
 			file->UseArchiveFlag = 0 ;
@@ -4048,8 +4821,8 @@ extern int DXA_DIR_Close( DWORD_PTR Handle )
 	if( file->UseArchiveFlag == FALSE )
 	{
 		// 使用していない場合は標準入出力のファイルポインタを解放する
-		ReadOnlyFileAccessClose( file->ReadOnlyFilePointer ) ;
-		file->ReadOnlyFilePointer = 0 ;
+		ReadOnlyFileAccessClose( file->WinFilePointer_ ) ;
+		file->WinFilePointer_ = 0 ;
 	}
 	else
 	{
@@ -4087,7 +4860,7 @@ extern	LONGLONG DXA_DIR_Tell( DWORD_PTR Handle )
 
 	if( file->UseArchiveFlag == 0 )
 	{
-		return ReadOnlyFileAccessTell( file->ReadOnlyFilePointer ) ;
+		return ReadOnlyFileAccessTell( file->WinFilePointer_ ) ;
 	}
 	else
 	{
@@ -4106,7 +4879,7 @@ extern int DXA_DIR_Seek( DWORD_PTR Handle, LONGLONG SeekPoint, int SeekType )
 
 	if( file->UseArchiveFlag == 0 )
 	{
-		return ReadOnlyFileAccessSeek( file->ReadOnlyFilePointer, SeekPoint, SeekType ) ;
+		return ReadOnlyFileAccessSeek( file->WinFilePointer_, SeekPoint, SeekType ) ;
 	}
 	else
 	{
@@ -4125,7 +4898,7 @@ extern size_t DXA_DIR_Read( void *Buffer, size_t BlockSize, size_t BlockNum, DWO
 
 	if( file->UseArchiveFlag == 0 )
 	{
-		return ReadOnlyFileAccessRead( Buffer, BlockSize, BlockNum, file->ReadOnlyFilePointer ) ;
+		return ReadOnlyFileAccessRead( Buffer, BlockSize, BlockNum, file->WinFilePointer_ ) ;
 	}
 	else
 	{
@@ -4144,7 +4917,7 @@ extern int DXA_DIR_Eof( DWORD_PTR Handle )
 
 	if( file->UseArchiveFlag == 0 )
 	{
-		return ReadOnlyFileAccessEof( file->ReadOnlyFilePointer ) ;
+		return ReadOnlyFileAccessEof( file->WinFilePointer_ ) ;
 	}
 	else
 	{
@@ -4183,24 +4956,12 @@ extern	int DXA_DIR_IdleCheck( DWORD_PTR Handle )
 
 	if( file->UseArchiveFlag == 0 )
 	{
-		return ReadOnlyFileAccessIdleCheck( file->ReadOnlyFilePointer ) ;
+		return ReadOnlyFileAccessIdleCheck( file->WinFilePointer_ ) ;
 	}
 	else
 	{
 		return DXA_STREAM_IdleCheck( &file->DXAStream ) ;
 	}
-}
-
-// 戻り値: -1=エラー  0=ＤＸアーカイブファイル内のファイルではない  1=ＤＸアーカイブファイル内のファイル
-extern int DXA_DIR_IsDXA( DWORD_PTR Handle )
-{
-	DXARC_DIR_FILE *file = DXARCD.File[Handle & 0x0FFFFFFF] ;
-	if( file == NULL )
-	{
-		return -1 ;
-	}
-
-	return file->UseArchiveFlag ;
 }
 
 // 戻り値: -1=エラー  -1以外=FindHandle
@@ -4513,11 +5274,11 @@ typedef struct LZ_LIST
 } LZ_LIST ;
 
 // データを圧縮する( 戻り値:圧縮後のデータサイズ )
-extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest, int MaxPress, int MaxSearchListNum )
+extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest )
 {
 	int dstsize ;
-	int    bonus,    conbo,    conbosize,        address,    addresssize ;
-	int maxbonus, maxconbo, maxconbosize = 0, maxaddress, maxaddresssize = 0 ;
+	int    bonus,    conbo,    conbosize,    address,    addresssize ;
+	int maxbonus, maxconbo, maxconbosize, maxaddress, maxaddresssize ;
 	BYTE keycode, *srcp, *destp, *dp, *sp, *sp2, *sp1 ;
 	DWORD srcaddress, code ;
 	int j ;
@@ -4526,16 +5287,7 @@ extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest, int MaxPress, int M
 	DWORD sublistnum, sublistmaxnum ;
 	LZ_LIST *listbuf, *listtemp, *list, *newlist ;
 	BYTE *listfirsttable, *usesublistflagtable, *sublistbuf ;
-	DWORD searchlistnum ;
 	
-	if( MaxSearchListNum <= 0 )
-	{
-		MaxSearchListNum = MAX_SEARCHLISTNUM ;
-	}
-
-	// 最大一致長を捜すためのリストを辿る最大数のセット
-	searchlistnum = MaxPress ? 0xffffffff : MaxSearchListNum ;
-
 	// サブリストのサイズを決める
 	{
 			 if( SrcSize < 100 * 1024 )			sublistmaxnum = 1 ;
@@ -4621,7 +5373,7 @@ extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest, int MaxPress, int M
 	}
 
 	// 圧縮元のサイズをセット
-	SET_MEM_DWORD( &destp[0], SrcSize )
+	((DWORD *)destp)[0] = SrcSize ;
 
 	// キーコードをセット
 	destp[8] = keycode ;
@@ -4639,7 +5391,7 @@ extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest, int MaxPress, int M
 		if( srcaddress + MIN_COMPRESS >= SrcSize ) goto NOENCODE ;
 
 		// リストを取得
-		code = GET_MEM_WORD( sp ) ;
+		code = *((WORD *)sp) ;
 		list = (LZ_LIST *)( listfirsttable + code * sizeof( DWORD_PTR ) ) ;
 		if( usesublistflagtable[code] == 1 )
 		{
@@ -4661,7 +5413,7 @@ extern	int	DXA_Encode( void *Src, DWORD SrcSize, void *Dest, int MaxPress, int M
 		maxconbo   = -1 ;
 		maxaddress = -1 ;
 		maxbonus   = -1 ;
-		for( m = 0, listtemp = list->next ; m < searchlistnum/*MAX_SEARCHLISTNUM*/ && listtemp != NULL ; listtemp = listtemp->next, m ++ )
+		for( m = 0, listtemp = list->next ; /*m < MAX_SEARCHLISTNUM &&*/ listtemp != NULL ; listtemp = listtemp->next, m ++ )
 		{
 			address = ( int )( srcaddress - listtemp->address ) ;
 			if( address >= MAX_POSITION )
@@ -4811,7 +5563,7 @@ NOENCODE:
 				sp2 = &sp[1] ;
 				for( j = 1 ; j < maxconbo && (DWORD_PTR)&sp2[2] - (DWORD_PTR)srcp < SrcSize ; j ++, sp2 ++ )
 				{
-					code = GET_MEM_WORD( sp2 ) ;
+					code = *((WORD *)sp2) ;
 					list = (LZ_LIST *)( listfirsttable + code * sizeof( DWORD_PTR ) ) ;
 					if( usesublistflagtable[code] == 1 )
 					{
@@ -4851,7 +5603,7 @@ NOENCODE:
 	}
 
 	// 圧縮後のデータサイズを保存する
-	SET_MEM_DWORD( &destp[4], dstsize + 9 )
+	*((DWORD *)&destp[4]) = ( DWORD )( dstsize + 9 ) ;
 
 	// 確保したメモリの解放
 	DXFREE( usesublistflagtable ) ;
@@ -4869,10 +5621,10 @@ extern int DXA_Decode( void *Src, void *Dest )
 	srcp  = (BYTE *)Src ;
 	
 	// 解凍後のデータサイズを得る
-	destsize = GET_MEM_DWORD( &srcp[0] ) ;
+	destsize = *((DWORD *)&srcp[0]) ;
 
 	// 圧縮データのサイズを得る
-	srcsize = GET_MEM_DWORD( &srcp[4] ) - 9 ;
+	srcsize = *((DWORD *)&srcp[4]) - 9 ;
 
 	// キーコード
 	keycode = srcp[8] ;
@@ -4941,13 +5693,13 @@ extern int DXA_Decode( void *Src, void *Dest )
 			break ;
 			
 		case 1 :
-			index = GET_MEM_WORD( sp ) ;
+			index = *((WORD *)sp) ;
 			sp      += 2 ;
 			srcsize -= 2 ;
 			break ;
 			
 		case 2 :
-			index = ( DWORD )( GET_MEM_WORD( sp ) | ( sp[2] << 16 ) ) ;
+			index = ( DWORD )( *((WORD *)sp) | ( sp[2] << 16 ) ) ;
 			sp      += 3 ;
 			srcsize -= 3 ;
 			break ;
@@ -4982,749 +5734,6 @@ extern int DXA_Decode( void *Src, void *Dest )
 
 	// 解凍後のサイズを返す
 	return (int)destsize ;
-}
-
-// データをハフマン圧縮する( 戻り値:圧縮後のサイズ  0 はエラー  Dest に NULL を入れると圧縮データ格納に必要なサイズが返る )
-extern ULONGLONG Huffman_Encode( void *Src, ULONGLONG SrcSize, void *Dest )
-{
-    // 結合データと数値データ、０～２５５までが数値データ
-    // (結合データの数と圧縮するデータの種類の数を足すと必ず『種類の数＋(種類の数－１)』になる。
-    // 『ホントか？』と思われる方はハフマン圧縮の説明で出てきたＡ,Ｂ,Ｃ,Ｄ,Ｅの結合部分の数を
-    // 数えてみて下さい、種類が５つに対して結合部分は一つ少ない４つになっているはずです。
-    // 種類が６つの時は結合部分は５つに、そして種類が２５６この時は結合部分は２５５個になります)
-    HUFFMAN_NODE Node[256 + 255] ;
-
-    unsigned char *SrcPoint ;
-    ULONGLONG PressBitCounter, PressSizeCounter, SrcSizeCounter ;
-    ULONGLONG i ;
-
-    // void 型のポインタではアドレスの操作が出来ないので unsigned char 型のポインタにする
-    SrcPoint = ( unsigned char * )Src ;
-
-    // 各数値の圧縮後のビット列を算出する
-    {
-        int NodeIndex, MinNode1, MinNode2 ;
-        int NodeNum, DataNum ;
-
-        // 数値データを初期化する
-        for( i = 0 ; i < 256 ; i ++ )
-        {
-            Node[i].Weight = 0 ;           // 出現数はこれから算出するので０に初期化
-            Node[i].ChildNode[0] = -1 ;    // 数値データが終点なので -1 をセットする
-            Node[i].ChildNode[1] = -1 ;    // 数値データが終点なので -1 をセットする
-            Node[i].ParentNode = -1 ;      // まだどの要素とも結合されていないので -1 をセットする
-        }
-
-        // 各数値の出現数をカウント
-        for( i = 0 ; i < SrcSize ; i ++ )
-        {
-            Node[ SrcPoint[i] ].Weight ++ ;
-        }
-
-		// 出現数を 0～65535 の比率に変換する
-		for( i = 0 ; i < 256 ; i ++ )
-		{
-			Node[ i ].Weight = Node[ i ].Weight * 0xffff / SrcSize ;
-		}
-
-        // 出現数の少ない数値データ or 結合データを繋いで
-        // 新しい結合データを作成、全ての要素を繋いで残り１個になるまで繰り返す
-        DataNum = 256 ; // 残り要素数
-        NodeNum = 256 ; // 次に新しく作る結合データの要素配列のインデックス
-        while( DataNum > 1 )
-        {
-            // 出現数値の低い要素二つを探す
-            {
-                MinNode1 = -1 ;
-                MinNode2 = -1 ;
-                
-                // 残っている要素全てを調べるまでループ
-                NodeIndex = 0 ;
-                for( i = 0 ; i < ( ULONGLONG )DataNum ; NodeIndex ++ )
-                {
-                    // もう既に何処かの要素と結合されている場合は対象外
-                    if( Node[NodeIndex].ParentNode != -1 ) continue ;
-                    
-                    i ++ ;
-                    
-                    // まだ有効な要素をセットしていないか、より出現数値の
-                    // 少ない要素が見つかったら更新
-                    if( MinNode1 == -1 || Node[MinNode1].Weight > Node[NodeIndex].Weight )
-                    {
-                        // 今まで一番出現数値が少なかったと思われた
-                        // 要素は二番目に降格
-                        MinNode2 = MinNode1 ;
-
-                        // 新しい一番の要素の要素配列のインデックスを保存
-                        MinNode1 = NodeIndex ;
-                    }
-                    else
-                    {
-                        // 一番よりは出現数値が多くても、二番目よりは出現数値が
-                        // 少ないかもしれないので一応チェック(又は二番目に出現数値の
-                        // 少ない要素がセットされていなかった場合もセット)
-                        if( MinNode2 == -1 || Node[MinNode2].Weight > Node[NodeIndex].Weight )
-                        {
-                            MinNode2 = NodeIndex ;
-                        }
-                    }
-                }
-            }
-            
-            // 二つの要素を繋いで新しい要素(結合データ)を作る
-            Node[NodeNum].ParentNode = -1 ;  // 新しいデータは当然まだ何処とも繋がっていないので -1 
-            Node[NodeNum].Weight = Node[MinNode1].Weight + Node[MinNode2].Weight ;    // 出現数値は二つの数値を足したものをセットする
-            Node[NodeNum].ChildNode[0] = MinNode1 ;    // この結合部で 0 を選んだら出現数値が一番少ない要素に繋がる
-            Node[NodeNum].ChildNode[1] = MinNode2 ;    // この結合部で 1 を選んだら出現数値が二番目に少ない要素に繋がる
-
-            // 結合された要素二つに、自分達に何の値が割り当てられたかをセットする
-            Node[MinNode1].Index = 0 ;    // 一番出現数値が少ない要素は 0 番
-            Node[MinNode2].Index = 1 ;    // 二番目に出現数値が少ない要素は 1 番
-
-            // 結合された要素二つに、自分達を結合した結合データの要素配列インデックスをセットする
-            Node[MinNode1].ParentNode = NodeNum ;
-            Node[MinNode2].ParentNode = NodeNum ;
-
-            // 要素の数を一個増やす
-            NodeNum ++ ;
-
-            // 残り要素の数は、一つ要素が新しく追加された代わりに
-            // 二つの要素が結合されて検索の対象から外れたので
-            // 結果 1 - 2 で -1 
-            DataNum -- ;
-        }
-        
-        // 各数値の圧縮後のビット列を割り出す
-        {
-            unsigned char TempBitArray[32] ;
-            int TempBitIndex, TempBitCount, BitIndex, BitCount ;
-        
-            // 数値データの種類の数だけ繰り返す
-            for( i = 0 ; i < 256 ; i ++ )
-            {
-                // 数値データから結合データを上へ上へと辿ってビット数を数える
-                {
-                    // ビット数を初期化しておく
-                    Node[i].BitNum = 0 ;
-                    
-                    // 一時的に数値データから遡っていったときのビット列を保存する処理の準備
-                    TempBitIndex = 0 ;
-                    TempBitCount = 0 ;
-                    TempBitArray[TempBitIndex] = 0 ;
-                    
-                    // 何処かと結合されている限りカウントし続ける(天辺は何処とも結合されていないので終点だと分かる)
-                    for( NodeIndex = ( int )i ; Node[NodeIndex].ParentNode != -1 ; NodeIndex = Node[NodeIndex].ParentNode )
-                    {
-                        // 配列要素一つに入るビットデータは８個なので、同じ配列要素に
-                        // 既に８個保存していたら次の配列要素に保存先を変更する
-                        if( TempBitCount == 8 )
-                        {
-                            TempBitCount = 0 ;
-                            TempBitIndex ++ ;
-                            TempBitArray[TempBitIndex] = 0 ;
-                        }
-                        
-                        // 新しく書き込む情報で今までのデータを上書きしてしまわないように１ビット左にシフトする
-                        TempBitArray[TempBitIndex] <<= 1 ;
-
-                        // 結合データに割り振られたインデックスを最下位ビット(一番右側のビット)に書き込む
-                        TempBitArray[TempBitIndex] |= (unsigned char)Node[NodeIndex].Index ;
-
-                        // 保存したビット数を増やす
-                        TempBitCount ++ ;
-
-                        // ビット数を増やす
-                        Node[i].BitNum ++ ;
-                    }
-                }
-				
-                // TempBitArray に溜まったデータは数値データから結合データを天辺に向かって
-                // 上へ上へと遡っていった時のビット列なので、逆さまにしないと圧縮後のビット
-                // 配列として使えない(展開時に天辺の結合データから数値データまで辿ることが
-                // 出来ない)ので、順序を逆さまにしたものを数値データ内のビット列バッファに保存する
-                {
-                    BitCount = 0 ;
-                    BitIndex = 0 ;
-                    
-                    // 最初のバッファを初期化しておく
-                    // (全部 論理和(or)演算 で書き込むので、最初から１になっている
-                    // ビットに０を書き込んでも１のままになってしまうため)
-                    Node[i].BitArray[BitIndex] = 0 ;
-                    
-                    // 一時的に保存しておいたビット列の最初まで遡る
-                    while( TempBitIndex >= 0 )
-                    {
-                        // 書き込んだビット数が一つの配列要素に入る８ビットに
-                        // 達してしまったら次の配列要素に移る
-                        if( BitCount == 8 )
-                        {
-                            BitCount = 0 ;
-                            BitIndex ++ ;
-                            Node[i].BitArray[BitIndex] = 0 ;
-                        }
-
-                        // まだ何も書き込まれていないビットアドレスに１ビット書き込む
-                        Node[i].BitArray[BitIndex] |= (unsigned char)( ( TempBitArray[TempBitIndex] & 1 ) << BitCount ) ;
-						
-                        // 書き込み終わったビットはもういらないので次のビットを
-                        // 書き込めるように１ビット右にシフトする
-                        TempBitArray[TempBitIndex] >>= 1 ;
-                        
-                        // １ビット書き込んだので残りビット数を１個減らす
-                        TempBitCount -- ;
-                        
-                        // もし現在書き込み元となっている配列要素に書き込んでいない
-                        // ビット情報が無くなったら次の配列要素に移る
-                        if( TempBitCount == 0 )
-                        {
-                            TempBitIndex -- ;
-                            TempBitCount = 8 ;
-                        }
-                        
-                        // 書き込んだビット数を増やす
-                        BitCount ++ ;
-                    }
-                }
-            }
-        }
-    }
-
-    // 変換処理
-    {
-        unsigned char *PressData ;
-        int BitData, BitCounter, BitIndex, BitNum, NodeIndex ;
-        
-        // 圧縮データを格納するアドレスをセット
-        // (圧縮データ本体は元のサイズ、圧縮後のサイズ、各数値の出現数等を
-        // 格納するデータ領域の後に格納する)
-        PressData = ( unsigned char * )Dest ;
-        
-        // 圧縮するデータの参照アドレスを初期化
-        SrcSizeCounter = 0 ;
-        
-        // 圧縮したデータの参照アドレスを初期化
-        PressSizeCounter = 0 ;
-        
-        // 圧縮したビットデータのカウンタを初期化
-        PressBitCounter = 0 ;
-        
-        // 圧縮データの最初のバイトを初期化しておく
-        if( Dest != NULL ) PressData[PressSizeCounter] = 0 ;
-
-        // 圧縮対照のデータを全て圧縮後のビット列に変換するまでループ
-        for( SrcSizeCounter = 0 ; SrcSizeCounter < SrcSize ; SrcSizeCounter ++ )
-        {
-            // 保存する数値データのインデックスを取得
-            NodeIndex = SrcPoint[SrcSizeCounter] ;
-            
-            // 指定の数値データの圧縮後のビット列を出力
-            {
-                // 参照する配列のインデックスを初期化
-                BitIndex = 0 ;
-                
-                // 配列要素中の出力したビット数の初期化
-                BitNum = 0 ;
-                
-                // 最初に書き込むビット列の配列要素をセット
-                BitData = Node[NodeIndex].BitArray[0] ;
-
-                // 全てのビットを出力するまでループ
-                for( BitCounter = 0 ; BitCounter < Node[NodeIndex].BitNum ; BitCounter ++ )
-                {
-                    // もし書き込んだビット数が８個になっていたら次の配列要素に移る
-                    if( PressBitCounter == 8 )
-                    {
-                        PressSizeCounter ++ ;
-                        if( Dest != NULL ) PressData[PressSizeCounter] = 0 ;
-                        PressBitCounter = 0 ;
-                    }
-                    
-                    // もし書き出したビット数が８個になっていたら次の配列要素に移る
-                    if( BitNum == 8 )
-                    {
-                        BitIndex ++ ;
-                        BitData = Node[NodeIndex].BitArray[BitIndex] ;
-                        BitNum = 0 ;
-                    }
-                    
-                    // まだ何も書き込まれていないビットアドレスに１ビット書き込む
-                    if( Dest != NULL ) PressData[PressSizeCounter] |= (unsigned char)( ( BitData & 1 ) << PressBitCounter ) ;
-
-                    // 書き込んだビット数を増やす
-                    PressBitCounter ++ ;
-
-                    // 次に書き出すビットを最下位ビット(一番右のビット)にする為に
-                    // １ビット右シフトする
-                    BitData >>= 1 ;
-                    
-                    // 書き出したビット数を増やす
-                    BitNum ++ ;
-                }
-            }
-        }
-        
-        // 最後の１バイト分のサイズを足す
-        PressSizeCounter ++ ;
-    }
-    
-    // 圧縮データの情報を保存する
-    {
-		BIT_STREAM BitStream ;
-		BYTE HeadBuffer[ 256 * 2 + 32 ] ;
-		BYTE BitNum ;
-		ULONGLONG HeadSize ;
-		int WeightSaveData[ 256 ] ;
-
-		BitStream_Init( &BitStream, HeadBuffer, false ) ;
-
-        // 元のデータのサイズをセット
-		BitNum = BitStream_GetBitNum( SrcSize ) ;
-		if( BitNum > 0 )
-		{
-			BitNum -- ;
-		}
-        BitStream_Write( &BitStream, 6, BitNum ) ;
-		BitStream_Write( &BitStream, BitNum + 1, SrcSize ) ;
-        
-        // 圧縮後のデータのサイズをセット
-		BitNum = BitStream_GetBitNum( PressSizeCounter ) ;
-        BitStream_Write( &BitStream, 6, BitNum ) ;
-		BitStream_Write( &BitStream, BitNum + 1, PressSizeCounter ) ;
-        
-        // 各数値の出現率の差分値を保存する
-		WeightSaveData[ 0 ] = ( int )Node[ 0 ].Weight ;
-        for( i = 1 ; i < 256 ; i ++ )
-        {
-			WeightSaveData[ i ] = ( int )Node[ i ].Weight - ( int )Node[ i - 1 ].Weight ;
-        }
-        for( i = 0 ; i < 256 ; i ++ )
-        {
-			ULONGLONG OutputNum ;
-			bool Minus ;
-
-			if( WeightSaveData[ i ] < 0 )
-			{
-				OutputNum = ( ULONGLONG )( -WeightSaveData[ i ] ) ;
-				Minus = true ;
-			}
-			else
-			{
-				OutputNum = ( ULONGLONG )WeightSaveData[ i ] ;
-				Minus = false ;
-			}
-
-			BitNum = ( BitStream_GetBitNum( OutputNum ) + 1 ) / 2 ;
-			if( BitNum > 0 )
-			{
-				BitNum -- ;
-			}
-	        BitStream_Write( &BitStream, 3, BitNum ) ;
-			BitStream_Write( &BitStream, 1, Minus ? 1 : 0 ) ;
-			BitStream_Write( &BitStream, ( BitNum + 1 ) * 2, OutputNum ) ;
-        }
-		
-		// ヘッダサイズを取得
-		HeadSize = BitStream_GetBytes( &BitStream ) ;
-
-		// 圧縮データの情報を圧縮データにコピーする
-		if( Dest != NULL )
-		{
-			ULONGLONG j ;
-
-			// ヘッダの分だけ移動
-			for( j = PressSizeCounter - 1 ; j >= 0 ; j -- )
-			{
-				( ( BYTE * )Dest )[ HeadSize + j ] = ( ( BYTE * )Dest )[ j ] ;
-				if( j == 0 )
-				{
-					break ;
-				}
-			}
-
-			// ヘッダを書き込み
-			_MEMCPY( Dest, HeadBuffer, ( size_t )HeadSize ) ;
-		}
-
-		// 圧縮後のサイズを返す
-		return PressSizeCounter + HeadSize ;
-    }
-}
-
-// ハフマン圧縮されたデータを解凍する( 戻り値:解凍後のサイズ  0 はエラー  Dest に NULL を入れると解凍データ格納に必要なサイズが返る )
-extern ULONGLONG Huffman_Decode( void *Press, void *Dest )
-{
-    // 結合データと数値データ、０～２５５までが数値データ
-    HUFFMAN_NODE Node[256 + 255] ;
-
-    ULONGLONG PressSizeCounter, DestSizeCounter, DestSize ;
-    unsigned char *PressPoint, *DestPoint ;
-	ULONGLONG OriginalSize ;
-//	ULONGLONG PressSize ;
-	ULONGLONG HeadSize ;
-	WORD Weight[ 256 ] ;
-    int i ;
-
-    // void 型のポインタではアドレスの操作が出来ないので unsigned char 型のポインタにする
-    PressPoint = ( unsigned char * )Press ;
-    DestPoint = ( unsigned char * )Dest ;
-
-    // 圧縮データの情報を取得する
-	{
-		BIT_STREAM BitStream ;
-		BYTE BitNum ;
-		BYTE Minus ;
-		WORD SaveData ;
-
-		BitStream_Init( &BitStream, PressPoint, true ) ;
-
-		OriginalSize = BitStream_Read( &BitStream, ( BYTE )( BitStream_Read( &BitStream, 6 ) + 1 ) ) ;
-//		PressSize    = BitStream_Read( &BitStream, ( BYTE )( BitStream_Read( &BitStream, 6 ) + 1 ) ) ;
-		BitStream_Read( &BitStream, ( BYTE )( BitStream_Read( &BitStream, 6 ) + 1 ) ) ;
-
-		// 出現頻度のテーブルを復元する
-		BitNum      = ( BYTE )( BitStream_Read( &BitStream, 3 ) + 1 ) * 2 ;
-		Minus       = ( BYTE )BitStream_Read( &BitStream, 1 ) ;
-		SaveData    = ( WORD )BitStream_Read( &BitStream, BitNum ) ;
-		Weight[ 0 ] = SaveData ;
-        for( i = 1 ; i < 256 ; i ++ )
-        {
-			BitNum      = ( BYTE )( BitStream_Read( &BitStream, 3 ) + 1 ) * 2 ;
-			Minus       = ( BYTE )BitStream_Read( &BitStream, 1 ) ;
-			SaveData    = ( WORD )BitStream_Read( &BitStream, BitNum ) ;
-			Weight[ i ] = Minus == 1 ? Weight[ i - 1 ] - SaveData : Weight[ i - 1 ] + SaveData ;
-        }
-
-		HeadSize = BitStream_GetBytes( &BitStream ) ;
-	}
-    
-    // Dest が NULL の場合は 解凍後のデータのサイズを返す
-    if( Dest == NULL )
-        return OriginalSize ;
-
-    // 解凍後のデータのサイズを取得する
-    DestSize = OriginalSize ;
-
-    // 各数値の結合データを構築する
-    {
-        int NodeIndex, MinNode1, MinNode2 ;
-        int NodeNum, DataNum ;
-
-        // 数値データを初期化する
-        for( i = 0 ; i < 256 + 255 ; i ++ )
-        {
-            Node[i].Weight = i < 256 ? Weight[i] : 0 ;	// 出現数は保存しておいたデータからコピー
-            Node[i].ChildNode[0] = -1 ;					// 数値データが終点なので -1 をセットする
-            Node[i].ChildNode[1] = -1 ;					// 数値データが終点なので -1 をセットする
-            Node[i].ParentNode = -1 ;					// まだどの要素とも結合されていないので -1 をセットする
-        }
-
-        // 出現数の少ない数値データ or 結合データを繋いで
-        // 新しい結合データを作成、全ての要素を繋いで残り１個になるまで繰り返す
-        // (圧縮時と同じコードです)
-        DataNum = 256 ; // 残り要素数
-        NodeNum = 256 ; // 次に新しく作る結合データの要素配列のインデックス
-        while( DataNum > 1 )
-        {
-            // 出現数値の低い要素二つを探す
-            {
-                MinNode1 = -1 ;
-                MinNode2 = -1 ;
-                
-                // 残っている要素全てを調べるまでループ
-                NodeIndex = 0 ;
-                for( i = 0 ; i < DataNum ; NodeIndex ++ )
-                {
-                    // もう既に何処かの要素と結合されている場合は対象外
-                    if( Node[NodeIndex].ParentNode != -1 ) continue ;
-                    
-                    i ++ ;
-                    
-                    // まだ有効な要素をセットしていないか、より出現数値の
-                    // 少ない要素が見つかったら更新
-                    if( MinNode1 == -1 || Node[MinNode1].Weight > Node[NodeIndex].Weight )
-                    {
-                        // 今まで一番出現数値が少なかったと思われた
-                        // 要素は二番目に降格
-                        MinNode2 = MinNode1 ;
-
-                        // 新しい一番の要素の要素配列のインデックスを保存
-                        MinNode1 = NodeIndex ;
-                    }
-                    else
-                    {
-                        // 一番よりは出現数値が多くても、二番目よりは出現数値が
-                        // 少ないかもしれないので一応チェック(又は二番目に出現数値の
-                        // 少ない要素がセットされていなかった場合もセット)
-                        if( MinNode2 == -1 || Node[MinNode2].Weight > Node[NodeIndex].Weight )
-                        {
-                            MinNode2 = NodeIndex ;
-                        }
-                    }
-                }
-            }
-            
-            // 二つの要素を繋いで新しい要素(結合データ)を作る
-            Node[NodeNum].ParentNode = -1 ;  // 新しいデータは当然まだ何処とも繋がっていないので -1 
-            Node[NodeNum].Weight = Node[MinNode1].Weight + Node[MinNode2].Weight ;    // 出現数値は二つの数値を足したものをセットする
-            Node[NodeNum].ChildNode[0] = MinNode1 ;    // この結合部で 0 を選んだら出現数値が一番少ない要素に繋がる
-            Node[NodeNum].ChildNode[1] = MinNode2 ;    // この結合部で 1 を選んだら出現数値が二番目に少ない要素に繋がる
-
-            // 結合された要素二つに、自分達に何の値が割り当てられたかをセットする
-            Node[MinNode1].Index = 0 ;    // 一番出現数値が少ない要素は 0 番
-            Node[MinNode2].Index = 1 ;    // 二番目に出現数値が少ない要素は 1 番
-
-            // 結合された要素二つに、自分達を結合した結合データの要素配列インデックスをセットする
-            Node[MinNode1].ParentNode = NodeNum ;
-            Node[MinNode2].ParentNode = NodeNum ;
-
-            // 要素の数を一個増やす
-            NodeNum ++ ;
-
-            // 残り要素の数は、一つ要素が新しく追加された代わりに
-            // 二つの要素が結合されて検索の対象から外れたので
-            // 結果 1 - 2 で -1 
-            DataNum -- ;
-        }
-
-        // 各数値の圧縮時のビット列を割り出す
-        {
-            unsigned char TempBitArray[32] ;
-            int TempBitIndex, TempBitCount, BitIndex, BitCount ;
-        
-            // 数値データと結合データの数だけ繰り返す
-            for( i = 0 ; i < 256 + 254 ; i ++ )
-            {
-                // 数値データから結合データを上へ上へと辿ってビット数を数える
-                {
-                    // ビット数を初期化しておく
-                    Node[i].BitNum = 0 ;
-                    
-                    // 一時的に数値データから遡っていったときのビット列を保存する処理の準備
-                    TempBitIndex = 0 ;
-                    TempBitCount = 0 ;
-                    TempBitArray[TempBitIndex] = 0 ;
-                    
-                    // 何処かと結合されている限りカウントし続ける(天辺は何処とも結合されていないので終点だと分かる)
-                    for( NodeIndex = ( int )i ; Node[NodeIndex].ParentNode != -1 ; NodeIndex = Node[NodeIndex].ParentNode )
-                    {
-                        // 配列要素一つに入るビットデータは８個なので、同じ配列要素に
-                        // 既に８個保存していたら次の配列要素に保存先を変更する
-                        if( TempBitCount == 8 )
-                        {
-                            TempBitCount = 0 ;
-                            TempBitIndex ++ ;
-                            TempBitArray[TempBitIndex] = 0 ;
-                        }
-                        
-                        // 新しく書き込む情報で今までのデータを上書きしてしまわないように１ビット左にシフトする
-                        TempBitArray[TempBitIndex] <<= 1 ;
-
-                        // 結合データに割り振られたインデックスを最下位ビット(一番右側のビット)に書き込む
-                        TempBitArray[TempBitIndex] |= (unsigned char)Node[NodeIndex].Index ;
-
-                        // 保存したビット数を増やす
-                        TempBitCount ++ ;
-
-                        // ビット数を増やす
-                        Node[i].BitNum ++ ;
-                    }
-                }
-				
-                // TempBitArray に溜まったデータは数値データから結合データを天辺に向かって
-                // 上へ上へと遡っていった時のビット列なので、逆さまにしないと圧縮後のビット
-                // 配列として使えない(展開時に天辺の結合データから数値データまで辿ることが
-                // 出来ない)ので、順序を逆さまにしたものを数値データ内のビット列バッファに保存する
-                {
-                    BitCount = 0 ;
-                    BitIndex = 0 ;
-                    
-                    // 最初のバッファを初期化しておく
-                    // (全部 論理和(or)演算 で書き込むので、最初から１になっている
-                    // ビットに０を書き込んでも１のままになってしまうため)
-                    Node[i].BitArray[BitIndex] = 0 ;
-                    
-                    // 一時的に保存しておいたビット列の最初まで遡る
-                    while( TempBitIndex >= 0 )
-                    {
-                        // 書き込んだビット数が一つの配列要素に入る８ビットに
-                        // 達してしまったら次の配列要素に移る
-                        if( BitCount == 8 )
-                        {
-                            BitCount = 0 ;
-                            BitIndex ++ ;
-                            Node[i].BitArray[BitIndex] = 0 ;
-                        }
-
-                        // まだ何も書き込まれていないビットアドレスに１ビット書き込む
-                        Node[i].BitArray[BitIndex] |= (unsigned char)( ( TempBitArray[TempBitIndex] & 1 ) << BitCount ) ;
-						
-                        // 書き込み終わったビットはもういらないので次のビットを
-                        // 書き込めるように１ビット右にシフトする
-                        TempBitArray[TempBitIndex] >>= 1 ;
-                        
-                        // １ビット書き込んだので残りビット数を１個減らす
-                        TempBitCount -- ;
-                        
-                        // もし現在書き込み元となっている配列要素に書き込んでいない
-                        // ビット情報が無くなったら次の配列要素に移る
-                        if( TempBitCount == 0 )
-                        {
-                            TempBitIndex -- ;
-                            TempBitCount = 8 ;
-                        }
-                        
-                        // 書き込んだビット数を増やす
-                        BitCount ++ ;
-                    }
-                }
-            }
-		}
-    }
-
-    // 解凍処理
-    {
-        unsigned char *PressData ;
-        int PressBitCounter, PressBitData, Index, NodeIndex ;
-		int NodeIndexTable[ 512 ] ;
-		int j ;
-
-		// 各ビット配列がどのノードに繋がるかのテーブルを作成する
-		{
-			WORD BitMask[ 9 ] ;
-
-			for( i = 0 ; i < 9 ; i ++ )
-			{
-				BitMask[ i ] = ( WORD )( ( 1 << ( i + 1 ) ) - 1 ) ;
-			}
-
-			for( i = 0 ; i < 512 ; i ++ )
-			{
-				NodeIndexTable[ i ] = -1 ;
-
-				// ビット列に適合したノードを探す
-				for( j = 0 ; j < 256 + 254 ; j ++ )
-				{
-					WORD BitArray01 ;
-
-					if( Node[ j ].BitNum > 9 )
-					{
-						continue ;
-					}
-
-					BitArray01 = ( WORD )Node[ j ].BitArray[ 0 ] | ( Node[ j ].BitArray[ 1 ] << 8 ) ;
-					if( ( i & BitMask[ Node[ j ].BitNum - 1 ] ) == ( BitArray01 & BitMask[ Node[ j ].BitNum - 1 ] ) )
-					{
-						NodeIndexTable[ i ] = j ;
-						break ;
-					}
-				}
-			}
-		}
-
-        // 圧縮データ本体の先頭アドレスをセット
-        // (圧縮データ本体は元のサイズ、圧縮後のサイズ、各数値の出現数等を
-        // 格納するデータ領域の後にある)
-        PressData = PressPoint + HeadSize ;
-
-        // 解凍したデータの格納アドレスを初期化
-        DestSizeCounter = 0 ;
-        
-        // 圧縮データの参照アドレスを初期化
-        PressSizeCounter = 0 ;
-        
-        // 圧縮ビットデータのカウンタを初期化
-        PressBitCounter = 0 ;
-        
-        // 圧縮データの１バイト目をセット
-        PressBitData = PressData[PressSizeCounter] ;
-
-        // 圧縮前のデータサイズになるまで解凍処理を繰り返す
-        for( DestSizeCounter = 0 ; DestSizeCounter < DestSize ; DestSizeCounter ++ )
-        {
-            // ビット列から数値データを検索する
-            {
-				// 最後の17byte分のデータは天辺から探す( 最後の次のバイトを読み出そうとしてメモリの不正なアクセスになる可能性があるため )
-				if( DestSizeCounter >= DestSize - 17 )
-				{
-					// 結合データの天辺は一番最後の結合データが格納される５１０番目(０番から数える)
-					// 天辺から順に下に降りていく
-					NodeIndex = 510 ;
-				}
-				else
-				{
-					// それ以外の場合はテーブルを使用する
-
-                    // もし PressBitData に格納されている全ての
-                    // ビットデータを使い切ってしまった場合は次の
-                    // ビットデータをセットする
-                    if( PressBitCounter == 8 )
-                    {
-                        PressSizeCounter ++ ;
-                        PressBitData = PressData[PressSizeCounter] ;
-                        PressBitCounter = 0 ;
-                    }
-
-					// 圧縮データを9bit分用意する
-					PressBitData = ( PressBitData | ( PressData[ PressSizeCounter + 1 ] << ( 8 - PressBitCounter ) ) ) & 0x1ff ;
-
-					// テーブルから最初の結合データを探す
-					NodeIndex = NodeIndexTable[ PressBitData ] ;
-
-					// 使った分圧縮データのアドレスを進める
-					PressBitCounter += Node[ NodeIndex ].BitNum ;
-					if( PressBitCounter >= 16 )
-					{
-						PressSizeCounter += 2 ;
-						PressBitCounter -= 16 ;
-						PressBitData = PressData[PressSizeCounter] >> PressBitCounter ;
-					}
-					else
-					if( PressBitCounter >= 8 )
-					{
-						PressSizeCounter ++ ;
-						PressBitCounter -= 8 ;
-						PressBitData = PressData[PressSizeCounter] >> PressBitCounter ;
-					}
-					else
-					{
-						PressBitData >>= Node[ NodeIndex ].BitNum ;
-					}
-				}
-                
-                // 数値データに辿り着くまで結合データを下りていく
-                while( NodeIndex > 255 )
-                {
-                    // もし PressBitData に格納されている全ての
-                    // ビットデータを使い切ってしまった場合は次の
-                    // ビットデータをセットする
-                    if( PressBitCounter == 8 )
-                    {
-                        PressSizeCounter ++ ;
-                        PressBitData = PressData[PressSizeCounter] ;
-                        PressBitCounter = 0 ;
-                    }
-                    
-                    // １ビット取得する
-                    Index = PressBitData & 1 ;
-                    
-                    // 使用した１ビット分だけ右にシフトする
-                    PressBitData >>= 1 ;
-                    
-                    // 使用したビット数を一個増やす
-                    PressBitCounter ++ ;
-                    
-                    // 次の要素(結合データか数値データかはまだ分からない)に移る
-                    NodeIndex = Node[NodeIndex].ChildNode[Index] ;
-                }
-            }
-
-            // 辿り着いた数値データを出力
-            DestPoint[DestSizeCounter] = (unsigned char)NodeIndex ;
-        }
-    }
-
-    // 解凍後のサイズを返す
-    return OriginalSize ;
 }
 
 // バイナリデータを半角文字列に変換する( 戻り値:変換後のデータサイズ )
@@ -5932,17 +5941,292 @@ extern DWORD Char128ToBin( void *Src, void *Dest )
 	return DestSize ;
 }
 
+// バイナリデータを元に SHA-256 のハッシュ値を計算する( DestBuffer の示すアドレスを先頭に 32byte ハッシュ値が書き込まれます )
+#define RROT( a, n )		( DWORD )( ( ( a ) >> ( n ) ) | ( DWORD )( ( a ) << ( 32 - ( n ) ) ) )
+#define S0( x )				( RROT( ( x ),  2 ) ^ RROT( ( x ), 13 ) ^ RROT( ( x ),22 ) )
+#define S1( x )				( RROT( ( x ),  6 ) ^ RROT( ( x ), 11 ) ^ RROT( ( x ),25 ) )
+#define s0( x )				( RROT( ( x ),  7 ) ^ RROT( ( x ), 18 ) ^ ( ( x ) >>  3 ) )
+#define s1( x )				( RROT( ( x ), 17 ) ^ RROT( ( x ), 19 ) ^ ( ( x ) >> 10 ) )
+#define CH( x, y, z )		( ( ( x ) & ( y ) ) ^ ( ( ~( x ) ) & ( z ) ) )
+#define MAJ( x, y, z )		( ( ( x ) & ( y ) ) ^ ( ( x ) & ( z ) ) ^ ( ( y ) & ( z ) ) )
+
+#define LIT_TO_BIG( sp, b )	( ( sp[ 0 + b ] << 24 ) | ( sp[ 1 + b ] << 16 ) | ( sp[ 2 + b ] << 8 ) | sp[ 3 + b ] )
+#define W_CALC( i )			( W[ i - 16 ] + s0( W[ i - 15 ] ) + W[ i - 7 ] + s1( W[ i - 2 ] ) )
+
+static DWORD K[ 64 ] =
+{
+	0x428a2f98, 0x71374491, 0xb5c0fbcf, 0xe9b5dba5, 0x3956c25b, 0x59f111f1, 0x923f82a4, 0xab1c5ed5,
+	0xd807aa98, 0x12835b01, 0x243185be, 0x550c7dc3, 0x72be5d74, 0x80deb1fe, 0x9bdc06a7, 0xc19bf174,
+	0xe49b69c1, 0xefbe4786, 0x0fc19dc6, 0x240ca1cc, 0x2de92c6f, 0x4a7484aa, 0x5cb0a9dc, 0x76f988da,
+	0x983e5152, 0xa831c66d, 0xb00327c8, 0xbf597fc7, 0xc6e00bf3, 0xd5a79147, 0x06ca6351, 0x14292967,
+	0x27b70a85, 0x2e1b2138, 0x4d2c6dfc, 0x53380d13, 0x650a7354, 0x766a0abb, 0x81c2c92e, 0x92722c85,
+	0xa2bfe8a1, 0xa81a664b, 0xc24b8b70, 0xc76c51a3, 0xd192e819, 0xd6990624, 0xf40e3585, 0x106aa070,
+	0x19a4c116, 0x1e376c08, 0x2748774c, 0x34b0bcb5, 0x391c0cb3, 0x4ed8aa4a, 0x5b9cca4f, 0x682e6ff3,
+	0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2,
+} ;
+
+__inline void HashSha256_Calc( const BYTE *Src, DWORD *H )
+{
+	DWORD i ;
+	DWORD X[ 8 ] ;
+	DWORD W[ 64 ] ;
+
+	W[  0 ] = LIT_TO_BIG( Src, 4 *  0 ) ;		W[  1 ] = LIT_TO_BIG( Src, 4 *  1 ) ;
+	W[  2 ] = LIT_TO_BIG( Src, 4 *  2 ) ;		W[  3 ] = LIT_TO_BIG( Src, 4 *  3 ) ;
+	W[  4 ] = LIT_TO_BIG( Src, 4 *  4 ) ;		W[  5 ] = LIT_TO_BIG( Src, 4 *  5 ) ;
+	W[  6 ] = LIT_TO_BIG( Src, 4 *  6 ) ;		W[  7 ] = LIT_TO_BIG( Src, 4 *  7 ) ;
+	W[  8 ] = LIT_TO_BIG( Src, 4 *  8 ) ;		W[  9 ] = LIT_TO_BIG( Src, 4 *  9 ) ;
+	W[ 10 ] = LIT_TO_BIG( Src, 4 * 10 ) ;		W[ 11 ] = LIT_TO_BIG( Src, 4 * 11 ) ;
+	W[ 12 ] = LIT_TO_BIG( Src, 4 * 12 ) ;		W[ 13 ] = LIT_TO_BIG( Src, 4 * 13 ) ;
+	W[ 14 ] = LIT_TO_BIG( Src, 4 * 14 ) ;		W[ 15 ] = LIT_TO_BIG( Src, 4 * 15 ) ;
+
+	W[ 16 ] = W_CALC( 16 ) ;	W[ 17 ] = W_CALC( 17 ) ;	W[ 18 ] = W_CALC( 18 ) ;	W[ 19 ] = W_CALC( 19 ) ;
+	W[ 20 ] = W_CALC( 20 ) ;	W[ 21 ] = W_CALC( 21 ) ;	W[ 22 ] = W_CALC( 22 ) ;	W[ 23 ] = W_CALC( 23 ) ;
+	W[ 24 ] = W_CALC( 24 ) ;	W[ 25 ] = W_CALC( 25 ) ;	W[ 26 ] = W_CALC( 26 ) ;	W[ 27 ] = W_CALC( 27 ) ;
+	W[ 28 ] = W_CALC( 28 ) ;	W[ 29 ] = W_CALC( 29 ) ;	W[ 30 ] = W_CALC( 30 ) ;	W[ 31 ] = W_CALC( 31 ) ;
+	W[ 32 ] = W_CALC( 32 ) ;	W[ 33 ] = W_CALC( 33 ) ;	W[ 34 ] = W_CALC( 34 ) ;	W[ 35 ] = W_CALC( 35 ) ;
+	W[ 36 ] = W_CALC( 36 ) ;	W[ 37 ] = W_CALC( 37 ) ;	W[ 38 ] = W_CALC( 38 ) ;	W[ 39 ] = W_CALC( 39 ) ;
+	W[ 40 ] = W_CALC( 40 ) ;	W[ 41 ] = W_CALC( 41 ) ;	W[ 42 ] = W_CALC( 42 ) ;	W[ 43 ] = W_CALC( 43 ) ;
+	W[ 44 ] = W_CALC( 44 ) ;	W[ 45 ] = W_CALC( 45 ) ;	W[ 46 ] = W_CALC( 46 ) ;	W[ 47 ] = W_CALC( 47 ) ;
+	W[ 48 ] = W_CALC( 48 ) ;	W[ 49 ] = W_CALC( 49 ) ;	W[ 50 ] = W_CALC( 50 ) ;	W[ 51 ] = W_CALC( 51 ) ;
+	W[ 52 ] = W_CALC( 52 ) ;	W[ 53 ] = W_CALC( 53 ) ;	W[ 54 ] = W_CALC( 54 ) ;	W[ 55 ] = W_CALC( 55 ) ;
+	W[ 56 ] = W_CALC( 56 ) ;	W[ 57 ] = W_CALC( 57 ) ;	W[ 58 ] = W_CALC( 58 ) ;	W[ 59 ] = W_CALC( 59 ) ;
+	W[ 60 ] = W_CALC( 60 ) ;	W[ 61 ] = W_CALC( 61 ) ;	W[ 62 ] = W_CALC( 62 ) ;	W[ 63 ] = W_CALC( 63 ) ;
+
+	X[ 0 ] = H[ 0 ] ;
+	X[ 1 ] = H[ 1 ] ;
+	X[ 2 ] = H[ 2 ] ;
+	X[ 3 ] = H[ 3 ] ;
+	X[ 4 ] = H[ 4 ] ;
+	X[ 5 ] = H[ 5 ] ;
+	X[ 6 ] = H[ 6 ] ;
+	X[ 7 ] = H[ 7 ] ;
+#if 0
+	for( i = 0 ; i < 64 ; i ++ )
+	{
+		DWORD temp1 = X[ 7 ] + S1( X[ 4 ] ) + CH( X[ 4 ], X[ 5 ], X[ 6 ] ) + K[ i ] + W[ i ] ;
+		DWORD temp2 = S0( X[ 0 ] ) + MAJ( X[ 0 ], X[ 1 ], X[ 2 ] ) ;
+		X[ 7 ] = X[ 6 ] ;
+		X[ 6 ] = X[ 5 ] ;
+		X[ 5 ] = X[ 4 ] ;
+		X[ 4 ] = X[ 3 ] + temp1 ;
+		X[ 3 ] = X[ 2 ] ;
+		X[ 2 ] = X[ 1 ] ;
+		X[ 1 ] = X[ 0 ] ;
+		X[ 0 ] = temp1 + temp2 ;
+	}
+#else
+	for( i = 0 ; i < 64 ; i += 8 )
+	{
+		DWORD temp1 = X[ 7 ] + S1( X[ 4 ] ) + CH( X[ 4 ], X[ 5 ], X[ 6 ] ) + K[ i ] + W[ i ] ;
+		DWORD temp2 = S0( X[ 0 ] ) + MAJ( X[ 0 ], X[ 1 ], X[ 2 ] ) ;
+//		X[ 7 ] = X[ 6 ] ;
+//		X[ 6 ] = X[ 5 ] ;
+//		X[ 5 ] = X[ 4 ] ;
+//		X[ 4 ] = X[ 3 ] + temp1 ;
+//		X[ 3 ] = X[ 2 ] ;
+//		X[ 2 ] = X[ 1 ] ;
+//		X[ 1 ] = X[ 0 ] ;
+//		X[ 0 ] = temp1 + temp2 ;
+		DWORD temp3 = X[ 6 ] + S1( X[ 3 ] + temp1 ) + CH( X[ 3 ] + temp1, X[ 4 ], X[ 5 ] ) + K[ i + 1 ] + W[ i + 1 ] ;
+		DWORD temp4 = S0( temp1 + temp2 ) + MAJ( temp1 + temp2, X[ 0 ], X[ 1 ] ) ;
+//		X[ 7 ] = X[ 5 ] ;
+//		X[ 6 ] = X[ 4 ] ;
+//		X[ 5 ] = X[ 3 ] + temp1 ;
+//		X[ 4 ] = X[ 2 ] + temp3 ;
+//		X[ 3 ] = X[ 1 ] ;
+//		X[ 2 ] = X[ 0 ] ;
+//		X[ 1 ] = temp1 + temp2 ;
+//		X[ 0 ] = temp3 + temp4 ;
+		DWORD temp5 = X[ 5 ] + S1( X[ 2 ] + temp3 ) + CH( X[ 2 ] + temp3, X[ 3 ] + temp1, X[ 4 ] ) + K[ i + 2 ] + W[ i + 2 ] ;
+		DWORD temp6 = S0( temp3 + temp4 ) + MAJ( temp3 + temp4, temp1 + temp2, X[ 0 ] ) ;
+//		X[ 7 ] = X[ 4 ] ;
+//		X[ 6 ] = X[ 3 ] + temp1 ;
+//		X[ 5 ] = X[ 2 ] + temp3 ;
+//		X[ 4 ] = X[ 1 ] + temp5 ;
+//		X[ 3 ] = X[ 0 ] ;
+//		X[ 2 ] = temp1 + temp2 ;
+//		X[ 1 ] = temp3 + temp4 ;
+//		X[ 0 ] = temp5 + temp6 ;
+		DWORD temp7 = X[ 4 ] + S1( X[ 1 ] + temp5 ) + CH( X[ 1 ] + temp5, X[ 2 ] + temp3, X[ 3 ] + temp1 ) + K[ i + 3 ] + W[ i + 3 ] ;
+		DWORD temp8 = S0( temp5 + temp6 ) + MAJ( temp5 + temp6, temp3 + temp4, temp1 + temp2 ) ;
+//		X[ 7 ] = X[ 3 ] + temp1 ;
+//		X[ 6 ] = X[ 2 ] + temp3 ;
+//		X[ 5 ] = X[ 1 ] + temp5 ;
+//		X[ 4 ] = X[ 0 ] + temp7 ;
+//		X[ 3 ] = temp1 + temp2 ;
+//		X[ 2 ] = temp3 + temp4 ;
+//		X[ 1 ] = temp5 + temp6 ;
+//		X[ 0 ] = temp7 + temp8 ;
+		DWORD temp9 = X[ 3 ] + temp1 + S1( X[ 0 ] + temp7 ) + CH( X[ 0 ] + temp7, X[ 1 ] + temp5, X[ 2 ] + temp3 ) + K[ i + 4 ] + W[ i + 4 ] ;
+		DWORD temp10 = S0( temp7 + temp8 ) + MAJ( temp7 + temp8, temp5 + temp6, temp3 + temp4 ) ;
+//		X[ 7 ] = X[ 2 ] + temp3 ;
+//		X[ 6 ] = X[ 1 ] + temp5 ;
+//		X[ 5 ] = X[ 0 ] + temp7 ;
+//		X[ 4 ] = temp1 + temp2 + temp9 ;
+//		X[ 3 ] = temp3 + temp4 ;
+//		X[ 2 ] = temp5 + temp6 ;
+//		X[ 1 ] = temp7 + temp8 ;
+//		X[ 0 ] = temp9 + temp10 ;
+		DWORD temp11 = X[ 2 ] + temp3 + S1( temp1 + temp2 + temp9 ) + CH( temp1 + temp2 + temp9, X[ 0 ] + temp7, X[ 1 ] + temp5 ) + K[ i + 5 ] + W[ i + 5 ] ;
+		DWORD temp12 = S0( temp9 + temp10 ) + MAJ( temp9 + temp10, temp7 + temp8, temp5 + temp6 ) ;
+//		X[ 7 ] = X[ 1 ] + temp5 ;
+//		X[ 6 ] = X[ 0 ] + temp7 ;
+//		X[ 5 ] = temp1 + temp2 + temp9 ;
+//		X[ 4 ] = temp3 + temp4 + temp11 ;
+//		X[ 3 ] = temp5 + temp6 ;
+//		X[ 2 ] = temp7 + temp8 ;
+//		X[ 1 ] = temp9 + temp10 ;
+//		X[ 0 ] = temp11 + temp12 ;
+		DWORD temp13 = X[ 1 ] + temp5 + S1( temp3 + temp4 + temp11 ) + CH( temp3 + temp4 + temp11, temp1 + temp2 + temp9, X[ 0 ] + temp7 ) + K[ i + 6 ] + W[ i + 6 ] ;
+		DWORD temp14 = S0( temp11 + temp12 ) + MAJ( temp11 + temp12, temp9 + temp10, temp7 + temp8 ) ;
+//		X[ 7 ] = X[ 0 ] + temp7 ;
+//		X[ 6 ] = temp1 + temp2 + temp9 ;
+//		X[ 5 ] = temp3 + temp4 + temp11 ;
+//		X[ 4 ] = temp5 + temp6 + temp13 ;
+//		X[ 3 ] = temp7 + temp8 ;
+//		X[ 2 ] = temp9 + temp10 ;
+//		X[ 1 ] = temp11 + temp12 ;
+//		X[ 0 ] = temp13 + temp14 ;
+		DWORD temp15 = X[ 0 ] + temp7 + S1( temp5 + temp6 + temp13 ) + CH( temp5 + temp6 + temp13, temp3 + temp4 + temp11, temp1 + temp2 + temp9 ) + K[ i + 7 ] + W[ i + 7 ] ;
+		DWORD temp16 = S0( temp13 + temp14 ) + MAJ( temp13 + temp14, temp11 + temp12, temp9 + temp10 ) ;
+		X[ 7 ] = temp1 + temp2 + temp9  ;
+		X[ 6 ] = temp3 + temp4 + temp11 ;
+		X[ 5 ] = temp5 + temp6 + temp13 ;
+		X[ 4 ] = temp7 + temp8 + temp15 ;
+		X[ 3 ] = temp9 + temp10  ;
+		X[ 2 ] = temp11 + temp12 ;
+		X[ 1 ] = temp13 + temp14 ;
+		X[ 0 ] = temp15 + temp16 ;
+	}
+#endif
+	H[ 0 ] += X[ 0 ] ;
+	H[ 1 ] += X[ 1 ] ;
+	H[ 2 ] += X[ 2 ] ;
+	H[ 3 ] += X[ 3 ] ;
+	H[ 4 ] += X[ 4 ] ;
+	H[ 5 ] += X[ 5 ] ;
+	H[ 6 ] += X[ 6 ] ;
+	H[ 7 ] += X[ 7 ] ;
+}
+
+extern void HashSha256( const void *SrcData, size_t SrcDataSize, void *DestBuffer )
+{
+	DWORD H[ 8 ] ;
+	BYTE Buffer[ 128 ] ;
+	const BYTE *sp = ( const BYTE * )SrcData ;
+	size_t i ;
+	size_t FullBlockNum = SrcDataSize / 64 ;
+	size_t DataSize ;
+	size_t FillSize ;
+	ULONGLONG BitLength = SrcDataSize * 8 ;
+
+	H[ 0 ] = 0x6a09e667 ;
+	H[ 1 ] = 0xbb67ae85 ;
+	H[ 2 ] = 0x3c6ef372 ;
+	H[ 3 ] = 0xa54ff53a ;
+	H[ 4 ] = 0x510e527f ;
+	H[ 5 ] = 0x9b05688c ;
+	H[ 6 ] = 0x1f83d9ab ;
+	H[ 7 ] = 0x5be0cd19 ;
+
+	for( i = 0 ; i < FullBlockNum ; i ++ )
+	{
+		HashSha256_Calc( sp, H ) ;
+		sp += 64 ;
+	}
+
+	DataSize = SrcDataSize - FullBlockNum * 64 ;
+	for( i = 0 ; i < DataSize ; i ++ )
+	{
+		Buffer[ i ] = sp[ i ] ;
+	}
+	Buffer[ DataSize ] = 0x80 ;
+
+	if( DataSize + 1 + 8 > 64 )
+	{
+		FillSize = ( 128 - 8 ) - ( DataSize + 1 ) ;
+		for( i = 0 ; i < FillSize ; i ++ )
+		{
+			Buffer[ DataSize + 1 + i ] = 0 ;
+		}
+
+		Buffer[ 127 ] = ( ( BYTE * )&BitLength )[ 0 ] ;
+		Buffer[ 126 ] = ( ( BYTE * )&BitLength )[ 1 ] ;
+		Buffer[ 125 ] = ( ( BYTE * )&BitLength )[ 2 ] ;
+		Buffer[ 124 ] = ( ( BYTE * )&BitLength )[ 3 ] ;
+		Buffer[ 123 ] = ( ( BYTE * )&BitLength )[ 4 ] ;
+		Buffer[ 122 ] = ( ( BYTE * )&BitLength )[ 5 ] ;
+		Buffer[ 121 ] = ( ( BYTE * )&BitLength )[ 6 ] ;
+		Buffer[ 120 ] = ( ( BYTE * )&BitLength )[ 7 ] ;
+
+		HashSha256_Calc( &Buffer[  0 ], H ) ;
+		HashSha256_Calc( &Buffer[ 64 ], H ) ;
+	}
+	else
+	{
+		FillSize = ( 64 - 8 ) - ( DataSize + 1 ) ;
+		for( i = 0 ; i < FillSize ; i ++ )
+		{
+			Buffer[ DataSize + 1 + i ] = 0 ;
+		}
+
+		Buffer[ 63 ] = ( ( BYTE * )&BitLength )[ 0 ] ;
+		Buffer[ 62 ] = ( ( BYTE * )&BitLength )[ 1 ] ;
+		Buffer[ 61 ] = ( ( BYTE * )&BitLength )[ 2 ] ;
+		Buffer[ 60 ] = ( ( BYTE * )&BitLength )[ 3 ] ;
+		Buffer[ 59 ] = ( ( BYTE * )&BitLength )[ 4 ] ;
+		Buffer[ 58 ] = ( ( BYTE * )&BitLength )[ 5 ] ;
+		Buffer[ 57 ] = ( ( BYTE * )&BitLength )[ 6 ] ;
+		Buffer[ 56 ] = ( ( BYTE * )&BitLength )[ 7 ] ;
+
+		HashSha256_Calc( &Buffer[  0 ], H ) ;
+	}
+
+	( ( BYTE * )DestBuffer )[  0 ] = ( ( BYTE * )H )[ 3 ] ;
+	( ( BYTE * )DestBuffer )[  1 ] = ( ( BYTE * )H )[ 2 ] ;
+	( ( BYTE * )DestBuffer )[  2 ] = ( ( BYTE * )H )[ 1 ] ;
+	( ( BYTE * )DestBuffer )[  3 ] = ( ( BYTE * )H )[ 0 ] ;
+	( ( BYTE * )DestBuffer )[  4 ] = ( ( BYTE * )H )[ 7 ] ;
+	( ( BYTE * )DestBuffer )[  5 ] = ( ( BYTE * )H )[ 6 ] ;
+	( ( BYTE * )DestBuffer )[  6 ] = ( ( BYTE * )H )[ 5 ] ;
+	( ( BYTE * )DestBuffer )[  7 ] = ( ( BYTE * )H )[ 4 ] ;
+	( ( BYTE * )DestBuffer )[  8 ] = ( ( BYTE * )H )[ 11 ] ;
+	( ( BYTE * )DestBuffer )[  9 ] = ( ( BYTE * )H )[ 10 ] ;
+	( ( BYTE * )DestBuffer )[ 10 ] = ( ( BYTE * )H )[ 9 ] ;
+	( ( BYTE * )DestBuffer )[ 11 ] = ( ( BYTE * )H )[ 8 ] ;
+	( ( BYTE * )DestBuffer )[ 12 ] = ( ( BYTE * )H )[ 15 ] ;
+	( ( BYTE * )DestBuffer )[ 13 ] = ( ( BYTE * )H )[ 14 ] ;
+	( ( BYTE * )DestBuffer )[ 14 ] = ( ( BYTE * )H )[ 13 ] ;
+	( ( BYTE * )DestBuffer )[ 15 ] = ( ( BYTE * )H )[ 12 ] ;
+	( ( BYTE * )DestBuffer )[ 16 ] = ( ( BYTE * )H )[ 19 ] ;
+	( ( BYTE * )DestBuffer )[ 17 ] = ( ( BYTE * )H )[ 18 ] ;
+	( ( BYTE * )DestBuffer )[ 18 ] = ( ( BYTE * )H )[ 17 ] ;
+	( ( BYTE * )DestBuffer )[ 19 ] = ( ( BYTE * )H )[ 16 ] ;
+	( ( BYTE * )DestBuffer )[ 20 ] = ( ( BYTE * )H )[ 23 ] ;
+	( ( BYTE * )DestBuffer )[ 21 ] = ( ( BYTE * )H )[ 22 ] ;
+	( ( BYTE * )DestBuffer )[ 22 ] = ( ( BYTE * )H )[ 21 ] ;
+	( ( BYTE * )DestBuffer )[ 23 ] = ( ( BYTE * )H )[ 20 ] ;
+	( ( BYTE * )DestBuffer )[ 24 ] = ( ( BYTE * )H )[ 27 ] ;
+	( ( BYTE * )DestBuffer )[ 25 ] = ( ( BYTE * )H )[ 26 ] ;
+	( ( BYTE * )DestBuffer )[ 26 ] = ( ( BYTE * )H )[ 25 ] ;
+	( ( BYTE * )DestBuffer )[ 27 ] = ( ( BYTE * )H )[ 24 ] ;
+	( ( BYTE * )DestBuffer )[ 28 ] = ( ( BYTE * )H )[ 31 ] ;
+	( ( BYTE * )DestBuffer )[ 29 ] = ( ( BYTE * )H )[ 30 ] ;
+	( ( BYTE * )DestBuffer )[ 30 ] = ( ( BYTE * )H )[ 29 ] ;
+	( ( BYTE * )DestBuffer )[ 31 ] = ( ( BYTE * )H )[ 28 ] ;
+}
 
 
 // バイナリデータをBase64文字列に変換する( 戻り値:変換後のデータサイズ )
-static unsigned char BinToBase64Table[ 64 ] =
+static unsigned char BinToBase64Table[64] =
 {
 	0x41, 0x42, 0x43, 0x44, 0x45, 0x46, 0x47, 0x48, 0x49, 0x4A, 0x4B, 0x4C, 0x4D, 0x4E, 0x4F, 0x50,
 	0x51, 0x52, 0x53, 0x54, 0x55, 0x56, 0x57, 0x58, 0x59, 0x5A,	0x61, 0x62, 0x63, 0x64, 0x65, 0x66,
 	0x67, 0x68, 0x69, 0x6A, 0x6B, 0x6C, 0x6D, 0x6E, 0x6F, 0x70,	0x71, 0x72, 0x73, 0x74, 0x75, 0x76,
 	0x77, 0x78, 0x79, 0x7A, 0x30, 0x31, 0x32, 0x33, 0x34, 0x35, 0x36, 0x37, 0x38, 0x39, 0x2B, 0x2F
-} ;
-static unsigned char Base64ToBinTable[ 256 ] =
+};
+static unsigned char Base64ToBinTable[256] =
 {
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
@@ -5960,129 +6244,126 @@ static unsigned char Base64ToBinTable[ 256 ] =
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
 	0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00,
-} ;
-extern DWORD BinToBase64( void *Src, unsigned int SrcSize, void *Dest )
+};
+extern DWORD BinToBase64(void* Src, unsigned int SrcSize, void* Dest)
 {
-	unsigned int DestSize ;
-	unsigned int ModNum ;
-	unsigned int PackNum ;
+	unsigned int DestSize;
+	unsigned int ModNum;
+	unsigned int PackNum;
 
-	PackNum = SrcSize / 3 ;
-	ModNum  = SrcSize - PackNum * 3 ;
-	DestSize  = PackNum * 4 + ( ModNum > 0 ? ModNum + 1 : 0 ) + 6 ;
+	PackNum = SrcSize / 3;
+	ModNum = SrcSize - PackNum * 3;
+	DestSize = PackNum * 4 + (ModNum > 0 ? ModNum + 1 : 0) + 6;
 
-	if( Dest != NULL )
+	if (Dest != NULL)
 	{
-		unsigned char *DestP ;
-		unsigned char *SrcP ;
-		unsigned int i ;
+		unsigned char* DestP;
+		unsigned char* SrcP;
+		unsigned int i;
 
-		DestP = ( unsigned char * )Dest ;
-		SrcP  = ( unsigned char * )&SrcSize ;
+		DestP = (unsigned char*)Dest;
+		SrcP = (unsigned char*)&SrcSize;
 
-		DestP[ 0 ] = BinToBase64Table[                                 ( SrcP[ 0 ] >> 2 ) ] ;
-		DestP[ 1 ] = BinToBase64Table[ ( ( SrcP[ 0 ] & 0x03 ) << 4 ) | ( SrcP[ 1 ] >> 4 ) ] ;
-		DestP[ 2 ] = BinToBase64Table[ ( ( SrcP[ 1 ] & 0x0f ) << 2 ) | ( SrcP[ 2 ] >> 6 ) ] ;
-		DestP[ 3 ] = BinToBase64Table[ ( ( SrcP[ 2 ] & 0x3f )      )                      ] ;
-		DestP[ 4 ] = BinToBase64Table[                                 ( SrcP[ 3 ] >> 2 ) ] ;
-		DestP[ 5 ] = BinToBase64Table[ ( ( SrcP[ 3 ] & 0x03 ) << 4 )                      ] ;
+		DestP[0] = BinToBase64Table[(SrcP[0] >> 2)];
+		DestP[1] = BinToBase64Table[((SrcP[0] & 0x03) << 4) | (SrcP[1] >> 4)];
+		DestP[2] = BinToBase64Table[((SrcP[1] & 0x0f) << 2) | (SrcP[2] >> 6)];
+		DestP[3] = BinToBase64Table[((SrcP[2] & 0x3f))];
+		DestP[4] = BinToBase64Table[(SrcP[3] >> 2)];
+		DestP[5] = BinToBase64Table[((SrcP[3] & 0x03) << 4)];
 
-		DestP += 6 ;
+		DestP += 6;
 
-		SrcP  = ( unsigned char * )Src ;
-		for( i = 0 ; i < PackNum ; i ++ )
+		SrcP = (unsigned char*)Src;
+		for (i = 0; i < PackNum; i++)
 		{
-			DestP[ 0 ] = BinToBase64Table[                                 ( SrcP[ 0 ] >> 2 ) ] ;
-			DestP[ 1 ] = BinToBase64Table[ ( ( SrcP[ 0 ] & 0x03 ) << 4 ) | ( SrcP[ 1 ] >> 4 ) ] ;
-			DestP[ 2 ] = BinToBase64Table[ ( ( SrcP[ 1 ] & 0x0f ) << 2 ) | ( SrcP[ 2 ] >> 6 ) ] ;
-			DestP[ 3 ] = BinToBase64Table[ ( ( SrcP[ 2 ] & 0x3f )      )                      ] ;
+			DestP[0] = BinToBase64Table[(SrcP[0] >> 2)];
+			DestP[1] = BinToBase64Table[((SrcP[0] & 0x03) << 4) | (SrcP[1] >> 4)];
+			DestP[2] = BinToBase64Table[((SrcP[1] & 0x0f) << 2) | (SrcP[2] >> 6)];
+			DestP[3] = BinToBase64Table[((SrcP[2] & 0x3f))];
 
-			DestP += 4 ;
-			SrcP  += 3 ;
+			DestP += 4;
+			SrcP += 3;
 		}
 
-		if( ModNum != 0 )
+		if (ModNum != 0)
 		{
-			DestP[ 0 ] = BinToBase64Table[ ( SrcP[ 0 ] >> 2 ) ] ;
-			if( ModNum == 1 )
+			DestP[0] = BinToBase64Table[(SrcP[0] >> 2)];
+			if (ModNum == 1)
 			{
-				DestP[ 1 ] = BinToBase64Table[ ( ( SrcP[ 0 ] & 0x03 ) << 4 )                      ] ;
-				DestP += 2 ;
+				DestP[1] = BinToBase64Table[((SrcP[0] & 0x03) << 4)];
+				DestP += 2;
 			}
 			else
 			{
-				DestP[ 1 ] = BinToBase64Table[ ( ( SrcP[ 0 ] & 0x03 ) << 4 ) | ( SrcP[ 1 ] >> 4 ) ] ;
-				DestP[ 2 ] = BinToBase64Table[ ( ( SrcP[ 1 ] & 0x0f ) << 2 )                      ] ;
-				DestP += 3 ;
+				DestP[1] = BinToBase64Table[((SrcP[0] & 0x03) << 4) | (SrcP[1] >> 4)];
+				DestP[2] = BinToBase64Table[((SrcP[1] & 0x0f) << 2)];
+				DestP += 3;
 			}
 		}
 	}
 
-	return DestSize ;
+	return DestSize;
 }
 
 // Base64文字列をバイナリデータに変換する( 戻り値:変換後のデータサイズ )
-extern DWORD Base64ToBin( void *Src, void *Dest )
+extern DWORD Base64ToBin(void* Src, void* Dest)
 {
-	unsigned int DestSize ;
-	unsigned char *SrcP ;
-	unsigned char *DestP ;
+	unsigned int DestSize;
+	unsigned char* SrcP;
+	unsigned char* DestP;
 
-	SrcP    = ( unsigned char * )Src ;
-	DestP   = ( unsigned char * )&DestSize ;
+	SrcP = (unsigned char*)Src;
+	DestP = (unsigned char*)&DestSize;
 
-	DestP[ 0 ] = ( Base64ToBinTable[ SrcP[ 0 ] ] << 2 ) | ( Base64ToBinTable[ SrcP[ 1 ] ] >> 4 ) ;
-	DestP[ 1 ] = ( Base64ToBinTable[ SrcP[ 1 ] ] << 4 ) | ( Base64ToBinTable[ SrcP[ 2 ] ] >> 2 ) ;
-	DestP[ 2 ] = ( Base64ToBinTable[ SrcP[ 2 ] ] << 6 ) | ( Base64ToBinTable[ SrcP[ 3 ] ]      ) ;
-	DestP[ 3 ] = ( Base64ToBinTable[ SrcP[ 4 ] ] << 2 ) | ( Base64ToBinTable[ SrcP[ 5 ] ] >> 4 ) ;
+	DestP[0] = (Base64ToBinTable[SrcP[0]] << 2) | (Base64ToBinTable[SrcP[1]] >> 4);
+	DestP[1] = (Base64ToBinTable[SrcP[1]] << 4) | (Base64ToBinTable[SrcP[2]] >> 2);
+	DestP[2] = (Base64ToBinTable[SrcP[2]] << 6) | (Base64ToBinTable[SrcP[3]]);
+	DestP[3] = (Base64ToBinTable[SrcP[4]] << 2) | (Base64ToBinTable[SrcP[5]] >> 4);
 
-	SrcP += 6 ;
+	SrcP += 6;
 
-	if( Dest != NULL )
+	if (Dest != NULL)
 	{
-		unsigned int PackNum ;
-		unsigned int ModNum ;
-		unsigned int i ;
+		unsigned int PackNum;
+		unsigned int ModNum;
+		unsigned int i;
 
-		PackNum = DestSize / 3 ;
-		ModNum  = DestSize - PackNum * 3 ;
-		DestP = ( unsigned char * )Dest ;
-		for( i = 0 ; i < PackNum ; i ++ )
+		PackNum = DestSize / 3;
+		ModNum = DestSize - PackNum * 3;
+		DestP = (unsigned char*)Dest;
+		for (i = 0; i < PackNum; i++)
 		{
-			DestP[ 0 ] = ( Base64ToBinTable[ SrcP[ 0 ] ] << 2 ) | ( Base64ToBinTable[ SrcP[ 1 ] ] >> 4 ) ;
-			DestP[ 1 ] = ( Base64ToBinTable[ SrcP[ 1 ] ] << 4 ) | ( Base64ToBinTable[ SrcP[ 2 ] ] >> 2 ) ;
-			DestP[ 2 ] = ( Base64ToBinTable[ SrcP[ 2 ] ] << 6 ) | ( Base64ToBinTable[ SrcP[ 3 ] ]      ) ;
+			DestP[0] = (Base64ToBinTable[SrcP[0]] << 2) | (Base64ToBinTable[SrcP[1]] >> 4);
+			DestP[1] = (Base64ToBinTable[SrcP[1]] << 4) | (Base64ToBinTable[SrcP[2]] >> 2);
+			DestP[2] = (Base64ToBinTable[SrcP[2]] << 6) | (Base64ToBinTable[SrcP[3]]);
 
-			DestP += 3 ;
-			SrcP  += 4 ;
+			DestP += 3;
+			SrcP += 4;
 		}
 
-		if( ModNum != 0 )
+		if (ModNum != 0)
 		{
-			DestP[ 0 ] = ( Base64ToBinTable[ SrcP[ 0 ] ] << 2 ) | ( Base64ToBinTable[ SrcP[ 1 ] ] >> 4 ) ;
-			if( ModNum > 1 )
+			DestP[0] = (Base64ToBinTable[SrcP[0]] << 2) | (Base64ToBinTable[SrcP[1]] >> 4);
+			if (ModNum > 1)
 			{
-				DestP[ 1 ] = ( Base64ToBinTable[ SrcP[ 1 ] ] << 4 ) | ( Base64ToBinTable[ SrcP[ 2 ] ] >> 2 ) ;
-				if( ModNum > 2 )
+				DestP[1] = (Base64ToBinTable[SrcP[1]] << 4) | (Base64ToBinTable[SrcP[2]] >> 2);
+				if (ModNum > 2)
 				{
-					DestP[ 2 ] = ( Base64ToBinTable[ SrcP[ 2 ] ] << 6 ) | ( Base64ToBinTable[ SrcP[ 3 ] ]      ) ;
+					DestP[2] = (Base64ToBinTable[SrcP[2]] << 6) | (Base64ToBinTable[SrcP[3]]);
 				}
 			}
 		}
 	}
 
-	return DestSize ;
+	return DestSize;
 }
 
-
-
-
+static DWORD CRC32Table[ 256 ] ;
+static int CRC32TableInit = 0 ;
 
 // バイナリデータを元に CRC32 のハッシュ値を計算する
 extern DWORD HashCRC32( const void *SrcData, size_t SrcDataSize )
 {
-	static DWORD CRC32Table[ 256 ] ;
-	static int CRC32TableInit = 0 ;
 	DWORD CRC = 0xffffffff ;
 	BYTE *SrcByte = ( BYTE * )SrcData ;
 	DWORD i ;

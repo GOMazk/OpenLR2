@@ -2,12 +2,12 @@
 // 
 // 		ＤＸライブラリ		通信プログラムヘッダファイル
 // 
-// 				Ver 3.25a
+// 				Ver 3.19f
 // 
 // -------------------------------------------------------------------------------
 
-#ifndef DX_ARCHIVE_H
-#define DX_ARCHIVE_H
+#ifndef __DXARCHIVE_H__
+#define __DXARCHIVE_H__
 
 // インクルード -------------------------------------------------------------------
 #include "DxCompileConfig.h"
@@ -25,17 +25,9 @@ namespace DxLib
 
 // ＤＸアーカイブ関連
 
+
+
 /*
-	バージョンごとの違い
-
-	0x0002 DARC_FILEHEAD に PressDataSize を追加
-	0x0004 DARC_HEAD に CharCodeFormat を追加
-	0x0005 暗号化処理を一部変更
-	0x0006 64bit化
-	0x0007 暗号化処理を変更( パスワードを指定した場合の解読難度を向上 )
-	0x0008 暗号鍵の長さを56bitに変更
-
-
 	データマップ
 		
 	DXARC_HEAD
@@ -53,18 +45,17 @@ namespace DxLib
 */
 
 #define DXAHEAD							*((WORD *)"DX")		// ヘッダ
-#define DXAVER							(0x0008)			// バージョン
-#define DXAVER_MIN						(0x0008)			// 対応している最低バージョン
-#define DXA_KEY_BYTES					(7)					// 鍵のバイト数
-#define DXA_KEY_STRING_LENGTH			(63)				// 鍵用文字列の長さ
-#define DXA_KEY_STRING_MAXLENGTH		(2048)				// 鍵用文字列バッファのサイズ
+#define DXAVER							(0x0007)			// バージョン( 現在は７ )
+#define DXAVER_VER6						(0x0006)			// バージョン６の頃のバージョン番号
+#define DXAVER_VER5						(0x0005)			// バージョン５の頃のバージョン番号
 #define DXA_DIR_MAXARCHIVENUM			(4096)				// 同時に開いておけるアーカイブファイルの数
 #define DXA_DIR_MAXFILENUM				(32768)				// 同時に開いておけるファイルの数
+#define DXA_KEYSTR_LENGTH				(12)				// 鍵文字列の長さ
+#define DXA_KEYV2STR_LENGTH				(63)				// 鍵バージョン2の文字列の最大長
+#define DXA_KEYV2_LENGTH				(32)				// 鍵バージョン2の長さ
+#define DXA_KEYV2_VER					(0x0007)			// 鍵バージョン2になったバージョン
+#define DXA_KEYV2_STRING_MAXLENGTH		(2048)				// 鍵バージョン2用の鍵用文字列の最大長
 #define DXA_MAXDRIVENUM					(64)				// 対応するドライブの最大数
-	
-// フラグ
-#define DXA_FLAG_NO_KEY					(0x00000001)	// 鍵処理無し
-#define DXA_FLAG_NO_HEAD_PRESS			(0x00000002)	// ヘッダの圧縮無し
 
 // 構造体定義 --------------------------------------------------------------------
 
@@ -79,10 +70,21 @@ struct DXARC_HEAD
 	ULONGLONG					FileTableStartAddress ;			// ファイルテーブルの先頭アドレス(メンバ変数 FileNameTableStartAddress のアドレスを０とする)
 	ULONGLONG					DirectoryTableStartAddress ;	// ディレクトリテーブルの先頭アドレス(メンバ変数 FileNameTableStartAddress のアドレスを０とする)
 																// アドレス０から配置されている DXARC_DIRECTORY 構造体がルートディレクトリ
-	DWORD						CharCodeFormat ;				// ファイル名に使用しているコードページ番号
-	DWORD						Flags ;							// フラグ( DXA_FLAG_NO_KEY 等 )
-	BYTE						HuffmanEncodeKB ;				// ファイルの前後のハフマン圧縮するサイズ( 単位：キロバイト 0xff の場合はすべて圧縮する )
-	BYTE						Reserve[ 15 ] ;					// 予約領域
+	ULONGLONG					CharCodeFormat ;					// ファイル名に使用している文字コード形式番号( Ver4以降 )
+} ;
+
+// アーカイブデータの最初のヘッダ
+struct DXARC_HEAD_VER5
+{
+	WORD						Head ;							// ＩＤ
+	WORD						Version ;						// バージョン
+	DWORD						HeadSize ;						// ヘッダ情報の DXARC_HEAD を抜いた全サイズ
+	DWORD						DataStartAddress ;				// 最初のファイルのデータが格納されているデータアドレス(ファイルの先頭アドレスをアドレス０とする)
+	DWORD						FileNameTableStartAddress ;		// ファイル名テーブルの先頭アドレス(ファイルの先頭アドレスをアドレス０とする)
+	DWORD						FileTableStartAddress ;			// ファイルテーブルの先頭アドレス(メンバ変数 FileNameTableStartAddress のアドレスを０とする)
+	DWORD						DirectoryTableStartAddress ;	// ディレクトリテーブルの先頭アドレス(メンバ変数 FileNameTableStartAddress のアドレスを０とする)
+																// アドレス０から配置されている DXARC_DIRECTORY 構造体がルートディレクトリ
+	DWORD						CharCodeFormat ;					// ファイル名に使用している文字コード形式番号( Ver4以降 )
 } ;
 
 // ファイルの時間情報
@@ -111,7 +113,31 @@ struct DXARC_FILEHEAD
 																//			ディレクトリの場合：DXARC_HEAD構造体 のメンバ変数 DirectoryTableStartAddress のが示すアドレスをアドレス０とする
 	ULONGLONG					DataSize ;						// ファイルのデータサイズ
 	ULONGLONG					PressDataSize ;					// 圧縮後のデータのサイズ( 0xffffffff:圧縮されていない ) ( Ver0x0002 で追加された )
-	ULONGLONG					HuffPressDataSize ;				// ハフマン圧縮後のデータのサイズ( 0xffffffffffffffff:圧縮されていない ) ( Ver0x0008 で追加された )
+} ;
+
+// ファイル格納情報
+struct DXARC_FILEHEAD_VER5
+{
+	DWORD						NameAddress ;					// ファイル名が格納されているアドレス( ARCHIVE_HEAD構造体 のメンバ変数 FileNameTableStartAddress のアドレスをアドレス０とする) 
+	DWORD						Attributes ;					// ファイル属性
+	DXARC_FILETIME				Time ;							// 時間情報
+	DWORD						DataAddress ;					// ファイルが格納されているアドレス
+																//			ファイルの場合：DXARC_HEAD構造体 のメンバ変数 DataStartAddress が示すアドレスをアドレス０とする
+																//			ディレクトリの場合：DXARC_HEAD構造体 のメンバ変数 DirectoryTableStartAddress のが示すアドレスをアドレス０とする
+	DWORD						DataSize ;						// ファイルのデータサイズ
+	DWORD						PressDataSize ;					// 圧縮後のデータのサイズ( 0xffffffff:圧縮されていない ) ( Ver0x0002 で追加された )
+} ;
+
+// ファイル格納情報(Ver0x0001 用)
+struct DXARC_FILEHEAD_VER1
+{
+	DWORD						NameAddress ;					// ファイル名が格納されているアドレス( ARCHIVE_HEAD構造体 のメンバ変数 FileNameTableStartAddress のアドレスをアドレス０とする) 
+	DWORD						Attributes ;					// ファイル属性
+	DXARC_FILETIME				Time ;							// 時間情報
+	DWORD						DataAddress ;					// ファイルが格納されているアドレス
+																//			ファイルの場合：DXARC_HEAD構造体 のメンバ変数 DataStartAddress が示すアドレスをアドレス０とする
+																//			ディレクトリの場合：DXARC_HEAD構造体 のメンバ変数 DirectoryTableStartAddress のが示すアドレスをアドレス０とする
+	DWORD						DataSize ;						// ファイルのデータサイズ
 } ;
 
 // ディレクトリ格納情報
@@ -121,6 +147,15 @@ struct DXARC_DIRECTORY
 	ULONGLONG					ParentDirectoryAddress ;		// 親ディレクトリの DXARC_DIRECTORY が格納されているアドレス( DXARC_HEAD構造体 のメンバ変数 DirectoryTableStartAddress が示すアドレスをアドレス０とする)
 	ULONGLONG					FileHeadNum ;					// ディレクトリ内のファイルの数
 	ULONGLONG					FileHeadAddress ;				// ディレクトリ内のファイルのヘッダ列が格納されているアドレス( DXARC_HEAD構造体 のメンバ変数 FileTableStartAddress が示すアドレスをアドレス０とする) 
+} ;
+
+// ディレクトリ格納情報
+struct DXARC_DIRECTORY_VER5
+{
+	DWORD						DirectoryAddress ;				// 自分の DXARC_FILEHEAD が格納されているアドレス( DXARC_HEAD 構造体 のメンバ変数 FileTableStartAddress が示すアドレスをアドレス０とする)
+	DWORD						ParentDirectoryAddress ;		// 親ディレクトリの DXARC_DIRECTORY が格納されているアドレス( DXARC_HEAD構造体 のメンバ変数 DirectoryTableStartAddress が示すアドレスをアドレス０とする)
+	DWORD						FileHeadNum ;					// ディレクトリ内のファイルの数
+	DWORD						FileHeadAddress ;				// ディレクトリ内のファイルのヘッダ列が格納されているアドレス( DXARC_HEAD構造体 のメンバ変数 FileTableStartAddress が示すアドレスをアドレス０とする) 
 } ;
 
 
@@ -145,18 +180,27 @@ struct DXARC_TABLE
 // アーカイブ処理用情報構造体
 struct DXARC
 {
-	DXARC_HEAD					Head ;							// アーカイブのヘッダ
-	int							CharCodeFormat ;				// 文字コード形式
-	DWORD_PTR					ReadAccessOnlyFilePointer ;		// アーカイブファイルのポインタ	
+	int							V5Flag ;						// Ver5以前かどうか( TRUE:Ver5以前  FALSE:Ver5以降 )
+	union
+	{
+		DXARC_HEAD				Head ;							// アーカイブのヘッダ
+		DXARC_HEAD_VER5			HeadV5 ;						// アーカイブのヘッダ(Ver5以前)
+	};
+	int							CharCodeFormat ;					// 文字コード形式
+	DWORD_PTR					WinFilePointer__ ;				// アーカイブファイルのポインタ	
 	void						*MemoryImage ;					// メモリイメージを開いた場合のアドレス
 	DXARC_TABLE					Table ;							// 各テーブルへの先頭アドレスが格納された構造体
-	DXARC_DIRECTORY				*CurrentDirectory ;				// カレントディレクトリデータへのポインタ
+	union
+	{
+		DXARC_DIRECTORY			*CurrentDirectory ;				// カレントディレクトリデータへのポインタ
+		DXARC_DIRECTORY_VER5	*CurrentDirectoryV5 ;			// カレントディレクトリデータへのポインタ(Ver5以前)
+	};
 
 	wchar_t						FilePath[ 1024 ] ;				// ファイルパス
-	bool						NoKey ;							// 鍵処理を行わないかどうか
-	unsigned char				Key[ DXA_KEY_BYTES ] ;			// 鍵
-	char						KeyString[ DXA_KEY_STRING_LENGTH + 1 ] ;	// 鍵文字列
-	size_t						KeyStringBytes ;				// 鍵文字列のバイト数
+	unsigned char				Key[DXA_KEYSTR_LENGTH] ;		// 鍵文字列
+	unsigned char				KeyV2[DXA_KEYV2_LENGTH] ;		// 鍵バージョン2
+	char						KeyV2String[ DXA_KEYV2STR_LENGTH + 1 ] ;	// 鍵バージョン2文字列
+	size_t						KeyV2StringBytes ;				// 鍵バージョン2文字列の長さ
 	int							MemoryOpenFlag ;				// メモリ上のファイルを開いているか、フラグ
 	int							UserMemoryImageFlag ;			// ユーザーが展開したメモリイメージを使用しているか、フラグ
 	LONGLONG					MemoryImageSize ;				// メモリ上のファイルから開いていた場合のイメージのサイズ
@@ -177,13 +221,16 @@ struct DXARC
 struct DXARC_STREAM
 {
 	DXARC						*Archive ;						// アーカイブデータへのポインタ
-	DXARC_FILEHEAD				*FileHead ;						// ファイル情報へのポインタ
+	union
+	{
+		DXARC_FILEHEAD			*FileHead ;						// ファイル情報へのポインタ
+		DXARC_FILEHEAD_VER5		*FileHeadV5 ;					// ファイル情報へのポインタ(Ver5以前)
+	};
 	void						*DecodeDataBuffer ;				// 解凍したデータが格納されているメモリ領域へのポインタ( ファイルが圧縮データだった場合のみ有効 )
 	void						*DecodeTempBuffer ;				// 圧縮データ一時保存用メモリ領域へのポインタ
-	DWORD_PTR					ReadOnlyFilePointer ;			// アーカイブファイルのポインタ
+	DWORD_PTR					WinFilePointer ;				// アーカイブファイルのポインタ
 
-	bool						NoKey ;							// 鍵処理を行わないかどうか
-	unsigned char				Key[ DXA_KEY_BYTES ] ;			// 鍵
+	unsigned char				KeyV2[DXA_KEYV2_LENGTH] ;		// 鍵バージョン2
 
 	int							EOFFlag ;						// EOFフラグ
 	ULONGLONG					FilePoint ;						// ファイルポインタ
@@ -209,7 +256,7 @@ struct DXARC_DIR_ARCHIVE
 struct DXARC_DIR_FILE
 {
 	int							UseArchiveFlag ;				// アーカイブファイルを使用しているかフラグ
-	DWORD_PTR					ReadOnlyFilePointer ;			// アーカイブを使用していない場合の、ファイルポインタ
+	DWORD_PTR					WinFilePointer_ ;				// アーカイブを使用していない場合の、ファイルポインタ
 	DWORD						UseArchiveIndex ;				// アーカイブを使用している場合、使用しているアーカイブファイルデータのインデックス
 	DXARC_STREAM				DXAStream ;						// アーカイブファイルを使用している場合のファイルアクセス用データ
 } ;
@@ -229,7 +276,7 @@ struct DXARC_DIR
 	int							DXAPriority ;					// ＤＸアーカイブファイルの優先度( 1:フォルダ優先 0:DXアーカイブ優先 )
 
 	int							ValidKeyString ;						// KeyString が有効かどうか
-	char						KeyString[ DXA_KEY_STRING_LENGTH + 1 ] ;	// 鍵文字列
+	char						KeyString[ DXA_KEYV2STR_LENGTH + 1 ] ;	// 鍵文字列
 
 	int							ArchiveNum ;					// 使用しているアーカイブファイルの数
 	int							FileNum ;						// 開いているファイルの数
@@ -290,7 +337,7 @@ extern	LONGLONG	DXA_DIR_Tell(					DWORD_PTR Handle ) ;											// ファイル
 extern	int			DXA_DIR_Seek(					DWORD_PTR Handle, LONGLONG SeekPoint, int SeekType ) ;			// ファイルポインタの位置を変更する
 extern	size_t		DXA_DIR_Read(					void *Buffer, size_t BlockSize, size_t BlockNum, DWORD_PTR Handle ) ; // ファイルからデータを読み込む
 extern	int			DXA_DIR_Eof(					DWORD_PTR Handle ) ;											// ファイルの終端を調べる
-extern	int			DXA_DIR_IsDXA(					DWORD_PTR Handle ) ;											// 戻り値: -1=エラー  0=ＤＸアーカイブファイル内のファイルではない  1=ＤＸアーカイブファイル内のファイル
+extern	int			DXA_DIR_IsDXA(DWORD_PTR Handle);											// 戻り値: -1=エラー  0=ＤＸアーカイブファイル内のファイルではない  1=ＤＸアーカイブファイル内のファイル
 extern	int			DXA_DIR_ChDir(					const wchar_t *Path ) ;
 extern	int			DXA_DIR_GetDir(					wchar_t *Buffer ) ;
 extern	int			DXA_DIR_GetDirS(				wchar_t *Buffer, size_t BufferBytes ) ;
@@ -301,17 +348,16 @@ extern	int			DXA_DIR_FindClose(				DWORD_PTR FindHandle ) ;										// 戻り�
 
 #endif
 
-extern	int			DXA_Encode(						void *Src, DWORD SrcSize, void *Dest, int MaxPress = FALSE, int MaxSearchListNum = -1 ) ;	// データを圧縮する( 戻り値:圧縮後のデータサイズ )
+extern	int			DXA_Encode(						void *Src, DWORD SrcSize, void *Dest ) ;						// データを圧縮する( 戻り値:圧縮後のデータサイズ )
 extern	int			DXA_Decode(						void *Src, void *Dest ) ;										// データを解凍する( 戻り値:解凍後のデータサイズ )
-
-extern	ULONGLONG	Huffman_Encode(					void *Src, ULONGLONG SrcSize, void *Dest ) ;					// データをハフマン圧縮する( 戻り値:圧縮後のサイズ  0 はエラー  Dest に NULL を入れると圧縮データ格納に必要なサイズが返る )
-extern	ULONGLONG	Huffman_Decode(					void *Press, void *Dest ) ;										// ハフマン圧縮されたデータを解凍する( 戻り値:解凍後のサイズ  0 はエラー  Dest に NULL を入れると解凍データ格納に必要なサイズが返る )
 
 extern	DWORD		BinToChar128(					void *Src, DWORD SrcSize, void *Dest ) ;						// バイナリデータを半角文字列に変換する( 戻り値:変換後のデータサイズ )
 extern	DWORD		Char128ToBin(					void *Src, void *Dest ) ;										// 半角文字列をバイナリデータに変換する( 戻り値:変換後のデータサイズ )
 
-extern	DWORD		BinToBase64(					void *Src, unsigned int SrcSize, void *Dest ) ;					// バイナリデータをBase64文字列に変換する( 戻り値:変換後のデータサイズ )
-extern	DWORD		Base64ToBin(					void *Src, void *Dest ) ;										// Base64文字列をバイナリデータに変換する( 戻り値:変換後のデータサイズ )
+extern	DWORD		BinToBase64(void* Src, unsigned int SrcSize, void* Dest);					// バイナリデータをBase64文字列に変換する( 戻り値:変換後のデータサイズ )
+extern	DWORD		Base64ToBin(void* Src, void* Dest);										// Base64文字列をバイナリデータに変換する( 戻り値:変換後のデータサイズ )
+
+extern	void		HashSha256(const void* SrcData, size_t SrcDataSize, void* DestBuffer);
 
 #ifndef DX_NON_NAMESPACE
 
@@ -319,4 +365,4 @@ extern	DWORD		Base64ToBin(					void *Src, void *Dest ) ;										// Base64文�
 
 #endif // DX_NON_NAMESPACE
 
-#endif // DXARCHIVE_H
+#endif // __DXARCHIVE_H__
